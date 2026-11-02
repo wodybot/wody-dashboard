@@ -1,0 +1,203 @@
+{
+ "sources": [
+  {
+   "key": "youtube",
+   "group": "live",
+   "label": "YouTube",
+   "hint": "Channel ID (UC...), @handle or channel link",
+   "needs": null,
+   "generator": false,
+   "targetOptional": false,
+   "options": {}
+  },
+  {
+   "key": "twitch",
+   "group": "live",
+   "label": "Twitch",
+   "hint": "Channel name",
+   "needs": "twitch",
+   "generator": false,
+   "targetOptional": false,
+   "options": {}
+  },
+  {
+   "key": "kick",
+   "group": "live",
+   "label": "Kick",
+   "hint": "Channel name",
+   "needs": "kick",
+   "generator": false,
+   "targetOptional": false,
+   "options": {}
+  },
+  {
+   "key": "spotify_artist",
+   "group": "music",
+   "label": "Spotify artist",
+   "hint": "Artist link or ID",
+   "needs": "spotify",
+   "generator": false,
+   "targetOptional": false,
+   "options": {}
+  },
+  {
+   "key": "spotify_playlist",
+   "group": "music",
+   "label": "Spotify playlist",
+   "hint": "Playlist link or ID",
+   "needs": "spotify",
+   "generator": false,
+   "targetOptional": false,
+   "options": {}
+  },
+  {
+   "key": "spotify_podcast",
+   "group": "music",
+   "label": "Spotify podcast",
+   "hint": "Show link or ID",
+   "needs": "spotify",
+   "generator": false,
+   "targetOptional": false,
+   "options": {}
+  },
+  {
+   "key": "apple_artist",
+   "group": "music",
+   "label": "Apple Music artist",
+   "hint": "Artist link or ID",
+   "needs": null,
+   "generator": false,
+   "targetOptional": false,
+   "options": {}
+  },
+  {
+   "key": "apple_chart",
+   "group": "music",
+   "label": "Apple Music charts",
+   "hint": "Country code such as us, gb, ro",
+   "needs": null,
+   "generator": false,
+   "targetOptional": true,
+   "options": {}
+  },
+  {
+   "key": "apple_podcast",
+   "group": "music",
+   "label": "Apple Podcasts",
+   "hint": "Podcast link or ID",
+   "needs": null,
+   "generator": false,
+   "targetOptional": false,
+   "options": {}
+  },
+  {
+   "key": "reddit",
+   "group": "social",
+   "label": "Reddit",
+   "hint": "r/subreddit or u/user",
+   "needs": null,
+   "generator": false,
+   "targetOptional": false,
+   "options": {}
+  },
+  {
+   "key": "tumblr",
+   "group": "social",
+   "label": "Tumblr",
+   "hint": "Blog name",
+   "needs": null,
+   "generator": false,
+   "targetOptional": false,
+   "options": {}
+  },
+  {
+   "key": "pinterest",
+   "group": "social",
+   "label": "Pinterest",
+   "hint": "user or user/board",
+   "needs": null,
+   "generator": false,
+   "targetOptional": false,
+   "options": {}
+  },
+  {
+   "key": "rss",
+   "group": "social",
+   "label": "RSS",
+   "hint": "Link of the feed or of the site",
+   "needs": null,
+   "generator": false,
+   "targetOptional": false,
+   "options": {}
+  },
+  {
+   "key": "github",
+   "group": "code",
+   "label": "GitHub",
+   "hint": "owner/repo",
+   "needs": null,
+   "generator": false,
+   "targetOptional": false,
+   "options": {
+    "what": [
+     "releases",
+     "commits"
+    ]
+   }
+  },
+  {
+   "key": "steam",
+   "group": "code",
+   "label": "Steam news",
+   "hint": "Game name, link or App ID",
+   "needs": null,
+   "generator": false,
+   "targetOptional": false,
+   "options": {}
+  },
+  {
+   "key": "epic",
+   "group": "code",
+   "label": "Epic free games",
+   "hint": "Country code such as us, ro",
+   "needs": null,
+   "generator": false,
+   "targetOptional": true,
+   "options": {}
+  },
+  {
+   "key": "random_song",
+   "group": "music",
+   "label": "Random song",
+   "hint": "Optional: playlist link or ID, country code",
+   "needs": null,
+   "generator": true,
+   "targetOptional": true,
+   "options": {
+    "provider": [
+     "deezer",
+     "apple",
+     "spotify"
+    ]
+   }
+  }
+ ],
+ "intervals": [
+  5,
+  10,
+  15,
+  30,
+  60,
+  120,
+  360,
+  720,
+  1440
+ ],
+ "groups": [
+  "live",
+  "music",
+  "social",
+  "code"
+ ],
+ "maxFeeds": 30
+}

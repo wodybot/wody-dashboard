@@ -1,0 +1,541 @@
+[
+ {
+  "source": "youtube",
+  "target": "https://www.youtube.com/channel/UCX6OQ3DkcsbYNE6H8uQQuVA",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "UCX6OQ3DkcsbYNE6H8uQQuVA",
+   "options": {}
+  }
+ },
+ {
+  "source": "youtube",
+  "target": "@MrBeast",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "@MrBeast",
+   "options": {}
+  }
+ },
+ {
+  "source": "youtube",
+  "target": "https://youtube.com/@Some.Chan/",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "@Some.Chan",
+   "options": {}
+  }
+ },
+ {
+  "source": "youtube",
+  "target": "nope",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "twitch",
+  "target": "https://twitch.tv/Shroud/",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "shroud",
+   "options": {}
+  }
+ },
+ {
+  "source": "twitch",
+  "target": "a",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "kick",
+  "target": "@Trainwreckstv",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "trainwreckstv",
+   "options": {}
+  }
+ },
+ {
+  "source": "spotify_artist",
+  "target": "https://open.spotify.com/artist/4Z8W4fKeB5YxbusRsdQVPb?si=abc",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "4Z8W4fKeB5YxbusRsdQVPb",
+   "options": {}
+  }
+ },
+ {
+  "source": "spotify_artist",
+  "target": "spotify:artist:4Z8W4fKeB5YxbusRsdQVPb",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "4Z8W4fKeB5YxbusRsdQVPb",
+   "options": {}
+  }
+ },
+ {
+  "source": "spotify_artist",
+  "target": "short",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "spotify_playlist",
+  "target": "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "37i9dQZF1DXcBWIGoYBM5M",
+   "options": {}
+  }
+ },
+ {
+  "source": "spotify_podcast",
+  "target": "https://open.spotify.com/show/4rOoJ6Egrf8K2IrywzwOMk",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "4rOoJ6Egrf8K2IrywzwOMk",
+   "options": {}
+  }
+ },
+ {
+  "source": "apple_artist",
+  "target": "https://music.apple.com/us/artist/taylor-swift/159260351",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "apple_artist",
+  "target": "159260351",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "159260351",
+   "options": {}
+  }
+ },
+ {
+  "source": "apple_artist",
+  "target": "x",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "apple_chart",
+  "target": "",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "us",
+   "options": {}
+  }
+ },
+ {
+  "source": "apple_chart",
+  "target": "RO",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "ro",
+   "options": {}
+  }
+ },
+ {
+  "source": "apple_chart",
+  "target": "usa",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "apple_podcast",
+  "target": "https://podcasts.apple.com/us/podcast/serial/id917918570",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "917918570",
+   "options": {}
+  }
+ },
+ {
+  "source": "apple_podcast",
+  "target": "917918570",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "917918570",
+   "options": {}
+  }
+ },
+ {
+  "source": "apple_podcast",
+  "target": "x",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "reddit",
+  "target": "https://www.reddit.com/r/discordapp/",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "r/discordapp",
+   "options": {}
+  }
+ },
+ {
+  "source": "reddit",
+  "target": "u/spez",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "u/spez",
+   "options": {}
+  }
+ },
+ {
+  "source": "reddit",
+  "target": "discordapp",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "r/discordapp",
+   "options": {}
+  }
+ },
+ {
+  "source": "reddit",
+  "target": "a",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "tumblr",
+  "target": "staff.tumblr.com",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "staff",
+   "options": {}
+  }
+ },
+ {
+  "source": "tumblr",
+  "target": "https://staff.tumblr.com/",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "staff",
+   "options": {}
+  }
+ },
+ {
+  "source": "tumblr",
+  "target": "bad name",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "pinterest",
+  "target": "https://www.pinterest.com/pinterest/official-news/",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "pinterest/official-news",
+   "options": {}
+  }
+ },
+ {
+  "source": "pinterest",
+  "target": "someone",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "someone",
+   "options": {}
+  }
+ },
+ {
+  "source": "pinterest",
+  "target": "a b",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "rss",
+  "target": "example.com/feed.xml",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "https://example.com/feed.xml",
+   "options": {}
+  }
+ },
+ {
+  "source": "rss",
+  "target": "http://example.com/rss",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "https://example.com/rss",
+   "options": {}
+  }
+ },
+ {
+  "source": "rss",
+  "target": "https://user:pw@example.com/rss",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "rss",
+  "target": "ftp://example.com",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "rss",
+  "target": "",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_required"
+  }
+ },
+ {
+  "source": "github",
+  "target": "https://github.com/python/cpython.git",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "python/cpython",
+   "options": {
+    "what": "releases"
+   }
+  }
+ },
+ {
+  "source": "github",
+  "target": "python/cpython",
+  "options": {
+   "what": "commits"
+  },
+  "expect": {
+   "ok": true,
+   "target": "python/cpython",
+   "options": {
+    "what": "commits"
+   }
+  }
+ },
+ {
+  "source": "github",
+  "target": "python/cpython",
+  "options": {
+   "what": "issues"
+  },
+  "expect": {
+   "ok": false,
+   "code": "option"
+  }
+ },
+ {
+  "source": "github",
+  "target": "justone",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "steam",
+  "target": "https://store.steampowered.com/app/730/CounterStrike_2/",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "730",
+   "options": {}
+  }
+ },
+ {
+  "source": "steam",
+  "target": "Half-Life 2",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "Half-Life 2",
+   "options": {}
+  }
+ },
+ {
+  "source": "steam",
+  "target": "x",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "epic",
+  "target": "",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "us",
+   "options": {}
+  }
+ },
+ {
+  "source": "epic",
+  "target": "RO",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "ro",
+   "options": {}
+  }
+ },
+ {
+  "source": "epic",
+  "target": "roo",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "random_song",
+  "target": "",
+  "options": {},
+  "expect": {
+   "ok": true,
+   "target": "",
+   "options": {
+    "provider": "deezer"
+   }
+  }
+ },
+ {
+  "source": "random_song",
+  "target": "",
+  "options": {
+   "provider": "apple"
+  },
+  "expect": {
+   "ok": true,
+   "target": "us",
+   "options": {
+    "provider": "apple"
+   }
+  }
+ },
+ {
+  "source": "random_song",
+  "target": "gb",
+  "options": {
+   "provider": "apple"
+  },
+  "expect": {
+   "ok": true,
+   "target": "gb",
+   "options": {
+    "provider": "apple"
+   }
+  }
+ },
+ {
+  "source": "random_song",
+  "target": "https://www.deezer.com/playlist/77",
+  "options": {
+   "provider": "deezer"
+  },
+  "expect": {
+   "ok": true,
+   "target": "77",
+   "options": {
+    "provider": "deezer"
+   }
+  }
+ },
+ {
+  "source": "random_song",
+  "target": "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M",
+  "options": {
+   "provider": "spotify"
+  },
+  "expect": {
+   "ok": true,
+   "target": "37i9dQZF1DXcBWIGoYBM5M",
+   "options": {
+    "provider": "spotify"
+   }
+  }
+ },
+ {
+  "source": "random_song",
+  "target": "nope",
+  "options": {
+   "provider": "spotify"
+  },
+  "expect": {
+   "ok": false,
+   "code": "target_invalid"
+  }
+ },
+ {
+  "source": "nope",
+  "target": "x",
+  "options": {},
+  "expect": {
+   "ok": false,
+   "code": "source"
+  }
+ }
+]
