@@ -356,7 +356,7 @@
       {
         "key": "lookups",
         "title": "Lookups",
-        "desc": "25 lookups under /lookup: Last.fm now playing, Deezer and iTunes, Minecraft servers and players, Roblox, Steam, Chess.com, Modrinth, Twitch, Kick, YouTube, GitHub, npm, PyPI, anime, movies, Pokémon, Wikipedia, crypto, currency conversion, Bluesky, Mastodon and Reddit. Official or openly documented APIs, free and on by default."
+        "desc": "16 lookups under /lookup: Last.fm now playing, iTunes, Minecraft servers and players, Roblox, Steam, Chess.com, Twitch, Kick, YouTube, GitHub, movies, crypto, currency conversion and Reddit. Official or openly documented APIs, free and on by default."
       },
       {
         "key": "feeds",
@@ -1062,7 +1062,7 @@
       },
       {
         "heading": "21. Lookups",
-        "html": "<p>Lookups are free and on by default. They can be turned off by a server administrator in the dashboard.</p><p><strong>What happens.</strong> When a member uses <code>/lookup</code>, Wody sends the text they typed (for example a username, a server address or a search word) to the service they picked, receives the answer and shows it in Discord. The request comes from Wody's servers, so the service sees the typed text and Wody's server address, not the member's device or IP address.</p><p><strong>What we store.</strong> Nothing. Searches and results are not saved, not logged with the member's identity and not linked to a profile. Short-lived answers can be kept in memory for a few minutes to avoid repeating the same request.</p><p><strong>Third parties.</strong> Each service (for example Last.fm, Deezer, Steam, Twitch, GitHub or Wikipedia) is independent and has its own privacy policy. A few of them need a key that is kept on the server by the operator and is never shown to members.</p>"
+        "html": "<p>Lookups are free and on by default. They can be turned off by a server administrator in the dashboard.</p><p><strong>What happens.</strong> When a member uses <code>/lookup</code>, Wody sends the text they typed (for example a username, a server address or a search word) to the service they picked, receives the answer and shows it in Discord. The request comes from Wody's servers, so the service sees the typed text and Wody's server address, not the member's device or IP address.</p><p><strong>What we store.</strong> Nothing. Searches and results are not saved, not logged with the member's identity and not linked to a profile. Short-lived answers can be kept in memory for a few minutes to avoid repeating the same request.</p><p><strong>Third parties.</strong> Each service (for example Last.fm, iTunes, Steam, Twitch, GitHub or Reddit) is independent and has its own privacy policy. A few of them need a key that is kept on the server by the operator and is never shown to members.</p>"
       },
       {
         "heading": "22. Feeds",
@@ -1655,10 +1655,6 @@
             "description": "What a Last.fm user is listening to, with the cover."
           },
           {
-            "name": "/lookup deezer",
-            "description": "A song, artist or album on Deezer."
-          },
-          {
             "name": "/lookup itunes",
             "description": "Music, podcasts, movies or apps on Apple iTunes."
           },
@@ -1683,14 +1679,6 @@
             "description": "A Chess.com player: ratings and profile."
           },
           {
-            "name": "/lookup modrinth",
-            "description": "A Minecraft mod, plugin, shader or pack on Modrinth."
-          },
-          {
-            "name": "/lookup pokemon",
-            "description": "A Pokémon: types, stats, abilities and artwork."
-          },
-          {
             "name": "/lookup twitch",
             "description": "A Twitch channel: live status, game and viewers."
           },
@@ -1707,18 +1695,6 @@
             "description": "A GitHub user or repository."
           },
           {
-            "name": "/lookup npm",
-            "description": "An npm package: version, downloads, license."
-          },
-          {
-            "name": "/lookup pypi",
-            "description": "A PyPI package: version, Python requirement, links."
-          },
-          {
-            "name": "/lookup anime",
-            "description": "An anime: score, episodes, status, next episode."
-          },
-          {
             "name": "/lookup movie",
             "description": "A movie: score, release date, poster, summary."
           },
@@ -1727,24 +1703,12 @@
             "description": "A TV show: rating, network, status, next episode."
           },
           {
-            "name": "/lookup wikipedia",
-            "description": "The summary of a Wikipedia article, in the server language."
-          },
-          {
             "name": "/lookup crypto",
             "description": "The price and market data of a cryptocurrency."
           },
           {
             "name": "/lookup convert",
             "description": "Convert an amount between currencies."
-          },
-          {
-            "name": "/lookup bluesky",
-            "description": "A Bluesky profile."
-          },
-          {
-            "name": "/lookup mastodon",
-            "description": "A Mastodon profile on any server."
           },
           {
             "name": "/lookup reddit",
@@ -4922,29 +4886,20 @@
     "lookups": {
       "commands": {
         "nowplaying": "What a Last.fm user is listening to, with the cover.",
-        "deezer": "A song, artist or album on Deezer.",
         "itunes": "Music, podcasts, movies or apps on Apple iTunes.",
         "mcserver": "Status, players and version of a Minecraft server.",
         "mcplayer": "A Minecraft player: skin, UUID and profile.",
         "roblox": "A Roblox profile: friends, followers and avatar.",
         "steam": "A Steam game: price, players right now, score.",
         "chess": "A Chess.com player: ratings and profile.",
-        "modrinth": "A Minecraft mod, plugin, shader or pack on Modrinth.",
-        "pokemon": "A Pokémon: types, stats, abilities and artwork.",
         "twitch": "A Twitch channel: live status, game and viewers.",
         "kick": "A Kick channel: live status, category and viewers.",
         "youtube": "A YouTube channel: subscribers, videos and views.",
         "github": "A GitHub user or repository.",
-        "npm": "An npm package: version, downloads, license.",
-        "pypi": "A PyPI package: version, Python requirement, links.",
-        "anime": "An anime: score, episodes, status, next episode.",
         "movie": "A movie: score, release date, poster, summary.",
         "show": "A TV show: rating, network, status, next episode.",
-        "wikipedia": "The summary of a Wikipedia article, in the server language.",
         "crypto": "The price and market data of a cryptocurrency.",
         "convert": "Convert an amount between currencies.",
-        "bluesky": "A Bluesky profile.",
-        "mastodon": "A Mastodon profile on any server.",
         "reddit": "A subreddit or Reddit user."
       },
       "title": "Lookups",
@@ -4969,18 +4924,18 @@
       "groups": {
         "music": {
           "title": "Music",
-          "text": "What a friend is listening to and songs on Deezer and iTunes."
+          "text": "What a friend is listening to and songs on iTunes."
         },
         "games": {
           "title": "Games",
-          "text": "Minecraft servers and players, Roblox, Steam, Chess.com, Modrinth and Pokémon."
+          "text": "Minecraft servers and players, Roblox, Steam and Chess.com."
         },
         "creators": {
           "title": "Creators and code",
-          "text": "Twitch, Kick and YouTube channels, GitHub, npm and PyPI."
+          "text": "Twitch, Kick, YouTube and GitHub."
         },
         "media": {
-          "title": "Anime, movies and Wikipedia",
+          "title": "Movies and shows",
           "text": "Scores, posters, summaries and the next episode."
         },
         "money": {
@@ -4989,7 +4944,7 @@
         },
         "social": {
           "title": "Social",
-          "text": "Bluesky and Mastodon profiles, subreddits and Reddit users."
+          "text": "Subreddits and Reddit users."
         }
       },
       "footer": "Members type /lookup and pick a service. Want a feed that posts new items on its own? Open Feeds in the sidebar."
@@ -5136,7 +5091,7 @@
     },
     "lookups": {
       "title": "Lookups",
-      "description": "25 lookups under /lookup: songs, servers, profiles and prices. Free."
+      "description": "16 lookups under /lookup: songs, servers, profiles and prices. Free."
     },
     "feeds": {
       "title": "Feeds",
@@ -6725,7 +6680,7 @@
         ]
       },
       "lookups": {
-        "what": "Members type /lookup and pick a service to get a song, a server, a profile or a price without leaving Discord. 25 lookups from official or openly documented APIs.",
+        "what": "Members type /lookup and pick a service to get a song, a server, a profile or a price without leaving Discord. 16 lookups from official or openly documented APIs.",
         "customize": [
           "Turn it on or off for the whole server",
           "Which services need a key from the bot owner",

@@ -356,7 +356,7 @@
       {
         "key": "lookups",
         "title": "Sorgulamalar",
-        "desc": "/lookup ile 25 sorgulama: Last.fm şu an çalan, Deezer ve iTunes, Minecraft sunucuları ve oyuncuları, Roblox, Steam, Chess.com, Modrinth, Twitch, Kick, YouTube, GitHub, npm, PyPI, anime, filmler, Pokémon, Vikipedi, kripto, döviz çevirme, Bluesky, Mastodon ve Reddit. Resmî veya açık API'ler, ücretsiz ve varsayılan olarak açık."
+        "desc": "/lookup ile 16 sorgulama: Last.fm şu an çalan, iTunes, Minecraft sunucuları ve oyuncuları, Roblox, Steam, Chess.com, Twitch, Kick, YouTube, GitHub, filmler, kripto, döviz çevirme ve Reddit. Resmî veya açık API'ler, ücretsiz ve varsayılan olarak açık."
       },
       {
         "key": "feeds",
@@ -1062,7 +1062,7 @@
       },
       {
         "heading": "21. Sorgulamalar (Lookups)",
-        "html": "<p>Sorgulamalar ücretsizdir ve varsayılan olarak açıktır. Sunucu yöneticisi bunları panelden kapatabilir.</p><p><strong>Ne olur.</strong> Bir üye <code>/lookup</code> kullandığında Wody, yazılan metni (örneğin bir kullanıcı adı, sunucu adresi veya arama sözcüğü) seçilen servise gönderir, yanıtı alır ve Discord'da gösterir. İstek Wody'nin sunucularından çıkar; servis yazılan metni ve Wody sunucusunun adresini görür, üyenin cihazını veya IP adresini görmez.</p><p><strong>Ne saklarız.</strong> Hiçbir şey. Aramalar ve sonuçlar kaydedilmez, üyenin kimliğiyle günlüğe alınmaz ve bir profille ilişkilendirilmez. Aynı isteği tekrarlamamak için yanıtlar birkaç dakika bellekte kalabilir.</p><p><strong>Üçüncü taraflar.</strong> Her servis (örneğin Last.fm, Deezer, Steam, Twitch, GitHub veya Vikipedi) bağımsızdır ve kendi gizlilik politikası vardır. Bazıları, operatörün sunucuda tuttuğu ve üyelere hiç gösterilmeyen bir anahtar ister.</p>"
+        "html": "<p>Sorgulamalar ücretsizdir ve varsayılan olarak açıktır. Sunucu yöneticisi bunları panelden kapatabilir.</p><p><strong>Ne olur.</strong> Bir üye <code>/lookup</code> kullandığında Wody, yazılan metni (örneğin bir kullanıcı adı, sunucu adresi veya arama sözcüğü) seçilen servise gönderir, yanıtı alır ve Discord'da gösterir. İstek Wody'nin sunucularından çıkar; servis yazılan metni ve Wody sunucusunun adresini görür, üyenin cihazını veya IP adresini görmez.</p><p><strong>Ne saklarız.</strong> Hiçbir şey. Aramalar ve sonuçlar kaydedilmez, üyenin kimliğiyle günlüğe alınmaz ve bir profille ilişkilendirilmez. Aynı isteği tekrarlamamak için yanıtlar birkaç dakika bellekte kalabilir.</p><p><strong>Üçüncü taraflar.</strong> Her servis (örneğin Last.fm, iTunes, Steam, Twitch, GitHub veya Reddit) bağımsızdır ve kendi gizlilik politikası vardır. Bazıları, operatörün sunucuda tuttuğu ve üyelere hiç gösterilmeyen bir anahtar ister.</p>"
       },
       {
         "heading": "22. Akışlar (Feeds)",
@@ -1655,10 +1655,6 @@
             "description": "Bir Last.fm kullanıcısının dinlediği, kapak görseliyle."
           },
           {
-            "name": "/lookup deezer",
-            "description": "Deezer'da bir şarkı, sanatçı veya albüm."
-          },
-          {
             "name": "/lookup itunes",
             "description": "Apple iTunes'ta müzik, podcast, film veya uygulama."
           },
@@ -1683,14 +1679,6 @@
             "description": "Bir Chess.com oyuncusu: derecelendirme ve profil."
           },
           {
-            "name": "/lookup modrinth",
-            "description": "Modrinth'te bir Minecraft modu, eklentisi, shader'ı veya paketi."
-          },
-          {
-            "name": "/lookup pokemon",
-            "description": "Bir Pokémon: tipler, değerler, yetenekler ve çizim."
-          },
-          {
             "name": "/lookup twitch",
             "description": "Bir Twitch kanalı: canlı durum, oyun ve izleyiciler."
           },
@@ -1707,18 +1695,6 @@
             "description": "Bir GitHub kullanıcısı veya deposu."
           },
           {
-            "name": "/lookup npm",
-            "description": "Bir npm paketi: sürüm, indirme, lisans."
-          },
-          {
-            "name": "/lookup pypi",
-            "description": "Bir PyPI paketi: sürüm, Python gereksinimi, bağlantılar."
-          },
-          {
-            "name": "/lookup anime",
-            "description": "Bir anime: puan, bölümler, durum, sonraki bölüm."
-          },
-          {
             "name": "/lookup movie",
             "description": "Bir film: puan, çıkış tarihi, afiş, özet."
           },
@@ -1727,24 +1703,12 @@
             "description": "Bir dizi: puan, kanal, durum, sonraki bölüm."
           },
           {
-            "name": "/lookup wikipedia",
-            "description": "Bir Vikipedi maddesinin özeti, sunucu dilinde."
-          },
-          {
             "name": "/lookup crypto",
             "description": "Bir kripto paranın fiyatı ve piyasa verileri."
           },
           {
             "name": "/lookup convert",
             "description": "Bir tutarı para birimleri arasında çevirir."
-          },
-          {
-            "name": "/lookup bluesky",
-            "description": "Bir Bluesky profili."
-          },
-          {
-            "name": "/lookup mastodon",
-            "description": "Herhangi bir sunucudaki Mastodon profili."
           },
           {
             "name": "/lookup reddit",
@@ -4922,29 +4886,20 @@
     "lookups": {
       "commands": {
         "nowplaying": "Bir Last.fm kullanıcısının dinlediği, kapak görseliyle.",
-        "deezer": "Deezer'da bir şarkı, sanatçı veya albüm.",
         "itunes": "Apple iTunes'ta müzik, podcast, film veya uygulama.",
         "mcserver": "Bir Minecraft sunucusunun durumu, oyuncuları ve sürümü.",
         "mcplayer": "Bir Minecraft oyuncusu: skin, UUID ve profil.",
         "roblox": "Bir Roblox profili: arkadaşlar, takipçiler ve avatar.",
         "steam": "Bir Steam oyunu: fiyat, şu an oynayanlar, puan.",
         "chess": "Bir Chess.com oyuncusu: derecelendirme ve profil.",
-        "modrinth": "Modrinth'te bir Minecraft modu, eklentisi, shader'ı veya paketi.",
-        "pokemon": "Bir Pokémon: tipler, değerler, yetenekler ve çizim.",
         "twitch": "Bir Twitch kanalı: canlı durum, oyun ve izleyiciler.",
         "kick": "Bir Kick kanalı: canlı durum, kategori ve izleyiciler.",
         "youtube": "Bir YouTube kanalı: aboneler, videolar ve görüntülenme.",
         "github": "Bir GitHub kullanıcısı veya deposu.",
-        "npm": "Bir npm paketi: sürüm, indirme, lisans.",
-        "pypi": "Bir PyPI paketi: sürüm, Python gereksinimi, bağlantılar.",
-        "anime": "Bir anime: puan, bölümler, durum, sonraki bölüm.",
         "movie": "Bir film: puan, çıkış tarihi, afiş, özet.",
         "show": "Bir dizi: puan, kanal, durum, sonraki bölüm.",
-        "wikipedia": "Bir Vikipedi maddesinin özeti, sunucu dilinde.",
         "crypto": "Bir kripto paranın fiyatı ve piyasa verileri.",
         "convert": "Bir tutarı para birimleri arasında çevirir.",
-        "bluesky": "Bir Bluesky profili.",
-        "mastodon": "Herhangi bir sunucudaki Mastodon profili.",
         "reddit": "Bir subreddit veya Reddit kullanıcısı."
       },
       "title": "Sorgulamalar",
@@ -4969,18 +4924,18 @@
       "groups": {
         "music": {
           "title": "Müzik",
-          "text": "Bir arkadaşın dinlediği ve Deezer ile iTunes'taki şarkılar."
+          "text": "Bir arkadaşın dinlediği ve iTunes'taki şarkılar."
         },
         "games": {
           "title": "Oyunlar",
-          "text": "Minecraft sunucuları ve oyuncuları, Roblox, Steam, Chess.com, Modrinth ve Pokémon."
+          "text": "Minecraft sunucuları ve oyuncuları, Roblox, Steam ve Chess.com."
         },
         "creators": {
           "title": "İçerik üreticileri ve kod",
-          "text": "Twitch, Kick ve YouTube kanalları, GitHub, npm ve PyPI."
+          "text": "Twitch, Kick, YouTube ve GitHub."
         },
         "media": {
-          "title": "Anime, filmler ve Vikipedi",
+          "title": "Filmler ve diziler",
           "text": "Puanlar, afişler, özetler ve sıradaki bölüm."
         },
         "money": {
@@ -4989,7 +4944,7 @@
         },
         "social": {
           "title": "Sosyal",
-          "text": "Bluesky ve Mastodon profilleri, subreddit'ler ve Reddit kullanıcıları."
+          "text": "Subreddit'ler ve Reddit kullanıcıları."
         }
       },
       "footer": "Üyeler /lookup yazıp bir servis seçer. Yeni şeyleri kendiliğinden paylaşan bir akış mı istiyorsun? Kenar çubuğunda Akışlar'ı aç."
@@ -5136,7 +5091,7 @@
     },
     "lookups": {
       "title": "Sorgulamalar",
-      "description": "/lookup ile 25 sorgulama: şarkılar, sunucular, profiller ve fiyatlar. Ücretsiz."
+      "description": "/lookup ile 16 sorgulama: şarkılar, sunucular, profiller ve fiyatlar. Ücretsiz."
     },
     "feeds": {
       "title": "Akışlar",
@@ -6725,7 +6680,7 @@
         ]
       },
       "lookups": {
-        "what": "Üyeler /lookup yazıp bir servis seçer ve Discord'dan çıkmadan şarkı, sunucu, profil veya fiyat alır. Resmî veya açık API'lerden 25 sorgulama.",
+        "what": "Üyeler /lookup yazıp bir servis seçer ve Discord'dan çıkmadan şarkı, sunucu, profil veya fiyat alır. Resmî veya açık API'lerden 16 sorgulama.",
         "customize": [
           "Tüm sunucu için aç veya kapat",
           "Hangi servislerin bot sahibinden anahtar istediği",

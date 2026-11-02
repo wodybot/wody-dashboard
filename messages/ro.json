@@ -356,7 +356,7 @@
       {
         "key": "lookups",
         "title": "Lookups",
-        "desc": "25 de căutări sub /lookup: Last.fm now playing, Deezer și iTunes, servere și jucători Minecraft, Roblox, Steam, Chess.com, Modrinth, Twitch, Kick, YouTube, GitHub, npm, PyPI, anime, filme, Pokémon, Wikipedia, crypto, conversie valutară, Bluesky, Mastodon și Reddit. API-uri oficiale sau deschise, gratuit și pornit implicit."
+        "desc": "16 de căutări sub /lookup: Last.fm now playing, iTunes, servere și jucători Minecraft, Roblox, Steam, Chess.com, Twitch, Kick, YouTube, GitHub, filme, crypto, conversie valutară și Reddit. API-uri oficiale sau deschise, gratuit și pornit implicit."
       },
       {
         "key": "feeds",
@@ -1062,7 +1062,7 @@
       },
       {
         "heading": "21. Lookups",
-        "html": "<p>Lookups sunt gratuite și pornite implicit. Un administrator al serverului le poate opri din dashboard.</p><p><strong>Ce se întâmplă.</strong> Când un membru folosește <code>/lookup</code>, Wody trimite textul scris (de exemplu un nume de utilizator, o adresă de server sau un cuvânt căutat) către serviciul ales, primește răspunsul și îl arată în Discord. Cererea pleacă de pe serverele Wody, deci serviciul vede textul scris și adresa serverului Wody, nu dispozitivul sau adresa IP a membrului.</p><p><strong>Ce stocăm.</strong> Nimic. Căutările și rezultatele nu sunt salvate, nu sunt înregistrate cu identitatea membrului și nu sunt legate de un profil. Răspunsurile pot fi ținute în memorie câteva minute ca să nu se repete aceeași cerere.</p><p><strong>Terți.</strong> Fiecare serviciu (de exemplu Last.fm, Deezer, Steam, Twitch, GitHub sau Wikipedia) este independent și are propria politică de confidențialitate. Unele cer o cheie păstrată pe server de operator, care nu este arătată niciodată membrilor.</p>"
+        "html": "<p>Lookups sunt gratuite și pornite implicit. Un administrator al serverului le poate opri din dashboard.</p><p><strong>Ce se întâmplă.</strong> Când un membru folosește <code>/lookup</code>, Wody trimite textul scris (de exemplu un nume de utilizator, o adresă de server sau un cuvânt căutat) către serviciul ales, primește răspunsul și îl arată în Discord. Cererea pleacă de pe serverele Wody, deci serviciul vede textul scris și adresa serverului Wody, nu dispozitivul sau adresa IP a membrului.</p><p><strong>Ce stocăm.</strong> Nimic. Căutările și rezultatele nu sunt salvate, nu sunt înregistrate cu identitatea membrului și nu sunt legate de un profil. Răspunsurile pot fi ținute în memorie câteva minute ca să nu se repete aceeași cerere.</p><p><strong>Terți.</strong> Fiecare serviciu (de exemplu Last.fm, iTunes, Steam, Twitch, GitHub sau Reddit) este independent și are propria politică de confidențialitate. Unele cer o cheie păstrată pe server de operator, care nu este arătată niciodată membrilor.</p>"
       },
       {
         "heading": "22. Feeds",
@@ -1655,10 +1655,6 @@
             "description": "Ce ascultă un utilizator Last.fm, cu coperta."
           },
           {
-            "name": "/lookup deezer",
-            "description": "O melodie, artist sau album pe Deezer."
-          },
-          {
             "name": "/lookup itunes",
             "description": "Muzică, podcasturi, filme sau aplicații pe Apple iTunes."
           },
@@ -1683,14 +1679,6 @@
             "description": "Un jucător Chess.com: rating-uri și profil."
           },
           {
-            "name": "/lookup modrinth",
-            "description": "Un mod, plugin, shader sau pachet Minecraft pe Modrinth."
-          },
-          {
-            "name": "/lookup pokemon",
-            "description": "Un Pokémon: tipuri, statistici, abilități și artwork."
-          },
-          {
             "name": "/lookup twitch",
             "description": "Un canal Twitch: stare live, joc și spectatori."
           },
@@ -1707,18 +1695,6 @@
             "description": "Un utilizator sau depozit GitHub."
           },
           {
-            "name": "/lookup npm",
-            "description": "Un pachet npm: versiune, descărcări, licență."
-          },
-          {
-            "name": "/lookup pypi",
-            "description": "Un pachet PyPI: versiune, cerință Python, linkuri."
-          },
-          {
-            "name": "/lookup anime",
-            "description": "Un anime: scor, episoade, stare, următorul episod."
-          },
-          {
             "name": "/lookup movie",
             "description": "Un film: scor, data lansării, afiș, rezumat."
           },
@@ -1727,24 +1703,12 @@
             "description": "Un serial: rating, canal, stare, următorul episod."
           },
           {
-            "name": "/lookup wikipedia",
-            "description": "Rezumatul unui articol Wikipedia, în limba serverului."
-          },
-          {
             "name": "/lookup crypto",
             "description": "Prețul și datele de piață ale unei criptomonede."
           },
           {
             "name": "/lookup convert",
             "description": "Convertește o sumă între valute."
-          },
-          {
-            "name": "/lookup bluesky",
-            "description": "Un profil Bluesky."
-          },
-          {
-            "name": "/lookup mastodon",
-            "description": "Un profil Mastodon pe orice server."
           },
           {
             "name": "/lookup reddit",
@@ -4922,29 +4886,20 @@
     "lookups": {
       "commands": {
         "nowplaying": "Ce ascultă un utilizator Last.fm, cu coperta.",
-        "deezer": "O melodie, artist sau album pe Deezer.",
         "itunes": "Muzică, podcasturi, filme sau aplicații pe Apple iTunes.",
         "mcserver": "Starea, jucătorii și versiunea unui server Minecraft.",
         "mcplayer": "Un jucător Minecraft: skin, UUID și profil.",
         "roblox": "Un profil Roblox: prieteni, urmăritori și avatar.",
         "steam": "Un joc Steam: preț, jucători acum, scor.",
         "chess": "Un jucător Chess.com: rating-uri și profil.",
-        "modrinth": "Un mod, plugin, shader sau pachet Minecraft pe Modrinth.",
-        "pokemon": "Un Pokémon: tipuri, statistici, abilități și artwork.",
         "twitch": "Un canal Twitch: stare live, joc și spectatori.",
         "kick": "Un canal Kick: stare live, categorie și spectatori.",
         "youtube": "Un canal YouTube: abonați, videoclipuri și vizualizări.",
         "github": "Un utilizator sau depozit GitHub.",
-        "npm": "Un pachet npm: versiune, descărcări, licență.",
-        "pypi": "Un pachet PyPI: versiune, cerință Python, linkuri.",
-        "anime": "Un anime: scor, episoade, stare, următorul episod.",
         "movie": "Un film: scor, data lansării, afiș, rezumat.",
         "show": "Un serial: rating, canal, stare, următorul episod.",
-        "wikipedia": "Rezumatul unui articol Wikipedia, în limba serverului.",
         "crypto": "Prețul și datele de piață ale unei criptomonede.",
         "convert": "Convertește o sumă între valute.",
-        "bluesky": "Un profil Bluesky.",
-        "mastodon": "Un profil Mastodon pe orice server.",
         "reddit": "Un subreddit sau utilizator Reddit."
       },
       "title": "Lookups",
@@ -4969,18 +4924,18 @@
       "groups": {
         "music": {
           "title": "Muzică",
-          "text": "Ce ascultă un prieten și melodii pe Deezer și iTunes."
+          "text": "Ce ascultă un prieten și melodii pe iTunes."
         },
         "games": {
           "title": "Jocuri",
-          "text": "Servere și jucători Minecraft, Roblox, Steam, Chess.com, Modrinth și Pokémon."
+          "text": "Servere și jucători Minecraft, Roblox, Steam și Chess.com."
         },
         "creators": {
           "title": "Creatori și cod",
-          "text": "Canale Twitch, Kick și YouTube, GitHub, npm și PyPI."
+          "text": "Twitch, Kick, YouTube și GitHub."
         },
         "media": {
-          "title": "Anime, filme și Wikipedia",
+          "title": "Filme și seriale",
           "text": "Note, afișe, rezumate și următorul episod."
         },
         "money": {
@@ -4989,7 +4944,7 @@
         },
         "social": {
           "title": "Social",
-          "text": "Profiluri Bluesky și Mastodon, subreddituri și utilizatori Reddit."
+          "text": "Subreddituri și utilizatori Reddit."
         }
       },
       "footer": "Membrii scriu /lookup și aleg un serviciu. Vrei un feed care postează singur lucruri noi? Deschide Feeds din bara laterală."
@@ -5136,7 +5091,7 @@
     },
     "lookups": {
       "title": "Lookups",
-      "description": "25 de căutări sub /lookup: melodii, servere, profiluri și prețuri. Gratuit."
+      "description": "16 de căutări sub /lookup: melodii, servere, profiluri și prețuri. Gratuit."
     },
     "feeds": {
       "title": "Feeds",
@@ -6725,7 +6680,7 @@
         ]
       },
       "lookups": {
-        "what": "Membrii scriu /lookup și aleg un serviciu ca să primească o melodie, un server, un profil sau un preț fără să iasă din Discord. 25 de căutări din API-uri oficiale sau deschise.",
+        "what": "Membrii scriu /lookup și aleg un serviciu ca să primească o melodie, un server, un profil sau un preț fără să iasă din Discord. 16 de căutări din API-uri oficiale sau deschise.",
         "customize": [
           "Pornește-l sau oprește-l pentru tot serverul",
           "Ce servicii cer o cheie de la proprietarul botului",

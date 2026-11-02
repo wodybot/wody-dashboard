@@ -1,7 +1,7 @@
 'use client';
 // Wody Lookups (free, on by default). Members look things up on other services with /lookup <service>. There is nothing to
 // configure per server besides the switch in the sidebar, so this page explains what is available and how it behaves.
-// The command list is the bot's own (cogs/lookups.py, 25 commands); nothing here is sample data.
+// The command list is the bot's own (cogs/lookups.py, 16 commands); nothing here is sample data.
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
@@ -12,12 +12,12 @@ import { SectionHeader } from '@/components/dashboard-kit';
 import { Section } from '@/components/module-kit';
 
 export const LOOKUP_GROUPS = [
-  { key: 'music', commands: ['nowplaying', 'deezer', 'itunes'] },
-  { key: 'games', commands: ['mcserver', 'mcplayer', 'roblox', 'steam', 'chess', 'modrinth', 'pokemon'] },
-  { key: 'creators', commands: ['twitch', 'kick', 'youtube', 'github', 'npm', 'pypi'] },
-  { key: 'media', commands: ['anime', 'movie', 'show', 'wikipedia'] },
+  { key: 'music', commands: ['nowplaying', 'itunes'] },
+  { key: 'games', commands: ['mcserver', 'mcplayer', 'roblox', 'steam', 'chess'] },
+  { key: 'creators', commands: ['twitch', 'kick', 'youtube', 'github'] },
+  { key: 'media', commands: ['movie', 'show'] },
   { key: 'money', commands: ['crypto', 'convert'] },
-  { key: 'social', commands: ['bluesky', 'mastodon', 'reddit'] },
+  { key: 'social', commands: ['reddit'] },
 ];
 
 export default function LookupsPanel({ onOpenModule }) {

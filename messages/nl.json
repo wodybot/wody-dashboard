@@ -356,7 +356,7 @@
       {
         "key": "lookups",
         "title": "Opzoekingen",
-        "desc": "25 opzoekingen onder /lookup: Last.fm speelt nu, Deezer en iTunes, Minecraft-servers en -spelers, Roblox, Steam, Chess.com, Modrinth, Twitch, Kick, YouTube, GitHub, npm, PyPI, anime, films, Pokémon, Wikipedia, crypto, valuta-omrekening, Bluesky, Mastodon en Reddit. Officiële of open API's, gratis en standaard aan."
+        "desc": "16 opzoekingen onder /lookup: Last.fm speelt nu, iTunes, Minecraft-servers en -spelers, Roblox, Steam, Chess.com, Twitch, Kick, YouTube, GitHub, films, crypto, valuta-omrekening en Reddit. Officiële of open API's, gratis en standaard aan."
       },
       {
         "key": "feeds",
@@ -1062,7 +1062,7 @@
       },
       {
         "heading": "21. Opzoekingen (Lookups)",
-        "html": "<p>Opzoekingen zijn gratis en staan standaard aan. Een serverbeheerder kan ze in het dashboard uitzetten.</p><p><strong>Wat er gebeurt.</strong> Wanneer een lid <code>/lookup</code> gebruikt, stuurt Wody de getypte tekst (bijvoorbeeld een gebruikersnaam, een serveradres of een zoekwoord) naar de gekozen dienst, ontvangt het antwoord en toont het in Discord. Het verzoek komt van de servers van Wody, dus de dienst ziet de getypte tekst en het serveradres van Wody, niet het apparaat of het IP-adres van het lid.</p><p><strong>Wat we opslaan.</strong> Niets. Zoekopdrachten en resultaten worden niet bewaard, niet gelogd met de identiteit van het lid en niet aan een profiel gekoppeld. Antwoorden kunnen enkele minuten in het geheugen blijven om hetzelfde verzoek niet te herhalen.</p><p><strong>Derden.</strong> Elke dienst (bijvoorbeeld Last.fm, Deezer, Steam, Twitch, GitHub of Wikipedia) is onafhankelijk en heeft een eigen privacybeleid. Sommige hebben een sleutel nodig die de beheerder op de server bewaart en die nooit aan leden wordt getoond.</p>"
+        "html": "<p>Opzoekingen zijn gratis en staan standaard aan. Een serverbeheerder kan ze in het dashboard uitzetten.</p><p><strong>Wat er gebeurt.</strong> Wanneer een lid <code>/lookup</code> gebruikt, stuurt Wody de getypte tekst (bijvoorbeeld een gebruikersnaam, een serveradres of een zoekwoord) naar de gekozen dienst, ontvangt het antwoord en toont het in Discord. Het verzoek komt van de servers van Wody, dus de dienst ziet de getypte tekst en het serveradres van Wody, niet het apparaat of het IP-adres van het lid.</p><p><strong>Wat we opslaan.</strong> Niets. Zoekopdrachten en resultaten worden niet bewaard, niet gelogd met de identiteit van het lid en niet aan een profiel gekoppeld. Antwoorden kunnen enkele minuten in het geheugen blijven om hetzelfde verzoek niet te herhalen.</p><p><strong>Derden.</strong> Elke dienst (bijvoorbeeld Last.fm, iTunes, Steam, Twitch, GitHub of Reddit) is onafhankelijk en heeft een eigen privacybeleid. Sommige hebben een sleutel nodig die de beheerder op de server bewaart en die nooit aan leden wordt getoond.</p>"
       },
       {
         "heading": "22. Feeds",
@@ -1655,10 +1655,6 @@
             "description": "Wat een Last.fm-gebruiker luistert, met hoes."
           },
           {
-            "name": "/lookup deezer",
-            "description": "Een nummer, artiest of album op Deezer."
-          },
-          {
             "name": "/lookup itunes",
             "description": "Muziek, podcasts, films of apps op Apple iTunes."
           },
@@ -1683,14 +1679,6 @@
             "description": "Een Chess.com-speler: ratings en profiel."
           },
           {
-            "name": "/lookup modrinth",
-            "description": "Een Minecraft-mod, plugin, shader of pack op Modrinth."
-          },
-          {
-            "name": "/lookup pokemon",
-            "description": "Een Pokémon: typen, waarden, vaardigheden en artwork."
-          },
-          {
             "name": "/lookup twitch",
             "description": "Een Twitch-kanaal: livestatus, game en kijkers."
           },
@@ -1707,18 +1695,6 @@
             "description": "Een GitHub-gebruiker of repository."
           },
           {
-            "name": "/lookup npm",
-            "description": "Een npm-pakket: versie, downloads, licentie."
-          },
-          {
-            "name": "/lookup pypi",
-            "description": "Een PyPI-pakket: versie, Python-eis, links."
-          },
-          {
-            "name": "/lookup anime",
-            "description": "Een anime: score, afleveringen, status, volgende aflevering."
-          },
-          {
             "name": "/lookup movie",
             "description": "Een film: score, releasedatum, poster, samenvatting."
           },
@@ -1727,24 +1703,12 @@
             "description": "Een serie: waardering, zender, status, volgende aflevering."
           },
           {
-            "name": "/lookup wikipedia",
-            "description": "De samenvatting van een Wikipedia-artikel, in de taal van de server."
-          },
-          {
             "name": "/lookup crypto",
             "description": "De prijs en marktdata van een cryptomunt."
           },
           {
             "name": "/lookup convert",
             "description": "Rekent een bedrag om tussen valuta."
-          },
-          {
-            "name": "/lookup bluesky",
-            "description": "Een Bluesky-profiel."
-          },
-          {
-            "name": "/lookup mastodon",
-            "description": "Een Mastodon-profiel op elke server."
           },
           {
             "name": "/lookup reddit",
@@ -4922,29 +4886,20 @@
     "lookups": {
       "commands": {
         "nowplaying": "Wat een Last.fm-gebruiker luistert, met hoes.",
-        "deezer": "Een nummer, artiest of album op Deezer.",
         "itunes": "Muziek, podcasts, films of apps op Apple iTunes.",
         "mcserver": "Status, spelers en versie van een Minecraft-server.",
         "mcplayer": "Een Minecraft-speler: skin, UUID en profiel.",
         "roblox": "Een Roblox-profiel: vrienden, volgers en avatar.",
         "steam": "Een Steam-game: prijs, spelers nu, score.",
         "chess": "Een Chess.com-speler: ratings en profiel.",
-        "modrinth": "Een Minecraft-mod, plugin, shader of pack op Modrinth.",
-        "pokemon": "Een Pokémon: typen, waarden, vaardigheden en artwork.",
         "twitch": "Een Twitch-kanaal: livestatus, game en kijkers.",
         "kick": "Een Kick-kanaal: livestatus, categorie en kijkers.",
         "youtube": "Een YouTube-kanaal: abonnees, video's en weergaven.",
         "github": "Een GitHub-gebruiker of repository.",
-        "npm": "Een npm-pakket: versie, downloads, licentie.",
-        "pypi": "Een PyPI-pakket: versie, Python-eis, links.",
-        "anime": "Een anime: score, afleveringen, status, volgende aflevering.",
         "movie": "Een film: score, releasedatum, poster, samenvatting.",
         "show": "Een serie: waardering, zender, status, volgende aflevering.",
-        "wikipedia": "De samenvatting van een Wikipedia-artikel, in de taal van de server.",
         "crypto": "De prijs en marktdata van een cryptomunt.",
         "convert": "Rekent een bedrag om tussen valuta.",
-        "bluesky": "Een Bluesky-profiel.",
-        "mastodon": "Een Mastodon-profiel op elke server.",
         "reddit": "Een subreddit of Reddit-gebruiker."
       },
       "title": "Opzoekingen",
@@ -4969,18 +4924,18 @@
       "groups": {
         "music": {
           "title": "Muziek",
-          "text": "Wat een vriend luistert en nummers op Deezer en iTunes."
+          "text": "Wat een vriend luistert en nummers op iTunes."
         },
         "games": {
           "title": "Games",
-          "text": "Minecraft-servers en -spelers, Roblox, Steam, Chess.com, Modrinth en Pokémon."
+          "text": "Minecraft-servers en -spelers, Roblox, Steam en Chess.com."
         },
         "creators": {
           "title": "Makers en code",
-          "text": "Twitch-, Kick- en YouTube-kanalen, GitHub, npm en PyPI."
+          "text": "Twitch, Kick, YouTube en GitHub."
         },
         "media": {
-          "title": "Anime, films en Wikipedia",
+          "title": "Films en series",
           "text": "Scores, posters, samenvattingen en de volgende aflevering."
         },
         "money": {
@@ -4989,7 +4944,7 @@
         },
         "social": {
           "title": "Social",
-          "text": "Bluesky- en Mastodon-profielen, subreddits en Reddit-gebruikers."
+          "text": "Subreddits en Reddit-gebruikers."
         }
       },
       "footer": "Leden typen /lookup en kiezen een dienst. Wil je een feed die zelf nieuwe dingen plaatst? Open Feeds in de zijbalk."
@@ -5136,7 +5091,7 @@
     },
     "lookups": {
       "title": "Opzoekingen",
-      "description": "25 opzoekingen onder /lookup: nummers, servers, profielen en prijzen. Gratis."
+      "description": "16 opzoekingen onder /lookup: nummers, servers, profielen en prijzen. Gratis."
     },
     "feeds": {
       "title": "Feeds",
@@ -6725,7 +6680,7 @@
         ]
       },
       "lookups": {
-        "what": "Leden typen /lookup en kiezen een dienst om een nummer, server, profiel of prijs te krijgen zonder Discord te verlaten. 25 opzoekingen via officiële of open API's.",
+        "what": "Leden typen /lookup en kiezen een dienst om een nummer, server, profiel of prijs te krijgen zonder Discord te verlaten. 16 opzoekingen via officiële of open API's.",
         "customize": [
           "Aan of uit voor de hele server",
           "Welke diensten een sleutel van de botbeheerder nodig hebben",
