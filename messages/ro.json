@@ -14,7 +14,11 @@
       "automod discord",
       "bot roluri reacție",
       "bot discord gratuit",
-      "bot bun venit discord"
+      "bot bun venit discord",
+      "bot discord gta 6",
+      "bot discord gta6",
+      "bot discord tema miami",
+      "card nivel discord"
     ],
     "skipToContent": "Sări la conținut"
   },
@@ -355,16 +359,6 @@
         "desc": "Cine a invitat fiecare membru, cu un grafic al ultimelor 30 de zile: intrări, ieșiri, retenție, zile, ore, surse și vârsta conturilor. /statistics îl arată în Discord cu butoane și selecturi, iar dashboardul arată aceleași cifre. Gratuit."
       },
       {
-        "key": "lookups",
-        "title": "Radar",
-        "desc": "15 de căutări sub /radar: Last.fm now playing, iTunes, servere și jucători Minecraft, Roblox, Steam, Chess.com, Twitch, Kick, YouTube, GitHub, filme, crypto și conversie valutară. API-uri oficiale sau deschise, gratuit și pornit implicit."
-      },
-      {
-        "key": "feeds",
-        "title": "Pulse",
-        "desc": "Videoclipuri, live-uri, melodii, postări și versiuni noi din 10 surse, postate într-un canal de la fiecare 5 minute până la o dată pe zi. Apple Music, plus o melodie aleatorie. Tumblr, Pinterest și orice feed RSS. GitHub, noutăți Steam și jocurile gratuite de la Epic Games. Gratuit."
-      },
-      {
         "key": "community",
         "title": "Community Discovery",
         "desc": "Listează-ți serverul în directorul Wody. Un profil public cu tema ta, verificat de echipa Wody, cu recenzii, favorite și statistici."
@@ -543,6 +537,48 @@
       "f3": "Linkurile tale sociale pe o singură pagină de partajat",
       "cta": "Personalizează-mi pagina",
       "note": "Grafică originală. Nu este afiliat și nu este susținut de vreun editor de jocuri."
+    },
+    "trio": {
+      "badge": "Profil · Pașaport · Collab",
+      "title": "Trei instrumente. O singură identitate.",
+      "text": "Creează o pagină de profil memorabilă, ridică-ți Pașaportul Wody și găsește parteneri în Collab, toate din același cont.",
+      "note": "Artă originală. Exemplele sunt ilustrative. Fără legătură cu vreun editor de jocuri și neaprobat de acesta.",
+      "gtaLink": "Bot Discord cu temă inspirată de GTA 6",
+      "mock": {
+        "name": "numele-tau",
+        "bio": "Apusuri neon și muzică bună.",
+        "l1": "Twitch",
+        "l2": "Muzică",
+        "l3": "Discord",
+        "views": "1.284 vizualizări",
+        "example": "Exemplu"
+      },
+      "profile": {
+        "name": "Pagină de profil",
+        "blurb": "Link scurt, muzică, efecte pe nume și contor de vizualizări.",
+        "cta": "Personalizează-mi pagina"
+      },
+      "passport": {
+        "name": "Pașaport",
+        "blurb": "Un card de identitate de colecție pentru Discord.",
+        "cta": "Adaugă Wody și ridică-l pe al tău",
+        "alt": "Previzualizare Pașaport Wody",
+        "fictional": "Document fictiv, de distracție, nu un act oficial."
+      },
+      "collab": {
+        "name": "Collab",
+        "blurb": "Cereri reale, verificate înainte să apară.",
+        "cta": "Vezi cererile",
+        "live": "Live",
+        "r1": "Caut o echipă de moderare",
+        "r1s": "Comunitate de gaming",
+        "r2": "Design de banner pentru eveniment",
+        "r2s": "Parteneriat de server",
+        "r3": "Două servere, un giveaway",
+        "r3s": "Promovare încrucișată",
+        "server": "Server",
+        "global": "Global"
+      }
     }
   },
   "careers": {
@@ -1064,40 +1100,36 @@
         "html": "<p>Invite Tracking is free and is off until a server administrator turns it on. When it is on, Wody reads the list of invites of the server (this needs the Manage Server permission) and compares the use counters before and after each join to work out which invite a member used.</p><p><strong>What we store, per server.</strong> For every join: the Discord user ID of the member, the Discord user ID of the inviter, the invite code, the time of the join, whether the match was certain, and whether the member later left. For every invite: its code, the creator's Discord user ID, the use counter and its limits. The server's settings for the module (log and notice channels, messages, who can see statistics, the fake account threshold) are stored too. When Wody cannot be sure, the join is stored as unknown with the reason and nobody is credited.</p><p><strong>Why and who can see it.</strong> The data is used only to show invite statistics, leaderboards, join logs and the inviter variables of the welcome message in that server. Members can see statistics with the commands, unless the server limits them to staff. Server administrators with dashboard access can see the recent joins and the leaderboard of their own server. Data of one server is never shown in another.</p><p><strong>Deletion.</strong> Administrators can delete all invite statistics, or those of one member, from the dashboard or with <code>/invite-reset</code>. If Wody is removed from a server, the data of that server is deleted after 30 days. Invite Tracking never deletes the data of other modules.</p>"
       },
       {
-        "heading": "21. Radar (căutări)",
-        "html": "<p>Radar este pornit implicit. Un administrator al serverului îl poate opri din dashboard.</p><p><strong>Ce se întâmplă.</strong> Când un membru folosește <code>/radar</code>, Wody trimite textul scris (de exemplu un nume de utilizator, o adresă de server sau un cuvânt căutat) către serviciul ales, primește răspunsul și îl arată în Discord. Cererea pleacă de pe serverele Wody, deci serviciul vede textul scris și adresa serverului Wody, nu dispozitivul sau adresa IP a membrului.</p><p><strong>Ce stocăm.</strong> Nimic. Căutările și rezultatele nu sunt salvate, nu sunt înregistrate cu identitatea membrului și nu sunt legate de un profil. Răspunsurile pot fi ținute în memorie câteva minute ca să nu se repete aceeași cerere.</p><p><strong>Terți.</strong> Fiecare serviciu (de exemplu Last.fm, iTunes, Steam, Twitch sau GitHub) este independent și are propria politică de confidențialitate. Unele cer o cheie păstrată pe server de operator, care nu este arătată niciodată membrilor.</p>"
-      },
-      {
-        "heading": "22. Pulse (feed-uri)",
-        "html": "<p>Un administrator al serverului configurează Pulse din dashboard sau cu <code>/pulse</code>, cel mult 30 pe server.</p><p><strong>Ce stocăm, per server.</strong> Pentru fiecare feed: sursa, numele sau linkul introdus de administrator, opțiunile, canalul și rolul opțional de menționat, cât de des se verifică, ID-ul Discord al administratorului care l-a creat, momentul creării, momentul și rezultatul ultimei verificări cu un cod scurt de eroare, câte postări a făcut și o listă de până la 120 de chei ale elementelor deja postate, ca nimic să nu fie postat de două ori.</p><p><strong>Ce se citește.</strong> Wody cere serviciului ales (sau site-ului a cărui adresă a scris-o administratorul) elementele noi, de pe serverele Wody, și le postează în canal. Postările conțin conținut public al serviciului, cu link către original. Pozele cu animale și tag-uri vin din biblioteci publice de imagini cu licență deschisă și sunt filtrate să fie potrivite pentru toate vârstele, lucru care nu poate fi garantat în fiecare caz. Pulse nu citește mesaje private și nu folosesc date ale membrilor.</p><p><strong>Ștergere.</strong> Administratorii pot pune pe pauză sau șterge orice feed oricând. Dacă Wody este scos dintr-un server, feed-urile lui sunt șterse după 30 de zile. Cererile trimise din dashboard către bot (de exemplu un test) sunt stocate temporar și șterse după 24 de ore. Fiecare serviciu este independent și are propria politică de confidențialitate.</p>"
-      },
-      {
-        "heading": "23. Servers where Wody is added",
+        "heading": "21. Servers where Wody is added",
         "html": "<p>When Wody is added to a server, it records the server ID, the server name and the time it joined, and when it is removed it records the same with the time it left. These records are kept so the Operator can see which servers use Wody and handle returns and bans, until deletion is requested (see Section 9). At the same time Wody posts a report to a private Discord channel controlled by the Operator. The report contains information Discord makes available to the bot: the server name, ID, icon and banner, the server owner's Discord name and ID, the account that added the bot when the bot is allowed to read the audit log, the member count, creation date, language, boost level, verification level, the number of channels, roles, emojis and stickers, the vanity link, description, the name of the rules channel and the server features, plus whether the server is banned or has Premium. A second private message shows only aggregate totals and counts about the bot and the website. The purpose is to operate, secure and support the service, detect abuse and enforce bans (legitimate interest). The report does not include messages or member lists.</p>"
       },
       {
-        "heading": "24. WODY Passport",
+        "heading": "22. WODY Passport",
         "html": "<p>When someone claims a passport with /claimpassport, Wody keeps a small record for the Discord account: the Discord user ID, a passport number generated by Wody (the first 1000 passports also carry a Genesis number from 1 to 1000, given in the order they were claimed), the date it was claimed, and one counter: how many times other members displayed the passport (one count per viewer per hour). Wody does not count the commands you use or the days you are active. Wody does not store the display name or avatar for the passport; they are read from Discord when a card is drawn, and a finished card image is only kept briefly in the memory of the running bot.</p><p>To show the number of server bans, Wody stores pairs of Discord user ID and server ID for servers that use Wody where the account is banned. They are learned from ban and unban events and from a check of the servers where Wody may see the ban list, made when a passport is claimed and then at most once a day when its owner displays it. A pair is removed when the ban is lifted or when Wody is removed from the server. Only the number appears on the card, never the names of the servers or the reasons. Earlier versions kept a list of servers the account was a member of; those records have been deleted. A short-lived keyed hash is kept for one hour to avoid counting the same view twice. The purpose is to provide the feature the user requested (legitimate interest and, for the feature itself, the performance of the service). The passport record is kept while the feature is available; you can ask for it to be deleted by contacting us, subject to the exceptions in Section 9.</p>"
       },
       {
-        "heading": "25. Owner Panel access and audit log",
+        "heading": "23. Owner Panel access and audit log",
         "html": "<p>Access to the Owner Panel is limited to the Operator and to people the Operator explicitly authorises for the community management part, for a limited time. Wody stores the Discord user ID, display name and avatar link of those authorised people, who granted the access, and when it expires. Sign-ins and actions in the Owner Panel are recorded in an audit log with the Discord user ID, display name, action, result, time, and a short one-way tag derived from the IP address (not the address itself). The audit log is kept for up to one year and each entry is also posted to a private Discord channel used by the Operator. The purpose is the security of the service and accountability for administrative actions.</p>"
       },
       {
-        "heading": "26. Reports and moderation records",
+        "heading": "24. Reports and moderation records",
         "html": "<p>Reports and moderation decisions in the official Wody Discord community, and reports sent to the Operator by email, are handled by the Operator and the community staff. They may include the reporter's and the reported person's Discord identifiers, the content reported, and the decision taken. This information is used to protect users and the service and to defend legal claims, is shared only with those who need it to handle the report, and may be disclosed where required by law. Absolute confidentiality cannot be promised because a report may need to be reviewed in order to be investigated. See the <a href=\"/servers/guidelines#discord-community\" class=\"text-[#e08a4e] hover:underline\">Community Guidelines</a> for how to report.</p>"
       },
       {
-        "heading": "27. WODY Collab and your profile",
+        "heading": "25. WODY Collab and your profile",
         "html": "<p>WODY Collab stores what you put into it, tied to your Discord user ID: your collabs (text, category, tags, optional links and up to three images, with every version you submitted), the result of the automatic check and any moderation decision, reports made about a collab, your applications, and the messages exchanged between authors and applicants. Your Discord display name and avatar hash are copied into each collab and application so the other person can see who wrote it; a collab shows the author's Discord name and picture and, when the author has a public profile, a link to it (the profile is visible to signed in members only). When a visitor uses the optional contact form of a collab, the name, reply contact and message the visitor types are stored in the author's inbox, and no network address is stored with the message. Abuse is limited with the Wody Human Check and with per-collab limits instead.</p><p>Your Collab profile stores your preferences (categories, tags and language used for the For you section and for notifications), the social links you add (only addresses of the offered platforms, saved as canonical https links), the setting that decides whether the authors of collabs you apply to can see those links (off by default), and your notification settings. The social links are shown on your profile. Your Discord username, display name and avatar hash are copied into your Collab profile so that it can be opened by your username; they are refreshed from Discord each time you open your profile and cannot be edited here. Your profile is public: every signed in member can open it at wody.online/profile/{username} and see your name, picture, username, join date, vacation status and the number of your live collabs. If you connect your TikTok account on the TikTok page, your TikTok username is added to your profile automatically as a link to your TikTok profile (read from the account you linked, never typed in). You can hide the TikTok link with its own switch, and you can turn off the sharing of all your social links at any time; hidden links are not shown to anyone. Only signed in members can see a profile; visitors who are not signed in are sent to the login. Notifications are stored for 90 days and, if you leave them enabled, are also sent as a Discord direct message in your language. Notices about moderation of your own collab are always recorded in the profile; only their Discord message can be turned off.</p><p>To enforce the rule against prices and payment details, the text of a collab, an application or a message may be analysed by automatic rules and, when the operator has configured one, by an AI service. If the analysis fails, the collab is held for a person to review. Wody staff see reports, detected payment terms and the moderation history. Collab does not make decisions that produce legal effects about you by solely automated means: an automatic hold or suspension is placed in a queue for a person at Wody to review.</p><p>The purpose is to provide the feature you requested and to keep the board safe (legitimate interest and the performance of the service). Drafts and live collabs are kept while the feature is available. When you delete a collab it is hidden at once, its images are erased and its open applications are closed; its versions, checks, decisions and reports are kept as a moderation record, as described in Section 26. Applications and messages are kept while the collab exists and as long as needed for moderation. You can ask for deletion of your Collab data by contacting us, subject to the exceptions in Section 9. See also the <a href=\"/terms\" class=\"text-[#e08a4e] hover:underline\">Terms</a>.</p><p>When you add an image to a collab by link, our server downloads that address once, checks that the file really is a PNG, JPEG or WebP image and stores a copy with your other collab images. Only a short file name taken from the address is kept, nothing that identifies you is sent to the other site (no cookies and no referrer), and visitors only ever load our copy. Your optional vacation status (an on/off switch, a short note of up to 120 characters and an optional end date) is stored in your Collab profile. While it is on, it is shown on your profile and to people who open your collabs or read your applications; it switches off by itself after the end date.</p><p>Server owners can create their own Collab categories for their server in the Dashboard. For each category Wody stores the server ID, the name the owner chose, who may post in it (everyone in the server, members with chosen Discord roles, or only the server staff), the IDs of the chosen roles, who created it and when. A category belongs to one server only: other servers cannot see it or use it, and two servers can use the same name. To decide whether you may post in a restricted category, Wody reads your roles in that server from Discord at the moment you post; those roles are not stored. The Collab settings a server owner chooses in the Dashboard (approval and announcement channel) are stored with the server ID.</p><p>To prevent abuse of posting, Collab keeps short lived records of when you posted and deleted collabs (your Discord user ID, the server ID and a time). They are used for the posting cooldown, the daily limit per server and temporary pauses, and the database removes them automatically after 24 hours.</p>"
       },
       {
-        "heading": "28. Changes to this Policy",
+        "heading": "26. Changes to this Policy",
         "html": "<p>This Policy may be updated when the service or its data processing practices change. The revision date shown above identifies the current version. Material changes may also be announced through the official Wody community channels where appropriate.</p>"
       },
       {
-        "heading": "29. Contact",
+        "heading": "27. Contact",
         "html": "<p>For privacy, legal, or data protection questions, contact Păcurar Ancuța-Narcisa, the Operator, at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>.</p> <p>Wody may also use the optional <code>wody_language</code> preference cookie to remember a language you actively choose. It is not created or updated unless you consent to Preferences, and the language selector remains hidden until that consent exists. Your cookie choice is recorded using the strictly necessary <code>wody_cookie_consent</code> cookie. You can change or withdraw the optional preference at any time in the Cookie Policy.</p>"
+      },
+      {
+        "heading": "28. Profile images, music links and moderation records",
+        "html": "<p>Imaginile, GIF-urile și fișierele audio pe care le adaugi pe pagina ta de profil și pe cardurile serverului sunt păstrate doar ca linkuri: Wody nu păstrează o copie. Imaginile sunt încărcate prin serverul Wody de pe platforma care le găzduiește, deci adresa IP a vizitatorului nu ajunge la acea platformă; rămân vizibile doar cât timp linkul este valid. Fișierul audio este încărcat direct de browserul vizitatorului abia după ce apasă play, astfel încât adresa lui IP ajunge la site-ul care găzduiește fișierul. Singurul fișier pe care Wody îl stochează este o imagine încărcată de tine ca fundal al cardului de profil, păstrată până o înlocuiești sau o ștergi. Wody păstrează raportările, referința conținutului, decizia de moderare și istoricul ei, precum și momentul și versiunea confirmării politicilor, pentru a trata cazul și a preveni repetarea. Perioadele de păstrare: [REQUIRES OPERATOR CONFIRMATION]. Pagina de profil poate număra vizualizările ca un simplu contor în baza de date, fără cookie-uri și fără stocarea adresei IP.</p>"
       }
     ]
   },
@@ -1181,44 +1213,40 @@
         "html": "<p>Community Discovery is a public directory of Discord communities. By submitting a listing you confirm that you have read and accept these Terms and the Privacy Policy.</p><p><strong>Eligibility.</strong> Only the owner of a Discord server, or a person with the permissions required by Wody, can create a listing for it. You must have the Wody bot in the server. One server can have one listing.</p><p><strong>Your content.</strong> You are responsible for everything in your listing, including the invite, images and links. It must be accurate, must not impersonate a person, brand or other server, and must follow the Community Guidelines at <a href=\"/servers/guidelines\" class=\"text-[#e08a4e] hover:underline\">/servers/guidelines</a>. You give Wody a free, non exclusive licence to display the content in the directory, in search results and in link previews while the listing is published. You keep ownership of your content.</p><p><strong>Review and publication.</strong> Every listing and every later change is reviewed by Wody before it becomes public. Wody can approve, ask for changes, reject, suspend, unpublish or delete a listing at its discretion, for example for breaking these Terms, for a broken invite, for reports or for abuse. Approval is not an endorsement and Wody is not responsible for what happens inside a listed server or for the conduct of its members.</p><p><strong>Names and addresses.</strong> Each public address and community name can be used by one listing at a time. We may refuse or change a name or address that is misleading, reserved, or already in use. Addresses are not property: a deleted listing frees its address, and Wody may reassign reserved or abandoned ones.</p><p><strong>Reviews and reports.</strong> Reviews can be written only by members of the server and are moderated. Fake, paid, abusive or off topic reviews and links in reviews are removed. Listing owners cannot review their own server. Reports are handled by the Wody team and the outcome is at its discretion.</p><p><strong>No guarantees.</strong> Listing position, featuring and badges are decided by Wody and can change. We do not guarantee any number of views, clicks or members. Features can be changed or removed. Custom domains are not offered.</p>"
       },
       {
-        "heading": "20. Radar (căutări)",
-        "html": "<p>Lookups arată în Discord informații de la alte servicii. Răspunsurile vin de la acele servicii, iar Wody nu le controlează, nu le verifică și nu le garantează. Un serviciu poate fi lent, se poate schimba, poate limita cererile sau poate înceta să funcționeze oricând, iar atunci o căutare poate eșua sau lipsi.</p><p>Nu folosi Radar pentru a hărțui, urmări sau expune oameni ori pentru a aduna date personale în masă. Prețurile sunt doar informative și nu reprezintă sfat financiar.</p>"
-      },
-      {
-        "heading": "21. Pulse (feed-uri)",
-        "html": "<p>Feeds postează conținut de la alte servicii într-un canal, după un program. Un server poate avea cel mult 30 de feed-uri. Administratorul care configurează un feed răspunde de canalul în care postează și de ceea ce publică acolo sursa urmărită.</p><p>Conținutul aparține autorilor și serviciilor lui. Wody nu îl controlează și nu îl verifică, nu garantează că este complet, la timp, corect sau potrivit pentru orice public, iar un feed se poate opri singur când sursa nu mai răspunde sau canalul dispare. Urmărește doar surse pe care ai voie să le distribui și folosește mențiunea de rol doar pentru cei care au cerut-o. Nu folosi Pulse pentru spam, pentru a repostă conținut într-un mod interzis de sursă sau pentru a trimite Wody către adrese pe care nu le deții sau nu ai voie să le folosești.</p>"
-      },
-      {
-        "heading": "22. Third-Party Discord Bots and External Services",
+        "heading": "20. Third-Party Discord Bots and External Services",
         "html": "<p>Wody may be used alongside independent Discord bots, applications, integrations, and other external services. Unless expressly stated otherwise, these services are operated by their respective providers and are not controlled by Wody.</p><p>Wody does not guarantee the availability, functionality, reliability, security, data handling, moderation decisions, or performance of independent third-party services. Users and server administrators are responsible for evaluating the permissions, configuration, terms of service, and privacy policies of the external services they choose to use.</p><p>The presence of a third-party bot on a Discord server where Wody or Wody Counter is also installed does not mean that the third-party bot is developed, operated, approved, or controlled by Wody.</p><p>References to, recommendations of, integrations with, or partnerships involving third-party services do not, by themselves, constitute a guarantee of their safety, reliability, compliance, or performance. Any additional commitments must be assessed according to the actual terms of the relevant partnership or written agreement.</p><p>To the extent permitted by applicable law, Wody is not responsible for the independent actions or omissions of third-party providers that are outside Wody's control. Nothing in this section excludes or limits liability, consumer rights, data protection obligations, or other legal responsibilities that cannot lawfully be excluded or limited. This section does not limit Wody's responsibility for its own conduct, systems, or legal obligations.</p><p>To keep these categories clear, the following are different things and are not covered by identical practices or commitments:</p><ul><li><strong>Wody</strong>: the Discord bot and this Dashboard, operated by the Operator.</li><li><strong>Wody Counter</strong>: the separate counting bot described in Section 3, also operated by the Operator.</li><li><strong>Partners</strong>: services presented on our Partners page because of an actual relationship with them. Partner status does not guarantee the quality, availability, security, legality, or performance of a partner service, and each partner remains responsible for the services it operates, subject to applicable law and any agreement that actually exists.</li><li><strong>Independent third-party bots and applications</strong>: services that merely share a Discord server with Wody.</li><li><strong>External platforms</strong>: Discord, YouTube, Twitch, TikTok and the infrastructure providers named in our <a href=\"/privacy\" class=\"text-[#e08a4e] hover:underline\">Privacy Policy</a>, which have their own terms and privacy policies.</li></ul>"
       },
       {
-        "heading": "23. WODY Passport",
+        "heading": "21. WODY Passport",
         "html": "<p>WODY Passport is a fictional community document generated by Wody for fun. It is not an identity document, it has no legal value, and it is not issued, verified, or endorsed by any government or by Discord.</p><p>Each Discord account can claim one global passport with /claimpassport. Nobody can claim it for someone else, and nothing is counted before it is claimed. Afterwards it is shown with /mypassport or /passport, and there is no separate switch. The card shows your Discord display name and avatar, a passport number generated by Wody, the claim date, the days since you claimed it, and the number of servers that use Wody in which you are banned.</p><p>The first 1000 passports ever claimed are Genesis passports. They get a Genesis number from 1 to 1000, given in the order of claiming, a special passport number and a black and gold card. The Genesis number never changes and is never reassigned to someone else.</p><p>The ban count only reflects servers that use Wody and where Wody is allowed to see the ban list. It can therefore be lower than the real number, it is not a statement about servers Wody cannot see, and each server decides its own bans. It is a number only, never the names of the servers or the reasons. Other members can display your passport in a channel with /passport. Bots do not have passports. A shared cooldown applies to the passport commands. Details of the data involved are in the <a href=\"/privacy\" class=\"text-[#e08a4e] hover:underline\">Privacy Policy</a>.</p>"
       },
       {
-        "heading": "24. WODY Collab and your profile",
+        "heading": "22. WODY Collab and your profile",
         "html": "<p>WODY Collab is a board on the website where members post what they need (a &quot;collab&quot;) and other members apply to help. Wody only provides the board and the messaging. Wody is not a party to any agreement between members, does not take part in, guarantee, supervise or verify any work, and does not handle payments, escrow or fees. Prices, budgets, payment terms and payment details are not allowed in a collab, in an application or in a message, and the automatic check and the WODY team may hold or remove content that contains them.</p><p>You are responsible for what you post, for the people you choose to work with, and for any arrangement you make outside Wody. Do not post unlawful, deceptive, unsafe, harassing or misleading content, do not impersonate anyone, and do not put personal contact details in public text. Members can report a collab. Several reports suspend it automatically until the WODY team has reviewed it. The WODY team and, for a collab posted for a server that turned on approval, the owner of that server, can approve, reject, ask for changes to, or suspend a collab. A suspended collab is hidden and cannot be edited until a decision is made. You can delete your own collabs from your profile, except while one is suspended or being checked.</p><p>Your profile is the one place where you manage your collabs, applications, messages, social links and notification settings. Your name, picture and Discord name always come from Discord and cannot be changed in the profile. The social links you add must point to the platforms offered there and must be your own. They are shown on your profile and, only if you switch it on, to the authors of the collabs you apply to. Your profile is public to every signed in member at wody.online/profile/{username}, and a TikTok account you connect is added to it automatically. By using the website and Collab you agree that your profile is public in this way; you can hide any social link, including TikTok, or turn sharing off in your profile settings. You can remove them at any time. You can turn Collab notifications on or off in your profile; notices about the moderation of your own collab are always recorded in the profile. Do not use the messaging or the notifications for spam or abuse. Wody may limit, suspend or remove access to Collab for abuse. Details of the data involved are in the <a href=\"/privacy\" class=\"text-[#e08a4e] hover:underline\">Privacy Policy</a>.</p><p>When you add an image to a collab by link, you confirm that you have the right to use and share it, and WODY stores a copy of it. Do not link to content that is unlawful or that you are not allowed to share. Your vacation status is visible to the people described in the Privacy Policy and must not contain contact details or personal data of anyone else.</p><p>Server owners can create categories for their own server in the Dashboard and decide who may post in them: everyone in the server, members with chosen roles, or only the server staff. A collab made for a server must use one of that server&#39;s own categories, so nobody can post for a server that has none. You can only post for a server you are a member of and only in a category you are allowed to use. The server owner and administrators can use every category of their server. The server owner is responsible for the category names and may change or delete them at any time; collabs in a deleted category move to Other Services.</p><p>To protect the board, Collab limits how often you can post: one new collab per minute, a limited number of new collabs per server per day, and no repeated posts with the same title. If you post and delete collabs again and again, posting is paused for 30 minutes. Wody may change these limits to stop abuse.</p>"
       },
       {
-        "heading": "25. Changes to these Terms",
+        "heading": "23. Changes to these Terms",
         "html": "<p>We can update these Terms whenever needed. The date at the top always shows the last revision, and meaningful changes will be announced on our community server where practical. Continued use of the service after the effective date of the revised Terms constitutes acceptance of those revised Terms.</p>"
       },
       {
-        "heading": "26. Severability",
+        "heading": "24. Severability",
         "html": "<p>If a court finds one part of these Terms unenforceable, the rest stays in effect.</p>"
       },
       {
-        "heading": "27. Entire agreement",
+        "heading": "25. Entire agreement",
         "html": "<p>These Terms, together with the Privacy Policy and Cookie Policy, constitute the entire agreement between you and the Operator regarding the service.</p>"
       },
       {
-        "heading": "28. Governing law and disputes",
+        "heading": "26. Governing law and disputes",
         "html": "<p>These Terms are governed by Romanian law and, where applicable, European Union law, without taking away any mandatory consumer protection you have under the law of your own country of residence if you're elsewhere in the EU.</p>"
       },
       {
-        "heading": "29. Contact",
+        "heading": "27. Contact",
         "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
+      },
+      {
+        "heading": "28. Personalizarea profilului, imaginile utilizatorilor și categoria GTA VI",
+        "html": "<p>Wody oferă personalizare. Poți adăuga imagini, GIF-uri, fișiere audio sau linkuri doar dacă ai drepturile necesare ori altă bază legală. De fiecare dată când publici sau editezi profilul tău public trebuie să bifezi o casetă nebifată implicit pentru a confirma acest lucru și a accepta politicile; confirmarea nu face legală o imagine neautorizată. Wody nu oferă o galerie de artă a terților, nu este afiliat cu Rockstar Games sau Take-Two Interactive, iar categoria GTA VI este o temă neoficială cu scene originale. Imaginile și fișierele audio sunt legate prin link de la platforma care le găzduiește și sunt vizibile doar cât timp linkul este valid. Oricine poate raporta conținut; Wody nu are detecție automată. După verificare, Wody poate elimina conținut, restricționa sau suspenda personalizarea și poate suspenda sau bloca contul de Discord asociat profilului pentru funcțiile Wody, iar tu poți contesta. Detalii: Politica conținutului utilizatorilor și Politica drepturilor de autor (ciorne, nepublicate ca versiune finală).</p>"
       }
     ]
   },
@@ -1649,92 +1677,6 @@
         ]
       },
       {
-        "key": "lookups",
-        "title": "Radar",
-        "premium": false,
-        "commands": [
-          {
-            "name": "/radar nowplaying",
-            "description": "Ce ascultă un utilizator Last.fm, cu coperta."
-          },
-          {
-            "name": "/radar itunes",
-            "description": "Muzică, podcasturi, filme sau aplicații pe Apple iTunes."
-          },
-          {
-            "name": "/radar mcserver",
-            "description": "Starea, jucătorii și versiunea unui server Minecraft."
-          },
-          {
-            "name": "/radar mcplayer",
-            "description": "Un jucător Minecraft: skin, UUID și profil."
-          },
-          {
-            "name": "/radar roblox",
-            "description": "Un profil Roblox: prieteni, urmăritori și avatar."
-          },
-          {
-            "name": "/radar steam",
-            "description": "Un joc Steam: preț, jucători acum, scor."
-          },
-          {
-            "name": "/radar chess",
-            "description": "Un jucător Chess.com: rating-uri și profil."
-          },
-          {
-            "name": "/radar twitch",
-            "description": "Un canal Twitch: stare live, joc și spectatori."
-          },
-          {
-            "name": "/radar kick",
-            "description": "Un canal Kick: stare live, categorie și spectatori."
-          },
-          {
-            "name": "/radar youtube",
-            "description": "Un canal YouTube: abonați, videoclipuri și vizualizări."
-          },
-          {
-            "name": "/radar github",
-            "description": "Un utilizator sau depozit GitHub."
-          },
-          {
-            "name": "/radar movie",
-            "description": "Un film: scor, data lansării, afiș, rezumat."
-          },
-          {
-            "name": "/radar show",
-            "description": "Un serial: rating, canal, stare, următorul episod."
-          },
-          {
-            "name": "/radar crypto",
-            "description": "Prețul și datele de piață ale unei criptomonede."
-          },
-          {
-            "name": "/radar convert",
-            "description": "Convertește o sumă între valute."
-          }
-        ]
-      },
-      {
-        "key": "feeds",
-        "title": "Pulse",
-        "premium": false,
-        "commands": [
-          {
-            "name": "/pulse add",
-            "description": "Adaugă un feed: o sursă, un canal și cât de des se verifică."
-          },
-          {
-            "name": "/pulse list",
-            "description": "Vezi feed-urile, postează cel mai nou, pune pe pauză sau șterge unul."
-          },
-          {
-            "name": "/pulse sources",
-            "description": "Toate sursele pe care le poate urmări Pulse."
-          }
-        ]
-      },
-      {
         "key": "passport",
         "title": "Pașaport",
         "premium": false,
@@ -2083,6 +2025,15 @@
           "level_reward_role_forbidden": "Recompensă de nivel: schimbarea rolului refuzată",
           "level_reward_role_failed": "Recompensă de nivel: nu s-a putut da rolul"
         }
+      },
+      "consent": {
+        "label": "Confirm că sunt proprietarul sau am permisiunea să folosesc fiecare imagine, GIF, link și fișier audio pe care îl adaug și că am citit și accept politicile de mai jos. Înțeleg că Wody doar face legătura către conținut găzduit pe alte platforme, că oricine îl poate raporta și că Wody îl poate elimina și îmi poate suspenda sau bloca contul de Discord pentru încălcări.",
+        "read": "Citește:",
+        "content": "Politica conținutului",
+        "copyright": "Politica drepturilor de autor",
+        "gta": "Nota GTA VI",
+        "required": "Bifează caseta pentru a confirma și a accepta politicile.",
+        "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil."
       }
     },
     "groups": {
@@ -7583,6 +7534,15 @@
       "noSocials": "Nu sunt distribuite linkuri sociale.",
       "live": "Collaburi active",
       "note": "Doar membrii WODY conectați pot vedea acest profil. Numele și poza vin de la Discord."
+    },
+    "consent": {
+      "label": "Confirm că sunt proprietarul sau am permisiunea să folosesc fiecare imagine, GIF, link și fișier audio pe care îl adaug și că am citit și accept politicile de mai jos. Înțeleg că Wody doar face legătura către conținut găzduit pe alte platforme, că oricine îl poate raporta și că Wody îl poate elimina și îmi poate suspenda sau bloca contul de Discord pentru încălcări.",
+      "read": "Citește:",
+      "content": "Politica conținutului",
+      "copyright": "Politica drepturilor de autor",
+      "gta": "Nota GTA VI",
+      "required": "Bifează caseta pentru a confirma și a accepta politicile.",
+      "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil."
     }
   },
   "humancheck": {
@@ -7645,7 +7605,7 @@
   },
   "modulesHub": {
     "metaTitle": "Module Wody | Moderare, Tichete, Niveluri și altele",
-    "metaDescription": "Toate modulele Wody într-un singur loc: moderare, tichete, niveluri, giveaway-uri, mesaje de bun venit, Pulse, Radar, economie și altele.",
+    "metaDescription": "Toate modulele Wody într-un singur loc: moderare, tichete, niveluri, giveaway-uri, mesaje de bun venit, economie și altele.",
     "ogTitle": "Toate modulele Wody pentru Discord",
     "title": "Modulele Wody",
     "subtitle": "Un singur bot pentru moderare, comunitate, creatori și distracție. Alege un modul ca să vezi ce face și cum îl configurezi.",
@@ -7844,7 +7804,16 @@
     "imageCurrent": "Poza ta: {w}×{h} pixeli, {size} MB",
     "imageSaved": "Poză salvată",
     "animNote": "Efectele animate și fundalurile GIF fac ca Discord să arate cardul ca GIF animat.",
-    "sectionTemplates": "Șabloane"
+    "sectionTemplates": "Șabloane",
+    "consent": {
+      "label": "Confirm că sunt proprietarul sau am permisiunea să folosesc fiecare imagine, GIF, link și fișier audio pe care îl adaug și că am citit și accept politicile de mai jos. Înțeleg că Wody doar face legătura către conținut găzduit pe alte platforme, că oricine îl poate raporta și că Wody îl poate elimina și îmi poate suspenda sau bloca contul de Discord pentru încălcări.",
+      "read": "Citește:",
+      "content": "Politica conținutului",
+      "copyright": "Politica drepturilor de autor",
+      "gta": "Nota GTA VI",
+      "required": "Bifează caseta pentru a confirma și a accepta politicile.",
+      "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil."
+    }
   },
   "profilePage": {
     "levelCardTitle": "Card de nivel",
@@ -7938,6 +7907,271 @@
     "shortCopy": "Copiază",
     "shortCopied": "Link copiat.",
     "shortHint": "Împarte-l oriunde. Membrii WODY autentificați îți văd pagina, iar vizitele apar în contor.",
-    "specialGroup": "Colecție specială"
+    "specialGroup": "Colecție specială",
+    "rights": {
+      "title": "Drepturile asupra imaginii",
+      "confirm": "Confirm că am drepturile, permisiunea sau altă bază legală necesare pentru a folosi această imagine și pentru a permite afișarea ei prin Wody.",
+      "note": "Această confirmare este declarația ta. Nu face legală o imagine neautorizată.",
+      "policy": "Politica conținutului utilizatorilor",
+      "gta": "Nota categoriei GTA VI"
+    },
+    "mod": {
+      "title": "O măsură de moderare îți afectează personalizarea",
+      "appealLabel": "Contestație: explică de ce conținutul este legal",
+      "appealSend": "Trimite contestația",
+      "appealSent": "Contestație trimisă. Va fi verificată.",
+      "action": {
+        "remove_content": "O imagine sau un link audio a fost eliminat după verificare.",
+        "restrict_uploads": "Încărcarea de imagini și muzică este restricționată temporar.",
+        "suspend_customization": "Personalizarea este suspendată.",
+        "suspend_account": "Contul tău este suspendat temporar, deci nu îți poți edita profilul.",
+        "block_account": "Contul tău este blocat, deci nu îți poți edita profilul."
+      },
+      "err": {
+        "uploads_restricted": "Încărcările sunt restricționate pe contul tău acum.",
+        "customization_suspended": "Personalizarea este suspendată pe contul tău.",
+        "policy_acceptance_required": "Bifează caseta pentru a confirma și a accepta politicile.",
+        "account_blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil."
+      }
+    },
+    "gtaNote": "Colecția specială este o temă neoficială de personalizare desenată de Wody. Nu conține artă oficială din jocuri.",
+    "gtaLink": "Citește nota",
+    "consent": {
+      "label": "Confirm că sunt proprietarul sau am permisiunea să folosesc fiecare imagine, GIF, link și fișier audio pe care îl adaug și că am citit și accept politicile de mai jos. Înțeleg că Wody doar face legătura către conținut găzduit pe alte platforme, că oricine îl poate raporta și că Wody îl poate elimina și îmi poate suspenda sau bloca contul de Discord pentru încălcări.",
+      "read": "Citește:",
+      "content": "Politica conținutului",
+      "copyright": "Politica drepturilor de autor",
+      "gta": "Nota GTA VI",
+      "required": "Bifează caseta pentru a confirma și a accepta politicile.",
+      "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil."
+    }
+  },
+  "policies": {
+    "index": "Politici",
+    "draft": "Ciornă",
+    "draftNote": "Aceasta este o ciornă pregătită la {review}. Nu a fost aprobată de operator, nu a fost verificată de un avocat și nu este încă publicată ca versiune finală. Câmpurile marcate [REQUIRES OPERATOR CONFIRMATION] sunt detalii care lipsesc.",
+    "version": "Versiune",
+    "effective": "Data intrării în vigoare",
+    "updated": "Ultima actualizare",
+    "status": "Stare",
+    "statusValue": "Ciornă, în așteptarea confirmării operatorului și a verificării juridice",
+    "effectiveValue": "Nu este în vigoare până când operatorul o publică",
+    "previous": "Versiunea anterioară",
+    "previousValue": "Nu există",
+    "contact": "Contact",
+    "related": "Politici asociate",
+    "nav": {
+      "content-policy": "Politica conținutului utilizatorilor",
+      "copyright": "Politica drepturilor de autor și a proprietății intelectuale",
+      "gta-notice": "Notă pentru categoria GTA VI",
+      "complaint": "Reclamație privind drepturile de autor"
+    },
+    "contactHtml": "Operator: Păcurar Ancuța-Narcisa, România, Uniunea Europeană. Contact general: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Contact dedicat pentru drepturi de autor: [REQUIRES OPERATOR CONFIRMATION]. Adresa, datele fiscale și de înregistrare: [REQUIRES OPERATOR CONFIRMATION].",
+    "content-policy": {
+      "title": "Politica conținutului utilizatorilor",
+      "version": "1.0-draft",
+      "sections": [
+        {
+          "heading": "1. Ce acoperă această politică",
+          "html": "<p>Wody îți permite să personalizezi pagina ta de profil, cardul de nivel și cardurile de welcome și goodbye. Poți da Wody un link către o imagine, un GIF sau un fișier audio găzduit pe altă platformă și, doar pentru fundalul cardului de profil, poți încărca o imagine. Această politică explică ce ai voie să folosești, cum este tratat conținutul și cum sunt tratate raportările. Se aplică în plus față de Termeni și condiții.</p>"
+        },
+        {
+          "heading": "2. Imaginile și linkurile tale",
+          "html": "<p>Poți folosi imagini doar pentru personalizarea personală. Trebuie să fii proprietarul imaginii, să ai o licență pentru ea sau să ai o altă bază legală de a o folosi și de a o afișa prin Wody. Faptul că găsești o imagine online nu înseamnă că ai voie să o folosești.</p><p>De fiecare dată când publici sau editezi profilul tău public (pagina de profil, datele publice ale profilului, o imagine sau un link pentru cardul de profil sau imaginile cardurilor serverului) trebuie să bifezi o casetă nebifată implicit, prin care confirmi că ești proprietarul conținutului sau ai permisiunea de a-l folosi și că accepți aceste politici. Fără bifă, modificarea nu poate fi salvată. Când bifezi, Wody înregistrează momentul și versiunea politicii împreună cu setările profilului tău.</p><p>Confirmarea reprezintă declarația ta. Ea nu face legală o imagine neautorizată și nu elimină obligațiile proprii ale Wody prevăzute de lege.</p>"
+        },
+        {
+          "heading": "3. Ce nu este permis",
+          "html": "<ul><li>Materiale care încalcă drepturile de autor, mărcile sau alte drepturi ale altora, inclusiv artă oficială, capturi de ecran, logo-uri sau personaje pe care nu ai permisiunea să le folosești.</li><li>Folosirea de logo-uri, nume sau branding într-un mod care sugerează că tu sau Wody sunteți afiliați cu altcineva sau aprobați de acesta.</li><li>Conținut ilegal, inclusiv conținut care sexualizează minori, și conținut sexual explicit.</li><li>Conținut instigator la ură, abuziv, de hărțuire sau amenințător, și uzurparea identității altor persoane.</li><li>Linkuri folosite pentru distribuirea de malware, pentru urmărirea persoanelor sau pentru accesarea adreselor private sau interne.</li><li>Orice încalcă Termenii de utilizare sau Regulile comunității Discord.</li></ul>"
+        },
+        {
+          "heading": "4. Conținut oferit de Wody și conținut oferit de utilizatori",
+          "html": "<p>Wody oferă teme și scene originale, desenate de Wody. Wody nu oferă o galerie de artă a terților. Imaginile pe care le încarci sau le legi prin link sunt ale tale: Wody nu își revendică proprietatea asupra lor și nu îți acordă niciun drept asupra materialelor terților.</p>"
+        },
+        {
+          "heading": "5. Cum sunt tratate imaginile și linkurile",
+          "html": "<p>Imaginile, GIF-urile și fișierele audio pe care le adaugi pe pagina ta de profil și pe cardurile serverului nu sunt stocate de Wody. Tu furnizezi un link, fișierul rămâne pe platforma care îl găzduiește, iar Wody îl încarcă de acolo doar pentru a-l afișa. Rămâne vizibil doar cât timp linkul este valid: dacă ștergi fișierul sau gazda îl elimină, dispare din Wody. Wody păstrează adresa linkului în setările tale până o schimbi sau o ștergi, iar fișierul poate fi ținut scurt timp în cache-ul browserului sau al rețelei cât timp este afișat.</p><p>Singura excepție este fundalul cardului de profil: dacă încarci acolo un fișier în loc să dai un link, Wody stochează fișierul până îl înlocuiești sau îl ștergi, sau până este eliminat în urma unei raportări.</p><p>Permiți Wody să încarce linkul dat doar pentru a-ți afișa personalizarea (de exemplu pe pagina ta de profil sau pe cardurile postate de bot) și pentru a-l verifica dacă este raportat.</p>"
+        },
+        {
+          "heading": "6. Raportări și verificare",
+          "html": "<p>Orice utilizator autentificat poate raporta o imagine sau un profil din pagina de profil. Titularii de drepturi pot folosi formularul de reclamație pentru drepturi de autor. Raportările sunt verificate de operator. Wody nu are un sistem automat care să detecteze conținut care încalcă drepturi, așa că se bazează pe raportări și pe verificare. Nu promite că fiecare imagine este verificată înainte de afișare.</p><p>O raportare singură nu duce niciodată la ban. Datele celui care raportează nu sunt arătate utilizatorului raportat.</p>"
+        },
+        {
+          "heading": "7. Măsuri posibile",
+          "html": "<p>După verificare, operatorul poate elimina o imagine sau un link, restricționa încărcările pentru o perioadă, suspenda personalizarea, suspenda pentru o perioadă contul de Discord asociat profilului sau îl poate bloca până la ridicarea blocării. Un cont suspendat sau blocat nu își poate edita pagina de profil, cardul de profil sau datele publice ale profilului, iar profilul său public este ascuns. Măsura privește doar funcțiile Wody: nu afectează contul de Discord în sine. Încălcările sunt numărate. Decizia, motivul și momentul sunt înregistrate.</p>"
+        },
+        {
+          "heading": "8. Contestații",
+          "html": "<p>Dacă se ia o măsură asupra conținutului tău, vezi o notificare în fila paginii de profil și poți trimite acolo o contestație. Operatorul verifică contestațiile și poate restabili conținutul sau ridica restricțiile. Termen de răspuns: [REQUIRES OPERATOR CONFIRMATION].</p>"
+        },
+        {
+          "heading": "9. Evidențe și date personale",
+          "html": "<p>Wody păstrează raportarea, referința către conținutul identificat, decizia și istoricul ei, precum și momentul și versiunea confirmării politicilor, cât timp este necesar pentru tratarea cazului și prevenirea repetării. Perioada de păstrare a acestor evidențe: [REQUIRES OPERATOR CONFIRMATION]. Wody nu păstrează copii ale imaginilor și fișierelor audio care sunt doar legate prin link. Vezi Politica de confidențialitate.</p>"
+        },
+        {
+          "heading": "10. Contact",
+          "html": "Operator: Păcurar Ancuța-Narcisa, România, Uniunea Europeană. Contact general: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Contact dedicat pentru drepturi de autor: [REQUIRES OPERATOR CONFIRMATION]. Adresa, datele fiscale și de înregistrare: [REQUIRES OPERATOR CONFIRMATION]."
+        }
+      ]
+    },
+    "copyright": {
+      "title": "Politica drepturilor de autor și a proprietății intelectuale",
+      "version": "1.0-draft",
+      "sections": [
+        {
+          "heading": "1. Respect pentru drepturi",
+          "html": "<p>Wody respectă drepturile de autor, mărcile și alte drepturi de proprietate intelectuală. Jocurile, studiourile, brandurile și artiștii terți dețin operele lor. Folosirea unei opere în Wody nu îți dă ție sau Wody niciun drept asupra ei.</p>"
+        },
+        {
+          "heading": "2. Ce nu face Wody",
+          "html": "<p>Wody nu administrează o galerie de artă a terților, nu include artă oficială a jocurilor sau studiourilor, nu o extrage automat și nu o vinde. Temele și scenele oferite de Wody sunt originale și desenate de Wody.</p>"
+        },
+        {
+          "heading": "3. Responsabilitatea ta",
+          "html": "<p>Dacă încarci sau legi o imagine, trebuie să ai drepturile necesare sau o altă bază legală. De fiecare dată când publici sau editezi profilul tău public confirmi acest lucru și accepți politicile bifând o casetă nebifată implicit. Confirmarea este declarația ta. Nu este o garanție și nu face legală o folosire neautorizată.</p>"
+        },
+        {
+          "heading": "4. Raportarea unei posibile încălcări",
+          "html": "<p>Folosește formularul de reclamație pentru drepturi de autor. Te rugăm să indici: numele sau organizația, o modalitate de contact, descrierea operei protejate, un link sau altă identificare a operei originale dacă există, profilul sau personalizarea unde ai găsit materialul, de ce crezi că îl încalcă și confirmarea că informațiile sunt corecte și că ești autorizat să acționezi.</p><p>Nu cerem adresă poștală decât dacă legea o impune. Datele tale de contact nu sunt arătate utilizatorului vizat.</p>"
+        },
+        {
+          "heading": "5. Cum este tratată o reclamație",
+          "html": "<ol><li>Reclamația este înregistrată și conținutul este identificat.</li><li>Operatorul o verifică. Dacă nu este clară, îți putem cere lămuriri.</li><li>Dacă notificarea este suficient de precisă și conținutul pare ilegal, accesul la conținut este dezactivat sau conținutul este eliminat.</li><li>Cel care a încărcat vede o notificare și poate contesta.</li><li>Decizia, motivul și momentul sunt înregistrate.</li></ol><p>În această ciornă Wody nu promite un termen fix de eliminare. Termen țintă de răspuns: [REQUIRES OPERATOR CONFIRMATION]. Acolo unde legea impune pași specifici, acei pași se aplică.</p>"
+        },
+        {
+          "heading": "6. Încălcări repetate",
+          "html": "<p>Încălcările confirmate sunt numărate. Încălcările repetate pot duce la suspendarea personalizării sau la suspendarea ori blocarea contului de Discord asociat profilului pentru funcțiile Wody.</p>"
+        },
+        {
+          "heading": "7. Contestații și contra-notificări",
+          "html": "<p>Utilizatorul al cărui conținut a fost dezactivat poate explica de ce folosirea este legală prin contestația din fila paginii de profil. Wody o verifică și poate restabili conținutul sau îl poate ține dezactivat. Wody nu restabilește conținutul automat după un termen fix. Imaginile care sunt doar legate prin link nu sunt stocate de Wody: rămân vizibile doar cât timp linkul este valid pe platforma care le găzduiește.</p>"
+        },
+        {
+          "heading": "8. Limite",
+          "html": "<p>Wody nu poate detecta fiecare încălcare. Raportările și verificarea sunt principala cale prin care sunt găsite problemele. Această procedură nu este descrisă ca fiind conformă cu o lege străină anume. Regimul juridic aplicabil Wody și obligațiile exacte care rezultă trebuie confirmate de un avocat român sau european calificat.</p>"
+        },
+        {
+          "heading": "9. Contact",
+          "html": "Operator: Păcurar Ancuța-Narcisa, România, Uniunea Europeană. Contact general: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Contact dedicat pentru drepturi de autor: [REQUIRES OPERATOR CONFIRMATION]. Adresa, datele fiscale și de înregistrare: [REQUIRES OPERATOR CONFIRMATION]."
+        }
+      ]
+    },
+    "gta-notice": {
+      "title": "Notă pentru categoria GTA VI",
+      "version": "1.0-draft",
+      "sections": [
+        {
+          "heading": "Notă",
+          "html": "<p>GTA VI și numele, logo-urile și artele asociate aparțin proprietarilor lor. Wody nu este afiliat cu, aprobat de sau sponsorizat de Rockstar Games ori Take-Two Interactive.</p><p>Categoria GTA VI este o temă neoficială de personalizare, formată din culori și scene originale desenate de Wody, inspirate de un aspect cu apus și neon. Nu conține artă oficială, logo-uri sau personaje.</p><ul><li>Wody nu oferă o galerie de imagini GTA VI și nu distribuie materiale Rockstar.</li><li>Dacă adaugi o imagine sau un link în această categorie, îl furnizezi tu și trebuie să ai drepturile necesare sau altă bază legală.</li><li>Wody poate dezactiva conținutul raportat sau ilegal și poate restricționa personalizarea după verificare.</li><li>Categoria este opțională și poți alege altă temă oricând.</li><li>Această notă nu dă nimănui permisiunea de a folosi materiale Rockstar.</li></ul><p>Citește Politica conținutului utilizatorilor și Politica drepturilor de autor pentru regulile complete.</p>"
+        }
+      ]
+    },
+    "complaint": {
+      "title": "Reclamație privind drepturile de autor",
+      "version": "1.0-draft",
+      "sections": [
+        {
+          "heading": "Cum folosești formularul",
+          "html": "<p>Folosește acest formular dacă ești titular de drepturi, sau ești autorizat să acționezi pentru unul, și crezi că un conținut afișat prin Wody îți încalcă drepturile. Citește mai întâi Politica drepturilor de autor. Cerem doar ce ne trebuie pentru a trata reclamația. Datele tale nu sunt arătate utilizatorului vizat. O reclamație nu duce automat la ban: este verificată mai întâi.</p>"
+        }
+      ],
+      "form": {
+        "kind": "Tipul reclamației",
+        "copyright": "Drepturi de autor",
+        "trademark": "Marcă",
+        "target": "Numele de utilizator Wody al profilului",
+        "targetHint": "Partea de după wody.online/, fără @.",
+        "name": "Numele sau organizația ta",
+        "email": "Email de contact",
+        "work": "Descrierea operei protejate",
+        "workUrl": "Link către opera originală (opțional)",
+        "reason": "Unde ai găsit materialul și de ce crezi că încalcă drepturile",
+        "accurate": "Confirm că informațiile din această reclamație sunt corecte.",
+        "authorized": "Confirm că sunt titularul drepturilor sau sunt autorizat să acționez în numele lui.",
+        "send": "Trimite reclamația",
+        "sending": "Se trimite...",
+        "sent": "Reclamație primită. Va fi verificată. Referință: {id}",
+        "error": "Nu am putut trimite reclamația. Verifică câmpurile și încearcă din nou.",
+        "notFound": "Nu a fost găsit niciun profil cu acest nume de utilizator.",
+        "rate": "Prea multe încercări. Încearcă mai târziu."
+      }
+    }
+  },
+  "report": {
+    "button": "Raportează",
+    "title": "Raportează acest profil",
+    "kind": "Care este problema",
+    "image": "Imagine sau fundal",
+    "profile": "Profil",
+    "prohibited": "Conținut interzis",
+    "abuse": "Abuz sau hărțuire",
+    "reason": "Descrie problema (cel puțin 10 caractere)",
+    "send": "Trimite raportarea",
+    "sent": "Raportare primită. Va fi verificată.",
+    "dupe": "Ai raportat deja recent.",
+    "error": "Nu am putut trimite raportarea.",
+    "rights": "Ești titular de drepturi? Folosește formularul de reclamație pentru drepturi de autor.",
+    "cancel": "Anulează"
+  },
+  "gta6Page": {
+    "metaTitle": "Bot Discord cu temă inspirată de GTA 6 (gratuit) | Wody",
+    "metaDescription": "Wody este un bot Discord gratuit cu un aspect Miami neon inspirat de GTA 6: carduri de nivel, carduri welcome și pagină de profil cu link scurt. Artă originală, fără materiale din joc.",
+    "badge": "Temă inspirată de GTA 6",
+    "h1": "Bot Discord cu aspect Miami neon, inspirat de GTA 6",
+    "intro": "Wody este un bot Discord pentru moderare, niveluri, tichete, giveaway-uri și multe altele. Vine și cu o colecție opțională de teme în stil Miami pentru cardurile de level-up, cardurile welcome și goodbye și pagina ta de profil: apusuri pe coasta neon, amurg cu palmieri, skyline și art deco. Toată arta este originală, făcută pentru Wody.",
+    "featuresTitle": "Ce primești",
+    "features": [
+      {
+        "t": "Carduri de level-up",
+        "d": "Alege Neon Coast, Palm Dusk, Skyline sau Miami art deco din Colecția specială din dashboardul serverului."
+      },
+      {
+        "t": "Carduri welcome și goodbye",
+        "d": "Folosește aceleași scene pentru a întâmpina membrii noi cu un card potrivit serverului tău."
+      },
+      {
+        "t": "Pagină de profil",
+        "d": "O pagină de partajat la wody.online/numele-tau cu contor de vizualizări, muzică de fundal și efecte pe nume."
+      },
+      {
+        "t": "Pașaport",
+        "d": "Un card de identitate fictiv, de colecție, pentru contul tău Discord."
+      },
+      {
+        "t": "Collab",
+        "d": "Găsește parteneri și postează cereri verificate înainte să apară."
+      },
+      {
+        "t": "Toate de bază",
+        "d": "Moderare, automod, tichete, roluri cu reacții, giveaway-uri și altele, în 9 limbi."
+      }
+    ],
+    "stepsTitle": "Configurare în trei pași",
+    "steps": [
+      "Adaugă Wody pe serverul tău.",
+      "Deschide dashboardul serverului și mergi la Niveluri.",
+      "Alege o temă din Colecția specială și salvează."
+    ],
+    "faqTitle": "Întrebări",
+    "faq": [
+      {
+        "q": "Este Wody un bot oficial GTA 6?",
+        "a": "Nu. Wody este un bot Discord independent. Tema Miami neon este inspirată de aspectul general al scenelor de coastă tropicală și folosește doar artă originală."
+      },
+      {
+        "q": "Include artă, logo-uri sau personaje din joc?",
+        "a": "Nu. Wody nu include artă, logo-uri, personaje sau alte materiale din vreun joc. Dacă adaugi propria imagine, trebuie să ai dreptul să o folosești."
+      },
+      {
+        "q": "Este gratuit?",
+        "a": "Poți începe gratuit. Unele module fac parte din Wody Premium."
+      },
+      {
+        "q": "Ce limbi sunt suportate?",
+        "a": "Engleză, română, franceză, italiană, germană, spaniolă, portugheză, olandeză și turcă."
+      }
+    ],
+    "cta": "Adaugă Wody pe Discord",
+    "ctaProfile": "Personalizează-mi pagina de profil",
+    "disclaimer": "Wody nu este afiliat, aprobat sau sponsorizat de Rockstar Games, Take-Two Interactive sau vreun editor de jocuri. Grand Theft Auto și GTA sunt mărci ale proprietarilor lor și sunt menționate doar pentru a descrie sursa de inspirație a temei."
   }
 }

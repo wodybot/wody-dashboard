@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { ImagePlus, Loader2, RotateCcw, Save, Trash2, Undo2 } from 'lucide-react';
 import { input, lab, btn, btnMain } from '@/components/collab/ProfileParts';
 import ProfileCardPreview from '@/components/profile/ProfileCardPreview';
+import PolicyConsent from '@/components/profile/PolicyConsent';
 import { CARD_FONTS, cardFontStyle } from '@/lib/card-fonts';
 import { discordCdnUrl } from '@/lib/utils';
 import { PROFILE_CARD, PROFILE_CARD_DEFAULT, applyPatch, normalizeConfig } from '@/lib/profile-card';
@@ -61,6 +62,7 @@ export default function ProfileCardTab({ identity }) {
   const t = useTranslations('profileCard');
   const [saved, setSaved] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [consent, setConsent] = useState(false);
   const fileRef = useRef(null);
   const [draft, setDraft] = useState(null);
   const [state, setState] = useState('loading');
@@ -104,6 +106,10 @@ export default function ProfileCardTab({ identity }) {
     const patch = {};
     for (const [k, v] of Object.entries(draft)) if (JSON.stringify(v) !== JSON.stringify(saved.config[k])) patch[k] = v;
     if (patch.theme === 'custom' && Object.keys(patch).length === 1) delete patch.theme;
+    if (patch.bg_url) {
+      if (!consent) { setMsg({ kind: 'err', text: t('consent.required') }); return; }
+      patch.policy_accepted = true;
+    }
     setBusy(true);
     const r = await api('PATCH', patch);
     setBusy(false);
@@ -128,15 +134,18 @@ export default function ProfileCardTab({ identity }) {
   const upload = async (file) => {
     if (!file || uploading) return;
     setMsg(null);
+    if (!consent) { setMsg({ kind: 'err', text: t('consent.required') }); if (fileRef.current) fileRef.current.value = ''; return; }
     if (dirtyRef.current && !window.confirm(t('unsaved'))) return;
     setUploading(true);
     const form = new FormData();
     form.append('file', file);
+    form.append('policy_accepted', 'true');
     const r = await api('POST', form, '/api/profile-card/image');
     setUploading(false);
     if (fileRef.current) fileRef.current.value = '';
     if (r.ok) { applyServer(r.data); setMsg({ kind: 'ok', text: t('imageSaved') }); return; }
     const code = r.status === 429 ? 'rate_limited' : r.data?.error;
+    if (code === 'account_blocked') { setMsg({ kind: 'err', text: t('consent.blocked') }); return; }
     setMsg({ kind: 'err', text: t(`imageErr.${['image_too_large', 'image_invalid', 'image_dimensions', 'rate_limited'].includes(code) ? code : 'generic'}`) });
   };
 
@@ -149,9 +158,10 @@ export default function ProfileCardTab({ identity }) {
   };
 
   const togglePublic = async (value) => {
+    if (value && !consent) { setMsg({ kind: 'err', text: t('consent.required') }); return; }
     setSaved((x) => ({ ...x, public: value }));
-    const r = await api('PATCH', { public: value });
-    if (!r.ok) { setSaved((x) => ({ ...x, public: !value })); setMsg({ kind: 'err', text: t('saveError') }); }
+    const r = await api('PATCH', value ? { public: true, policy_accepted: true } : { public: false });
+    if (!r.ok) { setSaved((x) => ({ ...x, public: !value })); setMsg({ kind: 'err', text: r.data?.error === 'account_blocked' ? t('consent.blocked') : t('saveError') }); }
   };
 
   const reset = async () => {
@@ -269,7 +279,8 @@ export default function ProfileCardTab({ identity }) {
         <Section title={t('sectionEffects')}>{SETTING_KEYS.effects.map(select)}
           <p className="sm:col-span-2 text-xs text-muted-foreground">{t('animNote')}</p>
         </Section>
-        <section className="rounded-2xl border border-border/60 bg-card/40 p-4">
+        <section className="space-y-3 rounded-2xl border border-border/60 bg-card/40 p-4">
+          <PolicyConsent ns="profileCard" checked={consent} onChange={setConsent} />
           <label className="flex cursor-pointer items-start gap-3">
             <input type="checkbox" className="mt-1 h-4 w-4 accent-[#e6cd8c]" checked={saved.public} onChange={(e) => togglePublic(e.target.checked)} />
             <span><span className="block text-sm font-bold">{t('publicToggle')}</span><span className="block text-xs text-muted-foreground">{t('publicHint')}</span></span>

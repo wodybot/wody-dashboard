@@ -7,9 +7,8 @@ import { Button } from '@/components/ui/button';
 import { TopNav, Footer } from '@/components/nav';
 import { BotStatusCard } from '@/components/bot-status';
 import { CommunityShowcase } from '@/components/community-showcase';
-import { PassportPromo, PassportPromoFallback } from '@/components/passport-promo';
-import { ProfilePromo } from '@/components/profile-promo';
-import { EcosystemSection } from '@/components/ecosystem-section';
+import { TrioSection } from '@/components/trio-section';
+import { isVisibleModule } from '@/lib/hidden-modules';
 import { HeroActions } from '@/components/hero-actions';
 import { ModuleFlipCard } from '@/components/module-flip-card';
 import { COUNTER_INVITE_URL, COMMUNITY_INVITE } from '@/lib/content';
@@ -97,15 +96,7 @@ export default async function Home({ params }) {
           <ShowcaseSection />
         </Suspense>
 
-        <Suspense fallback={<PassportPromoFallback />}>
-          <PassportPromo />
-        </Suspense>
-
-        <ProfilePromo />
-
-        <Suspense fallback={null}>
-          <EcosystemSection />
-        </Suspense>
+        <TrioSection />
 
         <div className="max-w-7xl mx-auto px-6 mt-6 md:mt-4" aria-hidden="true">
           <div className="h-px w-full bg-gradient-to-r from-transparent via-[#c46a2d]/45 to-transparent" />
@@ -118,7 +109,7 @@ export default async function Home({ params }) {
             <p className="text-muted-foreground mt-3">{t('modulesSubtitle')}</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {allModules.filter((m) => !PREMIUM_MODULE_KEYS.has(m.key)).map((m, i) => (
+            {allModules.filter((m) => isVisibleModule(m.key)).filter((m) => !PREMIUM_MODULE_KEYS.has(m.key)).map((m, i) => (
               <ModuleFlipCard key={m.key || i} module={m} user={user} />
             ))}
           </div>
@@ -187,7 +178,7 @@ export default async function Home({ params }) {
                 <p className="max-w-md text-sm text-muted-foreground md:text-right">{t('modulesPremiumSubtitle')}</p>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {allModules.filter((m) => PREMIUM_MODULE_KEYS.has(m.key)).map((m, i) => (
+                {allModules.filter((m) => isVisibleModule(m.key)).filter((m) => PREMIUM_MODULE_KEYS.has(m.key)).map((m, i) => (
                   <ModuleFlipCard key={m.key || i} module={m} user={user} />
                 ))}
               </div>

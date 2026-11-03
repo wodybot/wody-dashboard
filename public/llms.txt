@@ -1,0 +1,24 @@
+# Wody
+
+> Wody is a free-to-start Discord bot with a web dashboard, available in 9 languages (English, Romanian, French, Italian, German, Spanish, Portuguese, Dutch, Turkish). Website: https://wody.online
+
+## What Wody does
+- Moderation, automod, tickets, reaction roles, giveaways, levels, welcome and goodbye messages, economy and more.
+- Level-up, welcome and goodbye cards with an optional Miami neon theme collection (Neon Coast, Palm Dusk, Skyline, Miami art deco). The artwork is original. It is inspired by the general look of tropical coast scenes and is not affiliated with Rockstar Games, Take-Two Interactive or any game publisher.
+- A personal profile page at wody.online/<name> with a view counter, background music and name effects.
+- Wody Passport: a fictional collectible identity card for a Discord account.
+- Wody Collab: requests and partnerships between communities, checked before they go live.
+
+## Key pages
+- Home: https://wody.online/
+- Discord bot with a GTA 6-inspired theme: https://wody.online/gta6-discord-bot
+- Modules: https://wody.online/modules
+- Commands: https://wody.online/commands
+- Premium: https://wody.online/premium
+- Privacy: https://wody.online/privacy
+- Terms: https://wody.online/terms
+
+## Facts to keep accurate
+- Wody is an independent project. It is not an official GTA 6 product.
+- Wody does not include artwork, logos or characters from any game.
+- Core features are free; some modules are part of Wody Premium.

@@ -23,13 +23,14 @@ import { OWNER_ID, COMMUNITY_INVITE, INVITE_URL } from '@/lib/content';
 import dynamic from 'next/dynamic';
 const CommunityAdminPanel = dynamic(() => import('@/components/community/AdminPanel'), { ssr: false });
 const CollabAdminPanel = dynamic(() => import('@/components/collab/AdminPanel'), { ssr: false });
+const ReportsAdmin = dynamic(() => import('@/components/moderation/ReportsAdmin'), { ssr: false });
 const OwnerAccessAdmin = dynamic(() => import('@/components/community/OwnerAccess'), { ssr: false });
 import {
   Crown, Sparkles, Key, Copy, Plus, Loader2, RefreshCw, Home,
   Server, Users, ShieldCheck, ShieldAlert, Megaphone, Trash2, Ban, Undo2, MessageSquare,
   LayoutGrid, ChevronRight, Leaf, Send, History, Image as ImageIcon, Search, Share2, Handshake,
   BookOpen, Pencil, X, ArrowUp, KeyRound, Menu, ArrowLeft, ArrowDown, ExternalLink, GripVertical, Timer, Compass,
-  Briefcase,
+  Briefcase, Flag,
 } from 'lucide-react';
 import PartnersAdmin from '@/components/partners/PartnersAdmin';
 import OwnerConfigCard from '@/components/owner-config-card';
@@ -51,6 +52,7 @@ const SECTIONS = [
   { id: 'updates', label: 'Announcements', icon: Megaphone, group: 'Content', desc: 'Public updates page' },
   { id: 'blog', label: 'Blog', icon: BookOpen, group: 'Content', desc: 'Write and publish posts' },
   { id: 'staff', label: 'Team / Staff', icon: Users, group: 'Content', desc: 'Team page members' },
+  { id: 'reports', label: 'Content reports', icon: Flag, group: 'Content', desc: 'Copyright and content reports' },
   { id: 'partners', label: 'Partners', icon: Handshake, group: 'Content', desc: 'Partner bots page' },
   { id: 'appearance', label: 'Appearance', icon: Leaf, group: 'Website', desc: 'Banners, effects, link preview' },
   { id: 'access', label: 'Panel Access', icon: KeyRound, group: 'Security', desc: 'Who can open the community part' },
@@ -2267,6 +2269,7 @@ function DiscordComponentPreview({ config, imageSrc }) {
             {section === 'collab' && <CollabAdminPanel ownerOnly={!restricted} />}
             {section === 'access' && !restricted && <OwnerAccessAdmin />}
             {section === 'partners' && <PartnersAdmin />}
+            {section === 'reports' && !restricted && <ReportsAdmin />}
 
             {section === 'appearance' && (
               <div className="space-y-6">

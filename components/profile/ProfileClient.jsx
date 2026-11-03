@@ -1,4 +1,5 @@
 'use client';
+import PolicyConsent from '@/components/profile/PolicyConsent';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import {
@@ -505,19 +506,23 @@ function SocialsCard({ pf, onSaved }) {
   const [ttBusy, setTtBusy] = useState(false);
   const [ttMsg, setTtMsg] = useState('');
   const [share, setShare] = useState(Boolean(pf.share_socials));
+  const [consent, setConsent] = useState(false);
   const [shown, setShown] = useState(() => new Set(typed.filter((s) => pf.socials?.[s.id]).map((s) => s.id)));
   const [state, setState] = useState({ busy: false, ok: false, text: '', fields: {} });
   const save = async (e) => {
     e.preventDefault();
+    if (!consent) return;
     setState({ busy: true, ok: false, text: '', fields: {} });
-    const r = await mfetch('me/profile', { method: 'PUT', body: { socials: vals, share_socials: share, tiktok_hidden: ttHidden } });
+    const r = await mfetch('me/profile', { method: 'PUT', body: { socials: vals, share_socials: share, tiktok_hidden: ttHidden, policy_accepted: true } });
     if (r.ok) {
       setVals((v) => ({ ...v, ...Object.fromEntries(typed.map((s) => [s.id, r.data.socials?.[s.id] || ''])) }));
       setShown(new Set(typed.filter((s) => r.data.socials?.[s.id]).map((s) => s.id)));
       setState({ busy: false, ok: true, text: t('socials.saved'), fields: {} });
+      setConsent(false);
       onSaved();
       return;
     }
+    if (r.data?.error === 'account_blocked') { setState({ busy: false, ok: false, text: t('consent.blocked'), fields: {} }); return; }
     const fields = {};
     for (const er of r.data?.errors || []) fields[er.field] = (typeof tc.has === 'function' && tc.has(`err.${er.code}`)) ? tc(`err.${er.code}`, er.params || {}) : t(`socials.err.${er.code}`);
     setState({ busy: false, ok: false, text: Object.keys(fields).length ? t('socials.fix') : errText(tc, r.data), fields });
@@ -580,7 +585,8 @@ function SocialsCard({ pf, onSaved }) {
       )}
       <div className="mt-4"><Switch id="soc-share" checked={share} onChange={setShare} label={t('socials.share')} hint={t('socials.shareHint')} /></div>
       <div className="mt-4 flex flex-wrap items-center justify-end gap-3">
-        <button type="submit" className={btnMain} disabled={state.busy}><Check className="h-4 w-4" aria-hidden="true" />{t('socials.save')}</button>
+        <PolicyConsent ns="profile" checked={consent} onChange={setConsent} className="mt-3" />
+        <button type="submit" className={`${btnMain} mt-3`} disabled={state.busy || !consent}><Check className="h-4 w-4" aria-hidden="true" />{t('socials.save')}</button>
         {state.text && <span role={state.ok ? 'status' : 'alert'} className={`text-sm ${state.ok ? 'text-emerald-300' : 'text-destructive'}`}>{state.text}</span>}
       </div>
     </form>

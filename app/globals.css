@@ -629,3 +629,76 @@
 @keyframes name-shift { to { background-position: -300% 0; } }
 @keyframes name-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
 @media (prefers-reduced-motion: reduce) { .name-fx-glow, .name-fx-gradient, .name-fx-typewriter { animation: none; } .name-fx-typewriter { clip-path: none; } }
+.trio-frame { border-radius:2rem; padding:1.5px; background:conic-gradient(from var(--trio-a,0deg), #ff5e8a, #e6cd8c, #3fd0c9, #7a5cff, #ff5e8a); animation:trioSpin 14s linear infinite; box-shadow:0 30px 90px -40px rgba(255,94,138,.45); }
+@property --trio-a { syntax:'<angle>'; inherits:false; initial-value:0deg; }
+@keyframes trioSpin { to { --trio-a:360deg; } }
+.trio-shell { position:relative; isolation:isolate; overflow:hidden; border-radius:calc(2rem - 1.5px); background:linear-gradient(150deg,#1d1020 0%,#150b12 55%,#0e0709 100%); padding:2rem 1.25rem 1.25rem; }
+@media (min-width:640px) { .trio-shell { padding:3rem 2.5rem 1.5rem; } }
+.trio-blob { position:absolute; z-index:-1; border-radius:9999px; filter:blur(70px); opacity:.5; transition:background 1s ease, transform 1.2s ease; will-change:transform; }
+.trio-blob-a { width:26rem; height:26rem; top:-9rem; left:-6rem; background:#ff5e8a; animation:trioFloat 16s ease-in-out infinite; }
+.trio-blob-b { width:24rem; height:24rem; bottom:-10rem; right:-4rem; background:#3fd0c9; opacity:.35; animation:trioFloat 19s ease-in-out infinite reverse; }
+.trio-blob-c { width:18rem; height:18rem; top:30%; left:45%; background:#7a5cff; opacity:.28; animation:trioFloat 22s ease-in-out infinite; }
+.trio-shell:has([data-active="passport"]) .trio-blob-a { background:#e6b84a; }
+.trio-shell:has([data-active="passport"]) .trio-blob-b { background:#a04820; }
+.trio-shell:has([data-active="collab"]) .trio-blob-a { background:#3fd0c9; }
+.trio-shell:has([data-active="collab"]) .trio-blob-b { background:#e6cd8c; }
+.trio-dots { position:absolute; inset:0; z-index:-1; opacity:.07; background-image:radial-gradient(#fff 1px,transparent 1px); background-size:22px 22px; -webkit-mask-image:linear-gradient(180deg,#000,transparent 85%); mask-image:linear-gradient(180deg,#000,transparent 85%); }
+@keyframes trioFloat { 0%,100% { transform:translate3d(0,0,0) scale(1); } 50% { transform:translate3d(3rem,2rem,0) scale(1.12); } }
+.trio-grid { display:grid; gap:2rem; align-items:center; }
+@media (min-width:1024px) { .trio-grid { grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:3rem; } }
+.trio-badge { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:#ffd9b0; margin-bottom:.75rem; }
+.trio-title { font-size:clamp(1.9rem,4.4vw,3.2rem); line-height:1.05; font-weight:800; letter-spacing:-.02em; background:linear-gradient(100deg,#fff6dc 0%,#ffb3c6 40%,#9ff0ea 75%,#fff6dc 100%); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:trioShimmer 9s linear infinite; }
+@keyframes trioShimmer { to { background-position:-220% 0; } }
+.trio-text { margin-top:.9rem; font-size:.95rem; line-height:1.65; color:rgba(255,255,255,.72); max-width:34rem; }
+.trio-tabs { margin-top:1.5rem; display:flex; flex-direction:column; gap:.5rem; }
+.trio-tab { position:relative; overflow:hidden; display:flex; align-items:center; gap:.85rem; text-align:left; padding:.8rem .95rem; border-radius:1rem; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.03); color:rgba(255,255,255,.7); transition:background .25s, border-color .25s, transform .25s; cursor:pointer; }
+.trio-tab:hover { background:rgba(255,255,255,.07); transform:translateX(2px); }
+.trio-tab:focus-visible { outline:2px solid #ffd9b0; outline-offset:2px; }
+.trio-tab[data-on="true"] { background:rgba(255,255,255,.09); border-color:rgba(255,217,176,.55); color:#fff; }
+.trio-tab-icon { display:grid; place-items:center; width:2.2rem; height:2.2rem; flex:none; border-radius:.7rem; background:linear-gradient(135deg,#ff5e8a,#7a5cff); color:#fff; box-shadow:0 8px 20px -8px rgba(255,94,138,.8); }
+.trio-grid[data-active="passport"] .trio-tab[data-on="true"] .trio-tab-icon { background:linear-gradient(135deg,#f6dd9c,#d4af5a); color:#1b1204; }
+.trio-grid[data-active="collab"] .trio-tab[data-on="true"] .trio-tab-icon { background:linear-gradient(135deg,#3fd0c9,#2d8f8a); }
+.trio-tab-text { display:flex; flex-direction:column; min-width:0; }
+.trio-tab-name { font-weight:700; font-size:.95rem; }
+.trio-tab-blurb { font-size:.78rem; opacity:.75; line-height:1.4; }
+.trio-bar { position:absolute; left:0; right:0; bottom:0; height:2px; background:rgba(255,255,255,.08); }
+.trio-bar-fill { display:block; height:100%; width:100%; transform-origin:left; background:linear-gradient(90deg,#ff5e8a,#ffd9b0,#3fd0c9); animation:trioProgress 7s linear forwards; }
+.trio-bar-fill[data-paused="true"] { animation-play-state:paused; }
+@keyframes trioProgress { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+.trio-cta { margin-top:1.25rem; display:inline-flex; align-items:center; gap:.5rem; border-radius:999px; padding:.7rem 1.35rem; font-size:.875rem; font-weight:700; color:#2a0b3b; background:linear-gradient(120deg,#fff6dc,#ffd9b0 55%,#ffb3c6); box-shadow:0 12px 34px -12px rgba(255,150,170,.8); transition:transform .18s ease, box-shadow .18s ease; }
+.trio-cta:hover { transform:translateY(-2px); box-shadow:0 18px 40px -12px rgba(255,150,170,.95); }
+.trio-cta:focus-visible { outline:2px solid #fff; outline-offset:3px; }
+.trio-stage { position:relative; height:21rem; perspective:1400px; }
+@media (min-width:640px) { .trio-stage { height:26rem; } }
+.trio-card { position:absolute; left:50%; top:50%; width:min(100%,30rem); transition:transform .8s cubic-bezier(.2,.8,.2,1), opacity .6s ease, filter .6s ease; transform-style:preserve-3d; }
+.trio-card[data-pos="front"] { z-index:3; transform:translate(-50%,-50%) translateZ(0) scale(1); opacity:1; }
+.trio-card[data-pos="right"] { z-index:2; transform:translate(-34%,-58%) translateZ(-120px) rotateY(-14deg) scale(.82); opacity:.55; filter:saturate(.8); cursor:pointer; }
+.trio-card[data-pos="left"] { z-index:1; transform:translate(-66%,-42%) translateZ(-200px) rotateY(14deg) scale(.74); opacity:.35; filter:saturate(.7); cursor:pointer; }
+@media (max-width:639px) {
+  .trio-card[data-pos="right"] { transform:translate(-20%,-56%) scale(.8); }
+  .trio-card[data-pos="left"] { transform:translate(-80%,-44%) scale(.72); }
+}
+.trio-mock { position:relative; overflow:hidden; border-radius:1.4rem; box-shadow:0 40px 80px -30px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.14); }
+.trio-mock--profile { height:19rem; }
+@media (min-width:640px) { .trio-mock--profile { height:22rem; } }
+.trio-mock--passport { overflow:visible; box-shadow:none; }
+.trio-mock--collab { background:linear-gradient(160deg,#2a1809,#150d07); box-shadow:0 40px 80px -30px rgba(0,0,0,.85), 0 0 0 1px rgba(230,205,140,.3); }
+.trio-avatar { width:4.2rem; height:4.2rem; border-radius:9999px; background:conic-gradient(from 200deg,#ffd9b0,#ff5e8a,#7a5cff,#3fd0c9,#ffd9b0); box-shadow:0 0 0 3px rgba(255,255,255,.85), 0 0 36px rgba(255,150,170,.7); animation:trioPulse 4s ease-in-out infinite; }
+@keyframes trioPulse { 0%,100% { box-shadow:0 0 0 3px rgba(255,255,255,.85), 0 0 24px rgba(255,150,170,.5); } 50% { box-shadow:0 0 0 3px rgba(255,255,255,.95), 0 0 48px rgba(255,150,170,.9); } }
+.trio-example { position:absolute; top:.7rem; right:.8rem; font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; padding:.15rem .5rem; border-radius:999px; background:rgba(0,0,0,.35); color:rgba(255,255,255,.75); }
+.trio-live { display:inline-block; width:.45rem; height:.45rem; border-radius:9999px; background:#34d399; animation:trioBlink 1.6s ease-in-out infinite; }
+@keyframes trioBlink { 0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(52,211,153,.6); } 50% { opacity:.55; box-shadow:0 0 0 6px rgba(52,211,153,0); } }
+.trio-row { display:flex; align-items:center; gap:.7rem; padding:.7rem .85rem; border-radius:.9rem; background:rgba(230,205,140,.07); border:1px solid rgba(230,205,140,.2); animation:trioIn .9s ease both; }
+.trio-row-dot { width:.55rem; height:.55rem; border-radius:9999px; background:linear-gradient(135deg,#f3e1b0,#e6a64a); flex:none; }
+@keyframes trioIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+.trio-orbit { position:absolute; left:50%; top:50%; border-radius:9999px; border:1px dashed rgba(255,255,255,.14); transform:translate(-50%,-50%); pointer-events:none; }
+.trio-orbit-a { width:24rem; height:24rem; animation:trioRot 40s linear infinite; }
+.trio-orbit-b { width:32rem; height:32rem; border-color:rgba(255,217,176,.1); animation:trioRot 60s linear infinite reverse; }
+@keyframes trioRot { to { transform:translate(-50%,-50%) rotate(360deg); } }
+.trio-note { margin-top:1.25rem; padding-top:1rem; border-top:1px solid rgba(255,255,255,.08); font-size:.7rem; color:rgba(255,255,255,.5); }
+@media (prefers-reduced-motion: reduce) {
+  .trio-frame, .trio-blob, .trio-title, .trio-avatar, .trio-live, .trio-row, .trio-orbit, .trio-bar-fill { animation:none !important; }
+  .trio-title { background-position:50% 0; }
+  .trio-bar-fill { transform:scaleX(1); }
+  .trio-card, .trio-tab, .trio-cta, .trio-blob { transition:none !important; }
+}

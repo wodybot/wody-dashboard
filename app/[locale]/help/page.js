@@ -84,7 +84,7 @@ export default async function HelpPage({ params }) {
     key: 'modules',
     title: t('modulesTitle'),
     icon: 'Bot',
-    items: tLanding.raw('modulesDetail').map((m) => [m.title, m.desc]),
+    items: tLanding.raw('modulesDetail').filter((m) => !['lookups', 'feeds'].includes(m.key)).map((m) => [m.title, m.desc]),
   };
   const sections = [
     rawSections[0], rawSections[1], modulesSection, rawSections[2], rawSections[3],

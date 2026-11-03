@@ -5,6 +5,8 @@ import { normalizePage, validatePagePatch } from '@/lib/profile-page';
 import { applyPatch as applyProfilePatch, normalizeConfig as normalizeProfileConfig, PROFILE_CARD } from '@/lib/profile-card';
 import { sniffImage as sniffProfileImage } from '@/lib/community/images';
 import { ObjectId as ProfileObjectId } from 'mongodb';
+import { M } from '@/lib/collab/db';
+import { POLICY_VERSION, accountState, hasUserImage } from '@/lib/account-moderation';
 import { NextResponse } from 'next/server';
 import { getDb, toLong, serializeDoc, deserializeInput, Long } from '@/lib/mongo';
 import { getSession, setSession, clearSession, issueOAuthState, consumeOAuthState } from '@/lib/session';
@@ -579,6 +581,23 @@ function discordCdnMemorySet(key, buf, type) {
   while (discordCdnMemory.size > DISCORD_CDN_MEMORY_MAX) discordCdnMemory.delete(discordCdnMemory.keys().next().value);
 }
 
+const REPORT_KINDS = ['image', 'profile', 'copyright', 'trademark', 'prohibited', 'abuse'];
+const REPORT_STATUS = ['open', 'reviewing', 'removed', 'restricted', 'suspended', 'blocked', 'dismissed', 'appealed'];
+const REPORT_ACTIONS = ['review', 'dismiss', 'remove_content', 'restrict_uploads', 'suspend_customization', 'suspend_account', 'block_account', 'unblock_account', 'restore'];
+const cleanText = (v, max) => String(v ?? '').replace(/[\p{Cc}\p{Cf}<>]/gu, ' ').replace(/\s+/g, ' ').trim().slice(0, max);
+
+function publicModeration(m) {
+  if (!m || typeof m !== 'object') return { uploads_restricted: false, suspended: false, account_blocked: false, account_until: null, notice: null };
+  const until = m.uploads_restricted_until ? new Date(m.uploads_restricted_until) : null;
+  return {
+    uploads_restricted: Boolean(m.uploads_restricted && (!until || until > new Date())),
+    suspended: m.suspended === true,
+    account_blocked: accountState(m).blocked,
+    account_until: accountState(m).until,
+    notice: m.notice ? { at: m.notice.at, action: String(m.notice.action || ''), report_id: String(m.notice.report_id || '') } : null,
+  };
+}
+
 async function handleGet(request, context) {
   const params = await context.params;
   const path = (params?.path || []).join('/');
@@ -987,8 +1006,16 @@ async function handleGet(request, context) {
   if (path === 'profile-page') {
     const session = await getSession();
     if (!session?.user?.id) return json({ error: 'unauthenticated' }, { status: 401 });
-    const doc = await (await getDb()).collection('profile_cards').findOne({ _id: String(session.user.id) }, { projection: { page: 1 } });
-    return json({ page: normalizePage(doc?.page), customized: Boolean(doc?.page && Object.keys(doc.page).length) }, { headers: { 'Cache-Control': 'no-store' } });
+    const doc = await (await getDb()).collection('profile_cards').findOne({ _id: String(session.user.id) }, { projection: { page: 1, moderation: 1 } });
+    return json({ page: normalizePage(doc?.page), customized: Boolean(doc?.page && Object.keys(doc.page).length), moderation: publicModeration(doc?.moderation) }, { headers: { 'Cache-Control': 'no-store' } });
+  }
+  if (path === 'owner/content-reports') {
+    const session = await getSession();
+    if (!session?.user || session.user.id !== OWNER_ID) return json({ error: 'forbidden' }, { status: 403 });
+    const status = new URL(request.url).searchParams.get('status');
+    const filter = REPORT_STATUS.includes(status) ? { status } : {};
+    const rows = await (await getDb()).collection('content_reports').find(filter).sort({ created_at: -1 }).limit(100).toArray();
+    return json({ items: rows.map((r) => ({ ...r, id: String(r._id), _id: undefined })) }, { headers: { 'Cache-Control': 'no-store' } });
   }
   if (path === 'profile-card') {
     const session = await getSession();
@@ -1735,10 +1762,13 @@ async function handleMutation(request, context) {
       return json({ ...(await readProfileCard(idb, userId)), schema_version: 1 }, { headers: { 'Cache-Control': 'no-store' } });
     }
     if (await hourlyLimited(idb, `pcimg:${userId}`, 12)) return json({ error: 'rate_limited' }, { status: 429 });
+    const modDoc = await idb.collection('profile_cards').findOne({ _id: userId }, { projection: { moderation: 1 } });
+    if (accountState(modDoc?.moderation).blocked) return json({ error: 'account_blocked' }, { status: 403 });
     const max = PROFILE_CARD.imageMaxBytes;
     if (Number(request.headers.get('content-length') || 0) > max + 16384) return json({ error: 'image_too_large' }, { status: 413 });
     let form;
     try { form = await request.formData(); } catch { return json({ error: 'bad_request' }, { status: 400 }); }
+    if (form.get('policy_accepted') !== 'true') return json({ error: 'policy_acceptance_required' }, { status: 400 });
     const file = form.get('file');
     if (!file || typeof file === 'string') return json({ error: 'image_invalid' }, { status: 400 });
     if (file.size > max) return json({ error: 'image_too_large' }, { status: 413 });
@@ -1761,6 +1791,135 @@ async function handleMutation(request, context) {
     return json({ error: 'rate_limited' }, { status: 429 });
   }
 
+  if (path === 'content-report' && method === 'POST') {
+    const session = await getSession();
+    const kind = String(body.kind || '');
+    if (!REPORT_KINDS.includes(kind)) return json({ error: 'invalid_value', field: 'kind' }, { status: 400 });
+    const reason = cleanText(body.reason, 1500);
+    if (reason.length < 10) return json({ error: 'invalid_value', field: 'reason' }, { status: 400 });
+    const target = cleanText(body.target, 40).toLowerCase().replace(/^@/, '');
+    if (!target || !/^[a-z0-9_.-]{2,40}$/.test(target)) return json({ error: 'invalid_value', field: 'target' }, { status: 400 });
+    const formal = kind === 'copyright' || kind === 'trademark';
+    const claimant = formal ? {
+      name: cleanText(body.claimant_name, 120),
+      email: cleanText(body.claimant_email, 160),
+      work: cleanText(body.work_description, 800),
+      work_url: cleanText(body.work_url, 300),
+      accurate: body.confirm_accurate === true,
+      authorized: body.confirm_authorized === true,
+    } : null;
+    if (formal && (!claimant.name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(claimant.email) || !claimant.work || !claimant.accurate || !claimant.authorized)) {
+      return json({ error: 'invalid_value', field: 'claimant' }, { status: 400 });
+    }
+    if (!formal && !session?.user?.id) return json({ error: 'unauthenticated' }, { status: 401 });
+    const reporter = session?.user?.id ? String(session.user.id) : null;
+    const profile = await db.collection(M.profiles).findOne({ username_lc: target }, { projection: { user_id: 1 } });
+    if (!profile) return json({ error: 'not_found' }, { status: 404 });
+    const since = new Date(Date.now() - 24 * 3600 * 1000);
+    const dupe = reporter ? await db.collection('content_reports').findOne({ reporter_id: reporter, target_user_id: String(profile.user_id), kind, created_at: { $gt: since } }, { projection: { _id: 1 } }) : null;
+    if (dupe) return json({ ok: true, duplicate: true });
+    if (reporter && await hourlyLimited(db, `report:${reporter}`, 10)) return json({ error: 'rate_limited' }, { status: 429 });
+    const doc = { kind, status: 'open', target_username: target, target_user_id: String(profile.user_id), reporter_id: reporter, reason, claimant, location: cleanText(body.location, 40) || 'profile_page', created_at: new Date(), history: [] };
+    const res = await db.collection('content_reports').insertOne(doc);
+    return json({ ok: true, id: String(res.insertedId) }, { status: 201 });
+  }
+
+  if (path === 'content-appeal' && method === 'POST') {
+    const session = await getSession();
+    if (!session?.user?.id) return json({ error: 'unauthenticated' }, { status: 401 });
+    const userId = String(session.user.id);
+    const message = cleanText(body.message, 1500);
+    if (message.length < 10) return json({ error: 'invalid_value', field: 'message' }, { status: 400 });
+    if (await hourlyLimited(db, `appeal:${userId}`, 3)) return json({ error: 'rate_limited' }, { status: 429 });
+    const rows = await db.collection('content_reports').find({ target_user_id: userId, status: { $in: ['removed', 'restricted', 'suspended'] } }).sort({ created_at: -1 }).limit(1).toArray();
+    if (!rows.length) return json({ error: 'not_found' }, { status: 404 });
+    await db.collection('content_reports').updateOne({ _id: rows[0]._id }, { $set: { status: 'appealed', appeal: { message, at: new Date() } }, $push: { history: { at: new Date(), by: userId, action: 'appeal' } } });
+    return json({ ok: true });
+  }
+
+  if (path.startsWith('owner/content-reports/') && method === 'POST') {
+    const session = await getSession();
+    if (!session?.user || session.user.id !== OWNER_ID) return json({ error: 'forbidden' }, { status: 403 });
+    let oid;
+    try { oid = new ProfileObjectId(path.split('/')[2]); } catch { return json({ error: 'not_found' }, { status: 404 }); }
+    const action = String(body.action || '');
+    if (!REPORT_ACTIONS.includes(action)) return json({ error: 'invalid_value', field: 'action' }, { status: 400 });
+    const note = cleanText(body.note, 800);
+    const report = await db.collection('content_reports').findOne({ _id: oid });
+    if (!report) return json({ error: 'not_found' }, { status: 404 });
+    const uid = report.target_user_id;
+    const now = new Date();
+    const cards = db.collection('profile_cards');
+    let status = report.status;
+    if (action === 'review') status = 'reviewing';
+    if (action === 'dismiss') status = 'dismissed';
+    if (action === 'remove_content') {
+      await cards.updateOne({ _id: uid }, { $set: { 'page.image': null, 'page.music': null, 'page.mode': 'preset', 'moderation.notice': { at: now, action: 'remove_content', report_id: String(oid) } }, $inc: { 'moderation.violations': 1 }, $unset: { 'cfg.bg_url': '' } });
+      await cards.updateOne({ _id: uid }, { $set: { 'cfg.bg_image': null, 'cfg.bg_mode': 'gradient' } });
+      await db.collection('profile_card_images').deleteMany({ user: uid });
+      status = 'removed';
+    }
+    if (action === 'restrict_uploads') {
+      const days = Math.max(1, Math.min(365, Number(body.days) || 30));
+      await cards.updateOne({ _id: uid }, { $set: { 'moderation.uploads_restricted': true, 'moderation.uploads_restricted_until': new Date(now.getTime() + days * 86400000), 'moderation.notice': { at: now, action: 'restrict_uploads', report_id: String(oid) } }, $inc: { 'moderation.violations': 1 } }, { upsert: true });
+      status = 'restricted';
+    }
+    if (action === 'suspend_customization') {
+      await cards.updateOne({ _id: uid }, { $set: { 'moderation.suspended': true, 'moderation.notice': { at: now, action: 'suspend_customization', report_id: String(oid) } }, $inc: { 'moderation.violations': 1 } }, { upsert: true });
+      status = 'suspended';
+    }
+    if (action === 'suspend_account') {
+      const days = Math.max(1, Math.min(365, Number(body.days) || 30));
+      await cards.updateOne({ _id: uid }, { $set: { 'moderation.account_suspended_until': new Date(now.getTime() + days * 86400000), 'moderation.notice': { at: now, action: 'suspend_account', report_id: String(oid) } }, $inc: { 'moderation.violations': 1 } }, { upsert: true });
+      status = 'suspended';
+    }
+    if (action === 'block_account') {
+      await cards.updateOne({ _id: uid }, { $set: { 'moderation.account_blocked': true, 'moderation.notice': { at: now, action: 'block_account', report_id: String(oid) } }, $inc: { 'moderation.violations': 1 } }, { upsert: true });
+      status = 'blocked';
+    }
+    if (action === 'unblock_account') {
+      await cards.updateOne({ _id: uid }, { $set: { 'moderation.account_blocked': false }, $unset: { 'moderation.account_suspended_until': '' } });
+      status = 'dismissed';
+    }
+    if (action === 'restore') {
+      await cards.updateOne({ _id: uid }, { $set: { 'moderation.uploads_restricted': false, 'moderation.suspended': false, 'moderation.account_blocked': false }, $unset: { 'moderation.uploads_restricted_until': '', 'moderation.account_suspended_until': '', 'moderation.notice': '' } });
+      status = 'dismissed';
+    }
+    await db.collection('content_reports').updateOne({ _id: oid }, { $set: { status, decided_at: now }, $push: { history: { at: now, by: String(session.user.id), action, note } } });
+    return json({ ok: true, status });
+  }
+
+  if (path === 'owner/account-moderation' && method === 'POST') {
+    const session = await getSession();
+    if (!session?.user || session.user.id !== OWNER_ID) return json({ error: 'forbidden' }, { status: 403 });
+    const action = String(body.action || '');
+    if (!['suspend_account', 'block_account', 'unblock_account'].includes(action)) return json({ error: 'invalid_value', field: 'action' }, { status: 400 });
+    const rawTarget = cleanText(body.target, 40).toLowerCase().replace(/^@/, '');
+    let uid = /^\d{15,25}$/.test(rawTarget) ? rawTarget : null;
+    if (!uid && /^[a-z0-9_.-]{2,40}$/.test(rawTarget)) {
+      const p = await db.collection(M.profiles).findOne({ username_lc: rawTarget }, { projection: { user_id: 1 } });
+      uid = p ? String(p.user_id) : null;
+    }
+    if (!uid) return json({ error: 'not_found' }, { status: 404 });
+    if (uid === OWNER_ID) return json({ error: 'invalid_value', field: 'target' }, { status: 400 });
+    const now = new Date();
+    const note = cleanText(body.note, 800);
+    const cards = db.collection('profile_cards');
+    let status = 'dismissed';
+    if (action === 'suspend_account') {
+      const days = Math.max(1, Math.min(365, Number(body.days) || 30));
+      await cards.updateOne({ _id: uid }, { $set: { 'moderation.account_suspended_until': new Date(now.getTime() + days * 86400000), 'moderation.notice': { at: now, action, report_id: '' } }, $inc: { 'moderation.violations': 1 } }, { upsert: true });
+      status = 'suspended';
+    } else if (action === 'block_account') {
+      await cards.updateOne({ _id: uid }, { $set: { 'moderation.account_blocked': true, 'moderation.notice': { at: now, action, report_id: '' } }, $inc: { 'moderation.violations': 1 } }, { upsert: true });
+      status = 'blocked';
+    } else {
+      await cards.updateOne({ _id: uid }, { $set: { 'moderation.account_blocked': false }, $unset: { 'moderation.account_suspended_until': '', 'moderation.notice': '' } });
+    }
+    await db.collection('content_reports').insertOne({ kind: 'owner_action', status, target_username: String(body.target || '').slice(0, 40), target_user_id: uid, reporter_id: null, reason: note || action, claimant: null, location: 'owner_panel', created_at: now, decided_at: now, history: [{ at: now, by: String(session.user.id), action, note }] });
+    return json({ ok: true, status, user_id: uid });
+  }
+
   if (path === 'profile-page' && ['PATCH', 'PUT', 'DELETE'].includes(method)) {
     const session = await getSession();
     if (!session?.user?.id) return json({ error: 'unauthenticated' }, { status: 401 });
@@ -1770,12 +1929,19 @@ async function handleMutation(request, context) {
       await db.collection('profile_cards').updateOne({ _id: userId }, { $set: { page: {}, updated_at: new Date() } }, { upsert: true });
       return json({ page: normalizePage({}), customized: false }, { headers: { 'Cache-Control': 'no-store' } });
     }
+    const { image_rights: _legacyRights, policy_accepted: policyAccepted, ...patchBody } = body;
     let clean;
-    try { clean = validatePagePatch(body); } catch (e) {
+    try { clean = validatePagePatch(patchBody); } catch (e) {
       return json({ error: 'invalid_value', field: String(e?.message || 'body') }, { status: 400 });
     }
+    const mod = publicModeration((await db.collection('profile_cards').findOne({ _id: userId }, { projection: { moderation: 1 } }))?.moderation);
+    if (mod.account_blocked) return json({ error: 'account_blocked' }, { status: 403 });
+    if (mod.suspended) return json({ error: 'customization_suspended' }, { status: 403 });
+    const touchesMedia = ('image' in clean && clean.image) || ('music' in clean && clean.music);
+    if (touchesMedia && mod.uploads_restricted) return json({ error: 'uploads_restricted' }, { status: 403 });
+    if (Object.keys(clean).length && policyAccepted !== true) return json({ error: 'policy_acceptance_required' }, { status: 400 });
     if (Object.keys(clean).length) {
-      const set = { updated_at: new Date() };
+      const set = { updated_at: new Date(), 'page.policy_accepted_at': new Date().toISOString(), 'page.policy_version': POLICY_VERSION };
       for (const [k, v] of Object.entries(clean)) set[`page.${k}`] = v;
       await db.collection('profile_cards').updateOne({ _id: userId }, { $set: set }, { upsert: true });
     }
@@ -1794,12 +1960,15 @@ async function handleMutation(request, context) {
       return json({ ...(await readProfileCard(db, userId)), schema_version: 1 }, { headers: { 'Cache-Control': 'no-store' } });
     }
     const current = (await readProfileCard(db, userId)).config;
-    const { public: wantPublic, ...designPatch } = body;
+    const { public: wantPublic, policy_accepted: policyAccepted, ...designPatch } = body;
     if ('public' in body && typeof wantPublic !== 'boolean') return json({ error: 'invalid_value', field: 'public' }, { status: 400 });
+    if (wantPublic === true && policyAccepted !== true) return json({ error: 'policy_acceptance_required' }, { status: 400 });
+    if (wantPublic === true && (await db.collection('profile_cards').findOne({ _id: userId }, { projection: { moderation: 1 } }).then((d) => accountState(d?.moderation).blocked))) return json({ error: 'account_blocked' }, { status: 403 });
     let keys;
     try { ({ keys } = applyProfilePatch(current, designPatch)); } catch (e) {
       return json({ error: 'invalid_value', field: String(e?.message || 'body') }, { status: 400 });
     }
+    if (keys.bg_url && policyAccepted !== true) return json({ error: 'policy_acceptance_required' }, { status: 400 });
     if (keys.bg_image) {
       const own = await db.collection('profile_card_images').findOne({ _id: new ProfileObjectId(keys.bg_image), user: userId }, { projection: { _id: 1 } }).catch(() => null);
       if (!own) return json({ error: 'invalid_value', field: 'bg_image' }, { status: 400 });
@@ -2616,6 +2785,7 @@ async function handleMutation(request, context) {
       'temp_voice_name_template', 'temp_voice_default_user_limit', 'bot_nickname'];
     const data = {};
     for (const k of allowed) if (k in body) data[k] = body[k];
+    if (hasUserImage(data, new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').host) && body.rights_confirmed !== true) return json({ error: 'rights_confirmation_required' }, { status: 400 });
     if ('bot_nickname' in data) {
       const nick = String(data.bot_nickname ?? '').replace(/[\u0000-\u001f]/g, '').trim();
       if (nick.length > 32) return json({ error: 'nickname_too_long', field: 'bot_nickname' }, { status: 400 });
@@ -2970,6 +3140,7 @@ async function handleMutation(request, context) {
     const allowed = ['enabled', 'channel_id', 'message', 'title', 'footer', 'embed', 'color', 'image_mode', 'image_url', 'timestamp', 'dm_message', 'auto_role_id', 'dm_image_mode', 'dm_image_url', 'message_format', 'card_enabled', 'card_background_url', 'card_overlay_color', 'card_overlay_opacity', 'card_text_color', 'card_avatar_mode', 'card_avatar_ring', 'card_size', 'card_gradient', 'card_font'];
     const data = {};
     for (const k of allowed) if (k in body) data[k] = body[k];
+    if (hasUserImage(data, new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').host) && body.rights_confirmed !== true) return json({ error: 'rights_confirmation_required' }, { status: 400 });
     if ('title' in data) data.title = String(data.title ?? '').slice(0, 256);
     if ('message' in data) data.message = String(data.message ?? '').slice(0, 4096);
     if ('footer' in data) data.footer = String(data.footer ?? '').slice(0, 2048);
@@ -3048,6 +3219,7 @@ async function handleMutation(request, context) {
     const allowed = ['enabled', 'channel_id', 'message', 'title', 'footer', 'embed', 'color', 'image_mode', 'image_url', 'timestamp', 'message_format', 'card_enabled', 'card_background_url', 'card_overlay_color', 'card_overlay_opacity', 'card_text_color', 'card_avatar_mode', 'card_avatar_ring', 'card_size', 'card_gradient', 'card_font'];
     const data = {};
     for (const k of allowed) if (k in body) data[k] = body[k];
+    if (hasUserImage(data, new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').host) && body.rights_confirmed !== true) return json({ error: 'rights_confirmation_required' }, { status: 400 });
     if ('title' in data) data.title = String(data.title ?? '').slice(0, 256);
     if ('message' in data) data.message = String(data.message ?? '').slice(0, 4096);
     if ('footer' in data) data.footer = String(data.footer ?? '').slice(0, 2048);

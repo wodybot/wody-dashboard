@@ -7,6 +7,8 @@ const OWN_ORIGINS = [...new Set(['https://wody.online', (() => {
 
 const nextConfig = {
   output: 'standalone',
+  poweredByHeader: false,
+  compress: true,
   outputFileTracingIncludes: {
     '/**': ['./assets/fonts/**/*'],
   },
@@ -57,7 +59,7 @@ const nextConfig = {
         value: [
           "frame-ancestors 'self'",
           `img-src 'self' data: blob: ${OWN_ORIGINS}`,
-          "media-src 'self' data: blob:",
+          "media-src 'self' data: blob: https:",
           "font-src 'self' data:",
           "connect-src 'self'",
           "frame-src 'self'",
@@ -79,6 +81,10 @@ const nextConfig = {
       {
         source: "/(.*)",
         headers,
+      },
+      {
+        source: "/scenes/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
       },
     ];
   },

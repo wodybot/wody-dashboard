@@ -2,6 +2,7 @@ import { redirect, notFound } from 'next/navigation';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { TreePalm, Lock, IdCard, Eye } from 'lucide-react';
 import MusicButton from '@/components/profile/MusicButton';
+import ReportButton from '@/components/profile/ReportButton';
 import { Footer, TopNav } from '@/components/nav';
 import PageBackdrop from '@/components/profile/PageBackdrop';
 import { pageAccent } from '@/lib/profile-page';
@@ -33,6 +34,7 @@ export default async function PublicProfilePage({ params }) {
   const t = await getTranslations('profile');
   const tcard = await getTranslations('profileCard');
   const tpage = await getTranslations('profilePage');
+  const trep = await getTranslations('report');
   const pf = await loadPublicProfile(await getDb(), clean);
   if (!pf) notFound();
   let views = pf.views;
@@ -93,6 +95,7 @@ export default async function PublicProfilePage({ params }) {
           <p className="mt-4 flex items-start gap-1.5 text-xs text-muted-foreground"><Lock className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />{t('public.note')}</p>
         </section>
         {pf.page.card_place !== 'top' && levelCard}
+        {String(session.user.id) !== pf.id ? <div className="flex justify-center"><ReportButton username={pf.username} complaintHref={`${locale === 'en' ? '' : `/${locale}`}/policies/complaint?user=${encodeURIComponent(pf.username)}`} labels={Object.fromEntries(['button', 'title', 'kind', 'image', 'profile', 'prohibited', 'abuse', 'reason', 'send', 'sent', 'dupe', 'error', 'rights', 'cancel'].map((k) => [k, trep(k)]))} /></div> : null}
       </main>
       <Footer />
     </div>

@@ -1,5 +1,7 @@
 
 'use client';
+import { hasUserImage } from '@/lib/account-moderation';
+import PolicyConsent from '@/components/profile/PolicyConsent';
 import { SvgScene } from '@/components/scenes';
 import { Component, createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useState, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
@@ -306,8 +308,6 @@ const MODULES = [
   { key: 'suggestions', label: 'Suggestions', icon: Lightbulb },
   { key: 'birthdays', label: 'Birthdays', icon: Cake },
   { key: 'invite_tracking', label: 'Invite Tracking', icon: Link2, free: true, optIn: true },
-  { key: 'lookups', label: 'Radar', icon: Search, free: true },
-  { key: 'feeds', label: 'Pulse', icon: Rss, free: true },
   { key: 'community', label: 'Community Discovery', icon: Compass },
   { key: 'collab', label: 'Collab', icon: Briefcase },
   { key: 'economy', label: 'Economy', icon: Coins, premium: true },
@@ -1378,6 +1378,7 @@ function useModule(guildId, key) {
   const [saving, setSaving] = useState(false);
   const [loadError, setLoadError] = useState(false);
   const [baseline, setBaseline] = useState(null);
+  const [rights, setRights] = useState(false);
   const setData = setDataState;
   useEffect(() => {
     let cancelled = false;
@@ -1400,12 +1401,17 @@ function useModule(guildId, key) {
   }, [guildId, key]);
 
   async function save(patch, path) {
+    const needsRights = hasUserImage(patch, window.location.host);
+    if (needsRights && !rights) {
+      toast.error(t('consent.required'));
+      return false;
+    }
     setSaving(true);
     try {
       const r = await fetch(`/api/guilds/${guildId}/${path || key}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(patch),
+        body: JSON.stringify(needsRights ? { ...patch, rights_confirmed: true } : patch),
       });
       if (!r.ok) {
         const body = await r.json().catch(() => ({}));
@@ -1429,7 +1435,7 @@ function useModule(guildId, key) {
 
   const dirty = useMemo(() => data != null && baseline != null && stableJson(data) !== stableJson(baseline), [data, baseline]);
   const discard = useCallback(() => { if (baseline) setDataState(baseline); }, [baseline]);
-  return { data, setData, save, saving, loadError, dirty, discard };
+  return { data, setData, save, saving, loadError, dirty, discard, rights, setRights };
 }
 
 function panelDefaultTranscriptId(p) {
@@ -1715,7 +1721,7 @@ function MessageFormatSwitches({ mode, savedMode, onChange, options }) {
 function WelcomePanel({ guildId, meta }) {
   const t = useTranslations('guildSettings.welcome');
   const tc = useTranslations('guildSettings.common');
-  const { data, setData, save, saving, dirty, discard } = useModule(guildId, 'welcome');
+  const { data, setData, save, saving, dirty, discard, rights, setRights } = useModule(guildId, 'welcome');
   const [savedFormat, setSavedFormat] = useState(null);
   const [savedCardSize, setSavedCardSize] = useState(null);
   useEffect(() => {
@@ -1836,6 +1842,7 @@ function WelcomePanel({ guildId, meta }) {
   return (
     <div className="space-y-6">
       <SectionHeader title={t('title')} description={`${t('description')} ${tc('placeholdersPrefix')} {user.mention}, {user.name}, {user}, {guild.name}, {member_count}.`} />
+      {data && hasUserImage(data, window.location.host) ? <PolicyConsent ns="guildSettings.common" checked={rights} onChange={setRights} /> : null}
 
       <div className="grid xl:grid-cols-[1.05fr_.95fr] gap-6 items-start">
         <div className="space-y-6">
@@ -2006,7 +2013,7 @@ function WelcomePanel({ guildId, meta }) {
 function GoodbyePanel({ guildId, meta }) {
   const t = useTranslations('guildSettings.goodbye');
   const tc = useTranslations('guildSettings.common');
-  const { data, setData, save, saving, dirty, discard } = useModule(guildId, 'goodbye');
+  const { data, setData, save, saving, dirty, discard, rights, setRights } = useModule(guildId, 'goodbye');
   const [savedFormat, setSavedFormat] = useState(null);
   const [savedCardSize, setSavedCardSize] = useState(null);
   useEffect(() => {
@@ -2108,6 +2115,7 @@ function GoodbyePanel({ guildId, meta }) {
   return (
     <div className="space-y-6">
       <SectionHeader title={t('title')} description={`${t('description')} ${tc('placeholdersPrefix')} {user.mention}, {user.name}, {user}, {guild.name}, {member_count}.`} />
+      {data && hasUserImage(data, window.location.host) ? <PolicyConsent ns="guildSettings.common" checked={rights} onChange={setRights} /> : null}
       <div className="grid xl:grid-cols-[1.05fr_.95fr] gap-6 items-start">
         <div className="space-y-6">
           <Card className="p-4 sm:p-6 space-y-5 bg-card/60">
@@ -4466,7 +4474,7 @@ function LevelsPanel({ guildId, meta }) {
   const tm = useTranslations('guildSettings.levelsCard');
   const locale = useLocale();
   const [data, setData] = useState(null);
-  const { data: settings, setData: setSettings, save, saving, dirty, discard } = useModule(guildId, 'settings');
+  const { data: settings, setData: setSettings, save, saving, dirty, discard, rights, setRights } = useModule(guildId, 'settings');
   useEffect(() => { safeJson(`/api/guilds/${guildId}/levels`, {}).then(setData); }, [guildId]);
   const [savedFormat, setSavedFormat] = useState(null);
   const [savedCardSize, setSavedCardSize] = useState(null);
@@ -4528,6 +4536,7 @@ function LevelsPanel({ guildId, meta }) {
   return (
     <div className="space-y-6">
       <SectionHeader title={t('title')} description={t('description')} />
+      {settings && hasUserImage(settings, window.location.host) ? <PolicyConsent ns="guildSettings.common" checked={rights} onChange={setRights} /> : null}
       <div className="grid xl:grid-cols-[minmax(0,1fr)_420px] gap-6 items-start">
         <div className="space-y-6">
           <Card className="p-6 bg-card/60 space-y-5">
