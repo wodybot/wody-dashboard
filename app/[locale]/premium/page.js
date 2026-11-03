@@ -142,7 +142,7 @@ export default async function PremiumPage() {
             <p className="mt-1 text-sm text-muted-foreground">{t('howToGetSubtitle')}</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {options.map((opt) => {
               const Icon = OPTION_ICONS[opt.key] || CheckCircle2;
               return (
@@ -152,6 +152,7 @@ export default async function PremiumPage() {
                       <Icon className="w-4 h-4" />
                     </div>
                     <h3 className="font-semibold">{opt.title}</h3>
+                    {opt.isNew ? <span className="rounded-full border border-emerald-400/40 bg-emerald-400/15 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-emerald-300">{t('newBadge')}</span> : null}
                   </div>
                   <ol className="space-y-2">
                     {opt.steps.map((step, i) => (

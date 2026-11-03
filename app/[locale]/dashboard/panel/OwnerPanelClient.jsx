@@ -18,6 +18,8 @@ import { PromoBanner } from '@/components/promo-banner';
 import SocialLinks, { SOCIAL_ICONS } from '@/components/profile/SocialLinks';
 import { SOCIALS } from '@/lib/collab/constants';
 import { RichTextEditor } from '@/components/rich-text-editor';
+import { OwnerImageField } from '@/components/owner-image-field';
+import { UpdateEntry } from '@/components/update-entry';
 import { SimpleMarkdown } from '@/components/simple-markdown';
 import { OWNER_ID, COMMUNITY_INVITE, INVITE_URL } from '@/lib/content';
 import dynamic from 'next/dynamic';
@@ -263,6 +265,10 @@ export default function OwnerPanelClient({ restricted = false }) {
   const [updTitle, setUpdTitle] = useState('');
   const [updTag, setUpdTag] = useState('Feature');
   const [updBody, setUpdBody] = useState('');
+  const [updLayout, setUpdLayout] = useState('classic');
+  const [updImage, setUpdImage] = useState('');
+  const [updGallery, setUpdGallery] = useState([]);
+  const [updCredits, setUpdCredits] = useState([]);
   const [updBusy, setUpdBusy] = useState(false);
   const [updates, setUpdates] = useState([]);
   const [updatesLoading, setUpdatesLoading] = useState(true);
@@ -1034,7 +1040,7 @@ function DiscordComponentPreview({ config, imageSrc }) {
     setUpdBusy(true);
     const r = await fetch('/api/updates', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: updTitle, tag: updTag, body: updBody }),
+      body: JSON.stringify({ title: updTitle, tag: updTag, body: updBody, layout: updLayout, image_url: updImage, gallery: updGallery.filter(Boolean), credits: updCredits.filter((c) => c.name.trim()) }),
     });
     setUpdBusy(false);
     if (r.ok) {
@@ -1046,6 +1052,9 @@ function DiscordComponentPreview({ config, imageSrc }) {
       });
       setUpdTitle('');
       setUpdBody('');
+      setUpdImage('');
+      setUpdGallery([]);
+      setUpdCredits([]);
       loadUpdates();
     } else {
       toast.error('Failed to post update');
@@ -1886,9 +1895,67 @@ function DiscordComponentPreview({ config, imageSrc }) {
                         onChange={setUpdBody}
                         placeholder="What changed, what it fixes, or what's new..."
                         maxLength={5000}
+                        images
                         rows={5}
                       />
                     </div>
+                    <div className="mb-4 rounded-xl border border-border/60 bg-background/30 p-4">
+                      <Label className="mb-2 block">Look</Label>
+                      <div className="mb-4 grid gap-2 sm:grid-cols-2">
+                        {[{ id: 'classic', name: 'Classic', text: 'Title and text, with an optional image on top.' }, { id: 'poster', name: 'Poster', text: 'Title written on your image, like a level card.' }].map((o) => (
+                          <button key={o.id} type="button" onClick={() => setUpdLayout(o.id)} className={`rounded-lg border p-3 text-left transition ${updLayout === o.id ? 'border-[#e6cd8c] bg-[#e6cd8c]/10' : 'border-border/60 hover:border-border'}`}>
+                            <div className="text-sm font-semibold">{o.name}</div>
+                            <div className="text-[11px] text-muted-foreground">{o.text}</div>
+                          </button>
+                        ))}
+                      </div>
+                      <OwnerImageField
+                        label={updLayout === 'poster' ? 'Background image' : 'Cover image (optional)'}
+                        value={updImage} onChange={setUpdImage}
+                        hint={updLayout === 'poster' ? 'The title, tag, date and credits are written on this image, on the site and in Discord. Without an image a Wody gradient is used. Use a wide image, 1200 by 630 works best.' : 'Shown above the text on the site and in Discord.'}
+                      />
+                    </div>
+
+                    <div className="mb-4 rounded-xl border border-border/60 bg-background/30 p-4">
+                      <div className="mb-2 flex items-center justify-between">
+                        <Label className="mb-0">More images (optional)</Label>
+                        <span className="text-[11px] text-muted-foreground">{updGallery.length}/4</span>
+                      </div>
+                      <div className="space-y-3">
+                        {updGallery.map((g, i) => (
+                          <OwnerImageField key={i} compact value={g} onChange={(v) => setUpdGallery((prev) => (v ? prev.map((x, k) => (k === i ? v : x)) : prev.filter((_, k) => k !== i)))} hint="Shown below the text, after a separator." />
+                        ))}
+                      </div>
+                      {updGallery.length < 4 ? <Button type="button" variant="outline" size="sm" className="mt-3 gap-1.5" onClick={() => setUpdGallery((prev) => [...prev, ''])}><Plus className="h-3.5 w-3.5" />Add image</Button> : null}
+                    </div>
+
+                    <div className="mb-4 rounded-xl border border-border/60 bg-background/30 p-4">
+                      <div className="mb-2 flex items-center justify-between">
+                        <Label className="mb-0">Credits (optional)</Label>
+                        <span className="text-[11px] text-muted-foreground">{updCredits.length}/8</span>
+                      </div>
+                      <div className="space-y-2">
+                        {updCredits.map((c, i) => (
+                          <div key={i} className="grid grid-cols-[1fr_1fr_auto] gap-2">
+                            <Input value={c.name} maxLength={40} placeholder="Name" onChange={(e) => setUpdCredits((prev) => prev.map((x, k) => (k === i ? { ...x, name: e.target.value } : x)))} />
+                            <Input value={c.role} maxLength={40} placeholder="Role, e.g. Design" onChange={(e) => setUpdCredits((prev) => prev.map((x, k) => (k === i ? { ...x, role: e.target.value } : x)))} />
+                            <Button type="button" size="icon" variant="ghost" onClick={() => setUpdCredits((prev) => prev.filter((_, k) => k !== i))}><Trash2 className="h-4 w-4 text-destructive" /></Button>
+                          </div>
+                        ))}
+                      </div>
+                      {updCredits.length < 8 ? <Button type="button" variant="outline" size="sm" className="mt-3 gap-1.5" onClick={() => setUpdCredits((prev) => [...prev, { name: '', role: '' }])}><Plus className="h-3.5 w-3.5" />Add credit</Button> : null}
+                    </div>
+
+                    {(updTitle || updBody) ? (
+                      <div className="mb-4">
+                        <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Preview</div>
+                        <UpdateEntry
+                          u={{ title: updTitle || 'Your title', tag: updTag, body: updBody, layout: updLayout, image_url: updImage, gallery: updGallery.filter(Boolean), credits: updCredits.filter((c) => c.name.trim()) }}
+                          tagLabel={updTag} creditsLabel="Credits" dateText={new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                        />
+                      </div>
+                    ) : null}
+
                     <Button onClick={postUpdate} disabled={updBusy} className="gradient-primary w-full sm:w-auto">
                       {updBusy ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
                       Post update
@@ -1989,18 +2056,14 @@ function DiscordComponentPreview({ config, imageSrc }) {
                         onChange={(v) => setBlogForm((prev) => ({ ...prev, content: v }))}
                         placeholder="Write the post here..."
                         maxLength={20000}
+                        images
                         rows={12}
                       />
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-3 mb-3">
                       <div>
-                        <Label>Cover image URL</Label>
-                        <Input
-                          value={blogForm.cover_image_url}
-                          onChange={(e) => setBlogForm((prev) => ({ ...prev, cover_image_url: e.target.value }))}
-                          placeholder="https://example.com/cover.webp"
-                        />
+                        <OwnerImageField label="Cover image" value={blogForm.cover_image_url} onChange={(v) => setBlogForm((prev) => ({ ...prev, cover_image_url: v }))} aspect="aspect-[16/10]" />
                       </div>
                       <div>
                         <Label>Author name</Label>
@@ -2897,11 +2960,10 @@ function DiscordComponentPreview({ config, imageSrc }) {
                     </div>
 
                     <div className="mb-5">
-                      <Label className="mb-1.5 block">Custom image / GIF (optional)</Label>
-                      <Input
+                      <OwnerImageField
+                        label="Custom image / GIF (optional)"
                         value={ogDraft.media_url}
-                        onChange={(e) => setOgDraft((prev) => ({ ...prev, media_url: e.target.value }))}
-                        placeholder="https://example.com/wody.gif"
+                        onChange={(v) => setOgDraft((prev) => ({ ...prev, media_url: v.startsWith('/') ? `${window.location.origin}${v}` : v }))}
                       />
                       <p className="text-[11px] text-muted-foreground mt-1">
                         Add a link here and it completely replaces the generated card below, the

@@ -5,7 +5,7 @@ import { TopNav, Footer } from '@/components/nav';
 import ComplaintForm from '@/components/moderation/ComplaintForm';
 
 const DOCS = ['content-policy', 'copyright', 'complaint'];
-const REVIEW = { en: '3 November 2026', ro: '3 noiembrie 2026' };
+const REVIEW = { en: '4 November 2026', ro: '4 noiembrie 2026' };
 
 export const revalidate = 3600;
 export const metadata = { robots: { index: false, follow: false } };

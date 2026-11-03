@@ -1,6 +1,7 @@
 import { cloneElement } from 'react';
 import { useTranslations } from 'next-intl';
-import { TreePalm, Lock, Eye, ExternalLink, Link2 } from 'lucide-react';
+import { TreePalm, Lock, Eye, ExternalLink, Link2, IdCard } from 'lucide-react';
+import ProfileCardPreview from '@/components/profile/ProfileCardPreview';
 import MusicButton from '@/components/profile/MusicButton';
 import SocialLinks from '@/components/profile/SocialLinks';
 import { pageAccent } from '@/lib/profile-page';
@@ -18,7 +19,7 @@ function Block({ title, accent, span = '', delay = 0, children }) {
 }
 
 /** Single renderer used by the public profile page and by the editor's live preview. */
-export default function ProfilePageView({ page, name, username, avatarSrc, memberSince, away, socials = {}, live = 0, views = 0, locale = 'en', levelCard = null, compact = false }) {
+export default function ProfilePageView({ page, name, username, avatarSrc, memberSince, away, socials = {}, live = 0, views = 0, locale = 'en', card = null, passport = null, compact = false }) {
   const t = useTranslations('profile');
   const tp = useTranslations('profilePage');
   const accent = pageAccent(page) || '#e6cd8c';
@@ -74,7 +75,29 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
         </ul>
       </Block>
     ) : null,
-    card: levelCard && !hide.has('card') ? <div key="card" className="pv-in lg:col-span-3">{levelCard}</div> : null,
+    card: card ? (
+      <section key="card" aria-label={tp('levelCardTitle')} className="pv-in pv-lift relative overflow-hidden rounded-3xl border bg-card/60 p-3 sm:p-4 lg:col-span-2" style={{ borderColor: `${accent}66`, '--ac': accent }}>
+        <div className="mb-3 flex items-center gap-2.5">
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl" style={{ background: `${accent}26`, color: accent }}><IdCard className="h-4 w-4" aria-hidden="true" /></span>
+          <h2 className="text-base font-black leading-tight">{tp('levelCardTitle')}</h2>
+        </div>
+        <div className="mx-auto max-w-xl" style={{ filter: `drop-shadow(0 0 22px ${card.cfg.accent}55)` }}>
+          <ProfileCardPreview cfg={card.cfg} name={name} avatarSrc={avatarSrc} tagline={card.tagline || ''} />
+        </div>
+      </section>
+    ) : null,
+    passport: passport ? (
+      <Block key="passport" title={tp('section.passport')} accent={accent} span="lg:col-span-1">
+        <dl className="space-y-2">
+          {[[tp('passportNo'), passport.number], [tp('daysWith'), new Intl.NumberFormat(locale).format(passport.days)], [tp('passportSince'), fmt(passport.since, locale)], [tp('bansLabel'), new Intl.NumberFormat(locale).format(passport.bans)]].map(([k, v]) => (
+            <div key={k} className="flex items-baseline justify-between gap-3 rounded-xl border border-border/50 bg-background/40 px-3 py-2">
+              <dt className="truncate text-xs text-muted-foreground">{k}</dt>
+              <dd className="break-all text-right text-sm font-black tabular-nums" style={{ color: accent }}>{v}</dd>
+            </div>
+          ))}
+        </dl>
+      </Block>
+    ) : null,
   };
 
   return (

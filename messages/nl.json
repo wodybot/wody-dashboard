@@ -495,6 +495,17 @@
             "Elke stem telt mee voor je persoonlijke totaal, automatisch bijgehouden per Discord-account.",
             "Zodra je in totaal 100 stemmen bereikt, open je een ticket in onze communityserver om je sleutel op te eisen. Deze kan daarna op elke server die je bezit worden geactiveerd."
           ]
+        },
+        {
+          "key": "days",
+          "title": "Optie C: Stemdagen",
+          "steps": [
+            "Stem op Wody met het commando /vote. Elke stem voegt 1 dag toe aan je account.",
+            "Dagen worden per account geteld en blijven bewaard tot je ze gebruikt.",
+            "Vanaf 7 opgeslagen dagen activeer je ze op elke Wody-server via het Premium-tabblad van het dashboard of met /redeemvotes.",
+            "Geen ticket, geen sleutel en niet wachten op goedkeuring."
+          ],
+          "isNew": true
         }
       ],
       "value": "Premium heeft geen prijskaartje, omdat we liever de mensen belonen die de community echt laten groeien. Elke sleutel blijft gekoppeld aan één server, kent een gebruikslimiet en wordt direct ingetrokken zodra een promotie vals blijkt of stemmen worden gemanipuleerd.",
@@ -1132,16 +1143,16 @@
         "html": "<p>This Policy may be updated when the service or its data processing practices change. The revision date shown above identifies the current version. Material changes may also be announced through the official Wody community channels where appropriate.</p>"
       },
       {
-        "heading": "27. Contact",
-        "html": "<p>For privacy, legal, or data protection questions, contact Păcurar Ancuța-Narcisa, the Operator, at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>.</p> <p>Wody may also use the optional <code>wody_language</code> preference cookie to remember a language you actively choose. It is not created or updated unless you consent to Preferences, and the language selector remains hidden until that consent exists. Your cookie choice is recorded using the strictly necessary <code>wody_cookie_consent</code> cookie. You can change or withdraw the optional preference at any time in the Cookie Policy.</p>"
+        "heading": "27. Profielafbeeldingen, muzieklinks en moderatiegegevens",
+        "html": "<p>Afbeeldingen en GIF's die je aan je profielpagina en serverkaarten toevoegt, en gelinkte audio, worden alleen als link opgeslagen: Wody bewaart geen kopie. Afbeeldingen worden via de Wody-server geladen van het platform dat ze host, zodat het IP-adres van de bezoeker dat platform niet bereikt; ze blijven alleen zichtbaar zolang de link geldig blijft. Een gelinkt audiobestand wordt pas na het indrukken van afspelen rechtstreeks door de browser van de bezoeker geladen, zodat zijn IP-adres de hostende site bereikt. Een nummer dat je uploadt, wordt door Wody zelf geleverd, ook pas nadat de bezoeker op afspelen drukt. De enige bestanden die Wody opslaat zijn een afbeelding die je uploadt als achtergrond van de profielkaart en één nummer dat je naar je profielpagina uploadt, elk bewaard tot je het vervangt of verwijdert of tot het na een melding wordt verwijderd. Bij een geüpload nummer bewaart Wody ook het tijdstip en de versie van je bevestiging van rechten. Wody bewaart meldingen, de verwijzing naar de inhoud, de moderatiebeslissing en het verloop ervan, en het tijdstip en de versie van je beleidsbevestiging, om de zaak af te handelen en herhaalde overtredingen te voorkomen. De profielpagina kan weergaven tellen met een eenvoudige teller in de database, zonder cookies en zonder het IP-adres op te slaan.</p>"
       },
       {
-        "heading": "28. Profielafbeeldingen, muzieklinks en moderatiegegevens",
-        "html": "<p>Afbeeldingen, gifs en audio die je toevoegt aan je profielpagina en aan serverkaarten worden alleen als links bewaard: Wody bewaart geen kopie. Afbeeldingen worden via de Wody-server geladen van het platform dat ze host, zodat het IP-adres van de bezoeker dat platform niet bereikt; ze blijven alleen zichtbaar zolang de link geldig blijft. Het audiobestand wordt pas geladen nadat de bezoeker op afspelen drukt, rechtstreeks door de browser van de bezoeker, waardoor zijn IP-adres de site bereikt die het bestand host. Het enige bestand dat Wody opslaat is een afbeelding die je uploadt als achtergrond van de profielkaart, bewaard totdat je haar vervangt of verwijdert. Wody bewaart meldingen, de verwijzing naar de inhoud, de moderatiebeslissing en het verloop ervan, en het tijdstip en de versie van je beleidsbevestiging, om de zaak af te handelen en herhaalde overtredingen te voorkomen. De profielpagina kan weergaven tellen met een eenvoudige teller in de database, zonder cookies en zonder het IP-adres op te slaan.</p>"
-      },
-      {
-        "heading": "29. Radar en Pulse (opzoekingen en feeds)",
+        "heading": "28. Radar en Pulse (opzoekingen en feeds)",
         "html": "<p>Wanneer een lid een /radar-opzoeking uitvoert, wordt de ingevoerde tekst (bijvoorbeeld een gebruikersnaam, een serveradres of de naam van een munt) naar de gekozen dienst gestuurd om het antwoord te krijgen. Wanneer een serverbeheerder een /pulse-feed toevoegt, wordt het ingevoerde adres of de naam opgeslagen in de serverinstellingen en volgens schema gecontroleerd bij de brondienst. Deze verzoeken worden door de Wody-server gedaan, dus het IP-adres van het lid bereikt de dienst niet. Wody bewaart opzoekresultaten alleen in een korte cache en bewaart de inhoud van feeds niet, alleen wat nodig is om hetzelfde item niet twee keer te plaatsen. Elke dienst past zijn eigen privacybeleid toe.</p>"
+      },
+      {
+        "heading": "29. Contact",
+        "html": "<p>For privacy, legal, or data protection questions, contact Păcurar Ancuța-Narcisa, the Operator, at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>.</p> <p>Wody may also use the optional <code>wody_language</code> preference cookie to remember a language you actively choose. It is not created or updated unless you consent to Preferences, and the language selector remains hidden until that consent exists. Your cookie choice is recorded using the strictly necessary <code>wody_cookie_consent</code> cookie. You can change or withdraw the optional preference at any time in the Cookie Policy.</p>"
       }
     ]
   },
@@ -1182,7 +1193,7 @@
       },
       {
         "heading": "9. Premium",
-        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications and unlimited creation limits across modules. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p>"
+        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications and unlimited creation limits across modules. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Nieuw: stemdagen.</strong> Elke stem op Wody via top.gg voegt een dag toe aan je account. Dagen worden per account geteld, kunnen niet worden overgedragen of verkocht en kunnen worden geactiveerd zodra je er minstens 7 hebt. Bij activeren worden alle opgeslagen dagen als Premium-tijd toegevoegd aan één server naar keuze, via het dashboard of met <code>/redeemvotes</code>. We mogen dagen of Premium-tijd uit geautomatiseerde, gekochte of gemanipuleerde stemmen verwijderen.</p>"
       },
       {
         "heading": "10. Uptime and Availability",
@@ -1253,12 +1264,12 @@
         "html": "<p>These Terms are governed by Romanian law and, where applicable, European Union law, without taking away any mandatory consumer protection you have under the law of your own country of residence if you're elsewhere in the EU.</p>"
       },
       {
-        "heading": "27. Contact",
-        "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
+        "heading": "27. Profielaanpassing en afbeeldingen van gebruikers",
+        "html": "<p>Je mag alleen afbeeldingen, GIF’s, audio of links aan je profiel toevoegen als je de benodigde rechten hebt. Elke keer dat je je openbare profiel publiceert of bewerkt, vink je een vakje aan dat dit bevestigt en accepteer je het beleid. Afbeeldingen en links verwijzen alleen naar het platform dat ze host en blijven zichtbaar zolang de link geldig is. Als je een nummer uploadt, bewaart Wody dat bestand tot je het vervangt of verwijdert, en vóór het uploaden bevestig je dat je de muziek bezit of toestemming van de rechthebbende hebt. Jij alleen bent verantwoordelijk voor alle muziek die je uploadt of linkt, inclusief elke auteursrechtclaim, en je mag geen muziek uploaden die je niet openbaar mag gebruiken. Iedereen kan inhoud melden. Na beoordeling kan Wody inhoud verwijderen, aanpassing beperken of opschorten en het aan het profiel gekoppelde Discord-account voor Wody-functies opschorten of blokkeren; je kunt in beroep gaan. Details: Beleid voor gebruikersinhoud en Beleid voor auteursrecht en intellectueel eigendom.</p>"
       },
       {
-        "heading": "28. Profielaanpassing en afbeeldingen van gebruikers",
-        "html": "<p>Je mag alleen afbeeldingen, GIF’s, audio of links aan je profiel toevoegen als je de benodigde rechten hebt. Elke keer dat je je openbare profiel publiceert of bewerkt, vink je een vakje aan dat dit bevestigt en accepteer je het beleid. Afbeeldingen en audio worden alleen gelinkt vanaf het platform dat ze host en blijven zichtbaar zolang de link geldig is. Iedereen kan inhoud melden. Na beoordeling kan Wody inhoud verwijderen, aanpassing beperken of opschorten en het aan het profiel gekoppelde Discord-account voor Wody-functies opschorten of blokkeren; je kunt in beroep gaan. Details: Beleid voor gebruikersinhoud en Beleid voor auteursrecht en intellectueel eigendom.</p>"
+        "heading": "28. Contact",
+        "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
       }
     ]
   },
@@ -1300,8 +1311,9 @@
     "higherLimitsSubtitle": "Premium heft deze limieten volledig op. Het dashboard toont altijd de echte limiet voor de huidige server.",
     "freeToPremium": "Gratis → Premium",
     "howToGetTitle": "Hoe je Premium krijgt",
-    "howToGetSubtitle": "Twee manieren om een sleutel te verdienen. Beide werken, kies wat bij jou past.",
-    "joinCommunityBtn": "Word lid van de community"
+    "howToGetSubtitle": "Twee manieren om een sleutel te verdienen, plus stemdagen waarvoor je helemaal geen sleutel nodig hebt.",
+    "joinCommunityBtn": "Word lid van de community",
+    "newBadge": "Nieuw"
   },
   "commands": {
     "metaTitle": "Wody: Commando's | Discord Bot",
@@ -1362,6 +1374,10 @@
           {
             "name": "/votestatus",
             "description": "Bekijk je totale stemmen en de volgende keer dat je kunt stemmen"
+          },
+          {
+            "name": "/redeemvotes",
+            "description": "Activeer je opgeslagen stemdagen als Premium op deze server"
           }
         ]
       },
@@ -1932,7 +1948,8 @@
       "Fix": "Fix",
       "Announcement": "Aankondiging",
       "Update": "Update"
-    }
+    },
+    "credits": "Credits"
   },
   "blog": {
     "metaTitle": "Wody: Blog",
@@ -2135,7 +2152,13 @@
         "copyright": "Auteursrechtbeleid",
         "required": "Vink het vakje aan om te bevestigen en het beleid te accepteren.",
         "blocked": "Je account is geschorst of geblokkeerd en kan dit profiel niet bewerken."
-      }
+      },
+      "searchPlaceholder": "Zoeken…",
+      "noResults": "Geen resultaten",
+      "addMore": "Meer toevoegen",
+      "clearAll": "Alles wissen",
+      "remove": "Verwijderen",
+      "limitReached": "Limiet bereikt ({max})"
     },
     "groups": {
       "server": "Server",
@@ -2913,7 +2936,11 @@
       "deleteConfirm": "Dit reactierolpaneel verwijderen?",
       "deletedSuccess": "Verwijderd",
       "deleteFailed": "Verwijderen mislukt",
-      "legacyVerifyHint": "De modus Verifiëren kent de rol toe wanneer iemand rechtstreeks in Discord op een reactie of knop klikt. Gebruik voor een webgebaseerde verificatie met één knop voor de hele server de module Captcha in het zijmenu."
+      "legacyVerifyHint": "De modus Verifiëren kent de rol toe wanneer iemand rechtstreeks in Discord op een reactie of knop klikt. Gebruik voor een webgebaseerde verificatie met één knop voor de hele server de module Captcha in het zijmenu.",
+      "previewTitle": "Live voorbeeld",
+      "previewDefaultTitle": "Titel van je paneel",
+      "previewReactions": "Reacties die Wody toevoegt",
+      "previewHint": "Zo ziet het bericht eruit in je kanaal. Modus: {mode}."
     },
     "autoResponses": {
       "title": "Automatische reacties",
@@ -3350,7 +3377,8 @@
       "rbErrPriority": "De prioriteit moet een geheel getal van 0 tot 1000 zijn.",
       "rbErrEmpty": "Elke bonus heeft een multiplier boven 1 of extra XP boven 0 nodig.",
       "auroraSpecial": "Miami Style",
-      "auroraSpecialHint": "Retro zonsondergangscènes met eigen illustraties op de kaart. Voor level-up-, welkom- en afscheidskaarten."
+      "auroraSpecialHint": "Retro zonsondergangscènes met eigen illustraties op de kaart. Voor level-up-, welkom- en afscheidskaarten.",
+      "auroraUseGradient": "Verloop gebruiken"
     },
     "suggestions": {
       "title": "Suggesties",
@@ -3417,7 +3445,20 @@
         "giveaways": "Giveaways",
         "forumAutomations": "Forumautomatiseringen",
         "discoveryBumps": "Discovery-bumps"
-      }
+      },
+      "newBadge": "Nieuw",
+      "voteTitle": "Premium met stemmen",
+      "voteDesc": "Elke stem op top.gg voegt 1 dag Wody Premium toe aan je account. Stemmen worden per account geteld. Vanaf {min} opgeslagen dagen kun je alles op deze server activeren.",
+      "voteDaysLabel": "opgeslagen dagen",
+      "voteProgress": "{days} van {min} dagen opgeslagen. Blijf stemmen om activeren te ontgrendelen.",
+      "voteReady": "{days} dagen staan klaar om te activeren.",
+      "voteHow": "Liever via Discord? Gebruik /redeemvotes op de server. Met /vote verdien je meer dagen.",
+      "voteRedeem": "{days} dagen activeren",
+      "voteDoneTitle": "Stemdagen geactiveerd",
+      "voteDoneDesc": "{days} dagen Premium zijn aan deze server toegevoegd.",
+      "voteNoEnd": "Deze server heeft al Premium zonder einddatum. Je dagen zijn bewaard.",
+      "voteNotEnough": "Je hebt minstens {min} opgeslagen dagen nodig om te activeren.",
+      "voteFailed": "Je dagen konden niet worden geactiveerd. Probeer het opnieuw."
     },
     "youtubeNotify": {
       "title": "YouTube-meldingen",
@@ -5131,7 +5172,10 @@
     "manage": "Beheren",
     "inviteHere": "Wody uitnodigen",
     "refresh": "Vernieuwen",
-    "loadError": "Kon servers niet laden. Probeer het opnieuw."
+    "loadError": "Kon servers niet laden. Probeer het opnieuw.",
+    "missingTitle": "Servers zonder Wody",
+    "missingText": "Nodig Wody uit om deze servers te beheren.",
+    "presentTitle": "Servers met Wody"
   },
   "modules": {
     "general": {
@@ -6909,7 +6953,9 @@
     "emptyText": "Speel op een server met Wody Economy en kom snel terug, de ranglijst wordt elke 5 minuten vernieuwd.",
     "unavailable": "De ranglijst is nu niet beschikbaar. Probeer het zo meteen opnieuw.",
     "cta": "Voeg Wody toe aan je server",
-    "coins": "{n} munten"
+    "coins": "{n} munten",
+    "ctaTitle": "Wil je je server in het klassement?",
+    "ctaText": "Voeg Wody toe, zet Economy aan en je leden gaan omhoog in de wereldwijde ranglijst."
   },
   "collab": {
     "title": "WODY Collab",
@@ -7654,7 +7700,9 @@
       "cancel": "Annuleren",
       "saving": "Opslaan...",
       "error": "De zichtbaarheid kon niet worden gewijzigd. Probeer het opnieuw.",
-      "privateBadge": "Privé: alleen ingelogde Wody-leden kunnen het openen"
+      "privateBadge": "Privé: alleen ingelogde Wody-leden kunnen het openen",
+      "statusPublic": "Openbaar profiel",
+      "statusPrivate": "Privéprofiel"
     },
     "metaTitle": "Profiel",
     "saveAll": "Alle instellingen opslaan",
@@ -8109,7 +8157,30 @@
       "links": "Links",
       "card": "Levelkaart",
       "socials": "Sociale netwerken",
-      "stats": "Statistieken"
+      "stats": "Statistieken",
+      "passport": "Paspoort"
+    },
+    "passportNo": "Paspoortnr.",
+    "daysWith": "Dagen met Wody",
+    "passportSince": "Geclaimd",
+    "bansLabel": "Servers met een ban",
+    "musicUploadTitle": "Of upload een nummer vanaf je computer",
+    "musicRights": "Deze muziek is van mij of ik heb toestemming van de rechthebbende om hem openbaar te gebruiken. Ik ben als enige verantwoordelijk voor elke auteursrechtclaim en begrijp dat Wody het bestand kan verwijderen en mijn profielaanpassing kan beperken of opschorten.",
+    "musicUpload": "Nummer uploaden",
+    "musicUploading": "Uploaden...",
+    "musicRemove": "Nummer verwijderen",
+    "musicUploaded": "Nummer geüpload. Vink de beleidsregels aan en klik op Opslaan om het te publiceren.",
+    "musicStoredNote": "Opgeslagen op Wody. Eén nummer per account, een nieuwe upload vervangt het oude.",
+    "musicLimits": "MP3, OGG, M4A, WAV of FLAC, tot 4 MB. Eén nummer per account. Het start nooit vanzelf.",
+    "musicError": {
+      "audio_too_large": "Het bestand is te groot. De limiet is 4 MB.",
+      "audio_invalid": "Dit is geen geldig MP3-, OGG-, M4A-, WAV- of FLAC-bestand.",
+      "rate_limited": "Te veel uploads. Probeer het later opnieuw.",
+      "uploads_restricted": "Uploads zijn beperkt voor je profiel.",
+      "customization_suspended": "Je profielaanpassing is opgeschort.",
+      "account_blocked": "Dit account kan geen bestanden uploaden.",
+      "rights_acceptance_required": "Bevestig eerst dat je de rechten op dit nummer hebt.",
+      "generic": "Upload mislukt. Probeer het opnieuw."
     }
   },
   "policies": {
@@ -8126,15 +8197,15 @@
     "contactHtml": "Exploitant: Păcurar Ancuța-Narcisa, Roemenië, Europese Unie. Algemeen contact: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.",
     "content-policy": {
       "title": "Beleid voor gebruikersinhoud",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "1. Wat dit beleid omvat",
-          "html": "<p>Met Wody kun je je profielpagina, levelkaart en welkomst- en afscheidskaarten aanpassen. Je kunt Wody een link geven naar een afbeelding, gif of audiobestand dat op een ander platform staat en, alleen voor de achtergrond van de profielkaart, een afbeelding uploaden. Dit beleid legt uit wat je mag gebruiken, hoe het wordt behandeld en hoe meldingen worden afgehandeld. Het geldt naast de Algemene voorwaarden.</p>"
+          "html": "<p>Met Wody kun je je profielpagina, levelkaart en welkomst- en afscheidskaarten aanpassen. Je kunt Wody een link geven naar een afbeelding, GIF of audiobestand op een ander platform en, voor de achtergrond van de profielkaart en voor je profielnummer, een bestand uploaden. Dit beleid legt uit wat je mag gebruiken, hoe het wordt behandeld en hoe meldingen worden afgehandeld. Het geldt naast de Algemene voorwaarden.</p>"
         },
         {
           "heading": "2. Je afbeeldingen en links",
-          "html": "<p>Je mag afbeeldingen alleen gebruiken voor persoonlijke aanpassing. Je moet de eigenaar van de afbeelding zijn, er een licentie voor hebben of anderszins een rechtmatige grondslag hebben om haar te gebruiken en via Wody te laten tonen. Dat je een afbeelding online kunt vinden, betekent niet dat je haar mag gebruiken.</p><p>Elke keer dat je je openbare profiel publiceert of bewerkt (profielpagina, openbare profielgegevens, een afbeelding of link van de profielkaart of de afbeeldingen van je serverkaarten) moet je een standaard niet-aangevinkt selectievakje aanvinken waarmee je bevestigt dat je de inhoud bezit of toestemming hebt om haar te gebruiken en dat je dit beleid accepteert. Zonder aangevinkt vakje kan de wijziging niet worden opgeslagen. Als je het aanvinkt, legt Wody het tijdstip en de beleidsversie vast samen met je profielinstellingen.</p><p>De bevestiging legt jouw verklaring vast. Ze maakt een niet-geautoriseerde afbeelding niet rechtmatig en neemt Wody's eigen wettelijke verplichtingen niet weg.</p>"
+          "html": "<p>Je mag afbeeldingen alleen gebruiken voor persoonlijke aanpassing. Je moet de eigenaar van de afbeelding zijn, er een licentie voor hebben of anderszins een rechtmatige grondslag hebben om haar te gebruiken en via Wody te laten tonen. Dat je een afbeelding online kunt vinden, betekent niet dat je haar mag gebruiken.</p><p>Elke keer dat je je openbare profiel publiceert of bewerkt (profielpagina, openbare profielgegevens, een afbeelding of link van de profielkaart of de afbeeldingen van je serverkaarten) moet je een standaard niet-aangevinkt selectievakje aanvinken waarmee je bevestigt dat je de inhoud bezit of toestemming hebt om haar te gebruiken en dat je dit beleid accepteert. Zonder aangevinkt vakje kan de wijziging niet worden opgeslagen. Als je het aanvinkt, legt Wody het tijdstip en de beleidsversie vast samen met je profielinstellingen.</p><p>De bevestiging legt jouw verklaring vast. Ze maakt een niet-geautoriseerde afbeelding niet rechtmatig en neemt Wody's eigen wettelijke verplichtingen niet weg.</p><p>Hetzelfde geldt voor muziek. Voordat je een nummer uploadt, moet je een vakje aanvinken waarmee je bevestigt dat je het bezit of toestemming van de rechthebbende hebt om het openbaar via Wody beschikbaar te maken. Jij alleen bent verantwoordelijk voor elke auteursrechtclaim over muziek die je uploadt of linkt. Upload geen commerciële opnames waarvoor je geen licentie hebt. Wody kan een nummer verwijderen, uploads beperken of de aanpassing opschorten na een melding of wanneer het gebruik duidelijk onrechtmatig is.</p>"
         },
         {
           "heading": "3. Wat niet is toegestaan",
@@ -8146,7 +8217,7 @@
         },
         {
           "heading": "5. Hoe afbeeldingen en links worden behandeld",
-          "html": "<p>Afbeeldingen, gifs en audio die je toevoegt aan je profielpagina en aan serverkaarten worden niet door Wody opgeslagen. Jij geeft een link, het bestand blijft op het platform dat het host en Wody laadt het alleen van daar om het te tonen. Het blijft alleen zichtbaar zolang de link geldig blijft: als je het bestand verwijdert of de host het weghaalt, verdwijnt het uit Wody. Wody bewaart het linkadres in je instellingen totdat je het wijzigt of verwijdert, en het bestand kan tijdens het tonen kort in de cache van een browser of netwerk blijven staan.</p><p>De enige uitzondering is de achtergrond van de profielkaart: als je daar een bestand uploadt in plaats van een link, bewaart Wody dat bestand totdat je het vervangt of verwijdert, of totdat het na een melding wordt verwijderd.</p><p>Je staat toe dat Wody de link die je opgeeft alleen laadt om je aanpassing te tonen (bijvoorbeeld op je profielpagina of op de kaarten die de bot plaatst) en om hem te beoordelen als hij wordt gemeld.</p>"
+          "html": "<p>Afbeeldingen en GIF's die je aan je profielpagina en serverkaarten toevoegt, en gelinkte audio, worden niet door Wody opgeslagen. Je geeft een link, het bestand blijft op het platform dat het host en Wody laadt het alleen vanaf daar om het te tonen. Het blijft alleen zichtbaar zolang de link geldig is: verwijder je het bestand of haalt de host het weg, dan verdwijnt het uit Wody. Wody bewaart het linkadres in je instellingen tot je het wijzigt of verwijdert, en het bestand kan tijdens het tonen kort in een browser- of netwerkcache blijven.</p><p>De uitzonderingen zijn de achtergrond van de profielkaart en je profielnummer: upload je daar een bestand in plaats van een link, dan bewaart Wody dat tot je het vervangt of verwijdert, of tot het na een melding wordt verwijderd. Een nummer speelt alleen wanneer een bezoeker op afspelen drukt.</p><p>Je staat toe dat Wody de link die je opgeeft alleen laadt om je aanpassing te tonen (bijvoorbeeld op je profielpagina of op de kaarten die de bot plaatst) en om hem te beoordelen als hij wordt gemeld.</p>"
         },
         {
           "heading": "6. Meldingen en beoordeling",
@@ -8172,7 +8243,7 @@
     },
     "copyright": {
       "title": "Beleid voor auteursrecht en intellectueel eigendom",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "1. Respect voor rechten",
@@ -8184,7 +8255,7 @@
         },
         {
           "heading": "3. Jouw verantwoordelijkheid",
-          "html": "<p>Als je een afbeelding uploadt of linkt, moet je de benodigde rechten of een andere rechtmatige grondslag hebben. Elke keer dat je je openbare profiel publiceert of bewerkt bevestig je dit, en accepteer je het beleid, door een standaard niet-aangevinkt selectievakje aan te vinken. De bevestiging is jouw verklaring. Ze is geen garantie en maakt niet-geautoriseerd gebruik niet rechtmatig.</p>"
+          "html": "<p>Als je een afbeelding of een nummer uploadt of linkt, moet je de nodige rechten of een andere rechtsgrond hebben. Elke keer dat je je openbare profiel publiceert of bewerkt, bevestig je dit en accepteer je het beleid door een niet vooraf aangevinkt vakje aan te vinken, en voordat je een nummer uploadt bevestig je apart dat je het bezit of toestemming van de rechthebbende hebt. De bevestiging is jouw verklaring. Ze is geen garantie en maakt ongeoorloofd gebruik niet rechtmatig. Jij alleen bent verantwoordelijk voor de muziek die je uploadt of linkt.</p>"
         },
         {
           "heading": "4. Een mogelijke inbreuk melden",
@@ -8214,7 +8285,7 @@
     },
     "complaint": {
       "title": "Klacht over auteursrecht",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "Hoe je dit formulier gebruikt",

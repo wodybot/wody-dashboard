@@ -1,39 +1,45 @@
 
 import { Fragment } from 'react';
+import { proxiedImageUrl } from '@/lib/utils';
 
 
 function renderInline(text, keyPrefix) {
   const nodes = [];
-  const re = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|`([^`]+)`|\*\*(.+?)\*\*|~~(.+?)~~|\*(.+?)\*/g;
+  const re = /!\[([^\]]*)\]\(((?:https?:\/\/[^\s)]+)|(?:\/api\/site-image\/[a-f0-9]{24}))\)|\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|`([^`]+)`|\*\*(.+?)\*\*|~~(.+?)~~|\*(.+?)\*/g;
   let last = 0;
   let match;
   let i = 0;
   while ((match = re.exec(text))) {
     if (match.index > last) nodes.push(text.slice(last, match.index));
-    if (match[1] !== undefined) {
+    if (match[2] !== undefined) {
+      nodes.push(
+        // eslint-disable-next-line @next/next/no-img-element
+        <img key={`${keyPrefix}-${i++}`} src={proxiedImageUrl(match[2])} alt={match[1] || ''} loading="lazy" className="my-3 block h-auto max-w-full rounded-xl border border-border/60" />
+      );
+    } else if (match[3] !== undefined) {
       nodes.push(
         <a
           key={`${keyPrefix}-${i++}`}
-          href={match[2]}
+          href={match[4]}
           target="_blank"
           rel="noopener noreferrer"
           className="text-[#e08a4e] underline underline-offset-2 hover:text-[#f2c091]"
         >
-          {match[1]}
+          {match[3]}
         </a>
       );
-    } else if (match[3] !== undefined) {
+    } else if (match[5] !== undefined) {
       nodes.push(
         <code key={`${keyPrefix}-${i++}`} className="rounded bg-black/30 border border-border/50 px-1.5 py-0.5 text-[0.9em] font-mono">
-          {match[3]}
+          {match[5]}
         </code>
       );
-    } else if (match[4] !== undefined) {
-      nodes.push(<strong key={`${keyPrefix}-${i++}`} className="font-semibold text-foreground">{match[4]}</strong>);
-    } else if (match[5] !== undefined) {
-      nodes.push(<s key={`${keyPrefix}-${i++}`} className="opacity-70">{match[5]}</s>);
     } else if (match[6] !== undefined) {
-      nodes.push(<em key={`${keyPrefix}-${i++}`}>{match[6]}</em>);
+      nodes.push(<strong key={`${keyPrefix}-${i++}`} className="font-semibold text-foreground">{match[6]}</strong>);
+    } else if (match[7] !== undefined) {
+      nodes.push(<s key={`${keyPrefix}-${i++}`} className="opacity-70">{match[7]}</s>);
+    } else if (match[8] !== undefined) {
+      nodes.push(<em key={`${keyPrefix}-${i++}`}>{match[8]}</em>);
     }
     last = re.lastIndex;
   }

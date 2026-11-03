@@ -1,4 +1,5 @@
 'use client';
+import { OwnerImageField } from '@/components/owner-image-field';
 import { useEffect, useMemo, useState } from 'react';
 import { toast } from 'sonner';
 import { Eye, EyeOff, ExternalLink, Handshake, Loader2, Pencil, Plus, Star, Trash2, X } from 'lucide-react';
@@ -114,8 +115,8 @@ export default function PartnersAdmin() {
               <div><Label className="mb-1.5 block">Bot name *</Label><Input className={field('name')} value={form.name} maxLength={60} onChange={(e) => set({ name: e.target.value })} placeholder="Wody" /></div>
               <div><Label className="mb-1.5 block">Tagline</Label><Input value={form.tagline} maxLength={90} onChange={(e) => set({ tagline: e.target.value })} placeholder="Music that never stops" /></div>
               <div className="sm:col-span-2"><Label className="mb-1.5 block">Description</Label><Textarea rows={3} value={form.description} maxLength={600} onChange={(e) => set({ description: e.target.value })} placeholder="What the bot does and why it is a great partner." /><p className="mt-1 text-right text-[11px] text-muted-foreground">{form.description.length}/600</p></div>
-              <div><Label className="mb-1.5 block">Avatar image link</Label><Input className={field('avatar_url')} type="url" value={form.avatar_url} onChange={(e) => set({ avatar_url: e.target.value })} placeholder="https://cdn.discordapp.com/avatars/…" /></div>
-              <div><Label className="mb-1.5 block">Banner image link</Label><Input className={field('banner_url')} type="url" value={form.banner_url} onChange={(e) => set({ banner_url: e.target.value })} placeholder="https://…/banner.png" /></div>
+              <div><OwnerImageField compact label="Avatar" value={form.avatar_url} onChange={(v) => set({ avatar_url: v })} /></div>
+              <div><OwnerImageField compact label="Banner" value={form.banner_url} onChange={(v) => set({ banner_url: v })} /></div>
               <div className="sm:col-span-2"><Label className="mb-1.5 block">Bot invite link *</Label><Input className={field('invite_url')} type="url" value={form.invite_url} onChange={(e) => set({ invite_url: e.target.value })} placeholder="https://discord.com/oauth2/authorize?client_id=…" /></div>
               <div><Label className="mb-1.5 block">Website</Label><Input className={field('website_url')} type="url" value={form.website_url} onChange={(e) => set({ website_url: e.target.value })} placeholder="https://…" /></div>
               <div><Label className="mb-1.5 block">Support server</Label><Input className={field('support_url')} type="url" value={form.support_url} onChange={(e) => set({ support_url: e.target.value })} placeholder="https://discord.gg/…" /></div>

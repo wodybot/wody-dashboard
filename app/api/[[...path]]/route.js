@@ -2,6 +2,7 @@
 import { CARD_FONT_IDS } from '@/lib/card-fonts';
 import { configGroups, botComparison, liveChecks } from '@/lib/owner-config';
 import { normalizePage, validatePagePatch } from '@/lib/profile-page';
+import { loadPassport } from '@/lib/collab/public-profile';
 import { applyPatch as applyProfilePatch, normalizeConfig as normalizeProfileConfig, PROFILE_CARD } from '@/lib/profile-card';
 import { sniffImage as sniffProfileImage } from '@/lib/community/images';
 import { ObjectId as ProfileObjectId } from 'mongodb';
@@ -64,6 +65,7 @@ import { PARTNERS_COLLECTION, parsePartnerInput, serializePartner, getPublicPart
 import { parseStaffInput, STAFF_COLLECTION } from '@/lib/staff';
 import { getDelegate, listAccess, mutateAccess } from '@/lib/owner-access';
 import { audit } from '@/lib/owner-audit';
+import { parseUpdateExtras, updateDiscordPayload } from '@/lib/updates';
 import { parseAdvancedEmbed, linkButtonRows } from '@/lib/advanced-embed';
 
 const YOUTUBE_NOTIFY_MAX_CHANNELS = Number(process.env.YOUTUBE_NOTIFY_MAX_CHANNELS || 3);
@@ -426,6 +428,8 @@ async function sweepExpiredPremium(db) {
     );
   }
 }
+
+const VOTE_REDEEM_MIN = Math.max(1, Number(process.env.VOTE_REDEEM_MIN) || 7);
 
 async function isGuildPremium(db, gidLong) {
   const doc = await db.collection('premium_servers').findOne({ guild_id: gidLong, active: true });
@@ -988,6 +992,32 @@ async function handleGet(request, context) {
     });
   }
 
+  const musicGet = path.match(/^profile-page\/music\/([a-f0-9]{24})$/);
+  if (musicGet) {
+    const session = await getSession();
+    const gdb = await getDb();
+    const track = await gdb.collection('profile_music').findOne({ _id: new ProfileObjectId(musicGet[1]) });
+    if (!track || !AUDIO_MIME.has(track.mime)) return json({ error: 'not_found' }, { status: 404 });
+    const mine = String(track.user) === String(session?.user?.id || '');
+    const owner = await gdb.collection('profile_cards').findOne({ _id: String(track.user) }, { projection: { public: 1, share_public: 1, moderation: 1, 'page.music': 1 } });
+    if (accountState(owner?.moderation).blocked || publicModeration(owner?.moderation).suspended) return json({ error: 'not_found' }, { status: 404 });
+    if (!mine) {
+      if (!owner || owner.public === false || owner.page?.music !== `/api/profile-page/music/${musicGet[1]}`) return json({ error: 'not_found' }, { status: 404 });
+      if (!session?.user?.id && owner.share_public !== true) return json({ error: 'unauthenticated' }, { status: 401 });
+    }
+    const bytes = Buffer.from(track.data.buffer ? track.data.buffer : track.data);
+    const base = { 'Content-Type': track.mime, 'Accept-Ranges': 'bytes', 'X-Content-Type-Options': 'nosniff', 'Content-Security-Policy': "default-src 'none'; sandbox", 'Cache-Control': 'private, max-age=3600' };
+    const range = /^bytes=(\d*)-(\d*)$/.exec(request.headers.get('range') || '');
+    if (range && (range[1] || range[2])) {
+      let start = range[1] ? Number(range[1]) : Math.max(0, bytes.length - Number(range[2]));
+      let end = range[1] && range[2] ? Number(range[2]) : bytes.length - 1;
+      end = Math.min(end, bytes.length - 1);
+      if (start > end || start >= bytes.length) return new Response(null, { status: 416, headers: { 'Content-Range': `bytes */${bytes.length}` } });
+      return new Response(bytes.subarray(start, end + 1), { status: 206, headers: { ...base, 'Content-Range': `bytes ${start}-${end}/${bytes.length}`, 'Content-Length': String(end - start + 1) } });
+    }
+    return new Response(bytes, { headers: { ...base, 'Content-Length': String(bytes.length) } });
+  }
+
   const cardImage = path.match(/^profile-card\/image\/([a-f0-9]{24})$/);
   if (cardImage) {
     const session = await getSession();
@@ -1007,7 +1037,7 @@ async function handleGet(request, context) {
     const session = await getSession();
     if (!session?.user?.id) return json({ error: 'unauthenticated' }, { status: 401 });
     const doc = await (await getDb()).collection('profile_cards').findOne({ _id: String(session.user.id) }, { projection: { page: 1, moderation: 1 } });
-    return json({ page: normalizePage(doc?.page), customized: Boolean(doc?.page && Object.keys(doc.page).length), moderation: publicModeration(doc?.moderation) }, { headers: { 'Cache-Control': 'no-store' } });
+    return json({ page: normalizePage(doc?.page), customized: Boolean(doc?.page && Object.keys(doc.page).length), moderation: publicModeration(doc?.moderation), passport: await loadPassport(await getDb(), session.user.id) }, { headers: { 'Cache-Control': 'no-store' } });
   }
   if (path === 'owner/content-reports') {
     const session = await getSession();
@@ -1505,9 +1535,11 @@ async function handleGet(request, context) {
 
     if (sub === 'premium') {
       const doc = await db.collection('premium_servers').findOne({ guild_id: gidLong }, { sort: { _id: -1 } });
-      if (!doc) return json({ premium: null });
+      const voter = await db.collection('votes').findOne({ user_id: toLong(guard.session.user.id) }).catch(() => null);
+      const votes = { days: Math.max(0, Number(voter?.credit_days) || 0), total: Number(voter?.total_votes) || 0, min: VOTE_REDEEM_MIN };
+      if (!doc) return json({ premium: null, votes });
       const activatedByName = await getGuildMember(guildId, String(doc.activated_by)).catch(() => null);
-      return json({ premium: { ...serializeDoc(doc), activated_by_name: activatedByName } });
+      return json({ premium: { ...serializeDoc(doc), activated_by_name: activatedByName }, votes });
     }
 
     if (sub === 'backups') {
@@ -1725,6 +1757,18 @@ async function readProfileCard(db, userId) {
   return { config, image, public: doc?.public !== false, rev: Number(doc?.rev || 0), customized: Boolean(doc?.cfg && Object.keys(doc.cfg).length) };
 }
 
+const AUDIO_MIME = new Set(['audio/mpeg', 'audio/ogg', 'audio/mp4', 'audio/wav', 'audio/flac']);
+const AUDIO_MAX_BYTES = 4 * 1024 * 1024;
+function sniffAudio(b) {
+  if (!b || b.length < 16) return null;
+  if (b.toString('latin1', 0, 3) === 'ID3' || (b[0] === 0xff && (b[1] & 0xe0) === 0xe0)) return 'audio/mpeg';
+  if (b.toString('latin1', 0, 4) === 'OggS') return 'audio/ogg';
+  if (b.toString('latin1', 4, 8) === 'ftyp') return 'audio/mp4';
+  if (b.toString('latin1', 0, 4) === 'RIFF' && b.toString('latin1', 8, 12) === 'WAVE') return 'audio/wav';
+  if (b.toString('latin1', 0, 4) === 'fLaC') return 'audio/flac';
+  return null;
+}
+
 const PROFILE_IMAGE_MIME = new Set(['image/png', 'image/jpeg', 'image/webp', 'image/gif']);
 async function hourlyLimited(db, key, max) {
   const hour = Math.floor(Date.now() / 3_600_000);
@@ -1749,6 +1793,38 @@ async function handleMutation(request, context) {
   }
 
   const rateKey = request.cookies?.get?.('wody_session')?.value || 'anon';
+
+  if (path === 'profile-page/music' && ['POST', 'DELETE'].includes(method)) {
+    const session = await getSession();
+    if (!session?.user?.id) return json({ error: 'unauthenticated' }, { status: 401 });
+    const userId = String(session.user.id);
+    const mdb = await getDb();
+    if (await rateLimited(mdb, rateKey)) return json({ error: 'rate_limited' }, { status: 429 });
+    if (method === 'DELETE') {
+      await mdb.collection('profile_music').deleteMany({ user: userId });
+      return json({ ok: true }, { headers: { 'Cache-Control': 'no-store' } });
+    }
+    if (await hourlyLimited(mdb, `pcmusic:${userId}`, 6)) return json({ error: 'rate_limited' }, { status: 429 });
+    const modDoc = await mdb.collection('profile_cards').findOne({ _id: userId }, { projection: { moderation: 1 } });
+    const modState = publicModeration(modDoc?.moderation);
+    if (accountState(modDoc?.moderation).blocked || modState.account_blocked) return json({ error: 'account_blocked' }, { status: 403 });
+    if (modState.suspended) return json({ error: 'customization_suspended' }, { status: 403 });
+    if (modState.uploads_restricted) return json({ error: 'uploads_restricted' }, { status: 403 });
+    if (Number(request.headers.get('content-length') || 0) > AUDIO_MAX_BYTES + 16384) return json({ error: 'audio_too_large' }, { status: 413 });
+    let form;
+    try { form = await request.formData(); } catch { return json({ error: 'bad_request' }, { status: 400 }); }
+    if (form.get('policy_accepted') !== 'true') return json({ error: 'policy_acceptance_required' }, { status: 400 });
+    if (form.get('rights_accepted') !== 'true') return json({ error: 'rights_acceptance_required' }, { status: 400 });
+    const file = form.get('file');
+    if (!file || typeof file === 'string') return json({ error: 'audio_invalid' }, { status: 400 });
+    if (file.size > AUDIO_MAX_BYTES) return json({ error: 'audio_too_large' }, { status: 413 });
+    const buf = Buffer.from(await file.arrayBuffer());
+    const mime = sniffAudio(buf);
+    if (!mime) return json({ error: 'audio_invalid' }, { status: 415 });
+    const made = await mdb.collection('profile_music').insertOne({ user: userId, mime, size: buf.length, data: buf, name: String(file.name || '').slice(0, 80), created_at: new Date(), rights_accepted_at: new Date(), rights_version: POLICY_VERSION });
+    await mdb.collection('profile_music').deleteMany({ user: userId, _id: { $ne: made.insertedId } });
+    return json({ url: `/api/profile-page/music/${made.insertedId}`, name: String(file.name || '').slice(0, 80) }, { status: 201, headers: { 'Cache-Control': 'no-store' } });
+  }
 
   if (path === 'profile-card/image' && ['POST', 'DELETE'].includes(method)) {
     const session = await getSession();
@@ -1944,6 +2020,10 @@ async function handleMutation(request, context) {
       const set = { updated_at: new Date(), 'page.policy_accepted_at': new Date().toISOString(), 'page.policy_version': POLICY_VERSION };
       for (const [k, v] of Object.entries(clean)) set[`page.${k}`] = v;
       await db.collection('profile_cards').updateOne({ _id: userId }, { $set: set }, { upsert: true });
+      if ('music' in clean) {
+        const keep = /^\/api\/profile-page\/music\/([a-f0-9]{24})$/.exec(clean.music || '');
+        await db.collection('profile_music').deleteMany(keep ? { user: userId, _id: { $ne: new ProfileObjectId(keep[1]) } } : { user: userId }).catch(() => {});
+      }
     }
     const doc = await db.collection('profile_cards').findOne({ _id: userId }, { projection: { page: 1 } });
     return json({ page: normalizePage(doc?.page), customized: Boolean(doc?.page && Object.keys(doc.page).length) }, { headers: { 'Cache-Control': 'no-store' } });
@@ -2181,10 +2261,13 @@ async function handleMutation(request, context) {
     const content = stripEmoji(body.body).slice(0, 5000);
     const tag = String(body.tag || 'Update').trim().slice(0, 40) || 'Update';
     if (!title || !content) return json({ error: 'invalid' }, { status: 400 });
+    const extras = parseUpdateExtras(body);
+    if (!extras.ok) return json({ error: extras.error }, { status: 400 });
     const item = {
       title,
       body: content,
       tag,
+      ...extras.patch,
       created_by: toLong(session.user.id) || Long.ZERO,
       created_at: new Date(),
     };
@@ -2193,7 +2276,7 @@ async function handleMutation(request, context) {
 
     let discordPosted = false;
     try {
-      await sendGuildMessage(UPDATES_ANNOUNCE_CHANNEL_ID, embedToV2Payload(updateEmbed(saved)));
+      await sendGuildMessage(UPDATES_ANNOUNCE_CHANNEL_ID, updateDiscordPayload(saved, { siteUrl: SITE_URL, avatarUrl: UPDATE_THUMBNAIL_URL }));
       discordPosted = true;
     } catch (e) {
       console.error('updates: failed to post Discord announcement', e);
@@ -2491,6 +2574,47 @@ async function handleMutation(request, context) {
     await db.collection('premium_servers').insertOne(activation);
     await logPremiumAudit(db, 'activate_key', session?.user?.id, { key: rawKey, guild_id: gidLong });
     return json({ ok: true, activation: serializeDoc(activation) });
+  }
+
+  if (sub === 'premium/redeem-votes' && method === 'POST') {
+    const session = await getSession();
+    const userLong = toLong(session.user.id);
+    const before = await db.collection('votes').findOneAndUpdate(
+      { user_id: userLong, credit_days: { $gte: VOTE_REDEEM_MIN } },
+      { $set: { credit_days: 0 } },
+      { returnDocument: 'before' },
+    );
+    if (!before) {
+      const doc = await db.collection('votes').findOne({ user_id: userLong });
+      return json({ error: 'not_enough_votes', days: Math.max(0, Number(doc?.credit_days) || 0), min: VOTE_REDEEM_MIN }, { status: 400 });
+    }
+    const days = Number(before.credit_days) || 0;
+    const refund = () => db.collection('votes').updateOne({ user_id: userLong }, { $inc: { credit_days: days } });
+    try {
+      const now = new Date();
+      const current = await db.collection('premium_servers').findOne(
+        { guild_id: gidLong, active: true, suspended: { $ne: true } }, { sort: { _id: -1 } },
+      );
+      let expires;
+      if (current) {
+        if (!current.expires_at) { await refund(); return json({ error: 'premium_no_end' }, { status: 400 }); }
+        expires = new Date(Math.max(new Date(current.expires_at).getTime(), now.getTime()) + days * 86400000);
+        await db.collection('premium_servers').updateOne({ _id: current._id }, { $set: { expires_at: expires }, $inc: { vote_days: days } });
+      } else {
+        expires = new Date(now.getTime() + days * 86400000);
+        await db.collection('premium_servers').insertOne({
+          guild_id: gidLong, key_id: null, key_value: null, source: 'votes', activated_by: userLong,
+          expires_at: expires, active: true, suspended: false, suspended_reason: null, activated_at: now, vote_days: days,
+        });
+      }
+      await db.collection('votes').updateOne({ user_id: userLong }, { $inc: { redeemed_days: days } });
+      await logPremiumAudit(db, 'redeem_votes', session?.user?.id, { guild_id: gidLong, days });
+      return json({ ok: true, days, expires_at: expires.toISOString() });
+    } catch (err) {
+      await refund();
+      console.error('redeem-votes failed', err);
+      return json({ error: 'redeem_failed' }, { status: 500 });
+    }
   }
 
   if (sub === 'modules/toggle' && method === 'POST') {

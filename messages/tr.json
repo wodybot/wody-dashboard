@@ -495,6 +495,17 @@
             "Her oy, Discord hesabı başına otomatik olarak izlenen kişisel toplamına eklenir.",
             "Toplamda 100 oya ulaştığında, anahtarını almak için topluluk sunucumuzda bir bilet aç. Ardından sahip olduğun herhangi bir sunucuda etkinleştirilebilir."
           ]
+        },
+        {
+          "key": "days",
+          "title": "Seçenek C: Oy günleri",
+          "steps": [
+            "Wody için /vote komutuyla oy ver. Her oy hesabına 1 gün ekler.",
+            "Günler hesap başına sayılır ve sen kullanana kadar saklanır.",
+            "7 kayıtlı günden sonra bunları panelin Premium sekmesinden veya /redeemvotes ile herhangi bir Wody sunucusunda etkinleştir.",
+            "Bilet yok, anahtar yok ve onay beklemek yok."
+          ],
+          "isNew": true
         }
       ],
       "value": "Premium'un bir fiyat etiketi yok, çünkü topluluğu gerçekten büyüten insanları ödüllendirmeyi tercih ediyoruz. Her anahtar tek bir sunucuya bağlı kalır, kullanım sınırı vardır ve bir tanıtımın sahte olduğu veya oyların manipüle edildiği anlaşılır anlaşılmaz iptal edilir.",
@@ -1132,16 +1143,16 @@
         "html": "<p>This Policy may be updated when the service or its data processing practices change. The revision date shown above identifies the current version. Material changes may also be announced through the official Wody community channels where appropriate.</p>"
       },
       {
-        "heading": "27. Contact",
-        "html": "<p>For privacy, legal, or data protection questions, contact Păcurar Ancuța-Narcisa, the Operator, at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>.</p> <p>Wody may also use the optional <code>wody_language</code> preference cookie to remember a language you actively choose. It is not created or updated unless you consent to Preferences, and the language selector remains hidden until that consent exists. Your cookie choice is recorded using the strictly necessary <code>wody_cookie_consent</code> cookie. You can change or withdraw the optional preference at any time in the Cookie Policy.</p>"
+        "heading": "27. Profil görselleri, müzik bağlantıları ve moderasyon kayıtları",
+        "html": "<p>Profil sayfana ve sunucu kartlarına eklediğin görseller ve GIF'ler ile bağladığın sesler yalnızca bağlantı olarak saklanır: Wody bir kopya tutmaz. Görseller, onları barındıran platformdan Wody sunucusu üzerinden yüklenir; bu yüzden ziyaretçinin IP adresi o platforma ulaşmaz; yalnızca bağlantı geçerli olduğu sürece görünür kalırlar. Bağlı bir ses dosyası, ziyaretçi oynat'a bastıktan sonra doğrudan tarayıcısı tarafından yüklenir; bu yüzden IP adresi dosyayı barındıran siteye ulaşır. Senin yüklediğin şarkıyı ise Wody'nin kendisi sunar, bu da yalnızca ziyaretçi oynat'a bastıktan sonra olur. Wody'nin sakladığı tek dosyalar, profil kartı arka planı olarak yüklediğin bir görsel ile profil sayfana yüklediğin bir şarkıdır; her biri sen değiştirene veya silene kadar ya da bir bildirim sonrası kaldırılana kadar tutulur. Yüklenen şarkı için Wody ayrıca hak onayının zamanını ve sürümünü de saklar. Wody; bildirimleri, içerik referansını, moderasyon kararını ve geçmişini, ayrıca politika onayının zamanını ve sürümünü vakayı ele almak ve tekrarlanan ihlalleri önlemek için saklar. Profil sayfası, görüntülenmeleri veritabanında basit bir sayaçla, çerez kullanmadan ve IP adresini saklamadan sayabilir.</p>"
       },
       {
-        "heading": "28. Profil görselleri, müzik bağlantıları ve moderasyon kayıtları",
-        "html": "<p>Profil sayfana ve sunucu kartlarına eklediğin görseller, GIF'ler ve ses dosyaları yalnızca bağlantı olarak saklanır: Wody bunların kopyasını tutmaz. Görseller, onları barındıran platformdan Wody sunucusu üzerinden yüklenir; bu yüzden ziyaretçinin IP adresi o platforma ulaşmaz; yalnızca bağlantı geçerli olduğu sürece görünür kalırlar. Ses dosyası, ziyaretçi oynat'a bastıktan sonra doğrudan ziyaretçinin tarayıcısı tarafından yüklenir; bu nedenle IP adresi dosyayı barındıran siteye ulaşır. Wody'nin sakladığı tek dosya, profil kartı arka planı olarak yüklediğin ve sen değiştirene veya silene kadar tutulan görseldir. Wody; bildirimleri, içerik referansını, moderasyon kararını ve geçmişini, ayrıca politika onayının zamanını ve sürümünü vakayı ele almak ve tekrarlanan ihlalleri önlemek için saklar. Profil sayfası, görüntülenmeleri veritabanında basit bir sayaçla, çerez kullanmadan ve IP adresini saklamadan sayabilir.</p>"
-      },
-      {
-        "heading": "29. Radar ve Pulse (sorgular ve akışlar)",
+        "heading": "28. Radar ve Pulse (sorgular ve akışlar)",
         "html": "<p>Bir üye /radar sorgusu çalıştırdığında, yazdığı metin (örneğin bir kullanıcı adı, sunucu adresi veya madeni para adı) yanıtı almak için seçilen hizmete gönderilir. Bir sunucu yöneticisi /pulse akışı eklediğinde, girdiği adres veya ad sunucu ayarlarında saklanır ve kaynak hizmette belirli aralıklarla kontrol edilir. Bu istekleri Wody sunucusu yapar, bu nedenle üyenin IP adresi hizmete ulaşmaz. Wody sorgu sonuçlarını yalnızca kısa süreli bir önbellekte tutar ve akışların içeriğini saklamaz; yalnızca aynı öğeyi iki kez paylaşmamak için gerekeni saklar. Her hizmet kendi gizlilik politikasını uygular.</p>"
+      },
+      {
+        "heading": "29. Contact",
+        "html": "<p>For privacy, legal, or data protection questions, contact Păcurar Ancuța-Narcisa, the Operator, at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>.</p> <p>Wody may also use the optional <code>wody_language</code> preference cookie to remember a language you actively choose. It is not created or updated unless you consent to Preferences, and the language selector remains hidden until that consent exists. Your cookie choice is recorded using the strictly necessary <code>wody_cookie_consent</code> cookie. You can change or withdraw the optional preference at any time in the Cookie Policy.</p>"
       }
     ]
   },
@@ -1182,7 +1193,7 @@
       },
       {
         "heading": "9. Premium",
-        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications and unlimited creation limits across modules. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p>"
+        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications and unlimited creation limits across modules. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Yeni: oy günleri.</strong> top.gg üzerinde Wody için verilen her oy hesabına bir gün ekler. Günler hesap başına sayılır, devredilemez veya satılamaz ve en az 7 gün biriktirdiğinde etkinleştirilebilir. Etkinleştirme, biriken tüm günleri seçtiğin tek bir sunucuya Premium süresi olarak ekler; panelden veya <code>/redeemvotes</code> ile yapılır. Otomatik, satın alınmış veya manipüle edilmiş oylardan gelen günleri ya da Premium süresini kaldırabiliriz.</p>"
       },
       {
         "heading": "10. Uptime and Availability",
@@ -1253,12 +1264,12 @@
         "html": "<p>These Terms are governed by Romanian law and, where applicable, European Union law, without taking away any mandatory consumer protection you have under the law of your own country of residence if you're elsewhere in the EU.</p>"
       },
       {
-        "heading": "27. Contact",
-        "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
+        "heading": "27. Profil özelleştirme ve kullanıcı görselleri",
+        "html": "<p>Profiline yalnızca gerekli haklara sahipsen görsel, GIF, ses veya bağlantı ekleyebilirsin. Herkese açık profilini her yayınladığında veya düzenlediğinde bunu onaylayan ve politikaları kabul ettiğini belirten bir kutuyu işaretlersin. Görseller ve bağlantılar yalnızca onları barındıran platforma yönlendirir ve bağlantı geçerli olduğu sürece görünür kalır. Bir şarkı yüklersen Wody bu dosyayı sen değiştirene veya kaldırana kadar saklar ve yüklemeden önce müziğin sana ait olduğunu veya hak sahibinin iznine sahip olduğunu onaylarsın. Yüklediğin veya bağladığın her müzikten, her telif hakkı iddiası dahil, yalnızca sen sorumlusun ve herkese açık kullanma hakkın olmayan müziği yüklememelisin. Herkes içerik bildirebilir. İnceleme sonrası Wody içeriği kaldırabilir, özelleştirmeyi kısıtlayabilir veya askıya alabilir ve profile bağlı Discord hesabını Wody özellikleri için askıya alabilir ya da engelleyebilir; itiraz edebilirsin. Ayrıntılar: Kullanıcı İçeriği Politikası ve Telif Hakkı ve Fikri Mülkiyet Politikası.</p>"
       },
       {
-        "heading": "28. Profil özelleştirme ve kullanıcı görselleri",
-        "html": "<p>Profiline yalnızca gerekli haklara sahipsen görsel, GIF, ses veya bağlantı ekleyebilirsin. Herkese açık profilini her yayınladığında veya düzenlediğinde bunu onaylayan ve politikaları kabul ettiğini belirten bir kutuyu işaretlersin. Görseller ve sesler yalnızca barındıran platformdan bağlanır ve bağlantı geçerli olduğu sürece görünür. Herkes içerik bildirebilir. İnceleme sonrası Wody içeriği kaldırabilir, özelleştirmeyi kısıtlayabilir veya askıya alabilir ve profile bağlı Discord hesabını Wody özellikleri için askıya alabilir ya da engelleyebilir; itiraz edebilirsin. Ayrıntılar: Kullanıcı İçeriği Politikası ve Telif Hakkı ve Fikri Mülkiyet Politikası.</p>"
+        "heading": "28. Contact",
+        "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
       }
     ]
   },
@@ -1300,8 +1311,9 @@
     "higherLimitsSubtitle": "Premium bu sınırları tamamen kaldırır. Panel, mevcut sunucunun gerçek sınırını her zaman gösterir.",
     "freeToPremium": "Ücretsiz → Premium",
     "howToGetTitle": "Premium nasıl alınır",
-    "howToGetSubtitle": "Bir anahtar kazanmanın iki yolu var. Her ikisi de işe yarar, sana uyanı seç.",
-    "joinCommunityBtn": "Topluluğa Katıl"
+    "howToGetSubtitle": "Anahtar kazanmanın iki yolu ve hiç anahtar gerektirmeyen oy günleri.",
+    "joinCommunityBtn": "Topluluğa Katıl",
+    "newBadge": "Yeni"
   },
   "commands": {
     "metaTitle": "Wody - Komutlar | Discord Bot",
@@ -1362,6 +1374,10 @@
           {
             "name": "/votestatus",
             "description": "Toplam oylarını ve bir sonraki oy verebileceğin zamanı kontrol et"
+          },
+          {
+            "name": "/redeemvotes",
+            "description": "Kayıtlı oy günlerini bu sunucuda Premium olarak etkinleştir"
           }
         ]
       },
@@ -1932,7 +1948,8 @@
       "Fix": "Düzeltme",
       "Announcement": "Duyuru",
       "Update": "Güncelleme"
-    }
+    },
+    "credits": "Emeği geçenler"
   },
   "blog": {
     "metaTitle": "Wody - Blog",
@@ -2135,7 +2152,13 @@
         "copyright": "Telif Hakkı Politikası",
         "required": "Önce kutuyu işaretleyerek politikaları onayla ve kabul et.",
         "blocked": "Hesabın askıya alındı veya engellendi; bu profili düzenleyemez."
-      }
+      },
+      "searchPlaceholder": "Ara…",
+      "noResults": "Sonuç yok",
+      "addMore": "Daha fazla ekle",
+      "clearAll": "Tümünü temizle",
+      "remove": "Kaldır",
+      "limitReached": "Sınıra ulaşıldı ({max})"
     },
     "groups": {
       "server": "Sunucu",
@@ -2913,7 +2936,11 @@
       "deleteConfirm": "Bu reaction roles paneli silinsin mi?",
       "deletedSuccess": "Silindi",
       "deleteFailed": "Silme başarısız oldu",
-      "legacyVerifyHint": "Doğrula modu, biri doğrudan Discord’da bir tepki veya düğmeye tıkladığında rolü verir. Tüm sunucu için tek bir düğmeyle web tabanlı bir doğrulama istiyorsanız, kenar çubuğundaki Captcha modülünü kullanın."
+      "legacyVerifyHint": "Doğrula modu, biri doğrudan Discord’da bir tepki veya düğmeye tıkladığında rolü verir. Tüm sunucu için tek bir düğmeyle web tabanlı bir doğrulama istiyorsanız, kenar çubuğundaki Captcha modülünü kullanın.",
+      "previewTitle": "Canlı önizleme",
+      "previewDefaultTitle": "Panel başlığın",
+      "previewReactions": "Wody'nin ekleyeceği tepkiler",
+      "previewHint": "Mesaj kanalında böyle görünecek. Mod: {mode}."
     },
     "autoResponses": {
       "title": "Otomatik Yanıtlar",
@@ -3350,7 +3377,8 @@
       "rbErrPriority": "Öncelik 0 ile 1000 arasında bir tam sayı olmalı.",
       "rbErrEmpty": "Her bonus için 1'den büyük çarpan veya 0'dan büyük ekstra XP gerekir.",
       "auroraSpecial": "Miami Style",
-      "auroraSpecialHint": "Kart üzerine çizilmiş özgün illüstrasyonlu retro gün batımı sahneleri. Seviye, karşılama ve veda kartlarında kullanılır."
+      "auroraSpecialHint": "Kart üzerine çizilmiş özgün illüstrasyonlu retro gün batımı sahneleri. Seviye, karşılama ve veda kartlarında kullanılır.",
+      "auroraUseGradient": "Gradyanı kullan"
     },
     "suggestions": {
       "title": "Öneriler",
@@ -3417,7 +3445,20 @@
         "giveaways": "Çekilişler",
         "forumAutomations": "Forum otomasyonları",
         "discoveryBumps": "Discovery bump'ları"
-      }
+      },
+      "newBadge": "Yeni",
+      "voteTitle": "Oylarla Premium",
+      "voteDesc": "top.gg üzerindeki her oy hesabına 1 gün Wody Premium ekler. Oylar hesap başına sayılır. {min} kayıtlı günden sonra biriktirdiğin her şeyi bu sunucuda etkinleştirebilirsin.",
+      "voteDaysLabel": "kayıtlı gün",
+      "voteProgress": "{days} / {min} gün kayıtlı. Etkinleştirmeyi açmak için oy vermeye devam et.",
+      "voteReady": "{days} gün etkinleştirmeye hazır.",
+      "voteHow": "Discord'u mu tercih edersin? Sunucuda /redeemvotes kullan. Daha fazla gün için /vote kullan.",
+      "voteRedeem": "{days} günü etkinleştir",
+      "voteDoneTitle": "Oy günleri etkinleştirildi",
+      "voteDoneDesc": "Bu sunucuya {days} gün Premium eklendi.",
+      "voteNoEnd": "Bu sunucuda zaten bitiş tarihi olmayan Premium var. Günlerin saklandı.",
+      "voteNotEnough": "Etkinleştirmek için en az {min} kayıtlı gün gerekir.",
+      "voteFailed": "Günlerin etkinleştirilemedi. Tekrar dene."
     },
     "youtubeNotify": {
       "title": "YouTube Bildirimleri",
@@ -5131,7 +5172,10 @@
     "manage": "Yönet",
     "inviteHere": "Wody'yi Davet Et",
     "refresh": "Yenile",
-    "loadError": "Sunucular yüklenemedi. Lütfen tekrar dene."
+    "loadError": "Sunucular yüklenemedi. Lütfen tekrar dene.",
+    "missingTitle": "Wody olmayan sunucular",
+    "missingText": "Bu sunucuları yönetmeye başlamak için Wody'yi davet et.",
+    "presentTitle": "Wody olan sunucular"
   },
   "modules": {
     "general": {
@@ -6909,7 +6953,9 @@
     "emptyText": "Wody Economy olan bir sunucuda oyna ve yakında tekrar bak, sıralama 5 dakikada bir yenilenir.",
     "unavailable": "Sıralama şu anda kullanılamıyor. Lütfen birazdan tekrar dene.",
     "cta": "Wody'yi sunucuna ekle",
-    "coins": "{n} jeton"
+    "coins": "{n} jeton",
+    "ctaTitle": "Sunucun sıralamada olsun mu?",
+    "ctaText": "Wody'yi ekle, Economy'yi aç; üyelerin küresel sıralamada yükselmeye başlasın."
   },
   "collab": {
     "title": "WODY Collab",
@@ -7654,7 +7700,9 @@
       "cancel": "İptal",
       "saving": "Kaydediliyor...",
       "error": "Görünürlük değiştirilemedi. Tekrar dene.",
-      "privateBadge": "Özel: yalnızca giriş yapmış Wody üyeleri açabilir"
+      "privateBadge": "Özel: yalnızca giriş yapmış Wody üyeleri açabilir",
+      "statusPublic": "Herkese açık profil",
+      "statusPrivate": "Özel profil"
     },
     "metaTitle": "Profil",
     "saveAll": "Tüm ayarları kaydet",
@@ -8109,7 +8157,30 @@
       "links": "Bağlantılar",
       "card": "Seviye kartı",
       "socials": "Sosyal ağlar",
-      "stats": "İstatistikler"
+      "stats": "İstatistikler",
+      "passport": "Pasaport"
+    },
+    "passportNo": "Pasaport no.",
+    "daysWith": "Wody ile geçen gün",
+    "passportSince": "Alındı",
+    "bansLabel": "Yasaklı sunucu",
+    "musicUploadTitle": "Ya da bilgisayarından bir şarkı yükle",
+    "musicRights": "Bu müzik bana ait veya herkese açık kullanmak için hak sahibinin iznine sahibim. Telif hakkı iddialarından yalnızca ben sorumluyum ve Wody'nin dosyayı kaldırabileceğini, profil özelleştirmemi kısıtlayabileceğini veya askıya alabileceğini anlıyorum.",
+    "musicUpload": "Şarkı yükle",
+    "musicUploading": "Yükleniyor...",
+    "musicRemove": "Şarkıyı kaldır",
+    "musicUploaded": "Şarkı yüklendi. Politikaları işaretle ve yayınlamak için Kaydet'e bas.",
+    "musicStoredNote": "Wody'de saklanır. Hesap başına bir şarkı, yeni yükleme eskisinin yerini alır.",
+    "musicLimits": "MP3, OGG, M4A, WAV veya FLAC, en fazla 4 MB. Hesap başına bir şarkı. Kendiliğinden hiç çalmaz.",
+    "musicError": {
+      "audio_too_large": "Dosya çok büyük. Sınır 4 MB.",
+      "audio_invalid": "Bu geçerli bir MP3, OGG, M4A, WAV veya FLAC dosyası değil.",
+      "rate_limited": "Çok fazla yükleme. Daha sonra tekrar dene.",
+      "uploads_restricted": "Profilinde yüklemeler kısıtlandı.",
+      "customization_suspended": "Profil özelleştirmen askıya alındı.",
+      "account_blocked": "Bu hesap dosya yükleyemez.",
+      "rights_acceptance_required": "Önce bu şarkının haklarına sahip olduğunu onayla.",
+      "generic": "Yükleme başarısız. Tekrar dene."
     }
   },
   "policies": {
@@ -8126,15 +8197,15 @@
     "contactHtml": "İşletmeci: Păcurar Ancuța-Narcisa, Romanya, Avrupa Birliği. Genel iletişim: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.",
     "content-policy": {
       "title": "Kullanıcı İçeriği Politikası",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "1. Bu politika neyi kapsar",
-          "html": "<p>Wody, profil sayfanı, seviye kartını ve karşılama ile veda kartlarını özelleştirmene olanak tanır. Wody'ye başka bir platformda barındırılan bir görsel, GIF veya ses dosyasının bağlantısını verebilir ve yalnızca profil kartı arka planı için bir görsel yükleyebilirsin. Bu politika neleri kullanabileceğini, bunların nasıl işlendiğini ve bildirimlerin nasıl ele alındığını açıklar. Kullanım Koşulları'na ek olarak uygulanır.</p>"
+          "html": "<p>Wody, profil sayfanı, seviye kartını ve karşılama ile veda kartlarını özelleştirmene olanak tanır. Wody'ye başka bir platformda barındırılan bir görsel, GIF veya ses dosyasının bağlantısını verebilir; profil kartı arka planı ve profil şarkın için ise dosya yükleyebilirsin. Bu politika neleri kullanabileceğini, bunların nasıl işlendiğini ve bildirimlerin nasıl ele alındığını açıklar. Kullanım Koşulları'na ek olarak uygulanır.</p>"
         },
         {
           "heading": "2. Görsellerin ve bağlantıların",
-          "html": "<p>Görselleri yalnızca kişisel özelleştirme için kullanabilirsin. Görselin sahibi olmalı, ona ilişkin bir lisansa sahip olmalı ya da görseli kullanmak ve Wody üzerinden gösterilmesini sağlamak için başka bir hukuki dayanağa sahip olmalısın. Bir görseli internette bulabilmek, onu kullanabileceğin anlamına gelmez.</p><p>Herkese açık profilini her yayımladığında veya düzenlediğinde (profil sayfası, herkese açık profil bilgileri, bir profil kartı görseli veya bağlantısı ya da sunucu kartlarının görselleri) içeriğin sahibi olduğunu veya kullanma iznin bulunduğunu ve bu politikaları kabul ettiğini onaylayan, varsayılan olarak işaretsiz bir kutuyu işaretlemelisin. Kutu işaretlenmeden değişiklik kaydedilemez. Kutuyu işaretlediğinde Wody, zamanı ve politika sürümünü profil ayarlarınla birlikte kaydeder.</p><p>Onay, senin beyanını kaydeder. İzinsiz bir görseli hukuka uygun hale getirmez ve Wody'nin kanundan doğan kendi yükümlülüklerini ortadan kaldırmaz.</p>"
+          "html": "<p>Görselleri yalnızca kişisel özelleştirme için kullanabilirsin. Görselin sahibi olmalı, ona ilişkin bir lisansa sahip olmalı ya da görseli kullanmak ve Wody üzerinden gösterilmesini sağlamak için başka bir hukuki dayanağa sahip olmalısın. Bir görseli internette bulabilmek, onu kullanabileceğin anlamına gelmez.</p><p>Herkese açık profilini her yayımladığında veya düzenlediğinde (profil sayfası, herkese açık profil bilgileri, bir profil kartı görseli veya bağlantısı ya da sunucu kartlarının görselleri) içeriğin sahibi olduğunu veya kullanma iznin bulunduğunu ve bu politikaları kabul ettiğini onaylayan, varsayılan olarak işaretsiz bir kutuyu işaretlemelisin. Kutu işaretlenmeden değişiklik kaydedilemez. Kutuyu işaretlediğinde Wody, zamanı ve politika sürümünü profil ayarlarınla birlikte kaydeder.</p><p>Onay, senin beyanını kaydeder. İzinsiz bir görseli hukuka uygun hale getirmez ve Wody'nin kanundan doğan kendi yükümlülüklerini ortadan kaldırmaz.</p><p>Aynısı müzik için de geçerlidir. Bir şarkı yüklemeden önce, şarkının sana ait olduğunu veya Wody üzerinden herkese açık yapmak için hak sahibinin iznine sahip olduğunu onaylayan kutuyu işaretlemelisin. Yüklediğin veya bağladığın müzikle ilgili her telif hakkı iddiasından yalnızca sen sorumlusun. Lisansın olmayan ticari kayıtları yükleme. Wody bir bildirim sonrasında veya kullanım açıkça hukuka aykırıysa bir şarkıyı kaldırabilir, yüklemeleri kısıtlayabilir veya özelleştirmeyi askıya alabilir.</p>"
         },
         {
           "heading": "3. İzin verilmeyenler",
@@ -8146,7 +8217,7 @@
         },
         {
           "heading": "5. Görseller ve bağlantılar nasıl işlenir",
-          "html": "<p>Profil sayfana ve sunucu kartlarına eklediğin görseller, GIF'ler ve ses dosyaları Wody tarafından saklanmaz. Bir bağlantı verirsin, dosya onu barındıran platformda kalır ve Wody dosyayı yalnızca göstermek için oradan yükler. Yalnızca bağlantı geçerli olduğu sürece görünür kalır: dosyayı silersen veya barındıran taraf kaldırırsa Wody'den kaybolur. Wody, bağlantı adresini sen değiştirene veya kaldırana kadar ayarlarında saklar; dosya gösterilirken bir tarayıcı veya ağ önbelleğinde kısa süre kalabilir.</p><p>Tek istisna profil kartı arka planıdır: orada bağlantı yerine bir dosya yüklersen Wody bu dosyayı sen değiştirene veya silene kadar ya da bir bildirimden sonra kaldırılana kadar saklar.</p><p>Wody'nin, verdiğin bağlantıyı yalnızca özelleştirmeni göstermek için (örneğin profil sayfanda veya botun gönderdiği kartlarda) ve bildirilirse incelemek için yüklemesine izin verirsin.</p>"
+          "html": "<p>Profil sayfana ve sunucu kartlarına eklediğin görseller ve GIF'ler ile bağladığın sesler Wody tarafından saklanmaz. Bir bağlantı verirsin, dosya onu barındıran platformda kalır ve Wody dosyayı yalnızca göstermek için oradan yükler. Yalnızca bağlantı geçerli olduğu sürece görünür kalır: dosyayı silersen veya barındıran kaldırırsa Wody'den de kaybolur. Wody bağlantı adresini sen değiştirene veya kaldırana kadar ayarlarında saklar; dosya gösterilirken tarayıcı veya ağ önbelleğinde kısa süre tutulabilir.</p><p>İstisnalar profil kartı arka planı ve profil şarkındır: oraya bağlantı vermek yerine dosya yüklersen Wody dosyayı sen değiştirene veya silene kadar ya da bir bildirim sonrası kaldırılana kadar saklar. Şarkı yalnızca bir ziyaretçi oynat'a bastığında çalar.</p><p>Wody'nin, verdiğin bağlantıyı yalnızca özelleştirmeni göstermek için (örneğin profil sayfanda veya botun gönderdiği kartlarda) ve bildirilirse incelemek için yüklemesine izin verirsin.</p>"
         },
         {
           "heading": "6. Bildirimler ve inceleme",
@@ -8172,7 +8243,7 @@
     },
     "copyright": {
       "title": "Telif Hakkı ve Fikri Mülkiyet Politikası",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "1. Haklara saygı",
@@ -8184,7 +8255,7 @@
         },
         {
           "heading": "3. Sorumluluğun",
-          "html": "<p>Bir görsel yüklersen veya bağlarsan gerekli haklara ya da başka bir hukuki dayanağa sahip olmalısın. Herkese açık profilini her yayımladığında veya düzenlediğinde, varsayılan olarak işaretsiz bir kutuyu işaretleyerek bunu onaylar ve politikaları kabul edersin. Onay senin beyanındır. Bir garanti değildir ve izinsiz kullanımı hukuka uygun hale getirmez.</p>"
+          "html": "<p>Bir görsel veya şarkı yükler ya da bağlarsan gerekli haklara veya başka bir hukuki dayanağa sahip olmalısın. Herkese açık profilini her yayınladığında veya düzenlediğinde, önceden işaretlenmemiş bir kutuyu işaretleyerek bunu onaylar ve politikaları kabul edersin; şarkı yüklemeden önce ise şarkının sana ait olduğunu veya hak sahibinin iznine sahip olduğunu ayrıca onaylarsın. Onay senin beyanındır. Bir garanti değildir ve yetkisiz kullanımı hukuka uygun hale getirmez. Yüklediğin veya bağladığın müzikten yalnızca sen sorumlusun.</p>"
         },
         {
           "heading": "4. Olası bir ihlali bildirme",
@@ -8214,7 +8285,7 @@
     },
     "complaint": {
       "title": "Telif hakkı şikâyeti",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "Bu form nasıl kullanılır",

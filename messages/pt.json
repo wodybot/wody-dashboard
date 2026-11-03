@@ -495,6 +495,17 @@
             "Cada voto conta para o teu total pessoal, registado automaticamente por conta de Discord.",
             "Ao atingires 100 votos totais, abre um ticket no nosso servidor da comunidade para reclamares a tua chave. Pode depois ser ativada em qualquer servidor que possuas."
           ]
+        },
+        {
+          "key": "days",
+          "title": "Opção C: Dias de voto",
+          "steps": [
+            "Vota no Wody com o comando /vote. Cada voto adiciona 1 dia à tua conta.",
+            "Os dias são contados por conta e ficam guardados até os usares.",
+            "A partir de 7 dias guardados, ativa-os em qualquer servidor Wody no separador Premium do dashboard ou com /redeemvotes.",
+            "Sem ticket, sem chave e sem esperar por aprovação."
+          ],
+          "isNew": true
         }
       ],
       "value": "O Premium não tem preço, porque preferimos recompensar as pessoas que realmente fazem a comunidade crescer. Cada chave permanece associada a um único servidor, tem um limite de utilização e é revogada assim que uma promoção se revela falsa ou os votos são manipulados.",
@@ -1132,16 +1143,16 @@
         "html": "<p>This Policy may be updated when the service or its data processing practices change. The revision date shown above identifies the current version. Material changes may also be announced through the official Wody community channels where appropriate.</p>"
       },
       {
-        "heading": "27. Contact",
-        "html": "<p>For privacy, legal, or data protection questions, contact Păcurar Ancuța-Narcisa, the Operator, at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>.</p> <p>Wody may also use the optional <code>wody_language</code> preference cookie to remember a language you actively choose. It is not created or updated unless you consent to Preferences, and the language selector remains hidden until that consent exists. Your cookie choice is recorded using the strictly necessary <code>wody_cookie_consent</code> cookie. You can change or withdraw the optional preference at any time in the Cookie Policy.</p>"
+        "heading": "27. Imagens de perfil, links de música e registos de moderação",
+        "html": "<p>As imagens e GIFs que adicionas à tua página de perfil e aos cartões de servidor, e qualquer áudio associado por link, são guardados apenas como links: o Wody não mantém cópia. As imagens são carregadas através do servidor do Wody a partir da plataforma que as aloja, pelo que o endereço IP do visitante não chega a essa plataforma; só ficam visíveis enquanto o link continuar válido. Um ficheiro de áudio associado por link é carregado diretamente pelo navegador do visitante apenas depois de carregar em reproduzir, pelo que o seu endereço IP chega ao site que o aloja. Uma música que envies é servida pelo próprio Wody, também só depois de o visitante carregar em reproduzir. Os únicos ficheiros que o Wody guarda são uma imagem enviada como fundo do cartão de perfil e uma música enviada para a tua página de perfil, cada um até o substituíres ou eliminares ou até ser removido após uma denúncia. Para uma música enviada, o Wody guarda também a data e a versão da tua confirmação de direitos. O Wody guarda as denúncias, a referência ao conteúdo, a decisão de moderação e o seu histórico, e a hora e a versão da tua confirmação da política, para tratar o caso e evitar violações repetidas. A página de perfil pode contar visualizações com um simples contador na base de dados, sem cookies e sem guardar o endereço IP.</p>"
       },
       {
-        "heading": "28. Imagens de perfil, links de música e registos de moderação",
-        "html": "<p>As imagens, os GIF e o áudio que adicionas à tua página de perfil e aos cartões do servidor são guardados apenas como links: o Wody não guarda nenhuma cópia. As imagens são carregadas através do servidor do Wody a partir da plataforma que as aloja, pelo que o endereço IP do visitante não chega a essa plataforma; só ficam visíveis enquanto o link continuar válido. O ficheiro de áudio é carregado diretamente pelo navegador do visitante apenas depois de carregar em reproduzir, pelo que o seu endereço IP chega ao site que aloja o ficheiro. O único ficheiro que o Wody armazena é uma imagem que envias como fundo do cartão de perfil, mantida até a substituíres ou eliminares. O Wody guarda as denúncias, a referência ao conteúdo, a decisão de moderação e o seu histórico, e a hora e a versão da tua confirmação da política, para tratar o caso e evitar violações repetidas. A página de perfil pode contar visualizações com um simples contador na base de dados, sem cookies e sem guardar o endereço IP.</p>"
-      },
-      {
-        "heading": "29. Radar e Pulse (consultas e feeds)",
+        "heading": "28. Radar e Pulse (consultas e feeds)",
         "html": "<p>Quando um membro executa uma consulta /radar, o texto que escreve (por exemplo um nome de utilizador, o endereço de um servidor ou o nome de uma moeda) é enviado ao serviço escolhido para obter a resposta. Quando um administrador adiciona um feed /pulse, o endereço ou nome introduzido é guardado nas definições do servidor e verificado periodicamente no serviço de origem. Estes pedidos são feitos pelo servidor do Wody, pelo que o endereço IP do membro não chega ao serviço. O Wody só guarda os resultados das consultas numa cache curta e não guarda o conteúdo dos feeds, apenas o necessário para não publicar o mesmo item duas vezes. Cada serviço aplica a sua própria política de privacidade.</p>"
+      },
+      {
+        "heading": "29. Contact",
+        "html": "<p>For privacy, legal, or data protection questions, contact Păcurar Ancuța-Narcisa, the Operator, at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>.</p> <p>Wody may also use the optional <code>wody_language</code> preference cookie to remember a language you actively choose. It is not created or updated unless you consent to Preferences, and the language selector remains hidden until that consent exists. Your cookie choice is recorded using the strictly necessary <code>wody_cookie_consent</code> cookie. You can change or withdraw the optional preference at any time in the Cookie Policy.</p>"
       }
     ]
   },
@@ -1182,7 +1193,7 @@
       },
       {
         "heading": "9. Premium",
-        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications and unlimited creation limits across modules. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p>"
+        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications and unlimited creation limits across modules. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Novo: dias de voto.</strong> Cada voto no Wody no top.gg adiciona um dia à tua conta. Os dias são contados por conta, não podem ser transferidos nem vendidos e podem ser ativados quando tiveres pelo menos 7 guardados. A ativação adiciona todos os dias guardados como tempo Premium a um servidor à tua escolha, no dashboard ou com <code>/redeemvotes</code>. Podemos remover dias ou tempo Premium obtidos com votos automatizados, comprados ou manipulados.</p>"
       },
       {
         "heading": "10. Uptime and Availability",
@@ -1253,12 +1264,12 @@
         "html": "<p>These Terms are governed by Romanian law and, where applicable, European Union law, without taking away any mandatory consumer protection you have under the law of your own country of residence if you're elsewhere in the EU.</p>"
       },
       {
-        "heading": "27. Contact",
-        "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
+        "heading": "27. Personalização do perfil e imagens dos usuários",
+        "html": "<p>Você pode adicionar imagens, GIFs, áudio ou links ao seu perfil somente se tiver os direitos necessários. Cada vez que publica ou edita seu perfil público, você marca uma caixa que confirma isso e aceita as políticas. As imagens e os links apenas remetem para a plataforma que os aloja e permanecem visíveis enquanto o link for válido. Se enviares uma música, o Wody guarda esse ficheiro até o substituíres ou removeres, e antes do envio confirmas que és titular da música ou que tens a autorização do titular dos direitos. És o único responsável por qualquer música que envies ou associes, incluindo qualquer reclamação de direitos de autor, e não deves enviar música que não tenhas o direito de usar publicamente. Qualquer pessoa pode denunciar conteúdo. Após a análise, o Wody pode remover o conteúdo, restringir ou suspender a personalização e suspender ou bloquear a conta do Discord vinculada ao perfil para os recursos do Wody; você pode recorrer. Detalhes: Política de conteúdo de usuários e Política de direitos autorais e propriedade intelectual.</p>"
       },
       {
-        "heading": "28. Personalização do perfil e imagens dos usuários",
-        "html": "<p>Você pode adicionar imagens, GIFs, áudio ou links ao seu perfil somente se tiver os direitos necessários. Cada vez que publica ou edita seu perfil público, você marca uma caixa que confirma isso e aceita as políticas. Imagens e áudio são apenas vinculados da plataforma que os hospeda e ficam visíveis enquanto o link for válido. Qualquer pessoa pode denunciar conteúdo. Após a análise, o Wody pode remover o conteúdo, restringir ou suspender a personalização e suspender ou bloquear a conta do Discord vinculada ao perfil para os recursos do Wody; você pode recorrer. Detalhes: Política de conteúdo de usuários e Política de direitos autorais e propriedade intelectual.</p>"
+        "heading": "28. Contact",
+        "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
       }
     ]
   },
@@ -1300,8 +1311,9 @@
     "higherLimitsSubtitle": "O Premium remove estes limites por completo. O painel mostra sempre o limite real do servidor atual.",
     "freeToPremium": "Grátis → Premium",
     "howToGetTitle": "Como obter o Premium",
-    "howToGetSubtitle": "Duas formas de conseguir uma chave. Qualquer uma funciona, escolha a que mais combina contigo.",
-    "joinCommunityBtn": "Entrar na Comunidade"
+    "howToGetSubtitle": "Duas formas de ganhar uma chave, mais os dias de voto que não precisam de chave nenhuma.",
+    "joinCommunityBtn": "Entrar na Comunidade",
+    "newBadge": "Novo"
   },
   "commands": {
     "metaTitle": "Wody - Comandos | Discord Bot",
@@ -1362,6 +1374,10 @@
           {
             "name": "/votestatus",
             "description": "Verificar o total de votos e o próximo horário elegível para votar"
+          },
+          {
+            "name": "/redeemvotes",
+            "description": "Ativa os teus dias de voto guardados como Premium neste servidor"
           }
         ]
       },
@@ -1932,7 +1948,8 @@
       "Fix": "Correção",
       "Announcement": "Anúncio",
       "Update": "Atualização"
-    }
+    },
+    "credits": "Créditos"
   },
   "blog": {
     "metaTitle": "Wody - Blog",
@@ -2135,7 +2152,13 @@
         "copyright": "Política de direitos de autor",
         "required": "Marca a caixa para confirmar e aceitar as políticas.",
         "blocked": "A tua conta está suspensa ou bloqueada e não pode editar este perfil."
-      }
+      },
+      "searchPlaceholder": "Pesquisar…",
+      "noResults": "Sem resultados",
+      "addMore": "Adicionar mais",
+      "clearAll": "Limpar tudo",
+      "remove": "Remover",
+      "limitReached": "Limite atingido ({max})"
     },
     "groups": {
       "server": "Servidor",
@@ -2913,7 +2936,11 @@
       "deleteConfirm": "Apagar este painel de reaction roles?",
       "deletedSuccess": "Apagado",
       "deleteFailed": "Falha ao apagar",
-      "legacyVerifyHint": "O modo Verificar concede o cargo quando alguém reage ou clica num botão diretamente no Discord. Para uma verificação baseada na web com um único botão para todo o servidor, usa o módulo Captcha no menu lateral."
+      "legacyVerifyHint": "O modo Verificar concede o cargo quando alguém reage ou clica num botão diretamente no Discord. Para uma verificação baseada na web com um único botão para todo o servidor, usa o módulo Captcha no menu lateral.",
+      "previewTitle": "Pré-visualização em direto",
+      "previewDefaultTitle": "Título do teu painel",
+      "previewReactions": "Reações que o Wody adiciona",
+      "previewHint": "Assim ficará a mensagem no teu canal. Modo: {mode}."
     },
     "autoResponses": {
       "title": "Respostas Automáticas",
@@ -3350,7 +3377,8 @@
       "rbErrPriority": "A prioridade deve ser um número inteiro de 0 a 1000.",
       "rbErrEmpty": "Cada bónus precisa de um multiplicador acima de 1 ou XP extra acima de 0.",
       "auroraSpecial": "Miami Style",
-      "auroraSpecialHint": "Cenas retro de pôr do sol com arte própria desenhada no cartão. Serve para os cartões de nível, boas-vindas e despedida."
+      "auroraSpecialHint": "Cenas retro de pôr do sol com arte própria desenhada no cartão. Serve para os cartões de nível, boas-vindas e despedida.",
+      "auroraUseGradient": "Usar o gradiente"
     },
     "suggestions": {
       "title": "Sugestões",
@@ -3417,7 +3445,20 @@
         "giveaways": "Sorteios",
         "forumAutomations": "Automatizações de fórum",
         "discoveryBumps": "Bumps no Discovery"
-      }
+      },
+      "newBadge": "Novo",
+      "voteTitle": "Premium com votos",
+      "voteDesc": "Cada voto no top.gg adiciona 1 dia de Wody Premium à tua conta. Os votos são contados por conta. A partir de {min} dias guardados podes ativar tudo neste servidor.",
+      "voteDaysLabel": "dias guardados",
+      "voteProgress": "{days} de {min} dias guardados. Continua a votar para desbloquear a ativação.",
+      "voteReady": "{days} dias estão prontos a ativar.",
+      "voteHow": "Preferes o Discord? Usa /redeemvotes no servidor. Usa /vote para ganhar mais dias.",
+      "voteRedeem": "Ativar {days} dias",
+      "voteDoneTitle": "Dias de voto ativados",
+      "voteDoneDesc": "Foram adicionados {days} dias de Premium a este servidor.",
+      "voteNoEnd": "Este servidor já tem Premium sem data de fim. Os teus dias foram mantidos.",
+      "voteNotEnough": "Precisas de pelo menos {min} dias guardados para ativar.",
+      "voteFailed": "Não foi possível ativar os teus dias. Tenta de novo."
     },
     "youtubeNotify": {
       "title": "Notificações do YouTube",
@@ -5131,7 +5172,10 @@
     "manage": "Gerir",
     "inviteHere": "Convidar Wody",
     "refresh": "Atualizar",
-    "loadError": "Não foi possível carregar os servidores. Tente novamente."
+    "loadError": "Não foi possível carregar os servidores. Tente novamente.",
+    "missingTitle": "Servidores sem o Wody",
+    "missingText": "Convida o Wody para começares a gerir estes servidores.",
+    "presentTitle": "Servidores com o Wody"
   },
   "modules": {
     "general": {
@@ -6909,7 +6953,9 @@
     "emptyText": "Joga num servidor com Wody Economy e volta em breve, a classificação atualiza a cada 5 minutos.",
     "unavailable": "A classificação não está disponível agora. Tenta novamente daqui a pouco.",
     "cta": "Adiciona o Wody ao teu servidor",
-    "coins": "{n} moedas"
+    "coins": "{n} moedas",
+    "ctaTitle": "Queres o teu servidor no ranking?",
+    "ctaText": "Adiciona o Wody, ativa a Economy e os teus membros começam a subir no ranking global."
   },
   "collab": {
     "title": "WODY Collab",
@@ -7654,7 +7700,9 @@
       "cancel": "Cancelar",
       "saving": "A guardar...",
       "error": "Não foi possível alterar a visibilidade. Tenta novamente.",
-      "privateBadge": "Privado: só membros do Wody com login podem abri-lo"
+      "privateBadge": "Privado: só membros do Wody com login podem abri-lo",
+      "statusPublic": "Perfil público",
+      "statusPrivate": "Perfil privado"
     },
     "metaTitle": "Perfil",
     "saveAll": "Salvar todas as configurações",
@@ -8109,7 +8157,30 @@
       "links": "Links",
       "card": "Cartão de nível",
       "socials": "Redes sociais",
-      "stats": "Estatísticas"
+      "stats": "Estatísticas",
+      "passport": "Passaporte"
+    },
+    "passportNo": "N.º do passaporte",
+    "daysWith": "Dias com o Wody",
+    "passportSince": "Reivindicado",
+    "bansLabel": "Servidores com ban",
+    "musicUploadTitle": "Ou envia uma música do teu computador",
+    "musicRights": "Sou titular desta música ou tenho autorização do titular dos direitos para a usar publicamente. Sou o único responsável por qualquer reclamação de direitos de autor e compreendo que o Wody pode remover o ficheiro e restringir ou suspender a personalização do meu perfil.",
+    "musicUpload": "Enviar música",
+    "musicUploading": "A enviar...",
+    "musicRemove": "Remover música",
+    "musicUploaded": "Música enviada. Marca as políticas e carrega em Guardar para a publicar.",
+    "musicStoredNote": "Guardada no Wody. Uma música por conta, um novo envio substitui o anterior.",
+    "musicLimits": "MP3, OGG, M4A, WAV ou FLAC, até 4 MB. Uma música por conta. Nunca começa sozinha.",
+    "musicError": {
+      "audio_too_large": "O ficheiro é demasiado grande. O limite é 4 MB.",
+      "audio_invalid": "Não é um ficheiro MP3, OGG, M4A, WAV ou FLAC válido.",
+      "rate_limited": "Demasiados envios. Tenta mais tarde.",
+      "uploads_restricted": "Os envios estão restringidos no teu perfil.",
+      "customization_suspended": "A personalização do teu perfil está suspensa.",
+      "account_blocked": "Esta conta não pode enviar ficheiros.",
+      "rights_acceptance_required": "Confirma primeiro que tens os direitos desta música.",
+      "generic": "O envio falhou. Tenta de novo."
     }
   },
   "policies": {
@@ -8126,15 +8197,15 @@
     "contactHtml": "Operadora: Păcurar Ancuța-Narcisa, Roménia, União Europeia. Contacto geral: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.",
     "content-policy": {
       "title": "Política de conteúdo do utilizador",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "1. O que esta política abrange",
-          "html": "<p>O Wody permite-te personalizar a tua página de perfil, o cartão de nível e os cartões de boas-vindas e de despedida. Podes dar ao Wody um link para uma imagem, um GIF ou um ficheiro de áudio alojado noutra plataforma e, apenas para o fundo do cartão de perfil, enviar uma imagem. Esta política explica o que podes usar, como é tratado e como as denúncias são tratadas. Aplica-se além dos Termos e condições.</p>"
+          "html": "<p>O Wody permite-te personalizar a tua página de perfil, o cartão de nível e os cartões de boas-vindas e de despedida. Podes dar ao Wody um link para uma imagem, GIF ou ficheiro de áudio alojado noutra plataforma e, para o fundo do cartão de perfil e para a música do perfil, enviar um ficheiro. Esta política explica o que podes usar, como é tratado e como as denúncias são tratadas. Aplica-se além dos Termos e condições.</p>"
         },
         {
           "heading": "2. As tuas imagens e links",
-          "html": "<p>Só podes usar imagens para personalização pessoal. Tens de ser o titular da imagem, ter uma licença para ela ou ter outra base legal para a usar e para que seja exibida através do Wody. Conseguir encontrar uma imagem na internet não significa que a possas usar.</p><p>Sempre que publicares ou editares o teu perfil público (página de perfil, dados públicos do perfil, imagem ou link do cartão de perfil ou imagens dos cartões do servidor) tens de marcar uma caixa desmarcada por predefinição que confirma que és titular do conteúdo ou tens permissão para o usar e que aceitas estas políticas. Sem a caixa marcada, a alteração não pode ser guardada. Quando a marcas, o Wody regista a hora e a versão da política juntamente com as definições do teu perfil.</p><p>A confirmação regista a tua declaração. Não torna lícita uma imagem não autorizada e não elimina as obrigações do próprio Wody nos termos da lei.</p>"
+          "html": "<p>Só podes usar imagens para personalização pessoal. Tens de ser o titular da imagem, ter uma licença para ela ou ter outra base legal para a usar e para que seja exibida através do Wody. Conseguir encontrar uma imagem na internet não significa que a possas usar.</p><p>Sempre que publicares ou editares o teu perfil público (página de perfil, dados públicos do perfil, imagem ou link do cartão de perfil ou imagens dos cartões do servidor) tens de marcar uma caixa desmarcada por predefinição que confirma que és titular do conteúdo ou tens permissão para o usar e que aceitas estas políticas. Sem a caixa marcada, a alteração não pode ser guardada. Quando a marcas, o Wody regista a hora e a versão da política juntamente com as definições do teu perfil.</p><p>A confirmação regista a tua declaração. Não torna lícita uma imagem não autorizada e não elimina as obrigações do próprio Wody nos termos da lei.</p><p>O mesmo se aplica à música. Antes de enviares uma música tens de assinalar uma caixa que confirme que és titular dela ou que tens a autorização do titular dos direitos para a tornar pública através do Wody. És o único responsável por qualquer reclamação de direitos de autor sobre a música que envies ou associes. Não envies gravações comerciais para as quais não tenhas licença. O Wody pode remover uma música, restringir envios ou suspender a personalização após uma denúncia ou quando o uso seja claramente ilícito.</p>"
         },
         {
           "heading": "3. O que não é permitido",
@@ -8146,7 +8217,7 @@
         },
         {
           "heading": "5. Como as imagens e os links são tratados",
-          "html": "<p>As imagens, os GIF e o áudio que adicionas à tua página de perfil e aos cartões do servidor não são armazenados pelo Wody. Forneces um link, o ficheiro fica na plataforma que o aloja e o Wody só o carrega de lá para o mostrar. Só fica visível enquanto o link continuar válido: se eliminares o ficheiro ou o alojamento o removê-lo, desaparece do Wody. O Wody guarda o endereço do link nas tuas definições até o alterares ou removeres, e o ficheiro pode ficar por pouco tempo na cache de um navegador ou da rede enquanto é exibido.</p><p>A única exceção é o fundo do cartão de perfil: se enviares aí um ficheiro em vez de um link, o Wody guarda-o até o substituíres ou eliminares, ou até ser removido após uma denúncia.</p><p>Permites que o Wody carregue o link que forneces apenas para mostrar a tua personalização (por exemplo na tua página de perfil ou nos cartões publicados pelo bot) e para o analisar se for denunciado.</p>"
+          "html": "<p>As imagens e GIFs que adicionas à tua página de perfil e aos cartões de servidor, e o áudio associado por link, não são armazenados pelo Wody. Forneces um link, o ficheiro permanece na plataforma que o aloja e o Wody apenas o carrega de lá para o mostrar. Só permanece visível enquanto o link for válido: se apagares o ficheiro ou o alojamento o remover, desaparece do Wody. O Wody guarda o endereço do link nas tuas definições até o alterares ou removeres, e o ficheiro pode ser mantido por pouco tempo na cache do navegador ou da rede enquanto é apresentado.</p><p>As exceções são o fundo do cartão de perfil e a música do perfil: se enviares aí um ficheiro em vez de um link, o Wody guarda-o até o substituíres ou eliminares, ou até ser removido após uma denúncia. Uma música só toca quando um visitante carrega em reproduzir.</p><p>Permites que o Wody carregue o link que forneces apenas para mostrar a tua personalização (por exemplo na tua página de perfil ou nos cartões publicados pelo bot) e para o analisar se for denunciado.</p>"
         },
         {
           "heading": "6. Denúncias e análise",
@@ -8172,7 +8243,7 @@
     },
     "copyright": {
       "title": "Política de direitos de autor e propriedade intelectual",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "1. Respeito pelos direitos",
@@ -8184,7 +8255,7 @@
         },
         {
           "heading": "3. A tua responsabilidade",
-          "html": "<p>Se enviares ou ligares uma imagem, tens de ter os direitos necessários ou outra base legal. Sempre que publicas ou editas o teu perfil público confirmas isso, e aceitas as políticas, marcando uma caixa desmarcada por predefinição. A confirmação é a tua declaração. Não é uma garantia e não torna lícito um uso não autorizado.</p>"
+          "html": "<p>Se enviares ou associares uma imagem ou uma música, deves ter os direitos necessários ou outra base legal. Sempre que publicas ou editas o teu perfil público confirmas isso e aceitas as políticas ao assinalar uma caixa não pré-assinalada, e antes de enviares uma música confirmas separadamente que és titular dela ou que tens a autorização do titular dos direitos. A confirmação é a tua declaração. Não é uma garantia e não torna lícito um uso não autorizado. És o único responsável pela música que envies ou associes.</p>"
         },
         {
           "heading": "4. Denunciar uma possível violação",
@@ -8214,7 +8285,7 @@
     },
     "complaint": {
       "title": "Reclamação de direitos de autor",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "Como usar este formulário",

@@ -5,7 +5,7 @@
    "group": "music",
    "label": "Apple Music artist",
    "hint": "Artist link or ID",
-   "example": "https://music.apple.com/us/artist/taylor-swift/159260351",
+   "example": "https://music.apple.com/us/artist/artist-name/1234567890",
    "needs": null,
    "generator": false,
    "targetOptional": false,

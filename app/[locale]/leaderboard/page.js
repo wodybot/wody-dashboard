@@ -1,5 +1,6 @@
 import { getLocale, getTranslations } from 'next-intl/server';
-import { Trophy, Crown, Users, Server } from 'lucide-react';
+import { Trophy, Crown, Users, Server, Bot } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { Footer, TopNav } from '@/components/nav';
 import { localizedAlternates } from '@/lib/community/seo';
 import { getGlobalBoard, boardAvatar } from '@/lib/global-board';
@@ -136,8 +137,14 @@ export default async function GlobalLeaderboardPage() {
           </>
         )}
 
-        <div className="mt-10 text-center">
-          <a href={INVITE_URL} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-primary hover:underline underline-offset-4">{t('cta')}</a>
+        <div className="mx-auto mt-12 max-w-xl overflow-hidden rounded-3xl border border-[#c46a2d]/30 bg-gradient-to-br from-[#c46a2d]/15 via-card/60 to-card/40 p-6 text-center sm:p-8">
+          <h2 className="text-lg font-bold sm:text-xl">{t('ctaTitle')}</h2>
+          <p className="mx-auto mt-1.5 max-w-md text-sm text-muted-foreground">{t('ctaText')}</p>
+          <a href={INVITE_URL} target="_blank" rel="noopener noreferrer" className="mt-5 inline-block">
+            <Button className="gradient-primary h-11 gap-2 px-6 text-sm font-semibold shadow-lg shadow-[#c46a2d]/20">
+              <Bot className="h-4 w-4" aria-hidden="true" />{t('cta')}
+            </Button>
+          </a>
         </div>
       </main>
       <Footer />

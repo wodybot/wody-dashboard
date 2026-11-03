@@ -5,7 +5,7 @@ import { INVITE_URL } from '@/lib/content';
 import { Button } from '@/components/ui/button';
 import { Footer, TopNav } from '@/components/nav';
 import { getDb, serializeDoc } from '@/lib/mongo';
-import { SimpleMarkdown } from '@/components/simple-markdown';
+import { UpdateEntry } from '@/components/update-entry';
 import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
@@ -140,20 +140,10 @@ export default async function UpdatesPage() {
         ) : (
           <div className="space-y-5">
             {updates.map((u) => (
-              <article key={u._id} className="rounded-3xl border border-border/70 bg-card/55 backdrop-blur-sm p-6 sm:p-8">
-                <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <span className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium ${tagClass(u.tag)}`}>
-                    {tagLabel(u.tag)}
-                  </span>
-                  {u.created_at && (
-                    <time className="text-xs text-muted-foreground" dateTime={u.created_at}>
-                      {new Date(u.created_at).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}
-                    </time>
-                  )}
-                </div>
-                <h2 className="text-xl sm:text-2xl font-semibold mb-3">{u.title}</h2>
-                <SimpleMarkdown text={u.body} className="text-sm sm:text-base text-muted-foreground" />
-              </article>
+              <UpdateEntry
+                key={u._id} u={u} tagLabel={tagLabel(u.tag)} creditsLabel={t('credits')} dateTime={u.created_at}
+                dateText={u.created_at ? new Date(u.created_at).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
+              />
             ))}
           </div>
         )}

@@ -497,6 +497,17 @@
             "Fiecare vot contează la totalul tău personal, urmărit automat per cont de Discord.",
             "După ce ajungi la 100 de voturi totale, deschide un tichet în serverul nostru de comunitate pentru a-ți revendica cheia. Poate fi apoi activată pe orice server pe care îl deții."
           ]
+        },
+        {
+          "key": "days",
+          "title": "Opțiunea C: Zile de vot",
+          "steps": [
+            "Votează pentru Wody cu comanda /vote. Fiecare vot adaugă 1 zi în contul tău.",
+            "Zilele se numără pe cont și rămân salvate până le folosești.",
+            "De la 7 zile salvate le activezi pe orice server Wody din fila Premium a dashboard-ului sau cu /redeemvotes.",
+            "Fără tichet, fără cheie și fără să aștepți aprobare."
+          ],
+          "isNew": true
         }
       ],
       "value": "Premium nu are preț, pentru că preferăm să răsplătim oamenii care chiar dezvoltă comunitatea. Fiecare cheie rămâne legată de un singur server, are o limită de utilizare și este revocată imediat ce o promovare se dovedește falsă sau voturile sunt manipulate.",
@@ -1134,16 +1145,16 @@
         "html": "<p>This Policy may be updated when the service or its data processing practices change. The revision date shown above identifies the current version. Material changes may also be announced through the official Wody community channels where appropriate.</p>"
       },
       {
-        "heading": "27. Contact",
-        "html": "<p>For privacy, legal, or data protection questions, contact Păcurar Ancuța-Narcisa, the Operator, at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>.</p> <p>Wody may also use the optional <code>wody_language</code> preference cookie to remember a language you actively choose. It is not created or updated unless you consent to Preferences, and the language selector remains hidden until that consent exists. Your cookie choice is recorded using the strictly necessary <code>wody_cookie_consent</code> cookie. You can change or withdraw the optional preference at any time in the Cookie Policy.</p>"
+        "heading": "27. Imagini de profil, linkuri muzicale și evidențe de moderare",
+        "html": "<p>Imaginile și GIF-urile pe care le adaugi pe pagina de profil și pe cardurile serverelor, precum și audio-ul legat prin link, sunt păstrate doar ca linkuri: Wody nu ține o copie. Imaginile sunt încărcate prin serverul Wody de pe platforma care le găzduiește, deci adresa IP a vizitatorului nu ajunge la acea platformă; rămân vizibile doar cât timp linkul este valid. Un fișier audio legat prin link este încărcat direct de browserul vizitatorului doar după ce apasă play, deci adresa lui IP ajunge la site-ul care îl găzduiește. O melodie încărcată de tine este servită chiar de Wody, tot doar după ce vizitatorul apasă play. Singurele fișiere pe care Wody le stochează sunt o imagine încărcată ca fundal al cardului de profil și o melodie încărcată pe pagina de profil, fiecare păstrată până o înlocuiești sau o ștergi ori până este eliminată în urma unei sesizări. Pentru o melodie încărcată, Wody păstrează și momentul și versiunea confirmării drepturilor tale. Wody păstrează raportările, referința conținutului, decizia de moderare și istoricul ei, precum și momentul și versiunea confirmării politicilor, pentru a trata cazul și a preveni repetarea. Pagina de profil poate număra vizualizările ca un simplu contor în baza de date, fără cookie-uri și fără stocarea adresei IP.</p>"
       },
       {
-        "heading": "28. Imagini de profil, linkuri muzicale și evidențe de moderare",
-        "html": "<p>Imaginile, GIF-urile și fișierele audio pe care le adaugi pe pagina ta de profil și pe cardurile serverului sunt păstrate doar ca linkuri: Wody nu păstrează o copie. Imaginile sunt încărcate prin serverul Wody de pe platforma care le găzduiește, deci adresa IP a vizitatorului nu ajunge la acea platformă; rămân vizibile doar cât timp linkul este valid. Fișierul audio este încărcat direct de browserul vizitatorului abia după ce apasă play, astfel încât adresa lui IP ajunge la site-ul care găzduiește fișierul. Singurul fișier pe care Wody îl stochează este o imagine încărcată de tine ca fundal al cardului de profil, păstrată până o înlocuiești sau o ștergi. Wody păstrează raportările, referința conținutului, decizia de moderare și istoricul ei, precum și momentul și versiunea confirmării politicilor, pentru a trata cazul și a preveni repetarea. Pagina de profil poate număra vizualizările ca un simplu contor în baza de date, fără cookie-uri și fără stocarea adresei IP.</p>"
-      },
-      {
-        "heading": "29. Radar și Pulse (căutări și feeduri)",
+        "heading": "28. Radar și Pulse (căutări și feeduri)",
         "html": "<p>Când un membru folosește o căutare /radar, textul introdus (de exemplu un nume de utilizator, o adresă de server sau numele unei monede) este trimis serviciului ales ca să obțină răspunsul. Când un administrator adaugă un feed /pulse, adresa sau numele introdus este păstrat în setările serverului și verificat periodic la serviciul sursă. Cererile sunt făcute de serverul Wody, deci adresa IP a membrului nu ajunge la serviciu. Wody nu păstrează rezultatele căutărilor decât într-un cache scurt și nu păstrează conținutul feedurilor, ci doar ce este necesar ca să nu posteze același element de două ori. Fiecare serviciu își aplică propria politică de confidențialitate.</p>"
+      },
+      {
+        "heading": "29. Contact",
+        "html": "<p>For privacy, legal, or data protection questions, contact Păcurar Ancuța-Narcisa, the Operator, at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>.</p> <p>Wody may also use the optional <code>wody_language</code> preference cookie to remember a language you actively choose. It is not created or updated unless you consent to Preferences, and the language selector remains hidden until that consent exists. Your cookie choice is recorded using the strictly necessary <code>wody_cookie_consent</code> cookie. You can change or withdraw the optional preference at any time in the Cookie Policy.</p>"
       }
     ]
   },
@@ -1184,7 +1195,7 @@
       },
       {
         "heading": "9. Premium",
-        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications and unlimited creation limits across modules. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p>"
+        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications and unlimited creation limits across modules. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Nou: zile de vot.</strong> Fiecare vot pentru Wody pe top.gg adaugă o zi în contul tău. Zilele se numără pe cont, nu pot fi transferate sau vândute și pot fi activate după ce ai salvat cel puțin 7. Activarea adaugă toate zilele salvate ca timp Premium pe un singur server ales de tine, din dashboard sau cu <code>/redeemvotes</code>. Putem elimina zilele sau timpul Premium obținut din voturi automate, cumpărate sau manipulate.</p>"
       },
       {
         "heading": "10. Uptime and Availability",
@@ -1255,12 +1266,12 @@
         "html": "<p>These Terms are governed by Romanian law and, where applicable, European Union law, without taking away any mandatory consumer protection you have under the law of your own country of residence if you're elsewhere in the EU.</p>"
       },
       {
-        "heading": "27. Contact",
-        "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
+        "heading": "27. Personalizarea profilului și imaginile utilizatorilor",
+        "html": "<p>Poți adăuga imagini, GIF-uri, audio sau linkuri pe profil doar dacă ai drepturile necesare. De fiecare dată când publici sau editezi profilul public bifezi o casetă prin care confirmi acest lucru și accepți politicile. Imaginile și linkurile sunt doar trimise către platforma care le găzduiește și rămân vizibile cât timp linkul este valid. Dacă încarci o melodie, Wody păstrează fișierul până îl înlocuiești sau îl ștergi, iar înainte de încărcare confirmi că ești proprietarul muzicii sau că ai permisiunea deținătorului drepturilor. Răspunzi singur pentru orice muzică pe care o încarci sau o legi, inclusiv pentru orice reclamație privind drepturile de autor, și nu ai voie să încarci muzică pe care nu ai dreptul să o folosești public. Oricine poate raporta conținut. După verificare, Wody poate elimina conținutul, restricționa sau suspenda personalizarea și suspenda ori bloca contul Discord asociat profilului pentru funcțiile Wody; poți face contestație. Detalii: Politica privind conținutul utilizatorilor și Politica privind drepturile de autor și proprietatea intelectuală.</p>"
       },
       {
-        "heading": "28. Personalizarea profilului și imaginile utilizatorilor",
-        "html": "<p>Poți adăuga imagini, GIF-uri, audio sau linkuri pe profil doar dacă ai drepturile necesare. De fiecare dată când publici sau editezi profilul public bifezi o casetă prin care confirmi acest lucru și accepți politicile. Imaginile și audio sunt doar linkuri către platforma care le găzduiește și se văd cât timp linkul este valid. Oricine poate raporta conținut. După verificare, Wody poate elimina conținutul, restricționa sau suspenda personalizarea și suspenda ori bloca contul Discord asociat profilului pentru funcțiile Wody; poți face contestație. Detalii: Politica privind conținutul utilizatorilor și Politica privind drepturile de autor și proprietatea intelectuală.</p>"
+        "heading": "28. Contact",
+        "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
       }
     ]
   },
@@ -1302,8 +1313,9 @@
     "higherLimitsSubtitle": "Premium elimină complet aceste limite. Dashboard-ul afișează mereu limita reală pentru serverul curent.",
     "freeToPremium": "Gratuit → Premium",
     "howToGetTitle": "Cum obții Premium",
-    "howToGetSubtitle": "Două moduri de a obține o cheie. Oricare funcționează, alege-l pe cel care ți se potrivește.",
-    "joinCommunityBtn": "Alătură-te Comunității"
+    "howToGetSubtitle": "Două moduri de a câștiga o cheie, plus zilele de vot care nu cer nicio cheie.",
+    "joinCommunityBtn": "Alătură-te Comunității",
+    "newBadge": "Nou"
   },
   "commands": {
     "metaTitle": "Comenzi Wody | Lista completă a botului Discord",
@@ -1364,6 +1376,10 @@
           {
             "name": "/votestatus",
             "description": "Verifică numărul total de voturi și următorul moment în care poți vota"
+          },
+          {
+            "name": "/redeemvotes",
+            "description": "Activează zilele de vot salvate ca Premium pe acest server"
           }
         ]
       },
@@ -1934,7 +1950,8 @@
       "Fix": "Remediere",
       "Announcement": "Anunț",
       "Update": "Actualizare"
-    }
+    },
+    "credits": "Credite"
   },
   "blog": {
     "metaTitle": "Wody - Blog",
@@ -2137,7 +2154,13 @@
         "copyright": "Politica drepturilor de autor",
         "required": "Bifează caseta pentru a confirma și a accepta politicile.",
         "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil."
-      }
+      },
+      "searchPlaceholder": "Caută…",
+      "noResults": "Niciun rezultat",
+      "addMore": "Adaugă încă",
+      "clearAll": "Șterge tot",
+      "remove": "Elimină",
+      "limitReached": "Limită atinsă ({max})"
     },
     "groups": {
       "server": "Server",
@@ -2915,7 +2938,11 @@
       "deleteConfirm": "Ștergi acest panou de reacții?",
       "deletedSuccess": "Șters",
       "deleteFailed": "Ștergerea a eșuat",
-      "legacyVerifyHint": "Modul Verificare acordă rolul când cineva reacționează sau apasă un buton chiar în Discord. Pentru o verificare printr-o pagină web, cu un singur buton pentru tot serverul, folosește modulul Captcha din meniul din stânga."
+      "legacyVerifyHint": "Modul Verificare acordă rolul când cineva reacționează sau apasă un buton chiar în Discord. Pentru o verificare printr-o pagină web, cu un singur buton pentru tot serverul, folosește modulul Captcha din meniul din stânga.",
+      "previewTitle": "Previzualizare live",
+      "previewDefaultTitle": "Titlul panoului tău",
+      "previewReactions": "Reacțiile adăugate de Wody",
+      "previewHint": "Așa va arăta mesajul în canalul tău. Mod: {mode}."
     },
     "autoResponses": {
       "title": "Răspunsuri Automate",
@@ -3352,7 +3379,8 @@
       "rbErrPriority": "Prioritatea trebuie să fie un număr întreg între 0 și 1000.",
       "rbErrEmpty": "Fiecare bonus are nevoie de un multiplicator peste 1 sau XP extra peste 0.",
       "auroraSpecial": "Miami Style",
-      "auroraSpecialHint": "Scene retro de apus, cu grafică proprie desenată pe card. Se aplică la cardurile de level up, welcome și goodbye."
+      "auroraSpecialHint": "Scene retro de apus, cu grafică proprie desenată pe card. Se aplică la cardurile de level up, welcome și goodbye.",
+      "auroraUseGradient": "Folosește gradientul"
     },
     "suggestions": {
       "title": "Sugestii",
@@ -3419,7 +3447,20 @@
         "giveaways": "Giveaway-uri",
         "forumAutomations": "Automatizări de forum",
         "discoveryBumps": "Bump-uri pe Discovery"
-      }
+      },
+      "newBadge": "Nou",
+      "voteTitle": "Premium din voturi",
+      "voteDesc": "Fiecare vot pe top.gg adaugă 1 zi de Wody Premium în contul tău. Voturile se numără separat pentru fiecare cont. De la {min} zile salvate poți activa tot ce ai strâns pe acest server.",
+      "voteDaysLabel": "zile salvate",
+      "voteProgress": "{days} din {min} zile salvate. Continuă să votezi pentru a debloca activarea.",
+      "voteReady": "{days} zile sunt gata de activare.",
+      "voteHow": "Preferi Discord? Rulează /redeemvotes pe server. Folosește /vote pentru mai multe zile.",
+      "voteRedeem": "Activează {days} zile",
+      "voteDoneTitle": "Zilele de vot au fost activate",
+      "voteDoneDesc": "{days} zile de Premium au fost adăugate pe acest server.",
+      "voteNoEnd": "Acest server are deja Premium fără dată de final. Zilele tale au fost păstrate.",
+      "voteNotEnough": "Ai nevoie de cel puțin {min} zile salvate pentru activare.",
+      "voteFailed": "Nu am putut activa zilele. Încearcă din nou."
     },
     "youtubeNotify": {
       "title": "Notificări YouTube",
@@ -5133,7 +5174,10 @@
     "manage": "Gestionează",
     "inviteHere": "Invită Wody",
     "refresh": "Reîmprospătează",
-    "loadError": "Nu s-au putut încărca serverele. Te rugăm să încerci din nou."
+    "loadError": "Nu s-au putut încărca serverele. Te rugăm să încerci din nou.",
+    "missingTitle": "Servere fără Wody",
+    "missingText": "Invită Wody pentru a începe să gestionezi aceste servere.",
+    "presentTitle": "Servere cu Wody"
   },
   "modules": {
     "general": {
@@ -6911,7 +6955,9 @@
     "emptyText": "Joacă pe un server cu Wody Economy și revino curând, clasamentul se actualizează la fiecare 5 minute.",
     "unavailable": "Clasamentul nu este disponibil acum. Încearcă din nou peste puțin timp.",
     "cta": "Adaugă Wody pe serverul tău",
-    "coins": "{n} monede"
+    "coins": "{n} monede",
+    "ctaTitle": "Vrei serverul tău în clasament?",
+    "ctaText": "Adaugă Wody, pornește Economy și membrii tăi încep să urce în clasamentul global."
   },
   "collab": {
     "title": "WODY Collab",
@@ -7656,7 +7702,9 @@
       "cancel": "Anulează",
       "saving": "Se salvează...",
       "error": "Nu am putut schimba vizibilitatea. Încearcă din nou.",
-      "privateBadge": "Privat: doar membrii Wody logați îl pot deschide"
+      "privateBadge": "Privat: doar membrii Wody logați îl pot deschide",
+      "statusPublic": "Profil public",
+      "statusPrivate": "Profil privat"
     },
     "metaTitle": "Profil",
     "saveAll": "Salvează toate setările",
@@ -8111,7 +8159,30 @@
       "links": "Linkuri",
       "card": "Cardul de nivel",
       "socials": "Rețele sociale",
-      "stats": "Statistici"
+      "stats": "Statistici",
+      "passport": "Pașaport"
+    },
+    "passportNo": "Nr. pașaport",
+    "daysWith": "Zile cu Wody",
+    "passportSince": "Revendicat",
+    "bansLabel": "Servere cu ban",
+    "musicUploadTitle": "Sau încarcă o melodie de pe calculator",
+    "musicRights": "Sunt proprietarul acestei muzici sau am permisiunea deținătorului drepturilor să o folosesc public. Răspund singur pentru orice reclamație privind drepturile de autor și înțeleg că Wody poate șterge fișierul și poate restricționa sau suspenda personalizarea profilului meu.",
+    "musicUpload": "Încarcă melodia",
+    "musicUploading": "Se încarcă...",
+    "musicRemove": "Șterge melodia",
+    "musicUploaded": "Melodia a fost încărcată. Bifează politicile și apasă Salvează pentru a o publica.",
+    "musicStoredNote": "Stocată pe Wody. O melodie per cont, o încărcare nouă o înlocuiește pe cea veche.",
+    "musicLimits": "MP3, OGG, M4A, WAV sau FLAC, până la 4 MB. O melodie per cont. Nu pornește niciodată singură.",
+    "musicError": {
+      "audio_too_large": "Fișierul este prea mare. Limita este 4 MB.",
+      "audio_invalid": "Nu este un fișier MP3, OGG, M4A, WAV sau FLAC valid.",
+      "rate_limited": "Prea multe încărcări. Încearcă mai târziu.",
+      "uploads_restricted": "Încărcările sunt restricționate pe profilul tău.",
+      "customization_suspended": "Personalizarea profilului tău este suspendată.",
+      "account_blocked": "Acest cont nu poate încărca fișiere.",
+      "rights_acceptance_required": "Confirmă mai întâi că ai drepturile asupra melodiei.",
+      "generic": "Încărcarea a eșuat. Încearcă din nou."
     }
   },
   "policies": {
@@ -8128,15 +8199,15 @@
     "contactHtml": "Operator: Păcurar Ancuța-Narcisa, România, Uniunea Europeană. Contact general: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.",
     "content-policy": {
       "title": "Politica conținutului utilizatorilor",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "1. Ce acoperă această politică",
-          "html": "<p>Wody îți permite să personalizezi pagina ta de profil, cardul de nivel și cardurile de welcome și goodbye. Poți da Wody un link către o imagine, un GIF sau un fișier audio găzduit pe altă platformă și, doar pentru fundalul cardului de profil, poți încărca o imagine. Această politică explică ce ai voie să folosești, cum este tratat conținutul și cum sunt tratate raportările. Se aplică în plus față de Termeni și condiții.</p>"
+          "html": "<p>Wody îți permite să personalizezi pagina ta de profil, cardul de nivel și cardurile de welcome și goodbye. Poți da Wody un link către o imagine, un GIF sau un fișier audio găzduit pe altă platformă și, pentru fundalul cardului de profil și pentru melodia profilului, poți încărca un fișier. Această politică explică ce ai voie să folosești, cum este tratat conținutul și cum sunt tratate raportările. Se aplică în plus față de Termeni și condiții.</p>"
         },
         {
           "heading": "2. Imaginile și linkurile tale",
-          "html": "<p>Poți folosi imagini doar pentru personalizarea personală. Trebuie să fii proprietarul imaginii, să ai o licență pentru ea sau să ai o altă bază legală de a o folosi și de a o afișa prin Wody. Faptul că găsești o imagine online nu înseamnă că ai voie să o folosești.</p><p>De fiecare dată când publici sau editezi profilul tău public (pagina de profil, datele publice ale profilului, o imagine sau un link pentru cardul de profil sau imaginile cardurilor serverului) trebuie să bifezi o casetă nebifată implicit, prin care confirmi că ești proprietarul conținutului sau ai permisiunea de a-l folosi și că accepți aceste politici. Fără bifă, modificarea nu poate fi salvată. Când bifezi, Wody înregistrează momentul și versiunea politicii împreună cu setările profilului tău.</p><p>Confirmarea reprezintă declarația ta. Ea nu face legală o imagine neautorizată și nu elimină obligațiile proprii ale Wody prevăzute de lege.</p>"
+          "html": "<p>Poți folosi imagini doar pentru personalizarea personală. Trebuie să fii proprietarul imaginii, să ai o licență pentru ea sau să ai o altă bază legală de a o folosi și de a o afișa prin Wody. Faptul că găsești o imagine online nu înseamnă că ai voie să o folosești.</p><p>De fiecare dată când publici sau editezi profilul tău public (pagina de profil, datele publice ale profilului, o imagine sau un link pentru cardul de profil sau imaginile cardurilor serverului) trebuie să bifezi o casetă nebifată implicit, prin care confirmi că ești proprietarul conținutului sau ai permisiunea de a-l folosi și că accepți aceste politici. Fără bifă, modificarea nu poate fi salvată. Când bifezi, Wody înregistrează momentul și versiunea politicii împreună cu setările profilului tău.</p><p>Confirmarea reprezintă declarația ta. Ea nu face legală o imagine neautorizată și nu elimină obligațiile proprii ale Wody prevăzute de lege.</p><p>Același lucru se aplică muzicii. Înainte să încarci o melodie trebuie să bifezi o casetă prin care confirmi că ești proprietarul ei sau că ai permisiunea deținătorului drepturilor de a o face publică prin Wody. Răspunzi singur pentru orice reclamație privind drepturile de autor legată de muzica pe care o încarci sau o legi. Nu încărca înregistrări comerciale pentru care nu ai licență. Wody poate șterge o melodie, poate restricționa încărcările sau poate suspenda personalizarea după o sesizare sau când folosirea este vădit ilegală.</p>"
         },
         {
           "heading": "3. Ce nu este permis",
@@ -8148,7 +8219,7 @@
         },
         {
           "heading": "5. Cum sunt tratate imaginile și linkurile",
-          "html": "<p>Imaginile, GIF-urile și fișierele audio pe care le adaugi pe pagina ta de profil și pe cardurile serverului nu sunt stocate de Wody. Tu furnizezi un link, fișierul rămâne pe platforma care îl găzduiește, iar Wody îl încarcă de acolo doar pentru a-l afișa. Rămâne vizibil doar cât timp linkul este valid: dacă ștergi fișierul sau gazda îl elimină, dispare din Wody. Wody păstrează adresa linkului în setările tale până o schimbi sau o ștergi, iar fișierul poate fi ținut scurt timp în cache-ul browserului sau al rețelei cât timp este afișat.</p><p>Singura excepție este fundalul cardului de profil: dacă încarci acolo un fișier în loc să dai un link, Wody stochează fișierul până îl înlocuiești sau îl ștergi, sau până este eliminat în urma unei raportări.</p><p>Permiți Wody să încarce linkul dat doar pentru a-ți afișa personalizarea (de exemplu pe pagina ta de profil sau pe cardurile postate de bot) și pentru a-l verifica dacă este raportat.</p>"
+          "html": "<p>Imaginile și GIF-urile pe care le adaugi pe pagina de profil și pe cardurile serverelor, precum și audio-ul legat prin link, nu sunt stocate de Wody. Tu furnizezi un link, fișierul rămâne pe platforma care îl găzduiește, iar Wody doar îl încarcă de acolo pentru a-l afișa. Rămâne vizibil doar cât timp linkul este valid: dacă ștergi fișierul sau gazda îl elimină, dispare din Wody. Wody păstrează adresa linkului în setările tale până o schimbi sau o ștergi, iar fișierul poate fi ținut scurt timp în cache-ul browserului sau al rețelei cât timp este afișat.</p><p>Excepțiile sunt fundalul cardului de profil și melodia profilului: dacă încarci acolo un fișier în loc să dai un link, Wody stochează fișierul până îl înlocuiești sau îl ștergi ori până este eliminat în urma unei sesizări. O melodie pornește doar când un vizitator apasă play.</p><p>Permiți Wody să încarce linkul dat doar pentru a-ți afișa personalizarea (de exemplu pe pagina ta de profil sau pe cardurile postate de bot) și pentru a-l verifica dacă este raportat.</p>"
         },
         {
           "heading": "6. Raportări și verificare",
@@ -8174,7 +8245,7 @@
     },
     "copyright": {
       "title": "Politica drepturilor de autor și a proprietății intelectuale",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "1. Respect pentru drepturi",
@@ -8186,7 +8257,7 @@
         },
         {
           "heading": "3. Responsabilitatea ta",
-          "html": "<p>Dacă încarci sau legi o imagine, trebuie să ai drepturile necesare sau o altă bază legală. De fiecare dată când publici sau editezi profilul tău public confirmi acest lucru și accepți politicile bifând o casetă nebifată implicit. Confirmarea este declarația ta. Nu este o garanție și nu face legală o folosire neautorizată.</p>"
+          "html": "<p>Dacă încarci sau legi o imagine ori o melodie, trebuie să ai drepturile necesare sau o altă bază legală. De fiecare dată când publici sau modifici profilul public confirmi acest lucru și accepți politicile bifând o casetă nebifată, iar înainte de a încărca o melodie confirmi separat că ești proprietarul ei sau că ai permisiunea deținătorului drepturilor. Confirmarea este declarația ta. Nu este o garanție și nu face legală o folosire neautorizată. Răspunzi singur pentru muzica pe care o încarci sau o legi.</p>"
         },
         {
           "heading": "4. Raportarea unei posibile încălcări",
@@ -8216,7 +8287,7 @@
     },
     "complaint": {
       "title": "Reclamație privind drepturile de autor",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "Cum folosești formularul",

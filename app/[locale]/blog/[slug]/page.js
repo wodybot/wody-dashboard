@@ -1,3 +1,4 @@
+import { absoluteImage } from '@/lib/site-image-path';
 
 import { localizedAlternates } from '@/lib/community/seo';
 import { notFound } from 'next/navigation';
@@ -50,7 +51,7 @@ export async function generateMetadata({ params }) {
       url: `${SITE_URL}/blog/${post.slug}`,
       type: 'article',
       publishedTime: post.published_at,
-      ...(post.cover_image_url ? { images: [{ url: post.cover_image_url }] } : {}),
+      ...(post.cover_image_url ? { images: [{ url: absoluteImage(post.cover_image_url, SITE_URL) }] } : {}),
     },
   };
 }
@@ -87,7 +88,7 @@ export default async function BlogPostPage({ params }) {
     datePublished: post.published_at,
     dateModified: post.updated_at || post.published_at,
     ...(post.author_name ? { author: { '@type': 'Person', name: post.author_name } } : {}),
-    ...(post.cover_image_url ? { image: post.cover_image_url } : {}),
+    ...(post.cover_image_url ? { image: absoluteImage(post.cover_image_url, SITE_URL) } : {}),
     publisher: {
       '@type': 'Organization',
       name: 'Wody',

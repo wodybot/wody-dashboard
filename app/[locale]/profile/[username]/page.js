@@ -1,12 +1,11 @@
 import { redirect, notFound } from 'next/navigation';
 import { getLocale, getTranslations } from 'next-intl/server';
-import { ArrowLeft, IdCard } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import ProfilePageView from '@/components/profile/ProfilePageView';
 import ReportButton from '@/components/profile/ReportButton';
 import { Link } from '@/i18n/navigation';
 import PageBackdrop from '@/components/profile/PageBackdrop';
 import { pageAccent, publicPageView } from '@/lib/profile-page';
-import ProfileCardPreview from '@/components/profile/ProfileCardPreview';
 import { getSession } from '@/lib/session';
 import { getDb } from '@/lib/mongo';
 import { discordCdnUrl } from '@/lib/utils';
@@ -55,24 +54,14 @@ export default async function PublicProfilePage({ params }) {
   }
   const src = pf.avatar ? `https://cdn.discordapp.com/avatars/${pf.id}/${pf.avatar}.png?size=128` : 'https://cdn.discordapp.com/embed/avatars/0.png';
   const accent = pageAccent(pf.page) || '#e6cd8c';
-  const levelCard = pf.card ? (
-    <section aria-label={tpage('levelCardTitle')} className="relative overflow-hidden rounded-3xl border bg-card/60 p-4 sm:p-6" style={{ borderColor: `${accent}66`, boxShadow: `0 0 90px -30px ${accent}` }}>
-      <div className="mb-4 flex items-center gap-2.5">
-        <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: `${accent}26`, color: accent }}><IdCard className="h-5 w-5" aria-hidden="true" /></span>
-        <div className="min-w-0"><h2 className="text-lg font-black leading-tight">{tpage('levelCardTitle')}</h2><p className="text-xs text-muted-foreground">{tpage('levelCardHint')}</p></div>
-      </div>
-      <div style={{ filter: `drop-shadow(0 0 26px ${pf.card.config.accent}55)` }}>
-        <ProfileCardPreview cfg={pf.card.config} name={pf.name} avatarSrc={discordCdnUrl(src)} tagline={pf.member_since ? tcard('tagline', { date: fmt(pf.member_since, locale) }) : ''} />
-      </div>
-    </section>
-  ) : null;
+  const card = pf.card ? { cfg: pf.card.config, tagline: pf.member_since ? tcard('tagline', { date: fmt(pf.member_since, locale) }) : '' } : null;
   const view = publicPageView(pf.page);
   return (
     <div className="min-h-screen flex flex-col">
       <PageBackdrop page={pf.page} />
       <div className="mx-auto w-full max-w-[96rem] px-4 pt-5 sm:px-8 lg:px-12"><Link href="/" className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3.5 py-1.5 text-xs font-semibold text-foreground/90 backdrop-blur transition hover:border-[#e6cd8c]/60 hover:text-[#e6cd8c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#e6cd8c]"><ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />{t('backToWody')}</Link></div>
       <main id="main-content" className="mx-auto flex w-full max-w-[96rem] flex-1 flex-col gap-6 px-4 py-6 sm:px-8 lg:px-12">
-        <ProfilePageView page={view} name={pf.name} username={pf.username} avatarSrc={discordCdnUrl(src)} memberSince={pf.member_since} away={pf.away} socials={pf.socials} live={pf.live} views={views} locale={locale} levelCard={levelCard} />
+        <ProfilePageView page={view} name={pf.name} username={pf.username} avatarSrc={discordCdnUrl(src)} memberSince={pf.member_since} away={pf.away} socials={pf.socials} live={pf.live} views={views} locale={locale} card={card} passport={pf.passport} />
         {viewerId && viewerId !== pf.id ? <div className="flex justify-center"><ReportButton username={pf.username} complaintHref={`${locale === 'en' ? '' : `/${locale}`}/policies/complaint?user=${encodeURIComponent(pf.username)}`} labels={Object.fromEntries(['button', 'title', 'kind', 'image', 'profile', 'prohibited', 'abuse', 'reason', 'send', 'sent', 'dupe', 'error', 'rights', 'cancel'].map((k) => [k, trep(k)]))} /></div> : null}
       </main>
     </div>

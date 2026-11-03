@@ -10,7 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { ChannelSelect, RoleSelect, SectionHeader, Empty } from '@/components/dashboard-kit';
+import { ChannelSelect, RoleSelect, RoleMultiSelect, SectionHeader, Empty } from '@/components/dashboard-kit';
 import {
   ConfirmDialog, Field, LoadingOrError, ModuleTabs, NativeSelect, PremiumLock, QuickSetup, RecommendedBar, Section, SaveFooter,
   SwitchRow, Pager, callApi, formatDate, useApi, useDraft, useErrorText, useSave,
@@ -243,18 +243,7 @@ function CatalogGrid({ group, catalog, s, setIn, extra, t, errors }) {
 }
 
 function RoleMulti({ value, onChange, roles, max, t }) {
-  const available = roles.filter((r) => !value.includes(String(r.id)));
-  return (
-    <div className="space-y-2">
-      <div className="flex flex-wrap gap-1.5">
-        {value.map((id) => {
-          const role = roles.find((r) => String(r.id) === String(id));
-          return <Badge key={id} variant="secondary" className="gap-1">{role?.name || id}<button type="button" aria-label={t('fields.removeRole')} onClick={() => onChange(value.filter((v) => v !== id))}>×</button></Badge>;
-        })}
-      </div>
-      {value.length < max ? <RoleSelect value="" onChange={(v) => v && onChange([...value, String(v)])} roles={available} placeholder={t('fields.addRole')} includeNone={false} /> : null}
-    </div>
-  );
+  return <RoleMultiSelect value={value.map(String)} onChange={onChange} roles={roles} max={max} placeholder={t('fields.addRole')} />;
 }
 
 

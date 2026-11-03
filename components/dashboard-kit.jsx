@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip as UiTooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
 import { proxiedImageUrl } from '@/lib/utils';
+import { MultiPicker, SearchableSelect, channelOptions, roleOptions } from '@/components/entity-picker';
 import { CARD_FONTS, cardFontStyle } from '@/lib/card-fonts';
 
 export function InfoHint({ children }) {
@@ -54,32 +55,26 @@ export async function safeJson(url, fallback = null, options) {
 
 export function ChannelSelect({ value, onChange, channels, placeholder, includeNone = true, noneLabel, types = [0, 5], disabled = false }) {
   const t = useTranslations('guildSettings.common');
-  const filtered = (Array.isArray(channels) ? channels : []).filter((c) => types.includes(c.type));
-  const prefix = (t) => (t === 2 ? '🔊' : t === 4 ? '📁' : '#');
-  return (
-    <Select value={value ? String(value) : 'none'} onValueChange={(v) => onChange(v === 'none' ? null : v)} disabled={disabled}>
-      <SelectTrigger><SelectValue placeholder={placeholder || t('selectAChannel')} /></SelectTrigger>
-      <SelectContent className="max-h-64">
-        {includeNone && <SelectItem value="none">{noneLabel || t('none')}</SelectItem>}
-        {filtered.map((c) => <SelectItem key={c.id} value={c.id}>{prefix(c.type)} {c.name}</SelectItem>)}
-      </SelectContent>
-    </Select>
-  );
+  const options = useMemo(() => channelOptions(channels, types), [channels, types]);
+  return <SearchableSelect value={value} onChange={onChange} options={options} placeholder={placeholder || t('selectAChannel')} includeNone={includeNone} noneLabel={noneLabel} disabled={disabled} empty={t('noChannelsAvailable')} />;
 }
 
 export function RoleSelect({ value, onChange, roles, placeholder, includeNone = true, disabled = false }) {
   const t = useTranslations('guildSettings.common');
-  return (
-    <Select value={value ? String(value) : 'none'} onValueChange={(v) => onChange(v === 'none' ? null : v)} disabled={disabled}>
-      <SelectTrigger><SelectValue placeholder={placeholder || t('selectARole')} /></SelectTrigger>
-      <SelectContent className="max-h-64">
-        {includeNone && <SelectItem value="none">{t('none')}</SelectItem>}
-        {(Array.isArray(roles) ? roles : []).filter((r) => !r.managed).map((r) => (
-          <SelectItem key={r.id} value={r.id}>@ {r.name}</SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  );
+  const options = useMemo(() => roleOptions(roles), [roles]);
+  return <SearchableSelect value={value} onChange={onChange} options={options} placeholder={placeholder || t('selectARole')} includeNone={includeNone} disabled={disabled} empty={t('noRolesAvailable')} />;
+}
+
+export function RoleMultiSelect({ value, onChange, roles, placeholder, disabled = false, max }) {
+  const t = useTranslations('guildSettings.common');
+  const options = useMemo(() => roleOptions(roles), [roles]);
+  return <MultiPicker value={value} onChange={onChange} options={options} placeholder={placeholder || t('selectRoles')} disabled={disabled} max={max} empty={t('noRolesAvailable')} />;
+}
+
+export function ChannelMultiSelect({ value, onChange, channels, types = [0, 5], placeholder, disabled = false, max }) {
+  const t = useTranslations('guildSettings.common');
+  const options = useMemo(() => channelOptions(channels, types), [channels, types]);
+  return <MultiPicker value={value} onChange={onChange} options={options} placeholder={placeholder || t('noChannelsSelected')} disabled={disabled} max={max} empty={t('noChannelsAvailable')} />;
 }
 
 export function SectionHeader({ title, description, action }) {
@@ -566,23 +561,14 @@ export function SaveBar({ saving, onSave, dirty, onDiscard, disabled = false }) 
       </div>
     );
   }
+  if (!dirty) return null;
   return (
-    <div className="sticky bottom-3 z-20 pt-2">
-      <div
-        role="status"
-        aria-live="polite"
-        className={`flex flex-col gap-3 rounded-xl border p-3 shadow-lg backdrop-blur sm:flex-row sm:items-center sm:justify-between ${dirty ? 'border-[#e6cd8c]/60 bg-background/95' : 'border-border/50 bg-background/80'}`}
-      >
-        <div className="min-w-0 text-sm">
-          {dirty ? (
-            <span className="inline-flex items-center gap-2 font-medium text-[#e6cd8c]"><span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-[#e08a4e]" />{tk('unsaved')}</span>
-          ) : (
-            <span className="inline-flex items-center gap-2 text-muted-foreground"><CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />{tk('allSaved')}</span>
-          )}
-        </div>
-        <div className="flex shrink-0 justify-end gap-2">
-          {dirty && onDiscard ? <Button variant="outline" onClick={onDiscard} disabled={saving}>{tk('discard')}</Button> : null}
-          <Button onClick={onSave} disabled={!dirty || saving || disabled} className="gradient-primary">
+    <div className="sticky bottom-4 z-30 flex justify-center pt-2">
+      <div role="status" aria-live="polite" className="flex w-full max-w-3xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#e6cd8c]/40 bg-background/95 px-4 py-2.5 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.85)] backdrop-blur-md">
+        <span className="inline-flex min-w-0 items-center gap-2 text-sm font-medium text-[#e6cd8c]"><span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-[#e08a4e]" />{tk('unsaved')}</span>
+        <div className="ml-auto flex shrink-0 gap-2">
+          {onDiscard ? <Button variant="outline" onClick={onDiscard} disabled={saving} className="rounded-full">{tk('discard')}</Button> : null}
+          <Button onClick={onSave} disabled={saving || disabled} className="gradient-primary rounded-full px-5">
             {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
             {t('saveChanges')}
           </Button>

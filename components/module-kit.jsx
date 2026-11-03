@@ -240,9 +240,10 @@ export function useDiagnose(guildId, path = 'modules/diagnose?module=birthdays')
 export function SaveFooter({ dirty, saving, onSave, onDiscard, errors = [], disabled }) {
   const t = useTranslations('guildSettings.kit');
   const { errorText } = useErrorText();
+  if (!dirty && !errors.length) return null;
   return (
-    <div className="sticky bottom-3 z-20 mt-6">
-      <Card className={`flex flex-col gap-3 border p-3 shadow-lg backdrop-blur sm:flex-row sm:items-center sm:justify-between ${dirty ? 'border-[#e6cd8c]/50 bg-background/90' : 'border-border/50 bg-background/70'}`}>
+    <div className="sticky bottom-4 z-30 mt-6 flex justify-center">
+      <div className="flex w-full max-w-3xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#e6cd8c]/40 bg-background/95 px-4 py-2.5 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.85)] backdrop-blur-md">
         <div className="min-w-0 text-sm">
           {errors.length ? (
             <div role="alert" className="space-y-0.5 text-red-400">
@@ -250,19 +251,17 @@ export function SaveFooter({ dirty, saving, onSave, onDiscard, errors = [], disa
               {errors.slice(0, 3).map((e, i) => <p key={i} className="pl-5 text-xs">{errorText(e)}</p>)}
               {errors.length > 3 ? <p className="pl-5 text-xs">{t('validation.more', { count: errors.length - 3 })}</p> : null}
             </div>
-          ) : dirty ? (
-            <span className="inline-flex items-center gap-1.5 text-[#e6cd8c]"><span className="h-2 w-2 rounded-full bg-[#e08a4e]" />{t('unsaved')}</span>
           ) : (
-            <span className="inline-flex items-center gap-1.5 text-muted-foreground"><CheckCircle2 className="h-4 w-4 text-emerald-400" />{t('allSaved')}</span>
+            <span className="inline-flex items-center gap-2 font-medium text-[#e6cd8c]"><span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-[#e08a4e]" />{t('unsaved')}</span>
           )}
         </div>
-        <div className="flex shrink-0 justify-end gap-2">
-          {dirty && onDiscard ? <Button variant="outline" onClick={onDiscard} disabled={saving}>{t('discard')}</Button> : null}
-          <Button onClick={onSave} disabled={!dirty || saving || disabled} className="gradient-primary">
+        <div className="ml-auto flex shrink-0 gap-2">
+          {dirty && onDiscard ? <Button variant="outline" onClick={onDiscard} disabled={saving} className="rounded-full">{t('discard')}</Button> : null}
+          <Button onClick={onSave} disabled={!dirty || saving || disabled} className="gradient-primary rounded-full px-5">
             {saving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}{t('save')}
           </Button>
         </div>
-      </Card>
+      </div>
     </div>
   );
 }

@@ -37,6 +37,7 @@ import {
 } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Footer } from '@/components/nav';
+import { DiscordMessagePreview } from '@/components/module-kit';
 import GeneralQuickSettings from '@/components/general-quick-settings';
 import ServerCollabSettings from '@/components/collab/ServerCollabSettings';
 import ServerCategoriesPanel from '@/components/collab/ServerCategoriesPanel';
@@ -55,7 +56,7 @@ import { FREE_LIMITS, isUnlimited } from '@/lib/limits';
 import { hasModulePage } from '@/lib/module-slugs';
 import { EMOJI_GROUPS, SKIN_TONES, NICK_EMOJI_MAX, NICK_ROLE_MAX, NICK_POSITIONS, extractEmojis, previewNickname, searchEmojis, toneSwatch, withTone } from '@/lib/nick-emojis';
 import {
-  InfoHint, safeJson, ChannelSelect, RoleSelect,
+  InfoHint, safeJson, ChannelSelect, RoleSelect, RoleMultiSelect, ChannelMultiSelect,
   SectionHeader, renderDiscordMarkdown, isUsableImageUrl, resolvePreviewUrl,
   CardPreview, EmbedPreview,
   DiscordMessage, DiscordText, DiscordButtons, V2Container, V2Separator, YoutubeLinkUnfurl,
@@ -218,7 +219,7 @@ function MemberCardSizePicker({ value, onChange, t, savedValue, tc }) {
   );
 }
 
-function AuroraGradientPicker({ value, onChange, hasImage }) {
+function AuroraGradientPicker({ value, onChange, hasImage, onClearImage }) {
   const tl = useTranslations('guildSettings.levels');
   const tnav = useTranslations('nav');
   const current = AURORA_GRADIENTS[value] ? value : 'ember';
@@ -243,7 +244,12 @@ function AuroraGradientPicker({ value, onChange, hasImage }) {
         <p className="mb-2 mt-0.5 text-[11px] text-muted-foreground">{tl('auroraSpecialHint')}</p>
         <div role="radiogroup" aria-label={tl('auroraSpecial')} className="grid grid-cols-2 gap-2 sm:grid-cols-4">{SPECIAL_GRADIENTS.map(tile)}</div>
       </div>
-      {hasImage ? <p className="mt-2 text-[11px] text-muted-foreground">{tl('auroraImageNote')}</p> : null}
+      {hasImage ? (
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-amber-400/40 bg-amber-400/5 px-3 py-2">
+          <p className="min-w-0 flex-1 text-xs text-muted-foreground">{tl('auroraImageNote')}</p>
+          {onClearImage ? <Button type="button" variant="outline" size="sm" className="rounded-full" onClick={onClearImage}>{tl('auroraUseGradient')}</Button> : null}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -1206,31 +1212,30 @@ function ModuleOverviewCard({ m, on, toggling, toggleModule, premiumActive, onOp
   const statusOn = m.status ? premiumActive : (!toggleable || on);
 
   return (
-    <div className={`group relative h-full min-h-[220px] sm:min-h-[240px] rounded-xl border bg-card/40 transition-all duration-200 hover:border-[#e6cd8c]/45 hover:shadow-[0_16px_40px_-30px_rgba(230,205,140,0.6)] border-border/70`}>
+    <div className={`group relative flex h-full min-h-[220px] flex-col sm:min-h-[240px] rounded-xl border bg-card/40 transition-all duration-200 hover:border-[#e6cd8c]/45 hover:shadow-[0_16px_40px_-30px_rgba(230,205,140,0.6)] border-border/70`}>
       {toggleable && (
         <div className="absolute right-4 top-4 z-10" onClick={(e) => e.stopPropagation()}>
           <Switch checked={on} disabled={toggling === m.key} onCheckedChange={(v) => toggleModule(m.key, v)} className={premiumLocked ? 'opacity-50' : ''} aria-label={on ? tc('disableModule', { module: label }) : tc('enableModule', { module: label })} />
         </div>
       )}
-      {hasModulePage(m.key) && (
-        <a href={learnHref} target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}
-          className="absolute bottom-3.5 left-1/2 z-10 -translate-x-1/2 text-[11px] font-medium text-muted-foreground underline-offset-4 hover:text-[#e6cd8c] hover:underline">
-          {tLearn('learnMore')}<span className="sr-only">: {label}</span>
-        </a>
-      )}
-      <button type="button" onClick={() => onOpen(m.key)} className="w-full h-full text-left p-5 pr-16 flex flex-col rounded-xl cursor-pointer">
-        <div className="flex flex-1 items-start gap-3">
-          <div className="module-icon-wrap w-10 h-10 rounded-xl flex items-center justify-center shrink-0"><Icon className="w-[18px] h-[18px]" /></div>
-          <div className="min-w-0 flex-1 pt-0.5">
-            <div className="flex items-center gap-1.5 flex-wrap"><span className="font-semibold text-[15px] leading-tight">{label}</span>{((m.limited && premiumActive) || (m.premium && !m.status)) && <PremiumModuleBadge />}</div>
-            <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{desc}</p>
-          </div>
-        </div>
-        <div className="mt-auto pt-4 flex h-12 items-center justify-between gap-3 border-t border-border/60">
-          <span className={`inline-flex h-8 w-[84px] shrink-0 items-center justify-start gap-2 px-1 text-[11px] font-semibold leading-none ${statusOn ? 'text-emerald-400' : 'text-muted-foreground'}`}><span className={`w-1.5 h-1.5 shrink-0 rounded-full ${statusOn ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]' : 'bg-muted-foreground/50'}`} /><span className="whitespace-nowrap">{m.status ? (premiumActive ? tc('active') : tc('activate')) : (toggleable ? (on ? tc('active') : tc('off')) : tc('active'))}</span></span>
-          <span className="inline-flex h-8 items-center gap-1.5 text-xs text-muted-foreground group-hover:text-[#e6cd8c] transition-colors">{tc('configure')} <ChevronRight className="w-3.5 h-3.5" /></span>
+      <button type="button" onClick={() => onOpen(m.key)} className="w-full text-left p-5 pr-16 flex flex-1 items-start gap-3 rounded-t-xl cursor-pointer">
+        <div className="module-icon-wrap w-10 h-10 rounded-xl flex items-center justify-center shrink-0"><Icon className="w-[18px] h-[18px]" /></div>
+        <div className="min-w-0 flex-1 pt-0.5">
+          <div className="flex items-center gap-1.5 flex-wrap"><span className="font-semibold text-[15px] leading-tight">{label}</span>{((m.limited && premiumActive) || (m.premium && !m.status)) && <PremiumModuleBadge />}</div>
+          <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{desc}</p>
         </div>
       </button>
+      <div className="mx-5 flex h-12 items-center justify-between gap-3 border-t border-border/60">
+        <span className={`inline-flex items-center gap-2 text-[11px] font-semibold leading-none ${statusOn ? 'text-emerald-400' : 'text-muted-foreground'}`}><span className={`w-1.5 h-1.5 shrink-0 rounded-full ${statusOn ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]' : 'bg-muted-foreground/50'}`} /><span className="whitespace-nowrap">{m.status ? (premiumActive ? tc('active') : tc('activate')) : (toggleable ? (on ? tc('active') : tc('off')) : tc('active'))}</span></span>
+        <span className="flex items-center gap-4">
+          {hasModulePage(m.key) && (
+            <a href={learnHref} target="_blank" rel="noopener" className="text-[11px] font-medium text-muted-foreground underline-offset-4 hover:text-[#e6cd8c] hover:underline">
+              {tLearn('learnMore')}<span className="sr-only">: {label}</span>
+            </a>
+          )}
+          <button type="button" onClick={() => onOpen(m.key)} className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-[#e6cd8c]">{tc('configure')} <ChevronRight className="w-3.5 h-3.5" /></button>
+        </span>
+      </div>
     </div>
   );
 }
@@ -1482,62 +1487,6 @@ function RoleWeightList({ value, onChange, roles, disabled, addLabel }) {
         );
       })}
       <RoleSelect value={null} onChange={add} roles={available} includeNone={false} placeholder={addLabel} />
-    </div>
-  );
-}
-
-
-function RoleMultiSelect({ value, onChange, roles, placeholder, disabled = false }) {
-  const t = useTranslations('guildSettings.common');
-  const selected = Array.isArray(value) ? value : [];
-  const selectableRoles = (Array.isArray(roles) ? roles : []).filter((r) => !r.managed);
-  const selectedNames = selectableRoles.filter((r) => selected.includes(r.id)).map((r) => r.name);
-  function toggle(id) {
-    onChange(selected.includes(id) ? selected.filter((x) => x !== id) : [...selected, id]);
-  }
-  return (
-    <div className={`space-y-2 ${disabled ? 'opacity-50' : ''}`}>
-      <div className="text-xs text-muted-foreground min-h-[1rem]">
-        {selectedNames.length ? selectedNames.map((n) => `@${n}`).join(', ') : (placeholder || t('selectRoles'))}
-      </div>
-      <div className="max-h-40 overflow-y-auto scrollbar-thin rounded-lg border border-border/50 divide-y divide-border/40">
-        {selectableRoles.length === 0 ? (
-          <div className="p-3 text-xs text-muted-foreground">{t('noRolesAvailable')}</div>
-        ) : selectableRoles.map((r) => (
-          <label key={r.id} className={`flex items-center gap-2 px-3 py-2 text-sm ${disabled ? 'cursor-not-allowed' : 'cursor-pointer hover:bg-secondary/30'}`}>
-            <Checkbox disabled={disabled} checked={selected.includes(r.id)} onCheckedChange={() => toggle(r.id)} />
-            @ {r.name}
-          </label>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function ChannelMultiSelect({ value, onChange, channels, types = [0, 5], placeholder, disabled = false }) {
-  const t = useTranslations('guildSettings.common');
-  const selected = Array.isArray(value) ? value : [];
-  const selectableChannels = (Array.isArray(channels) ? channels : []).filter((c) => types.includes(c.type));
-  const prefix = (t) => (t === 2 ? '🔊' : t === 4 ? '📁' : '#');
-  const selectedNames = selectableChannels.filter((c) => selected.includes(c.id)).map((c) => `${prefix(c.type)}${c.name}`);
-  function toggle(id) {
-    onChange(selected.includes(id) ? selected.filter((x) => x !== id) : [...selected, id]);
-  }
-  return (
-    <div className={`space-y-2 ${disabled ? 'opacity-50' : ''}`}>
-      <div className="text-xs text-muted-foreground min-h-[1rem]">
-        {selectedNames.length ? selectedNames.join(', ') : (placeholder || t('noChannelsSelected'))}
-      </div>
-      <div className="max-h-40 overflow-y-auto scrollbar-thin rounded-lg border border-border/50 divide-y divide-border/40">
-        {selectableChannels.length === 0 ? (
-          <div className="p-3 text-xs text-muted-foreground">{t('noChannelsAvailable')}</div>
-        ) : selectableChannels.map((c) => (
-          <label key={c.id} className={`flex items-center gap-2 px-3 py-2 text-sm ${disabled ? 'cursor-not-allowed' : 'cursor-pointer hover:bg-secondary/30'}`}>
-            <Checkbox disabled={disabled} checked={selected.includes(c.id)} onCheckedChange={() => toggle(c.id)} />
-            {prefix(c.type)} {c.name}
-          </label>
-        ))}
-      </div>
     </div>
   );
 }
@@ -1912,7 +1861,7 @@ function WelcomePanel({ guildId, meta }) {
                 <div><div className="flex justify-between mb-2"><Label>{t('overlayOpacityLabel')}</Label><span className="text-xs text-muted-foreground">{overlayOpacity}%</span></div><input className="w-full accent-primary" type="range" min="0" max="100" value={overlayOpacity} onChange={(e) => setData({ ...data, card_overlay_opacity: Number(e.target.value) })} /></div>
                 <MemberCardSizePicker value={data.card_size} onChange={(v) => setData({ ...data, card_size: v })} t={t} savedValue={savedCardSize} tc={tc} />
                 <CardFontPicker value={data.card_font} onChange={(v) => setData({ ...data, card_font: v })} />
-                {data.card_size === 'aurora' && <AuroraGradientPicker value={data.card_gradient} onChange={(v) => setData({ ...data, card_gradient: v })} hasImage={Boolean(backgroundUrl)} />}
+                {data.card_size === 'aurora' && <AuroraGradientPicker value={data.card_gradient} onChange={(v) => setData({ ...data, card_gradient: v })} hasImage={Boolean(backgroundUrl)} onClearImage={() => setData({ ...data, card_background_url: null })} />}
               </>}
             </Card>
           )}
@@ -2179,7 +2128,7 @@ function GoodbyePanel({ guildId, meta }) {
                 <div><div className="flex justify-between mb-2"><Label>{t('overlayOpacityLabel')}</Label><span className="text-xs text-muted-foreground">{overlayOpacity}%</span></div><input className="w-full accent-primary" type="range" min="0" max="100" value={overlayOpacity} onChange={(e) => setData({ ...data, card_overlay_opacity: Number(e.target.value) })} /></div>
                 <MemberCardSizePicker value={data.card_size} onChange={(v) => setData({ ...data, card_size: v })} t={t} savedValue={savedCardSize} tc={tc} />
                 <CardFontPicker value={data.card_font} onChange={(v) => setData({ ...data, card_font: v })} />
-                {data.card_size === 'aurora' && <AuroraGradientPicker value={data.card_gradient} onChange={(v) => setData({ ...data, card_gradient: v })} hasImage={Boolean(backgroundUrl)} />}
+                {data.card_size === 'aurora' && <AuroraGradientPicker value={data.card_gradient} onChange={(v) => setData({ ...data, card_gradient: v })} hasImage={Boolean(backgroundUrl)} onClearImage={() => setData({ ...data, card_background_url: null })} />}
               </>}
             </Card>
           )}
@@ -2992,6 +2941,12 @@ function ReactionRolesPanel({ guildId, meta }) {
 
   if (!rrs) return <Skeleton />;
 
+  const roleName = (id) => { const r = (meta.roles || []).find((x) => String(x.id) === String(id)); return r ? `@${r.name}` : '@role'; };
+  const previewText = [
+    description.trim(),
+    variant === 'emoji' ? pairs.filter((p) => p.emoji && p.role_id).map((p) => `${p.emoji} → ${roleName(p.role_id)}`).join('\n') : '',
+  ].filter(Boolean).join('\n\n');
+
   return (
     <div className="space-y-6">
       <SectionHeader title={t('title')} />
@@ -3015,6 +2970,7 @@ function ReactionRolesPanel({ guildId, meta }) {
         </Card>
       </div>
 
+      <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_400px]">
       <Card className="p-6 space-y-5 bg-card/60">
         <div>
           <Label>{t('titleLabel')}</Label>
@@ -3134,6 +3090,24 @@ function ReactionRolesPanel({ guildId, meta }) {
           {rrs.length >= 3 ? t('serverLimitReached') : cooldown > 0 ? t('waitMinutes', { m: Math.ceil(cooldown / 60) }) : t('postPanel')}
         </Button>
       </Card>
+
+      <div className="xl:sticky xl:top-24" data-rr-preview>
+        <DiscordMessagePreview
+          label={t('previewTitle')}
+          embed={{ color: '#e08a4e', title: title.trim() || t('previewDefaultTitle'), description: previewText }}
+          buttons={variant === 'button' ? pairs.filter((p) => p.emoji || p.label).map((p) => ({ label: p.label, emoji: p.emoji, style: 'primary' })) : []}
+        />
+        {variant === 'emoji' && pairs.some((p) => p.emoji && p.role_id) ? (
+          <div className="mt-3">
+            <div className="mb-1.5 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{t('previewReactions')}</div>
+            <div className="flex flex-wrap gap-1.5">
+              {pairs.filter((p) => p.emoji && p.role_id).map((p, i) => <span key={i} className="inline-flex h-7 min-w-[2.25rem] items-center justify-center rounded-lg border border-[#5865f2]/60 bg-[#5865f2]/20 px-2 text-sm">{p.emoji}</span>)}
+            </div>
+          </div>
+        ) : null}
+        <p className="mt-3 text-xs text-muted-foreground">{t('previewHint', { mode: t(`mode${mode.charAt(0).toUpperCase()}${mode.slice(1)}`) })}</p>
+      </div>
+      </div>
 
       <Card className="p-6 bg-card/60">
         {rrs.length === 0 ? <Empty text={t('emptyPanels')} /> : (
@@ -4393,6 +4367,7 @@ function AuroraCardPreview({ fontId, gradient, backgroundUrl, previewBackgroundU
     <div className="relative w-full overflow-hidden select-none" style={{ aspectRatio: '934/282', containerType: 'inline-size', background: useImage ? '#000' : auroraBackground(gradient), ...cardFontStyle(fontId) }}>
       {useImage && <PreviewImage url={previewBackgroundUrl} alt="" className="absolute inset-0 h-full w-full object-cover" draggable="false" />}
       {useImage && <div className="absolute inset-0" style={{ backgroundColor: overlayColor, opacity: overlayOpacity / 100 }} />}
+      {!useImage && SPECIAL_GRADIENTS.includes(gradient) && <AuroraScene kind={gradient} />}
       {!useImage && <div className="absolute inset-0 opacity-[0.07] [background-image:radial-gradient(#fff_1px,transparent_1px)]" style={{ backgroundSize: u(13) + ' ' + u(13) }} />}
       <img src={avatarSrc} alt="" draggable="false" className="absolute rounded-full object-cover"
         style={{ left: u(ax), top: u(ay), width: u(avatar), height: u(avatar), boxShadow: ring ? `0 0 0 ${u(6)} ${accent}, 0 0 ${u(30)} ${accent}aa` : undefined }} />
@@ -4604,21 +4579,7 @@ function LevelsPanel({ guildId, meta }) {
                   ))}
                 </div>
               </div>
-              {cardSize === 'aurora' && (
-                <div>
-                  <div className="flex items-center gap-1.5 mb-1"><Label className="mb-0">{t('auroraGradient')}</Label><InfoHint>{t('auroraGradientHint')}</InfoHint></div>
-                  <div role="radiogroup" aria-label={t('auroraGradient')} className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    {Object.keys(AURORA_GRADIENTS).map((key) => (
-                      <button key={key} type="button" role="radio" aria-checked={cardGradient === key} onClick={() => setSettings({ ...settings, level_card_gradient: key })}
-                        className={`group rounded-xl border p-1.5 text-left transition ${cardGradient === key ? 'border-primary ring-1 ring-primary bg-primary/10' : 'border-border hover:bg-secondary/40'}`}>
-                        <span className="block h-10 w-full rounded-lg" style={{ background: auroraBackground(key) }} />
-                        <span className="mt-1.5 flex items-center gap-1.5 px-1 text-xs font-medium"><span className="h-2.5 w-2.5 rounded-full" style={{ background: AURORA_GRADIENTS[key][2] }} />{t(`auroraGradients.${key}`)}</span>
-                      </button>
-                    ))}
-                  </div>
-                  {backgroundUrl ? <p className="mt-2 text-[11px] text-muted-foreground">{t('auroraImageNote')}</p> : null}
-                </div>
-              )}
+              {cardSize === 'aurora' && <AuroraGradientPicker value={cardGradient} onChange={(v) => setSettings({ ...settings, level_card_gradient: v })} hasImage={Boolean(backgroundUrl)} onClearImage={() => setSettings({ ...settings, level_card_background_url: null })} />}
               <div className="grid sm:grid-cols-2 gap-4">
                 <CardFontPicker allowBold value={settings.level_card_font} onChange={(v) => setSettings({ ...settings, level_card_font: v })} />
                 <div className="flex items-end"><FieldRow label={t('avatarRing')}><Switch checked={settings.level_card_avatar_ring !== false} onCheckedChange={(v) => setSettings({ ...settings, level_card_avatar_ring: v })} /></FieldRow></div>
@@ -5249,6 +5210,21 @@ function PremiumPanel({ guildId }) {
   const [data, setData] = useState(null);
   const [keyInput, setKeyInput] = useState('');
   const [busy, setBusy] = useState(false);
+  const [redeeming, setRedeeming] = useState(false);
+
+  async function redeemVotes() {
+    setRedeeming(true);
+    const r = await fetch(`/api/guilds/${guildId}/premium/redeem-votes`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    setRedeeming(false);
+    const j = await r.json().catch(() => ({}));
+    if (r.ok) {
+      toast.success(t('voteDoneTitle'), { description: t('voteDoneDesc', { days: j.days }) });
+      loadStatus();
+      fireConfetti();
+    } else if (j.error === 'premium_no_end') toast.error(t('voteNoEnd'));
+    else if (j.error === 'not_enough_votes') toast.error(t('voteNotEnough', { min: j.min }));
+    else toast.error(t('voteFailed'));
+  }
 
   async function loadStatus() {
     const d = await safeJson(`/api/guilds/${guildId}/premium`, {});
@@ -5326,6 +5302,36 @@ function PremiumPanel({ guildId }) {
           </div>
         </div>
       </Card>
+
+      {data.votes ? (
+        <Card className="relative overflow-hidden border-[#c46a2d]/40 bg-gradient-to-br from-[#c46a2d]/10 to-transparent p-6" data-vote-days>
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="min-w-0">
+              <div className="mb-1 flex items-center gap-2">
+                <h3 className="text-lg font-bold">{t('voteTitle')}</h3>
+                <Badge className="border-emerald-400/40 bg-emerald-400/15 text-[10px] font-black uppercase tracking-wider text-emerald-300">{t('newBadge')}</Badge>
+              </div>
+              <p className="max-w-xl text-sm text-muted-foreground">{t('voteDesc', { min: data.votes.min })}</p>
+            </div>
+            <div className="text-right">
+              <div className="text-3xl font-black tabular-nums text-[#f2c091]">{data.votes.days}</div>
+              <div className="text-xs text-muted-foreground">{t('voteDaysLabel')}</div>
+            </div>
+          </div>
+          <div className="mt-4">
+            <div className="h-2 overflow-hidden rounded-full bg-secondary/40" role="progressbar" aria-valuemin={0} aria-valuemax={data.votes.min} aria-valuenow={Math.min(data.votes.days, data.votes.min)}>
+              <div className="h-full rounded-full bg-gradient-to-r from-[#c46a2d] to-[#f2c091] transition-all" style={{ width: `${Math.min(100, (data.votes.days / data.votes.min) * 100)}%` }} />
+            </div>
+            <p className="mt-1.5 text-xs text-muted-foreground">{data.votes.days >= data.votes.min ? t('voteReady', { days: data.votes.days }) : t('voteProgress', { days: data.votes.days, min: data.votes.min })}</p>
+          </div>
+          <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs text-muted-foreground">{t('voteHow')}</p>
+            <Button onClick={redeemVotes} disabled={redeeming || data.votes.days < data.votes.min} className="gradient-primary shrink-0 gap-2">
+              {redeeming ? <Loader2 className="h-4 w-4 animate-spin" /> : <Crown className="h-4 w-4" />}{t('voteRedeem', { days: data.votes.days })}
+            </Button>
+          </div>
+        </Card>
+      ) : null}
 
       <Card className="p-6 bg-card/60">
         <div className="font-semibold mb-1 flex items-center gap-2"><Key className="w-4 h-4" /> {t('activateKeyTitle')}</div>

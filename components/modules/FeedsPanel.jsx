@@ -14,7 +14,7 @@ import { EXAMPLE, GROUPS, INTERVALS, SOURCES, DEFAULT_INTERVAL } from '@/lib/fee
 
 const GROUP_ORDER = GROUPS;
 const MORE_EXAMPLES = {
-  apple_artist: ['https://music.apple.com/us/artist/taylor-swift/159260351', 'https://music.apple.com/us/artist/the-weeknd/479756766'],
+  apple_artist: ['https://music.apple.com/us/artist/artist-name/1234567890'],
   apple_chart: ['us', 'ro', 'gb', 'de'],
   apple_podcast: ['https://podcasts.apple.com/us/podcast/serial/id917918570'],
   tumblr: ['staff', 'nasa.tumblr.com'],

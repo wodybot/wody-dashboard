@@ -75,7 +75,7 @@ function Editor({ guildId, meta, data, reload }) {
 
       <ProviderBanner platform={platform} provider={provider} />
 
-      {platform === 'tiktok' ? <TikTokConnections guildId={guildId} data={data} provider={provider} reload={reload} /> : null}
+      {platform === 'tiktok' ? <TikTokConnections guildId={guildId} data={data} provider={provider} reload={reload} onUsed={async () => { await reload(); setAdding(true); }} /> : null}
 
       <div className="mb-3 mt-6 flex items-center justify-between gap-2">
         <h3 className="text-sm font-semibold">{t('list.title', { count: notifications.length, max: data.max })}</h3>
@@ -426,8 +426,15 @@ function AddDialog({ guildId, meta, platform, connections, onClose, onAdded }) {
           ) : (
             <Field label={t('add.account')} hint={t('add.accountHint')} level="required" errors={errors} field="connection_id">
               {connected.length ? (
-                <NativeSelect value={connectionId} onChange={setConnectionId} label={t('add.account')}
-                  options={connected.map((c) => ({ value: c.id, label: `${c.display_name || c.username} (@${c.username})` }))} />
+                connected.length === 1 ? (
+                  <div className="flex items-center gap-2 rounded-md border border-border/60 p-2">
+                    {connected[0].avatar_url ? <img src={avatarSrc(connected[0].avatar_url)} alt="" className="h-8 w-8 rounded-full" referrerPolicy="no-referrer" /> : <div className="h-8 w-8 rounded-full bg-secondary" />}
+                    <span className="flex-1 truncate text-sm">{connected[0].display_name || connected[0].username} (@{connected[0].username})</span>
+                  </div>
+                ) : (
+                  <NativeSelect value={connectionId} onChange={setConnectionId} label={t('add.account')}
+                    options={connected.map((c) => ({ value: c.id, label: `${c.display_name || c.username} (@${c.username})` }))} />
+                )
               ) : <p className="rounded-md border border-dashed border-border/60 p-3 text-sm text-muted-foreground">{t('add.noAccount')}</p>}
             </Field>
           )}
@@ -449,7 +456,7 @@ function AddDialog({ guildId, meta, platform, connections, onClose, onAdded }) {
   );
 }
 
-function TikTokConnections({ guildId, data, provider, reload }) {
+function TikTokConnections({ guildId, data, provider, reload, onUsed }) {
   const t = useTranslations('guildSettings.streams');
   const locale = useLocale();
   const [busy, setBusy] = useState(null);
@@ -471,7 +478,7 @@ function TikTokConnections({ guildId, data, provider, reload }) {
     setBusy('mine');
     const r = await callApi(guildId, 'streams/tiktok/use-mine', { method: 'POST' });
     setBusy(null);
-    if (r.ok) { toast.success(t('tiktok.useDone')); reload(); } else toast.error(t('tiktok.useFailed'));
+    if (r.ok) { toast.success(t('tiktok.useDone')); onUsed(); } else toast.error(t('tiktok.useFailed'));
   };
   const disconnect = async () => {
     setBusy(removing.id);
@@ -507,13 +514,8 @@ function TikTokConnections({ guildId, data, provider, reload }) {
           <Button asChild size="sm" variant="outline" className="gap-1.5"><Link href="/tiktok"><Plug className="h-4 w-4" />{t('tiktok.linkCta')}</Link></Button>
         </Card>
       )}
-      <div className="mb-3 flex items-center justify-between gap-2">
-        <h3 className="text-sm font-semibold">{t('tiktok.accounts')}</h3>
-        <Button size="sm" variant="outline" className="gap-1.5" onClick={connect} disabled={!provider.available || busy === 'connect'}>
-          {busy === 'connect' ? <Loader2 className="h-4 w-4 animate-spin" /> : <Plug className="h-4 w-4" />}{t('tiktok.connect')}
-        </Button>
-      </div>
-      {data.connections.length === 0 ? <p className="text-sm text-muted-foreground">{t('tiktok.noAccounts')}</p> : (
+      {data.connections.length > 0 ? <h3 className="mb-3 text-sm font-semibold">{t('tiktok.accounts')}</h3> : null}
+      {data.connections.length === 0 ? null : (
         <ul className="divide-y divide-border/50 rounded-2xl border border-border/60">
           {data.connections.map((c) => (
             <li key={c.id} className="flex flex-wrap items-center gap-3 p-3">

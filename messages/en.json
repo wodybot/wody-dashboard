@@ -496,6 +496,17 @@
             "Every vote counts toward your personal total, tracked automatically per Discord account.",
             "Once you reach 100 total votes, open a ticket in our community server to claim your key. It can then be activated on any server you own."
           ]
+        },
+        {
+          "key": "days",
+          "title": "Option C: Vote days",
+          "steps": [
+            "Vote for Wody with the /vote command. Each vote adds 1 day to your account.",
+            "Days are counted per account and stay saved until you use them.",
+            "From 7 saved days, activate them on any Wody server from the dashboard Premium tab or with /redeemvotes.",
+            "No ticket, no key and no waiting for approval."
+          ],
+          "isNew": true
         }
       ],
       "value": "There's no price tag on Premium, because we'd rather reward the people actually growing the community. Every key stays tied to a single server, is rate limited, and gets revoked the moment a promotion turns out to be fake or votes get gamed.",
@@ -1133,16 +1144,16 @@
         "html": "<p>This Policy may be updated when the service or its data processing practices change. The revision date shown above identifies the current version. Material changes may also be announced through the official Wody community channels where appropriate.</p>"
       },
       {
-        "heading": "27. Contact",
-        "html": "<p>For privacy, legal, or data protection questions, contact Păcurar Ancuța-Narcisa, the Operator, at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>.</p> <p>Wody may also use the optional <code>wody_language</code> preference cookie to remember a language you actively choose. It is not created or updated unless you consent to Preferences, and the language selector remains hidden until that consent exists. Your cookie choice is recorded using the strictly necessary <code>wody_cookie_consent</code> cookie. You can change or withdraw the optional preference at any time in the Cookie Policy.</p>"
+        "heading": "27. Profile images, music links and moderation records",
+        "html": "<p>Images and GIFs that you add to your profile page and to server cards, and any audio you link, are stored only as links: Wody does not keep a copy. Images are loaded through the Wody server from the platform that hosts them, so the visitor's IP address does not reach that platform; they stay visible only while the link remains valid. A linked audio file is loaded directly by the visitor's browser only after they press play, so their IP address reaches the site that hosts it. A song that you upload is served by Wody itself, also only after the visitor presses play. The only files Wody stores are an image you upload as the profile card background and one song you upload to your profile page, each kept until you replace or delete it or until it is removed after a report. For an uploaded song Wody also keeps the time and version of your rights confirmation. Wody keeps reports, the content reference, the moderation decision and its history, and the time and version of your policy confirmation, to handle the case and prevent repeat violations. The profile page can count views as a simple counter in the database, without cookies and without storing the IP address.</p>"
       },
       {
-        "heading": "28. Profile images, music links and moderation records",
-        "html": "<p>Images, GIFs and audio that you add to your profile page and to server cards are stored only as links: Wody does not keep a copy. Images are loaded through the Wody server from the platform that hosts them, so the visitor's IP address does not reach that platform; they stay visible only while the link remains valid. The audio file is loaded directly by the visitor's browser only after they press play, so their IP address reaches the site that hosts the file. The only file Wody stores is an image you upload as the profile card background, kept until you replace or delete it. Wody keeps reports, the content reference, the moderation decision and its history, and the time and version of your policy confirmation, to handle the case and prevent repeat violations. The profile page can count views as a simple counter in the database, without cookies and without storing the IP address.</p>"
-      },
-      {
-        "heading": "29. Radar and Pulse (lookups and feeds)",
+        "heading": "28. Radar and Pulse (lookups and feeds)",
         "html": "<p>When a member runs a /radar lookup, the text they type (for example a username, a server address or a coin name) is sent to the service they chose in order to get the answer. When a server admin adds a /pulse feed, the address or name they enter is stored in the server's settings and checked on a schedule on the source service. These requests are made by the Wody server, so the member's IP address does not reach the service. Wody does not store the lookup results beyond a short cache and does not store the content of the feeds, only what is needed to avoid posting the same item twice. Each service applies its own privacy policy.</p>"
+      },
+      {
+        "heading": "29. Contact",
+        "html": "<p>For privacy, legal, or data protection questions, contact Păcurar Ancuța-Narcisa, the Operator, at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>.</p> <p>Wody may also use the optional <code>wody_language</code> preference cookie to remember a language you actively choose. It is not created or updated unless you consent to Preferences, and the language selector remains hidden until that consent exists. Your cookie choice is recorded using the strictly necessary <code>wody_cookie_consent</code> cookie. You can change or withdraw the optional preference at any time in the Cookie Policy.</p>"
       }
     ]
   },
@@ -1183,7 +1194,7 @@
       },
       {
         "heading": "9. Premium",
-        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications and unlimited creation limits across modules. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p>"
+        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications and unlimited creation limits across modules. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>New: vote days.</strong> Every vote for Wody on top.gg adds one day to your account. Days are counted per account, cannot be transferred or sold, and can be activated once you have saved at least 7. Activating adds all saved days as Premium time on one server you choose, from the dashboard or with <code>/redeemvotes</code>. We may remove days or Premium time that came from automated, bought or manipulated votes.</p>"
       },
       {
         "heading": "10. Uptime and Availability",
@@ -1254,12 +1265,12 @@
         "html": "<p>These Terms are governed by Romanian law and, where applicable, European Union law, without taking away any mandatory consumer protection you have under the law of your own country of residence if you're elsewhere in the EU.</p>"
       },
       {
-        "heading": "27. Contact",
-        "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
+        "heading": "27. Profile customization and user images",
+        "html": "<p>You may add images, GIFs, audio or links to your profile only if you have the necessary rights. Each time you publish or edit your public profile you tick a box confirming this and accepting the policies. Images and links are only linked from the platform that hosts them and stay visible while the link is valid. If you upload a song, Wody stores that file until you replace or remove it, and before uploading you confirm that you own the music or have the permission of the rights holder. You alone are responsible for any music you upload or link, including any copyright claim, and you must not upload music you have no right to use publicly. Anyone can report content. After review Wody can remove content, restrict or suspend customization, and suspend or block the Discord account linked to the profile for Wody features; you can appeal. Details: User Content Policy and Copyright and IP Policy.</p>"
       },
       {
-        "heading": "28. Profile customization and user images",
-        "html": "<p>You may add images, GIFs, audio or links to your profile only if you have the necessary rights. Each time you publish or edit your public profile you tick a box confirming this and accepting the policies. Images and audio are only linked from the platform that hosts them and are visible while the link is valid. Anyone can report content. After review Wody can remove content, restrict or suspend customization, and suspend or block the Discord account linked to the profile for Wody features; you can appeal. Details: User Content Policy and Copyright and IP Policy.</p>"
+        "heading": "28. Contact",
+        "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
       }
     ]
   },
@@ -1301,8 +1312,9 @@
     "higherLimitsSubtitle": "Premium removes these limits completely. The dashboard always shows the real limit for the current server.",
     "freeToPremium": "Free → Premium",
     "howToGetTitle": "How to get Premium",
-    "howToGetSubtitle": "Two ways to earn a key. Either one works, pick whichever fits you.",
-    "joinCommunityBtn": "Join Community"
+    "howToGetSubtitle": "Two ways to earn a key, plus vote days that need no key at all.",
+    "joinCommunityBtn": "Join Community",
+    "newBadge": "New"
   },
   "commands": {
     "metaTitle": "Wody Commands | Full Discord Bot Command List",
@@ -1363,6 +1375,10 @@
           {
             "name": "/votestatus",
             "description": "Check your total votes and next eligible vote time"
+          },
+          {
+            "name": "/redeemvotes",
+            "description": "Activate your saved vote days as Premium on this server"
           }
         ]
       },
@@ -1933,7 +1949,8 @@
       "Fix": "Fix",
       "Announcement": "Announcement",
       "Update": "Update"
-    }
+    },
+    "credits": "Credits"
   },
   "blog": {
     "metaTitle": "Wody - Blog",
@@ -2136,7 +2153,13 @@
         "copyright": "Copyright Policy",
         "required": "Tick the box to confirm and accept the policies first.",
         "blocked": "Your account is suspended or blocked and cannot edit this profile."
-      }
+      },
+      "searchPlaceholder": "Search…",
+      "noResults": "No results",
+      "addMore": "Add more",
+      "clearAll": "Clear all",
+      "remove": "Remove",
+      "limitReached": "Limit reached ({max})"
     },
     "groups": {
       "server": "Server",
@@ -2914,7 +2937,11 @@
       "deleteConfirm": "Delete this reaction panel?",
       "deletedSuccess": "Deleted",
       "deleteFailed": "Failed to delete",
-      "legacyVerifyHint": "Verify mode grants the role when someone reacts or clicks a button right in Discord. For a website-based verification with a single button for the whole server, use the Captcha module in the sidebar."
+      "legacyVerifyHint": "Verify mode grants the role when someone reacts or clicks a button right in Discord. For a website-based verification with a single button for the whole server, use the Captcha module in the sidebar.",
+      "previewTitle": "Live preview",
+      "previewDefaultTitle": "Your panel title",
+      "previewReactions": "Reactions Wody adds",
+      "previewHint": "This is how the message will look in your channel. Mode: {mode}."
     },
     "autoResponses": {
       "title": "Auto Responses",
@@ -3351,7 +3378,8 @@
       "rbErrPriority": "Priority must be a whole number from 0 to 1000.",
       "rbErrEmpty": "Each bonus needs a multiplier above 1 or extra XP above 0.",
       "auroraSpecial": "Miami Style",
-      "auroraSpecialHint": "Retro sunset scenes with their own artwork, drawn on the card. Used on level-up, welcome and goodbye cards."
+      "auroraSpecialHint": "Retro sunset scenes with their own artwork, drawn on the card. Used on level-up, welcome and goodbye cards.",
+      "auroraUseGradient": "Use the gradient instead"
     },
     "suggestions": {
       "title": "Suggestions",
@@ -3418,7 +3446,20 @@
         "giveaways": "Giveaways",
         "forumAutomations": "Forum automations",
         "discoveryBumps": "Discovery bumps"
-      }
+      },
+      "newBadge": "New",
+      "voteTitle": "Premium from votes",
+      "voteDesc": "Every vote on top.gg adds 1 day of Wody Premium to your account. Votes are counted per account. From {min} saved days you can activate everything you collected on this server.",
+      "voteDaysLabel": "saved days",
+      "voteProgress": "{days} of {min} days saved. Keep voting to unlock activation.",
+      "voteReady": "{days} days are ready to activate.",
+      "voteHow": "Prefer Discord? Run /redeemvotes on the server. Use /vote to earn more days.",
+      "voteRedeem": "Activate {days} days",
+      "voteDoneTitle": "Vote days activated",
+      "voteDoneDesc": "{days} days of Premium were added to this server.",
+      "voteNoEnd": "This server already has Premium without an end date. Your days were kept.",
+      "voteNotEnough": "You need at least {min} saved days to activate.",
+      "voteFailed": "Could not activate your days. Try again."
     },
     "youtubeNotify": {
       "title": "YouTube Notifications",
@@ -5132,7 +5173,10 @@
     "manage": "Manage",
     "inviteHere": "Invite Wody",
     "refresh": "Refresh",
-    "loadError": "Could not load servers. Please try again."
+    "loadError": "Could not load servers. Please try again.",
+    "missingTitle": "Servers without Wody",
+    "missingText": "Invite Wody to start managing these servers.",
+    "presentTitle": "Servers with Wody"
   },
   "modules": {
     "general": {
@@ -6910,7 +6954,9 @@
     "emptyText": "Play on a server with Wody Economy and check back soon, the board refreshes every 5 minutes.",
     "unavailable": "The leaderboard is not available right now. Please try again in a moment.",
     "cta": "Add Wody to your server",
-    "coins": "{n} coins"
+    "coins": "{n} coins",
+    "ctaTitle": "Want your server on the board?",
+    "ctaText": "Add Wody, turn on Economy and your members start climbing the global ranking."
   },
   "collab": {
     "title": "WODY Collab",
@@ -7655,7 +7701,9 @@
       "cancel": "Cancel",
       "saving": "Saving...",
       "error": "Could not change the visibility. Try again.",
-      "privateBadge": "Private: only signed-in Wody members can open it"
+      "privateBadge": "Private: only signed-in Wody members can open it",
+      "statusPublic": "Public profile",
+      "statusPrivate": "Private profile"
     },
     "metaTitle": "Profile",
     "saveAll": "Save all settings",
@@ -8110,7 +8158,30 @@
       "links": "Links",
       "card": "Level card",
       "socials": "Social links",
-      "stats": "Stats"
+      "stats": "Stats",
+      "passport": "Passport"
+    },
+    "passportNo": "Passport no.",
+    "daysWith": "Days with Wody",
+    "passportSince": "Claimed",
+    "bansLabel": "Servers with a ban",
+    "musicUploadTitle": "Or upload a song from your computer",
+    "musicRights": "I own this music or have the permission of the rights holder to use it publicly. I am solely responsible for any copyright claim, and I understand that Wody can remove the file and restrict or suspend my profile customization.",
+    "musicUpload": "Upload song",
+    "musicUploading": "Uploading...",
+    "musicRemove": "Remove song",
+    "musicUploaded": "Song uploaded. Tick the policies box and press Save to publish it.",
+    "musicStoredNote": "Stored on Wody. One song per account, a new upload replaces the old one.",
+    "musicLimits": "MP3, OGG, M4A, WAV or FLAC, up to 4 MB. One song per account. It never plays by itself.",
+    "musicError": {
+      "audio_too_large": "The file is too big. The limit is 4 MB.",
+      "audio_invalid": "This is not a valid MP3, OGG, M4A, WAV or FLAC file.",
+      "rate_limited": "Too many uploads. Try again later.",
+      "uploads_restricted": "Uploads are restricted on your profile.",
+      "customization_suspended": "Your profile customization is suspended.",
+      "account_blocked": "This account cannot upload files.",
+      "rights_acceptance_required": "Confirm that you have the rights to this song first.",
+      "generic": "The upload failed. Try again."
     }
   },
   "policies": {
@@ -8127,15 +8198,15 @@
     "contactHtml": "Operator: Păcurar Ancuța-Narcisa, Romania, European Union. General contact: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.",
     "content-policy": {
       "title": "User Content Policy",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "1. What this policy covers",
-          "html": "<p>Wody lets you customize your own profile page, level card, welcome and goodbye cards. You can give Wody a link to an image, GIF or audio file hosted on another platform and, for the profile card background only, upload an image. This policy explains what you may use, how it is handled and how reports are handled. It applies in addition to the Terms and Conditions.</p>"
+          "html": "<p>Wody lets you customize your own profile page, level card, welcome and goodbye cards. You can give Wody a link to an image, GIF or audio file hosted on another platform and, for the profile card background and for your profile song, upload a file. This policy explains what you may use, how it is handled and how reports are handled. It applies in addition to the Terms and Conditions.</p>"
         },
         {
           "heading": "2. Your images and links",
-          "html": "<p>You may use images for personal customization only. You must be the owner of the image, hold a licence for it, or otherwise have a lawful basis to use it and to have it displayed through Wody. Being able to find an image online does not mean you may use it.</p><p>Each time you publish or edit your public profile (profile page, public profile details, a profile card image or link, or the images of your server cards) you must tick an unchecked box that confirms you own or have permission to use the content and that you accept these policies. Without the box ticked the change cannot be saved. When you tick it, Wody records the time and the policy version together with your profile settings.</p><p>The confirmation records your statement. It does not make an unauthorized image lawful and it does not remove Wody's own obligations under the law.</p>"
+          "html": "<p>You may use images for personal customization only. You must be the owner of the image, hold a licence for it, or otherwise have a lawful basis to use it and to have it displayed through Wody. Being able to find an image online does not mean you may use it.</p><p>Each time you publish or edit your public profile (profile page, public profile details, a profile card image or link, or the images of your server cards) you must tick an unchecked box that confirms you own or have permission to use the content and that you accept these policies. Without the box ticked the change cannot be saved. When you tick it, Wody records the time and the policy version together with your profile settings.</p><p>The confirmation records your statement. It does not make an unauthorized image lawful and it does not remove Wody's own obligations under the law.</p><p>The same applies to music. Before you upload a song you must tick a box confirming that you own it or have the permission of the rights holder to make it available publicly through Wody. You alone are responsible for any copyright claim about music you upload or link. Do not upload commercial recordings you have no licence for. Wody may remove a song, restrict uploads or suspend customization after a report or when the use is clearly unlawful.</p>"
         },
         {
           "heading": "3. What is not allowed",
@@ -8147,7 +8218,7 @@
         },
         {
           "heading": "5. How images and links are handled",
-          "html": "<p>Images, GIFs and audio that you add to your profile page and to server cards are not stored by Wody. You provide a link, the file stays on the platform that hosts it, and Wody only loads it from there to show it. It stays visible only while the link remains valid: if you delete the file or the host removes it, it disappears from Wody. Wody stores the link address in your settings until you change or remove it, and the file may be kept for a short time in a browser or network cache while it is displayed.</p><p>The only exception is the profile card background: if you upload a file there instead of giving a link, Wody stores that file until you replace or delete it, or until it is removed after a report.</p><p>You allow Wody to load the link you provide only to show your customization (for example on your profile page or on the cards the bot posts), and to review it if it is reported.</p>"
+          "html": "<p>Images and GIFs that you add to your profile page and to server cards, and audio you link, are not stored by Wody. You provide a link, the file stays on the platform that hosts it, and Wody only loads it from there to show it. It stays visible only while the link remains valid: if you delete the file or the host removes it, it disappears from Wody. Wody stores the link address in your settings until you change or remove it, and the file may be kept for a short time in a browser or network cache while it is displayed.</p><p>The exceptions are the profile card background and your profile song: if you upload a file there instead of giving a link, Wody stores that file until you replace or delete it, or until it is removed after a report. A song plays only when a visitor presses play.</p><p>You allow Wody to load the link you provide only to show your customization (for example on your profile page or on the cards the bot posts), and to review it if it is reported.</p>"
         },
         {
           "heading": "6. Reports and review",
@@ -8173,7 +8244,7 @@
     },
     "copyright": {
       "title": "Copyright and Intellectual Property Policy",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "1. Respect for rights",
@@ -8185,7 +8256,7 @@
         },
         {
           "heading": "3. Your responsibility",
-          "html": "<p>If you upload or link an image, you must have the necessary rights or another lawful basis. Each time you publish or edit your public profile you confirm this, and you accept the policies, by ticking an unchecked box. The confirmation is your statement. It is not a guarantee and it does not make unauthorized use lawful.</p>"
+          "html": "<p>If you upload or link an image or a song, you must have the necessary rights or another lawful basis. Each time you publish or edit your public profile you confirm this, and you accept the policies, by ticking an unchecked box, and before uploading a song you confirm separately that you own it or have the rights holder's permission. The confirmation is your statement. It is not a guarantee and it does not make unauthorized use lawful. You alone are responsible for the music you upload or link.</p>"
         },
         {
           "heading": "4. Reporting a possible infringement",
@@ -8215,7 +8286,7 @@
     },
     "complaint": {
       "title": "Copyright complaint",
-      "version": "1.0-draft",
+      "version": "1.0",
       "sections": [
         {
           "heading": "How to use this form",

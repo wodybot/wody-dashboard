@@ -120,13 +120,10 @@ function PublicToggle({ pf, onChanged }) {
   };
   return (
     <>
-      <div className={`flex items-center justify-between gap-3 rounded-xl border px-3 py-2 ${isPublic ? 'border-emerald-400/40 bg-emerald-400/10' : 'border-border/60 bg-card/40'}`} data-public-toggle-row>
-        <span className={`flex min-w-0 items-center gap-2 text-xs font-semibold ${isPublic ? 'text-emerald-200' : 'text-muted-foreground'}`}>
-          <span className={`h-2 w-2 shrink-0 rounded-full ${isPublic ? 'bg-emerald-400 shadow-[0_0_8px_#34d399]' : 'bg-zinc-500'}`} aria-hidden="true" />
-          <span className="min-w-0 leading-snug">{isPublic ? t('visibility.badge') : t('visibility.privateBadge')}</span>
-        </span>
-        <button type="button" onClick={() => { setErr(''); if (isPublic) send(false); else setOpen(true); }} disabled={busy} className={`${btn} h-8 shrink-0 px-3 text-xs`} data-public-toggle>
-          <Globe className="h-3.5 w-3.5" aria-hidden="true" />{isPublic ? t('visibility.makePrivate') : t('visibility.makePublic')}
+      <div className="flex items-center justify-between gap-3 px-1 text-xs text-muted-foreground" data-public-toggle-row>
+        <span className="flex min-w-0 items-center gap-1.5"><Globe className="h-3.5 w-3.5 shrink-0" aria-hidden="true" /><span className="truncate">{isPublic ? t('visibility.statusPublic') : t('visibility.statusPrivate')}</span></span>
+        <button type="button" onClick={() => { setErr(''); if (isPublic) send(false); else setOpen(true); }} disabled={busy} className="shrink-0 font-semibold text-foreground/90 underline decoration-dotted underline-offset-4 transition hover:text-[#e6cd8c] disabled:opacity-50" data-public-toggle>
+          {isPublic ? t('visibility.makePrivate') : t('visibility.makePublic')}
         </button>
       </div>
       <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) { setConsent(false); setErr(''); } }}>
@@ -180,12 +177,12 @@ function Hero({ pf, onGoSettings, onReload }) {
           </div>
         </div>
         <div className="flex w-full flex-col gap-2 lg:w-[26rem] lg:shrink-0">
-          <PublicToggle pf={pf} onChanged={onReload} />
           <div className="grid grid-cols-3 gap-2">
             {pf.public_path ? <Link href={pf.public_path} data-view-profile className={`${btnMain} h-10 justify-center px-2`}><Eye className="h-4 w-4 shrink-0" aria-hidden="true" /><span className="truncate">{t('hero.viewPublic')}</span></Link> : <span />}
             <Link href="/dashboard" className={`${pf.public_path ? btn : btnMain} h-10 justify-center px-2`}><LayoutDashboard className="h-4 w-4 shrink-0" aria-hidden="true" /><span className="truncate">{tn('dashboard')}</span></Link>
             <Link href="/servers/favorites" className={`${btn} h-10 justify-center px-2`}><Heart className="h-4 w-4 shrink-0 text-rose-300" aria-hidden="true" /><span className="truncate">{tn('resourceLinks.favorites.label')}</span></Link>
           </div>
+          <PublicToggle pf={pf} onChanged={onReload} />
         </div>
       </div>
       <dl className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">

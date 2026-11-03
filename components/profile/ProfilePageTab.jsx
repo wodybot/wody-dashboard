@@ -55,7 +55,7 @@ function Panel({ title, children }) {
   );
 }
 
-function LivePreview({ page, identity, socials, away, cardCfg, tcard }) {
+function LivePreview({ page, identity, socials, away, cardCfg, passport }) {
   const outer = useRef(null);
   const [zoom, setZoom] = useState(1);
   useEffect(() => {
@@ -68,20 +68,12 @@ function LivePreview({ page, identity, socials, away, cardCfg, tcard }) {
   const rawSrc = identity?.avatar ? `https://cdn.discordapp.com/avatars/${identity.id}/${identity.avatar}.png?size=128` : 'https://cdn.discordapp.com/embed/avatars/0.png';
   const accent = pageAccent(page) || '#e6cd8c';
   const name = identity?.name || identity?.username || '';
-  const levelCard = cardCfg ? (
-    <section className="relative overflow-hidden rounded-3xl border bg-card/60 p-4 sm:p-6" style={{ borderColor: `${accent}66`, boxShadow: `0 0 90px -30px ${accent}` }}>
-      <div className="mb-4 flex items-center gap-2.5">
-        <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: `${accent}26`, color: accent }}><IdCard className="h-5 w-5" aria-hidden="true" /></span>
-        <div className="min-w-0"><h2 className="text-lg font-black leading-tight">{tcard('levelCardTitle')}</h2><p className="text-xs text-muted-foreground">{tcard('levelCardHint')}</p></div>
-      </div>
-      <div style={{ filter: `drop-shadow(0 0 26px ${cardCfg.accent}55)` }}><ProfileCardPreview cfg={cardCfg} name={name} avatarSrc={discordCdnUrl(rawSrc)} tagline="" /></div>
-    </section>
-  ) : null;
+  const card = cardCfg ? { cfg: cardCfg, tagline: '' } : null;
   return (
     <div ref={outer} className="relative isolate overflow-hidden rounded-2xl border border-border/60 bg-[#120b08]">
       <PageBackdrop page={page} fixed={false} />
       <div style={{ width: zoom < 1 || (typeof window !== 'undefined' && window.innerWidth >= 1024) ? 1200 : 'auto', zoom }} className="flex flex-col gap-6 px-6 py-6">
-        <ProfilePageView page={publicPageView(page)} name={name} username={identity?.username || ''} avatarSrc={discordCdnUrl(rawSrc)} memberSince={null} away={away} socials={socials} live={0} views={0} locale="en" levelCard={levelCard} />
+        <ProfilePageView page={publicPageView(page)} name={name} username={identity?.username || ''} avatarSrc={discordCdnUrl(rawSrc)} memberSince={null} away={away} socials={socials} live={0} views={0} locale="en" card={card} passport={passport} />
       </div>
     </div>
   );
@@ -89,7 +81,7 @@ function LivePreview({ page, identity, socials, away, cardCfg, tcard }) {
 
 export default function ProfilePageTab({ identity, socials = {}, away = null, onGoCard }) {
   const t = useTranslations('profilePage');
-  const tcard = useTranslations('profilePage');
+  const [passport, setPassport] = useState(null);
   const [cardCfg, setCardCfg] = useState(null);
   useEffect(() => { api('GET', null, 'profile-card').then((r) => { if (r.ok && r.data?.config) setCardCfg(normalizeConfig(r.data.config)); }); }, []);
   const tnav = useTranslations('nav');
@@ -100,6 +92,8 @@ export default function ProfilePageTab({ identity, socials = {}, away = null, on
   const [msg, setMsg] = useState(null);
   const dirtyRef = useRef(false);
   const [consent, setConsent] = useState(false);
+  const [musicRights, setMusicRights] = useState(false);
+  const [musicBusy, setMusicBusy] = useState(false);
   const [mod, setMod] = useState(null);
   const [appeal, setAppeal] = useState('');
   const [appealSent, setAppealSent] = useState(false);
@@ -108,7 +102,7 @@ export default function ProfilePageTab({ identity, socials = {}, away = null, on
     const r = await api('GET');
     if (!r.ok || !r.data?.page) { setState('error'); return; }
     const page = normalizePage(r.data.page);
-    setSaved(page); setDraft(page); setMod(r.data.moderation || null); setState('ready');
+    setSaved(page); setDraft(page); setMod(r.data.moderation || null); setPassport(r.data.passport || null); setState('ready');
   }, []);
   useEffect(() => { load(); }, [load]);
   const dirty = useMemo(() => Boolean(saved && draft && JSON.stringify(saved) !== JSON.stringify(draft)), [saved, draft]);
@@ -124,6 +118,25 @@ export default function ProfilePageTab({ identity, socials = {}, away = null, on
   const shortLink = `wody.online/${uname}`;
   const copyShort = async () => { try { await navigator.clipboard.writeText(`https://${shortLink}`); setMsg({ kind: 'ok', text: t('shortCopied') }); } catch { setMsg({ kind: 'err', text: t('shortTitle') }); } };
   const set = (patch) => { setMsg(null); setDraft((d) => ({ ...d, ...patch })); };
+  const uploadMusic = async (file) => {
+    if (!file || !musicRights) return;
+    setMusicBusy(true);
+    try {
+      const form = new FormData();
+      form.append('file', file); form.append('policy_accepted', 'true'); form.append('rights_accepted', 'true');
+      const res = await fetch('/api/profile-page/music', { method: 'POST', body: form });
+      const j = await res.json().catch(() => ({}));
+      if (res.ok && j.url) {
+        setDraft((d) => ({ ...d, music: j.url, music_title: d.music_title || String(j.name || '').replace(/\.[^.]+$/, '').slice(0, 60) }));
+        setMsg({ kind: 'ok', text: t('musicUploaded') });
+      } else {
+        const known = ['audio_too_large', 'audio_invalid', 'rate_limited', 'uploads_restricted', 'customization_suspended', 'account_blocked', 'rights_acceptance_required'];
+        setMsg({ kind: 'err', text: t(`musicError.${known.includes(j.error) ? j.error : 'generic'}`) });
+      }
+    } catch { setMsg({ kind: 'err', text: t('musicError.generic') }); }
+    setMusicBusy(false);
+  };
+  const musicStored = typeof draft?.music === 'string' && draft.music.startsWith('/api/profile-page/music/');
   const musicBad = (() => { try { cleanMusicUrl(draft?.music || null); return false; } catch { return true; } })();
   const imageBad = (() => { try { cleanPageImage(draft?.image || null); return false; } catch { return true; } })();
 
@@ -188,7 +201,7 @@ export default function ProfilePageTab({ identity, socials = {}, away = null, on
         <h2 className="text-lg font-black">{t('title')}</h2>
         <p className="mb-3 mt-1 text-sm text-muted-foreground">{t('intro')}</p>
         <div className="mb-2 text-xs text-muted-foreground">{t('preview')}</div>
-        <LivePreview page={page} identity={identity} socials={socials} away={away} cardCfg={cardCfg} tcard={tcard} />
+        <LivePreview page={page} identity={identity} socials={socials} away={away} cardCfg={cardCfg} passport={passport} />
         <p className="mt-2 text-xs text-muted-foreground">{t('previewNote')}</p>
         {shortOk ? (
           <div className="mt-3 rounded-xl border border-[#e6cd8c]/30 bg-[#e6cd8c]/5 p-3">
@@ -281,6 +294,21 @@ export default function ProfilePageTab({ identity, socials = {}, away = null, on
             <label className={lab} htmlFor="pp-music">{t('field.music')}</label>
             <input id="pp-music" className={input} inputMode="url" value={page.music || ''} maxLength={500} placeholder="https://example.com/song.mp3" aria-invalid={musicBad} onChange={(e) => set({ music: e.target.value.trim() || null })} />
             <p className={`mt-1 text-xs ${musicBad ? 'text-red-300' : 'text-muted-foreground'}`}>{musicBad ? t('invalid', { field: t('field.music') }) : t('musicHint')}</p>
+          </div>
+          <div className="sm:col-span-2 rounded-xl border border-border/60 bg-background/30 p-3">
+            <div className="mb-1 text-sm font-semibold">{t('musicUploadTitle')}</div>
+            <label className="flex cursor-pointer items-start gap-2 text-xs leading-5 text-muted-foreground">
+              <input type="checkbox" className="mt-1 h-4 w-4 shrink-0 accent-[#e6cd8c]" checked={musicRights} onChange={(e) => setMusicRights(e.target.checked)} />
+              <span>{t('musicRights')}</span>
+            </label>
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              <label className={`${btn} ${!musicRights || musicBusy ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}>
+                {musicBusy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : null}{musicBusy ? t('musicUploading') : t('musicUpload')}
+                <input type="file" accept="audio/mpeg,audio/ogg,audio/mp4,audio/x-m4a,audio/wav,audio/flac,.mp3,.ogg,.m4a,.wav,.flac" className="sr-only" disabled={!musicRights || musicBusy} onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ''; uploadMusic(f); }} />
+              </label>
+              {musicStored ? <button type="button" className={btn} onClick={() => set({ music: null })}><Trash2 className="h-4 w-4" aria-hidden="true" />{t('musicRemove')}</button> : null}
+            </div>
+            <p className="mt-2 text-[11px] text-muted-foreground">{musicStored ? t('musicStoredNote') : t('musicLimits')}</p>
           </div>
           <div className="sm:col-span-2">
             <label className={lab} htmlFor="pp-music-title">{t('field.music_title')}</label>

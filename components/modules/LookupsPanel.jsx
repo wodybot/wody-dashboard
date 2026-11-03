@@ -18,7 +18,7 @@ export const LOOKUP_GROUPS = [
 
 const EXAMPLES = {
   nowplaying: 'username', itunes: 'Daft Punk Get Lucky', mcserver: 'mc.hypixel.net', mcplayer: 'Notch', roblox: 'Builderman',
-  steam: 'Counter-Strike 2', chess: 'MagnusCarlsen', twitch: 'ninja', kick: 'xqc', youtube: '@MrBeast', github: 'python/cpython',
+  steam: 'Counter-Strike 2', chess: 'username', twitch: 'username', kick: 'username', youtube: '@channel', github: 'python/cpython',
   movie: 'Inception', show: 'Breaking Bad', crypto: 'bitcoin', convert: '100 EUR RON',
 };
 const KEYED = new Set(['nowplaying', 'twitch', 'kick']);

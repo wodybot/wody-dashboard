@@ -1,12 +1,14 @@
 'use client';
 import { useRef, useState } from 'react';
-import { Bold, Italic, Strikethrough, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Code, Link2, Eye, Pencil } from 'lucide-react';
+import { Bold, Italic, Strikethrough, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Code, Link2, Eye, Pencil, ImagePlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { SimpleMarkdown } from '@/components/simple-markdown';
+import { uploadSiteImageFile, IMAGE_ACCEPT } from '@/components/owner-image-field';
 
-export function RichTextEditor({ value, onChange, placeholder, maxLength, rows = 10, hint = true }) {
+export function RichTextEditor({ value, onChange, placeholder, maxLength, rows = 10, hint = true, images = false }) {
   const textareaRef = useRef(null);
+  const fileRef = useRef(null);
   const [tab, setTab] = useState('write');
 
   function applyToSelection(before, after = before, placeholderText = '') {
@@ -71,6 +73,16 @@ export function RichTextEditor({ value, onChange, placeholder, maxLength, rows =
     });
   }
 
+  async function insertImage(file) {
+    const url = await uploadSiteImageFile(file);
+    if (!url) return;
+    const el = textareaRef.current;
+    const current = value || '';
+    const at = el ? el.selectionStart : current.length;
+    const markup = `\n\n![image](${url})\n\n`;
+    onChange(current.slice(0, at) + markup + current.slice(at));
+  }
+
   const tools = [
     { icon: Bold, label: 'Bold', onClick: () => applyToSelection('**', '**', 'bold text') },
     { icon: Italic, label: 'Italic', onClick: () => applyToSelection('*', '*', 'italic text') },
@@ -86,6 +98,7 @@ export function RichTextEditor({ value, onChange, placeholder, maxLength, rows =
     { icon: Quote, label: 'Quote', onClick: () => applyToLines('> ') },
     { divider: true },
     { icon: Link2, label: 'Link', onClick: insertLink },
+    ...(images ? [{ icon: ImagePlus, label: 'Insert image from computer', onClick: () => fileRef.current?.click() }] : []),
   ];
 
   return (
@@ -112,6 +125,7 @@ export function RichTextEditor({ value, onChange, placeholder, maxLength, rows =
             )
           ))}
         </div>
+        {images ? <input ref={fileRef} type="file" accept={IMAGE_ACCEPT} className="sr-only" onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ''; if (f) insertImage(f); }} /> : null}
         <div className="flex items-center gap-0.5 shrink-0">
           <Button
             type="button"
