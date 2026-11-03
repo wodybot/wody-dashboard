@@ -1,0 +1,4 @@
+export const input = 'w-full rounded-lg border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring';
+export const lab = 'mb-1 block text-xs font-medium text-muted-foreground';
+export const btn = 'inline-flex items-center gap-1.5 rounded-lg border border-border/70 px-3 py-1.5 text-sm font-medium transition hover:border-[#e6cd8c]/60 disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e6cd8c]';
+export const btnMain = 'inline-flex items-center gap-1.5 rounded-lg bg-[#e6cd8c] text-[#1a1208] px-4 py-2 text-sm font-semibold hover:bg-[#f3e1b0] disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e6cd8c]';

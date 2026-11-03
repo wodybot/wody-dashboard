@@ -1,0 +1,25 @@
+.leaf {
+  position: absolute;
+  top: -0.6rem;
+  right: -0.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  z-index: 10;
+  pointer-events: none;
+  transform: rotate(22deg);
+}
+
+.leaf.animated {
+  animation: sway 6s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(22deg); }
+  50% { transform: rotate(30deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaf.animated {
+    animation: none;
+  }
+}
