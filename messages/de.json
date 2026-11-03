@@ -15,8 +15,8 @@
       "Reaktionsrollen-Bot",
       "kostenloser Discord-Bot",
       "Willkommens-Bot Discord",
-      "gta 6 discord bot",
-      "miami theme discord bot"
+      "miami theme discord bot",
+      "miami style discord bot"
     ],
     "skipToContent": "Zum Inhalt springen"
   },
@@ -541,7 +541,6 @@
       "title": "Drei Werkzeuge. Eine Identität.",
       "text": "Baue eine Profilseite, die in Erinnerung bleibt, hole deinen Wody-Pass und finde Partner in Collab, alles mit demselben Konto.",
       "note": "Eigene Grafiken. Beispiele dienen der Veranschaulichung. Keine Verbindung zu oder Billigung durch einen Spielepublisher.",
-      "gtaLink": "Discord-Bot mit von GTA 6 inspiriertem Design",
       "mock": {
         "name": "deinname",
         "bio": "Neon-Sonnenuntergänge und gute Musik.",
@@ -576,7 +575,8 @@
         "r3s": "Cross-Promotion",
         "server": "Server",
         "global": "Global"
-      }
+      },
+      "miamiLink": "Discord-Bot mit Miami-Style-Design"
     }
   },
   "careers": {
@@ -1126,8 +1126,8 @@
         "html": "<p>For privacy, legal, or data protection questions, contact Păcurar Ancuța-Narcisa, the Operator, at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>.</p> <p>Wody may also use the optional <code>wody_language</code> preference cookie to remember a language you actively choose. It is not created or updated unless you consent to Preferences, and the language selector remains hidden until that consent exists. Your cookie choice is recorded using the strictly necessary <code>wody_cookie_consent</code> cookie. You can change or withdraw the optional preference at any time in the Cookie Policy.</p>"
       },
       {
-        "heading": "28. Profile images, music links and moderation records",
-        "html": "<p>Images, GIFs and audio that you add to your profile page and to server cards are stored only as links: Wody does not keep a copy. Images are loaded through the Wody server from the platform that hosts them, so the visitor's IP address does not reach that platform; they stay visible only while the link remains valid. The audio file is loaded directly by the visitor's browser only after they press play, so their IP address reaches the site that hosts the file. The only file Wody stores is an image you upload as the profile card background, kept until you replace or delete it. Wody keeps reports, the content reference, the moderation decision and its history, and the time and version of your policy confirmation, to handle the case and prevent repeat violations. Retention periods: [REQUIRES OPERATOR CONFIRMATION]. The profile page can count views as a simple counter in the database, without cookies and without storing the IP address.</p>"
+        "heading": "28. Profilbilder, Musik-Links und Moderationsaufzeichnungen",
+        "html": "<p>Bilder, GIFs und Audiodateien, die du zu deiner Profilseite und zu Serverkarten hinzufügst, werden nur als Links gespeichert: Wody behält keine Kopie. Bilder werden über den Wody-Server von der Plattform geladen, die sie hostet, sodass die IP-Adresse des Besuchers diese Plattform nicht erreicht; sie bleiben nur sichtbar, solange der Link gültig ist. Die Audiodatei wird erst geladen, nachdem der Besucher auf Play drückt, und zwar direkt vom Browser des Besuchers, sodass seine IP-Adresse die Seite erreicht, die die Datei hostet. Die einzige Datei, die Wody speichert, ist ein Bild, das du als Hintergrund der Profilkarte hochlädst; es wird aufbewahrt, bis du es ersetzt oder löschst. Wody speichert Meldungen, den Verweis auf den Inhalt, die Moderationsentscheidung und ihren Verlauf sowie Zeitpunkt und Version deiner Richtlinienbestätigung, um den Fall zu bearbeiten und wiederholte Verstöße zu verhindern. Aufbewahrungsfristen: [BESTÄTIGUNG DES BETREIBERS ERFORDERLICH]. Die Profilseite kann Aufrufe mit einem einfachen Zähler in der Datenbank zählen, ohne Cookies und ohne Speicherung der IP-Adresse.</p>"
       }
     ]
   },
@@ -1243,8 +1243,8 @@
         "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
       },
       {
-        "heading": "28. Profile customization, user images and the GTA VI category",
-        "html": "<p>Wody provides customization. You may add images, GIFs, audio or links only if you have the necessary rights or another lawful basis. Each time you publish or edit your public profile you must tick an unchecked box to confirm this and to accept the policies; this confirmation does not make an unauthorized image lawful. Wody does not provide a gallery of third-party artwork, is not affiliated with Rockstar Games or Take-Two Interactive, and the GTA VI category is an unofficial theme made of original scenes. Images and audio are linked from the platform that hosts them and are visible only while the link is valid. Anyone can report content; Wody has no automatic detection. After review Wody can remove content, restrict or suspend customization, and suspend or block the Discord account linked to the profile for Wody features, and you can appeal. Details: User Content Policy and Copyright and IP Policy (drafts, not yet published as final).</p>"
+        "heading": "28. Profilanpassung, Nutzerbilder und die Kategorie Miami Style",
+        "html": "<p>Wody bietet Anpassung. Du darfst Bilder, GIFs, Audio oder Links nur hinzufügen, wenn du die erforderlichen Rechte oder eine andere rechtmäßige Grundlage hast. Jedes Mal, wenn du dein öffentliches Profil veröffentlichst oder bearbeitest, musst du ein nicht vorausgewähltes Kästchen anhaken, um dies zu bestätigen und die Richtlinien zu akzeptieren; diese Bestätigung macht ein nicht autorisiertes Bild nicht rechtmäßig. Wody bietet keine Galerie mit Grafiken Dritter, ist mit keinem Spielepublisher verbunden, und die Kategorie Miami Style ist ein inoffizielles Thema aus originalen Szenen. Bilder und Audio werden von der Plattform verlinkt, die sie hostet, und sind nur sichtbar, solange der Link gültig ist. Jeder kann Inhalte melden; Wody hat keine automatische Erkennung. Nach Prüfung kann Wody Inhalte entfernen, die Anpassung einschränken oder sperren und das mit dem Profil verknüpfte Discord-Konto für Wody-Funktionen sperren oder blockieren; du kannst Einspruch einlegen. Details: Richtlinie für Nutzerinhalte und Richtlinie zu Urheberrecht und geistigem Eigentum (Entwürfe, noch nicht als endgültig veröffentlicht).</p>"
       }
     ]
   },
@@ -2029,9 +2029,9 @@
         "read": "Lesen:",
         "content": "Inhaltsrichtlinie",
         "copyright": "Urheberrechtsrichtlinie",
-        "gta": "GTA-VI-Hinweis",
         "required": "Setze zuerst das Häkchen, um zu bestätigen und die Richtlinien zu akzeptieren.",
-        "blocked": "Dein Konto ist gesperrt oder blockiert und kann dieses Profil nicht bearbeiten."
+        "blocked": "Dein Konto ist gesperrt oder blockiert und kann dieses Profil nicht bearbeiten.",
+        "miami": "Miami-Style-Hinweis"
       }
     },
     "groups": {
@@ -3246,7 +3246,7 @@
       "rbErrFlat": "Zusätzliche XP müssen eine ganze Zahl von 0 bis 1000 sein.",
       "rbErrPriority": "Die Priorität muss eine ganze Zahl von 0 bis 1000 sein.",
       "rbErrEmpty": "Jeder Bonus braucht einen Multiplikator über 1 oder zusätzliche XP über 0.",
-      "auroraSpecial": "Spezialkollektion",
+      "auroraSpecial": "Miami Style",
       "auroraSpecialHint": "Retro-Sonnenuntergangsszenen mit eigener Grafik direkt auf der Karte. Gilt für Level-, Willkommens- und Abschiedskarten."
     },
     "suggestions": {
@@ -7538,9 +7538,9 @@
       "read": "Lesen:",
       "content": "Inhaltsrichtlinie",
       "copyright": "Urheberrechtsrichtlinie",
-      "gta": "GTA-VI-Hinweis",
       "required": "Setze zuerst das Häkchen, um zu bestätigen und die Richtlinien zu akzeptieren.",
-      "blocked": "Dein Konto ist gesperrt oder blockiert und kann dieses Profil nicht bearbeiten."
+      "blocked": "Dein Konto ist gesperrt oder blockiert und kann dieses Profil nicht bearbeiten.",
+      "miami": "Miami-Style-Hinweis"
     }
   },
   "humancheck": {
@@ -7645,7 +7645,9 @@
       "rose": "Rosé",
       "noir": "Noir",
       "coast": "Neon Coast",
-      "dusk": "Palm Dusk"
+      "dusk": "Palm Dusk",
+      "skyline": "Neon Skyline",
+      "miami": "Miami Beach"
     },
     "layoutOpt": {
       "classic": "Klassisch",
@@ -7717,6 +7719,13 @@
         "pulse": "Pulsieren",
         "scan": "Scanlinie",
         "snow": "Schnee"
+      },
+      "scene": {
+        "none": "Keine",
+        "coast": "Neon Coast",
+        "dusk": "Palm Dusk",
+        "skyline": "Neon Skyline",
+        "miami": "Miami Beach"
       }
     },
     "setting": {
@@ -7730,7 +7739,8 @@
       "effect": "Visueller Effekt",
       "decoration": "Dekoration",
       "bg_mode": "Hintergrundart",
-      "anim": "Animation"
+      "anim": "Animation",
+      "scene": "Miami-Style-Szene"
     },
     "field": {
       "accent": "Akzentfarbe",
@@ -7808,10 +7818,12 @@
       "read": "Lesen:",
       "content": "Inhaltsrichtlinie",
       "copyright": "Urheberrechtsrichtlinie",
-      "gta": "GTA-VI-Hinweis",
       "required": "Setze zuerst das Häkchen, um zu bestätigen und die Richtlinien zu akzeptieren.",
-      "blocked": "Dein Konto ist gesperrt oder blockiert und kann dieses Profil nicht bearbeiten."
-    }
+      "blocked": "Dein Konto ist gesperrt oder blockiert und kann dieses Profil nicht bearbeiten.",
+      "miami": "Miami-Style-Hinweis"
+    },
+    "sectionMiami": "Miami Style",
+    "miamiHint": "Retro-Sonnenuntergangsszenen mit eigener Grafik hinter deiner Karte. Wähle eine für die Vorschau."
   },
   "profilePage": {
     "levelCardTitle": "Level-Karte",
@@ -7854,7 +7866,8 @@
         "stars": "Sterne",
         "coast": "Neon-Coast-Szene",
         "skyline": "Miami-Skyline (Neon)",
-        "miami": "Miami Beach (Art déco)"
+        "miami": "Miami Beach (Art déco)",
+        "dusk": "Palm Dusk"
       },
       "card_place": {
         "top": "Über meinen Angaben",
@@ -7905,271 +7918,315 @@
     "shortCopy": "Kopieren",
     "shortCopied": "Link kopiert.",
     "shortHint": "Teile ihn überall. Angemeldete WODY-Mitglieder sehen deine Seite, ihre Besuche erscheinen im Zähler.",
-    "specialGroup": "Spezialkollektion",
+    "specialGroup": "Miami Style",
     "rights": {
-      "title": "Image rights",
-      "confirm": "I confirm that I have the necessary rights, permission or other lawful basis to use this image and allow it to be displayed through Wody.",
-      "note": "This confirmation is your statement. It does not make an unauthorized image lawful.",
-      "policy": "User Content Policy",
-      "gta": "GTA VI category notice"
+      "title": "Bildrechte",
+      "confirm": "Ich bestätige, dass ich die erforderlichen Rechte, die Erlaubnis oder eine andere rechtmäßige Grundlage habe, dieses Bild zu verwenden und über Wody anzeigen zu lassen.",
+      "note": "Diese Bestätigung ist deine Erklärung. Sie macht ein nicht autorisiertes Bild nicht rechtmäßig.",
+      "policy": "Richtlinie für Nutzerinhalte",
+      "miami": "Miami-Style-Hinweis"
     },
     "mod": {
-      "title": "A moderation action affects your customization",
-      "appealLabel": "Appeal: explain why the content is lawful",
-      "appealSend": "Send appeal",
-      "appealSent": "Appeal sent. It will be reviewed.",
+      "title": "Eine Moderationsmaßnahme betrifft deine Anpassung",
+      "appealLabel": "Einspruch: Erkläre, warum der Inhalt rechtmäßig ist",
+      "appealSend": "Einspruch senden",
+      "appealSent": "Einspruch gesendet. Er wird geprüft.",
       "action": {
-        "remove_content": "An image or audio link was removed after a review.",
-        "restrict_uploads": "Uploading images and music is temporarily restricted.",
-        "suspend_customization": "Customization is suspended.",
+        "remove_content": "Ein Bild- oder Audio-Link wurde nach einer Prüfung entfernt.",
+        "restrict_uploads": "Das Hochladen von Bildern und Musik ist vorübergehend eingeschränkt.",
+        "suspend_customization": "Die Anpassung ist gesperrt.",
         "suspend_account": "Dein Konto ist vorübergehend gesperrt, du kannst dein Profil nicht bearbeiten.",
         "block_account": "Dein Konto ist blockiert, du kannst dein Profil nicht bearbeiten."
       },
       "err": {
-        "uploads_restricted": "Uploads are restricted on your account right now.",
-        "customization_suspended": "Customization is suspended on your account.",
+        "uploads_restricted": "Uploads sind für dein Konto derzeit eingeschränkt.",
+        "customization_suspended": "Die Anpassung ist für dein Konto gesperrt.",
         "policy_acceptance_required": "Setze zuerst das Häkchen, um zu bestätigen und die Richtlinien zu akzeptieren.",
         "account_blocked": "Dein Konto ist gesperrt oder blockiert und kann dieses Profil nicht bearbeiten."
       }
     },
-    "gtaNote": "The Special collection is an unofficial customization theme drawn by Wody. It contains no official game artwork.",
-    "gtaLink": "Read the notice",
     "consent": {
       "label": "Ich bestätige, dass ich Eigentümer jedes Bildes, GIFs, Links und Audios bin, das ich hinzufüge, oder die Erlaubnis zur Nutzung habe, und dass ich die folgenden Richtlinien gelesen habe und akzeptiere. Mir ist bewusst, dass Wody nur auf Inhalte verlinkt, die auf anderen Plattformen gehostet werden, dass jeder sie melden kann und dass Wody sie entfernen und mein Discord-Konto bei Verstößen sperren oder blockieren kann.",
       "read": "Lesen:",
       "content": "Inhaltsrichtlinie",
       "copyright": "Urheberrechtsrichtlinie",
-      "gta": "GTA-VI-Hinweis",
       "required": "Setze zuerst das Häkchen, um zu bestätigen und die Richtlinien zu akzeptieren.",
-      "blocked": "Dein Konto ist gesperrt oder blockiert und kann dieses Profil nicht bearbeiten."
-    }
+      "blocked": "Dein Konto ist gesperrt oder blockiert und kann dieses Profil nicht bearbeiten.",
+      "miami": "Miami-Style-Hinweis"
+    },
+    "miamiNote": "Das Miami-Style-Thema ist ein inoffizielles Anpassungsthema, von Wody gezeichnet. Es enthält keine Grafiken Dritter.",
+    "miamiLink": "Hinweis lesen",
+    "miamiHint": "Animierte Szenen für den Hintergrund deiner Seite. Wähle eine für die Vorschau.",
+    "miamiOff": "Szene entfernen"
   },
   "policies": {
-    "index": "Policies",
-    "draft": "Draft",
-    "draftNote": "This is a draft prepared on {review}. It has not been approved by the operator or reviewed by a lawyer and is not yet published as final. Fields marked [REQUIRES OPERATOR CONFIRMATION] are missing details.",
+    "index": "Richtlinien",
+    "draft": "Entwurf",
+    "draftNote": "Dies ist ein am {review} erstellter Entwurf. Er wurde weder vom Betreiber genehmigt noch von einem Anwalt geprüft und ist noch nicht als endgültig veröffentlicht. Felder mit [BESTÄTIGUNG DES BETREIBERS ERFORDERLICH] sind fehlende Angaben.",
     "version": "Version",
-    "effective": "Effective date",
-    "updated": "Last updated",
+    "effective": "Gültig ab",
+    "updated": "Zuletzt aktualisiert",
     "status": "Status",
-    "statusValue": "Draft, awaiting operator confirmation and legal review",
-    "effectiveValue": "Not in force until the operator publishes it",
-    "previous": "Previous version",
-    "previousValue": "None",
+    "statusValue": "Entwurf, wartet auf Bestätigung des Betreibers und rechtliche Prüfung",
+    "effectiveValue": "Nicht in Kraft, bis der Betreiber sie veröffentlicht",
+    "previous": "Vorherige Version",
+    "previousValue": "Keine",
     "contact": "Contact",
-    "related": "Related policies",
+    "related": "Verwandte Richtlinien",
     "nav": {
-      "content-policy": "User Content Policy",
-      "copyright": "Copyright and IP Policy",
-      "gta-notice": "GTA VI category notice",
-      "complaint": "Copyright complaint"
+      "content-policy": "Richtlinie für Nutzerinhalte",
+      "copyright": "Richtlinie zu Urheberrecht und geistigem Eigentum",
+      "complaint": "Urheberrechtsbeschwerde",
+      "miami-notice": "Hinweis zur Kategorie Miami Style"
     },
-    "contactHtml": "Operator: Păcurar Ancuța-Narcisa, Romania, European Union. General contact: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Dedicated copyright contact: [REQUIRES OPERATOR CONFIRMATION]. Registered address, tax and registration details: [REQUIRES OPERATOR CONFIRMATION].",
+    "contactHtml": "Betreiberin: Păcurar Ancuța-Narcisa, Rumänien, Europäische Union. Allgemeiner Kontakt: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Eigener Urheberrechtskontakt: [BESTÄTIGUNG DES BETREIBERS ERFORDERLICH]. Anschrift, Steuer- und Registerangaben: [BESTÄTIGUNG DES BETREIBERS ERFORDERLICH].",
     "content-policy": {
-      "title": "User Content Policy",
+      "title": "Richtlinie für Nutzerinhalte",
       "version": "1.0-draft",
       "sections": [
         {
-          "heading": "1. What this policy covers",
-          "html": "<p>Wody lets you customize your own profile page, level card, welcome and goodbye cards. You can give Wody a link to an image, GIF or audio file hosted on another platform and, for the profile card background only, upload an image. This policy explains what you may use, how it is handled and how reports are handled. It applies in addition to the Terms and Conditions.</p>"
+          "heading": "1. Was diese Richtlinie abdeckt",
+          "html": "<p>Mit Wody kannst du deine Profilseite, deine Level-Karte sowie Willkommens- und Abschiedskarten anpassen. Du kannst Wody einen Link zu einem Bild, GIF oder einer Audiodatei geben, die auf einer anderen Plattform liegt, und nur für den Hintergrund der Profilkarte ein Bild hochladen. Diese Richtlinie erklärt, was du verwenden darfst, wie damit umgegangen wird und wie Meldungen bearbeitet werden. Sie gilt zusätzlich zu den Nutzungsbedingungen.</p>"
         },
         {
-          "heading": "2. Your images and links",
-          "html": "<p>You may use images for personal customization only. You must be the owner of the image, hold a licence for it, or otherwise have a lawful basis to use it and to have it displayed through Wody. Being able to find an image online does not mean you may use it.</p><p>Each time you publish or edit your public profile (profile page, public profile details, a profile card image or link, or the images of your server cards) you must tick an unchecked box that confirms you own or have permission to use the content and that you accept these policies. Without the box ticked the change cannot be saved. When you tick it, Wody records the time and the policy version together with your profile settings.</p><p>The confirmation records your statement. It does not make an unauthorized image lawful and it does not remove Wody's own obligations under the law.</p>"
+          "heading": "2. Deine Bilder und Links",
+          "html": "<p>Du darfst Bilder nur zur persönlichen Anpassung verwenden. Du musst Inhaber des Bildes sein, eine Lizenz dafür besitzen oder anderweitig eine rechtmäßige Grundlage haben, es zu verwenden und über Wody anzeigen zu lassen. Dass man ein Bild online findet, bedeutet nicht, dass man es verwenden darf.</p><p>Jedes Mal, wenn du dein öffentliches Profil veröffentlichst oder bearbeitest (Profilseite, öffentliche Profilangaben, Bild oder Link der Profilkarte oder Bilder deiner Serverkarten), musst du ein nicht vorausgewähltes Kästchen anhaken, mit dem du bestätigst, dass du den Inhalt besitzt oder die Erlaubnis zur Nutzung hast und diese Richtlinien akzeptierst. Ohne das angehakte Kästchen kann die Änderung nicht gespeichert werden. Wenn du es anhakst, speichert Wody Zeitpunkt und Richtlinienversion zusammen mit deinen Profileinstellungen.</p><p>Die Bestätigung hält deine Erklärung fest. Sie macht ein nicht autorisiertes Bild nicht rechtmäßig und hebt Wodys eigene gesetzliche Pflichten nicht auf.</p>"
         },
         {
-          "heading": "3. What is not allowed",
-          "html": "<ul><li>Material that infringes copyright, trademarks or other rights of others, including official artwork, screenshots, logos or characters you do not have permission to use.</li><li>Use of logos, names or branding in a way that suggests you or Wody are affiliated with or approved by someone else.</li><li>Illegal content, including content that sexualizes minors, and sexually explicit content.</li><li>Hateful, abusive, harassing or threatening content, and content that impersonates other people.</li><li>Links used to distribute malware, to track people or to reach private or internal addresses.</li><li>Anything that breaks the Discord Terms of Service or Community Guidelines.</li></ul>"
+          "heading": "3. Was nicht erlaubt ist",
+          "html": "<ul><li>Material, das Urheberrechte, Marken oder andere Rechte Dritter verletzt, einschließlich offizieller Grafiken, Screenshots, Logos oder Figuren, die du nicht verwenden darfst.</li><li>Die Verwendung von Logos, Namen oder Marken so, dass der Eindruck entsteht, du oder Wody seien mit jemand anderem verbunden oder von ihm genehmigt.</li><li>Illegale Inhalte, einschließlich Inhalten, die Minderjährige sexualisieren, sowie sexuell explizite Inhalte.</li><li>Hasserfüllte, beleidigende, belästigende oder bedrohende Inhalte und Inhalte, die sich als andere Personen ausgeben.</li><li>Links, die zur Verbreitung von Schadsoftware, zum Tracking von Personen oder zum Zugriff auf private oder interne Adressen dienen.</li><li>Alles, was gegen die Nutzungsbedingungen oder die Community-Richtlinien von Discord verstößt.</li></ul>"
         },
         {
-          "heading": "4. Wody-provided and user-provided content",
-          "html": "<p>Wody provides original themes and scenes drawn by Wody. Wody does not provide a gallery of third-party artwork. Images you upload or link are yours: Wody does not claim ownership of them and does not grant you any right to third-party material.</p>"
+          "heading": "4. Von Wody und von Nutzern bereitgestellte Inhalte",
+          "html": "<p>Wody stellt originale Themen und Szenen bereit, die von Wody gezeichnet wurden. Wody bietet keine Galerie mit Grafiken Dritter. Bilder, die du hochlädst oder verlinkst, gehören dir: Wody beansprucht kein Eigentum daran und räumt dir keine Rechte an Material Dritter ein.</p>"
         },
         {
-          "heading": "5. How images and links are handled",
-          "html": "<p>Images, GIFs and audio that you add to your profile page and to server cards are not stored by Wody. You provide a link, the file stays on the platform that hosts it, and Wody only loads it from there to show it. It stays visible only while the link remains valid: if you delete the file or the host removes it, it disappears from Wody. Wody stores the link address in your settings until you change or remove it, and the file may be kept for a short time in a browser or network cache while it is displayed.</p><p>The only exception is the profile card background: if you upload a file there instead of giving a link, Wody stores that file until you replace or delete it, or until it is removed after a report.</p><p>You allow Wody to load the link you provide only to show your customization (for example on your profile page or on the cards the bot posts), and to review it if it is reported.</p>"
+          "heading": "5. Umgang mit Bildern und Links",
+          "html": "<p>Bilder, GIFs und Audiodateien, die du zu deiner Profilseite und zu Serverkarten hinzufügst, werden von Wody nicht gespeichert. Du gibst einen Link an, die Datei bleibt auf der Plattform, die sie hostet, und Wody lädt sie nur von dort, um sie anzuzeigen. Sie bleibt nur sichtbar, solange der Link gültig ist: Wenn du die Datei löschst oder der Host sie entfernt, verschwindet sie aus Wody. Wody speichert die Link-Adresse in deinen Einstellungen, bis du sie änderst oder entfernst, und die Datei kann während der Anzeige kurz im Browser- oder Netzwerk-Cache liegen.</p><p>Die einzige Ausnahme ist der Hintergrund der Profilkarte: Wenn du dort eine Datei statt eines Links hochlädst, speichert Wody diese Datei, bis du sie ersetzt oder löschst oder sie nach einer Meldung entfernt wird.</p><p>Du erlaubst Wody, den von dir angegebenen Link nur zu laden, um deine Anpassung anzuzeigen (zum Beispiel auf deiner Profilseite oder auf den vom Bot gesendeten Karten) und um ihn zu prüfen, falls er gemeldet wird.</p>"
         },
         {
-          "heading": "6. Reports and review",
-          "html": "<p>Anyone signed in can report an image or profile from the profile page. Rights holders can use the copyright complaint form. Reports are reviewed by the operator. Wody has no automatic system that detects infringing content, so it relies on reports and on review. It does not promise that every image is checked before it is shown.</p><p>A report alone never causes a ban. Reporter details are not shown to the reported user.</p>"
+          "heading": "6. Meldungen und Prüfung",
+          "html": "<p>Jede angemeldete Person kann auf der Profilseite ein Bild oder ein Profil melden. Rechteinhaber können das Formular für Urheberrechtsbeschwerden nutzen. Meldungen werden vom Betreiber geprüft. Wody hat kein automatisches System zur Erkennung rechtsverletzender Inhalte und stützt sich daher auf Meldungen und Prüfung. Es verspricht nicht, dass jedes Bild geprüft wird, bevor es angezeigt wird.</p><p>Eine Meldung allein führt nie zu einer Sperre. Angaben der meldenden Person werden der gemeldeten Person nicht angezeigt.</p>"
         },
         {
-          "heading": "7. Possible actions",
-          "html": "<p>After review the operator may remove an image or link, restrict uploads for a period, suspend customization, suspend the Discord account linked to the profile for a period, or block it until the block is lifted. A suspended or blocked account cannot edit its profile page, profile card or public profile details, and its public profile is hidden. This only concerns Wody features: it does not affect the person's Discord account itself. Violations are counted. The decision, its reason and the time are recorded.</p>"
+          "heading": "7. Mögliche Maßnahmen",
+          "html": "<p>Nach der Prüfung kann der Betreiber ein Bild oder einen Link entfernen, Uploads für einen Zeitraum einschränken, die Anpassung sperren, das mit dem Profil verknüpfte Discord-Konto für einen Zeitraum sperren oder blockieren, bis die Blockade aufgehoben wird. Ein gesperrtes oder blockiertes Konto kann seine Profilseite, Profilkarte und öffentlichen Profilangaben nicht bearbeiten, und sein öffentliches Profil wird ausgeblendet. Das betrifft nur Wody-Funktionen: Das Discord-Konto der Person selbst bleibt unberührt. Verstöße werden gezählt. Entscheidung, Begründung und Zeitpunkt werden gespeichert.</p>"
         },
         {
-          "heading": "8. Appeals",
-          "html": "<p>If an action is taken on your content you see a notice on the profile page tab and you can send an appeal there. The operator reviews appeals and can restore content or lift restrictions. Response time: [REQUIRES OPERATOR CONFIRMATION].</p>"
+          "heading": "8. Einsprüche",
+          "html": "<p>Wenn eine Maßnahme gegen deinen Inhalt ergriffen wird, siehst du einen Hinweis im Tab der Profilseite und kannst dort Einspruch einlegen. Der Betreiber prüft Einsprüche und kann Inhalte wiederherstellen oder Einschränkungen aufheben. Antwortzeit: [BESTÄTIGUNG DES BETREIBERS ERFORDERLICH].</p>"
         },
         {
-          "heading": "9. Records and personal data",
-          "html": "<p>Wody keeps the report, the reference to the identified content, the decision and its history, and the policy confirmation time and version, for as long as needed to handle the case and to prevent repeat violations. Retention period for these records: [REQUIRES OPERATOR CONFIRMATION]. Wody does not keep copies of images and audio that are only linked. See the Privacy Policy.</p>"
+          "heading": "9. Aufzeichnungen und personenbezogene Daten",
+          "html": "<p>Wody speichert die Meldung, den Verweis auf den identifizierten Inhalt, die Entscheidung und ihren Verlauf sowie Zeitpunkt und Version der Richtlinienbestätigung, solange es zur Bearbeitung des Falls und zur Verhinderung wiederholter Verstöße nötig ist. Aufbewahrungsdauer dieser Aufzeichnungen: [BESTÄTIGUNG DES BETREIBERS ERFORDERLICH]. Wody speichert keine Kopien von Bildern und Audiodateien, die nur verlinkt sind. Siehe die Datenschutzerklärung.</p>"
         },
         {
-          "heading": "10. Contact",
-          "html": "Operator: Păcurar Ancuța-Narcisa, Romania, European Union. General contact: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Dedicated copyright contact: [REQUIRES OPERATOR CONFIRMATION]. Registered address, tax and registration details: [REQUIRES OPERATOR CONFIRMATION]."
+          "heading": "10. Kontakt",
+          "html": "Betreiberin: Păcurar Ancuța-Narcisa, Rumänien, Europäische Union. Allgemeiner Kontakt: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Eigener Urheberrechtskontakt: [BESTÄTIGUNG DES BETREIBERS ERFORDERLICH]. Anschrift, Steuer- und Registerangaben: [BESTÄTIGUNG DES BETREIBERS ERFORDERLICH]."
         }
       ]
     },
     "copyright": {
-      "title": "Copyright and Intellectual Property Policy",
+      "title": "Richtlinie zu Urheberrecht und geistigem Eigentum",
       "version": "1.0-draft",
       "sections": [
         {
-          "heading": "1. Respect for rights",
-          "html": "<p>Wody respects copyright, trademarks and other intellectual property. Third-party games, studios, brands and artists own their works. Using a work in Wody does not give you or Wody any right to it.</p>"
+          "heading": "1. Achtung der Rechte",
+          "html": "<p>Wody respektiert Urheberrechte, Marken und andere Rechte an geistigem Eigentum. Spiele, Studios, Marken und Künstler Dritter besitzen ihre Werke. Die Verwendung eines Werkes in Wody gibt weder dir noch Wody ein Recht daran.</p>"
         },
         {
-          "heading": "2. What Wody does not do",
-          "html": "<p>Wody does not run a gallery of third-party artwork, does not bundle official artwork of games or studios, does not scrape such artwork and does not sell it. Themes and scenes provided by Wody are original and drawn by Wody.</p>"
+          "heading": "2. Was Wody nicht tut",
+          "html": "<p>Wody betreibt keine Galerie mit Grafiken Dritter, bündelt keine offiziellen Grafiken von Spielen oder Studios, sammelt solche Grafiken nicht automatisiert und verkauft sie nicht. Von Wody bereitgestellte Themen und Szenen sind original und von Wody gezeichnet.</p>"
         },
         {
-          "heading": "3. Your responsibility",
-          "html": "<p>If you upload or link an image, you must have the necessary rights or another lawful basis. Each time you publish or edit your public profile you confirm this, and you accept the policies, by ticking an unchecked box. The confirmation is your statement. It is not a guarantee and it does not make unauthorized use lawful.</p>"
+          "heading": "3. Deine Verantwortung",
+          "html": "<p>Wenn du ein Bild hochlädst oder verlinkst, musst du die erforderlichen Rechte oder eine andere rechtmäßige Grundlage haben. Jedes Mal, wenn du dein öffentliches Profil veröffentlichst oder bearbeitest, bestätigst du dies und akzeptierst die Richtlinien, indem du ein nicht vorausgewähltes Kästchen anhakst. Die Bestätigung ist deine Erklärung. Sie ist keine Garantie und macht eine nicht autorisierte Nutzung nicht rechtmäßig.</p>"
         },
         {
-          "heading": "4. Reporting a possible infringement",
-          "html": "<p>Use the Copyright complaint form. Please give: your name or organization, a way to contact you, a description of the protected work, a link or other identification of the original work if available, the profile or customization where you found the material, why you believe it infringes, and your confirmation that the information is accurate and that you are authorized to act.</p><p>We do not ask for a postal address unless the law requires it. Your contact details are not shown to the user concerned.</p>"
+          "heading": "4. Eine mögliche Verletzung melden",
+          "html": "<p>Nutze das Formular für Urheberrechtsbeschwerden. Bitte gib an: deinen Namen oder deine Organisation, eine Kontaktmöglichkeit, eine Beschreibung des geschützten Werkes, einen Link oder eine andere Kennzeichnung des Originalwerks, falls vorhanden, das Profil oder die Anpassung, in der du das Material gefunden hast, warum du glaubst, dass es Rechte verletzt, und deine Bestätigung, dass die Angaben richtig sind und du zum Handeln befugt bist.</p><p>Wir verlangen keine Postanschrift, sofern das Gesetz sie nicht vorschreibt. Deine Kontaktdaten werden der betroffenen Person nicht angezeigt.</p>"
         },
         {
-          "heading": "5. How a complaint is handled",
-          "html": "<ol><li>The complaint is recorded and the content is identified.</li><li>The operator reviews it. If it is unclear, we may ask you for clarification.</li><li>If the notice is sufficiently precise and the content appears unlawful, access to the content is disabled or the content is removed.</li><li>The uploader sees a notice and can appeal.</li><li>The decision, its reason and the time are recorded.</li></ol><p>Wody does not promise a fixed removal deadline in this draft. Target response time: [REQUIRES OPERATOR CONFIRMATION]. Where the law requires specific steps, those steps apply.</p>"
+          "heading": "5. Wie eine Beschwerde bearbeitet wird",
+          "html": "<ol><li>Die Beschwerde wird erfasst und der Inhalt identifiziert.</li><li>Der Betreiber prüft sie. Ist sie unklar, können wir dich um Klarstellung bitten.</li><li>Ist die Mitteilung ausreichend genau und erscheint der Inhalt rechtswidrig, wird der Zugang zum Inhalt gesperrt oder der Inhalt entfernt.</li><li>Die hochladende Person sieht einen Hinweis und kann Einspruch einlegen.</li><li>Entscheidung, Begründung und Zeitpunkt werden gespeichert.</li></ol><p>Wody verspricht in diesem Entwurf keine feste Frist für die Entfernung. Angestrebte Antwortzeit: [BESTÄTIGUNG DES BETREIBERS ERFORDERLICH]. Wo das Gesetz bestimmte Schritte vorschreibt, gelten diese.</p>"
         },
         {
-          "heading": "6. Repeat violations",
-          "html": "<p>Confirmed violations are counted. Repeated violations can lead to a suspension of customization, or to the suspension or block of the Discord account linked to the profile for Wody features.</p>"
+          "heading": "6. Wiederholte Verstöße",
+          "html": "<p>Bestätigte Verstöße werden gezählt. Wiederholte Verstöße können zur Sperrung der Anpassung oder zur Sperrung bzw. Blockierung des mit dem Profil verknüpften Discord-Kontos für Wody-Funktionen führen.</p>"
         },
         {
-          "heading": "7. Appeals and counter-notices",
-          "html": "<p>The user whose content was disabled can explain why the use is lawful through the appeal on the profile page tab. Wody reviews it and may restore the content or keep it disabled. Wody does not restore content automatically after a fixed time. Images that are only linked are not stored by Wody: they stay visible only while the link remains valid on the hosting platform.</p>"
+          "heading": "7. Einsprüche und Gegendarstellungen",
+          "html": "<p>Die Person, deren Inhalt gesperrt wurde, kann über den Einspruch im Tab der Profilseite erklären, warum die Nutzung rechtmäßig ist. Wody prüft ihn und kann den Inhalt wiederherstellen oder gesperrt lassen. Wody stellt Inhalte nicht automatisch nach einer festen Frist wieder her. Nur verlinkte Bilder werden von Wody nicht gespeichert: Sie bleiben nur sichtbar, solange der Link auf der Hosting-Plattform gültig ist.</p>"
         },
         {
-          "heading": "8. Limits",
-          "html": "<p>Wody cannot detect every infringement. Reports and review are the main way problems are found. This procedure is not described as compliant with any specific foreign law. Which legal regime applies to Wody, and the exact obligations that follow, must be confirmed by a qualified Romanian or EU lawyer.</p>"
+          "heading": "8. Grenzen",
+          "html": "<p>Wody kann nicht jede Verletzung erkennen. Meldungen und Prüfung sind der wichtigste Weg, Probleme zu finden. Dieses Verfahren wird nicht als konform mit einem bestimmten ausländischen Recht beschrieben. Welche Rechtsordnung für Wody gilt und welche genauen Pflichten daraus folgen, muss ein qualifizierter rumänischer oder EU-Anwalt bestätigen.</p>"
         },
         {
-          "heading": "9. Contact",
-          "html": "Operator: Păcurar Ancuța-Narcisa, Romania, European Union. General contact: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Dedicated copyright contact: [REQUIRES OPERATOR CONFIRMATION]. Registered address, tax and registration details: [REQUIRES OPERATOR CONFIRMATION]."
-        }
-      ]
-    },
-    "gta-notice": {
-      "title": "GTA VI category notice",
-      "version": "1.0-draft",
-      "sections": [
-        {
-          "heading": "Notice",
-          "html": "<p>GTA VI and related names, logos and artwork are the property of their respective owners. Wody is not affiliated with, endorsed by or sponsored by Rockstar Games or Take-Two Interactive.</p><p>The GTA VI category is an unofficial customization theme made of original colors and scenes drawn by Wody, inspired by a sunset and neon look. It does not contain any official artwork, logos or characters.</p><ul><li>Wody does not provide a GTA VI image gallery and does not distribute Rockstar material.</li><li>If you add an image or a link in this category, you provide it yourself and you must have the necessary rights or another lawful basis.</li><li>Wody may disable reported or unlawful content, and may restrict customization after review.</li><li>The category is optional and you can choose another theme at any time.</li><li>This notice does not give anyone permission to use Rockstar material.</li></ul><p>Read the User Content Policy and the Copyright and IP Policy for the full rules.</p>"
+          "heading": "9. Kontakt",
+          "html": "Betreiberin: Păcurar Ancuța-Narcisa, Rumänien, Europäische Union. Allgemeiner Kontakt: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Eigener Urheberrechtskontakt: [BESTÄTIGUNG DES BETREIBERS ERFORDERLICH]. Anschrift, Steuer- und Registerangaben: [BESTÄTIGUNG DES BETREIBERS ERFORDERLICH]."
         }
       ]
     },
     "complaint": {
-      "title": "Copyright complaint",
+      "title": "Urheberrechtsbeschwerde",
       "version": "1.0-draft",
       "sections": [
         {
-          "heading": "How to use this form",
-          "html": "<p>Use this form if you are a rights holder, or authorized to act for one, and you believe content shown through Wody infringes your rights. Read the Copyright and IP Policy first. We only ask for what we need to handle the complaint. Your details are not shown to the user concerned. A complaint does not automatically lead to a ban: it is reviewed first.</p>"
+          "heading": "So nutzt du dieses Formular",
+          "html": "<p>Nutze dieses Formular, wenn du Rechteinhaber oder zum Handeln für einen Rechteinhaber befugt bist und glaubst, dass ein über Wody angezeigter Inhalt deine Rechte verletzt. Lies zuerst die Richtlinie zu Urheberrecht und geistigem Eigentum. Wir fragen nur nach dem, was wir zur Bearbeitung der Beschwerde brauchen. Deine Angaben werden der betroffenen Person nicht angezeigt. Eine Beschwerde führt nicht automatisch zu einer Sperre: Sie wird zuerst geprüft.</p>"
         }
       ],
       "form": {
-        "kind": "Type of complaint",
-        "copyright": "Copyright",
-        "trademark": "Trademark",
-        "target": "Wody username of the profile",
-        "targetHint": "The part after wody.online/, without @.",
-        "name": "Your name or organization",
-        "email": "Contact email",
-        "work": "Description of the protected work",
-        "workUrl": "Link to the original work (optional)",
-        "reason": "Where you found it and why you believe it infringes",
-        "accurate": "I confirm that the information in this complaint is accurate.",
-        "authorized": "I confirm that I am the rights holder or am authorized to act on their behalf.",
-        "send": "Send complaint",
-        "sending": "Sending...",
-        "sent": "Complaint received. It will be reviewed. Reference: {id}",
-        "error": "Could not send the complaint. Check the fields and try again.",
-        "notFound": "No profile with that username was found.",
-        "rate": "Too many attempts. Try again later."
+        "kind": "Art der Beschwerde",
+        "copyright": "Urheberrecht",
+        "trademark": "Marke",
+        "target": "Wody-Benutzername des Profils",
+        "targetHint": "Der Teil nach wody.online/, ohne @.",
+        "name": "Dein Name oder deine Organisation",
+        "email": "Kontakt-E-Mail",
+        "work": "Beschreibung des geschützten Werkes",
+        "workUrl": "Link zum Originalwerk (optional)",
+        "reason": "Wo du es gefunden hast und warum du glaubst, dass es Rechte verletzt",
+        "accurate": "Ich bestätige, dass die Angaben in dieser Beschwerde richtig sind.",
+        "authorized": "Ich bestätige, dass ich Rechteinhaber oder in dessen Namen zum Handeln befugt bin.",
+        "send": "Beschwerde senden",
+        "sending": "Wird gesendet…",
+        "sent": "Beschwerde erhalten. Sie wird geprüft. Referenz: {id}",
+        "error": "Die Beschwerde konnte nicht gesendet werden. Prüfe die Felder und versuche es erneut.",
+        "notFound": "Es wurde kein Profil mit diesem Benutzernamen gefunden.",
+        "rate": "Zu viele Versuche. Versuche es später erneut."
       }
+    },
+    "miami-notice": {
+      "title": "Hinweis zur Kategorie Miami Style",
+      "version": "1.0-draft",
+      "sections": [
+        {
+          "heading": "Hinweis",
+          "html": "<p>Miami Style ist ein inoffizielles Anpassungsthema aus originalen Farben und Szenen, die von Wody gezeichnet wurden und von einer Atmosphäre aus Sonnenuntergang, Palmen und Neon inspiriert sind. Es ist mit keinem Spielepublisher oder Studio verbunden, wird von keinem unterstützt oder gesponsert und enthält keine Grafiken, Logos oder Figuren Dritter.</p><ul><li>Wody bietet keine Galerie mit Bildern Dritter und verteilt kein Material aus Spielen.</li><li>Wenn du in dieser Kategorie ein Bild oder einen Link hinzufügst, stellst du es selbst bereit und musst die erforderlichen Rechte oder eine andere rechtmäßige Grundlage haben.</li><li>Wody kann gemeldete oder rechtswidrige Inhalte sperren und nach Prüfung die Anpassung einschränken.</li><li>Die Kategorie ist optional und du kannst jederzeit ein anderes Thema wählen.</li><li>Dieser Hinweis gibt niemandem die Erlaubnis, Material Dritter zu verwenden.</li></ul><p>Lies die Richtlinie für Nutzerinhalte und die Richtlinie zu Urheberrecht und geistigem Eigentum für alle Regeln.</p>"
+        }
+      ]
     }
   },
   "report": {
-    "button": "Report",
-    "title": "Report this profile",
-    "kind": "What is the problem",
-    "image": "Image or background",
-    "profile": "Profile",
-    "prohibited": "Prohibited content",
-    "abuse": "Abuse or harassment",
-    "reason": "Describe the problem (at least 10 characters)",
-    "send": "Send report",
-    "sent": "Report received. It will be reviewed.",
-    "dupe": "You already reported this recently.",
-    "error": "Could not send the report.",
-    "rights": "Rights holder? Use the copyright complaint form.",
-    "cancel": "Cancel"
+    "button": "Melden",
+    "title": "Dieses Profil melden",
+    "kind": "Was ist das Problem",
+    "image": "Bild oder Hintergrund",
+    "profile": "Profil",
+    "prohibited": "Verbotener Inhalt",
+    "abuse": "Missbrauch oder Belästigung",
+    "reason": "Beschreibe das Problem (mindestens 10 Zeichen)",
+    "send": "Meldung senden",
+    "sent": "Meldung erhalten. Sie wird geprüft.",
+    "dupe": "Du hast dies kürzlich bereits gemeldet.",
+    "error": "Die Meldung konnte nicht gesendet werden.",
+    "rights": "Rechteinhaber? Nutze das Formular für Urheberrechtsbeschwerden.",
+    "cancel": "Abbrechen"
   },
-  "gta6Page": {
-    "metaTitle": "Discord bot with a GTA 6-inspired theme (free) | Wody",
-    "metaDescription": "Wody is a free Discord bot with a Miami neon look inspired by GTA 6: level-up cards, welcome cards and a profile page with a short link. Original art, no game assets.",
-    "badge": "GTA 6-inspired theme",
-    "h1": "A Discord bot with a Miami neon, GTA 6-inspired look",
-    "intro": "Wody is a Discord bot for moderation, levels, tickets, giveaways and more. It also ships an optional Miami-style theme collection for your level-up cards, welcome and goodbye cards and your personal profile page: neon coast sunsets, palm dusk, skyline and art deco. Everything is original artwork made for Wody.",
-    "featuresTitle": "What you get",
+  "miamiPage": {
+    "metaTitle": "Miami-Style-Discord-Bot: Neon-Levelkarten und Profilseiten | Wody",
+    "metaDescription": "Wody ist ein kostenloser Discord-Bot mit einer Miami-Style-Themenkollektion: Neon-Küsten-Levelkarten, Willkommenskarten und eine teilbare Profilseite. Originale Grafiken.",
+    "badge": "Miami-Style-Kollektion",
+    "h1": "Gib deinem Discord-Server einen Miami-Style-Look",
+    "intro": "Neon-Sonnenuntergänge, Palmensilhouetten und Art-déco-Skylines für deine Levelkarten, Willkommens- und Abschiedskarten und deine eigene Profilseite. Wody übernimmt außerdem Moderation, Tickets, Gewinnspiele und mehr. Jede Szene ist eine originale, für Wody gezeichnete Grafik.",
+    "stats": [
+      "4 originale Szenen",
+      "9 Sprachen",
+      "Kostenlos starten"
+    ],
+    "previewName": "deinname",
+    "previewLevel": "Level 12",
+    "previewXp": "2.480 / 3.000 XP",
+    "previewLabel": "Vorschau der Levelkarte",
+    "themesTitle": "Die Kollektion",
+    "themesIntro": "Wähle in deinem Server-Dashboard eine Miami-Style-Szene.",
+    "themes": [
+      {
+        "k": "coast",
+        "t": "Neon Coast",
+        "d": "Ein Retro-Sonnenuntergang über einem leuchtenden Gitter, mit sich wiegenden Palmen."
+      },
+      {
+        "k": "dusk",
+        "t": "Palm Dusk",
+        "d": "Warme violette Dämmerung mit Palmensilhouetten."
+      },
+      {
+        "k": "skyline",
+        "t": "Skyline",
+        "d": "Eine Neon-Skyline vor tiefviolettem Himmel."
+      },
+      {
+        "k": "miami",
+        "t": "Miami Art déco",
+        "d": "Pastellfarbene Art-déco-Gebäude in einer Miami-Strand-Palette."
+      }
+    ],
+    "whereTitle": "Überall nutzbar",
+    "where": [
+      {
+        "t": "Levelkarten",
+        "d": "Belohne Aktivität mit einer Karte, die zu deinem Server passt."
+      },
+      {
+        "t": "Willkommen und Abschied",
+        "d": "Begrüße und verabschiede Mitglieder mit denselben Szenen."
+      },
+      {
+        "t": "Profilseite",
+        "d": "Eine teilbare Seite unter wody.online/deinname mit Aufrufzähler, Musik und Namenseffekten."
+      }
+    ],
+    "featuresTitle": "Mehr als ein Thema",
     "features": [
       {
-        "t": "Level-up cards",
-        "d": "Choose Neon Coast, Palm Dusk, Skyline or Miami art deco from the Special collection in your server dashboard."
-      },
-      {
-        "t": "Welcome and goodbye cards",
-        "d": "Use the same scenes to greet new members with a card that matches your server."
-      },
-      {
-        "t": "Profile page",
-        "d": "A shareable page at wody.online/yourname with a view counter, background music and name effects."
-      },
-      {
-        "t": "Passport",
-        "d": "A fictional, collectible identity card for your Discord account."
+        "t": "Pass",
+        "d": "Ein fiktiver, sammelbarer Ausweis für dein Discord-Konto."
       },
       {
         "t": "Collab",
-        "d": "Find partners and post requests that are checked before they go live."
+        "d": "Finde Partner und veröffentliche Anfragen, die vor dem Livegang geprüft werden."
       },
       {
-        "t": "All the essentials",
-        "d": "Moderation, automod, tickets, reaction roles, giveaways and more, available in 9 languages."
+        "t": "Alle Grundlagen",
+        "d": "Moderation, Automod, Tickets, Reaktionsrollen, Gewinnspiele und mehr."
+      },
+      {
+        "t": "9 Sprachen",
+        "d": "Englisch, Rumänisch, Französisch, Italienisch, Deutsch, Spanisch, Portugiesisch, Niederländisch und Türkisch."
       }
     ],
-    "stepsTitle": "Set it up in three steps",
+    "stepsTitle": "In drei Schritten eingerichtet",
     "steps": [
-      "Add Wody to your server.",
-      "Open your server dashboard and go to Levels.",
-      "Pick a theme from the Special collection and save."
+      "Füge Wody zu deinem Server hinzu.",
+      "Öffne dein Server-Dashboard und gehe zu Level.",
+      "Wähle eine Miami-Style-Szene und speichere."
     ],
-    "faqTitle": "Questions",
+    "faqTitle": "Fragen",
     "faq": [
       {
-        "q": "Is Wody an official GTA 6 bot?",
-        "a": "No. Wody is an independent Discord bot. The Miami neon theme is inspired by the general look of tropical coast scenes and uses only original artwork."
+        "q": "Ist Miami Style an ein Spiel oder eine Marke gebunden?",
+        "a": "Nein. Es ist ein originales, von Wody gezeichnetes Thema, inspiriert von Sonnenuntergängen, Palmen und Neon. Es ist mit keinem Spielepublisher verbunden oder von ihm unterstützt."
       },
       {
-        "q": "Does it include game artwork, logos or characters?",
-        "a": "No. Wody does not include artwork, logos, characters or other assets from any game. If you add your own image, you must have the right to use it."
+        "q": "Enthält es Grafiken, Logos oder Figuren Dritter?",
+        "a": "Nein. Wody enthält keine Grafiken, Logos oder Figuren aus Spielen oder von Marken. Wenn du ein eigenes Bild hinzufügst, musst du das Recht zur Nutzung haben."
       },
       {
-        "q": "Is it free?",
-        "a": "You can start for free. Some modules are part of Wody Premium."
+        "q": "Ist es kostenlos?",
+        "a": "Du kannst kostenlos starten. Einige Module gehören zu Wody Premium."
       },
       {
-        "q": "Which languages are supported?",
-        "a": "English, Romanian, French, Italian, German, Spanish, Portuguese, Dutch and Turkish."
+        "q": "Welche Sprachen werden unterstützt?",
+        "a": "Englisch, Rumänisch, Französisch, Italienisch, Deutsch, Spanisch, Portugiesisch, Niederländisch und Türkisch."
       }
     ],
-    "cta": "Add Wody to Discord",
-    "ctaProfile": "Customize my profile page",
-    "disclaimer": "Wody is not affiliated with, endorsed by or sponsored by Rockstar Games, Take-Two Interactive or any game publisher. Grand Theft Auto and GTA are trademarks of their respective owners and are mentioned only to describe the inspiration for the theme."
+    "ctaTitle": "Bereit für einen neuen Look?",
+    "ctaText": "Füge Wody hinzu und wähle deine Szene in weniger als einer Minute.",
+    "cta": "Wody zu Discord hinzufügen",
+    "ctaProfile": "Meine Profilseite anpassen",
+    "disclaimer": "Miami Style ist ein inoffizielles Thema aus originalen Grafiken von Wody. Wody ist mit keinem Spielepublisher oder Studio verbunden und wird von keinem unterstützt oder gesponsert."
   }
 }

@@ -8,15 +8,17 @@ import ProfileCardPreview from '@/components/profile/ProfileCardPreview';
 import PolicyConsent from '@/components/profile/PolicyConsent';
 import { CARD_FONTS, cardFontStyle } from '@/lib/card-fonts';
 import { discordCdnUrl } from '@/lib/utils';
+import { SvgScene } from '@/components/scenes';
 import { PROFILE_CARD, PROFILE_CARD_DEFAULT, applyPatch, normalizeConfig } from '@/lib/profile-card';
 
 const SETTING_KEYS = {
   avatar: ['avatar_pos', 'avatar_size', 'avatar_shape'],
   text: ['name_align', 'stats_pos', 'font'],
   bar: ['bar_style'],
-  effects: ['effect', 'decoration', 'anim'],
+  effects: ['effect', 'decoration', 'anim', 'scene'],
 };
-const THEME_ORDER = PROFILE_CARD.choices.theme.filter((x) => x !== 'custom');
+const MIAMI_THEMES = ['coast', 'dusk', 'skyline', 'miami'];
+const THEME_ORDER = PROFILE_CARD.choices.theme.filter((x) => x !== 'custom' && !MIAMI_THEMES.includes(x));
 
 async function api(method, body, url = '/api/profile-card') {
   try {
@@ -60,6 +62,7 @@ function Range({ id, label, value, min, max, onChange, unit = '' }) {
 
 export default function ProfileCardTab({ identity }) {
   const t = useTranslations('profileCard');
+  const tnav = useTranslations('nav');
   const [saved, setSaved] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [consent, setConsent] = useState(false);
@@ -190,6 +193,18 @@ export default function ProfileCardTab({ identity }) {
       </select>
     </div>
   );
+  const renderTheme = (id) => {
+              const th = PROFILE_CARD.themes[id];
+              const on = cfg.theme === id;
+              const bg = th.bg_mode === 'solid' ? th.bg_color : `linear-gradient(${(th.gradient_angle + 90) % 360}deg, ${th.gradient_from}, ${th.gradient_to})`;
+              return (
+                <button key={id} type="button" role="radio" aria-checked={on} onClick={() => pickTheme(id)}
+                  className={`rounded-xl border p-1.5 text-left text-xs font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#e6cd8c] ${on ? 'border-[#e6cd8c] bg-[#e6cd8c]/10' : 'border-border/60 hover:border-[#e6cd8c]/60'}`}>
+                  <span className={`relative mb-1 block overflow-hidden rounded-lg border border-white/10 ${MIAMI_THEMES.includes(id) ? "h-14" : "h-8"}`} style={{ background: bg }}>{MIAMI_THEMES.includes(id) ? <SvgScene kind={id} /> : null}<span className="block h-full w-1/3 rounded-l-lg" style={{ background: `${th.accent}` , opacity: 0.8 }} /></span>
+                  <span className="flex min-w-0 items-center gap-1 px-0.5"><span className="truncate">{t(`theme.${id}`)}</span>{th.anim && th.anim !== 'none' ? <span className="shrink-0 text-[10px] text-[#e6cd8c]" aria-hidden="true">●</span> : null}</span>
+                </button>
+              );
+  };
   const avatarSrc = discordCdnUrl(identity?.avatar ? `https://cdn.discordapp.com/avatars/${identity.id}/${identity.avatar}.png?size=256` : 'https://cdn.discordapp.com/embed/avatars/0.png');
   const urlInvalid = (() => { try { applyPatch(PROFILE_CARD_DEFAULT, { bg_url: cfg.bg_url || null }); return false; } catch { return true; } })();
 
@@ -217,18 +232,15 @@ export default function ProfileCardTab({ identity }) {
         <section className="rounded-2xl border border-border/60 bg-card/40 p-4">
           <h3 className="mb-3 text-sm font-bold">{t('sectionTemplates')}</h3>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-4" role="radiogroup" aria-label={t('themes')}>
-            {THEME_ORDER.map((id) => {
-              const th = PROFILE_CARD.themes[id];
-              const on = cfg.theme === id;
-              const bg = th.bg_mode === 'solid' ? th.bg_color : `linear-gradient(${(th.gradient_angle + 90) % 360}deg, ${th.gradient_from}, ${th.gradient_to})`;
-              return (
-                <button key={id} type="button" role="radio" aria-checked={on} onClick={() => pickTheme(id)}
-                  className={`rounded-xl border p-1.5 text-left text-xs font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#e6cd8c] ${on ? 'border-[#e6cd8c] bg-[#e6cd8c]/10' : 'border-border/60 hover:border-[#e6cd8c]/60'}`}>
-                  <span className="mb-1 block h-8 rounded-lg border border-white/10" style={{ background: bg }}><span className="block h-full w-1/3 rounded-l-lg" style={{ background: `${th.accent}` , opacity: 0.8 }} /></span>
-                  <span className="flex min-w-0 items-center gap-1 px-0.5"><span className="truncate">{t(`theme.${id}`)}</span>{th.anim && th.anim !== 'none' ? <span className="shrink-0 text-[10px] text-[#e6cd8c]" aria-hidden="true">●</span> : null}</span>
-                </button>
-              );
-            })}
+            {THEME_ORDER.map(renderTheme)}
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-fuchsia-400/40 bg-gradient-to-br from-fuchsia-500/10 via-transparent to-amber-300/10 p-4 shadow-[0_0_24px_-10px_rgba(255,94,138,.6)]">
+          <h3 className="mb-1 flex items-center gap-2 text-sm font-bold">{t('sectionMiami')}<span className="rounded-full bg-gradient-to-r from-fuchsia-500 to-amber-400 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-black">{tnav('tags.new')}</span></h3>
+          <p className="mb-3 text-xs text-muted-foreground">{t('miamiHint')}</p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" role="radiogroup" aria-label={t('sectionMiami')}>
+            {MIAMI_THEMES.map(renderTheme)}
           </div>
         </section>
 

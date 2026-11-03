@@ -7,10 +7,11 @@ import { input, lab, btn, btnMain } from '@/components/collab/ProfileParts';
 import PageBackdrop from '@/components/profile/PageBackdrop';
 import HintLink from '@/components/hint-link';
 import PolicyConsent from '@/components/profile/PolicyConsent';
+import { SvgScene } from '@/components/scenes';
 import { SHORT_RESERVED, PAGE_CHOICES, PAGE_DEFAULT, PAGE_PRESETS, cleanMusicUrl, cleanPageImage, normalizePage, pageAccent, pageGradient } from '@/lib/profile-page';
 import { discordCdnUrl } from '@/lib/utils';
 
-const SPECIAL_PATTERNS = ['coast', 'skyline', 'miami'];
+const SPECIAL_PATTERNS = ['coast', 'dusk', 'skyline', 'miami'];
 
 async function api(method, body, path = 'profile-page') {
   try {
@@ -78,6 +79,7 @@ function MiniPage({ page, identity, t }) {
 
 export default function ProfilePageTab({ identity, onGoCard }) {
   const t = useTranslations('profilePage');
+  const tnav = useTranslations('nav');
   const [saved, setSaved] = useState(null);
   const [draft, setDraft] = useState(null);
   const [state, setState] = useState('loading');
@@ -139,9 +141,8 @@ export default function ProfilePageTab({ identity, onGoCard }) {
   const choice = (key, id) => (
     <div key={key}>
       <label className={lab} htmlFor={id}>{t(`field.${key}`)}</label>
-      <select id={id} className={input} value={page[key]} onChange={(e) => set({ [key]: e.target.value })}>
+      <select id={id} className={input} value={key === 'pattern' && SPECIAL_PATTERNS.includes(page[key]) ? 'none' : page[key]} onChange={(e) => set({ [key]: e.target.value })}>
         {PAGE_CHOICES[key].filter((v) => key !== 'pattern' || !SPECIAL_PATTERNS.includes(v)).map((v) => <option key={v} value={v}>{t(`opt.${key}.${v}`)}</option>)}
-        {key === 'pattern' ? <optgroup label={t('specialGroup')}>{SPECIAL_PATTERNS.map((v) => <option key={v} value={v}>{t(`opt.pattern.${v}`)}</option>)}</optgroup> : null}
       </select>
     </div>
   );
@@ -213,6 +214,25 @@ export default function ProfilePageTab({ identity, onGoCard }) {
           </>)}
           {page.mode !== 'none' && choice('pattern', 'pp-pattern')}
         </Panel>
+        <section className="rounded-2xl border border-[#ff5e8a]/35 bg-gradient-to-br from-[#ff5e8a]/10 via-transparent to-[#7a5cff]/10 p-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h3 className="flex items-center gap-2 text-sm font-bold">{t('specialGroup')}<span className="rounded-full bg-gradient-to-r from-fuchsia-500 to-amber-400 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-black">{tnav('tags.new')}</span></h3>
+            {SPECIAL_PATTERNS.includes(page.pattern) ? <button type="button" className={btn} onClick={() => set({ pattern: 'none' })}>{t('miamiOff')}</button> : null}
+          </div>
+          <p className="mt-1 text-xs text-muted-foreground">{t('miamiHint')}</p>
+          <div role="radiogroup" aria-label={t('specialGroup')} className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {SPECIAL_PATTERNS.map((k) => {
+              const on = page.pattern === k;
+              return (
+                <button key={k} type="button" role="radio" aria-checked={on} onClick={() => set({ pattern: k, mode: page.mode === 'none' ? 'gradient' : page.mode })}
+                  className={`group overflow-hidden rounded-xl border text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffd9b0] ${on ? 'border-[#ff5e8a] shadow-[0_0_30px_-8px_#ff5e8a]' : 'border-border/60 hover:border-[#ff5e8a]/60'}`}>
+                  <span className="relative block h-20 overflow-hidden bg-[#1a0b3b]"><SvgScene kind={k} /></span>
+                  <span className="flex items-center justify-between gap-2 px-2.5 py-2 text-xs font-semibold"><span className="truncate">{t(`opt.pattern.${k}`)}</span>{on ? <span className="h-2 w-2 shrink-0 rounded-full bg-[#ff5e8a]" aria-hidden="true" /> : null}</span>
+                </button>
+              );
+            })}
+          </div>
+        </section>
         {mod && (mod.notice || mod.suspended || mod.uploads_restricted || mod.account_blocked) ? (
           <section role="alert" className="rounded-2xl border border-amber-400/40 bg-amber-400/5 p-4 text-sm">
             <h3 className="font-bold text-amber-200">{t('mod.title')}</h3>

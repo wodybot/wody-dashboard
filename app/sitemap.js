@@ -105,7 +105,7 @@ export default async function sitemap() {
     ),
     ...localizedEntry('/servers', { lastModified, changeFrequency: 'daily', priority: 0.8 }),
     ...localizedEntry('/servers/guidelines', { lastModified, changeFrequency: 'yearly', priority: 0.4 }),
-    ...localizedEntry('/gta6-discord-bot', { lastModified, changeFrequency: 'weekly', priority: 0.85 }, SEO_COPY_LOCALES),
+    ...localizedEntry('/miami-style-discord-bot', { lastModified, changeFrequency: 'weekly', priority: 0.85 }, SEO_COPY_LOCALES),
     ...localizedEntry('/tiktok', { lastModified, changeFrequency: 'yearly', priority: 0.4 }),
     ...localizedEntry('/collab', { lastModified, changeFrequency: 'daily', priority: 0.7 }),
     ...requests.flatMap(({ path, lastModified: m }) => localizedEntry(path, { lastModified: m, changeFrequency: 'weekly', priority: 0.5 })),

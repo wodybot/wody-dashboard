@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { cardFontStyle } from '@/lib/card-fonts';
 import { proxiedImageUrl } from '@/lib/utils';
+import { SvgScene } from '@/components/scenes';
 
 const W = 934;
 const H = 282;
@@ -134,6 +135,7 @@ export default function ProfileCardPreview({ cfg, name, avatarSrc, level = 12, x
           <div className="absolute inset-0" style={{ background: cfg.overlay_color, opacity: cfg.bg_opacity / 100 }} />
         </>
       )}
+      {cfg.scene && cfg.scene !== 'none' && cfg.bg_mode !== 'solid' && !bgImage ? <SvgScene kind={cfg.scene} /> : null}
       <Deco kind={cfg.decoration} accent={accent} />
       {cfg.effect === 'vignette' && <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.6) 100%)' }} />}
       {cfg.effect === 'noise' && <div className="absolute inset-0 opacity-[0.12] mix-blend-overlay" style={{ backgroundImage: 'repeating-conic-gradient(#fff 0 25%, #000 0 50%)', backgroundSize: '3px 3px' }} />}

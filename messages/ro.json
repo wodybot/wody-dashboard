@@ -15,10 +15,10 @@
       "bot roluri reacție",
       "bot discord gratuit",
       "bot bun venit discord",
-      "bot discord gta 6",
-      "bot discord gta6",
       "bot discord tema miami",
-      "card nivel discord"
+      "card nivel discord",
+      "bot discord miami style",
+      "tema miami discord"
     ],
     "skipToContent": "Sări la conținut"
   },
@@ -543,7 +543,6 @@
       "title": "Trei instrumente. O singură identitate.",
       "text": "Creează o pagină de profil memorabilă, ridică-ți Pașaportul Wody și găsește parteneri în Collab, toate din același cont.",
       "note": "Artă originală. Exemplele sunt ilustrative. Fără legătură cu vreun editor de jocuri și neaprobat de acesta.",
-      "gtaLink": "Bot Discord cu temă inspirată de GTA 6",
       "mock": {
         "name": "numele-tau",
         "bio": "Apusuri neon și muzică bună.",
@@ -578,7 +577,8 @@
         "r3s": "Promovare încrucișată",
         "server": "Server",
         "global": "Global"
-      }
+      },
+      "miamiLink": "Bot Discord cu temă Miami Style"
     }
   },
   "careers": {
@@ -1128,7 +1128,7 @@
         "html": "<p>For privacy, legal, or data protection questions, contact Păcurar Ancuța-Narcisa, the Operator, at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>.</p> <p>Wody may also use the optional <code>wody_language</code> preference cookie to remember a language you actively choose. It is not created or updated unless you consent to Preferences, and the language selector remains hidden until that consent exists. Your cookie choice is recorded using the strictly necessary <code>wody_cookie_consent</code> cookie. You can change or withdraw the optional preference at any time in the Cookie Policy.</p>"
       },
       {
-        "heading": "28. Profile images, music links and moderation records",
+        "heading": "28. Imagini de profil, linkuri muzicale și evidențe de moderare",
         "html": "<p>Imaginile, GIF-urile și fișierele audio pe care le adaugi pe pagina ta de profil și pe cardurile serverului sunt păstrate doar ca linkuri: Wody nu păstrează o copie. Imaginile sunt încărcate prin serverul Wody de pe platforma care le găzduiește, deci adresa IP a vizitatorului nu ajunge la acea platformă; rămân vizibile doar cât timp linkul este valid. Fișierul audio este încărcat direct de browserul vizitatorului abia după ce apasă play, astfel încât adresa lui IP ajunge la site-ul care găzduiește fișierul. Singurul fișier pe care Wody îl stochează este o imagine încărcată de tine ca fundal al cardului de profil, păstrată până o înlocuiești sau o ștergi. Wody păstrează raportările, referința conținutului, decizia de moderare și istoricul ei, precum și momentul și versiunea confirmării politicilor, pentru a trata cazul și a preveni repetarea. Perioadele de păstrare: [REQUIRES OPERATOR CONFIRMATION]. Pagina de profil poate număra vizualizările ca un simplu contor în baza de date, fără cookie-uri și fără stocarea adresei IP.</p>"
       }
     ]
@@ -1245,8 +1245,8 @@
         "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
       },
       {
-        "heading": "28. Personalizarea profilului, imaginile utilizatorilor și categoria GTA VI",
-        "html": "<p>Wody oferă personalizare. Poți adăuga imagini, GIF-uri, fișiere audio sau linkuri doar dacă ai drepturile necesare ori altă bază legală. De fiecare dată când publici sau editezi profilul tău public trebuie să bifezi o casetă nebifată implicit pentru a confirma acest lucru și a accepta politicile; confirmarea nu face legală o imagine neautorizată. Wody nu oferă o galerie de artă a terților, nu este afiliat cu Rockstar Games sau Take-Two Interactive, iar categoria GTA VI este o temă neoficială cu scene originale. Imaginile și fișierele audio sunt legate prin link de la platforma care le găzduiește și sunt vizibile doar cât timp linkul este valid. Oricine poate raporta conținut; Wody nu are detecție automată. După verificare, Wody poate elimina conținut, restricționa sau suspenda personalizarea și poate suspenda sau bloca contul de Discord asociat profilului pentru funcțiile Wody, iar tu poți contesta. Detalii: Politica conținutului utilizatorilor și Politica drepturilor de autor (ciorne, nepublicate ca versiune finală).</p>"
+        "heading": "28. Personalizarea profilului, imaginile utilizatorilor și categoria Miami Style",
+        "html": "<p>Wody oferă personalizare. Poți adăuga imagini, GIF-uri, fișiere audio sau linkuri doar dacă ai drepturile necesare ori altă bază legală. De fiecare dată când publici sau editezi profilul tău public trebuie să bifezi o casetă nebifată implicit pentru a confirma acest lucru și a accepta politicile; confirmarea nu face legală o imagine neautorizată. Wody nu oferă o galerie de artă a terților, nu este afiliat cu vreun editor de jocuri, iar categoria Miami Style este o temă neoficială cu scene originale. Imaginile și fișierele audio sunt legate prin link de la platforma care le găzduiește și sunt vizibile doar cât timp linkul este valid. Oricine poate raporta conținut; Wody nu are detecție automată. După verificare, Wody poate elimina conținut, restricționa sau suspenda personalizarea și poate suspenda sau bloca contul de Discord asociat profilului pentru funcțiile Wody, iar tu poți contesta. Detalii: Politica conținutului utilizatorilor și Politica drepturilor de autor (ciorne, nepublicate ca versiune finală).</p>"
       }
     ]
   },
@@ -2031,9 +2031,9 @@
         "read": "Citește:",
         "content": "Politica conținutului",
         "copyright": "Politica drepturilor de autor",
-        "gta": "Nota GTA VI",
         "required": "Bifează caseta pentru a confirma și a accepta politicile.",
-        "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil."
+        "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil.",
+        "miami": "Nota Miami Style"
       }
     },
     "groups": {
@@ -3248,7 +3248,7 @@
       "rbErrFlat": "XP extra trebuie să fie un număr întreg între 0 și 1000.",
       "rbErrPriority": "Prioritatea trebuie să fie un număr întreg între 0 și 1000.",
       "rbErrEmpty": "Fiecare bonus are nevoie de un multiplicator peste 1 sau XP extra peste 0.",
-      "auroraSpecial": "Colecție specială",
+      "auroraSpecial": "Miami Style",
       "auroraSpecialHint": "Scene retro de apus, cu grafică proprie desenată pe card. Se aplică la cardurile de level up, welcome și goodbye."
     },
     "suggestions": {
@@ -7540,9 +7540,9 @@
       "read": "Citește:",
       "content": "Politica conținutului",
       "copyright": "Politica drepturilor de autor",
-      "gta": "Nota GTA VI",
       "required": "Bifează caseta pentru a confirma și a accepta politicile.",
-      "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil."
+      "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil.",
+      "miami": "Nota Miami Style"
     }
   },
   "humancheck": {
@@ -7647,7 +7647,9 @@
       "rose": "Roz",
       "noir": "Noir",
       "coast": "Neon Coast",
-      "dusk": "Palm Dusk"
+      "dusk": "Palm Dusk",
+      "skyline": "Neon Skyline",
+      "miami": "Miami Beach"
     },
     "layoutOpt": {
       "classic": "Clasic",
@@ -7719,6 +7721,13 @@
         "pulse": "Puls",
         "scan": "Linie de scanare",
         "snow": "Ninsoare"
+      },
+      "scene": {
+        "none": "Niciuna",
+        "coast": "Neon Coast",
+        "dusk": "Palm Dusk",
+        "skyline": "Neon Skyline",
+        "miami": "Miami Beach"
       }
     },
     "setting": {
@@ -7732,7 +7741,8 @@
       "effect": "Efect vizual",
       "decoration": "Decor",
       "bg_mode": "Tipul fundalului",
-      "anim": "Animație"
+      "anim": "Animație",
+      "scene": "Scenă Miami Style"
     },
     "field": {
       "accent": "Culoare accent",
@@ -7810,10 +7820,12 @@
       "read": "Citește:",
       "content": "Politica conținutului",
       "copyright": "Politica drepturilor de autor",
-      "gta": "Nota GTA VI",
       "required": "Bifează caseta pentru a confirma și a accepta politicile.",
-      "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil."
-    }
+      "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil.",
+      "miami": "Nota Miami Style"
+    },
+    "sectionMiami": "Miami Style",
+    "miamiHint": "Scene retro de apus cu grafică proprie, desenate în spatele cardului. Alege una ca să o previzualizezi."
   },
   "profilePage": {
     "levelCardTitle": "Card de nivel",
@@ -7856,7 +7868,8 @@
         "stars": "Stele",
         "coast": "Scenă Neon Coast",
         "skyline": "Orizont Miami (neon)",
-        "miami": "Miami Beach (art deco)"
+        "miami": "Miami Beach (art deco)",
+        "dusk": "Palm Dusk"
       },
       "card_place": {
         "top": "Deasupra detaliilor mele",
@@ -7907,13 +7920,13 @@
     "shortCopy": "Copiază",
     "shortCopied": "Link copiat.",
     "shortHint": "Împarte-l oriunde. Membrii WODY autentificați îți văd pagina, iar vizitele apar în contor.",
-    "specialGroup": "Colecție specială",
+    "specialGroup": "Miami Style",
     "rights": {
       "title": "Drepturile asupra imaginii",
       "confirm": "Confirm că am drepturile, permisiunea sau altă bază legală necesare pentru a folosi această imagine și pentru a permite afișarea ei prin Wody.",
       "note": "Această confirmare este declarația ta. Nu face legală o imagine neautorizată.",
       "policy": "Politica conținutului utilizatorilor",
-      "gta": "Nota categoriei GTA VI"
+      "miami": "Nota Miami Style"
     },
     "mod": {
       "title": "O măsură de moderare îți afectează personalizarea",
@@ -7934,17 +7947,19 @@
         "account_blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil."
       }
     },
-    "gtaNote": "Colecția specială este o temă neoficială de personalizare desenată de Wody. Nu conține artă oficială din jocuri.",
-    "gtaLink": "Citește nota",
     "consent": {
       "label": "Confirm că sunt proprietarul sau am permisiunea să folosesc fiecare imagine, GIF, link și fișier audio pe care îl adaug și că am citit și accept politicile de mai jos. Înțeleg că Wody doar face legătura către conținut găzduit pe alte platforme, că oricine îl poate raporta și că Wody îl poate elimina și îmi poate suspenda sau bloca contul de Discord pentru încălcări.",
       "read": "Citește:",
       "content": "Politica conținutului",
       "copyright": "Politica drepturilor de autor",
-      "gta": "Nota GTA VI",
       "required": "Bifează caseta pentru a confirma și a accepta politicile.",
-      "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil."
-    }
+      "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil.",
+      "miami": "Nota Miami Style"
+    },
+    "miamiNote": "Tema Miami Style este o temă neoficială de personalizare desenată de Wody. Nu conține artă oficială din jocuri.",
+    "miamiLink": "Citește nota",
+    "miamiHint": "Scene animate pentru fundalul paginii. Alege una ca să o previzualizezi.",
+    "miamiOff": "Elimină scena"
   },
   "policies": {
     "index": "Politici",
@@ -7963,8 +7978,8 @@
     "nav": {
       "content-policy": "Politica conținutului utilizatorilor",
       "copyright": "Politica drepturilor de autor și a proprietății intelectuale",
-      "gta-notice": "Notă pentru categoria GTA VI",
-      "complaint": "Reclamație privind drepturile de autor"
+      "complaint": "Reclamație privind drepturile de autor",
+      "miami-notice": "Notă pentru categoria Miami Style"
     },
     "contactHtml": "Operator: Păcurar Ancuța-Narcisa, România, Uniunea Europeană. Contact general: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Contact dedicat pentru drepturi de autor: [REQUIRES OPERATOR CONFIRMATION]. Adresa, datele fiscale și de înregistrare: [REQUIRES OPERATOR CONFIRMATION].",
     "content-policy": {
@@ -8055,16 +8070,6 @@
         }
       ]
     },
-    "gta-notice": {
-      "title": "Notă pentru categoria GTA VI",
-      "version": "1.0-draft",
-      "sections": [
-        {
-          "heading": "Notă",
-          "html": "<p>GTA VI și numele, logo-urile și artele asociate aparțin proprietarilor lor. Wody nu este afiliat cu, aprobat de sau sponsorizat de Rockstar Games ori Take-Two Interactive.</p><p>Categoria GTA VI este o temă neoficială de personalizare, formată din culori și scene originale desenate de Wody, inspirate de un aspect cu apus și neon. Nu conține artă oficială, logo-uri sau personaje.</p><ul><li>Wody nu oferă o galerie de imagini GTA VI și nu distribuie materiale Rockstar.</li><li>Dacă adaugi o imagine sau un link în această categorie, îl furnizezi tu și trebuie să ai drepturile necesare sau altă bază legală.</li><li>Wody poate dezactiva conținutul raportat sau ilegal și poate restricționa personalizarea după verificare.</li><li>Categoria este opțională și poți alege altă temă oricând.</li><li>Această notă nu dă nimănui permisiunea de a folosi materiale Rockstar.</li></ul><p>Citește Politica conținutului utilizatorilor și Politica drepturilor de autor pentru regulile complete.</p>"
-        }
-      ]
-    },
     "complaint": {
       "title": "Reclamație privind drepturile de autor",
       "version": "1.0-draft",
@@ -8094,6 +8099,16 @@
         "notFound": "Nu a fost găsit niciun profil cu acest nume de utilizator.",
         "rate": "Prea multe încercări. Încearcă mai târziu."
       }
+    },
+    "miami-notice": {
+      "title": "Notă pentru categoria Miami Style",
+      "version": "1.0-draft",
+      "sections": [
+        {
+          "heading": "Notă",
+          "html": "<p>Miami Style este o temă neoficială de personalizare, formată din culori și scene originale desenate de Wody, inspirate de un aspect cu apus, palmieri și neon. Nu este afiliată cu, aprobată de sau sponsorizată de vreun editor sau studio de jocuri și nu conține artă, logo-uri sau personaje ale unor terți.</p><ul><li>Wody nu oferă o galerie de imagini ale terților și nu distribuie materiale din vreun joc.</li><li>Dacă adaugi o imagine sau un link în această categorie, îl furnizezi tu și trebuie să ai drepturile necesare sau altă bază legală.</li><li>Wody poate dezactiva conținutul raportat sau ilegal și poate restricționa personalizarea după verificare.</li><li>Categoria este opțională și poți alege altă temă oricând.</li><li>Această notă nu dă nimănui permisiunea de a folosi materiale ale terților.</li></ul><p>Citește Politica conținutului utilizatorilor și Politica drepturilor de autor pentru regulile complete.</p>"
+        }
+      ]
     }
   },
   "report": {
@@ -8112,26 +8127,62 @@
     "rights": "Ești titular de drepturi? Folosește formularul de reclamație pentru drepturi de autor.",
     "cancel": "Anulează"
   },
-  "gta6Page": {
-    "metaTitle": "Bot Discord cu temă inspirată de GTA 6 (gratuit) | Wody",
-    "metaDescription": "Wody este un bot Discord gratuit cu un aspect Miami neon inspirat de GTA 6: carduri de nivel, carduri welcome și pagină de profil cu link scurt. Artă originală, fără materiale din joc.",
-    "badge": "Temă inspirată de GTA 6",
-    "h1": "Bot Discord cu aspect Miami neon, inspirat de GTA 6",
-    "intro": "Wody este un bot Discord pentru moderare, niveluri, tichete, giveaway-uri și multe altele. Vine și cu o colecție opțională de teme în stil Miami pentru cardurile de level-up, cardurile welcome și goodbye și pagina ta de profil: apusuri pe coasta neon, amurg cu palmieri, skyline și art deco. Toată arta este originală, făcută pentru Wody.",
-    "featuresTitle": "Ce primești",
-    "features": [
+  "miamiPage": {
+    "metaTitle": "Bot Discord Miami Style: carduri de nivel neon și pagini de profil | Wody",
+    "metaDescription": "Wody este un bot Discord gratuit cu o colecție de teme Miami Style: carduri de level-up cu coastă neon, carduri welcome și pagină de profil de partajat. Artă originală.",
+    "badge": "Colecția Miami Style",
+    "h1": "Dă serverului tău de Discord un aspect Miami Style",
+    "intro": "Apusuri neon, siluete de palmieri și skyline-uri art deco pentru cardurile de level-up, cardurile welcome și goodbye și propria pagină de profil. Wody se ocupă și de moderare, tichete, giveaway-uri și multe altele. Fiecare scenă este artă originală desenată pentru Wody.",
+    "stats": [
+      "4 scene originale",
+      "9 limbi",
+      "Gratuit la început"
+    ],
+    "previewName": "numele-tau",
+    "previewLevel": "Nivel 12",
+    "previewXp": "2.480 / 3.000 XP",
+    "previewLabel": "Previzualizare card de level-up",
+    "themesTitle": "Colecția",
+    "themesIntro": "Alege o scenă din Miami Style în dashboardul serverului.",
+    "themes": [
       {
-        "t": "Carduri de level-up",
-        "d": "Alege Neon Coast, Palm Dusk, Skyline sau Miami art deco din Colecția specială din dashboardul serverului."
+        "k": "coast",
+        "t": "Neon Coast",
+        "d": "Un apus retro peste o grilă luminoasă, cu palmieri care se leagănă."
       },
       {
-        "t": "Carduri welcome și goodbye",
-        "d": "Folosește aceleași scene pentru a întâmpina membrii noi cu un card potrivit serverului tău."
+        "k": "dusk",
+        "t": "Palm Dusk",
+        "d": "Amurg violet cald cu siluete de palmieri."
+      },
+      {
+        "k": "skyline",
+        "t": "Skyline",
+        "d": "Un skyline neon pe un cer violet închis."
+      },
+      {
+        "k": "miami",
+        "t": "Miami art deco",
+        "d": "Clădiri art deco pastelate, într-o paletă de plajă Miami."
+      }
+    ],
+    "whereTitle": "Folosește-o peste tot",
+    "where": [
+      {
+        "t": "Carduri de level-up",
+        "d": "Răsplătește activitatea cu un card potrivit serverului tău."
+      },
+      {
+        "t": "Welcome și goodbye",
+        "d": "Întâmpină și salută membrii cu aceleași scene."
       },
       {
         "t": "Pagină de profil",
-        "d": "O pagină de partajat la wody.online/numele-tau cu contor de vizualizări, muzică de fundal și efecte pe nume."
-      },
+        "d": "O pagină de partajat la wody.online/numele-tau cu contor de vizualizări, muzică și efecte pe nume."
+      }
+    ],
+    "featuresTitle": "Mai mult decât o temă",
+    "features": [
       {
         "t": "Pașaport",
         "d": "Un card de identitate fictiv, de colecție, pentru contul tău Discord."
@@ -8142,24 +8193,28 @@
       },
       {
         "t": "Toate de bază",
-        "d": "Moderare, automod, tichete, roluri cu reacții, giveaway-uri și altele, în 9 limbi."
+        "d": "Moderare, automod, tichete, roluri cu reacții, giveaway-uri și altele."
+      },
+      {
+        "t": "9 limbi",
+        "d": "Engleză, română, franceză, italiană, germană, spaniolă, portugheză, olandeză și turcă."
       }
     ],
     "stepsTitle": "Configurare în trei pași",
     "steps": [
       "Adaugă Wody pe serverul tău.",
       "Deschide dashboardul serverului și mergi la Niveluri.",
-      "Alege o temă din Colecția specială și salvează."
+      "Alege o scenă din Miami Style și salvează."
     ],
     "faqTitle": "Întrebări",
     "faq": [
       {
-        "q": "Este Wody un bot oficial GTA 6?",
-        "a": "Nu. Wody este un bot Discord independent. Tema Miami neon este inspirată de aspectul general al scenelor de coastă tropicală și folosește doar artă originală."
+        "q": "Este Miami Style legat de vreun joc sau vreo marcă?",
+        "a": "Nu. Este o temă originală desenată de Wody, inspirată de apusuri, palmieri și neon. Nu este afiliată cu și nici susținută de vreun editor de jocuri."
       },
       {
-        "q": "Include artă, logo-uri sau personaje din joc?",
-        "a": "Nu. Wody nu include artă, logo-uri, personaje sau alte materiale din vreun joc. Dacă adaugi propria imagine, trebuie să ai dreptul să o folosești."
+        "q": "Include artă, logo-uri sau personaje ale unor terți?",
+        "a": "Nu. Wody nu include artă, logo-uri sau personaje din vreun joc sau de la vreo marcă. Dacă adaugi propria imagine, trebuie să ai dreptul să o folosești."
       },
       {
         "q": "Este gratuit?",
@@ -8170,8 +8225,10 @@
         "a": "Engleză, română, franceză, italiană, germană, spaniolă, portugheză, olandeză și turcă."
       }
     ],
+    "ctaTitle": "Gata pentru un aspect nou?",
+    "ctaText": "Adaugă Wody și alege-ți scena în mai puțin de un minut.",
     "cta": "Adaugă Wody pe Discord",
     "ctaProfile": "Personalizează-mi pagina de profil",
-    "disclaimer": "Wody nu este afiliat, aprobat sau sponsorizat de Rockstar Games, Take-Two Interactive sau vreun editor de jocuri. Grand Theft Auto și GTA sunt mărci ale proprietarilor lor și sunt menționate doar pentru a descrie sursa de inspirație a temei."
+    "disclaimer": "Miami Style este o temă neoficială, făcută din artă originală de Wody. Wody nu este afiliat, aprobat sau sponsorizat de vreun editor sau studio de jocuri."
   }
 }

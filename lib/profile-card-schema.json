@@ -27,6 +27,8 @@
    "synthwave",
    "coast",
    "dusk",
+   "skyline",
+   "miami",
    "galaxy",
    "mint",
    "rose",
@@ -43,6 +45,13 @@
    "gradient",
    "solid",
    "image"
+  ],
+  "scene": [
+   "none",
+   "coast",
+   "dusk",
+   "skyline",
+   "miami"
   ],
   "font": [
    "default",
@@ -160,6 +169,7 @@
   "theme": "default",
   "layout": "classic",
   "bg_mode": "gradient",
+  "scene": "none",
   "bg_color": "#14141c",
   "gradient_from": "#1a0905",
   "gradient_to": "#c4622a",
@@ -190,6 +200,7 @@
   "default": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#1a0905",
    "gradient_to": "#c4622a",
@@ -217,6 +228,7 @@
   "minimal": {
    "layout": "classic",
    "bg_mode": "solid",
+   "scene": "none",
    "bg_color": "#f4f4f5",
    "gradient_from": "#1a0905",
    "gradient_to": "#c4622a",
@@ -244,6 +256,7 @@
   "dark": {
    "layout": "classic",
    "bg_mode": "solid",
+   "scene": "none",
    "bg_color": "#0b0b0f",
    "gradient_from": "#1a0905",
    "gradient_to": "#c4622a",
@@ -271,6 +284,7 @@
   "glass": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#0f2027",
    "gradient_to": "#2c5364",
@@ -298,6 +312,7 @@
   "gradient": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#12002b",
    "gradient_to": "#8a1fd1",
@@ -325,6 +340,7 @@
   "professional": {
    "layout": "split",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#0f172a",
    "gradient_to": "#1e293b",
@@ -352,6 +368,7 @@
   "premium": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#050505",
    "gradient_to": "#2a210b",
@@ -379,6 +396,7 @@
   "sunset": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#2a0b2e",
    "gradient_to": "#ff8a4c",
@@ -406,6 +424,7 @@
   "ocean": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#04142e",
    "gradient_to": "#1f7ad1",
@@ -433,6 +452,7 @@
   "forest": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#05170f",
    "gradient_to": "#2f7a4a",
@@ -460,6 +480,7 @@
   "neon": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#0a0014",
    "gradient_to": "#1b0a3d",
@@ -487,6 +508,7 @@
   "aurora": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#02111f",
    "gradient_to": "#0b3d4a",
@@ -514,6 +536,7 @@
   "sakura": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#3a1030",
    "gradient_to": "#f78fb3",
@@ -541,6 +564,7 @@
   "midnight": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#02030a",
    "gradient_to": "#101a44",
@@ -568,6 +592,7 @@
   "matrix": {
    "layout": "classic",
    "bg_mode": "solid",
+   "scene": "none",
    "bg_color": "#020a04",
    "gradient_from": "#1a0905",
    "gradient_to": "#c4622a",
@@ -595,6 +620,7 @@
   "lava": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#1a0300",
    "gradient_to": "#d9380a",
@@ -622,6 +648,7 @@
   "frost": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#0d2740",
    "gradient_to": "#8fd3f4",
@@ -649,6 +676,7 @@
   "royal": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#14052e",
    "gradient_to": "#4b1d8f",
@@ -676,6 +704,7 @@
   "candy": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#ff9ad5",
    "gradient_to": "#8ec5ff",
@@ -703,6 +732,7 @@
   "synthwave": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#2b0a4f",
    "gradient_to": "#ff4fa3",
@@ -730,6 +760,7 @@
   "coast": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "coast",
    "bg_color": "#14141c",
    "gradient_from": "#1a0b3b",
    "gradient_to": "#ff5e8a",
@@ -757,6 +788,7 @@
   "dusk": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "dusk",
    "bg_color": "#14141c",
    "gradient_from": "#0b1f2e",
    "gradient_to": "#e8744f",
@@ -781,9 +813,66 @@
    "decoration": "dots",
    "anim": "stars"
   },
+  "skyline": {
+   "layout": "classic",
+   "bg_mode": "gradient",
+   "scene": "skyline",
+   "bg_color": "#14141c",
+   "gradient_from": "#0a0620",
+   "gradient_to": "#7a2fd0",
+   "gradient_angle": 170,
+   "bg_opacity": 55,
+   "overlay_color": "#0f172a",
+   "accent": "#5ff0ff",
+   "text_color": "#f4fbff",
+   "font": "chakra",
+   "avatar_pos": "left",
+   "avatar_size": "medium",
+   "avatar_shape": "circle",
+   "name_align": "left",
+   "stats_pos": "above_bar",
+   "bar_style": "glow",
+   "bar_color": "#ff4fa3",
+   "bar_track": "#241046",
+   "border_width": 2,
+   "border_color": "#5ff0ff",
+   "radius": 22,
+   "effect": "glow",
+   "decoration": "none",
+   "anim": "shimmer"
+  },
+  "miami": {
+   "layout": "classic",
+   "bg_mode": "gradient",
+   "scene": "miami",
+   "bg_color": "#14141c",
+   "gradient_from": "#2a0b4a",
+   "gradient_to": "#ff6b8b",
+   "gradient_angle": 170,
+   "bg_opacity": 55,
+   "overlay_color": "#0f172a",
+   "accent": "#ffd27a",
+   "text_color": "#fff6ee",
+   "font": "bebas",
+   "avatar_pos": "left",
+   "avatar_size": "medium",
+   "avatar_shape": "circle",
+   "name_align": "left",
+   "stats_pos": "above_bar",
+   "bar_style": "glow",
+   "bar_color": "#ff6b8b",
+   "bar_track": "#4a1670",
+   "border_width": 2,
+   "border_color": "#ffd27a",
+   "radius": 26,
+   "effect": "glow",
+   "decoration": "none",
+   "anim": "stars"
+  },
   "galaxy": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#05010f",
    "gradient_to": "#3a0f6b",
@@ -811,6 +900,7 @@
   "mint": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#d9fff1",
    "gradient_to": "#7be0c3",
@@ -838,6 +928,7 @@
   "rose": {
    "layout": "classic",
    "bg_mode": "gradient",
+   "scene": "none",
    "bg_color": "#14141c",
    "gradient_from": "#2a0a14",
    "gradient_to": "#9b2c4f",
@@ -865,6 +956,7 @@
   "noir": {
    "layout": "split",
    "bg_mode": "solid",
+   "scene": "none",
    "bg_color": "#000000",
    "gradient_from": "#1a0905",
    "gradient_to": "#c4622a",

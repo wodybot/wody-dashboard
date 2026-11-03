@@ -220,11 +220,12 @@ function MemberCardSizePicker({ value, onChange, t, savedValue, tc }) {
 
 function AuroraGradientPicker({ value, onChange, hasImage }) {
   const tl = useTranslations('guildSettings.levels');
+  const tnav = useTranslations('nav');
   const current = AURORA_GRADIENTS[value] ? value : 'ember';
   const tile = (key) => (
     <button key={key} type="button" role="radio" aria-checked={current === key} onClick={() => onChange(key)}
       className={`group rounded-xl border p-1.5 text-left transition ${current === key ? 'border-primary ring-1 ring-primary bg-primary/10' : 'border-border hover:bg-secondary/40'}`}>
-      <span className="relative block h-10 w-full overflow-hidden rounded-lg" style={{ background: auroraBackground(key) }}>{SPECIAL_GRADIENTS.includes(key) ? <AuroraScene kind={key} /> : null}</span>
+      <span className={`relative block w-full overflow-hidden rounded-lg ${SPECIAL_GRADIENTS.includes(key) ? 'h-16' : 'h-10'}`} style={{ background: auroraBackground(key) }}>{SPECIAL_GRADIENTS.includes(key) ? <AuroraScene kind={key} /> : null}</span>
       <span className="mt-1.5 flex items-center gap-1.5 px-1 text-xs font-medium"><span className="h-2.5 w-2.5 rounded-full" style={{ background: AURORA_GRADIENTS[key][2] }} />{tl(`auroraGradients.${key}`)}</span>
     </button>
   );
@@ -234,9 +235,12 @@ function AuroraGradientPicker({ value, onChange, hasImage }) {
       <div role="radiogroup" aria-label={tl('auroraGradient')} className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         {Object.keys(AURORA_GRADIENTS).filter((k) => !SPECIAL_GRADIENTS.includes(k)).map(tile)}
       </div>
-      <div className="mt-3 rounded-xl border border-[#e6cd8c]/30 bg-[#e6cd8c]/5 p-2.5">
-        <p className="text-xs font-semibold text-[#e6cd8c]">{tl('auroraSpecial')}</p>
-        <p className="mb-2 text-[11px] text-muted-foreground">{tl('auroraSpecialHint')}</p>
+      <div className="mt-4 rounded-2xl border border-fuchsia-400/40 bg-gradient-to-br from-fuchsia-500/10 via-transparent to-amber-300/10 p-3 shadow-[0_0_24px_-10px_rgba(255,94,138,.6)]">
+        <div className="flex items-center gap-2">
+          <p className="text-sm font-semibold text-foreground">{tl('auroraSpecial')}</p>
+          <span className="rounded-full bg-gradient-to-r from-fuchsia-500 to-amber-400 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-black">{tnav('tags.new')}</span>
+        </div>
+        <p className="mb-2 mt-0.5 text-[11px] text-muted-foreground">{tl('auroraSpecialHint')}</p>
         <div role="radiogroup" aria-label={tl('auroraSpecial')} className="grid grid-cols-2 gap-2 sm:grid-cols-4">{SPECIAL_GRADIENTS.map(tile)}</div>
       </div>
       {hasImage ? <p className="mt-2 text-[11px] text-muted-foreground">{tl('auroraImageNote')}</p> : null}

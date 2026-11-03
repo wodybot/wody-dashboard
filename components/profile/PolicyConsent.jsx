@@ -3,7 +3,7 @@
 import { useId } from 'react';
 import { useTranslations } from 'next-intl';
 
-const LINKS = [['content', '/policies/content-policy'], ['copyright', '/policies/copyright'], ['gta', '/policies/gta-notice']];
+const LINKS = [['content', '/policies/content-policy'], ['copyright', '/policies/copyright'], ['miami', '/policies/miami-notice']];
 
 export default function PolicyConsent({ ns = 'profile', checked, onChange, className = '' }) {
   const t = useTranslations(ns);
