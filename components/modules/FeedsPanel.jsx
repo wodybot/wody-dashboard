@@ -1,5 +1,5 @@
 'use client';
-// Wody Feeds (free). New videos, streams, songs, posts, releases from other services, posted to a channel on a
+// Wody Pulse (free). New videos, streams, songs, posts, releases from other services, posted to a channel on a
 // schedule (every 5 minutes up to once a day). The list shows what each feed did last (read from the bot's own records),
 // and every action goes through the same code the bot uses: saving is validated by a port of the bot's checker, "Post a test"
 // and "Check source" are run by the bot itself. Nothing here is sample data and the module never asks for Premium.
@@ -14,7 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ChannelSelect, RoleSelect, SectionHeader, Empty } from '@/components/dashboard-kit';
 import { ConfirmDialog, Field, LoadingOrError, NativeSelect, StatusDot, callApi, formatDate, useApi, useErrorText } from '@/components/module-kit';
-import { EXAMPLE, GROUPS, HINT_KIND, INTERVALS, SOURCES, DEFAULT_INTERVAL } from '@/lib/feeds-core';
+import { EXAMPLE, GROUPS, INTERVALS, SOURCES, DEFAULT_INTERVAL } from '@/lib/feeds-core';
 
 const GROUP_ORDER = GROUPS;
 const EMPTY = { source: 'github', target: '', options: {}, channel_id: null, role_id: null, interval: DEFAULT_INTERVAL };
@@ -64,8 +64,6 @@ function Editor({ guildId, meta, data, reload }) {
         action={<Button onClick={() => setDialog({})} disabled={feeds.length >= data.max}><Plus className="mr-2 h-4 w-4" />{t('add')}</Button>}
       />
       <Card className="flex flex-wrap items-center gap-x-4 gap-y-1 border-border/50 bg-secondary/10 p-3.5 text-sm text-muted-foreground">
-        <span className="font-medium text-foreground">{t('freeTitle')}</span>
-        <span>{t('freeText', { max: data.max })}</span>
         <span className="ml-auto text-xs">{t('counter', { n: feeds.length, max: data.max })}</span>
       </Card>
 
@@ -134,7 +132,6 @@ function FeedDialog({ guildId, meta, feed, onClose, onSaved }) {
   const [checked, setChecked] = useState(null);
   const src = SOURCES[f.source];
   const optionNames = Object.keys(src?.options || {});
-  const hintKind = HINT_KIND[f.source];
   const set = (patch) => { setF((s) => ({ ...s, ...patch })); setChecked(null); };
   const pickSource = (key) => set({ source: key, target: '', options: Object.fromEntries(Object.entries(SOURCES[key].options).map(([k, v]) => [k, v[0]])) });
   const bySource = useMemo(() => GROUP_ORDER.map((g) => ({ group: g, items: Object.values(SOURCES).filter((s) => s.group === g) })), []);
@@ -184,12 +181,19 @@ function FeedDialog({ guildId, meta, feed, onClose, onSaved }) {
 
           {src?.needs ? <p className="rounded-lg border border-amber-400/30 bg-amber-400/5 p-3 text-xs text-amber-200">{t('needsKey')}</p> : null}
 
-          <Field label={t('target')} hint={t(`hints.${hintKind}`)} errors={errors} field="target">
+          <Field label={t('target')} errors={errors} field="target">
             <Input
               value={f.target} onChange={(e) => set({ target: e.target.value })} maxLength={300}
-              placeholder={EXAMPLE[f.source] || t(`hints.${hintKind}`)} autoComplete="off" spellCheck={false}
+              placeholder={EXAMPLE[f.source] || ''} autoComplete="off" spellCheck={false}
             />
-            <p className="mt-1 text-[11px] text-muted-foreground">{t(`hints.${hintKind}`)}{src?.targetOptional ? ` ${t('optional')}` : ''}</p>
+            <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{t(`sourceHints.${f.source}`)}{src?.targetOptional ? ` ${t('optional')}` : ''}</p>
+            {EXAMPLE[f.source] ? (
+              <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
+                <span>{t('exampleLabel')}:</span>
+                <code className="break-all rounded bg-secondary/40 px-1.5 py-0.5 text-[11px] text-foreground">{EXAMPLE[f.source]}</code>
+                <button type="button" onClick={() => set({ target: EXAMPLE[f.source] })} className="text-[#e6cd8c] underline-offset-2 hover:underline">{t('useExample')}</button>
+              </p>
+            ) : null}
           </Field>
           {fieldError('target').map((e, i) => <p key={i} className="-mt-3 text-xs text-red-400">{errorText(e)}</p>)}
 

@@ -7,6 +7,7 @@ import { localizedAlternates } from '@/lib/community/seo';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { TopNav, Footer } from '@/components/nav';
 import { CONTENT } from '@/lib/content';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 
@@ -30,7 +31,8 @@ export async function generateMetadata({ params }) {
       description: 'How Wody collects, uses, stores and protects data through the Discord bot and web dashboard.',
       alternates: localizedAlternates(locale, '/privacy'),
       robots: { index: true, follow: true },
-      openGraph: {
+      twitter: TWITTER_CARD,
+      openGraph: { images: OG_IMAGES,
         title: `Wody - ${t('pageTitle')}`,
         description: 'How Wody collects, uses, stores and protects data through the Discord bot and web dashboard.',
         url: `${SITE_URL}/privacy`,

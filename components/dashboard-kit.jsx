@@ -14,6 +14,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip as UiTooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
 import { proxiedImageUrl } from '@/lib/utils';
+import { CARD_FONTS, cardFontStyle } from '@/lib/card-fonts';
 
 // Compact "?" info affordance for a field's helper text: a small icon next
 // to the label that reveals the explanation in a tooltip on hover/focus,
@@ -363,11 +364,31 @@ export function stripCardMarkdown(text) {
 //     at 900px, and the line clamps below match the bot's max_lines exactly.
 //  3. The footer was drawn on the card by the bot and missing from the
 //     preview, as was the bottom vignette the bot composites for legibility.
-export function CardPreview({ backgroundUrl, overlayColor, overlayOpacity, textColor, ringColor, avatarUrl, avatarRing, title, message, footer }) {
+// Font choice for the generated card images. Each option is shown in its own typeface (self-hosted files).
+export function CardFontPicker({ value, onChange, allowBold = false }) {
+  const t = useTranslations('cardFonts');
+  const current = value || 'default';
+  return (
+    <div>
+      <Label>{t('label')}</Label>
+      <Select value={current} onValueChange={onChange}>
+        <SelectTrigger style={cardFontStyle(current)}><SelectValue /></SelectTrigger>
+        <SelectContent>
+          <SelectItem value="default">{t('classic')}</SelectItem>
+          {allowBold && <SelectItem value="bold">{t('classicBold')}</SelectItem>}
+          {CARD_FONTS.map((f) => <SelectItem key={f.id} value={f.id}><span style={cardFontStyle(f.id)} className="text-base">{f.label}</span></SelectItem>)}
+        </SelectContent>
+      </Select>
+      <p className="mt-1 text-xs text-muted-foreground">{t('hint')}</p>
+    </div>
+  );
+}
+
+export function CardPreview({ backgroundUrl, overlayColor, overlayOpacity, textColor, ringColor, avatarUrl, avatarRing, title, message, footer, fontId }) {
   return (
     <div
       className="relative w-full overflow-hidden bg-slate-950"
-      style={{ aspectRatio: '1200 / 630', containerType: 'inline-size' }}
+      style={{ aspectRatio: '1200 / 630', containerType: 'inline-size', ...cardFontStyle(fontId) }}
     >
       {backgroundUrl && <PreviewImage url={backgroundUrl} alt="" className="absolute inset-0 w-full h-full object-cover" draggable="false" />}
       <div className="absolute inset-0" style={{ backgroundColor: overlayColor, opacity: overlayOpacity / 100 }} />

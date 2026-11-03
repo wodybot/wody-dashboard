@@ -20,12 +20,6 @@ r("description", "New videos, streams, songs, posts, releases from other service
   "Diğer servislerden yeni videolar, yayınlar, şarkılar, gönderiler, sürümler; seçtiğin sıklıkla bir kanalda paylaşılır.")
 r("add", "Add feed", "Adaugă feed", "Ajouter un flux", "Aggiungi feed", "Feed hinzufügen", "Añadir feed", "Adicionar feed", "Feed toevoegen", "Akış ekle")
 r("edit", "Edit feed", "Editează feedul", "Modifier le flux", "Modifica feed", "Feed bearbeiten", "Editar feed", "Editar feed", "Feed bewerken", "Akışı düzenle")
-r("freeTitle", "Free for every server", "Gratuit pentru orice server", "Gratuit pour chaque serveur", "Gratis per ogni server", "Kostenlos für jeden Server", "Gratis para cada servidor", "Grátis para cada servidor", "Gratis voor elke server", "Her sunucu için ücretsiz")
-r("freeText", "Up to {max} feeds, every 5 minutes up to once a day. No Premium needed.", "Până la {max} de feed-uri, de la 5 minute până la o dată pe zi. Nu ai nevoie de Premium.",
-  "Jusqu'à {max} flux, de toutes les 5 minutes à une fois par jour. Aucun Premium requis.", "Fino a {max} feed, da ogni 5 minuti a una volta al giorno. Nessun Premium necessario.",
-  "Bis zu {max} Feeds, von alle 5 Minuten bis einmal am Tag. Kein Premium nötig.", "Hasta {max} feeds, de cada 5 minutos a una vez al día. No hace falta Premium.",
-  "Até {max} feeds, de a cada 5 minutos a uma vez por dia. Não precisa de Premium.", "Tot {max} feeds, van elke 5 minuten tot één keer per dag. Geen Premium nodig.",
-  "En fazla {max} akış, 5 dakikada birden günde bire. Premium gerekmez.")
 r("counter", "{n} of {max} feeds", "{n} din {max} feed-uri", "{n} flux sur {max}", "{n} feed su {max}", "{n} von {max} Feeds", "{n} de {max} feeds", "{n} de {max} feeds", "{n} van {max} feeds", "{n} / {max} akış")
 r("emptyTitle", "No feeds yet", "Niciun feed încă", "Aucun flux pour l'instant", "Nessun feed per ora", "Noch keine Feeds", "Aún no hay feeds", "Ainda não há feeds", "Nog geen feeds", "Henüz akış yok")
 r("emptyText", "Add your first feed: pick a source, a channel and how often to check. The newest item is posted at once, then only what is new.",

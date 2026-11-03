@@ -109,14 +109,7 @@ function OverviewTab({ guildId, data, diagnose, reload, t }) {
     <div className="space-y-5">
       <IssueBanner issues={diagnose.issues} loading={diagnose.loading} onRefresh={diagnose.run} />
       {diagnose.unreachable ? <p className="text-xs text-amber-300">{tk('issues.bot_unreachable')}</p> : null}
-      <Card className="flex flex-col gap-3 border-emerald-400/25 bg-emerald-500/[0.04] p-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-start gap-3 text-sm">
-          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-          <div>
-            <div className="font-semibold">{t('overview.freeTitle')}</div>
-            <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{t('overview.freeText')}</p>
-          </div>
-        </div>
+      <Card className="flex flex-col gap-3 border-border/50 bg-secondary/10 p-3 sm:flex-row sm:items-center sm:justify-end">
         <Button variant="outline" size="sm" onClick={resync} disabled={busy} className="gap-1.5 self-start sm:self-auto">
           {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <RefreshCw className="h-3.5 w-3.5" />}{t('overview.resync')}
         </Button>

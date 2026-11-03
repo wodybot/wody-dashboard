@@ -8,6 +8,7 @@ import { getSession } from '@/lib/session';
 import { mdb, getCategories } from '@/lib/marketplace/db';
 import { publicRequest } from '@/lib/marketplace/query';
 import { ROBOTS_INDEX, absolute, localePath, localizedAlternates, clip } from '@/lib/community/seo';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -24,7 +25,8 @@ export async function generateMetadata({ params }) {
   const title = `${r.title} | ${t('title')}`;
   return {
     title: { absolute: title }, description: clip(r.description), alternates: localizedAlternates(locale, `/marketplace/${id}`), robots: ROBOTS_INDEX,
-    openGraph: { title, description: clip(r.description), url: absolute(localePath(locale, `/marketplace/${id}`)), type: 'article', siteName: 'Wody', images: [{ url: absolute('/opengraph-image') }] },
+    twitter: TWITTER_CARD,
+      openGraph: { title, description: clip(r.description), url: absolute(localePath(locale, `/marketplace/${id}`)), type: 'article', siteName: 'Wody', images: [{ url: absolute('/opengraph-image') }] },
   };
 }
 

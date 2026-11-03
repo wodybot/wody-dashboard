@@ -22,7 +22,7 @@ import {
 import { LANGS, LANG_NAMES, botText, insertAtCursor } from '@/components/modules/birthdays-shared';
 
 const VARIABLES = ['streamer', 'streamer_name', 'title', 'game', 'viewers', 'url', 'started_at'];
-const PLATFORM_COLOR = { twitch: '#9146ff', tiktok: '#fe2c55' };
+const PLATFORM_COLOR = { twitch: '#9146ff', kick: '#53fc18', tiktok: '#fe2c55' };
 
 export default function StreamsPanel({ guildId, meta, onGetPremium }) {
   const t = useTranslations('guildSettings.streams');
@@ -74,7 +74,7 @@ function Editor({ guildId, meta, data, reload }) {
       <SectionHeader title={t('title')} description={t('description')} />
       <ModuleTabs
         active={platform} onChange={(p) => { setPlatform(p); setOpenId(null); }}
-        tabs={[{ key: 'twitch', label: 'Twitch' }, { key: 'tiktok', label: 'TikTok' }]}
+        tabs={[{ key: 'twitch', label: 'Twitch' }, { key: 'kick', label: 'Kick' }, { key: 'tiktok', label: 'TikTok' }]}
         badges={{}}
       />
 
@@ -147,8 +147,8 @@ function StatusBadge({ n }) {
 
 function NotificationCard({ n, issues, onRecheck, rechecking, guildId, meta, variables, open, onToggle, onChanged, onRemove }) {
   const t = useTranslations('guildSettings.streams');
-  const name = n.platform === 'twitch' ? (n.twitch_display_name || n.twitch_login) : (n.tiktok_display_name || n.tiktok_username);
-  const avatar = n.platform === 'twitch' ? n.twitch_avatar : n.tiktok_avatar;
+  const name = n.platform === 'twitch' ? (n.twitch_display_name || n.twitch_login) : n.platform === 'kick' ? (n.kick_display_name || n.kick_slug) : (n.tiktok_display_name || n.tiktok_username);
+  const avatar = n.platform === 'twitch' ? n.twitch_avatar : n.platform === 'kick' ? n.kick_avatar : n.tiktok_avatar;
   const channel = (meta?.channels || []).find((c) => String(c.id) === String(n.channel_id));
   const [reconnecting, setReconnecting] = useState(false);
   const needsFix = ['failed', 'revoked'].includes(n.sub_status);
@@ -211,10 +211,11 @@ function NotificationEditor({ n, guildId, meta, variables, onSaved }) {
     if (r.data?.error === 'validation_failed') setErrors(r.data.errors || []); else toast.error(apiErrorText(r.data?.error || 'generic'));
   };
 
-  const name = isTikTok ? (n.tiktok_display_name || n.tiktok_username) : (n.twitch_display_name || n.twitch_login);
+  const isKick = n.platform === 'kick';
+  const name = isTikTok ? (n.tiktok_display_name || n.tiktok_username) : isKick ? (n.kick_display_name || n.kick_slug) : (n.twitch_display_name || n.twitch_login);
   const sample = {
     streamer: name, streamer_name: name, title: t('sample.title'), game: t('sample.game'), viewers: '128',
-    url: isTikTok ? `https://www.tiktok.com/@${n.tiktok_username || 'creator'}` : `https://twitch.tv/${n.twitch_login || 'streamer'}`,
+    url: isTikTok ? `https://www.tiktok.com/@${n.tiktok_username || 'creator'}` : isKick ? `https://kick.com/${n.kick_slug || 'streamer'}` : `https://twitch.tv/${n.twitch_login || 'streamer'}`,
     started_at: new Date().toLocaleTimeString(),
   };
   const defaultTitle = botText(lang, isTikTok ? 'stream.tt_title' : 'stream.live_title');
@@ -304,9 +305,9 @@ function NotificationEditor({ n, guildId, meta, variables, onSaved }) {
               mention={roleName ? `@${roleName}` : null}
               useEmbed={m.use_embed}
               embed={{ color: m.color, title: fill(m.title || defaultTitle), description: fill(m.description || defaultDesc), footer: fill(m.footer), timestamp: m.timestamp }}
-              thumbnailUrl={m.thumbnail !== 'none' ? (n.twitch_avatar || n.tiktok_avatar || null) : null}
+              thumbnailUrl={m.thumbnail !== 'none' ? (n.twitch_avatar || n.kick_avatar || n.tiktok_avatar || null) : null}
               imageUrl={m.image === 'custom' ? m.image_url : null}
-              imagePlaceholder={(m.image || 'media') === 'media' ? (n.platform === 'tiktok' ? 'TikTok LIVE' : 'Twitch stream preview') : null}
+              imagePlaceholder={(m.image || 'media') === 'media' ? (n.platform === 'tiktok' ? 'TikTok LIVE' : n.platform === 'kick' ? 'Kick stream preview' : 'Twitch stream preview') : null}
               buttons={buttons.map((b) => ({ ...b, label: fill(b.label) }))}
             />
             <div className="flex flex-wrap gap-3">
@@ -331,7 +332,7 @@ function NotificationEditor({ n, guildId, meta, variables, onSaved }) {
             <Input type="number" min={0} max={1440} value={s.cooldown_minutes} onChange={(e) => form.set({ cooldown_minutes: e.target.value === '' ? '' : Number(e.target.value) })} />
           </Field>
           <div className="md:col-span-2 text-xs text-muted-foreground">
-            {n.platform === 'twitch' ? t('advanced.twitchNote') : t('advanced.tiktokNote')}
+            {t(`advanced.${n.platform}Note`)}
           </div>
         </div>
       ) : null}
@@ -371,6 +372,8 @@ function AddDialog({ guildId, meta, platform, connections, onClose, onAdded }) {
     setSaving(true); setErrors([]);
     const body = platform === 'twitch'
       ? { platform, twitch_login: pick?.login || login, channel_id: channelId, role_id: roleId || null }
+      : platform === 'kick'
+      ? { platform, kick_slug: login, channel_id: channelId, role_id: roleId || null }
       : { platform, connection_id: connectionId, channel_id: channelId, role_id: roleId || null };
     const r = await callApi(guildId, 'streams', { method: 'POST', body });
     setSaving(false);
@@ -389,7 +392,11 @@ function AddDialog({ guildId, meta, platform, connections, onClose, onAdded }) {
           <DialogDescription>{t(`add.text.${platform}`)}</DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
-          {platform === 'twitch' ? (
+          {platform === 'kick' ? (
+            <Field label={t('add.streamer')} hint={t('add.kickHint')} level="required" errors={errors} field="kick_slug">
+              <Input value={login} onChange={(e) => setLogin(e.target.value)} placeholder={t('add.kickPlaceholder')} maxLength={80} />
+            </Field>
+          ) : platform === 'twitch' ? (
             <Field label={t('add.streamer')} hint={t('add.streamerHint')} level="required" errors={errors} field="twitch_login">
               {pick ? (
                 <div className="flex items-center gap-2 rounded-md border border-border/60 p-2">
@@ -438,7 +445,7 @@ function AddDialog({ guildId, meta, platform, connections, onClose, onAdded }) {
         </div>
         <DialogFooter className="gap-2">
           <Button variant="outline" onClick={onClose}>{tk('cancel')}</Button>
-          <Button onClick={submit} disabled={saving || !channelId || (platform === 'twitch' ? !(pick || login.trim()) : !connectionId)} className="gap-2">
+          <Button onClick={submit} disabled={saving || !channelId || (platform === 'twitch' ? !(pick || login.trim()) : platform === 'kick' ? !login.trim() : !connectionId)} className="gap-2">
             {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}{t('add.create')}
           </Button>
         </DialogFooter>

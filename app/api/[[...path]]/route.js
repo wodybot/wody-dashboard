@@ -2,6 +2,11 @@
 // PUNE ÎN: app/api/[[...path]]/route.js
 // (înlocuiește fișierul existent din proiectul wody-dashboard-main la această cale)
 
+import { CARD_FONT_IDS } from '@/lib/card-fonts';
+import { configGroups, botComparison, liveChecks } from '@/lib/owner-config';
+import { applyPatch as applyProfilePatch, normalizeConfig as normalizeProfileConfig, PROFILE_CARD } from '@/lib/profile-card';
+import { sniffImage as sniffProfileImage } from '@/lib/community/images';
+import { ObjectId as ProfileObjectId } from 'mongodb';
 import { NextResponse } from 'next/server';
 import { getDb, toLong, serializeDoc, deserializeInput, Long } from '@/lib/mongo';
 import { getSession, setSession, clearSession, issueOAuthState, consumeOAuthState } from '@/lib/session';
@@ -1434,6 +1439,29 @@ async function handleGet(request, context) {
   // Nothing on the dashboard side can reconstruct this after the fact:
   // Discord's own bot-guild-list endpoint (used by premium/all-servers
   // above) has no join-timestamp field at all.
+  // A card picture: shown to the owner, and to signed in visitors while the owner keeps the card public.
+  const cardImage = path.match(/^profile-card\/image\/([a-f0-9]{24})$/);
+  if (cardImage) {
+    const session = await getSession();
+    if (!session?.user?.id) return json({ error: 'unauthenticated' }, { status: 401 });
+    const gdb = await getDb();
+    const img = await gdb.collection('profile_card_images').findOne({ _id: new ProfileObjectId(cardImage[1]) });
+    if (!img || !PROFILE_IMAGE_MIME.has(img.mime)) return json({ error: 'not_found' }, { status: 404 });
+    if (String(img.user) !== String(session.user.id)) {
+      const owner = await gdb.collection('profile_cards').findOne({ _id: String(img.user) }, { projection: { public: 1, 'cfg.bg_image': 1 } });
+      if (!owner || owner.public === false || owner.cfg?.bg_image !== cardImage[1]) return json({ error: 'not_found' }, { status: 404 });
+    }
+    return new Response(Buffer.from(img.data.buffer ? img.data.buffer : img.data), {
+      headers: { 'Content-Type': img.mime, 'X-Content-Type-Options': 'nosniff', 'Content-Security-Policy': "default-src 'none'; sandbox", 'Cache-Control': 'private, max-age=86400, immutable' },
+    });
+  }
+  // Global profile card: the signed-in person's own design (nobody else's, ever).
+  if (path === 'profile-card') {
+    const session = await getSession();
+    if (!session?.user?.id) return json({ error: 'unauthenticated' }, { status: 401 });
+    return json({ ...(await readProfileCard(await getDb(), session.user.id)), schema_version: 1 }, { headers: { 'Cache-Control': 'no-store' } });
+  }
+
   // Owner-only: which server-side settings are configured on this
   // deployment. Only yes/no is returned, never a value, so the panel can
   // answer "is SESSION_SECRET set?" without exposing any secret.
@@ -1441,15 +1469,29 @@ async function handleGet(request, context) {
     const session = await getSession();
     if (!session?.user) return json({ error: 'unauthenticated' }, { status: 401 });
     if (session.user.id !== OWNER_ID) return json({ error: 'forbidden' }, { status: 403 });
-    const has = (k) => Boolean(String(process.env[k] || '').trim());
-    const keys = [
-      ['SESSION_SECRET', true], ['BOT_MONGO_URL', true], ['DISCORD_BOT_TOKEN', true], ['DISCORD_CLIENT_ID', true],
-      ['DISCORD_CLIENT_SECRET', true], ['DISCORD_REDIRECT_URI', true], ['NEXT_PUBLIC_BASE_URL', true],
-      ['CRON_SECRET', false], ['YOUTUBE_API_KEY', false], ['WEBSUB_CALLBACK_BASE_URL', false],
-      ['TWITCH_CLIENT_ID', false], ['TWITCH_CLIENT_SECRET', false], ['TIKTOK_CLIENT_KEY', false],
-      ['TIKTOK_CLIENT_SECRET', false], ['STREAMS_TOKEN_KEY', false],
-    ];
-    return json({ items: keys.map(([name, required]) => ({ name, required, set: has(name) })) });
+    // States only (ok / missing / invalid / placeholder / unset), never a value.
+    const groups = configGroups();
+    let bot = null;
+    try {
+      const doc = await (await getDb()).collection('bot_status').findOne({ _id: 'config' });
+      if (doc?.items) {
+        bot = { updated_at: doc.updated_at ? new Date(doc.updated_at).toISOString() : null, items: doc.items.map((i) => ({ name: String(i.name), group: String(i.group), required: Boolean(i.required), info: String(i.info || ''), state: String(i.state) })), compare: botComparison(doc) };
+      }
+    } catch { /* database not reachable: the panel shows the dashboard side only */ }
+    const all = [...groups.flatMap((g) => g.items), ...(bot?.items || [])];
+    const bad = all.filter((i) => ['missing', 'invalid', 'placeholder'].includes(i.state));
+    return json({ groups, bot, summary: { total: all.length, ok: all.filter((i) => i.state === 'ok').length, problems: bad.length, required_missing: all.filter((i) => i.required && i.state !== 'ok').length } }, { headers: { 'Cache-Control': 'no-store' } });
+  }
+
+  // Owner-only: real calls to Discord, the database and the stream platforms using the configured credentials.
+  if (path === 'owner/config-live') {
+    const session = await getSession();
+    if (!session?.user) return json({ error: 'unauthenticated' }, { status: 401 });
+    if (session.user.id !== OWNER_ID) return json({ error: 'forbidden' }, { status: 403 });
+    let db = null;
+    try { db = await getDb(); } catch { /* reported by the database check */ }
+    const checks = db ? await liveChecks({ db }) : [{ id: 'mongo', label: 'Database answers', state: 'fail', detail: 'The database could not be reached with BOT_MONGO_URL.' }];
+    return json({ checks, ran_at: new Date().toISOString() }, { headers: { 'Cache-Control': 'no-store' } });
   }
 
   // Owner-only: the switch for the message Wody posts when it is added to a server.
@@ -1764,7 +1806,7 @@ async function handleGet(request, context) {
         level_message_format: 'legacy', level_card_background_url: null,
         level_card_overlay_color: '#111827', level_card_overlay_opacity: 55,
         level_card_text_color: '#ffffff', level_card_color: '#57F287',
-        level_card_avatar_ring: true, level_card_font: 'default',
+        level_card_avatar_ring: true, level_card_font: 'default', level_use_member_profile: false,
         level_image_mode: 'none', level_image_url: null,
         ticket_transcript_channel_id: null,
         temp_voice_hub_channel_id: null, temp_voice_category_id: null,
@@ -1806,6 +1848,7 @@ async function handleGet(request, context) {
         card_overlay_color: '#0f172a',
         card_overlay_opacity: 58,
         card_text_color: '#ffffff',
+        card_font: 'default',
         card_avatar_mode: 'member',
         card_avatar_ring: true,
       }));
@@ -1828,6 +1871,7 @@ async function handleGet(request, context) {
         card_overlay_color: '#0f172a',
         card_overlay_opacity: 58,
         card_text_color: '#ffffff',
+        card_font: 'default',
         card_avatar_mode: 'member',
         card_avatar_ring: true,
       }));
@@ -2313,6 +2357,32 @@ function isTrustedOrigin(request) {
   }
 }
 
+
+// ---- Global profile card (one design per Discord account, shared with the bot's /profile) ----
+// Document: profile_cards {_id: "<user id>", cfg: {changed keys}, rev, updated_at}. Both sides save partial updates ($set on
+// cfg.<key>), so two changes to different settings made at the same moment never overwrite each other.
+async function readProfileCard(db, userId) {
+  const doc = await db.collection('profile_cards').findOne({ _id: String(userId) });
+  const config = normalizeProfileConfig(doc?.cfg);
+  let image = null;
+  if (config.bg_image) {
+    const img = await db.collection('profile_card_images').findOne({ _id: new ProfileObjectId(config.bg_image), user: String(userId) }, { projection: { mime: 1, w: 1, h: 1, size: 1 } }).catch(() => null);
+    if (img) image = { id: config.bg_image, mime: img.mime, w: img.w, h: img.h, size: img.size };
+    else config.bg_image = null; // the picture is gone: the card falls back to its gradient
+  }
+  return { config, image, public: doc?.public !== false, rev: Number(doc?.rev || 0), customized: Boolean(doc?.cfg && Object.keys(doc.cfg).length) };
+}
+
+// Pictures people upload for their card. Checked by their real bytes, one per person, never executed.
+const PROFILE_IMAGE_MIME = new Set(['image/png', 'image/jpeg', 'image/webp', 'image/gif']);
+async function hourlyLimited(db, key, max) {
+  const hour = Math.floor(Date.now() / 3_600_000);
+  try {
+    const r = await db.collection('rate_limit_buckets').findOneAndUpdate({ _id: `${key}:${hour}` }, { $inc: { count: 1 }, $setOnInsert: { expires_at: new Date((hour + 2) * 3_600_000) } }, { upsert: true, returnDocument: 'after' });
+    return (r?.count || 0) > max;
+  } catch { return false; }
+}
+
 async function handleMutation(request, context) {
   if (!isTrustedOrigin(request)) {
     return json({ error: 'forbidden_origin' }, { status: 403 });
@@ -2331,6 +2401,37 @@ async function handleMutation(request, context) {
   // Keyed by the session only. A network address is never used, so people behind a VPN or a shared network are not mixed together.
   const rateKey = request.cookies?.get?.('wody_session')?.value || 'anon';
 
+  // -------- Global profile card: upload / remove the person's own background picture --------
+  if (path === 'profile-card/image' && ['POST', 'DELETE'].includes(method)) {
+    const session = await getSession();
+    if (!session?.user?.id) return json({ error: 'unauthenticated' }, { status: 401 });
+    const userId = String(session.user.id);
+    const idb = await getDb();
+    if (await rateLimited(idb, rateKey)) return json({ error: 'rate_limited' }, { status: 429 });
+    if (method === 'DELETE') {
+      await idb.collection('profile_card_images').deleteMany({ user: userId });
+      await idb.collection('profile_cards').updateOne({ _id: userId }, { $set: { 'cfg.bg_image': null, 'cfg.bg_mode': 'gradient', 'cfg.theme': 'custom', updated_at: new Date() }, $inc: { rev: 1 } }, { upsert: true });
+      return json({ ...(await readProfileCard(idb, userId)), schema_version: 1 }, { headers: { 'Cache-Control': 'no-store' } });
+    }
+    if (await hourlyLimited(idb, `pcimg:${userId}`, 12)) return json({ error: 'rate_limited' }, { status: 429 });
+    const max = PROFILE_CARD.imageMaxBytes;
+    if (Number(request.headers.get('content-length') || 0) > max + 16384) return json({ error: 'image_too_large' }, { status: 413 });
+    let form;
+    try { form = await request.formData(); } catch { return json({ error: 'bad_request' }, { status: 400 }); }
+    const file = form.get('file');
+    if (!file || typeof file === 'string') return json({ error: 'image_invalid' }, { status: 400 });
+    if (file.size > max) return json({ error: 'image_too_large' }, { status: 413 });
+    const buf = Buffer.from(await file.arrayBuffer());
+    const info = sniffProfileImage(buf); // the real bytes decide, never the file name or the type the browser says
+    if (!info || !PROFILE_IMAGE_MIME.has(info.mime)) return json({ error: 'image_invalid' }, { status: 415 });
+    if (info.w < 64 || info.h < 32 || info.w > 6000 || info.h > 6000 || info.w * info.h > 16_000_000) return json({ error: 'image_dimensions' }, { status: 400 });
+    const created = await idb.collection('profile_card_images').insertOne({ user: userId, mime: info.mime, w: info.w, h: info.h, size: buf.length, data: buf, created_at: new Date() });
+    await idb.collection('profile_card_images').deleteMany({ user: userId, _id: { $ne: created.insertedId } });
+    const id = String(created.insertedId);
+    await idb.collection('profile_cards').updateOne({ _id: userId }, { $set: { 'cfg.bg_image': id, 'cfg.bg_url': null, 'cfg.bg_mode': 'image', 'cfg.theme': 'custom', updated_at: new Date() }, $inc: { rev: 1 } }, { upsert: true });
+    return json({ ...(await readProfileCard(idb, userId)), schema_version: 1 }, { status: 201, headers: { 'Cache-Control': 'no-store' } });
+  }
+
   // request.json() resolves fine for literal JSON `null`/numbers/arrays too
   // (not just malformed JSON, which .catch already handles), without this
   // guard, body.anything below would throw on a body of literal `null`.
@@ -2340,6 +2441,39 @@ async function handleMutation(request, context) {
 
   if (await rateLimited(db, rateKey)) {
     return json({ error: 'rate_limited' }, { status: 429 });
+  }
+
+  // -------- Global profile card: only the signed-in person's own design --------
+  if (path === 'profile-card' && ['PATCH', 'PUT', 'DELETE'].includes(method)) {
+    const session = await getSession();
+    if (!session?.user?.id) return json({ error: 'unauthenticated' }, { status: 401 });
+    const userId = String(session.user.id);
+    if (await rateLimited(db, `profilecard:${userId}`)) return json({ error: 'rate_limited' }, { status: 429 });
+    if (method === 'DELETE') {
+      await db.collection('profile_card_images').deleteMany({ user: userId });
+      await db.collection('profile_cards').updateOne({ _id: userId }, { $set: { cfg: {}, updated_at: new Date() }, $inc: { rev: 1 } }, { upsert: true });
+      return json({ ...(await readProfileCard(db, userId)), schema_version: 1 }, { headers: { 'Cache-Control': 'no-store' } });
+    }
+    const current = (await readProfileCard(db, userId)).config;
+    const { public: wantPublic, ...designPatch } = body;
+    if ('public' in body && typeof wantPublic !== 'boolean') return json({ error: 'invalid_value', field: 'public' }, { status: 400 });
+    let keys;
+    try { ({ keys } = applyProfilePatch(current, designPatch)); } catch (e) {
+      return json({ error: 'invalid_value', field: String(e?.message || 'body') }, { status: 400 });
+    }
+    if (keys.bg_image) { // somebody else's picture can never be used
+      const own = await db.collection('profile_card_images').findOne({ _id: new ProfileObjectId(keys.bg_image), user: userId }, { projection: { _id: 1 } }).catch(() => null);
+      if (!own) return json({ error: 'invalid_value', field: 'bg_image' }, { status: 400 });
+    }
+    if (typeof wantPublic === 'boolean') {
+      await db.collection('profile_cards').updateOne({ _id: userId }, { $set: { public: wantPublic, updated_at: new Date() }, $inc: { rev: 1 } }, { upsert: true });
+    }
+    if (Object.keys(keys).length) {
+      const set = { updated_at: new Date() };
+      for (const [k, v] of Object.entries(keys)) set[`cfg.${k}`] = v;
+      await db.collection('profile_cards').updateOne({ _id: userId }, { $set: set, $inc: { rev: 1 } }, { upsert: true });
+    }
+    return json({ ...(await readProfileCard(db, userId)), schema_version: 1 }, { headers: { 'Cache-Control': 'no-store' } });
   }
 
   // -------- Owner: delegated panel access (verify, grant, revoke) --------
@@ -3333,7 +3467,7 @@ async function handleMutation(request, context) {
       'level_channel_multipliers', 'level_rewards', 'level_role_bonuses',
       'level_message_format', 'level_card_background_url', 'level_card_overlay_color',
       'level_card_overlay_opacity', 'level_card_text_color', 'level_card_color',
-      'level_card_avatar_ring', 'level_card_font', 'level_card_size', 'level_card_gradient', 'level_image_mode', 'level_image_url',
+      'level_card_avatar_ring', 'level_card_font', 'level_card_size', 'level_card_gradient', 'level_image_mode', 'level_image_url', 'level_use_member_profile',
       'ticket_transcript_channel_id', 'temp_voice_hub_channel_id', 'temp_voice_category_id',
       'temp_voice_name_template', 'temp_voice_default_user_limit', 'bot_nickname'];
     const data = {};
@@ -3417,7 +3551,8 @@ async function handleMutation(request, context) {
     if ('level_message_format' in data && !['legacy', 'plain', 'embed', 'card'].includes(data.level_message_format)) {
       return json({ error: 'invalid_level_message_format', field: 'level_message_format' }, { status: 400 });
     }
-    if ('level_card_font' in data && !['default', 'bold'].includes(data.level_card_font)) {
+    if ('level_use_member_profile' in data) data.level_use_member_profile = data.level_use_member_profile === true;
+    if ('level_card_font' in data && !CARD_FONT_IDS.includes(data.level_card_font) && data.level_card_font !== 'bold') {
       return json({ error: 'invalid_level_card_font', field: 'level_card_font' }, { status: 400 });
     }
     for (const field of ['level_card_overlay_color', 'level_card_text_color', 'level_card_color']) {
@@ -3762,7 +3897,7 @@ async function handleMutation(request, context) {
 
   if (sub === 'welcome' && (method === 'PUT' || method === 'PATCH')) {
     const session = await getSession();
-    const allowed = ['enabled', 'channel_id', 'message', 'title', 'footer', 'embed', 'color', 'image_mode', 'image_url', 'timestamp', 'dm_message', 'auto_role_id', 'dm_image_mode', 'dm_image_url', 'message_format', 'card_enabled', 'card_background_url', 'card_overlay_color', 'card_overlay_opacity', 'card_text_color', 'card_avatar_mode', 'card_avatar_ring', 'card_size', 'card_gradient'];
+    const allowed = ['enabled', 'channel_id', 'message', 'title', 'footer', 'embed', 'color', 'image_mode', 'image_url', 'timestamp', 'dm_message', 'auto_role_id', 'dm_image_mode', 'dm_image_url', 'message_format', 'card_enabled', 'card_background_url', 'card_overlay_color', 'card_overlay_opacity', 'card_text_color', 'card_avatar_mode', 'card_avatar_ring', 'card_size', 'card_gradient', 'card_font'];
     const data = {};
     for (const k of allowed) if (k in body) data[k] = body[k];
     // Every coercion below is guarded by `in data`. Without the guard, a
@@ -3833,6 +3968,9 @@ async function handleMutation(request, context) {
       try { data.card_background_url = sanitizeImageUrl(data.card_background_url); }
       catch { return json({ error: 'invalid_image_url', field: 'card_background_url' }, { status: 400 }); }
     }
+    if ('card_font' in data && !CARD_FONT_IDS.includes(data.card_font)) {
+      return json({ error: 'invalid_card_font', field: 'card_font' }, { status: 400 });
+    }
     for (const field of ['card_overlay_color', 'card_text_color']) {
       if (field in data) {
         const value = String(data[field] ?? '').trim();
@@ -3864,7 +4002,7 @@ async function handleMutation(request, context) {
 
   if (sub === 'goodbye' && (method === 'PUT' || method === 'PATCH')) {
     const session = await getSession();
-    const allowed = ['enabled', 'channel_id', 'message', 'title', 'footer', 'embed', 'color', 'image_mode', 'image_url', 'timestamp', 'message_format', 'card_enabled', 'card_background_url', 'card_overlay_color', 'card_overlay_opacity', 'card_text_color', 'card_avatar_mode', 'card_avatar_ring', 'card_size', 'card_gradient'];
+    const allowed = ['enabled', 'channel_id', 'message', 'title', 'footer', 'embed', 'color', 'image_mode', 'image_url', 'timestamp', 'message_format', 'card_enabled', 'card_background_url', 'card_overlay_color', 'card_overlay_opacity', 'card_text_color', 'card_avatar_mode', 'card_avatar_ring', 'card_size', 'card_gradient', 'card_font'];
     const data = {};
     for (const k of allowed) if (k in body) data[k] = body[k];
     // Guarded for the same reason as Welcome above: an unguarded coercion
@@ -3909,6 +4047,9 @@ async function handleMutation(request, context) {
     if ('card_background_url' in data) {
       try { data.card_background_url = sanitizeImageUrl(data.card_background_url); }
       catch { return json({ error: 'invalid_image_url', field: 'card_background_url' }, { status: 400 }); }
+    }
+    if ('card_font' in data && !CARD_FONT_IDS.includes(data.card_font)) {
+      return json({ error: 'invalid_card_font', field: 'card_font' }, { status: 400 });
     }
     for (const field of ['card_overlay_color', 'card_text_color']) {
       if (field in data) {

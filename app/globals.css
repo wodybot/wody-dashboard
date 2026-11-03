@@ -321,7 +321,7 @@
 .module-scanline { position:absolute; inset:0; background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 4px); opacity:.22; pointer-events:none; }
 .module-discord { border:1px solid rgba(255,255,255,.065); border-radius:15px; background:linear-gradient(160deg,rgba(24,24,27,.96),rgba(15,14,16,.94)); box-shadow:inset 0 1px 0 rgba(255,255,255,.035); overflow:hidden; }
 .module-avatar { width:30px;height:30px;flex:none;border-radius:50%;background:linear-gradient(145deg,#efad78,#773111);display:grid;place-items:center;color:white;font-size:10px;font-weight:900;position:relative;box-shadow:0 0 0 2px rgba(20,18,18,.8); }
-.module-avatar i { position:absolute;width:7px;height:7px;border-radius:50%;right:-1px;bottom:0;background:#45d483;border:1.5px solid #1a1718; }
+.module-avatar i { display:none; }
 .module-live-pill { display:inline-flex;align-items:center;gap:4px;border:1px solid rgba(69,212,131,.16);border-radius:999px;padding:2px 5px;color:#5ee59a;font-size:6px;letter-spacing:.1em;font-weight:800;background:rgba(69,212,131,.05); }
 .module-live-pill span { width:4px;height:4px;border-radius:50%;background:#45d483;box-shadow:0 0 8px #45d483;animation:modulePing 1.8s infinite; }
 .module-embed { border-left:2px solid #d47b3d;border-radius:5px;background:linear-gradient(90deg,rgba(212,123,61,.07),rgba(255,255,255,.018));padding:8px 9px;box-shadow:inset 0 1px 0 rgba(255,255,255,.025); }
@@ -662,3 +662,43 @@
 .mk-scroll { scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-x: contain; overscroll-behavior-y: auto; }
 .mk-scroll::-webkit-scrollbar { display: none; }
 @media (prefers-reduced-motion: reduce) { .mk-scroll { scroll-behavior: auto; } .mk-card, .mk-card * { transition: none !important; } }
+
+/* Self-hosted card fonts (SIL Open Font License), only downloaded when a preview uses them. */
+@font-face { font-family: 'WodyCard Bebas Neue'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/BebasNeue-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Pacifico'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/Pacifico-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Lobster'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/Lobster-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Bangers'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/Bangers-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Abril Fatface'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/AbrilFatface-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Cinzel'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/Cinzel-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Cinzel'; font-weight: 700; font-style: normal; font-display: swap; src: url('/fonts/card/Cinzel-Bold.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Exo 2'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/Exo2-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Exo 2'; font-weight: 700; font-style: normal; font-display: swap; src: url('/fonts/card/Exo2-Bold.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Oswald'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/Oswald-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Oswald'; font-weight: 700; font-style: normal; font-display: swap; src: url('/fonts/card/Oswald-Bold.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Playfair Display'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/PlayfairDisplay-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Playfair Display'; font-weight: 700; font-style: normal; font-display: swap; src: url('/fonts/card/PlayfairDisplay-Bold.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Caveat'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/Caveat-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Caveat'; font-weight: 700; font-style: normal; font-display: swap; src: url('/fonts/card/Caveat-Bold.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Anton'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/Anton-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Archivo Black'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/ArchivoBlack-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Black Ops One'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/BlackOpsOne-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Bungee'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/Bungee-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Chakra Petch'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/ChakraPetch-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Chakra Petch'; font-weight: 700; font-style: normal; font-display: swap; src: url('/fonts/card/ChakraPetch-Bold.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Dancing Script'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/DancingScript-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Dancing Script'; font-weight: 700; font-style: normal; font-display: swap; src: url('/fonts/card/DancingScript-Bold.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Great Vibes'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/GreatVibes-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Kaushan Script'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/KaushanScript-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Monoton'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/Monoton-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'WodyCard Staatliches'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/card/Staatliches-Regular.woff2') format('woff2'); }
+
+/* Profile card moving effects (components/profile/ProfileCardPreview.jsx). One loop is about two seconds, like the bot's GIF. */
+@keyframes pcShimmer { from { transform: translateX(-160%) skewX(-18deg); } to { transform: translateX(700%) skewX(-18deg); } }
+@keyframes pcTwinkle { 0%, 100% { opacity: .08; transform: scale(.5); } 50% { opacity: 1; transform: scale(1); } }
+@keyframes pcRise { from { top: 112%; } to { top: -12%; } }
+@keyframes pcFall { from { top: -6%; } to { top: 106%; } }
+@keyframes pcDrift { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(14cqw, 5cqw); } }
+@keyframes pcPulse { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+@keyframes pcScan { from { top: -2%; } to { top: 102%; } }
+.pc-anim[data-paused='true'] * { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) { .pc-anim, .pc-anim * { animation: none !important; } }

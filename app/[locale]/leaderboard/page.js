@@ -10,6 +10,7 @@ import { localizedAlternates } from '@/lib/community/seo';
 import { getGlobalBoard, boardAvatar } from '@/lib/global-board';
 import { discordCdnUrl } from '@/lib/utils';
 import { INVITE_URL } from '@/lib/content';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 
@@ -23,7 +24,8 @@ export async function generateMetadata() {
     title: { absolute: `${t('metaTitle')} · Wody` },
     description: t('metaDescription'),
     alternates: localizedAlternates(locale, '/leaderboard'),
-    openGraph: { title: t('metaTitle'), description: t('metaDescription'), url: `${SITE_URL}/leaderboard`, type: 'website' },
+    twitter: TWITTER_CARD,
+      openGraph: { images: OG_IMAGES, title: t('metaTitle'), description: t('metaDescription'), url: `${SITE_URL}/leaderboard`, type: 'website' },
   };
 }
 

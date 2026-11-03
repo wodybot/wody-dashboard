@@ -569,6 +569,7 @@ function useFooterColumns(t, tn) {
         { href: '/modules/moderation', label: f('moderation'), internal: true },
         { href: '/modules/reaction_roles', label: f('reactionRoles'), internal: true },
         { href: '/modules/levels', label: f('levels'), internal: true },
+        { href: '/modules', label: f('all'), internal: true },
         { href: '/leaderboard', label: label('leaderboard'), internal: true },
         { href: '/#passport', label: label('passport'), internal: true, tag: 'new' },
       ],

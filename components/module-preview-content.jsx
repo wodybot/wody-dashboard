@@ -67,7 +67,7 @@ export const PREVIEWS = {
   feeds: {
     channel: 'feeds', color: '#c46a2d',
     title: '📡 New release · wody/wody-bot',
-    text: '### v2.4.0\nLookups, Feeds and invite statistics.\nPosted by Feeds, 3 minutes ago.',
+    text: '### v2.4.0\nRadar, Pulse and invite statistics.\nPosted by Pulse, 3 minutes ago.',
     buttons: [{ label: 'Open release', emoji: '🔗' }],
   },
   economy: {

@@ -23,6 +23,7 @@ import { Link } from '@/i18n/navigation';
 import { getDb, toLong } from '@/lib/mongo';
 import { getBotGuild, getGuildMembersProfileMap, guildIconUrl } from '@/lib/discord';
 import { discordCdnUrl } from '@/lib/utils';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 const PAGE_SIZE = 25;
@@ -61,7 +62,8 @@ export async function generateMetadata({ params }) {
     // dump, not evergreen content worth surfacing in search results, and
     // its content changes constantly.
     robots: { index: false, follow: false },
-    openGraph: {
+    twitter: TWITTER_CARD,
+      openGraph: { images: OG_IMAGES,
       title,
       url: `${SITE_URL}/leaderboard/${guildId}`,
       type: 'website',

@@ -103,6 +103,18 @@ export function ModuleFlipCard({ module, user: serverUser }) {
             <div className="font-semibold text-[15px] tracking-[-0.01em]">{module.title}</div>
           </div>
           <p className="relative z-10 text-sm text-muted-foreground leading-relaxed">{module.desc}</p>
+          {seoPage && (
+            <Link
+              href={`/modules/${module.key}`}
+              onClick={(e) => e.stopPropagation()}
+              onPointerDown={(e) => e.stopPropagation()}
+              onPointerUp={(e) => e.stopPropagation()}
+              onPointerCancel={(e) => e.stopPropagation()}
+              className="relative z-10 mt-3 inline-flex items-center gap-1 self-center sm:self-start text-xs font-semibold text-[#e6cd8c] hover:underline underline-offset-4"
+            >
+              {tCard('learnMore')} <span className="sr-only">: {module.title}</span><ArrowRight className="w-3 h-3" />
+            </Link>
+          )}
           <div className="relative z-10 mt-auto pt-6 flex items-center justify-between gap-3">
             <div className="flex items-center justify-center sm:justify-start gap-2 text-[9px] font-bold tracking-[0.2em] text-[#e8a06a]/85 uppercase"><span className="module-hold-dot" />{tCard('pressHold')}</div>
             <div className={`module-hold-ring ${holding ? 'is-holding' : ''}`}><span /></div>
@@ -130,7 +142,7 @@ export function ModuleFlipCard({ module, user: serverUser }) {
               onPointerDown={(e) => e.stopPropagation()}
               onPointerUp={(e) => e.stopPropagation()}
               onPointerCancel={(e) => e.stopPropagation()}
-              className="module-learn-button relative mt-2 self-end inline-flex w-auto shrink-0 items-center justify-center gap-1 rounded-full px-2.5 py-1 text-[7px] font-bold tracking-[0.14em] uppercase"
+              className="module-learn-button relative mt-2 self-end inline-flex w-auto shrink-0 items-center justify-center gap-1 rounded-full px-3 py-1.5 text-[9px] font-bold tracking-[0.12em] uppercase"
             >
               {tCard('learnMore')} <ArrowRight className="w-3 h-3" />
             </Link>

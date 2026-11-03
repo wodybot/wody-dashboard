@@ -12,6 +12,7 @@ import { getDb } from '@/lib/mongo';
 import { STAFF_COLLECTION, SOCIAL_PLATFORMS } from '@/lib/staff';
 import { getDiscordUserById, avatarUrl } from '@/lib/discord';
 import { discordCdnUrl } from '@/lib/utils';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 
@@ -83,7 +84,7 @@ export async function generateMetadata() {
       description: t('metaDescription'),
       alternates: localizedAlternates(await getLocale(), '/team'),
       robots: { index: true, follow: true },
-      openGraph: {
+      openGraph: { images: OG_IMAGES,
         title: t('ogTitle'),
         description: t('metaDescription'),
         url: `${SITE_URL}/team`,

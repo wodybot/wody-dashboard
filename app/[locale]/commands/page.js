@@ -5,6 +5,7 @@ import { INVITE_URL } from '@/lib/content';
 import { Button } from '@/components/ui/button';
 import { Footer, TopNav, NavTag } from '@/components/nav';
 import { ROBOTS_INDEX, localePath, localizedAlternates, ogLocale } from '@/lib/community/seo';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 
@@ -34,7 +35,8 @@ export async function generateMetadata({ params }) {
       // Each language version is its own indexable page (it used to point every language at the English one).
       alternates: localizedAlternates(locale, '/commands'),
       robots: ROBOTS_INDEX,
-      openGraph: {
+      twitter: TWITTER_CARD,
+      openGraph: { images: OG_IMAGES,
         title: t('ogTitle'),
         description: t('ogDescription'),
         url: `${SITE_URL}${path}`,

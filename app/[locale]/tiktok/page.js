@@ -5,6 +5,7 @@ import { getTranslations, getLocale } from 'next-intl/server';
 import { Footer, TopNav } from '@/components/nav';
 import { Suspense } from 'react';
 import TikTokLink from '@/components/tiktok-link';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 
@@ -19,7 +20,8 @@ export async function generateMetadata() {
       description: t('metaDescription'),
       alternates: localizedAlternates(await getLocale(), '/tiktok'),
       robots: { index: true, follow: true },
-      openGraph: { title: t('metaTitle'), description: t('metaDescription'), url: `${SITE_URL}/tiktok`, type: 'website' },
+      twitter: TWITTER_CARD,
+      openGraph: { images: OG_IMAGES, title: t('metaTitle'), description: t('metaDescription'), url: `${SITE_URL}/tiktok`, type: 'website' },
     };
   } catch (error) {
     console.error('tiktok generateMetadata failed, serving minimal fallback metadata', error);

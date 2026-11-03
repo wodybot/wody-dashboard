@@ -10,6 +10,7 @@ import { ICONS, HomepageModulePreview } from '@/components/module-preview-conten
 import { MODULE_SEO_SLUGS, getModuleSeoContent, getCommandsAnchor } from '@/lib/module-seo';
 import { BrandText } from '@/components/brand-text';
 import { buildHowTo } from '@/lib/module-howto';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 
@@ -47,8 +48,9 @@ export async function generateMetadata({ params }) {
     if (!content) return {};
 
     const path = `/modules/${slug}`;
-    const localizedPath = locale === routing.defaultLocale ? path : `/${locale}${path}`;
-    const languages = Object.fromEntries(routing.locales.map((itemLocale) => [
+    const hasOwnCopy = ['en', 'ro'].includes(locale);
+    const localizedPath = locale === routing.defaultLocale || !hasOwnCopy ? path : `/${locale}${path}`;
+    const languages = Object.fromEntries(['en', 'ro'].map((itemLocale) => [
       itemLocale,
       `${SITE_URL}${itemLocale === routing.defaultLocale ? '' : `/${itemLocale}`}${path}`,
     ]));
@@ -58,8 +60,9 @@ export async function generateMetadata({ params }) {
       title: { absolute: content.metaTitle },
       description: content.metaDescription,
       alternates: { canonical: `${SITE_URL}${localizedPath}`, languages },
-      robots: { index: true, follow: true },
-      openGraph: {
+      robots: { index: hasOwnCopy, follow: true },
+      twitter: TWITTER_CARD,
+      openGraph: { images: OG_IMAGES,
         title: content.ogTitle,
         description: content.ogDescription,
         url: `${SITE_URL}${localizedPath}`,

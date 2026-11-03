@@ -10,7 +10,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import {
-  Ban, Briefcase, Check, CircleCheck, Clock, History, Hourglass, Info, Lock, MessageSquare, Pause, Pencil, Plus,
+  Ban, Briefcase, Check, IdCard, Link2, CircleCheck, Clock, History, Hourglass, Info, Lock, MessageSquare, Pause, Pencil, Plus,
   Send, Server as ServerIcon, Settings, ShieldAlert, Trash2, UserRound, Eye, EyeOff, LayoutDashboard, Globe, TreePalm, Heart, X,
 } from 'lucide-react';
 import { Footer, TopNav } from '@/components/nav';
@@ -21,6 +21,9 @@ import { errText } from '@/components/collab/RequestActions';
 import HumanCheck from '@/components/human-check';
 import { Editor, Applications, MyApplications, ServersTab, PrefsTab, StatusChip, input, lab, btn, btnMain } from '@/components/collab/ProfileParts';
 import SocialLinks, { SOCIAL_ICONS } from '@/components/profile/SocialLinks';
+import ProfileCardTab from '@/components/profile/ProfileCardTab';
+import ProfileCardPreview from '@/components/profile/ProfileCardPreview';
+import { normalizeConfig } from '@/lib/profile-card';
 import { SOCIALS, NOTIF_DEFAULTS, LIMITS } from '@/lib/collab/constants';
 
 const TABS = [
@@ -28,6 +31,7 @@ const TABS = [
   { id: 'applications', icon: Send },
   { id: 'messages', icon: MessageSquare },
   { id: 'servers', icon: ServerIcon },
+  { id: 'card', icon: IdCard },
   { id: 'settings', icon: Settings },
 ];
 
@@ -650,6 +654,42 @@ function SettingsTab({ pf, cats, reloadProfile }) {
 }
 
 // ----------------------------------------------------------------------------------------------- page
+// ----------------------------------------------------------------------------------------------- card showcase
+// The person's global card, shown big under the hero with the link to the public profile that displays it.
+function CardShowcase({ pf, onEdit }) {
+  const t = useTranslations('profileCard');
+  const locale = useLocale();
+  const [card, setCard] = useState(null);
+  const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    let live = true;
+    fetch('/api/profile-card', { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)).then((d) => { if (live && d?.config) setCard(normalizeConfig(d.config)); }).catch(() => {});
+    return () => { live = false; };
+  }, []);
+  const id = pf.identity;
+  const path = `${locale === 'en' ? '' : `/${locale}`}/profile/${encodeURIComponent(id.username)}`;
+  const src = id.avatar ? `https://cdn.discordapp.com/avatars/${id.id}/${id.avatar}.png?size=256` : 'https://cdn.discordapp.com/embed/avatars/0.png';
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(`${window.location.origin}${path}`); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { /* the link is still shown by the button */ }
+  };
+  if (!card) return null;
+  return (
+    <section aria-label={t('showcaseTitle')} className="mt-5 rounded-3xl border border-[#e6cd8c]/25 bg-card/40 p-4 sm:p-5">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <h2 className="text-base font-black">{t('showcaseTitle')}</h2>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={onEdit} className={btn}><Pencil className="h-3.5 w-3.5" aria-hidden="true" />{t('editCard')}</button>
+          <button type="button" onClick={copy} className={btn}><Link2 className="h-3.5 w-3.5" aria-hidden="true" />{copied ? t('linkCopied') : t('copyLink')}</button>
+          <Link href={`/profile/${encodeURIComponent(id.username)}`} className={btn}><Globe className="h-3.5 w-3.5" aria-hidden="true" />{t('viewPublic')}</Link>
+        </div>
+      </div>
+      <div className="mx-auto max-w-3xl" style={{ borderRadius: 26, boxShadow: `0 0 70px -22px ${card.accent}` }}>
+        <ProfileCardPreview cfg={card} name={id.name || id.username} avatarSrc={discordCdnUrl(src)} tagline={pf.member_since ? t('tagline', { date: fmtDate(pf.member_since, locale) }) : ''} />
+      </div>
+    </section>
+  );
+}
+
 export default function ProfileClient() {
   const t = useTranslations('profile');
   const tc = useTranslations('collab');
@@ -696,6 +736,7 @@ export default function ProfileClient() {
         ) : (
           <>
             <Hero pf={pf} onGoSettings={() => go('settings')} />
+            {tab !== 'card' && <CardShowcase pf={pf} onEdit={() => go('card')} />}
             <div role="tablist" aria-label={t('pageTitle')} className="mk-scroll sticky top-0 z-10 -mx-4 mt-6 mb-6 flex gap-2 overflow-x-auto bg-background/85 px-4 py-2 backdrop-blur sm:mx-0 sm:px-0" style={{ scrollbarWidth: 'none' }}>
               {TABS.map(({ id, icon: Icon }) => (
                 <button key={id} role="tab" id={`tab-${id}`} aria-selected={tab === id} aria-controls="profile-panel" onClick={() => go(id)}
@@ -710,6 +751,7 @@ export default function ProfileClient() {
               {tab === 'applications' && <MyApplications data={ov} reload={reload} />}
               {tab === 'messages' && <MessagesTab reload={reload} />}
               {tab === 'servers' && <ServersTab guilds={gl.guilds} unavailable={gl.unavailable} reload={reload} />}
+              {tab === 'card' && <ProfileCardTab identity={pf.identity} />}
               {tab === 'settings' && <SettingsTab pf={pf} cats={cats} reloadProfile={reloadProfile} />}
             </div>
           </>

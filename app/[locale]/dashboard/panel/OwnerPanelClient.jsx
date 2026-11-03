@@ -32,6 +32,7 @@ import {
   Briefcase,
 } from 'lucide-react';
 import PartnersAdmin from '@/components/partners/PartnersAdmin';
+import OwnerConfigCard from '@/components/owner-config-card';
 import { DiscordMessage, DiscordText } from '@/components/dashboard-kit';
 
 // Dynamic, not a static top-level import: this page is the only place in
@@ -720,7 +721,7 @@ function DiscordComponentPreview({ config, imageSrc }) {
         setChecked(true);
         return;
       }
-      safeJson('/api/owner/config-status').then((c) => setConfigStatus(c?.items || null));
+      safeJson('/api/owner/config-status').then((c) => setConfigStatus(c?.groups ? c : null));
       const u = await safeJson('/api/auth/me');
       setUser(u?.user || null);
       setChecked(true);
@@ -1604,20 +1605,7 @@ function DiscordComponentPreview({ config, imageSrc }) {
                   </Card>
                 </div>
 
-                <Card className="p-4 sm:p-5 bg-card/60 border-border/50">
-                  <div className="flex items-center gap-2 font-semibold mb-1"><ShieldCheck className="w-4 h-4 text-[#e08a4e]" /> Server configuration</div>
-                  <p className="text-xs text-muted-foreground mb-3">Whether each setting is present on this deployment. Values are never shown.</p>
-                  {!configStatus ? <Loader2 className="w-4 h-4 animate-spin" /> : (
-                    <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-                      {configStatus.map((c) => (
-                        <div key={c.name} className="flex min-w-0 items-center justify-between gap-2 rounded-lg border border-border/50 bg-secondary/20 px-3 py-2">
-                          <span className="min-w-0 truncate font-mono text-xs">{c.name}</span>
-                          <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${c.set ? 'bg-emerald-500/15 text-emerald-400' : c.required ? 'bg-red-500/15 text-red-400' : 'bg-secondary text-muted-foreground'}`}>{c.set ? 'Set' : c.required ? 'Missing' : 'Not set'}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </Card>
+                <OwnerConfigCard status={configStatus} onReload={() => { setConfigStatus(null); safeJson('/api/owner/config-status').then((c) => setConfigStatus(c?.groups ? c : null)); }} />
 
                 {/* Quick links into the other sections, same data already
                     loaded above, just a shortcut so Overview doesn't feel

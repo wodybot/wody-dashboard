@@ -8,6 +8,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { TopNav, Footer } from '@/components/nav';
 import { CONTENT } from '@/lib/content';
 import CookiePreferences from '@/components/cookie-preferences';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 
@@ -31,7 +32,8 @@ export async function generateMetadata({ params }) {
       description: 'Which cookies Wody uses on the dashboard and website, and why.',
       alternates: localizedAlternates(locale, '/cookies'),
       robots: { index: true, follow: true },
-      openGraph: {
+      twitter: TWITTER_CARD,
+      openGraph: { images: OG_IMAGES,
         title: `Wody - ${t('pageTitle')}`,
         description: 'Which cookies Wody uses on the dashboard and website, and why.',
         url: `${SITE_URL}/cookies`,

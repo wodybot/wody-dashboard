@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Footer, TopNav } from '@/components/nav';
 import { getSession } from '@/lib/session';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 
@@ -28,7 +29,8 @@ export async function generateMetadata() {
       description: t('metaDescription'),
       alternates: localizedAlternates(await getLocale(), '/premium'),
       robots: { index: true, follow: true },
-      openGraph: {
+      twitter: TWITTER_CARD,
+      openGraph: { images: OG_IMAGES,
         title: t('ogTitle'),
         description: t('ogDescription'),
         url: `${SITE_URL}/premium`,

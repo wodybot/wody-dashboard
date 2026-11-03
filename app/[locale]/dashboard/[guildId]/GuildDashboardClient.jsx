@@ -52,6 +52,7 @@ import { LevelRewardsEditor, RoleXpBonusesEditor, levelRulesIssue } from '@/comp
 import BlackjackPanel from '@/components/modules/BlackjackPanel';
 import CommunityOwnerPanel from '@/components/community/OwnerPanel';
 import { FREE_LIMITS, isUnlimited } from '@/lib/limits';
+import { hasModulePage } from '@/lib/module-slugs';
 import { EMOJI_GROUPS, SKIN_TONES, NICK_EMOJI_MAX, NICK_ROLE_MAX, NICK_POSITIONS, extractEmojis, previewNickname, searchEmojis, toneSwatch, withTone } from '@/lib/nick-emojis';
 import {
   InfoHint, safeJson, ChannelSelect, RoleSelect,
@@ -61,7 +62,9 @@ import {
   UnresolvedLinkNote, PreviewImage, FieldRow,
   SaveBar, Skeleton, Empty, NumField,
   ProgressBar,
+  CardFontPicker,
 } from '@/components/dashboard-kit';
+import { CARD_FONTS, CARD_FONT_IDS, cardFontStyle } from '@/lib/card-fonts';
 
 
 // Last /stats answer (default 14-day range) per server. The dashboard already
@@ -277,7 +280,7 @@ function AuroraGradientPicker({ value, onChange, hasImage }) {
 }
 
 // Live preview of the Welcome/Goodbye Aurora card, laid out like level_aurora.render_member_aurora.
-function MemberAuroraPreview({ gradient, backgroundUrl, previewBackgroundUrl, overlayColor, overlayOpacity, textColor, ringColor, ring, avatarUrl, badge, title, message, footer }) {
+function MemberAuroraPreview({ gradient, backgroundUrl, previewBackgroundUrl, overlayColor, overlayOpacity, textColor, ringColor, ring, avatarUrl, badge, title, message, footer, fontId }) {
   const W = 934;
   const u = (v) => `${(v / W) * 100}cqw`;
   const useImage = Boolean(backgroundUrl);
@@ -288,7 +291,7 @@ function MemberAuroraPreview({ gradient, backgroundUrl, previewBackgroundUrl, ov
   const plainMessage = String(message || '').replace(/[*_`~|]/g, '').replace(/\s+/g, ' ').trim();
   const plainFooter = String(footer || '').replace(/[*_`~|]/g, '').replace(/\s+/g, ' ').trim();
   return (
-    <div className="relative w-full overflow-hidden select-none" style={{ aspectRatio: '934/282', containerType: 'inline-size', background: useImage ? '#000' : auroraBackground(gradient) }}>
+    <div className="relative w-full overflow-hidden select-none" style={{ aspectRatio: '934/282', containerType: 'inline-size', background: useImage ? '#000' : auroraBackground(gradient), ...cardFontStyle(fontId) }}>
       {useImage && <PreviewImage url={previewBackgroundUrl} alt="" className="absolute inset-0 h-full w-full object-cover" draggable="false" />}
       {useImage && <div className="absolute inset-0" style={{ backgroundColor: overlayColor, opacity: overlayOpacity / 100 }} />}
       {!useImage && <div className="absolute inset-0 opacity-[0.07] [background-image:radial-gradient(#fff_1px,transparent_1px)]" style={{ backgroundSize: u(13) + ' ' + u(13) }} />}
@@ -340,8 +343,8 @@ const MODULES = [
   { key: 'suggestions', label: 'Suggestions', icon: Lightbulb },
   { key: 'birthdays', label: 'Birthdays', icon: Cake },
   { key: 'invite_tracking', label: 'Invite Tracking', icon: Link2, free: true, optIn: true },
-  { key: 'lookups', label: 'Lookups', icon: Search, free: true },
-  { key: 'feeds', label: 'Feeds', icon: Rss, free: true },
+  { key: 'lookups', label: 'Radar', icon: Search, free: true },
+  { key: 'feeds', label: 'Pulse', icon: Rss, free: true },
   { key: 'community', label: 'Community Discovery', icon: Compass },
   { key: 'collab', label: 'Collab', icon: Briefcase },
   { key: 'economy', label: 'Economy', icon: Coins, premium: true },
@@ -1474,6 +1477,9 @@ function ModuleOverviewGrid({ moduleStates, premiumActive, toggling, toggleModul
 
 function ModuleOverviewCard({ m, on, toggling, toggleModule, premiumActive, onOpen, tm, tc }) {
   const Icon = m.icon;
+  const locale = useLocale();
+  const tLearn = useTranslations('moduleCard');
+  const learnHref = `${locale === 'en' ? '' : `/${locale}`}/modules/${m.key}`;
   const toggleable = !NON_TOGGLEABLE_KEYS.has(m.key);
   const label = tm(`${m.key}.title`);
   const desc = tm(`${m.key}.description`);
@@ -1487,11 +1493,17 @@ function ModuleOverviewCard({ m, on, toggling, toggleModule, premiumActive, onOp
           <Switch checked={on} disabled={toggling === m.key} onCheckedChange={(v) => toggleModule(m.key, v)} className={premiumLocked ? 'opacity-50' : ''} aria-label={on ? tc('disableModule', { module: label }) : tc('enableModule', { module: label })} />
         </div>
       )}
+      {hasModulePage(m.key) && (
+        <a href={learnHref} target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}
+          className="absolute bottom-3.5 left-1/2 z-10 -translate-x-1/2 text-[11px] font-medium text-muted-foreground underline-offset-4 hover:text-[#e6cd8c] hover:underline">
+          {tLearn('learnMore')}<span className="sr-only">: {label}</span>
+        </a>
+      )}
       <button type="button" onClick={() => onOpen(m.key)} className="w-full h-full text-left p-5 pr-16 flex flex-col rounded-xl cursor-pointer">
         <div className="flex flex-1 items-start gap-3">
           <div className="module-icon-wrap w-10 h-10 rounded-xl flex items-center justify-center shrink-0"><Icon className="w-[18px] h-[18px]" /></div>
           <div className="min-w-0 flex-1 pt-0.5">
-            <div className="flex items-center gap-1.5 flex-wrap"><span className="font-semibold text-[15px] leading-tight">{label}</span>{((m.limited && premiumActive) || (m.premium && !m.status)) && <PremiumModuleBadge />}{m.free && <FreeModuleBadge />}</div>
+            <div className="flex items-center gap-1.5 flex-wrap"><span className="font-semibold text-[15px] leading-tight">{label}</span>{((m.limited && premiumActive) || (m.premium && !m.status)) && <PremiumModuleBadge />}</div>
             <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{desc}</p>
           </div>
         </div>
@@ -2163,6 +2175,7 @@ function WelcomePanel({ guildId, meta }) {
       card_avatar_ring: data.card_avatar_ring !== false,
       card_size: memberCardSize(data.card_size),
       card_gradient: AURORA_GRADIENTS[data.card_gradient] ? data.card_gradient : 'ember',
+      card_font: CARD_FONT_IDS.includes(data.card_font) ? data.card_font : 'default',
     });
     if (ok) { setSavedFormat(storedMessageFormat); setSavedCardSize(memberCardSize(data.card_size)); }
   };
@@ -2250,6 +2263,7 @@ function WelcomePanel({ guildId, meta }) {
                 </div>
                 <div><div className="flex justify-between mb-2"><Label>{t('overlayOpacityLabel')}</Label><span className="text-xs text-muted-foreground">{overlayOpacity}%</span></div><input className="w-full accent-primary" type="range" min="0" max="100" value={overlayOpacity} onChange={(e) => setData({ ...data, card_overlay_opacity: Number(e.target.value) })} /></div>
                 <MemberCardSizePicker value={data.card_size} onChange={(v) => setData({ ...data, card_size: v })} t={t} savedValue={savedCardSize} tc={tc} />
+                <CardFontPicker value={data.card_font} onChange={(v) => setData({ ...data, card_font: v })} />
                 {data.card_size === 'aurora' && <AuroraGradientPicker value={data.card_gradient} onChange={(v) => setData({ ...data, card_gradient: v })} hasImage={Boolean(backgroundUrl)} />}
               </>}
             </Card>
@@ -2304,10 +2318,11 @@ function WelcomePanel({ guildId, meta }) {
                     <EmbedPreview accentColor={data.color || '#57F287'} authorName={meta.guild.name || 'Your Server'} timestamp={data.timestamp !== false}>
                       <div className="overflow-hidden rounded-[8px]">
                         {data.card_size === 'aurora' ? (
-                          <MemberAuroraPreview gradient={data.card_gradient} backgroundUrl={backgroundUrl} previewBackgroundUrl={previewBackgroundUrl} overlayColor={overlayColor} overlayOpacity={overlayOpacity} textColor={textColor} ringColor={data.color || '#57F287'} ring={data.card_avatar_ring !== false} avatarUrl={avatarPreview} badge="Welcome"
+                          <MemberAuroraPreview fontId={data.card_font} gradient={data.card_gradient} backgroundUrl={backgroundUrl} previewBackgroundUrl={previewBackgroundUrl} overlayColor={overlayColor} overlayOpacity={overlayOpacity} textColor={textColor} ringColor={data.color || '#57F287'} ring={data.card_avatar_ring !== false} avatarUrl={avatarPreview} badge="Welcome"
                             title={replacePreview(data.title || 'Welcome, {user.name}!')} message={replacePreview(data.message || 'Welcome {user.mention} to {guild.name}!')} footer={replacePreview(data.footer || '')} />
                         ) : (
                           <CardPreview
+                            fontId={data.card_font}
                             backgroundUrl={previewBackgroundUrl}
                             overlayColor={overlayColor}
                             overlayOpacity={overlayOpacity}
@@ -2475,6 +2490,7 @@ function GoodbyePanel({ guildId, meta }) {
       card_avatar_ring: data.card_avatar_ring !== false,
       card_size: memberCardSize(data.card_size),
       card_gradient: AURORA_GRADIENTS[data.card_gradient] ? data.card_gradient : 'ember',
+      card_font: CARD_FONT_IDS.includes(data.card_font) ? data.card_font : 'default',
     });
     if (ok) { setSavedFormat(storedMessageFormat); setSavedCardSize(memberCardSize(data.card_size)); }
   };
@@ -2551,6 +2567,7 @@ function GoodbyePanel({ guildId, meta }) {
                 </div>
                 <div><div className="flex justify-between mb-2"><Label>{t('overlayOpacityLabel')}</Label><span className="text-xs text-muted-foreground">{overlayOpacity}%</span></div><input className="w-full accent-primary" type="range" min="0" max="100" value={overlayOpacity} onChange={(e) => setData({ ...data, card_overlay_opacity: Number(e.target.value) })} /></div>
                 <MemberCardSizePicker value={data.card_size} onChange={(v) => setData({ ...data, card_size: v })} t={t} savedValue={savedCardSize} tc={tc} />
+                <CardFontPicker value={data.card_font} onChange={(v) => setData({ ...data, card_font: v })} />
                 {data.card_size === 'aurora' && <AuroraGradientPicker value={data.card_gradient} onChange={(v) => setData({ ...data, card_gradient: v })} hasImage={Boolean(backgroundUrl)} />}
               </>}
             </Card>
@@ -2585,10 +2602,11 @@ function GoodbyePanel({ guildId, meta }) {
               <EmbedPreview accentColor={data.color || '#e08a4e'} authorName={meta.guild.name || 'Your Server'} timestamp={data.timestamp !== false}>
                 <div className="overflow-hidden rounded-[8px]">
                   {data.card_size === 'aurora' ? (
-                    <MemberAuroraPreview gradient={data.card_gradient} backgroundUrl={backgroundUrl} previewBackgroundUrl={previewBackgroundUrl} overlayColor={overlayColor} overlayOpacity={overlayOpacity} textColor={textColor} ringColor={data.color || '#e08a4e'} ring={data.card_avatar_ring !== false} avatarUrl={avatarPreview} badge="Goodbye"
+                    <MemberAuroraPreview fontId={data.card_font} gradient={data.card_gradient} backgroundUrl={backgroundUrl} previewBackgroundUrl={previewBackgroundUrl} overlayColor={overlayColor} overlayOpacity={overlayOpacity} textColor={textColor} ringColor={data.color || '#e08a4e'} ring={data.card_avatar_ring !== false} avatarUrl={avatarPreview} badge="Goodbye"
                       title={replacePreview(data.title || 'Goodbye, {user.name}!')} message={replacePreview(data.message || '{user.name} has left **{guild.name}**. We now have {member_count} members.')} footer={replacePreview(data.footer || '')} />
                   ) : (
                     <CardPreview
+                      fontId={data.card_font}
                       backgroundUrl={previewBackgroundUrl}
                       overlayColor={overlayColor}
                       overlayOpacity={overlayOpacity}
@@ -4882,7 +4900,7 @@ const auroraBackground = (key) => {
 };
 
 // Live preview of the Aurora card, laid out like level_aurora.render_aurora (units of the 934px card).
-function AuroraCardPreview({ gradient, backgroundUrl, previewBackgroundUrl, overlayColor, overlayOpacity, textColor, accentColor, ring, avatarSrc, name = 'Member', level = 12, xpText = '429 / 1337 XP', percent = 32, rank = 3 }) {
+function AuroraCardPreview({ fontId, gradient, backgroundUrl, previewBackgroundUrl, overlayColor, overlayOpacity, textColor, accentColor, ring, avatarSrc, name = 'Member', level = 12, xpText = '429 / 1337 XP', percent = 32, rank = 3 }) {
   const W = 934;
   const u = (v) => `${(v / W) * 100}cqw`;
   const useImage = Boolean(backgroundUrl);
@@ -4890,7 +4908,7 @@ function AuroraCardPreview({ gradient, backgroundUrl, previewBackgroundUrl, over
   const pad = 30; const avatar = 282 - pad * 2 - 12; const ax = pad + 6; const ay = (282 - avatar) / 2;
   const px0 = ax + avatar + 30; const inner = 24;
   return (
-    <div className="relative w-full overflow-hidden select-none" style={{ aspectRatio: '934/282', containerType: 'inline-size', background: useImage ? '#000' : auroraBackground(gradient) }}>
+    <div className="relative w-full overflow-hidden select-none" style={{ aspectRatio: '934/282', containerType: 'inline-size', background: useImage ? '#000' : auroraBackground(gradient), ...cardFontStyle(fontId) }}>
       {useImage && <PreviewImage url={previewBackgroundUrl} alt="" className="absolute inset-0 h-full w-full object-cover" draggable="false" />}
       {useImage && <div className="absolute inset-0" style={{ backgroundColor: overlayColor, opacity: overlayOpacity / 100 }} />}
       {!useImage && <div className="absolute inset-0 opacity-[0.07] [background-image:radial-gradient(#fff_1px,transparent_1px)]" style={{ backgroundSize: u(13) + ' ' + u(13) }} />}
@@ -4916,7 +4934,7 @@ function AuroraCardPreview({ gradient, backgroundUrl, previewBackgroundUrl, over
   );
 }
 
-function LevelCardPreview({ size, overlayColor, overlayOpacity, backgroundUrl, previewBackgroundUrl, textColor, accentColor, ring, bold, avatarSrc, name = 'Member', level = 12, rankText, progressText, xpText = '429 / 1337 XP', percent = 32 }) {
+function LevelCardPreview({ fontId, size, overlayColor, overlayOpacity, backgroundUrl, previewBackgroundUrl, textColor, accentColor, ring, bold, avatarSrc, name = 'Member', level = 12, rankText, progressText, xpText = '429 / 1337 XP', percent = 32 }) {
   const g = LEVEL_CARD_PRESETS[size] || LEVEL_CARD_PRESETS.compact;
   const u = (v) => `${(v / g.w) * 100}cqw`;
   const ringRoom = ring ? 8 : 0;
@@ -4951,7 +4969,7 @@ function LevelCardPreview({ size, overlayColor, overlayOpacity, backgroundUrl, p
   }, [name, level, size, ring, bold]);
 
   return (
-    <div className="w-full relative overflow-hidden select-none" style={{ backgroundColor: overlayColor, aspectRatio: `${g.w}/${g.h}`, containerType: 'inline-size' }}>
+    <div className="w-full relative overflow-hidden select-none" style={{ backgroundColor: overlayColor, aspectRatio: `${g.w}/${g.h}`, containerType: 'inline-size', ...cardFontStyle(fontId) }}>
       {backgroundUrl && <PreviewImage url={previewBackgroundUrl} alt="" className="absolute inset-0 w-full h-full object-cover" draggable="false" />}
       <div className="absolute inset-0" style={{ backgroundColor: overlayColor, opacity: overlayOpacity / 100 }} />
       <img src={avatarSrc} alt="" className="absolute rounded-full object-cover" draggable="false"
@@ -4976,6 +4994,8 @@ function LevelCardPreview({ size, overlayColor, overlayOpacity, backgroundUrl, p
 function LevelsPanel({ guildId, meta }) {
   const t = useTranslations('guildSettings.levels');
   const tc = useTranslations('guildSettings.common');
+  const tm = useTranslations('guildSettings.levelsCard');
+  const locale = useLocale();
   const [data, setData] = useState(null);
   const { data: settings, setData: setSettings, save, saving, dirty, discard } = useModule(guildId, 'settings');
   useEffect(() => { safeJson(`/api/guilds/${guildId}/levels`, {}).then(setData); }, [guildId]);
@@ -5051,7 +5071,7 @@ function LevelsPanel({ guildId, meta }) {
   // Preserve the legacy format on existing guilds unless the new controls
   // were actually changed/saved into state. upsertOne performs a $set patch,
   // so unrelated module fields are never replaced.
-  const levelCardKeys = ['level_message_format', 'level_card_background_url', 'level_card_overlay_color', 'level_card_overlay_opacity', 'level_card_text_color', 'level_card_color', 'level_card_avatar_ring', 'level_card_font', 'level_card_size', 'level_card_gradient', 'level_image_mode', 'level_image_url'];
+  const levelCardKeys = ['level_message_format', 'level_card_background_url', 'level_card_overlay_color', 'level_card_overlay_opacity', 'level_card_text_color', 'level_card_color', 'level_card_avatar_ring', 'level_card_font', 'level_card_size', 'level_card_gradient', 'level_image_mode', 'level_image_url', 'level_use_member_profile'];
   for (const key of levelCardKeys) if (Object.prototype.hasOwnProperty.call(settings, key)) savePayload[key] = settings[key];
   // A stored 'legacy' format is displayed above as 'card', together with the
   // whole card customization panel. Saving a background while leaving
@@ -5149,8 +5169,12 @@ function LevelsPanel({ guildId, meta }) {
                 </div>
               )}
               <div className="grid sm:grid-cols-2 gap-4">
-                <div><Label>{t('font')}</Label><Select value={settings.level_card_font || 'default'} onValueChange={(v) => setSettings({ ...settings, level_card_font: v })}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="default">{t('fontDefault')}</SelectItem><SelectItem value="bold">{t('fontBold')}</SelectItem></SelectContent></Select></div>
+                <CardFontPicker allowBold value={settings.level_card_font} onChange={(v) => setSettings({ ...settings, level_card_font: v })} />
                 <div className="flex items-end"><FieldRow label={t('avatarRing')}><Switch checked={settings.level_card_avatar_ring !== false} onCheckedChange={(v) => setSettings({ ...settings, level_card_avatar_ring: v })} /></FieldRow></div>
+              </div>
+              <div className="rounded-xl border border-border p-3">
+                <FieldRow label={tm('useMemberProfile')} hint={tm('useMemberProfileHint')}><Switch checked={settings.level_use_member_profile === true} onCheckedChange={(v) => setSettings({ ...settings, level_use_member_profile: v })} /></FieldRow>
+                <Link href={`/${locale}/profile?tab=card`} className="mt-2 inline-block text-xs text-primary underline">{tm('useMemberProfileLink')}</Link>
               </div>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div><Label>{t('mainColor')}</Label><div className="flex gap-2"><Input type="color" className="w-14 p-1 h-10" value={accentColor} onChange={(e) => setSettings({ ...settings, level_card_color: e.target.value })} /><Input value={accentColor} onChange={(e) => setSettings({ ...settings, level_card_color: e.target.value })} /></div></div>
@@ -5202,8 +5226,8 @@ function LevelsPanel({ guildId, meta }) {
                 >
                   <div className="overflow-hidden rounded-[8px] max-w-[480px]">
                     {cardSize === 'aurora'
-                      ? <AuroraCardPreview gradient={cardGradient} backgroundUrl={backgroundUrl} previewBackgroundUrl={previewBackgroundUrl} overlayColor={overlayColor} overlayOpacity={overlayOpacity} textColor={textColor} accentColor={accentColor} ring={settings.level_card_avatar_ring !== false} avatarSrc={previewAvatar} />
-                      : <LevelCardPreview size={cardSize} overlayColor={overlayColor} overlayOpacity={overlayOpacity} backgroundUrl={backgroundUrl} previewBackgroundUrl={previewBackgroundUrl} textColor={textColor} accentColor={accentColor} ring={settings.level_card_avatar_ring !== false} bold={settings.level_card_font === 'bold'} avatarSrc={previewAvatar} rankText={t('previewRank')} progressText={t('previewProgress')} />}
+                      ? <AuroraCardPreview fontId={settings.level_card_font} gradient={cardGradient} backgroundUrl={backgroundUrl} previewBackgroundUrl={previewBackgroundUrl} overlayColor={overlayColor} overlayOpacity={overlayOpacity} textColor={textColor} accentColor={accentColor} ring={settings.level_card_avatar_ring !== false} avatarSrc={previewAvatar} />
+                      : <LevelCardPreview fontId={settings.level_card_font} size={cardSize} overlayColor={overlayColor} overlayOpacity={overlayOpacity} backgroundUrl={backgroundUrl} previewBackgroundUrl={previewBackgroundUrl} textColor={textColor} accentColor={accentColor} ring={settings.level_card_avatar_ring !== false} bold={settings.level_card_font === 'bold' || Boolean(CARD_FONTS.find((f) => f.id === settings.level_card_font)?.bold)} avatarSrc={previewAvatar} rankText={t('previewRank')} progressText={t('previewProgress')} />}
                   </div>
                 </EmbedPreview>
               )}

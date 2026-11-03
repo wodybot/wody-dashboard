@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Wody - Un bot puternic pentru Discord",
-    "description": "Wody este un bot Discord gratuit care conține moderare, tichete, giveaway-uri, niveluri, mesaje de bun venit, roluri prin reacție, automod, comenzi personalizate și multe altele, pentru comunități în creștere.",
+    "description": "Wody este un bot Discord cu moderare, tichete, giveaway-uri, niveluri, mesaje de bun venit, roluri prin reacție, automod și altele pentru comunități.",
     "keywords": [
       "Wody",
       "bot Wody",
@@ -189,7 +189,8 @@
         "automod": "AutoMod",
         "moderation": "Moderare",
         "reactionRoles": "Roluri prin reacții",
-        "levels": "Niveluri și XP"
+        "levels": "Niveluri și XP",
+        "all": "Toate modulele"
       }
     }
   },
@@ -355,13 +356,13 @@
       },
       {
         "key": "lookups",
-        "title": "Lookups",
-        "desc": "16 de căutări sub /lookup: Last.fm now playing, iTunes, servere și jucători Minecraft, Roblox, Steam, Chess.com, Twitch, Kick, YouTube, GitHub, filme, crypto, conversie valutară și Reddit. API-uri oficiale sau deschise, gratuit și pornit implicit."
+        "title": "Radar",
+        "desc": "16 de căutări sub /radar: Last.fm now playing, iTunes, servere și jucători Minecraft, Roblox, Steam, Chess.com, Twitch, Kick, YouTube, GitHub, filme, crypto, conversie valutară și Reddit. API-uri oficiale sau deschise, gratuit și pornit implicit."
       },
       {
         "key": "feeds",
-        "title": "Feeds",
-        "desc": "Videoclipuri, live-uri, melodii, postări și versiuni noi din 17 surse, postate într-un canal de la fiecare 5 minute până la o dată pe zi. YouTube, Twitch și Kick cu ora reală de start și poza live-ului. Spotify și Apple Music, plus o melodie aleatorie. Reddit, Tumblr, Pinterest și orice feed RSS. GitHub, noutăți Steam și jocurile gratuite de la Epic Games. Gratuit."
+        "title": "Pulse",
+        "desc": "Videoclipuri, live-uri, melodii, postări și versiuni noi din 14 surse, postate într-un canal de la fiecare 5 minute până la o dată pe zi. Spotify și Apple Music, plus o melodie aleatorie. Reddit, Tumblr, Pinterest și orice feed RSS. GitHub, noutăți Steam și jocurile gratuite de la Epic Games. Gratuit."
       },
       {
         "key": "community",
@@ -527,14 +528,6 @@
         "a": "Urmărește @wody.online pe TikTok și @wodybot pe YouTube pentru conținut și noutăți despre Wody, și alătură-te comunității oficiale Wody pentru suport și anunțuri."
       },
       {
-        "q": "Urmărirea invitațiilor este gratuită?",
-        "a": "Da. Urmărirea invitațiilor este gratuită pentru orice server, fără limite și fără Premium. Rămâne oprită până o pornește un admin, iar Wody are nevoie de permisiunea Manage Server ca să vadă invitațiile."
-      },
-      {
-        "q": "Costă ceva Lookups și Feeds?",
-        "a": "Nu. Lookups și Feeds sunt gratuite pe orice server, cu până la 30 de feed-uri, fără Premium. Lookups sunt pornite implicit, iar Feeds le adaugă un administrator."
-      },
-      {
         "q": "Pot vedea cum crește serverul meu?",
         "a": "Da. Cu Invite Tracking pornit, /statistics în Discord și fila Statistici din dashboard arată un grafic al ultimelor 7, 14, 30 sau 90 de zile cu intrări, ieșiri, retenție, cele mai bune zile și ore, cei mai buni invitatori și de unde au venit membrii."
       }
@@ -543,7 +536,7 @@
     "modulesPremiumSubtitle": "Lista completă a tuturor modulelor care vin cu Premium."
   },
   "careers": {
-    "metaTitle": "Wody - Cariere",
+    "metaTitle": "Cariere Wody | Contribuie la botul Discord",
     "metaDescription": "Află cum poți contribui la Wody și cum poți contacta proiectul pentru oportunități viitoare.",
     "ogTitle": "Cariere la Wody",
     "badge": "Cariere Wody",
@@ -574,7 +567,7 @@
     ]
   },
   "contact": {
-    "metaTitle": "Wody - Contact",
+    "metaTitle": "Contact Wody | Suport, Confidențialitate, Legal",
     "metaDescription": "Contactează Wody pentru întrebări generale, suport, confidențialitate, aspecte legale și protecția datelor.",
     "ogTitle": "Contactează Wody",
     "badge": "Contact Wody",
@@ -692,7 +685,7 @@
   },
   "help": {
     "metaTitle": "Wody - Ajutor și Întrebări Frecvente",
-    "metaDescription": "Ajutor și Întrebări Frecvente Wody: ghiduri de configurare, informații despre dashboard, tichete, roluri prin reacție, Premium, vot și cum să inviți Wody pe serverul tău.",
+    "metaDescription": "Ajutor Wody: ghiduri de configurare, dashboard, tichete, roluri prin reacție, Premium, vot și cum să inviți Wody pe serverul tău.",
     "ogTitle": "Wody - Ajutor și Întrebări Frecvente",
     "ogDescription": "Găsește răspunsuri, informații de configurare și ghiduri de module pentru Wody, botul de Discord gratuit și complet.",
     "badge": "Ajutor Wody",
@@ -1061,12 +1054,12 @@
         "html": "<p>Invite Tracking is free and is off until a server administrator turns it on. When it is on, Wody reads the list of invites of the server (this needs the Manage Server permission) and compares the use counters before and after each join to work out which invite a member used.</p><p><strong>What we store, per server.</strong> For every join: the Discord user ID of the member, the Discord user ID of the inviter, the invite code, the time of the join, whether the match was certain, and whether the member later left. For every invite: its code, the creator's Discord user ID, the use counter and its limits. The server's settings for the module (log and notice channels, messages, who can see statistics, the fake account threshold) are stored too. When Wody cannot be sure, the join is stored as unknown with the reason and nobody is credited.</p><p><strong>Why and who can see it.</strong> The data is used only to show invite statistics, leaderboards, join logs and the inviter variables of the welcome message in that server. Members can see statistics with the commands, unless the server limits them to staff. Server administrators with dashboard access can see the recent joins and the leaderboard of their own server. Data of one server is never shown in another.</p><p><strong>Deletion.</strong> Administrators can delete all invite statistics, or those of one member, from the dashboard or with <code>/invite-reset</code>. If Wody is removed from a server, the data of that server is deleted after 30 days. Invite Tracking never deletes the data of other modules.</p>"
       },
       {
-        "heading": "21. Lookups",
-        "html": "<p>Lookups sunt gratuite și pornite implicit. Un administrator al serverului le poate opri din dashboard.</p><p><strong>Ce se întâmplă.</strong> Când un membru folosește <code>/lookup</code>, Wody trimite textul scris (de exemplu un nume de utilizator, o adresă de server sau un cuvânt căutat) către serviciul ales, primește răspunsul și îl arată în Discord. Cererea pleacă de pe serverele Wody, deci serviciul vede textul scris și adresa serverului Wody, nu dispozitivul sau adresa IP a membrului.</p><p><strong>Ce stocăm.</strong> Nimic. Căutările și rezultatele nu sunt salvate, nu sunt înregistrate cu identitatea membrului și nu sunt legate de un profil. Răspunsurile pot fi ținute în memorie câteva minute ca să nu se repete aceeași cerere.</p><p><strong>Terți.</strong> Fiecare serviciu (de exemplu Last.fm, iTunes, Steam, Twitch, GitHub sau Reddit) este independent și are propria politică de confidențialitate. Unele cer o cheie păstrată pe server de operator, care nu este arătată niciodată membrilor.</p>"
+        "heading": "21. Radar (căutări)",
+        "html": "<p>Radar este pornit implicit. Un administrator al serverului îl poate opri din dashboard.</p><p><strong>Ce se întâmplă.</strong> Când un membru folosește <code>/radar</code>, Wody trimite textul scris (de exemplu un nume de utilizator, o adresă de server sau un cuvânt căutat) către serviciul ales, primește răspunsul și îl arată în Discord. Cererea pleacă de pe serverele Wody, deci serviciul vede textul scris și adresa serverului Wody, nu dispozitivul sau adresa IP a membrului.</p><p><strong>Ce stocăm.</strong> Nimic. Căutările și rezultatele nu sunt salvate, nu sunt înregistrate cu identitatea membrului și nu sunt legate de un profil. Răspunsurile pot fi ținute în memorie câteva minute ca să nu se repete aceeași cerere.</p><p><strong>Terți.</strong> Fiecare serviciu (de exemplu Last.fm, iTunes, Steam, Twitch, GitHub sau Reddit) este independent și are propria politică de confidențialitate. Unele cer o cheie păstrată pe server de operator, care nu este arătată niciodată membrilor.</p>"
       },
       {
-        "heading": "22. Feeds",
-        "html": "<p>Feeds sunt gratuite. Un administrator al serverului le configurează din dashboard sau cu <code>/feed</code>, cel mult 30 pe server.</p><p><strong>Ce stocăm, per server.</strong> Pentru fiecare feed: sursa, numele sau linkul introdus de administrator, opțiunile, canalul și rolul opțional de menționat, cât de des se verifică, ID-ul Discord al administratorului care l-a creat, momentul creării, momentul și rezultatul ultimei verificări cu un cod scurt de eroare, câte postări a făcut și o listă de până la 120 de chei ale elementelor deja postate, ca nimic să nu fie postat de două ori.</p><p><strong>Ce se citește.</strong> Wody cere serviciului ales (sau site-ului a cărui adresă a scris-o administratorul) elementele noi, de pe serverele Wody, și le postează în canal. Postările conțin conținut public al serviciului, cu link către original. Pozele cu animale și tag-uri vin din biblioteci publice de imagini cu licență deschisă și sunt filtrate să fie potrivite pentru toate vârstele, lucru care nu poate fi garantat în fiecare caz. Feeds nu citesc mesaje private și nu folosesc date ale membrilor.</p><p><strong>Ștergere.</strong> Administratorii pot pune pe pauză sau șterge orice feed oricând. Dacă Wody este scos dintr-un server, feed-urile lui sunt șterse după 30 de zile. Cererile trimise din dashboard către bot (de exemplu un test) sunt stocate temporar și șterse după 24 de ore. Fiecare serviciu este independent și are propria politică de confidențialitate.</p>"
+        "heading": "22. Pulse (feed-uri)",
+        "html": "<p>Un administrator al serverului configurează Pulse din dashboard sau cu <code>/pulse</code>, cel mult 30 pe server.</p><p><strong>Ce stocăm, per server.</strong> Pentru fiecare feed: sursa, numele sau linkul introdus de administrator, opțiunile, canalul și rolul opțional de menționat, cât de des se verifică, ID-ul Discord al administratorului care l-a creat, momentul creării, momentul și rezultatul ultimei verificări cu un cod scurt de eroare, câte postări a făcut și o listă de până la 120 de chei ale elementelor deja postate, ca nimic să nu fie postat de două ori.</p><p><strong>Ce se citește.</strong> Wody cere serviciului ales (sau site-ului a cărui adresă a scris-o administratorul) elementele noi, de pe serverele Wody, și le postează în canal. Postările conțin conținut public al serviciului, cu link către original. Pozele cu animale și tag-uri vin din biblioteci publice de imagini cu licență deschisă și sunt filtrate să fie potrivite pentru toate vârstele, lucru care nu poate fi garantat în fiecare caz. Pulse nu citește mesaje private și nu folosesc date ale membrilor.</p><p><strong>Ștergere.</strong> Administratorii pot pune pe pauză sau șterge orice feed oricând. Dacă Wody este scos dintr-un server, feed-urile lui sunt șterse după 30 de zile. Cererile trimise din dashboard către bot (de exemplu un test) sunt stocate temporar și șterse după 24 de ore. Fiecare serviciu este independent și are propria politică de confidențialitate.</p>"
       },
       {
         "heading": "23. Servers where Wody is added",
@@ -1178,12 +1171,12 @@
         "html": "<p>Community Discovery is a public directory of Discord communities. By submitting a listing you confirm that you have read and accept these Terms and the Privacy Policy.</p><p><strong>Eligibility.</strong> Only the owner of a Discord server, or a person with the permissions required by Wody, can create a listing for it. You must have the Wody bot in the server. One server can have one listing.</p><p><strong>Your content.</strong> You are responsible for everything in your listing, including the invite, images and links. It must be accurate, must not impersonate a person, brand or other server, and must follow the Community Guidelines at <a href=\"/servers/guidelines\" class=\"text-[#e08a4e] hover:underline\">/servers/guidelines</a>. You give Wody a free, non exclusive licence to display the content in the directory, in search results and in link previews while the listing is published. You keep ownership of your content.</p><p><strong>Review and publication.</strong> Every listing and every later change is reviewed by Wody before it becomes public. Wody can approve, ask for changes, reject, suspend, unpublish or delete a listing at its discretion, for example for breaking these Terms, for a broken invite, for reports or for abuse. Approval is not an endorsement and Wody is not responsible for what happens inside a listed server or for the conduct of its members.</p><p><strong>Names and addresses.</strong> Each public address and community name can be used by one listing at a time. We may refuse or change a name or address that is misleading, reserved, or already in use. Addresses are not property: a deleted listing frees its address, and Wody may reassign reserved or abandoned ones.</p><p><strong>Reviews and reports.</strong> Reviews can be written only by members of the server and are moderated. Fake, paid, abusive or off topic reviews and links in reviews are removed. Listing owners cannot review their own server. Reports are handled by the Wody team and the outcome is at its discretion.</p><p><strong>No guarantees.</strong> Listing position, featuring and badges are decided by Wody and can change. We do not guarantee any number of views, clicks or members. Features can be changed or removed. Custom domains are not offered.</p>"
       },
       {
-        "heading": "20. Lookups",
-        "html": "<p>Lookups arată în Discord informații de la alte servicii. Răspunsurile vin de la acele servicii, iar Wody nu le controlează, nu le verifică și nu le garantează. Un serviciu poate fi lent, se poate schimba, poate limita cererile sau poate înceta să funcționeze oricând, iar atunci o căutare poate eșua sau lipsi.</p><p>Nu folosi Lookups pentru a hărțui, urmări sau expune oameni ori pentru a aduna date personale în masă. Prețurile sunt doar informative și nu reprezintă sfat financiar.</p>"
+        "heading": "20. Radar (căutări)",
+        "html": "<p>Lookups arată în Discord informații de la alte servicii. Răspunsurile vin de la acele servicii, iar Wody nu le controlează, nu le verifică și nu le garantează. Un serviciu poate fi lent, se poate schimba, poate limita cererile sau poate înceta să funcționeze oricând, iar atunci o căutare poate eșua sau lipsi.</p><p>Nu folosi Radar pentru a hărțui, urmări sau expune oameni ori pentru a aduna date personale în masă. Prețurile sunt doar informative și nu reprezintă sfat financiar.</p>"
       },
       {
-        "heading": "21. Feeds",
-        "html": "<p>Feeds postează conținut de la alte servicii într-un canal, după un program. Un server poate avea cel mult 30 de feed-uri. Administratorul care configurează un feed răspunde de canalul în care postează și de ceea ce publică acolo sursa urmărită.</p><p>Conținutul aparține autorilor și serviciilor lui. Wody nu îl controlează și nu îl verifică, nu garantează că este complet, la timp, corect sau potrivit pentru orice public, iar un feed se poate opri singur când sursa nu mai răspunde sau canalul dispare. Urmărește doar surse pe care ai voie să le distribui și folosește mențiunea de rol doar pentru cei care au cerut-o. Nu folosi Feeds pentru spam, pentru a repostă conținut într-un mod interzis de sursă sau pentru a trimite Wody către adrese pe care nu le deții sau nu ai voie să le folosești.</p>"
+        "heading": "21. Pulse (feed-uri)",
+        "html": "<p>Feeds postează conținut de la alte servicii într-un canal, după un program. Un server poate avea cel mult 30 de feed-uri. Administratorul care configurează un feed răspunde de canalul în care postează și de ceea ce publică acolo sursa urmărită.</p><p>Conținutul aparține autorilor și serviciilor lui. Wody nu îl controlează și nu îl verifică, nu garantează că este complet, la timp, corect sau potrivit pentru orice public, iar un feed se poate opri singur când sursa nu mai răspunde sau canalul dispare. Urmărește doar surse pe care ai voie să le distribui și folosește mențiunea de rol doar pentru cei care au cerut-o. Nu folosi Pulse pentru spam, pentru a repostă conținut într-un mod interzis de sursă sau pentru a trimite Wody către adrese pe care nu le deții sau nu ai voie să le folosești.</p>"
       },
       {
         "heading": "22. Third-Party Discord Bots and External Services",
@@ -1220,7 +1213,7 @@
     ]
   },
   "premiumPage": {
-    "metaTitle": "Wody - Premium",
+    "metaTitle": "Wody Premium | Limite mai mari și module extra",
     "metaDescription": "Află ce deblochează Wody Premium, inclusiv limite mai mari pentru server, Backup-uri, Voce temporară, Economie, Jocuri și Notificări stream.",
     "ogTitle": "Wody Premium",
     "ogDescription": "Limite de creare nelimitate și funcții Wody avansate pentru servere de Discord în creștere.",
@@ -1261,8 +1254,8 @@
     "joinCommunityBtn": "Alătură-te Comunității"
   },
   "commands": {
-    "metaTitle": "Wody - Comenzi",
-    "metaDescription": "Vezi lista completă de comenzi ale botului Wody pentru Discord: moderare, tichete, giveaway-uri, niveluri, backup-uri, voce temporară, economie și jocuri precum /slots, /coin și /dice.",
+    "metaTitle": "Comenzi Wody | Lista completă a botului Discord",
+    "metaDescription": "Vezi lista completă de comenzi Wody: moderare, tichete, giveaway-uri, niveluri, backup-uri, voce, economie și jocuri precum /slots și /dice.",
     "ogTitle": "Comenzi Wody",
     "ogDescription": "Răsfoiește lista completă de comenzi ale botului Discord Wody și vezi ce face fiecare comandă.",
     "badge": "Comenzi Wody",
@@ -1647,91 +1640,91 @@
       },
       {
         "key": "lookups",
-        "title": "Lookups",
+        "title": "Radar",
         "premium": false,
         "commands": [
           {
-            "name": "/lookup nowplaying",
+            "name": "/radar nowplaying",
             "description": "Ce ascultă un utilizator Last.fm, cu coperta."
           },
           {
-            "name": "/lookup itunes",
+            "name": "/radar itunes",
             "description": "Muzică, podcasturi, filme sau aplicații pe Apple iTunes."
           },
           {
-            "name": "/lookup mcserver",
+            "name": "/radar mcserver",
             "description": "Starea, jucătorii și versiunea unui server Minecraft."
           },
           {
-            "name": "/lookup mcplayer",
+            "name": "/radar mcplayer",
             "description": "Un jucător Minecraft: skin, UUID și profil."
           },
           {
-            "name": "/lookup roblox",
+            "name": "/radar roblox",
             "description": "Un profil Roblox: prieteni, urmăritori și avatar."
           },
           {
-            "name": "/lookup steam",
+            "name": "/radar steam",
             "description": "Un joc Steam: preț, jucători acum, scor."
           },
           {
-            "name": "/lookup chess",
+            "name": "/radar chess",
             "description": "Un jucător Chess.com: rating-uri și profil."
           },
           {
-            "name": "/lookup twitch",
+            "name": "/radar twitch",
             "description": "Un canal Twitch: stare live, joc și spectatori."
           },
           {
-            "name": "/lookup kick",
+            "name": "/radar kick",
             "description": "Un canal Kick: stare live, categorie și spectatori."
           },
           {
-            "name": "/lookup youtube",
+            "name": "/radar youtube",
             "description": "Un canal YouTube: abonați, videoclipuri și vizualizări."
           },
           {
-            "name": "/lookup github",
+            "name": "/radar github",
             "description": "Un utilizator sau depozit GitHub."
           },
           {
-            "name": "/lookup movie",
+            "name": "/radar movie",
             "description": "Un film: scor, data lansării, afiș, rezumat."
           },
           {
-            "name": "/lookup show",
+            "name": "/radar show",
             "description": "Un serial: rating, canal, stare, următorul episod."
           },
           {
-            "name": "/lookup crypto",
+            "name": "/radar crypto",
             "description": "Prețul și datele de piață ale unei criptomonede."
           },
           {
-            "name": "/lookup convert",
+            "name": "/radar convert",
             "description": "Convertește o sumă între valute."
           },
           {
-            "name": "/lookup reddit",
+            "name": "/radar reddit",
             "description": "Un subreddit sau utilizator Reddit."
           }
         ]
       },
       {
         "key": "feeds",
-        "title": "Feeds",
+        "title": "Pulse",
         "premium": false,
         "commands": [
           {
-            "name": "/feed add",
+            "name": "/pulse add",
             "description": "Adaugă un feed: o sursă, un canal și cât de des se verifică."
           },
           {
-            "name": "/feed list",
+            "name": "/pulse list",
             "description": "Vezi feed-urile, postează cel mai nou, pune pe pauză sau șterge unul."
           },
           {
-            "name": "/feed sources",
-            "description": "Toate sursele pe care le poate urmări Feeds."
+            "name": "/pulse sources",
+            "description": "Toate sursele pe care le poate urmări Pulse."
           }
         ]
       },
@@ -1795,6 +1788,41 @@
             "description": "Dă bump acestui server pe Wody Discovery (la 2 ore, la 30 de minute cu Premium)"
           }
         ]
+      },
+      {
+        "key": "profile",
+        "title": "Card de profil",
+        "premium": false,
+        "commands": [
+          {
+            "name": "/profile show",
+            "description": "Arată cardul tău de profil"
+          },
+          {
+            "name": "/profile user",
+            "description": "Arată cardul de profil al unui membru"
+          },
+          {
+            "name": "/profile customize",
+            "description": "Schimbă cum arată cardul tău de profil"
+          },
+          {
+            "name": "/profile preview",
+            "description": "Vezi designul curent al cardului și setările lui"
+          },
+          {
+            "name": "/profile reset",
+            "description": "Restabilește designul implicit al cardului de profil"
+          },
+          {
+            "name": "/profile background",
+            "description": "Încarcă propria poză sau GIF de fundal (lasă gol ca s-o ștergi)"
+          },
+          {
+            "name": "/profile visibility",
+            "description": "Arată sau ascunde cardul pe profilul tău public din Dashboard"
+          }
+        ]
       }
     ]
   },
@@ -1838,8 +1866,8 @@
     }
   },
   "updates": {
-    "metaTitle": "Wody - Noutăți",
-    "metaDescription": "Cele mai noi noutăți despre botul Discord Wody: funcții noi, remedieri și anunțuri.",
+    "metaTitle": "Noutăți Wody | Funcții noi, remedieri și anunțuri",
+    "metaDescription": "Cele mai noi noutăți despre botul Discord Wody: funcții noi, remedieri și anunțuri, publicate imediat ce apar, ca să vezi ce s-a schimbat.",
     "ogTitle": "Noutăți Wody",
     "badge": "Noutăți Wody",
     "titleLine1": "Ce e",
@@ -1872,8 +1900,8 @@
     "moreArticles": "Mai multe articole"
   },
   "team": {
-    "metaTitle": "Wody - Echipă",
-    "metaDescription": "Cunoaște oamenii din spatele Wody.",
+    "metaTitle": "Echipa Wody | Oamenii din spatele botului Discord",
+    "metaDescription": "Cunoaște oamenii din spatele Wody, botul Discord pentru moderare, tichete, niveluri, giveaway-uri și altele, și vezi cine îl construiește.",
     "ogTitle": "Echipa Wody",
     "badge": "Echipa noastră",
     "titleLine1": "Cunoaște",
@@ -3496,7 +3524,9 @@
         "option": "Alege una dintre variantele disponibile pentru {option}.",
         "target_required": "Spune-i lui Wody ce să urmărească.",
         "target_invalid": "Numele sau linkul nu pare corect pentru sursa asta.",
-        "interval": "Alege unul dintre intervalele din listă, de la 5 minute până la o dată pe zi."
+        "interval": "Alege unul dintre intervalele din listă, de la 5 minute până la o dată pe zi.",
+        "invalid_kick_slug": "Introdu un nume de utilizator Kick sau un link de canal valid.",
+        "kick_not_found": "Nu a fost găsit niciun canal Kick cu acest nume."
       },
       "apiErrors": {
         "generic": "Ceva nu a mers. Încearcă din nou într-un moment.",
@@ -3555,7 +3585,8 @@
         "subscription_disconnected": "Conexiunea cu platforma s-a pierdut. Folosește Reconectează.",
         "missing_manage_guild": "Wody nu are permisiunea Manage Server, deci nu poate vedea invitațiile. Acordă-i permisiunea și apasă Verifică din nou.",
         "fetch_failed": "Discord nu a returnat lista invitațiilor. Wody va încerca din nou la următoarea intrare.",
-        "no_baseline": "Wody nu ți-a citit încă invitațiile. Începe la următoarea intrare sau folosește Reîmprospătează datele invitațiilor din fila Prezentare."
+        "no_baseline": "Wody nu ți-a citit încă invitațiile. Începe la următoarea intrare sau folosește Reîmprospătează datele invitațiilor din fila Prezentare.",
+        "kick_not_configured": "Kick nu este configurat încă pe acest bot. Proprietarul botului trebuie să adauge cheia Kick."
       },
       "lock": {
         "badge": "Premium",
@@ -3864,7 +3895,7 @@
     },
     "streams": {
       "title": "Notificări stream",
-      "description": "Anunță transmisiunile live și videoclipurile noi de pe Twitch și TikTok.",
+      "description": "Anunță live-urile și videoclipurile noi de pe Twitch, Kick și TikTok.",
       "lock": {
         "title": "Notificări stream",
         "text": "Primește alerte automate când streamerii preferați încep live. Twitch folosește EventSub oficial, TikTok folosește API-ul oficial."
@@ -3881,6 +3912,9 @@
           "not_configured": "Această platformă nu a fost configurată încă pe această instalare Wody.",
           "callback_not_https": "Adresa publică a site-ului trebuie să folosească https pentru ca Twitch să livreze evenimentele.",
           "token_key_missing": "Cheia de criptare a token-urilor lipsește de pe server."
+        },
+        "kick": {
+          "ok": "Kick este conectat prin API-ul oficial Kick."
         }
       },
       "status": {
@@ -3896,7 +3930,8 @@
         "emptyTitle": "Încă nu există notificări",
         "emptyText": {
           "twitch": "Adaugă un streamer Twitch ca să anunți când începe live.",
-          "tiktok": "Conectează-ți contul TikTok, apoi adaugă o notificare pentru videoclipurile noi."
+          "tiktok": "Conectează-ți contul TikTok, apoi adaugă o notificare pentru videoclipurile noi.",
+          "kick": "Adaugă un streamer Kick ca să anunți când intră live."
         },
         "emptyUnavailable": "Această platformă nu este disponibilă acum."
       },
@@ -3907,11 +3942,13 @@
         "create": "Creează",
         "title": {
           "twitch": "Adaugă un streamer Twitch",
-          "tiktok": "Adaugă o notificare TikTok"
+          "tiktok": "Adaugă o notificare TikTok",
+          "kick": "Adaugă un streamer Kick"
         },
         "text": {
           "twitch": "Alege streamerul și canalul unde ajung alertele.",
-          "tiktok": "Alege un cont conectat și canalul unde ajung alertele."
+          "tiktok": "Alege un cont conectat și canalul unde ajung alertele.",
+          "kick": "Scrie streamerul și alege canalul unde merg alertele."
         },
         "streamer": "Streamer",
         "streamerHint": "Caută după nume sau lipește un nume de utilizator ori un link de canal.",
@@ -3921,7 +3958,9 @@
         "change": "Schimbă",
         "account": "Cont TikTok",
         "accountHint": "Sunt listate doar conturile conectate la acest server.",
-        "noAccount": "Încă nu e conectat niciun cont. Conectează unul mai sus."
+        "noAccount": "Încă nu e conectat niciun cont. Conectează unul mai sus.",
+        "kickHint": "Scrie numele de utilizator Kick sau lipește linkul canalului.",
+        "kickPlaceholder": "kick.com/utilizator"
       },
       "configure": "Configurează",
       "reconnect": "Reconectează",
@@ -3985,7 +4024,8 @@
       },
       "advanced": {
         "twitchNote": "Alertele Twitch ajung instant prin EventSub. Nu se folosește interogare periodică.",
-        "tiktokNote": "Alertele TikTok se găsesc verificând la intervale regulate videoclipurile creatorului conectat."
+        "tiktokNote": "Alertele TikTok se găsesc verificând la intervale regulate videoclipurile creatorului conectat.",
+        "kickNote": "Alertele Kick se găsesc verificând la intervale regulate dacă canalul e live, prin API-ul oficial."
       },
       "sample": {
         "title": "Jucăm cu comunitatea",
@@ -4512,7 +4552,7 @@
     },
     "invites": {
       "title": "Urmărire invitații",
-      "description": "Vezi cine a adus fiecare membru, păstrează statistici despre invitații și clasifică cei mai buni invitatori. Gratuit pentru orice server, fără limite.",
+      "description": "Vezi cine a adus fiecare membru, păstrează statistici despre invitații și clasifică cei mai buni invitatori.",
       "tabs": {
         "overview": "Prezentare",
         "leaderboard": "Clasament",
@@ -4523,8 +4563,6 @@
         "statistics": "Statistici"
       },
       "overview": {
-        "freeTitle": "Gratuit pentru orice server",
-        "freeText": "Urmărirea invitațiilor nu are limite și nu cere niciodată Premium. Rămâne oprită până o pornești, iar Wody are nevoie de permisiunea Manage Server ca să vadă invitațiile.",
         "resync": "Reîmprospătează datele invitațiilor",
         "resyncDone": "Datele invitațiilor au fost reîmprospătate.",
         "reasonsTitle": "Intrări care nu au putut fi asociate",
@@ -4776,12 +4814,10 @@
       }
     },
     "feeds": {
-      "title": "Feeds",
+      "title": "Pulse",
       "description": "Videoclipuri, live-uri, melodii, postări, versiuni noi de pe alte servicii, postate într-un canal după programul ales de tine.",
       "add": "Adaugă feed",
       "edit": "Editează feedul",
-      "freeTitle": "Gratuit pentru orice server",
-      "freeText": "Până la {max} de feed-uri, de la 5 minute până la o dată pe zi. Nu ai nevoie de Premium.",
       "counter": "{n} din {max} feed-uri",
       "emptyTitle": "Niciun feed încă",
       "emptyText": "Adaugă primul feed: alege o sursă, un canal și cât de des se verifică. Cel mai nou element se postează imediat, apoi doar ce e nou.",
@@ -4881,6 +4917,24 @@
         "music": "Muzică și podcasturi",
         "social": "Social și feed-uri",
         "code": "Cod și jocuri"
+      },
+      "exampleLabel": "Exemplu",
+      "useExample": "Folosește exemplul",
+      "sourceHints": {
+        "spotify_artist": "Linkul artistului de pe Spotify (open.spotify.com/artist/...) sau ID-ul artistului.",
+        "spotify_playlist": "Linkul playlistului de pe Spotify (open.spotify.com/playlist/...) sau ID-ul playlistului.",
+        "spotify_podcast": "Linkul podcastului de pe Spotify (open.spotify.com/show/...) sau ID-ul emisiunii.",
+        "apple_artist": "Linkul artistului de pe Apple Music (music.apple.com/.../artist/...) sau ID-ul numeric al artistului.",
+        "apple_chart": "Codul de țară din două litere al clasamentului, de exemplu us, gb sau ro. Gol înseamnă us.",
+        "apple_podcast": "Linkul podcastului de pe Apple Podcasts (podcasts.apple.com/.../id123456789) sau ID-ul numeric.",
+        "reddit": "Un subreddit ca r/nume sau un utilizator ca u/nume. Merge și un link reddit.com.",
+        "tumblr": "Numele blogului, de exemplu staff, sau linkul lui (staff.tumblr.com).",
+        "pinterest": "Un utilizator Pinterest (nume) sau un board al lui (nume/board), sau linkul oricăruia.",
+        "rss": "Linkul oricărui feed RSS sau Atom, sau linkul unui site care are unul (blog, știri, forum).",
+        "github": "proprietar/repository, de exemplu python/cpython, sau linkul repository-ului. Alege mai jos versiuni sau commit-uri.",
+        "steam": "Numele jocului, linkul din magazinul Steam (store.steampowered.com/app/...) sau App ID.",
+        "epic": "Codul de țară din două litere pentru lista de jocuri gratuite, de exemplu us sau ro. Gol înseamnă us.",
+        "random_song": "Opțional. Spotify cere un link sau ID de playlist, Apple Music un cod de țară, Deezer un link de playlist opțional."
       }
     },
     "lookups": {
@@ -4902,16 +4956,12 @@
         "convert": "Convertește o sumă între valute.",
         "reddit": "Un subreddit sau utilizator Reddit."
       },
-      "title": "Lookups",
+      "title": "Radar",
       "description": "{n} căutări în alte servicii sub /lookup. Membrii găsesc melodii, servere, profiluri și prețuri fără să iasă din Discord.",
       "copied": "Am copiat {command}",
       "copyFailed": "Nu am putut copia. Selectează comanda și copiaz-o manual.",
       "copy": "Copiază comanda",
       "facts": {
-        "free": {
-          "title": "Gratuit pentru toți",
-          "text": "Fără Premium și fără limite per server. O oprești din bara laterală dacă nu o vrei."
-        },
         "fast": {
           "title": "API-uri oficiale și deschise",
           "text": "Rezultatele vin din API-uri documentate, nu din pagini copiate, și arată ca orice alt mesaj Wody."
@@ -4947,7 +4997,12 @@
           "text": "Subreddituri și utilizatori Reddit."
         }
       },
-      "footer": "Membrii scriu /lookup și aleg un serviciu. Vrei un feed care postează singur lucruri noi? Deschide Feeds din bara laterală."
+      "footer": "Membrii scriu /radar și aleg un serviciu. Vrei un feed care postează singur lucruri noi? Deschide Pulse din bara laterală."
+    },
+    "levelsCard": {
+      "useMemberProfile": "Folosește cardurile de profil ale membrilor",
+      "useMemberProfileHint": "Membrii care și-au creat un card de profil global (/profile customize) îl primesc ca card de nivel și în /rank pe acest server. Ceilalți păstrează cardul configurat aici.",
+      "useMemberProfileLink": "Personalizează-ți cardul de profil"
     }
   },
   "botStatus": {
@@ -5063,7 +5118,7 @@
     },
     "birthdays": {
       "title": "Zile de naștere",
-      "description": "Sărbătorește zilele membrilor cu rol, anunț, felicitare și memento-uri. Gratuit."
+      "description": "Sărbătorește zilele membrilor cu rol, anunț, felicitare și memento-uri."
     },
     "economy": {
       "title": "Economie",
@@ -5083,19 +5138,19 @@
     },
     "invite_tracking": {
       "title": "Urmărire invitații",
-      "description": "Vezi cine a invitat fiecare membru, cu statistici pe 30 de zile, grafice și clasamente. Gratuit."
+      "description": "Vezi cine a invitat fiecare membru, cu statistici pe 30 de zile, grafice și clasamente."
     },
     "collab": {
       "title": "Collab",
       "description": "Categoriile Collab proprii și setările pentru acest server."
     },
     "lookups": {
-      "title": "Lookups",
-      "description": "16 de căutări sub /lookup: melodii, servere, profiluri și prețuri. Gratuit."
+      "title": "Radar",
+      "description": "16 de căutări sub /radar: melodii, servere, profiluri și prețuri."
     },
     "feeds": {
-      "title": "Feeds",
-      "description": "17 surse postate într-un canal după programul tău: videoclipuri, live-uri, muzică, social, cod și jocuri. Gratuit."
+      "title": "Pulse",
+      "description": "14 surse postate într-un canal după programul tău: videoclipuri, live-uri, muzică, social, cod și jocuri."
     }
   },
   "errorPage": {
@@ -6680,7 +6735,7 @@
         ]
       },
       "lookups": {
-        "what": "Membrii scriu /lookup și aleg un serviciu ca să primească o melodie, un server, un profil sau un preț fără să iasă din Discord. 16 de căutări din API-uri oficiale sau deschise.",
+        "what": "Membrii scriu /radar și aleg un serviciu ca să primească o melodie, un server, un profil sau un preț fără să iasă din Discord. 16 de căutări din API-uri oficiale sau deschise.",
         "customize": [
           "Pornește-l sau oprește-l pentru tot serverul",
           "Ce servicii cer o cheie de la proprietarul botului",
@@ -6688,7 +6743,7 @@
         ]
       },
       "feeds": {
-        "what": "Postează într-un canal videoclipuri, live-uri, melodii, postări, versiuni noi din 17 surse, după un program de la 5 minute până la o dată pe zi. Un feed nou arată imediat cel mai nou element, apoi doar ce e nou.",
+        "what": "Postează într-un canal videoclipuri, live-uri, melodii, postări, versiuni noi din 14 surse, după un program de la 5 minute până la o dată pe zi. Un feed nou arată imediat cel mai nou element, apoi doar ce e nou.",
         "customize": [
           "Sursa și ce să urmărească",
           "Canalul și cât de des se verifică",
@@ -6731,7 +6786,7 @@
   },
   "globalBoard": {
     "metaTitle": "Clasament global economie",
-    "metaDescription": "Cei mai bogați 100 de membri din toate serverele care folosesc Wody Economy.",
+    "metaDescription": "Cei mai bogați 100 de membri din toate serverele care folosesc Wody Economy, clasați după averea totală și actualizați continuu.",
     "badge": "Clasament global",
     "title": "Cei mai bogați membri Wody",
     "subtitle": "Top 100 din toate serverele care folosesc Wody Economy.",
@@ -7273,7 +7328,8 @@
       "applications": "Aplicații",
       "messages": "Mesaje",
       "servers": "Servere",
-      "settings": "Setări"
+      "settings": "Setări",
+      "card": "Card de profil"
     },
     "hero": {
       "aria": "Profilul tău",
@@ -7531,5 +7587,206 @@
       "unavailable": "Legarea TikTok nu este disponibilă acum."
     },
     "cookies": "Politica de cookie-uri"
+  },
+  "modulesHub": {
+    "metaTitle": "Module Wody | Moderare, Tichete, Niveluri și altele",
+    "metaDescription": "Toate modulele Wody într-un singur loc: moderare, tichete, niveluri, giveaway-uri, mesaje de bun venit, Pulse, Radar, economie și altele.",
+    "ogTitle": "Toate modulele Wody pentru Discord",
+    "title": "Modulele Wody",
+    "subtitle": "Un singur bot pentru moderare, comunitate, creatori și distracție. Alege un modul ca să vezi ce face și cum îl configurezi.",
+    "breadcrumb": "Module",
+    "home": "Acasă"
+  },
+  "cardFonts": {
+    "label": "Font",
+    "classic": "Clasic (implicit)",
+    "classicBold": "Clasic îngroșat",
+    "hint": "Folosit pentru textul desenat pe imaginea cardului. Numele cu diacritice sunt suportate."
+  },
+  "profileCard": {
+    "theme": {
+      "default": "Wody",
+      "minimal": "Minimalist",
+      "dark": "Întunecat",
+      "glass": "Glassmorphism",
+      "gradient": "Gradient",
+      "professional": "Profesional",
+      "premium": "Premium",
+      "sunset": "Apus",
+      "ocean": "Ocean",
+      "forest": "Pădure",
+      "custom": "Personalizat",
+      "label": "Temă",
+      "neon": "Neon",
+      "aurora": "Aurora",
+      "sakura": "Sakura",
+      "midnight": "Miezul nopții",
+      "matrix": "Matrix",
+      "lava": "Lavă",
+      "frost": "Îngheț",
+      "royal": "Regal",
+      "candy": "Bomboană",
+      "synthwave": "Synthwave",
+      "galaxy": "Galaxie",
+      "mint": "Mentă",
+      "rose": "Roz",
+      "noir": "Noir"
+    },
+    "layoutOpt": {
+      "classic": "Clasic",
+      "compact": "Compact",
+      "split": "Panou împărțit",
+      "centered": "Centrat"
+    },
+    "opt": {
+      "avatar_pos": {
+        "left": "Stânga",
+        "right": "Dreapta",
+        "center": "Centru"
+      },
+      "avatar_size": {
+        "small": "Mic",
+        "medium": "Mediu",
+        "large": "Mare"
+      },
+      "avatar_shape": {
+        "circle": "Cerc",
+        "rounded": "Pătrat rotunjit",
+        "square": "Pătrat"
+      },
+      "name_align": {
+        "left": "Stânga",
+        "center": "Centru",
+        "right": "Dreapta"
+      },
+      "stats_pos": {
+        "above_bar": "Deasupra barei",
+        "right": "Sus, dreapta",
+        "under_name": "Sub nume"
+      },
+      "bar_style": {
+        "rounded": "Rotunjită",
+        "flat": "Plată",
+        "segmented": "Segmentată",
+        "glow": "Luminoasă"
+      },
+      "font": {
+        "default": "Clasic",
+        "bold": "Clasic îngroșat"
+      },
+      "effect": {
+        "none": "Niciunul",
+        "glass": "Panou de sticlă",
+        "vignette": "Vignetă",
+        "noise": "Granulație film",
+        "glow": "Strălucire"
+      },
+      "decoration": {
+        "none": "Niciunul",
+        "dots": "Puncte",
+        "lines": "Linii",
+        "sparkles": "Sclipiri",
+        "waves": "Valuri"
+      },
+      "bg_mode": {
+        "gradient": "Gradient",
+        "solid": "Culoare unică",
+        "image": "Imagine"
+      },
+      "anim": {
+        "none": "Niciunul",
+        "shimmer": "Strălucire",
+        "stars": "Stele sclipitoare",
+        "aurora": "Aurora",
+        "bubbles": "Bule",
+        "pulse": "Puls",
+        "scan": "Linie de scanare",
+        "snow": "Ninsoare"
+      }
+    },
+    "setting": {
+      "avatar_pos": "Poziția avatarului",
+      "avatar_size": "Mărimea avatarului",
+      "avatar_shape": "Forma avatarului",
+      "name_align": "Poziția numelui",
+      "stats_pos": "Poziția nivelului și XP",
+      "bar_style": "Stilul barei de progres",
+      "font": "Font",
+      "effect": "Efect vizual",
+      "decoration": "Decor",
+      "bg_mode": "Tipul fundalului",
+      "anim": "Animație"
+    },
+    "field": {
+      "accent": "Culoare accent",
+      "text_color": "Culoarea textului",
+      "bar_color": "Culoarea barei",
+      "bar_track": "Fundalul barei",
+      "gradient_from": "Început gradient",
+      "gradient_to": "Sfârșit gradient",
+      "gradient_angle": "Unghi gradient",
+      "bg_url": "Link imagine fundal",
+      "bg_color": "Culoare unică",
+      "overlay_color": "Culoare strat peste imagine",
+      "bg_opacity": "Intensitate strat peste imagine",
+      "border_width": "Grosime chenar",
+      "border_color": "Culoare chenar",
+      "radius": "Rotunjire colțuri",
+      "bg_image": "Poza de fundal"
+    },
+    "layout": "Aranjare",
+    "title": "Card de profil global",
+    "intro": "Creează-ți cardul o singură dată. Arată la fel pe orice server cu Wody, iar nivelul, XP și rangul vin mereu de pe serverul unde este afișat.",
+    "preview": "Previzualizare live",
+    "previewNote": "Numere de exemplu. Pe Discord apar nivelul, XP și rangul real de pe fiecare server.",
+    "themes": "Teme",
+    "sectionAvatar": "Avatar",
+    "sectionText": "Text și poziții",
+    "sectionBar": "Bară de progres",
+    "sectionBackground": "Fundal",
+    "sectionFrame": "Cadru și colțuri",
+    "sectionEffects": "Efecte și decor",
+    "save": "Salvează",
+    "saving": "Se salvează...",
+    "saved": "Salvat. Este deja activ pe Discord.",
+    "discard": "Renunță la modificări",
+    "resetDefault": "Resetează la implicit",
+    "resetConfirm": "Resetezi cardul la designul implicit? Se schimbă pe toate serverele.",
+    "reset": "Resetează",
+    "cancel": "Anulează",
+    "unsaved": "Ai modificări nesalvate.",
+    "loadError": "Cardul nu a putut fi încărcat. Încearcă din nou.",
+    "invalid": "{field} nu este valid.",
+    "saveError": "Nu s-a putut salva acum. Încearcă din nou într-un moment.",
+    "sync": "Modificările făcute în Discord cu /profile customize apar aici automat.",
+    "bgHint": "Link direct către o imagine PNG, JPG, WEBP sau GIF (doar https). Imaginile sunt verificate și limitate ca mărime la desenare.",
+    "discord": "Preferi Discord? Folosește /profile customize. Tot ce e aici există și acolo.",
+    "privacy": "Doar tu îți poți schimba cardul. Ceilalți membri văd doar imaginea finală, niciodată setările tale.",
+    "sampleName": "Numele tău",
+    "levelText": "Nivel {level}",
+    "rankText": "Rang #{rank}",
+    "imageErr": {
+      "image_too_large": "Poza e prea mare. Limita este 4 MB.",
+      "image_dimensions": "Poza e prea mică sau prea mare. Folosește între 64 și 6000 de pixeli.",
+      "image_invalid": "Fișierul nu este o poză validă. Folosește PNG, JPG, WEBP sau GIF.",
+      "rate_limited": "Prea multe încărcări. Încearcă din nou peste puțin timp.",
+      "generic": "Poza nu a putut fi încărcată."
+    },
+    "showcaseTitle": "Cardul tău de profil",
+    "viewPublic": "Vezi profilul public",
+    "copyLink": "Copiază linkul",
+    "linkCopied": "Link copiat",
+    "editCard": "Editează cardul",
+    "tagline": "Membru Wody din {date}",
+    "publicToggle": "Arată cardul pe profilul meu public",
+    "publicHint": "Vizitatorii autentificați îți văd designul, numele și poza. Nivelul și XP-ul nu sunt afișate niciodată.",
+    "upload": "Încarcă poză sau GIF",
+    "uploading": "Se încarcă…",
+    "removeImage": "Șterge poza",
+    "imageHint": "PNG, JPG, WEBP sau GIF, până la 4 MB, între 64 și 6000 de pixeli. Un GIF animează cardul.",
+    "imageCurrent": "Poza ta: {w}×{h} pixeli, {size} MB",
+    "imageSaved": "Poză salvată",
+    "animNote": "Efectele animate și fundalurile GIF fac ca Discord să arate cardul ca GIF animat.",
+    "sectionTemplates": "Șabloane"
   }
 }

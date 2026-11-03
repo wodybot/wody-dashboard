@@ -4,6 +4,7 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import { TreePalm, Lock } from 'lucide-react';
 import { Footer, TopNav } from '@/components/nav';
 import SocialLinks from '@/components/profile/SocialLinks';
+import ProfileCardPreview from '@/components/profile/ProfileCardPreview';
 import { getSession } from '@/lib/session';
 import { getDb } from '@/lib/mongo';
 import { discordCdnUrl } from '@/lib/utils';
@@ -27,6 +28,7 @@ export default async function PublicProfilePage({ params }) {
   }
   if (!clean) notFound();
   const t = await getTranslations('profile');
+  const tcard = await getTranslations('profileCard');
   const pf = await loadPublicProfile(await getDb(), clean);
   if (!pf) notFound();
   const src = pf.avatar ? `https://cdn.discordapp.com/avatars/${pf.id}/${pf.avatar}.png?size=128` : 'https://cdn.discordapp.com/embed/avatars/0.png';
@@ -36,6 +38,11 @@ export default async function PublicProfilePage({ params }) {
       <TopNav />
       <main id="main-content" className="mx-auto w-full max-w-3xl flex-1 px-4 py-8 sm:px-6">
         <section aria-label={t('public.aria')} className="overflow-hidden rounded-3xl border border-[#e6cd8c]/25 bg-gradient-to-br from-[#e6cd8c]/[0.09] via-card/60 to-card/40 p-5 sm:p-7">
+          {pf.card && (
+            <div className="mb-6" style={{ borderRadius: 26, boxShadow: `0 0 80px -20px ${pf.card.config.accent}` }}>
+              <ProfileCardPreview cfg={pf.card.config} name={pf.name} avatarSrc={discordCdnUrl(src)} tagline={pf.member_since ? tcard('tagline', { date: fmt(pf.member_since, locale) }) : ''} />
+            </div>
+          )}
           <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={discordCdnUrl(src)} alt="" className="h-24 w-24 shrink-0 rounded-full border-2 border-[#e6cd8c]/60 object-cover" />

@@ -60,7 +60,7 @@ def renumber(sections, start_at, bump):
 def insert(sections, after_index, entries):
     """entries: [(title, html)], numbered right after the section at after_index."""
     base = int(re.match(r"(\d+)\.", sections[after_index]["heading"]).group(1))
-    if any(s["heading"].split(". ", 1)[-1] == entries[0][0] for s in sections):
+    if any(s["heading"].split(". ", 1)[-1] == entries[0][0] or re.match(r"\d+\. (Radar|Pulse) \(", s["heading"]) for s in sections):
         return False
     renumber(sections, after_index + 1, len(entries))
     for n, (title, html) in enumerate(entries):
@@ -87,17 +87,6 @@ def PATCH(data, i):
 
 
 FAQ = [
-    {
-        "en": ("Do Lookups and Feeds cost anything?", "No. Lookups and Feeds are free on every server, up to 30 feeds each, with no Premium needed. Lookups are on by default and Feeds are added by an administrator."),
-        "ro": ("Costă ceva Lookups și Feeds?", "Nu. Lookups și Feeds sunt gratuite pe orice server, cu până la 30 de feed-uri, fără Premium. Lookups sunt pornite implicit, iar Feeds le adaugă un administrator."),
-        "fr": ("Les recherches et les flux sont-ils payants ?", "Non. Les recherches (Lookups) et les flux (Feeds) sont gratuits sur chaque serveur, jusqu'à 30 flux, sans Premium. Les recherches sont activées par défaut et les flux sont ajoutés par un administrateur."),
-        "it": ("Ricerche e Feed costano qualcosa?", "No. Le ricerche (Lookups) e i feed sono gratuiti su ogni server, fino a 30 feed, senza Premium. Le ricerche sono attive per impostazione predefinita e i feed li aggiunge un amministratore."),
-        "de": ("Kosten Lookups und Feeds etwas?", "Nein. Lookups und Feeds sind auf jedem Server kostenlos, bis zu 30 Feeds, ohne Premium. Lookups sind standardmäßig an, Feeds fügt ein Administrator hinzu."),
-        "es": ("¿Cuestan algo las búsquedas y los feeds?", "No. Las búsquedas (Lookups) y los feeds son gratis en cada servidor, hasta 30 feeds, sin Premium. Las búsquedas vienen activadas por defecto y los feeds los añade un administrador."),
-        "pt": ("As pesquisas e os feeds custam alguma coisa?", "Não. As pesquisas (Lookups) e os feeds são grátis em cada servidor, até 30 feeds, sem Premium. As pesquisas vêm ligadas por predefinição e os feeds são adicionados por um administrador."),
-        "nl": ("Kosten Lookups en Feeds iets?", "Nee. Lookups en Feeds zijn gratis op elke server, tot 30 feeds, zonder Premium. Lookups staan standaard aan en feeds worden door een beheerder toegevoegd."),
-        "tr": ("Sorgulamalar ve Akışlar ücretli mi?", "Hayır. Sorgulamalar (Lookups) ve Akışlar (Feeds) her sunucuda ücretsizdir, en fazla 30 akış, Premium gerekmez. Sorgulamalar varsayılan olarak açıktır, akışları bir yönetici ekler."),
-    },
     {
         "en": ("Can I see how my server grows?", "Yes. With Invite Tracking turned on, /statistics in Discord and the Statistics tab on the dashboard show a chart of the last 7, 14, 30 or 90 days with joins, leaves, retention, the best weekdays and hours, your top inviters and where members came from."),
         "ro": ("Pot vedea cum crește serverul meu?", "Da. Cu Invite Tracking pornit, /statistics în Discord și fila Statistici din dashboard arată un grafic al ultimelor 7, 14, 30 sau 90 de zile cu intrări, ieșiri, retenție, cele mai bune zile și ore, cei mai buni invitatori și de unde au venit membrii."),

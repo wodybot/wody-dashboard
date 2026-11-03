@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Wody - Leistungsstarker Discord-Bot",
-    "description": "Wody ist ein kostenloser Discord-Bot, der Moderation, Tickets, Gewinnspiele, Level, Willkommensnachrichten, Reaktionsrollen, Automod, benutzerdefinierte Befehle und mehr enthält, für wachsende Communitys.",
+    "description": "Wody ist ein Discord-Bot mit Moderation, Tickets, Gewinnspielen, Leveln, Willkommensnachrichten, Reaktionsrollen, Automod und mehr für Communities.",
     "keywords": [
       "Wody",
       "Wody Bot",
@@ -189,7 +189,8 @@
         "automod": "AutoMod",
         "moderation": "Moderation",
         "reactionRoles": "Reaktionsrollen",
-        "levels": "Level & XP"
+        "levels": "Level & XP",
+        "all": "Alle Module"
       }
     }
   },
@@ -355,13 +356,13 @@
       },
       {
         "key": "lookups",
-        "title": "Lookups",
-        "desc": "16 Abfragen unter /lookup: Last.fm läuft gerade, iTunes, Minecraft-Server und -Spieler, Roblox, Steam, Chess.com, Twitch, Kick, YouTube, GitHub, Filme, Krypto, Währungsumrechnung und Reddit. Offizielle oder offene APIs, kostenlos und standardmäßig an."
+        "title": "Radar",
+        "desc": "16 Abfragen unter /radar: Last.fm läuft gerade, iTunes, Minecraft-Server und -Spieler, Roblox, Steam, Chess.com, Twitch, Kick, YouTube, GitHub, Filme, Krypto, Währungsumrechnung und Reddit. Offizielle oder offene APIs, kostenlos und standardmäßig an."
       },
       {
         "key": "feeds",
-        "title": "Feeds",
-        "desc": "Neue Videos, Streams, Songs, Beiträge und Releases aus 17 Quellen, in einen Kanal gepostet, von alle 5 Minuten bis einmal am Tag. YouTube, Twitch und Kick mit echter Startzeit und Stream-Bild. Spotify und Apple Music, dazu ein zufälliger Song. Reddit, Tumblr, Pinterest und jeder RSS-Feed. GitHub, Steam-News und die Gratis-Spiele von Epic Games. Kostenlos."
+        "title": "Pulse",
+        "desc": "Neue Videos, Streams, Songs, Beiträge und Releases aus 14 Quellen, in einen Kanal gepostet, von alle 5 Minuten bis einmal am Tag. Spotify und Apple Music, dazu ein zufälliger Song. Reddit, Tumblr, Pinterest und jeder RSS-Feed. GitHub, Steam-News und die Gratis-Spiele von Epic Games. Kostenlos."
       },
       {
         "key": "community",
@@ -527,14 +528,6 @@
         "a": "Folge @wody.online auf TikTok und @wodybot auf YouTube für Inhalte und Neuigkeiten zu Wody, und tritt der offiziellen Wody-Community für Support und Ankündigungen bei."
       },
       {
-        "q": "Ist das Einladungs-Tracking kostenlos?",
-        "a": "Ja. Das Einladungs-Tracking ist für jeden Server kostenlos, ohne Limits und ohne Premium. Es bleibt aus, bis ein Admin es einschaltet, und Wody braucht die Berechtigung Server verwalten, um Einladungen zu sehen."
-      },
-      {
-        "q": "Kosten Lookups und Feeds etwas?",
-        "a": "Nein. Lookups und Feeds sind auf jedem Server kostenlos, bis zu 30 Feeds, ohne Premium. Lookups sind standardmäßig an, Feeds fügt ein Administrator hinzu."
-      },
-      {
         "q": "Kann ich sehen, wie mein Server wächst?",
         "a": "Ja. Mit aktivem Invite Tracking zeigen /statistics in Discord und der Tab Statistiken im Dashboard ein Diagramm der letzten 7, 14, 30 oder 90 Tage mit Beitritten, Austritten, Bindung, besten Wochentagen und Uhrzeiten, Top-Einladern und der Herkunft der Mitglieder."
       }
@@ -543,7 +536,7 @@
     "modulesPremiumSubtitle": "Die vollständige Liste aller Module, die zu Premium gehören."
   },
   "careers": {
-    "metaTitle": "Wody - Karriere",
+    "metaTitle": "Wody - Karriere | Discord Bot",
     "metaDescription": "Erfahre, wie du zu Wody beitragen kannst und wie du das Projekt für zukünftige Möglichkeiten kontaktierst.",
     "ogTitle": "Karriere bei Wody",
     "badge": "Wody Karriere",
@@ -574,7 +567,7 @@
     ]
   },
   "contact": {
-    "metaTitle": "Wody - Kontakt",
+    "metaTitle": "Wody - Kontakt | Discord Bot",
     "metaDescription": "Kontaktiere Wody für allgemeine Fragen, Support, Privatsphäre, rechtliche Angelegenheiten und Datenschutz.",
     "ogTitle": "Wody kontaktieren",
     "badge": "Wody Kontakt",
@@ -691,7 +684,7 @@
     ]
   },
   "help": {
-    "metaTitle": "Wody - Hilfe & FAQ",
+    "metaTitle": "Wody - Hilfe & FAQ | Discord Bot",
     "metaDescription": "Wody Hilfe und FAQ: Einrichtungsanleitungen, Dashboard-Infos, Tickets, Reaktionsrollen, Premium, Voting und wie du Wody auf deinen Server einlädst.",
     "ogTitle": "Wody - Hilfe & FAQ",
     "ogDescription": "Finde Antworten, Einrichtungsinformationen und Modul-Anleitungen für Wody, den kostenlosen All-in-One-Discord-Bot.",
@@ -1061,12 +1054,12 @@
         "html": "<p>Invite Tracking is free and is off until a server administrator turns it on. When it is on, Wody reads the list of invites of the server (this needs the Manage Server permission) and compares the use counters before and after each join to work out which invite a member used.</p><p><strong>What we store, per server.</strong> For every join: the Discord user ID of the member, the Discord user ID of the inviter, the invite code, the time of the join, whether the match was certain, and whether the member later left. For every invite: its code, the creator's Discord user ID, the use counter and its limits. The server's settings for the module (log and notice channels, messages, who can see statistics, the fake account threshold) are stored too. When Wody cannot be sure, the join is stored as unknown with the reason and nobody is credited.</p><p><strong>Why and who can see it.</strong> The data is used only to show invite statistics, leaderboards, join logs and the inviter variables of the welcome message in that server. Members can see statistics with the commands, unless the server limits them to staff. Server administrators with dashboard access can see the recent joins and the leaderboard of their own server. Data of one server is never shown in another.</p><p><strong>Deletion.</strong> Administrators can delete all invite statistics, or those of one member, from the dashboard or with <code>/invite-reset</code>. If Wody is removed from a server, the data of that server is deleted after 30 days. Invite Tracking never deletes the data of other modules.</p>"
       },
       {
-        "heading": "21. Lookups",
-        "html": "<p>Lookups sind kostenlos und standardmäßig aktiv. Ein Server-Administrator kann sie im Dashboard abschalten.</p><p><strong>Was passiert.</strong> Wenn ein Mitglied <code>/lookup</code> nutzt, sendet Wody den eingegebenen Text (zum Beispiel einen Benutzernamen, eine Serveradresse oder ein Suchwort) an den gewählten Dienst, erhält die Antwort und zeigt sie in Discord an. Die Anfrage kommt von Wodys Servern, der Dienst sieht also den eingegebenen Text und die Adresse von Wodys Server, nicht das Gerät oder die IP-Adresse des Mitglieds.</p><p><strong>Was wir speichern.</strong> Nichts. Suchen und Ergebnisse werden nicht gespeichert, nicht mit der Identität des Mitglieds protokolliert und nicht mit einem Profil verknüpft. Antworten können wenige Minuten im Arbeitsspeicher bleiben, um dieselbe Anfrage nicht zu wiederholen.</p><p><strong>Dritte.</strong> Jeder Dienst (zum Beispiel Last.fm, iTunes, Steam, Twitch, GitHub oder Reddit) ist unabhängig und hat eine eigene Datenschutzerklärung. Einige brauchen einen Schlüssel, den der Betreiber auf dem Server hält und der Mitgliedern nie angezeigt wird.</p>"
+        "heading": "21. Radar (Lookups)",
+        "html": "<p>Radar ist standardmäßig aktiv. Ein Server-Administrator kann es im Dashboard abschalten.</p><p><strong>Was passiert.</strong> Wenn ein Mitglied <code>/radar</code> nutzt, sendet Wody den eingegebenen Text (zum Beispiel einen Benutzernamen, eine Serveradresse oder ein Suchwort) an den gewählten Dienst, erhält die Antwort und zeigt sie in Discord an. Die Anfrage kommt von Wodys Servern, der Dienst sieht also den eingegebenen Text und die Adresse von Wodys Server, nicht das Gerät oder die IP-Adresse des Mitglieds.</p><p><strong>Was wir speichern.</strong> Nichts. Suchen und Ergebnisse werden nicht gespeichert, nicht mit der Identität des Mitglieds protokolliert und nicht mit einem Profil verknüpft. Antworten können wenige Minuten im Arbeitsspeicher bleiben, um dieselbe Anfrage nicht zu wiederholen.</p><p><strong>Dritte.</strong> Jeder Dienst (zum Beispiel Last.fm, iTunes, Steam, Twitch, GitHub oder Reddit) ist unabhängig und hat eine eigene Datenschutzerklärung. Einige brauchen einen Schlüssel, den der Betreiber auf dem Server hält und der Mitgliedern nie angezeigt wird.</p>"
       },
       {
-        "heading": "22. Feeds",
-        "html": "<p>Feeds sind kostenlos. Ein Server-Administrator richtet sie im Dashboard oder mit <code>/feed</code> ein, bis zu 30 pro Server.</p><p><strong>Was wir speichern, pro Server.</strong> Für jeden Feed: die Quelle, den vom Administrator eingegebenen Namen oder Link, die Optionen, den Kanal und die optionale Rolle zum Erwähnen, das Prüfintervall, die Discord-Nutzer-ID des Administrators, der ihn erstellt hat, den Erstellungszeitpunkt, Zeit und Ergebnis der letzten Prüfung mit einem kurzen Fehlercode, die Zahl der Beiträge und eine Liste von höchstens 120 Schlüsseln bereits geposteter Elemente, damit nichts doppelt gepostet wird.</p><p><strong>Was abgerufen wird.</strong> Wody fragt von Wodys Servern aus den gewählten Dienst (oder die Website, deren Adresse der Administrator eingegeben hat) nach Neuem und postet es im Kanal. Die Beiträge enthalten öffentliche Inhalte dieses Dienstes mit Link zum Original. Bilder von Tieren und Tags stammen aus öffentlichen, offen lizenzierten Bildbibliotheken und werden so gefiltert, dass sie für alle Altersgruppen geeignet sind, was sich nicht in jedem Fall garantieren lässt. Feeds lesen keine privaten Nachrichten und nutzen keine Mitgliederdaten.</p><p><strong>Löschung.</strong> Administratoren können jeden Feed jederzeit pausieren oder entfernen. Wird Wody von einem Server entfernt, werden seine Feeds nach 30 Tagen gelöscht. Vom Dashboard an den Bot gesendete Anfragen (zum Beispiel ein Test) werden vorübergehend gespeichert und nach 24 Stunden gelöscht. Jeder Dienst ist unabhängig und hat eine eigene Datenschutzerklärung.</p>"
+        "heading": "22. Pulse (Feeds)",
+        "html": "<p>Ein Server-Administrator richtet Pulse im Dashboard oder mit <code>/pulse</code> ein, bis zu 30 pro Server.</p><p><strong>Was wir speichern, pro Server.</strong> Für jeden Feed: die Quelle, den vom Administrator eingegebenen Namen oder Link, die Optionen, den Kanal und die optionale Rolle zum Erwähnen, das Prüfintervall, die Discord-Nutzer-ID des Administrators, der ihn erstellt hat, den Erstellungszeitpunkt, Zeit und Ergebnis der letzten Prüfung mit einem kurzen Fehlercode, die Zahl der Beiträge und eine Liste von höchstens 120 Schlüsseln bereits geposteter Elemente, damit nichts doppelt gepostet wird.</p><p><strong>Was abgerufen wird.</strong> Wody fragt von Wodys Servern aus den gewählten Dienst (oder die Website, deren Adresse der Administrator eingegeben hat) nach Neuem und postet es im Kanal. Die Beiträge enthalten öffentliche Inhalte dieses Dienstes mit Link zum Original. Bilder von Tieren und Tags stammen aus öffentlichen, offen lizenzierten Bildbibliotheken und werden so gefiltert, dass sie für alle Altersgruppen geeignet sind, was sich nicht in jedem Fall garantieren lässt. Pulse liest keine privaten Nachrichten und nutzen keine Mitgliederdaten.</p><p><strong>Löschung.</strong> Administratoren können jeden Feed jederzeit pausieren oder entfernen. Wird Wody von einem Server entfernt, werden seine Feeds nach 30 Tagen gelöscht. Vom Dashboard an den Bot gesendete Anfragen (zum Beispiel ein Test) werden vorübergehend gespeichert und nach 24 Stunden gelöscht. Jeder Dienst ist unabhängig und hat eine eigene Datenschutzerklärung.</p>"
       },
       {
         "heading": "23. Servers where Wody is added",
@@ -1178,12 +1171,12 @@
         "html": "<p>Community Discovery is a public directory of Discord communities. By submitting a listing you confirm that you have read and accept these Terms and the Privacy Policy.</p><p><strong>Eligibility.</strong> Only the owner of a Discord server, or a person with the permissions required by Wody, can create a listing for it. You must have the Wody bot in the server. One server can have one listing.</p><p><strong>Your content.</strong> You are responsible for everything in your listing, including the invite, images and links. It must be accurate, must not impersonate a person, brand or other server, and must follow the Community Guidelines at <a href=\"/servers/guidelines\" class=\"text-[#e08a4e] hover:underline\">/servers/guidelines</a>. You give Wody a free, non exclusive licence to display the content in the directory, in search results and in link previews while the listing is published. You keep ownership of your content.</p><p><strong>Review and publication.</strong> Every listing and every later change is reviewed by Wody before it becomes public. Wody can approve, ask for changes, reject, suspend, unpublish or delete a listing at its discretion, for example for breaking these Terms, for a broken invite, for reports or for abuse. Approval is not an endorsement and Wody is not responsible for what happens inside a listed server or for the conduct of its members.</p><p><strong>Names and addresses.</strong> Each public address and community name can be used by one listing at a time. We may refuse or change a name or address that is misleading, reserved, or already in use. Addresses are not property: a deleted listing frees its address, and Wody may reassign reserved or abandoned ones.</p><p><strong>Reviews and reports.</strong> Reviews can be written only by members of the server and are moderated. Fake, paid, abusive or off topic reviews and links in reviews are removed. Listing owners cannot review their own server. Reports are handled by the Wody team and the outcome is at its discretion.</p><p><strong>No guarantees.</strong> Listing position, featuring and badges are decided by Wody and can change. We do not guarantee any number of views, clicks or members. Features can be changed or removed. Custom domains are not offered.</p>"
       },
       {
-        "heading": "20. Lookups",
-        "html": "<p>Lookups zeigen Informationen anderer Dienste in Discord. Die Antworten stammen von diesen Diensten, und Wody kontrolliert, prüft oder garantiert sie nicht. Ein Dienst kann langsam sein, sich ändern, Anfragen begrenzen oder jederzeit ausfallen, dann kann ein Lookup fehlschlagen oder fehlen.</p><p>Nutze Lookups nicht, um Menschen zu belästigen, zu verfolgen oder bloßzustellen oder um personenbezogene Daten massenhaft zu sammeln. Preise dienen nur der Information und sind keine Finanzberatung.</p>"
+        "heading": "20. Radar (Lookups)",
+        "html": "<p>Lookups zeigen Informationen anderer Dienste in Discord. Die Antworten stammen von diesen Diensten, und Wody kontrolliert, prüft oder garantiert sie nicht. Ein Dienst kann langsam sein, sich ändern, Anfragen begrenzen oder jederzeit ausfallen, dann kann ein Lookup fehlschlagen oder fehlen.</p><p>Nutze Radar nicht, um Menschen zu belästigen, zu verfolgen oder bloßzustellen oder um personenbezogene Daten massenhaft zu sammeln. Preise dienen nur der Information und sind keine Finanzberatung.</p>"
       },
       {
-        "heading": "21. Feeds",
-        "html": "<p>Feeds posten nach einem Zeitplan Inhalte anderer Dienste in einen Kanal. Ein Server kann bis zu 30 Feeds haben. Der Administrator, der einen Feed einrichtet, ist für den Kanal verantwortlich, in dem er postet, und für das, was die verfolgte Quelle dort veröffentlicht.</p><p>Die Inhalte gehören ihren Urhebern und Diensten. Wody kontrolliert oder prüft sie nicht, garantiert nicht, dass sie vollständig, rechtzeitig, richtig oder für jedes Publikum geeignet sind, und ein Feed kann sich selbst pausieren, wenn die Quelle ausfällt oder der Kanal verschwindet. Folge nur Quellen, die du teilen darfst, und nutze die Rollenerwähnung nur für Leute, die sie wollten. Nutze Feeds nicht für Spam, nicht, um Inhalte auf eine von der Quelle verbotene Weise erneut zu posten, und nicht, um Wody auf Adressen zu richten, die dir nicht gehören oder die du nicht nutzen darfst.</p>"
+        "heading": "21. Pulse (Feeds)",
+        "html": "<p>Feeds posten nach einem Zeitplan Inhalte anderer Dienste in einen Kanal. Ein Server kann bis zu 30 Feeds haben. Der Administrator, der einen Feed einrichtet, ist für den Kanal verantwortlich, in dem er postet, und für das, was die verfolgte Quelle dort veröffentlicht.</p><p>Die Inhalte gehören ihren Urhebern und Diensten. Wody kontrolliert oder prüft sie nicht, garantiert nicht, dass sie vollständig, rechtzeitig, richtig oder für jedes Publikum geeignet sind, und ein Feed kann sich selbst pausieren, wenn die Quelle ausfällt oder der Kanal verschwindet. Folge nur Quellen, die du teilen darfst, und nutze die Rollenerwähnung nur für Leute, die sie wollten. Nutze Pulse nicht für Spam, nicht, um Inhalte auf eine von der Quelle verbotene Weise erneut zu posten, und nicht, um Wody auf Adressen zu richten, die dir nicht gehören oder die du nicht nutzen darfst.</p>"
       },
       {
         "heading": "22. Third-Party Discord Bots and External Services",
@@ -1220,7 +1213,7 @@
     ]
   },
   "premiumPage": {
-    "metaTitle": "Wody - Premium",
+    "metaTitle": "Wody Premium | Höhere Limits und Zusatzmodule",
     "metaDescription": "Erfahre, was Wody Premium freischaltet: höhere Serverlimits, Backups, temporäre Sprachkanäle, Wirtschaft, Spiele und Stream-Benachrichtigungen.",
     "ogTitle": "Wody Premium",
     "ogDescription": "Unbegrenzte Erstellungslimits und erweiterte Wody-Funktionen für wachsende Discord-Server.",
@@ -1261,8 +1254,8 @@
     "joinCommunityBtn": "Community beitreten"
   },
   "commands": {
-    "metaTitle": "Wody - Befehle",
-    "metaDescription": "Die komplette Befehlsliste des Wody-Discord-Bots: Moderation, Tickets, Gewinnspiele, Level, Backups, temporäre Sprachkanäle, Wirtschaft und Spiele wie /slots, /coin und /dice.",
+    "metaTitle": "Wody - Befehle | Discord Bot",
+    "metaDescription": "Komplette Befehlsliste des Wody-Discord-Bots: Moderation, Tickets, Gewinnspiele, Level, Backups, Sprachkanäle, Wirtschaft und Spiele wie /slots.",
     "ogTitle": "Wody-Befehle",
     "ogDescription": "Durchsuche die vollständige Liste der Wody-Discord-Bot-Befehle und sieh, was jeder Befehl bewirkt.",
     "badge": "Wody-Befehle",
@@ -1647,91 +1640,91 @@
       },
       {
         "key": "lookups",
-        "title": "Lookups",
+        "title": "Radar",
         "premium": false,
         "commands": [
           {
-            "name": "/lookup nowplaying",
+            "name": "/radar nowplaying",
             "description": "Was ein Last.fm-Nutzer hört, mit Cover."
           },
           {
-            "name": "/lookup itunes",
+            "name": "/radar itunes",
             "description": "Musik, Podcasts, Filme oder Apps auf Apple iTunes."
           },
           {
-            "name": "/lookup mcserver",
+            "name": "/radar mcserver",
             "description": "Status, Spieler und Version eines Minecraft-Servers."
           },
           {
-            "name": "/lookup mcplayer",
+            "name": "/radar mcplayer",
             "description": "Ein Minecraft-Spieler: Skin, UUID und Profil."
           },
           {
-            "name": "/lookup roblox",
+            "name": "/radar roblox",
             "description": "Ein Roblox-Profil: Freunde, Follower und Avatar."
           },
           {
-            "name": "/lookup steam",
+            "name": "/radar steam",
             "description": "Ein Steam-Spiel: Preis, aktuelle Spieler, Bewertung."
           },
           {
-            "name": "/lookup chess",
+            "name": "/radar chess",
             "description": "Ein Chess.com-Spieler: Wertungen und Profil."
           },
           {
-            "name": "/lookup twitch",
+            "name": "/radar twitch",
             "description": "Ein Twitch-Kanal: Live-Status, Spiel und Zuschauer."
           },
           {
-            "name": "/lookup kick",
+            "name": "/radar kick",
             "description": "Ein Kick-Kanal: Live-Status, Kategorie und Zuschauer."
           },
           {
-            "name": "/lookup youtube",
+            "name": "/radar youtube",
             "description": "Ein YouTube-Kanal: Abonnenten, Videos und Aufrufe."
           },
           {
-            "name": "/lookup github",
+            "name": "/radar github",
             "description": "Ein GitHub-Nutzer oder Repository."
           },
           {
-            "name": "/lookup movie",
+            "name": "/radar movie",
             "description": "Ein Film: Bewertung, Erscheinungsdatum, Poster, Handlung."
           },
           {
-            "name": "/lookup show",
+            "name": "/radar show",
             "description": "Eine Serie: Bewertung, Sender, Status, nächste Folge."
           },
           {
-            "name": "/lookup crypto",
+            "name": "/radar crypto",
             "description": "Preis und Marktdaten einer Kryptowährung."
           },
           {
-            "name": "/lookup convert",
+            "name": "/radar convert",
             "description": "Rechnet einen Betrag zwischen Währungen um."
           },
           {
-            "name": "/lookup reddit",
+            "name": "/radar reddit",
             "description": "Ein Subreddit oder Reddit-Nutzer."
           }
         ]
       },
       {
         "key": "feeds",
-        "title": "Feeds",
+        "title": "Pulse",
         "premium": false,
         "commands": [
           {
-            "name": "/feed add",
+            "name": "/pulse add",
             "description": "Füge einen Feed hinzu: Quelle, Kanal und Prüfintervall."
           },
           {
-            "name": "/feed list",
+            "name": "/pulse list",
             "description": "Zeige deine Feeds, poste das Neueste, pausiere oder entferne einen."
           },
           {
-            "name": "/feed sources",
-            "description": "Alle Quellen, denen Feeds folgen kann."
+            "name": "/pulse sources",
+            "description": "Alle Quellen, denen Pulse folgen kann."
           }
         ]
       },
@@ -1795,6 +1788,41 @@
             "description": "Diesen Server auf Wody Discovery bumpen (alle 2 Stunden, mit Premium alle 30 Minuten)"
           }
         ]
+      },
+      {
+        "key": "profile",
+        "title": "Profilkarte",
+        "premium": false,
+        "commands": [
+          {
+            "name": "/profile show",
+            "description": "Zeige deine Profilkarte"
+          },
+          {
+            "name": "/profile user",
+            "description": "Zeige die Profilkarte eines Mitglieds"
+          },
+          {
+            "name": "/profile customize",
+            "description": "Ändere das Aussehen deiner Profilkarte"
+          },
+          {
+            "name": "/profile preview",
+            "description": "Sieh dir das aktuelle Kartendesign und die Einstellungen an"
+          },
+          {
+            "name": "/profile reset",
+            "description": "Stelle das Standarddesign der Profilkarte wieder her"
+          },
+          {
+            "name": "/profile background",
+            "description": "Lade dein eigenes Hintergrundbild oder GIF hoch (leer lassen zum Entfernen)"
+          },
+          {
+            "name": "/profile visibility",
+            "description": "Zeige oder verberge deine Karte im öffentlichen Dashboard-Profil"
+          }
+        ]
       }
     ]
   },
@@ -1838,7 +1866,7 @@
     }
   },
   "updates": {
-    "metaTitle": "Wody - Neuigkeiten",
+    "metaTitle": "Wody - Neuigkeiten | Discord Bot",
     "metaDescription": "Die neuesten Updates zum Wody-Discord-Bot: neue Funktionen, Fehlerbehebungen und Ankündigungen.",
     "ogTitle": "Wody Neuigkeiten",
     "badge": "Wody Neuigkeiten",
@@ -1872,8 +1900,8 @@
     "moreArticles": "Weitere Artikel"
   },
   "team": {
-    "metaTitle": "Wody - Team",
-    "metaDescription": "Lerne die Menschen hinter Wody kennen.",
+    "metaTitle": "Wody-Team | Die Menschen hinter dem Discord-Bot",
+    "metaDescription": "Lerne die Menschen hinter Wody kennen, dem Discord-Bot für Moderation, Tickets, Level und Gewinnspiele, und wer ihn entwickelt und pflegt.",
     "ogTitle": "Das Wody-Team",
     "badge": "Unser Team",
     "titleLine1": "Lerne das",
@@ -3496,7 +3524,9 @@
         "option": "Wähle eine der verfügbaren Optionen für {option}.",
         "target_required": "Sag Wody, was es verfolgen soll.",
         "target_invalid": "Dieser Name oder Link passt nicht zu dieser Quelle.",
-        "interval": "Wähle eines der Intervalle, von 5 Minuten bis einmal am Tag."
+        "interval": "Wähle eines der Intervalle, von 5 Minuten bis einmal am Tag.",
+        "invalid_kick_slug": "Gib einen gültigen Kick-Benutzernamen oder Kanallink ein.",
+        "kick_not_found": "Es wurde kein Kick-Kanal mit diesem Namen gefunden."
       },
       "apiErrors": {
         "generic": "Etwas ist schiefgelaufen. Versuche es gleich noch einmal.",
@@ -3555,7 +3585,8 @@
         "subscription_disconnected": "Die Verbindung zur Plattform ging verloren. Nutze Neu verbinden.",
         "missing_manage_guild": "Wody hat die Berechtigung Server verwalten nicht und kann Einladungen deshalb nicht sehen. Gib Wody diese Berechtigung und nutze Erneut prüfen.",
         "fetch_failed": "Discord hat die Einladungsliste nicht geliefert. Wody versucht es beim nächsten Beitritt erneut.",
-        "no_baseline": "Wody hat deine Einladungen noch nicht gelesen. Es startet beim nächsten Beitritt, oder nutze Einladungsdaten aktualisieren im Tab Übersicht."
+        "no_baseline": "Wody hat deine Einladungen noch nicht gelesen. Es startet beim nächsten Beitritt, oder nutze Einladungsdaten aktualisieren im Tab Übersicht.",
+        "kick_not_configured": "Kick ist bei diesem Bot noch nicht eingerichtet. Der Bot-Besitzer muss den Kick-Schlüssel hinzufügen."
       },
       "lock": {
         "badge": "Premium",
@@ -3864,7 +3895,7 @@
     },
     "streams": {
       "title": "Stream-Benachrichtigungen",
-      "description": "Kündige Live-Streams und neue Videos von Twitch und TikTok an.",
+      "description": "Kündigt Livestreams und neue Videos von Twitch, Kick und TikTok an.",
       "lock": {
         "title": "Stream-Benachrichtigungen",
         "text": "Erhalte automatische Hinweise, wenn deine Lieblings-Streamer live gehen. Twitch nutzt das offizielle EventSub, TikTok die offizielle API."
@@ -3881,6 +3912,9 @@
           "not_configured": "Diese Plattform wurde auf dieser Wody-Installation noch nicht eingerichtet.",
           "callback_not_https": "Die öffentliche Adresse der Website muss https verwenden, damit Twitch Ereignisse zustellt.",
           "token_key_missing": "Der Schlüssel zur Token-Verschlüsselung fehlt auf dem Server."
+        },
+        "kick": {
+          "ok": "Kick ist über die offizielle Kick-API verbunden."
         }
       },
       "status": {
@@ -3896,7 +3930,8 @@
         "emptyTitle": "Noch keine Benachrichtigungen",
         "emptyText": {
           "twitch": "Füge einen Twitch-Streamer hinzu, um anzukündigen, wenn er live geht.",
-          "tiktok": "Verbinde dein TikTok-Konto und füge dann eine Benachrichtigung für neue Videos hinzu."
+          "tiktok": "Verbinde dein TikTok-Konto und füge dann eine Benachrichtigung für neue Videos hinzu.",
+          "kick": "Füge einen Kick-Streamer hinzu, um anzukündigen, wenn er live geht."
         },
         "emptyUnavailable": "Diese Plattform ist gerade nicht verfügbar."
       },
@@ -3907,11 +3942,13 @@
         "create": "Erstellen",
         "title": {
           "twitch": "Twitch-Streamer hinzufügen",
-          "tiktok": "TikTok-Benachrichtigung hinzufügen"
+          "tiktok": "TikTok-Benachrichtigung hinzufügen",
+          "kick": "Kick-Streamer hinzufügen"
         },
         "text": {
           "twitch": "Wähle den Streamer und den Kanal für die Hinweise.",
-          "tiktok": "Wähle ein verbundenes Konto und den Kanal für die Hinweise."
+          "tiktok": "Wähle ein verbundenes Konto und den Kanal für die Hinweise.",
+          "kick": "Gib den Streamer ein und wähle den Kanal für die Alarme."
         },
         "streamer": "Streamer",
         "streamerHint": "Suche nach dem Namen oder füge einen Benutzernamen oder Kanallink ein.",
@@ -3921,7 +3958,9 @@
         "change": "Ändern",
         "account": "TikTok-Konto",
         "accountHint": "Es werden nur Konten gelistet, die mit diesem Server verbunden sind.",
-        "noAccount": "Noch kein Konto verbunden. Verbinde oben eines."
+        "noAccount": "Noch kein Konto verbunden. Verbinde oben eines.",
+        "kickHint": "Gib den Kick-Benutzernamen ein oder füge den Kanallink ein.",
+        "kickPlaceholder": "kick.com/benutzername"
       },
       "configure": "Konfigurieren",
       "reconnect": "Neu verbinden",
@@ -3985,7 +4024,8 @@
       },
       "advanced": {
         "twitchNote": "Twitch-Hinweise kommen sofort über EventSub an. Es wird kein Polling verwendet.",
-        "tiktokNote": "TikTok-Hinweise entstehen, indem die Videos des verbundenen Creators regelmäßig geprüft werden."
+        "tiktokNote": "TikTok-Hinweise entstehen, indem die Videos des verbundenen Creators regelmäßig geprüft werden.",
+        "kickNote": "Kick-Alarme werden gefunden, indem der Live-Status des Kanals in regelmäßigen Abständen über die offizielle API geprüft wird."
       },
       "sample": {
         "title": "Wir zocken mit der Community",
@@ -4512,7 +4552,7 @@
     },
     "invites": {
       "title": "Einladungs-Tracking",
-      "description": "Sieh, wer jedes Mitglied eingeladen hat, führe Einladungsstatistiken und ordne die besten Einlader. Kostenlos für jeden Server, ohne Limits.",
+      "description": "Sieh, wer jedes Mitglied eingeladen hat, führe Einladungsstatistiken und ordne die besten Einlader.",
       "tabs": {
         "overview": "Übersicht",
         "leaderboard": "Bestenliste",
@@ -4523,8 +4563,6 @@
         "statistics": "Statistiken"
       },
       "overview": {
-        "freeTitle": "Kostenlos für jeden Server",
-        "freeText": "Das Einladungs-Tracking hat keine Limits und braucht nie Premium. Es bleibt aus, bis du es einschaltest, und Wody braucht die Berechtigung Server verwalten, um Einladungen zu sehen.",
         "resync": "Einladungsdaten aktualisieren",
         "resyncDone": "Einladungsdaten aktualisiert.",
         "reasonsTitle": "Beitritte ohne Zuordnung",
@@ -4776,12 +4814,10 @@
       }
     },
     "feeds": {
-      "title": "Feeds",
+      "title": "Pulse",
       "description": "Neue Videos, Streams, Songs, Beiträge, Versionen von anderen Diensten, in einem Kanal nach deinem Zeitplan gepostet.",
       "add": "Feed hinzufügen",
       "edit": "Feed bearbeiten",
-      "freeTitle": "Kostenlos für jeden Server",
-      "freeText": "Bis zu {max} Feeds, von alle 5 Minuten bis einmal am Tag. Kein Premium nötig.",
       "counter": "{n} von {max} Feeds",
       "emptyTitle": "Noch keine Feeds",
       "emptyText": "Füge deinen ersten Feed hinzu: Quelle, Kanal und Prüfintervall wählen. Das Neueste wird sofort gepostet, danach nur noch Neues.",
@@ -4881,6 +4917,24 @@
         "music": "Musik und Podcasts",
         "social": "Social und Feeds",
         "code": "Code und Spiele"
+      },
+      "exampleLabel": "Beispiel",
+      "useExample": "Beispiel übernehmen",
+      "sourceHints": {
+        "spotify_artist": "Link des Künstlers auf Spotify (open.spotify.com/artist/...) oder die Künstler-ID.",
+        "spotify_playlist": "Link der Playlist auf Spotify (open.spotify.com/playlist/...) oder die Playlist-ID.",
+        "spotify_podcast": "Link des Podcasts auf Spotify (open.spotify.com/show/...) oder die Show-ID.",
+        "apple_artist": "Link des Künstlers auf Apple Music (music.apple.com/.../artist/...) oder die numerische Künstler-ID.",
+        "apple_chart": "Zweibuchstabiger Ländercode der Charts, zum Beispiel us, gb oder ro. Leer bedeutet us.",
+        "apple_podcast": "Link des Podcasts auf Apple Podcasts (podcasts.apple.com/.../id123456789) oder die numerische ID.",
+        "reddit": "Ein Subreddit als r/name oder ein Nutzer als u/name. Ein reddit.com-Link geht auch.",
+        "tumblr": "Der Blogname, zum Beispiel staff, oder sein Link (staff.tumblr.com).",
+        "pinterest": "Ein Pinterest-Nutzer (Name) oder eines seiner Boards (name/board) oder der Link zu einem von beiden.",
+        "rss": "Der Link eines beliebigen RSS- oder Atom-Feeds oder einer Website, die einen hat (Blog, News, Forum).",
+        "github": "Besitzer/Repository, zum Beispiel python/cpython, oder der Link des Repositorys. Wähle unten Releases oder Commits.",
+        "steam": "Der Spielname, der Steam-Store-Link (store.steampowered.com/app/...) oder die App-ID.",
+        "epic": "Zweibuchstabiger Ländercode für die Liste der Gratisspiele, zum Beispiel us oder ro. Leer bedeutet us.",
+        "random_song": "Optional. Spotify braucht einen Playlist-Link oder eine ID, Apple Music einen Ländercode, Deezer einen optionalen Playlist-Link."
       }
     },
     "lookups": {
@@ -4902,16 +4956,12 @@
         "convert": "Rechnet einen Betrag zwischen Währungen um.",
         "reddit": "Ein Subreddit oder Reddit-Nutzer."
       },
-      "title": "Lookups",
+      "title": "Radar",
       "description": "{n} Abfragen anderer Dienste unter /lookup. Mitglieder finden Songs, Server, Profile und Preise, ohne Discord zu verlassen.",
       "copied": "{command} kopiert",
       "copyFailed": "Kopieren nicht möglich. Markiere den Befehl und kopiere ihn von Hand.",
       "copy": "Befehl kopieren",
       "facts": {
-        "free": {
-          "title": "Kostenlos für alle",
-          "text": "Kein Premium, keine Limits pro Server. In der Seitenleiste abschaltbar, falls du es nicht willst."
-        },
         "fast": {
           "title": "Offizielle und offene APIs",
           "text": "Ergebnisse kommen aus dokumentierten APIs, nie aus ausgelesenen Seiten, und sehen aus wie jede andere Wody-Nachricht."
@@ -4947,7 +4997,12 @@
           "text": "Subreddits und Reddit-Nutzer."
         }
       },
-      "footer": "Mitglieder tippen /lookup und wählen einen Dienst. Du willst einen Feed, der Neues selbst postet? Öffne Feeds in der Seitenleiste."
+      "footer": "Mitglieder tippen /radar und wählen einen Dienst. Du willst einen Feed, der Neues selbst postet? Öffne Pulse in der Seitenleiste."
+    },
+    "levelsCard": {
+      "useMemberProfile": "Profilkarten der Mitglieder verwenden",
+      "useMemberProfileHint": "Mitglieder mit einer globalen Profilkarte (/profile customize) erhalten sie als Level-Up-Karte und in /rank auf diesem Server. Alle anderen behalten die hier eingestellte Karte.",
+      "useMemberProfileLink": "Eigene Profilkarte anpassen"
     }
   },
   "botStatus": {
@@ -5063,7 +5118,7 @@
     },
     "birthdays": {
       "title": "Geburtstage",
-      "description": "Feiere Geburtstage mit Rolle, Ankündigung, Karte und Erinnerungen. Kostenlos."
+      "description": "Feiere Geburtstage mit Rolle, Ankündigung, Karte und Erinnerungen."
     },
     "economy": {
       "title": "Wirtschaft",
@@ -5083,19 +5138,19 @@
     },
     "invite_tracking": {
       "title": "Einladungs-Tracking",
-      "description": "Sieh, wer jedes Mitglied eingeladen hat, mit 30-Tage-Statistiken, Diagrammen und Ranglisten. Kostenlos."
+      "description": "Sieh, wer jedes Mitglied eingeladen hat, mit 30-Tage-Statistiken, Diagrammen und Ranglisten."
     },
     "collab": {
       "title": "Collab",
       "description": "Eigene Collab-Kategorien und Einstellungen für diesen Server."
     },
     "lookups": {
-      "title": "Lookups",
-      "description": "16 Abfragen unter /lookup: Songs, Server, Profile und Preise. Kostenlos."
+      "title": "Radar",
+      "description": "16 Abfragen unter /radar: Songs, Server, Profile und Preise."
     },
     "feeds": {
-      "title": "Feeds",
-      "description": "17 Quellen, nach deinem Zeitplan in einem Kanal gepostet: Videos, Streams, Musik, Social, Code und Spiele. Kostenlos."
+      "title": "Pulse",
+      "description": "14 Quellen, nach deinem Zeitplan in einem Kanal gepostet: Videos, Streams, Musik, Social, Code und Spiele."
     }
   },
   "errorPage": {
@@ -6680,7 +6735,7 @@
         ]
       },
       "lookups": {
-        "what": "Mitglieder tippen /lookup und wählen einen Dienst, um einen Song, Server, ein Profil oder einen Preis zu bekommen, ohne Discord zu verlassen. 16 Abfragen über offizielle oder offene APIs.",
+        "what": "Mitglieder tippen /radar und wählen einen Dienst, um einen Song, Server, ein Profil oder einen Preis zu bekommen, ohne Discord zu verlassen. 16 Abfragen über offizielle oder offene APIs.",
         "customize": [
           "Für den ganzen Server an- oder ausschalten",
           "Welche Dienste einen Schlüssel vom Bot-Besitzer brauchen",
@@ -6688,7 +6743,7 @@
         ]
       },
       "feeds": {
-        "what": "Postet neue Videos, Streams, Songs, Beiträge, Releases aus 17 Quellen in einen Kanal, von alle 5 Minuten bis einmal am Tag. Ein neuer Feed zeigt sofort sein neuestes Element und danach nur noch Neues.",
+        "what": "Postet neue Videos, Streams, Songs, Beiträge, Releases aus 14 Quellen in einen Kanal, von alle 5 Minuten bis einmal am Tag. Ein neuer Feed zeigt sofort sein neuestes Element und danach nur noch Neues.",
         "customize": [
           "Quelle und was verfolgt wird",
           "Kanal und Prüfintervall",
@@ -6731,7 +6786,7 @@
   },
   "globalBoard": {
     "metaTitle": "Globale Wirtschaftsrangliste",
-    "metaDescription": "Die 100 reichsten Mitglieder aller Server, die Wody Economy nutzen.",
+    "metaDescription": "Die 100 reichsten Mitglieder aller Server, die Wody Economy nutzen, gereiht nach Gesamtvermögen und laufend aktualisiert.",
     "badge": "Globales Ranking",
     "title": "Die reichsten Mitglieder von Wody",
     "subtitle": "Die Top 100 aller Server, die Wody Economy nutzen.",
@@ -7273,7 +7328,8 @@
       "applications": "Bewerbungen",
       "messages": "Nachrichten",
       "servers": "Server",
-      "settings": "Einstellungen"
+      "settings": "Einstellungen",
+      "card": "Profilkarte"
     },
     "hero": {
       "aria": "Dein Profil",
@@ -7531,5 +7587,206 @@
       "unavailable": "Die TikTok-Verknüpfung ist gerade nicht verfügbar."
     },
     "cookies": "Cookie-Richtlinie"
+  },
+  "modulesHub": {
+    "metaTitle": "Wody-Module | Moderation, Tickets, Level und mehr",
+    "metaDescription": "Alle Wody-Module an einem Ort: Moderation, Tickets, Level, Giveaways, Willkommen, Pulse, Radar, Wirtschaft und mehr. Sieh, was jedes Modul kann.",
+    "ogTitle": "Alle Wody-Module für Discord",
+    "title": "Die Wody-Module",
+    "subtitle": "Ein Bot für Moderation, Community, Creator und Spaß. Wähle ein Modul, um zu sehen, was es kann und wie du es einrichtest.",
+    "breadcrumb": "Module",
+    "home": "Startseite"
+  },
+  "cardFonts": {
+    "label": "Schriftart",
+    "classic": "Klassisch (Standard)",
+    "classicBold": "Klassisch fett",
+    "hint": "Wird für den Text im Kartenbild verwendet. Namen mit Sonderzeichen werden unterstützt."
+  },
+  "profileCard": {
+    "theme": {
+      "default": "Wody",
+      "minimal": "Minimalistisch",
+      "dark": "Dunkel",
+      "glass": "Glassmorphism",
+      "gradient": "Farbverlauf",
+      "professional": "Professionell",
+      "premium": "Premium",
+      "sunset": "Sonnenuntergang",
+      "ocean": "Ozean",
+      "forest": "Wald",
+      "custom": "Benutzerdefiniert",
+      "label": "Design",
+      "neon": "Neon",
+      "aurora": "Polarlicht",
+      "sakura": "Sakura",
+      "midnight": "Mitternacht",
+      "matrix": "Matrix",
+      "lava": "Lava",
+      "frost": "Frost",
+      "royal": "Königlich",
+      "candy": "Bonbon",
+      "synthwave": "Synthwave",
+      "galaxy": "Galaxie",
+      "mint": "Minze",
+      "rose": "Rosé",
+      "noir": "Noir"
+    },
+    "layoutOpt": {
+      "classic": "Klassisch",
+      "compact": "Kompakt",
+      "split": "Geteiltes Panel",
+      "centered": "Zentriert"
+    },
+    "opt": {
+      "avatar_pos": {
+        "left": "Links",
+        "right": "Rechts",
+        "center": "Mitte"
+      },
+      "avatar_size": {
+        "small": "Klein",
+        "medium": "Mittel",
+        "large": "Groß"
+      },
+      "avatar_shape": {
+        "circle": "Kreis",
+        "rounded": "Abgerundetes Quadrat",
+        "square": "Quadrat"
+      },
+      "name_align": {
+        "left": "Links",
+        "center": "Mitte",
+        "right": "Rechts"
+      },
+      "stats_pos": {
+        "above_bar": "Über der Leiste",
+        "right": "Oben rechts",
+        "under_name": "Unter dem Namen"
+      },
+      "bar_style": {
+        "rounded": "Abgerundet",
+        "flat": "Flach",
+        "segmented": "Segmentiert",
+        "glow": "Leuchtend"
+      },
+      "font": {
+        "default": "Klassisch",
+        "bold": "Klassisch fett"
+      },
+      "effect": {
+        "none": "Keiner",
+        "glass": "Glaspanel",
+        "vignette": "Vignette",
+        "noise": "Filmkorn",
+        "glow": "Leuchten"
+      },
+      "decoration": {
+        "none": "Keiner",
+        "dots": "Punkte",
+        "lines": "Linien",
+        "sparkles": "Funkeln",
+        "waves": "Wellen"
+      },
+      "bg_mode": {
+        "gradient": "Farbverlauf",
+        "solid": "Einfarbig",
+        "image": "Bild"
+      },
+      "anim": {
+        "none": "Keiner",
+        "shimmer": "Glanz",
+        "stars": "Funkelnde Sterne",
+        "aurora": "Polarlicht",
+        "bubbles": "Blasen",
+        "pulse": "Pulsieren",
+        "scan": "Scanlinie",
+        "snow": "Schnee"
+      }
+    },
+    "setting": {
+      "avatar_pos": "Avatar-Position",
+      "avatar_size": "Avatar-Größe",
+      "avatar_shape": "Avatar-Form",
+      "name_align": "Position des Namens",
+      "stats_pos": "Position von Level und XP",
+      "bar_style": "Stil der Fortschrittsleiste",
+      "font": "Schriftart",
+      "effect": "Visueller Effekt",
+      "decoration": "Dekoration",
+      "bg_mode": "Hintergrundart",
+      "anim": "Animation"
+    },
+    "field": {
+      "accent": "Akzentfarbe",
+      "text_color": "Textfarbe",
+      "bar_color": "Balkenfarbe",
+      "bar_track": "Balkenhintergrund",
+      "gradient_from": "Farbverlauf Start",
+      "gradient_to": "Farbverlauf Ende",
+      "gradient_angle": "Farbverlaufswinkel",
+      "bg_url": "Link zum Hintergrundbild",
+      "bg_color": "Einfarbig",
+      "overlay_color": "Farbe der Bildüberlagerung",
+      "bg_opacity": "Stärke der Bildüberlagerung",
+      "border_width": "Rahmenbreite",
+      "border_color": "Rahmenfarbe",
+      "radius": "Eckenradius",
+      "bg_image": "Hintergrundbild"
+    },
+    "layout": "Layout",
+    "title": "Globale Profilkarte",
+    "intro": "Gestalte deine Karte einmal. Sie sieht auf jedem Server mit Wody gleich aus, während Level, XP und Rang immer vom Server stammen, auf dem sie angezeigt wird.",
+    "preview": "Live-Vorschau",
+    "previewNote": "Beispielwerte. In Discord werden Level, XP und Rang des jeweiligen Servers angezeigt.",
+    "themes": "Designs",
+    "sectionAvatar": "Avatar",
+    "sectionText": "Text und Positionen",
+    "sectionBar": "Fortschrittsleiste",
+    "sectionBackground": "Hintergrund",
+    "sectionFrame": "Rahmen und Ecken",
+    "sectionEffects": "Effekte und Dekoration",
+    "save": "Speichern",
+    "saving": "Wird gespeichert...",
+    "saved": "Gespeichert. Es ist bereits auf Discord aktiv.",
+    "discard": "Änderungen verwerfen",
+    "resetDefault": "Auf Standard zurücksetzen",
+    "resetConfirm": "Karte auf das Standarddesign zurücksetzen? Das gilt auf jedem Server.",
+    "reset": "Zurücksetzen",
+    "cancel": "Abbrechen",
+    "unsaved": "Du hast ungespeicherte Änderungen.",
+    "loadError": "Deine Karte konnte nicht geladen werden. Versuche es erneut.",
+    "invalid": "{field} ist ungültig.",
+    "saveError": "Speichern ist gerade nicht möglich. Versuche es gleich noch einmal.",
+    "sync": "Änderungen aus Discord mit /profile customize erscheinen hier automatisch.",
+    "bgHint": "Direkter Link zu einem PNG-, JPG-, WEBP- oder GIF-Bild (nur https). Bilder werden beim Zeichnen geprüft und in der Größe begrenzt.",
+    "discord": "Lieber in Discord? Nutze /profile customize. Alles hier gibt es auch dort.",
+    "privacy": "Nur du kannst deine Karte ändern. Andere Mitglieder sehen nur das fertige Bild, nie deine Einstellungen.",
+    "sampleName": "Dein Name",
+    "levelText": "Level {level}",
+    "rankText": "Rang #{rank}",
+    "imageErr": {
+      "image_too_large": "Dieses Bild ist zu groß. Das Limit liegt bei 4 MB.",
+      "image_dimensions": "Das Bild ist zu klein oder zu groß. Nutze 64 bis 6000 Pixel.",
+      "image_invalid": "Diese Datei ist kein gültiges Bild. Nutze PNG, JPG, WEBP oder GIF.",
+      "rate_limited": "Zu viele Uploads. Versuche es später erneut.",
+      "generic": "Das Bild konnte nicht hochgeladen werden."
+    },
+    "showcaseTitle": "Deine Profilkarte",
+    "viewPublic": "Öffentliches Profil ansehen",
+    "copyLink": "Link kopieren",
+    "linkCopied": "Link kopiert",
+    "editCard": "Karte bearbeiten",
+    "tagline": "Wody-Mitglied seit {date}",
+    "publicToggle": "Meine Karte im öffentlichen Profil zeigen",
+    "publicHint": "Angemeldete Besucher sehen dein Design, deinen Namen und dein Bild. Level und XP werden nie angezeigt.",
+    "upload": "Bild oder GIF hochladen",
+    "uploading": "Wird hochgeladen…",
+    "removeImage": "Bild entfernen",
+    "imageHint": "PNG, JPG, WEBP oder GIF, bis 4 MB, 64 bis 6000 Pixel. Ein GIF animiert die Karte.",
+    "imageCurrent": "Dein Bild: {w}×{h} Pixel, {size} MB",
+    "imageSaved": "Bild gespeichert",
+    "animNote": "Bewegte Effekte und GIF-Hintergründe lassen Discord die Karte als animiertes GIF zeigen.",
+    "sectionTemplates": "Vorlagen"
   }
 }

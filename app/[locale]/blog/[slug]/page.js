@@ -12,6 +12,7 @@ import { SimpleMarkdown } from '@/components/simple-markdown';
 import { getDb, serializeDoc } from '@/lib/mongo';
 import { BLOG_COLLECTION, readWithRetry } from '@/lib/blog';
 import { BlogCover } from '@/components/blog-cover';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 
@@ -48,7 +49,8 @@ export async function generateMetadata({ params }) {
     description,
     alternates: localizedAlternates(await getLocale(), `/blog/${post.slug}`),
     robots: { index: true, follow: true },
-    openGraph: {
+    twitter: TWITTER_CARD,
+      openGraph: {
       title,
       description,
       url: `${SITE_URL}/blog/${post.slug}`,

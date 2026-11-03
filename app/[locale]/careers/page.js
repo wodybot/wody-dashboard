@@ -9,6 +9,7 @@ import { CONTENT, COMMUNITY_INVITE } from '@/lib/content';
 import { Button } from '@/components/ui/button';
 import { Footer, TopNav } from '@/components/nav';
 import { getCareersRolesConfig } from '@/lib/careers-roles';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 
@@ -30,7 +31,8 @@ export async function generateMetadata() {
       description: t('metaDescription'),
       alternates: localizedAlternates(await getLocale(), '/careers'),
       robots: { index: true, follow: true },
-      openGraph: {
+      twitter: TWITTER_CARD,
+      openGraph: { images: OG_IMAGES,
         title: t('ogTitle'),
         description: t('metaDescription'),
         url: `${SITE_URL}/careers`,

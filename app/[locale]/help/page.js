@@ -10,6 +10,7 @@ import { COMMUNITY_INVITE, CONTENT, INVITE_URL, TIKTOK_URL, YOUTUBE_URL } from '
 import { Button } from '@/components/ui/button';
 import { Footer, TopNav } from '@/components/nav';
 import { BrandText, highlightBrandHtml } from '@/components/brand-text';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 
@@ -35,7 +36,8 @@ export async function generateMetadata({ params }) {
       description: t('metaDescription'),
       alternates: localizedAlternates(locale, '/help'),
       robots: { index: true, follow: true },
-      openGraph: {
+      twitter: TWITTER_CARD,
+      openGraph: { images: OG_IMAGES,
         title: t('ogTitle'),
         description: t('ogDescription'),
         url: `${SITE_URL}/help`,

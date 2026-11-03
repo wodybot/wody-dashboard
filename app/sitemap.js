@@ -10,11 +10,16 @@ const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 // localePrefix is 'as-needed', e.g. /premium vs /fr/premium) plus the
 // hreflang alternates block search engines use to serve the right
 // language version of a page.
-function localizedEntry(path, rest) {
+// Module detail pages only have their own copy in these locales; the rest
+// show English text, so they stay out of the sitemap (no duplicate content).
+const SEO_COPY_LOCALES = ['en', 'ro'];
+
+function localizedEntry(path, rest, onlyLocales) {
+  const locs = onlyLocales || routing.locales;
   const alternates = {
     languages: {
       ...Object.fromEntries(
-        routing.locales.map((l) => [
+        locs.map((l) => [
           l,
           `${SITE_URL}${l === routing.defaultLocale ? '' : `/${l}`}${path}`,
         ])
@@ -22,7 +27,7 @@ function localizedEntry(path, rest) {
       'x-default': `${SITE_URL}${path}`,
     },
   };
-  return routing.locales.map((l) => ({
+  return locs.map((l) => ({
     url: `${SITE_URL}${l === routing.defaultLocale ? '' : `/${l}`}${path}`,
     alternates,
     ...rest,
@@ -105,8 +110,9 @@ export default async function sitemap() {
     ...localizedEntry('/premium', { lastModified, changeFrequency: 'monthly', priority: 0.9 }),
     ...localizedEntry('/help', { lastModified, changeFrequency: 'monthly', priority: 0.8 }),
     ...localizedEntry('/commands', { lastModified, changeFrequency: 'monthly', priority: 0.8 }),
+    ...localizedEntry('/modules', { lastModified, changeFrequency: 'weekly', priority: 0.85 }),
     ...MODULE_SEO_SLUGS.flatMap((slug) =>
-      localizedEntry(`/modules/${slug}`, { lastModified, changeFrequency: 'monthly', priority: 0.75 })
+      localizedEntry(`/modules/${slug}`, { lastModified, changeFrequency: 'monthly', priority: 0.75 }, SEO_COPY_LOCALES)
     ),
     ...localizedEntry('/updates', {
       lastModified: updatesLastModified,

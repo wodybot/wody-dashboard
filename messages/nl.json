@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Wody: krachtige Discord-bot",
-    "description": "Wody is een gratis Discord-bot die moderatie, tickets, giveaways, levels, welkomstberichten, reactierollen, automod, aangepaste commando's en meer bevat, voor groeiende communities.",
+    "description": "Wody is een Discord-bot met moderatie, tickets, giveaways, levels, welkomstberichten, reactierollen, automod en meer voor groeiende communities.",
     "keywords": [
       "Wody",
       "Wody bot",
@@ -189,7 +189,8 @@
         "automod": "AutoMod",
         "moderation": "Moderatie",
         "reactionRoles": "Reactierollen",
-        "levels": "Levels & XP"
+        "levels": "Levels & XP",
+        "all": "Alle modules"
       }
     }
   },
@@ -355,13 +356,13 @@
       },
       {
         "key": "lookups",
-        "title": "Opzoekingen",
-        "desc": "16 opzoekingen onder /lookup: Last.fm speelt nu, iTunes, Minecraft-servers en -spelers, Roblox, Steam, Chess.com, Twitch, Kick, YouTube, GitHub, films, crypto, valuta-omrekening en Reddit. Officiële of open API's, gratis en standaard aan."
+        "title": "Radar",
+        "desc": "16 opzoekingen onder /radar: Last.fm speelt nu, iTunes, Minecraft-servers en -spelers, Roblox, Steam, Chess.com, Twitch, Kick, YouTube, GitHub, films, crypto, valuta-omrekening en Reddit. Officiële of open API's, gratis en standaard aan."
       },
       {
         "key": "feeds",
-        "title": "Feeds",
-        "desc": "Nieuwe video's, streams, nummers, berichten en releases uit 17 bronnen, in een kanaal geplaatst van elke 5 minuten tot één keer per dag. YouTube, Twitch en Kick met de echte starttijd en het streambeeld. Spotify en Apple Music, plus een willekeurig nummer. Reddit, Tumblr, Pinterest en elke RSS-feed. GitHub, Steam-nieuws en de gratis games van Epic Games. Gratis."
+        "title": "Pulse",
+        "desc": "Nieuwe video's, streams, nummers, berichten en releases uit 14 bronnen, in een kanaal geplaatst van elke 5 minuten tot één keer per dag. Spotify en Apple Music, plus een willekeurig nummer. Reddit, Tumblr, Pinterest en elke RSS-feed. GitHub, Steam-nieuws en de gratis games van Epic Games. Gratis."
       },
       {
         "key": "community",
@@ -527,14 +528,6 @@
         "a": "Volg @wody.online op TikTok en @wodybot op YouTube voor content en nieuws over Wody, en word lid van de officiële Wody-community voor ondersteuning en aankondigingen."
       },
       {
-        "q": "Is Uitnodigingen bijhouden gratis?",
-        "a": "Ja. Uitnodigingen bijhouden is gratis voor elke server, zonder limieten en zonder Premium. Het blijft uit tot een admin het aanzet, en Wody heeft de machtiging Server beheren nodig om uitnodigingen te zien."
-      },
-      {
-        "q": "Kosten Lookups en Feeds iets?",
-        "a": "Nee. Lookups en Feeds zijn gratis op elke server, tot 30 feeds, zonder Premium. Lookups staan standaard aan en feeds worden door een beheerder toegevoegd."
-      },
-      {
         "q": "Kan ik zien hoe mijn server groeit?",
         "a": "Ja. Met Invite Tracking aan tonen /statistics in Discord en het tabblad Statistieken in het dashboard een grafiek van de laatste 7, 14, 30 of 90 dagen met aanmeldingen, vertrekken, retentie, beste weekdagen en uren, beste uitnodigers en waar leden vandaan kwamen."
       }
@@ -543,7 +536,7 @@
     "modulesPremiumSubtitle": "De volledige lijst van alle modules die bij Premium horen."
   },
   "careers": {
-    "metaTitle": "Wody: Vacatures",
+    "metaTitle": "Wody: Vacatures | Discord Bot",
     "metaDescription": "Ontdek hoe je kunt bijdragen aan Wody en hoe je contact opneemt met het project voor toekomstige kansen.",
     "ogTitle": "Vacatures bij Wody",
     "badge": "Wody Vacatures",
@@ -574,7 +567,7 @@
     ]
   },
   "contact": {
-    "metaTitle": "Wody: Contact",
+    "metaTitle": "Wody: Contact | Discord Bot",
     "metaDescription": "Neem contact op met Wody voor algemene vragen, ondersteuning, privacy, juridische zaken en gegevensbescherming.",
     "ogTitle": "Contact met Wody",
     "badge": "Wody Contact",
@@ -691,7 +684,7 @@
     ]
   },
   "help": {
-    "metaTitle": "Wody: Help & FAQ",
+    "metaTitle": "Wody: Help & FAQ | Discord Bot",
     "metaDescription": "Wody Help en FAQ: installatiegidsen, dashboardinfo, tickets, reactierollen, Premium, stemmen en hoe je Wody uitnodigt op je server.",
     "ogTitle": "Wody: Help & FAQ",
     "ogDescription": "Vind antwoorden, installatie-informatie en modulegidsen voor Wody, de gratis alles-in-één Discord-bot.",
@@ -1061,12 +1054,12 @@
         "html": "<p>Invite Tracking is free and is off until a server administrator turns it on. When it is on, Wody reads the list of invites of the server (this needs the Manage Server permission) and compares the use counters before and after each join to work out which invite a member used.</p><p><strong>What we store, per server.</strong> For every join: the Discord user ID of the member, the Discord user ID of the inviter, the invite code, the time of the join, whether the match was certain, and whether the member later left. For every invite: its code, the creator's Discord user ID, the use counter and its limits. The server's settings for the module (log and notice channels, messages, who can see statistics, the fake account threshold) are stored too. When Wody cannot be sure, the join is stored as unknown with the reason and nobody is credited.</p><p><strong>Why and who can see it.</strong> The data is used only to show invite statistics, leaderboards, join logs and the inviter variables of the welcome message in that server. Members can see statistics with the commands, unless the server limits them to staff. Server administrators with dashboard access can see the recent joins and the leaderboard of their own server. Data of one server is never shown in another.</p><p><strong>Deletion.</strong> Administrators can delete all invite statistics, or those of one member, from the dashboard or with <code>/invite-reset</code>. If Wody is removed from a server, the data of that server is deleted after 30 days. Invite Tracking never deletes the data of other modules.</p>"
       },
       {
-        "heading": "21. Opzoekingen (Lookups)",
-        "html": "<p>Opzoekingen zijn gratis en staan standaard aan. Een serverbeheerder kan ze in het dashboard uitzetten.</p><p><strong>Wat er gebeurt.</strong> Wanneer een lid <code>/lookup</code> gebruikt, stuurt Wody de getypte tekst (bijvoorbeeld een gebruikersnaam, een serveradres of een zoekwoord) naar de gekozen dienst, ontvangt het antwoord en toont het in Discord. Het verzoek komt van de servers van Wody, dus de dienst ziet de getypte tekst en het serveradres van Wody, niet het apparaat of het IP-adres van het lid.</p><p><strong>Wat we opslaan.</strong> Niets. Zoekopdrachten en resultaten worden niet bewaard, niet gelogd met de identiteit van het lid en niet aan een profiel gekoppeld. Antwoorden kunnen enkele minuten in het geheugen blijven om hetzelfde verzoek niet te herhalen.</p><p><strong>Derden.</strong> Elke dienst (bijvoorbeeld Last.fm, iTunes, Steam, Twitch, GitHub of Reddit) is onafhankelijk en heeft een eigen privacybeleid. Sommige hebben een sleutel nodig die de beheerder op de server bewaart en die nooit aan leden wordt getoond.</p>"
+        "heading": "21. Radar (opzoekingen)",
+        "html": "<p>Radar staat standaard aan. Een serverbeheerder kan het in het dashboard uitzetten.</p><p><strong>Wat er gebeurt.</strong> Wanneer een lid <code>/radar</code> gebruikt, stuurt Wody de getypte tekst (bijvoorbeeld een gebruikersnaam, een serveradres of een zoekwoord) naar de gekozen dienst, ontvangt het antwoord en toont het in Discord. Het verzoek komt van de servers van Wody, dus de dienst ziet de getypte tekst en het serveradres van Wody, niet het apparaat of het IP-adres van het lid.</p><p><strong>Wat we opslaan.</strong> Niets. Zoekopdrachten en resultaten worden niet bewaard, niet gelogd met de identiteit van het lid en niet aan een profiel gekoppeld. Antwoorden kunnen enkele minuten in het geheugen blijven om hetzelfde verzoek niet te herhalen.</p><p><strong>Derden.</strong> Elke dienst (bijvoorbeeld Last.fm, iTunes, Steam, Twitch, GitHub of Reddit) is onafhankelijk en heeft een eigen privacybeleid. Sommige hebben een sleutel nodig die de beheerder op de server bewaart en die nooit aan leden wordt getoond.</p>"
       },
       {
-        "heading": "22. Feeds",
-        "html": "<p>Feeds zijn gratis. Een serverbeheerder stelt ze in via het dashboard of met <code>/feed</code>, maximaal 30 per server.</p><p><strong>Wat we opslaan, per server.</strong> Per feed: de bron, de naam of link die de beheerder invoerde, de opties, het kanaal en de optionele rol om te vermelden, hoe vaak er wordt gecontroleerd, de Discord-gebruikers-ID van de beheerder die hem maakte, het tijdstip van aanmaak, tijd en uitkomst van de laatste controle met een korte foutcode, het aantal berichten en een lijst met maximaal 120 sleutels van al geplaatste items, zodat niets dubbel wordt geplaatst.</p><p><strong>Wat wordt opgehaald.</strong> Wody vraagt vanaf de servers van Wody de gekozen dienst (of de website waarvan de beheerder het adres typte) om nieuwe items en plaatst ze in het kanaal. De berichten bevatten openbare inhoud van die dienst, met een link naar het origineel. Plaatjes van dieren en tags komen uit openbare, open gelicentieerde beeldbibliotheken en worden gefilterd zodat ze geschikt zijn voor alle leeftijden, wat niet in elk geval gegarandeerd kan worden. Feeds lezen geen privéberichten en gebruiken geen ledengegevens.</p><p><strong>Verwijdering.</strong> Beheerders kunnen elke feed op elk moment pauzeren of verwijderen. Wordt Wody van een server verwijderd, dan worden de feeds na 30 dagen gewist. Verzoeken van het dashboard naar de bot (bijvoorbeeld een test) worden tijdelijk bewaard en na 24 uur gewist. Elke dienst is onafhankelijk en heeft een eigen privacybeleid.</p>"
+        "heading": "22. Pulse (feeds)",
+        "html": "<p>Een serverbeheerder stelt Pulse in via het dashboard of met <code>/pulse</code>, maximaal 30 per server.</p><p><strong>Wat we opslaan, per server.</strong> Per feed: de bron, de naam of link die de beheerder invoerde, de opties, het kanaal en de optionele rol om te vermelden, hoe vaak er wordt gecontroleerd, de Discord-gebruikers-ID van de beheerder die hem maakte, het tijdstip van aanmaak, tijd en uitkomst van de laatste controle met een korte foutcode, het aantal berichten en een lijst met maximaal 120 sleutels van al geplaatste items, zodat niets dubbel wordt geplaatst.</p><p><strong>Wat wordt opgehaald.</strong> Wody vraagt vanaf de servers van Wody de gekozen dienst (of de website waarvan de beheerder het adres typte) om nieuwe items en plaatst ze in het kanaal. De berichten bevatten openbare inhoud van die dienst, met een link naar het origineel. Plaatjes van dieren en tags komen uit openbare, open gelicentieerde beeldbibliotheken en worden gefilterd zodat ze geschikt zijn voor alle leeftijden, wat niet in elk geval gegarandeerd kan worden. Pulse leest geen privéberichten en gebruiken geen ledengegevens.</p><p><strong>Verwijdering.</strong> Beheerders kunnen elke feed op elk moment pauzeren of verwijderen. Wordt Wody van een server verwijderd, dan worden de feeds na 30 dagen gewist. Verzoeken van het dashboard naar de bot (bijvoorbeeld een test) worden tijdelijk bewaard en na 24 uur gewist. Elke dienst is onafhankelijk en heeft een eigen privacybeleid.</p>"
       },
       {
         "heading": "23. Servers where Wody is added",
@@ -1178,11 +1171,11 @@
         "html": "<p>Community Discovery is a public directory of Discord communities. By submitting a listing you confirm that you have read and accept these Terms and the Privacy Policy.</p><p><strong>Eligibility.</strong> Only the owner of a Discord server, or a person with the permissions required by Wody, can create a listing for it. You must have the Wody bot in the server. One server can have one listing.</p><p><strong>Your content.</strong> You are responsible for everything in your listing, including the invite, images and links. It must be accurate, must not impersonate a person, brand or other server, and must follow the Community Guidelines at <a href=\"/servers/guidelines\" class=\"text-[#e08a4e] hover:underline\">/servers/guidelines</a>. You give Wody a free, non exclusive licence to display the content in the directory, in search results and in link previews while the listing is published. You keep ownership of your content.</p><p><strong>Review and publication.</strong> Every listing and every later change is reviewed by Wody before it becomes public. Wody can approve, ask for changes, reject, suspend, unpublish or delete a listing at its discretion, for example for breaking these Terms, for a broken invite, for reports or for abuse. Approval is not an endorsement and Wody is not responsible for what happens inside a listed server or for the conduct of its members.</p><p><strong>Names and addresses.</strong> Each public address and community name can be used by one listing at a time. We may refuse or change a name or address that is misleading, reserved, or already in use. Addresses are not property: a deleted listing frees its address, and Wody may reassign reserved or abandoned ones.</p><p><strong>Reviews and reports.</strong> Reviews can be written only by members of the server and are moderated. Fake, paid, abusive or off topic reviews and links in reviews are removed. Listing owners cannot review their own server. Reports are handled by the Wody team and the outcome is at its discretion.</p><p><strong>No guarantees.</strong> Listing position, featuring and badges are decided by Wody and can change. We do not guarantee any number of views, clicks or members. Features can be changed or removed. Custom domains are not offered.</p>"
       },
       {
-        "heading": "20. Opzoekingen (Lookups)",
+        "heading": "20. Radar (opzoekingen)",
         "html": "<p>Opzoekingen tonen in Discord informatie van andere diensten. De antwoorden komen van die diensten en Wody controleert, verifieert of garandeert ze niet. Een dienst kan traag zijn, veranderen, verzoeken beperken of op elk moment stoppen, en dan kan een opzoeking mislukken of ontbreken.</p><p>Gebruik opzoekingen niet om mensen lastig te vallen, te volgen of bloot te stellen, of om massaal persoonsgegevens te verzamelen. Prijzen zijn alleen informatief en geen financieel advies.</p>"
       },
       {
-        "heading": "21. Feeds",
+        "heading": "21. Pulse (feeds)",
         "html": "<p>Feeds plaatsen volgens een schema inhoud van andere diensten in een kanaal. Een server kan maximaal 30 feeds hebben. De beheerder die een feed instelt, is verantwoordelijk voor het kanaal waarin hij plaatst en voor wat de gevolgde bron daar publiceert.</p><p>De inhoud is van de makers en diensten zelf. Wody controleert of beoordeelt hem niet, garandeert niet dat hij volledig, op tijd, juist of geschikt voor elk publiek is, en een feed kan zichzelf pauzeren als de bron uitvalt of het kanaal verdwijnt. Volg alleen bronnen die je mag delen en gebruik de rolvermelding alleen voor mensen die erom vroegen. Gebruik feeds niet voor spam, om inhoud te herplaatsen op een manier die de bron verbiedt, of om Wody naar adressen te sturen die niet van jou zijn of die je niet mag gebruiken.</p>"
       },
       {
@@ -1220,7 +1213,7 @@
     ]
   },
   "premiumPage": {
-    "metaTitle": "Wody: Premium",
+    "metaTitle": "Wody Premium | Hogere limieten en extra modules",
     "metaDescription": "Ontdek wat Wody Premium ontgrendelt: hogere serverlimieten, back-ups, tijdelijke spraak, economie, games en streammeldingen.",
     "ogTitle": "Wody Premium",
     "ogDescription": "Onbeperkte aanmaaklimieten en geavanceerde Wody-functies voor groeiende Discord-servers.",
@@ -1261,8 +1254,8 @@
     "joinCommunityBtn": "Word lid van de community"
   },
   "commands": {
-    "metaTitle": "Wody: Commando's",
-    "metaDescription": "Bekijk de volledige commandolijst van de Wody Discord-bot: moderatie, tickets, giveaways, levels, back-ups, tijdelijke spraak, economie en games zoals /slots, /coin en /dice.",
+    "metaTitle": "Wody: Commando's | Discord Bot",
+    "metaDescription": "Volledige commandolijst van de Wody Discord-bot: moderatie, tickets, giveaways, levels, back-ups, spraak, economie en games zoals /slots.",
     "ogTitle": "Wody-commando's",
     "ogDescription": "Blader door de volledige lijst met Wody Discord-botcommando's en bekijk wat elk commando doet.",
     "badge": "Wody-commando's",
@@ -1647,91 +1640,91 @@
       },
       {
         "key": "lookups",
-        "title": "Opzoekingen",
+        "title": "Radar",
         "premium": false,
         "commands": [
           {
-            "name": "/lookup nowplaying",
+            "name": "/radar nowplaying",
             "description": "Wat een Last.fm-gebruiker luistert, met hoes."
           },
           {
-            "name": "/lookup itunes",
+            "name": "/radar itunes",
             "description": "Muziek, podcasts, films of apps op Apple iTunes."
           },
           {
-            "name": "/lookup mcserver",
+            "name": "/radar mcserver",
             "description": "Status, spelers en versie van een Minecraft-server."
           },
           {
-            "name": "/lookup mcplayer",
+            "name": "/radar mcplayer",
             "description": "Een Minecraft-speler: skin, UUID en profiel."
           },
           {
-            "name": "/lookup roblox",
+            "name": "/radar roblox",
             "description": "Een Roblox-profiel: vrienden, volgers en avatar."
           },
           {
-            "name": "/lookup steam",
+            "name": "/radar steam",
             "description": "Een Steam-game: prijs, spelers nu, score."
           },
           {
-            "name": "/lookup chess",
+            "name": "/radar chess",
             "description": "Een Chess.com-speler: ratings en profiel."
           },
           {
-            "name": "/lookup twitch",
+            "name": "/radar twitch",
             "description": "Een Twitch-kanaal: livestatus, game en kijkers."
           },
           {
-            "name": "/lookup kick",
+            "name": "/radar kick",
             "description": "Een Kick-kanaal: livestatus, categorie en kijkers."
           },
           {
-            "name": "/lookup youtube",
+            "name": "/radar youtube",
             "description": "Een YouTube-kanaal: abonnees, video's en weergaven."
           },
           {
-            "name": "/lookup github",
+            "name": "/radar github",
             "description": "Een GitHub-gebruiker of repository."
           },
           {
-            "name": "/lookup movie",
+            "name": "/radar movie",
             "description": "Een film: score, releasedatum, poster, samenvatting."
           },
           {
-            "name": "/lookup show",
+            "name": "/radar show",
             "description": "Een serie: waardering, zender, status, volgende aflevering."
           },
           {
-            "name": "/lookup crypto",
+            "name": "/radar crypto",
             "description": "De prijs en marktdata van een cryptomunt."
           },
           {
-            "name": "/lookup convert",
+            "name": "/radar convert",
             "description": "Rekent een bedrag om tussen valuta."
           },
           {
-            "name": "/lookup reddit",
+            "name": "/radar reddit",
             "description": "Een subreddit of Reddit-gebruiker."
           }
         ]
       },
       {
         "key": "feeds",
-        "title": "Feeds",
+        "title": "Pulse",
         "premium": false,
         "commands": [
           {
-            "name": "/feed add",
+            "name": "/pulse add",
             "description": "Voeg een feed toe: een bron, een kanaal en hoe vaak te controleren."
           },
           {
-            "name": "/feed list",
+            "name": "/pulse list",
             "description": "Bekijk je feeds, plaats de nieuwste, pauzeer of verwijder er een."
           },
           {
-            "name": "/feed sources",
-            "description": "Alle bronnen die Feeds kan volgen."
+            "name": "/pulse sources",
+            "description": "Alle bronnen die Pulse kan volgen."
           }
         ]
       },
@@ -1795,6 +1788,41 @@
             "description": "Bump deze server op Wody Discovery (elke 2 uur, elke 30 minuten met Premium)"
           }
         ]
+      },
+      {
+        "key": "profile",
+        "title": "Profielkaart",
+        "premium": false,
+        "commands": [
+          {
+            "name": "/profile show",
+            "description": "Toon je profielkaart"
+          },
+          {
+            "name": "/profile user",
+            "description": "Toon de profielkaart van een lid"
+          },
+          {
+            "name": "/profile customize",
+            "description": "Wijzig hoe je profielkaart eruitziet"
+          },
+          {
+            "name": "/profile preview",
+            "description": "Bekijk je huidige kaartontwerp en de instellingen"
+          },
+          {
+            "name": "/profile reset",
+            "description": "Zet het standaardontwerp van de profielkaart terug"
+          },
+          {
+            "name": "/profile background",
+            "description": "Upload je eigen achtergrondafbeelding of GIF (leeg laten om te verwijderen)"
+          },
+          {
+            "name": "/profile visibility",
+            "description": "Toon of verberg je kaart op je openbare dashboardprofiel"
+          }
+        ]
       }
     ]
   },
@@ -1838,7 +1866,7 @@
     }
   },
   "updates": {
-    "metaTitle": "Wody: Updates",
+    "metaTitle": "Wody: Updates | Discord Bot",
     "metaDescription": "De laatste updates over de Wody Discord-bot: nieuwe functies, fixes en aankondigingen.",
     "ogTitle": "Wody-updates",
     "badge": "Wody-updates",
@@ -1872,8 +1900,8 @@
     "moreArticles": "Meer artikelen"
   },
   "team": {
-    "metaTitle": "Wody: Team",
-    "metaDescription": "Maak kennis met de mensen achter Wody.",
+    "metaTitle": "Wody-team | De mensen achter de Discord-bot",
+    "metaDescription": "Maak kennis met de mensen achter Wody, de Discord-bot voor moderatie, tickets, levels en giveaways, en wie hem bouwt en onderhoudt.",
     "ogTitle": "Het Wody-team",
     "badge": "Ons team",
     "titleLine1": "Maak kennis met het",
@@ -3496,7 +3524,9 @@
         "option": "Kies een van de beschikbare opties voor {option}.",
         "target_required": "Zeg Wody wat het moet volgen.",
         "target_invalid": "Die naam of link lijkt niet te kloppen voor deze bron.",
-        "interval": "Kies een van de intervallen, van 5 minuten tot één keer per dag."
+        "interval": "Kies een van de intervallen, van 5 minuten tot één keer per dag.",
+        "invalid_kick_slug": "Voer een geldige Kick-gebruikersnaam of kanaallink in.",
+        "kick_not_found": "Er is geen Kick-kanaal met die naam gevonden."
       },
       "apiErrors": {
         "generic": "Er ging iets mis. Probeer het zo opnieuw.",
@@ -3555,7 +3585,8 @@
         "subscription_disconnected": "De verbinding met het platform is verbroken. Gebruik Opnieuw koppelen.",
         "missing_manage_guild": "Wody heeft de machtiging Server beheren niet en kan uitnodigingen dus niet zien. Geef Wody die machtiging en gebruik Opnieuw controleren.",
         "fetch_failed": "Discord gaf de lijst met uitnodigingen niet terug. Wody probeert het bij de volgende join opnieuw.",
-        "no_baseline": "Wody heeft je uitnodigingen nog niet gelezen. Het start bij de volgende join, of gebruik Uitnodigingsgegevens vernieuwen op het tabblad Overzicht."
+        "no_baseline": "Wody heeft je uitnodigingen nog niet gelezen. Het start bij de volgende join, of gebruik Uitnodigingsgegevens vernieuwen op het tabblad Overzicht.",
+        "kick_not_configured": "Kick is nog niet ingesteld op deze bot. De eigenaar van de bot moet de Kick-sleutel toevoegen."
       },
       "lock": {
         "badge": "Premium",
@@ -3864,7 +3895,7 @@
     },
     "streams": {
       "title": "Streammeldingen",
-      "description": "Kondig livestreams en nieuwe video's van Twitch en TikTok aan.",
+      "description": "Kondigt livestreams en nieuwe video's van Twitch, Kick en TikTok aan.",
       "lock": {
         "title": "Streammeldingen",
         "text": "Ontvang automatische meldingen wanneer je favoriete streamers live gaan. Twitch gebruikt het officiële EventSub, TikTok gebruikt de officiële API."
@@ -3881,6 +3912,9 @@
           "not_configured": "Dit platform is nog niet ingesteld op deze Wody-installatie.",
           "callback_not_https": "Het openbare siteadres moet https gebruiken zodat Twitch gebeurtenissen kan afleveren.",
           "token_key_missing": "De sleutel voor tokenversleuteling ontbreekt op de server."
+        },
+        "kick": {
+          "ok": "Kick is verbonden via de officiële Kick-API."
         }
       },
       "status": {
@@ -3896,7 +3930,8 @@
         "emptyTitle": "Nog geen meldingen",
         "emptyText": {
           "twitch": "Voeg een Twitch-streamer toe om aan te kondigen wanneer die live gaat.",
-          "tiktok": "Koppel je TikTok-account en voeg dan een melding toe voor je nieuwe video's."
+          "tiktok": "Koppel je TikTok-account en voeg dan een melding toe voor je nieuwe video's.",
+          "kick": "Voeg een Kick-streamer toe om aan te kondigen wanneer die live gaat."
         },
         "emptyUnavailable": "Dit platform is nu niet beschikbaar."
       },
@@ -3907,11 +3942,13 @@
         "create": "Aanmaken",
         "title": {
           "twitch": "Twitch-streamer toevoegen",
-          "tiktok": "TikTok-melding toevoegen"
+          "tiktok": "TikTok-melding toevoegen",
+          "kick": "Kick-streamer toevoegen"
         },
         "text": {
           "twitch": "Kies de streamer en het kanaal waar de meldingen komen.",
-          "tiktok": "Kies een gekoppeld account en het kanaal waar de meldingen komen."
+          "tiktok": "Kies een gekoppeld account en het kanaal waar de meldingen komen.",
+          "kick": "Typ de streamer in en kies het kanaal voor de meldingen."
         },
         "streamer": "Streamer",
         "streamerHint": "Zoek op naam of plak een gebruikersnaam of kanaallink.",
@@ -3921,7 +3958,9 @@
         "change": "Wijzigen",
         "account": "TikTok-account",
         "accountHint": "Alleen accounts die aan deze server zijn gekoppeld worden getoond.",
-        "noAccount": "Nog geen account gekoppeld. Koppel er hierboven een."
+        "noAccount": "Nog geen account gekoppeld. Koppel er hierboven een.",
+        "kickHint": "Typ de Kick-gebruikersnaam of plak de kanaallink.",
+        "kickPlaceholder": "kick.com/gebruiker"
       },
       "configure": "Instellen",
       "reconnect": "Opnieuw koppelen",
@@ -3985,7 +4024,8 @@
       },
       "advanced": {
         "twitchNote": "Twitch-meldingen komen direct binnen via EventSub. Er wordt niet gepolld.",
-        "tiktokNote": "TikTok-meldingen worden gevonden door de video's van de gekoppelde maker regelmatig te controleren."
+        "tiktokNote": "TikTok-meldingen worden gevonden door de video's van de gekoppelde maker regelmatig te controleren.",
+        "kickNote": "Kick-meldingen worden gevonden door met regelmatige tussenpozen via de officiële API te controleren of het kanaal live is."
       },
       "sample": {
         "title": "Gamen met de community",
@@ -4512,7 +4552,7 @@
     },
     "invites": {
       "title": "Uitnodigingen bijhouden",
-      "description": "Zie wie elk lid heeft binnengebracht, houd uitnodigingsstatistieken bij en rangschik de beste uitnodigers. Gratis voor elke server, zonder limieten.",
+      "description": "Zie wie elk lid heeft binnengebracht, houd uitnodigingsstatistieken bij en rangschik de beste uitnodigers.",
       "tabs": {
         "overview": "Overzicht",
         "leaderboard": "Ranglijst",
@@ -4523,8 +4563,6 @@
         "statistics": "Statistieken"
       },
       "overview": {
-        "freeTitle": "Gratis voor elke server",
-        "freeText": "Uitnodigingen bijhouden heeft geen limieten en vraagt nooit om Premium. Het blijft uit tot je het aanzet, en Wody heeft de machtiging Server beheren nodig om uitnodigingen te zien.",
         "resync": "Uitnodigingsgegevens vernieuwen",
         "resyncDone": "Uitnodigingsgegevens vernieuwd.",
         "reasonsTitle": "Joins zonder koppeling",
@@ -4776,12 +4814,10 @@
       }
     },
     "feeds": {
-      "title": "Feeds",
+      "title": "Pulse",
       "description": "Nieuwe video's, streams, nummers, berichten, versies van andere diensten, in een kanaal geplaatst volgens je eigen schema.",
       "add": "Feed toevoegen",
       "edit": "Feed bewerken",
-      "freeTitle": "Gratis voor elke server",
-      "freeText": "Tot {max} feeds, van elke 5 minuten tot één keer per dag. Geen Premium nodig.",
       "counter": "{n} van {max} feeds",
       "emptyTitle": "Nog geen feeds",
       "emptyText": "Voeg je eerste feed toe: kies een bron, een kanaal en hoe vaak te controleren. Het nieuwste komt meteen, daarna alleen nieuwe dingen.",
@@ -4881,6 +4917,24 @@
         "music": "Muziek en podcasts",
         "social": "Social en feeds",
         "code": "Code en games"
+      },
+      "exampleLabel": "Voorbeeld",
+      "useExample": "Dit voorbeeld gebruiken",
+      "sourceHints": {
+        "spotify_artist": "Link van de artiest op Spotify (open.spotify.com/artist/...) of de artiest-ID.",
+        "spotify_playlist": "Link van de afspeellijst op Spotify (open.spotify.com/playlist/...) of de afspeellijst-ID.",
+        "spotify_podcast": "Link van de podcast op Spotify (open.spotify.com/show/...) of de show-ID.",
+        "apple_artist": "Link van de artiest op Apple Music (music.apple.com/.../artist/...) of de numerieke artiest-ID.",
+        "apple_chart": "Landcode van twee letters voor de hitlijst, bijvoorbeeld us, gb of ro. Leeg betekent us.",
+        "apple_podcast": "Link van de podcast op Apple Podcasts (podcasts.apple.com/.../id123456789) of het numerieke ID.",
+        "reddit": "Een subreddit als r/naam of een gebruiker als u/naam. Een reddit.com-link werkt ook.",
+        "tumblr": "De blognaam, bijvoorbeeld staff, of de link (staff.tumblr.com).",
+        "pinterest": "Een Pinterest-gebruiker (naam) of een van zijn borden (naam/bord), of de link van een van beide.",
+        "rss": "De link van een RSS- of Atom-feed, of van een site die er een heeft (blog, nieuws, forum).",
+        "github": "eigenaar/repository, bijvoorbeeld python/cpython, of de link van de repository. Kies hieronder releases of commits.",
+        "steam": "De spelnaam, de Steam-winkellink (store.steampowered.com/app/...) of de App-ID.",
+        "epic": "Landcode van twee letters voor de lijst met gratis games, bijvoorbeeld us of ro. Leeg betekent us.",
+        "random_song": "Optioneel. Spotify vraagt een afspeellijst-link of ID, Apple Music een landcode, Deezer een optionele afspeellijst-link."
       }
     },
     "lookups": {
@@ -4902,16 +4956,12 @@
         "convert": "Rekent een bedrag om tussen valuta.",
         "reddit": "Een subreddit of Reddit-gebruiker."
       },
-      "title": "Opzoekingen",
+      "title": "Radar",
       "description": "{n} opzoekingen bij andere diensten onder /lookup. Leden vinden nummers, servers, profielen en prijzen zonder Discord te verlaten.",
       "copied": "{command} gekopieerd",
       "copyFailed": "Kopiëren mislukt. Selecteer het commando en kopieer het met de hand.",
       "copy": "Commando kopiëren",
       "facts": {
-        "free": {
-          "title": "Gratis voor iedereen",
-          "text": "Geen Premium, geen limieten per server. Zet het uit in de zijbalk als je het niet wilt."
-        },
         "fast": {
           "title": "Officiële en open API's",
           "text": "Resultaten komen uit gedocumenteerde API's, nooit van afgeschraapte pagina's, en zien eruit als elk ander Wody-bericht."
@@ -4947,7 +4997,12 @@
           "text": "Subreddits en Reddit-gebruikers."
         }
       },
-      "footer": "Leden typen /lookup en kiezen een dienst. Wil je een feed die zelf nieuwe dingen plaatst? Open Feeds in de zijbalk."
+      "footer": "Leden typen /radar en kiezen een dienst. Wil je een feed die zelf nieuwe dingen plaatst? Open Pulse in de zijbalk."
+    },
+    "levelsCard": {
+      "useMemberProfile": "Profielkaarten van leden gebruiken",
+      "useMemberProfileHint": "Leden met een globale profielkaart (/profile customize) krijgen die als level-upkaart en in /rank op deze server. Alle anderen houden de hier ingestelde kaart.",
+      "useMemberProfileLink": "Je eigen profielkaart aanpassen"
     }
   },
   "botStatus": {
@@ -5063,7 +5118,7 @@
     },
     "birthdays": {
       "title": "Verjaardagen",
-      "description": "Viert verjaardagen van leden met een rol, aankondiging, kaart en herinneringen. Gratis."
+      "description": "Viert verjaardagen van leden met een rol, aankondiging, kaart en herinneringen."
     },
     "economy": {
       "title": "Economie",
@@ -5083,19 +5138,19 @@
     },
     "invite_tracking": {
       "title": "Uitnodigingen bijhouden",
-      "description": "Zie wie elk lid heeft uitgenodigd, met 30-dagenstatistieken, grafieken en ranglijsten. Gratis."
+      "description": "Zie wie elk lid heeft uitgenodigd, met 30-dagenstatistieken, grafieken en ranglijsten."
     },
     "collab": {
       "title": "Collab",
       "description": "Je eigen Collab-categorieën en instellingen voor deze server."
     },
     "lookups": {
-      "title": "Opzoekingen",
-      "description": "16 opzoekingen onder /lookup: nummers, servers, profielen en prijzen. Gratis."
+      "title": "Radar",
+      "description": "16 opzoekingen onder /radar: nummers, servers, profielen en prijzen."
     },
     "feeds": {
-      "title": "Feeds",
-      "description": "17 bronnen die op jouw schema in een kanaal komen: video's, streams, muziek, social, code en games. Gratis."
+      "title": "Pulse",
+      "description": "14 bronnen die op jouw schema in een kanaal komen: video's, streams, muziek, social, code en games."
     }
   },
   "errorPage": {
@@ -6680,7 +6735,7 @@
         ]
       },
       "lookups": {
-        "what": "Leden typen /lookup en kiezen een dienst om een nummer, server, profiel of prijs te krijgen zonder Discord te verlaten. 16 opzoekingen via officiële of open API's.",
+        "what": "Leden typen /radar en kiezen een dienst om een nummer, server, profiel of prijs te krijgen zonder Discord te verlaten. 16 opzoekingen via officiële of open API's.",
         "customize": [
           "Aan of uit voor de hele server",
           "Welke diensten een sleutel van de botbeheerder nodig hebben",
@@ -6688,7 +6743,7 @@
         ]
       },
       "feeds": {
-        "what": "Plaatst nieuwe video's, streams, nummers, berichten, releases uit 17 bronnen in een kanaal, van elke 5 minuten tot één keer per dag. Een nieuwe feed toont meteen het nieuwste item en daarna alleen nieuwe dingen.",
+        "what": "Plaatst nieuwe video's, streams, nummers, berichten, releases uit 14 bronnen in een kanaal, van elke 5 minuten tot één keer per dag. Een nieuwe feed toont meteen het nieuwste item en daarna alleen nieuwe dingen.",
         "customize": [
           "De bron en wat te volgen",
           "Het kanaal en hoe vaak te controleren",
@@ -6731,7 +6786,7 @@
   },
   "globalBoard": {
     "metaTitle": "Wereldwijde economie-ranglijst",
-    "metaDescription": "De 100 rijkste leden van alle servers die Wody Economy gebruiken.",
+    "metaDescription": "De 100 rijkste leden van alle servers die Wody Economy gebruiken, gerangschikt op totaal vermogen en continu bijgewerkt.",
     "badge": "Wereldwijde ranglijst",
     "title": "De rijkste leden van Wody",
     "subtitle": "De top 100 van alle servers die Wody Economy gebruiken.",
@@ -7273,7 +7328,8 @@
       "applications": "Reacties",
       "messages": "Berichten",
       "servers": "Servers",
-      "settings": "Instellingen"
+      "settings": "Instellingen",
+      "card": "Profielkaart"
     },
     "hero": {
       "aria": "Je profiel",
@@ -7531,5 +7587,206 @@
       "unavailable": "TikTok koppelen is nu niet beschikbaar."
     },
     "cookies": "Cookiebeleid"
+  },
+  "modulesHub": {
+    "metaTitle": "Wody-modules | Moderatie, Tickets, Levels en meer",
+    "metaDescription": "Alle Wody-modules op één plek: moderatie, tickets, levels, giveaways, welkom, Pulse, Radar, economie en meer. Zie wat elke module doet.",
+    "ogTitle": "Alle Wody-modules voor Discord",
+    "title": "De Wody-modules",
+    "subtitle": "Eén bot voor moderatie, community, creators en plezier. Kies een module om te zien wat het doet en hoe je het instelt.",
+    "breadcrumb": "Modules",
+    "home": "Home"
+  },
+  "cardFonts": {
+    "label": "Lettertype",
+    "classic": "Klassiek (standaard)",
+    "classicBold": "Klassiek vet",
+    "hint": "Gebruikt voor de tekst op de kaartafbeelding. Namen met speciale tekens worden ondersteund."
+  },
+  "profileCard": {
+    "theme": {
+      "default": "Wody",
+      "minimal": "Minimalistisch",
+      "dark": "Donker",
+      "glass": "Glassmorphism",
+      "gradient": "Verloop",
+      "professional": "Professioneel",
+      "premium": "Premium",
+      "sunset": "Zonsondergang",
+      "ocean": "Oceaan",
+      "forest": "Bos",
+      "custom": "Aangepast",
+      "label": "Thema",
+      "neon": "Neon",
+      "aurora": "Noorderlicht",
+      "sakura": "Sakura",
+      "midnight": "Middernacht",
+      "matrix": "Matrix",
+      "lava": "Lava",
+      "frost": "Vorst",
+      "royal": "Koninklijk",
+      "candy": "Snoep",
+      "synthwave": "Synthwave",
+      "galaxy": "Sterrenstelsel",
+      "mint": "Munt",
+      "rose": "Roze",
+      "noir": "Noir"
+    },
+    "layoutOpt": {
+      "classic": "Klassiek",
+      "compact": "Compact",
+      "split": "Gesplitst paneel",
+      "centered": "Gecentreerd"
+    },
+    "opt": {
+      "avatar_pos": {
+        "left": "Links",
+        "right": "Rechts",
+        "center": "Midden"
+      },
+      "avatar_size": {
+        "small": "Klein",
+        "medium": "Gemiddeld",
+        "large": "Groot"
+      },
+      "avatar_shape": {
+        "circle": "Cirkel",
+        "rounded": "Afgerond vierkant",
+        "square": "Vierkant"
+      },
+      "name_align": {
+        "left": "Links",
+        "center": "Midden",
+        "right": "Rechts"
+      },
+      "stats_pos": {
+        "above_bar": "Boven de balk",
+        "right": "Rechtsboven",
+        "under_name": "Onder de naam"
+      },
+      "bar_style": {
+        "rounded": "Afgerond",
+        "flat": "Plat",
+        "segmented": "Gesegmenteerd",
+        "glow": "Gloeiend"
+      },
+      "font": {
+        "default": "Klassiek",
+        "bold": "Klassiek vet"
+      },
+      "effect": {
+        "none": "Geen",
+        "glass": "Glaspaneel",
+        "vignette": "Vignet",
+        "noise": "Filmkorrel",
+        "glow": "Gloed"
+      },
+      "decoration": {
+        "none": "Geen",
+        "dots": "Stippen",
+        "lines": "Lijnen",
+        "sparkles": "Glinsteringen",
+        "waves": "Golven"
+      },
+      "bg_mode": {
+        "gradient": "Verloop",
+        "solid": "Effen kleur",
+        "image": "Afbeelding"
+      },
+      "anim": {
+        "none": "Geen",
+        "shimmer": "Glans",
+        "stars": "Twinkelende sterren",
+        "aurora": "Noorderlicht",
+        "bubbles": "Bellen",
+        "pulse": "Pulseren",
+        "scan": "Scanlijn",
+        "snow": "Sneeuw"
+      }
+    },
+    "setting": {
+      "avatar_pos": "Positie van de avatar",
+      "avatar_size": "Grootte van de avatar",
+      "avatar_shape": "Vorm van de avatar",
+      "name_align": "Positie van de naam",
+      "stats_pos": "Positie van level en XP",
+      "bar_style": "Stijl van de voortgangsbalk",
+      "font": "Lettertype",
+      "effect": "Visueel effect",
+      "decoration": "Decoratie",
+      "bg_mode": "Type achtergrond",
+      "anim": "Animatie"
+    },
+    "field": {
+      "accent": "Accentkleur",
+      "text_color": "Tekstkleur",
+      "bar_color": "Balkkleur",
+      "bar_track": "Balkachtergrond",
+      "gradient_from": "Begin verloop",
+      "gradient_to": "Einde verloop",
+      "gradient_angle": "Hoek verloop",
+      "bg_url": "Link naar achtergrondafbeelding",
+      "bg_color": "Effen kleur",
+      "overlay_color": "Kleur van de laag over de afbeelding",
+      "bg_opacity": "Sterkte van de laag over de afbeelding",
+      "border_width": "Randdikte",
+      "border_color": "Randkleur",
+      "radius": "Hoekradius",
+      "bg_image": "Achtergrondafbeelding"
+    },
+    "layout": "Indeling",
+    "title": "Globale profielkaart",
+    "intro": "Ontwerp je kaart één keer. Hij ziet er op elke server met Wody hetzelfde uit, terwijl level, XP en rang altijd van de server komen waar hij wordt getoond.",
+    "preview": "Live voorbeeld",
+    "previewNote": "Voorbeeldcijfers. In Discord worden het echte level, de XP en de rang van elke server getoond.",
+    "themes": "Thema's",
+    "sectionAvatar": "Avatar",
+    "sectionText": "Tekst en posities",
+    "sectionBar": "Voortgangsbalk",
+    "sectionBackground": "Achtergrond",
+    "sectionFrame": "Kader en hoeken",
+    "sectionEffects": "Effecten en decoratie",
+    "save": "Opslaan",
+    "saving": "Opslaan...",
+    "saved": "Opgeslagen. Het is al actief op Discord.",
+    "discard": "Wijzigingen negeren",
+    "resetDefault": "Standaard herstellen",
+    "resetConfirm": "Je kaart terugzetten naar het standaardontwerp? Dit geldt op elke server.",
+    "reset": "Herstellen",
+    "cancel": "Annuleren",
+    "unsaved": "Je hebt niet-opgeslagen wijzigingen.",
+    "loadError": "Je kaart kon niet worden geladen. Probeer het opnieuw.",
+    "invalid": "{field} is ongeldig.",
+    "saveError": "Opslaan lukt nu niet. Probeer het zo opnieuw.",
+    "sync": "Wijzigingen in Discord met /profile customize verschijnen hier automatisch.",
+    "bgHint": "Directe link naar een PNG-, JPG-, WEBP- of GIF-afbeelding (alleen https). Afbeeldingen worden bij het tekenen gecontroleerd en in grootte beperkt.",
+    "discord": "Liever Discord? Gebruik /profile customize. Alles wat hier staat, is daar ook.",
+    "privacy": "Alleen jij kunt je kaart wijzigen. Andere leden zien alleen de afbeelding, nooit je instellingen.",
+    "sampleName": "Jouw naam",
+    "levelText": "Level {level}",
+    "rankText": "Rang #{rank}",
+    "imageErr": {
+      "image_too_large": "Die afbeelding is te groot. De limiet is 4 MB.",
+      "image_dimensions": "De afbeelding is te klein of te groot. Gebruik 64 tot 6000 pixels.",
+      "image_invalid": "Dat bestand is geen geldige afbeelding. Gebruik PNG, JPG, WEBP of GIF.",
+      "rate_limited": "Te veel uploads. Probeer het later opnieuw.",
+      "generic": "De afbeelding kon niet worden geüpload."
+    },
+    "showcaseTitle": "Je profielkaart",
+    "viewPublic": "Openbaar profiel bekijken",
+    "copyLink": "Link kopiëren",
+    "linkCopied": "Link gekopieerd",
+    "editCard": "Kaart bewerken",
+    "tagline": "Wody-lid sinds {date}",
+    "publicToggle": "Mijn kaart tonen op mijn openbare profiel",
+    "publicHint": "Ingelogde bezoekers zien je ontwerp, naam en foto. Level en XP worden nooit getoond.",
+    "upload": "Afbeelding of GIF uploaden",
+    "uploading": "Uploaden…",
+    "removeImage": "Afbeelding verwijderen",
+    "imageHint": "PNG, JPG, WEBP of GIF, tot 4 MB, 64 tot 6000 pixels. Een GIF maakt de kaart bewegend.",
+    "imageCurrent": "Je afbeelding: {w}×{h} pixels, {size} MB",
+    "imageSaved": "Afbeelding opgeslagen",
+    "animNote": "Bewegende effecten en GIF-achtergronden laten Discord de kaart als geanimeerde GIF tonen.",
+    "sectionTemplates": "Sjablonen"
   }
 }

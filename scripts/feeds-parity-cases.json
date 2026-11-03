@@ -1,73 +1,5 @@
 [
  {
-  "source": "youtube",
-  "target": "https://www.youtube.com/channel/UCX6OQ3DkcsbYNE6H8uQQuVA",
-  "options": {},
-  "expect": {
-   "ok": true,
-   "target": "UCX6OQ3DkcsbYNE6H8uQQuVA",
-   "options": {}
-  }
- },
- {
-  "source": "youtube",
-  "target": "@MrBeast",
-  "options": {},
-  "expect": {
-   "ok": true,
-   "target": "@MrBeast",
-   "options": {}
-  }
- },
- {
-  "source": "youtube",
-  "target": "https://youtube.com/@Some.Chan/",
-  "options": {},
-  "expect": {
-   "ok": true,
-   "target": "@Some.Chan",
-   "options": {}
-  }
- },
- {
-  "source": "youtube",
-  "target": "nope",
-  "options": {},
-  "expect": {
-   "ok": false,
-   "code": "target_invalid"
-  }
- },
- {
-  "source": "twitch",
-  "target": "https://twitch.tv/Shroud/",
-  "options": {},
-  "expect": {
-   "ok": true,
-   "target": "shroud",
-   "options": {}
-  }
- },
- {
-  "source": "twitch",
-  "target": "a",
-  "options": {},
-  "expect": {
-   "ok": false,
-   "code": "target_invalid"
-  }
- },
- {
-  "source": "kick",
-  "target": "@Trainwreckstv",
-  "options": {},
-  "expect": {
-   "ok": true,
-   "target": "trainwreckstv",
-   "options": {}
-  }
- },
- {
   "source": "spotify_artist",
   "target": "https://open.spotify.com/artist/4Z8W4fKeB5YxbusRsdQVPb?si=abc",
   "options": {},
@@ -121,8 +53,9 @@
   "target": "https://music.apple.com/us/artist/taylor-swift/159260351",
   "options": {},
   "expect": {
-   "ok": false,
-   "code": "target_invalid"
+   "ok": true,
+   "target": "159260351",
+   "options": {}
   }
  },
  {

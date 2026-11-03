@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Wody - Güçlü Discord Botu",
-    "description": "Wody, moderasyon, biletler, çekilişler, seviyeler, hoş geldin mesajları, tepki rolleri, otomod, özel komutlar ve daha fazlasını içeren ücretsiz bir Discord botudur; büyüyen topluluklar için tasarlanmıştır.",
+    "description": "Wody; moderasyon, bilet, çekiliş, seviye, karşılama mesajı, tepki rolü, automod ve daha fazlasını sunan, topluluklar için bir Discord botudur.",
     "keywords": [
       "Wody",
       "Wody bot",
@@ -189,7 +189,8 @@
         "automod": "AutoMod",
         "moderation": "Moderasyon",
         "reactionRoles": "Tepki rolleri",
-        "levels": "Seviyeler ve XP"
+        "levels": "Seviyeler ve XP",
+        "all": "Tüm modüller"
       }
     }
   },
@@ -355,13 +356,13 @@
       },
       {
         "key": "lookups",
-        "title": "Sorgulamalar",
-        "desc": "/lookup ile 16 sorgulama: Last.fm şu an çalan, iTunes, Minecraft sunucuları ve oyuncuları, Roblox, Steam, Chess.com, Twitch, Kick, YouTube, GitHub, filmler, kripto, döviz çevirme ve Reddit. Resmî veya açık API'ler, ücretsiz ve varsayılan olarak açık."
+        "title": "Radar",
+        "desc": "/radar ile 16 sorgulama: Last.fm şu an çalan, iTunes, Minecraft sunucuları ve oyuncuları, Roblox, Steam, Chess.com, Twitch, Kick, YouTube, GitHub, filmler, kripto, döviz çevirme ve Reddit. Resmî veya açık API'ler, ücretsiz ve varsayılan olarak açık."
       },
       {
         "key": "feeds",
-        "title": "Akışlar",
-        "desc": "17 kaynaktan yeni videolar, yayınlar, şarkılar, gönderiler ve sürümler, 5 dakikada birden günde bire kadar bir kanalda paylaşılır. YouTube, Twitch ve Kick için gerçek başlangıç saati ve yayın görseli. Spotify ve Apple Music, ayrıca rastgele bir şarkı. Reddit, Tumblr, Pinterest ve her RSS akışı. GitHub, Steam haberleri ve Epic Games'in ücretsiz oyunları. Ücretsiz."
+        "title": "Pulse",
+        "desc": "14 kaynaktan yeni videolar, yayınlar, şarkılar, gönderiler ve sürümler, 5 dakikada birden günde bire kadar bir kanalda paylaşılır. Spotify ve Apple Music, ayrıca rastgele bir şarkı. Reddit, Tumblr, Pinterest ve her RSS akışı. GitHub, Steam haberleri ve Epic Games'in ücretsiz oyunları. Ücretsiz."
       },
       {
         "key": "community",
@@ -527,14 +528,6 @@
         "a": "Wody içerikleri ve haberleri için TikTok'ta @wody.online'ı ve YouTube'da @wodybot'u takip et, destek ve duyurular için resmî Wody topluluğuna katıl."
       },
       {
-        "q": "Davet Takibi ücretsiz mi?",
-        "a": "Evet. Davet Takibi her sunucu için ücretsizdir, sınırı yoktur ve Premium gerektirmez. Bir yönetici açana kadar kapalı kalır; Wody'nin davetleri görebilmesi için Sunucuyu Yönet yetkisi gerekir."
-      },
-      {
-        "q": "Sorgulamalar ve Akışlar ücretli mi?",
-        "a": "Hayır. Sorgulamalar (Lookups) ve Akışlar (Feeds) her sunucuda ücretsizdir, en fazla 30 akış, Premium gerekmez. Sorgulamalar varsayılan olarak açıktır, akışları bir yönetici ekler."
-      },
-      {
         "q": "Sunucumun nasıl büyüdüğünü görebilir miyim?",
         "a": "Evet. Invite Tracking açıkken Discord'daki /statistics ve panelin İstatistikler sekmesi son 7, 14, 30 veya 90 günün katılımlar, ayrılışlar, elde tutma, en iyi günler ve saatler, en iyi davet edenler ve üyelerin geldiği yerlerle bir grafiğini gösterir."
       }
@@ -543,7 +536,7 @@
     "modulesPremiumSubtitle": "Premium ile gelen tüm modüllerin tam listesi."
   },
   "careers": {
-    "metaTitle": "Wody - Kariyer",
+    "metaTitle": "Wody - Kariyer | Discord Bot",
     "metaDescription": "Wody'ye nasıl katkıda bulunabileceğini ve gelecekteki fırsatlar için projeyle nasıl iletişime geçebileceğini öğren.",
     "ogTitle": "Wody'de Kariyer",
     "badge": "Wody Kariyer",
@@ -574,7 +567,7 @@
     ]
   },
   "contact": {
-    "metaTitle": "Wody - İletişim",
+    "metaTitle": "Wody - İletişim | Discord Bot",
     "metaDescription": "Genel sorular, destek, gizlilik, yasal ve veri koruma konuları için Wody ile iletişime geç.",
     "ogTitle": "Wody ile İletişim",
     "badge": "Wody İletişim",
@@ -691,7 +684,7 @@
     ]
   },
   "help": {
-    "metaTitle": "Wody - Yardım ve SSS",
+    "metaTitle": "Wody - Yardım ve SSS | Discord Bot",
     "metaDescription": "Wody Yardım ve SSS: kurulum rehberleri, dashboard bilgisi, biletler, tepki rolleri, Premium, oylama ve Wody'yi sunucuna nasıl davet edeceğin.",
     "ogTitle": "Wody - Yardım ve SSS",
     "ogDescription": "Ücretsiz hepsi bir arada Discord botu Wody için cevaplar, kurulum bilgileri ve modül rehberleri bul.",
@@ -1061,12 +1054,12 @@
         "html": "<p>Invite Tracking is free and is off until a server administrator turns it on. When it is on, Wody reads the list of invites of the server (this needs the Manage Server permission) and compares the use counters before and after each join to work out which invite a member used.</p><p><strong>What we store, per server.</strong> For every join: the Discord user ID of the member, the Discord user ID of the inviter, the invite code, the time of the join, whether the match was certain, and whether the member later left. For every invite: its code, the creator's Discord user ID, the use counter and its limits. The server's settings for the module (log and notice channels, messages, who can see statistics, the fake account threshold) are stored too. When Wody cannot be sure, the join is stored as unknown with the reason and nobody is credited.</p><p><strong>Why and who can see it.</strong> The data is used only to show invite statistics, leaderboards, join logs and the inviter variables of the welcome message in that server. Members can see statistics with the commands, unless the server limits them to staff. Server administrators with dashboard access can see the recent joins and the leaderboard of their own server. Data of one server is never shown in another.</p><p><strong>Deletion.</strong> Administrators can delete all invite statistics, or those of one member, from the dashboard or with <code>/invite-reset</code>. If Wody is removed from a server, the data of that server is deleted after 30 days. Invite Tracking never deletes the data of other modules.</p>"
       },
       {
-        "heading": "21. Sorgulamalar (Lookups)",
-        "html": "<p>Sorgulamalar ücretsizdir ve varsayılan olarak açıktır. Sunucu yöneticisi bunları panelden kapatabilir.</p><p><strong>Ne olur.</strong> Bir üye <code>/lookup</code> kullandığında Wody, yazılan metni (örneğin bir kullanıcı adı, sunucu adresi veya arama sözcüğü) seçilen servise gönderir, yanıtı alır ve Discord'da gösterir. İstek Wody'nin sunucularından çıkar; servis yazılan metni ve Wody sunucusunun adresini görür, üyenin cihazını veya IP adresini görmez.</p><p><strong>Ne saklarız.</strong> Hiçbir şey. Aramalar ve sonuçlar kaydedilmez, üyenin kimliğiyle günlüğe alınmaz ve bir profille ilişkilendirilmez. Aynı isteği tekrarlamamak için yanıtlar birkaç dakika bellekte kalabilir.</p><p><strong>Üçüncü taraflar.</strong> Her servis (örneğin Last.fm, iTunes, Steam, Twitch, GitHub veya Reddit) bağımsızdır ve kendi gizlilik politikası vardır. Bazıları, operatörün sunucuda tuttuğu ve üyelere hiç gösterilmeyen bir anahtar ister.</p>"
+        "heading": "21. Radar (sorgulamalar)",
+        "html": "<p>Radar varsayılan olarak açıktır. Sunucu yöneticisi bunu panelden kapatabilir.</p><p><strong>Ne olur.</strong> Bir üye <code>/radar</code> kullandığında Wody, yazılan metni (örneğin bir kullanıcı adı, sunucu adresi veya arama sözcüğü) seçilen servise gönderir, yanıtı alır ve Discord'da gösterir. İstek Wody'nin sunucularından çıkar; servis yazılan metni ve Wody sunucusunun adresini görür, üyenin cihazını veya IP adresini görmez.</p><p><strong>Ne saklarız.</strong> Hiçbir şey. Aramalar ve sonuçlar kaydedilmez, üyenin kimliğiyle günlüğe alınmaz ve bir profille ilişkilendirilmez. Aynı isteği tekrarlamamak için yanıtlar birkaç dakika bellekte kalabilir.</p><p><strong>Üçüncü taraflar.</strong> Her servis (örneğin Last.fm, iTunes, Steam, Twitch, GitHub veya Reddit) bağımsızdır ve kendi gizlilik politikası vardır. Bazıları, operatörün sunucuda tuttuğu ve üyelere hiç gösterilmeyen bir anahtar ister.</p>"
       },
       {
-        "heading": "22. Akışlar (Feeds)",
-        "html": "<p>Akışlar ücretsizdir. Sunucu yöneticisi bunları panelden veya <code>/feed</code> ile kurar, sunucu başına en fazla 30.</p><p><strong>Sunucu başına ne saklarız.</strong> Her akış için: kaynak, yöneticinin girdiği ad veya bağlantı, seçenekler, kanal ve etiketlenecek isteğe bağlı rol, kontrol sıklığı, akışı oluşturan yöneticinin Discord kullanıcı kimliği, oluşturma zamanı, son kontrolün zamanı ve sonucu (kısa bir hata koduyla), kaç gönderi yaptığı ve hiçbir şeyin iki kez paylaşılmaması için daha önce paylaşılan öğelerin en fazla 120 anahtarlık listesi.</p><p><strong>Ne alınır.</strong> Wody, Wody sunucularından seçilen servisten (veya yöneticinin adresini yazdığı siteden) yeni öğeleri ister ve kanalda paylaşır. Gönderiler o servisin herkese açık içeriğini ve aslına bağlantıyı içerir. Hayvan ve etiket görselleri herkese açık, açık lisanslı görsel kütüphanelerinden gelir ve her yaşa uygun olacak şekilde süzülür; bu her durumda garanti edilemez. Akışlar özel mesajları okumaz ve üye verisi kullanmaz.</p><p><strong>Silme.</strong> Yöneticiler her akışı istediği zaman duraklatabilir veya kaldırabilir. Wody bir sunucudan çıkarılırsa akışları 30 gün sonra silinir. Panelden bota gönderilen istekler (örneğin bir test) geçici olarak saklanır ve 24 saat sonra silinir. Her servis bağımsızdır ve kendi gizlilik politikası vardır.</p>"
+        "heading": "22. Pulse (akışlar)",
+        "html": "<p>Sunucu yöneticisi Pulse'ı panelden veya <code>/pulse</code> ile kurar, sunucu başına en fazla 30.</p><p><strong>Sunucu başına ne saklarız.</strong> Her akış için: kaynak, yöneticinin girdiği ad veya bağlantı, seçenekler, kanal ve etiketlenecek isteğe bağlı rol, kontrol sıklığı, akışı oluşturan yöneticinin Discord kullanıcı kimliği, oluşturma zamanı, son kontrolün zamanı ve sonucu (kısa bir hata koduyla), kaç gönderi yaptığı ve hiçbir şeyin iki kez paylaşılmaması için daha önce paylaşılan öğelerin en fazla 120 anahtarlık listesi.</p><p><strong>Ne alınır.</strong> Wody, Wody sunucularından seçilen servisten (veya yöneticinin adresini yazdığı siteden) yeni öğeleri ister ve kanalda paylaşır. Gönderiler o servisin herkese açık içeriğini ve aslına bağlantıyı içerir. Hayvan ve etiket görselleri herkese açık, açık lisanslı görsel kütüphanelerinden gelir ve her yaşa uygun olacak şekilde süzülür; bu her durumda garanti edilemez. Akışlar özel mesajları okumaz ve üye verisi kullanmaz.</p><p><strong>Silme.</strong> Yöneticiler her akışı istediği zaman duraklatabilir veya kaldırabilir. Wody bir sunucudan çıkarılırsa akışları 30 gün sonra silinir. Panelden bota gönderilen istekler (örneğin bir test) geçici olarak saklanır ve 24 saat sonra silinir. Her servis bağımsızdır ve kendi gizlilik politikası vardır.</p>"
       },
       {
         "heading": "23. Servers where Wody is added",
@@ -1178,11 +1171,11 @@
         "html": "<p>Community Discovery is a public directory of Discord communities. By submitting a listing you confirm that you have read and accept these Terms and the Privacy Policy.</p><p><strong>Eligibility.</strong> Only the owner of a Discord server, or a person with the permissions required by Wody, can create a listing for it. You must have the Wody bot in the server. One server can have one listing.</p><p><strong>Your content.</strong> You are responsible for everything in your listing, including the invite, images and links. It must be accurate, must not impersonate a person, brand or other server, and must follow the Community Guidelines at <a href=\"/servers/guidelines\" class=\"text-[#e08a4e] hover:underline\">/servers/guidelines</a>. You give Wody a free, non exclusive licence to display the content in the directory, in search results and in link previews while the listing is published. You keep ownership of your content.</p><p><strong>Review and publication.</strong> Every listing and every later change is reviewed by Wody before it becomes public. Wody can approve, ask for changes, reject, suspend, unpublish or delete a listing at its discretion, for example for breaking these Terms, for a broken invite, for reports or for abuse. Approval is not an endorsement and Wody is not responsible for what happens inside a listed server or for the conduct of its members.</p><p><strong>Names and addresses.</strong> Each public address and community name can be used by one listing at a time. We may refuse or change a name or address that is misleading, reserved, or already in use. Addresses are not property: a deleted listing frees its address, and Wody may reassign reserved or abandoned ones.</p><p><strong>Reviews and reports.</strong> Reviews can be written only by members of the server and are moderated. Fake, paid, abusive or off topic reviews and links in reviews are removed. Listing owners cannot review their own server. Reports are handled by the Wody team and the outcome is at its discretion.</p><p><strong>No guarantees.</strong> Listing position, featuring and badges are decided by Wody and can change. We do not guarantee any number of views, clicks or members. Features can be changed or removed. Custom domains are not offered.</p>"
       },
       {
-        "heading": "20. Sorgulamalar (Lookups)",
+        "heading": "20. Radar (sorgulamalar)",
         "html": "<p>Sorgulamalar Discord içinde diğer servislerin bilgilerini gösterir. Yanıtlar o servislerden gelir; Wody bunları denetlemez, doğrulamaz ve garanti etmez. Bir servis yavaş olabilir, değişebilir, istekleri sınırlayabilir veya istediği zaman çalışmayı bırakabilir; bu durumda bir sorgu başarısız olabilir ya da eksik kalabilir.</p><p>Sorgulamaları insanları taciz etmek, izlemek ya da ifşa etmek veya toplu kişisel veri toplamak için kullanma. Fiyatlar yalnızca bilgi amaçlıdır ve finansal tavsiye değildir.</p>"
       },
       {
-        "heading": "21. Akışlar (Feeds)",
+        "heading": "21. Pulse (akışlar)",
         "html": "<p>Akışlar, diğer servislerin içeriğini bir programla kanala paylaşır. Bir sunucuda en fazla 30 akış olabilir. Akışı kuran yönetici, paylaştığı kanaldan ve izlenen kaynağın orada yayımladıklarından sorumludur.</p><p>İçerik, yazarlarına ve servislerine aittir. Wody içeriği denetlemez ve incelemez; eksiksiz, zamanında, doğru veya her kitleye uygun olduğunu garanti etmez; kaynak çöktüğünde veya kanal kaybolduğunda bir akış kendini duraklatabilir. Yalnızca paylaşma hakkın olan kaynakları izle ve rol etiketini sadece isteyenler için kullan. Akışları spam için, kaynağın yasakladığı biçimde içerik yeniden paylaşmak için ya da Wody'yi sana ait olmayan veya kullanma hakkın olmayan adreslere yöneltmek için kullanma.</p>"
       },
       {
@@ -1220,7 +1213,7 @@
     ]
   },
   "premiumPage": {
-    "metaTitle": "Wody - Premium",
+    "metaTitle": "Wody Premium | Yüksek limitler ve ek modüller",
     "metaDescription": "Wody Premium'un neleri açtığını öğren: daha yüksek sunucu limitleri, Yedekler, Geçici Ses, Ekonomi, Oyunlar ve Yayın Bildirimleri.",
     "ogTitle": "Wody Premium",
     "ogDescription": "Büyüyen Discord sunucuları için sınırsız oluşturma limitleri ve gelişmiş Wody özellikleri.",
@@ -1261,8 +1254,8 @@
     "joinCommunityBtn": "Topluluğa Katıl"
   },
   "commands": {
-    "metaTitle": "Wody - Komutlar",
-    "metaDescription": "Wody Discord botunun tüm komut listesi: moderasyon, destek talepleri, çekilişler, seviyeler, yedekler, geçici ses kanalları, ekonomi ve /slots, /coin, /dice gibi oyunlar.",
+    "metaTitle": "Wody - Komutlar | Discord Bot",
+    "metaDescription": "Wody Discord botunun tüm komut listesi: moderasyon, destek talepleri, çekilişler, seviyeler, yedekler, ses, ekonomi ve /slots gibi oyunlar.",
     "ogTitle": "Wody Komutları",
     "ogDescription": "Wody Discord botunun tüm komut listesine göz at ve her komutun ne yaptığını gör.",
     "badge": "Wody Komutları",
@@ -1647,91 +1640,91 @@
       },
       {
         "key": "lookups",
-        "title": "Sorgulamalar",
+        "title": "Radar",
         "premium": false,
         "commands": [
           {
-            "name": "/lookup nowplaying",
+            "name": "/radar nowplaying",
             "description": "Bir Last.fm kullanıcısının dinlediği, kapak görseliyle."
           },
           {
-            "name": "/lookup itunes",
+            "name": "/radar itunes",
             "description": "Apple iTunes'ta müzik, podcast, film veya uygulama."
           },
           {
-            "name": "/lookup mcserver",
+            "name": "/radar mcserver",
             "description": "Bir Minecraft sunucusunun durumu, oyuncuları ve sürümü."
           },
           {
-            "name": "/lookup mcplayer",
+            "name": "/radar mcplayer",
             "description": "Bir Minecraft oyuncusu: skin, UUID ve profil."
           },
           {
-            "name": "/lookup roblox",
+            "name": "/radar roblox",
             "description": "Bir Roblox profili: arkadaşlar, takipçiler ve avatar."
           },
           {
-            "name": "/lookup steam",
+            "name": "/radar steam",
             "description": "Bir Steam oyunu: fiyat, şu an oynayanlar, puan."
           },
           {
-            "name": "/lookup chess",
+            "name": "/radar chess",
             "description": "Bir Chess.com oyuncusu: derecelendirme ve profil."
           },
           {
-            "name": "/lookup twitch",
+            "name": "/radar twitch",
             "description": "Bir Twitch kanalı: canlı durum, oyun ve izleyiciler."
           },
           {
-            "name": "/lookup kick",
+            "name": "/radar kick",
             "description": "Bir Kick kanalı: canlı durum, kategori ve izleyiciler."
           },
           {
-            "name": "/lookup youtube",
+            "name": "/radar youtube",
             "description": "Bir YouTube kanalı: aboneler, videolar ve görüntülenme."
           },
           {
-            "name": "/lookup github",
+            "name": "/radar github",
             "description": "Bir GitHub kullanıcısı veya deposu."
           },
           {
-            "name": "/lookup movie",
+            "name": "/radar movie",
             "description": "Bir film: puan, çıkış tarihi, afiş, özet."
           },
           {
-            "name": "/lookup show",
+            "name": "/radar show",
             "description": "Bir dizi: puan, kanal, durum, sonraki bölüm."
           },
           {
-            "name": "/lookup crypto",
+            "name": "/radar crypto",
             "description": "Bir kripto paranın fiyatı ve piyasa verileri."
           },
           {
-            "name": "/lookup convert",
+            "name": "/radar convert",
             "description": "Bir tutarı para birimleri arasında çevirir."
           },
           {
-            "name": "/lookup reddit",
+            "name": "/radar reddit",
             "description": "Bir subreddit veya Reddit kullanıcısı."
           }
         ]
       },
       {
         "key": "feeds",
-        "title": "Akışlar",
+        "title": "Pulse",
         "premium": false,
         "commands": [
           {
-            "name": "/feed add",
+            "name": "/pulse add",
             "description": "Akış ekle: bir kaynak, bir kanal ve kontrol sıklığı."
           },
           {
-            "name": "/feed list",
+            "name": "/pulse list",
             "description": "Akışlarını gör, sonuncuyu paylaş, duraklat ya da kaldır."
           },
           {
-            "name": "/feed sources",
-            "description": "Feeds'in izleyebildiği tüm kaynaklar."
+            "name": "/pulse sources",
+            "description": "Pulse'ın izleyebildiği tüm kaynaklar."
           }
         ]
       },
@@ -1795,6 +1788,41 @@
             "description": "Bu sunucuyu Wody Discovery'de öne çıkar (2 saatte bir, Premium ile 30 dakikada bir)"
           }
         ]
+      },
+      {
+        "key": "profile",
+        "title": "Profil kartı",
+        "premium": false,
+        "commands": [
+          {
+            "name": "/profile show",
+            "description": "Profil kartını göster"
+          },
+          {
+            "name": "/profile user",
+            "description": "Bir üyenin profil kartını göster"
+          },
+          {
+            "name": "/profile customize",
+            "description": "Profil kartının görünümünü değiştir"
+          },
+          {
+            "name": "/profile preview",
+            "description": "Mevcut kart tasarımını ve ayarlarını gör"
+          },
+          {
+            "name": "/profile reset",
+            "description": "Profil kartının varsayılan tasarımını geri yükle"
+          },
+          {
+            "name": "/profile background",
+            "description": "Kendi arka plan resmini veya GIF'ini yükle (kaldırmak için boş bırak)"
+          },
+          {
+            "name": "/profile visibility",
+            "description": "Kartını herkese açık panel profilinde göster veya gizle"
+          }
+        ]
       }
     ]
   },
@@ -1838,7 +1866,7 @@
     }
   },
   "updates": {
-    "metaTitle": "Wody - Güncellemeler",
+    "metaTitle": "Wody - Güncellemeler | Discord Bot",
     "metaDescription": "Wody Discord botuna dair en son güncellemeler: yeni özellikler, düzeltmeler ve duyurular.",
     "ogTitle": "Wody Güncellemeleri",
     "badge": "Wody Güncellemeleri",
@@ -1872,8 +1900,8 @@
     "moreArticles": "Daha fazla yazı"
   },
   "team": {
-    "metaTitle": "Wody - Ekip",
-    "metaDescription": "Wody'nin arkasındaki insanlarla tanış.",
+    "metaTitle": "Wody Ekibi | Discord botunun arkasındaki insanlar",
+    "metaDescription": "Moderasyon, bilet, seviye ve çekiliş sunan Discord botu Wody'nin arkasındaki insanlarla tanış ve onu kimin geliştirdiğini gör.",
     "ogTitle": "Wody Ekibi",
     "badge": "Ekibimiz",
     "titleLine1": "Tanış",
@@ -3496,7 +3524,9 @@
         "option": "{option} için mevcut seçeneklerden birini seç.",
         "target_required": "Wody'ye neyi izleyeceğini söyle.",
         "target_invalid": "Bu ad veya bağlantı bu kaynak için doğru görünmüyor.",
-        "interval": "Listedeki aralıklardan birini seç, 5 dakikadan günde bire."
+        "interval": "Listedeki aralıklardan birini seç, 5 dakikadan günde bire.",
+        "invalid_kick_slug": "Geçerli bir Kick kullanıcı adı veya kanal bağlantısı gir.",
+        "kick_not_found": "Bu adla bir Kick kanalı bulunamadı."
       },
       "apiErrors": {
         "generic": "Bir şeyler ters gitti. Birazdan tekrar dene.",
@@ -3555,7 +3585,8 @@
         "subscription_disconnected": "Platformla bağlantı koptu. Yeniden bağla düğmesini kullan.",
         "missing_manage_guild": "Wody'de Sunucuyu Yönet yetkisi yok, bu yüzden davetleri göremez. Bu yetkiyi ver ve Tekrar kontrol et'i kullan.",
         "fetch_failed": "Discord davet listesini döndürmedi. Wody sonraki katılımda tekrar deneyecek.",
-        "no_baseline": "Wody henüz davetlerini okumadı. Sonraki katılımda başlar veya Genel bakış sekmesindeki Davet verilerini yenile düğmesini kullan."
+        "no_baseline": "Wody henüz davetlerini okumadı. Sonraki katılımda başlar veya Genel bakış sekmesindeki Davet verilerini yenile düğmesini kullan.",
+        "kick_not_configured": "Kick bu botta henüz kurulmadı. Bot sahibinin Kick anahtarını eklemesi gerekiyor."
       },
       "lock": {
         "badge": "Premium",
@@ -3864,7 +3895,7 @@
     },
     "streams": {
       "title": "Yayın bildirimleri",
-      "description": "Twitch ve TikTok'taki canlı yayınları ve yeni videoları duyur.",
+      "description": "Twitch, Kick ve TikTok'taki canlı yayınları ve yeni videoları duyurur.",
       "lock": {
         "title": "Yayın bildirimleri",
         "text": "Favori yayıncıların canlı yayına çıktığında otomatik uyarı al. Twitch resmi EventSub'ı, TikTok resmi API'yi kullanır."
@@ -3881,6 +3912,9 @@
           "not_configured": "Bu platform bu Wody kurulumunda henüz ayarlanmadı.",
           "callback_not_https": "Twitch'in olayları iletebilmesi için sitenin herkese açık adresi https kullanmalı.",
           "token_key_missing": "Sunucuda token şifreleme anahtarı eksik."
+        },
+        "kick": {
+          "ok": "Kick, resmi Kick API'si üzerinden bağlı."
         }
       },
       "status": {
@@ -3896,7 +3930,8 @@
         "emptyTitle": "Henüz bildirim yok",
         "emptyText": {
           "twitch": "Canlı yayına çıktığında duyurmak için bir Twitch yayıncısı ekle.",
-          "tiktok": "TikTok hesabını bağla, sonra yeni videoların için bir bildirim ekle."
+          "tiktok": "TikTok hesabını bağla, sonra yeni videoların için bir bildirim ekle.",
+          "kick": "Canlı yayına başladığında duyurmak için bir Kick yayıncısı ekle."
         },
         "emptyUnavailable": "Bu platform şu anda kullanılamıyor."
       },
@@ -3907,11 +3942,13 @@
         "create": "Oluştur",
         "title": {
           "twitch": "Twitch yayıncısı ekle",
-          "tiktok": "TikTok bildirimi ekle"
+          "tiktok": "TikTok bildirimi ekle",
+          "kick": "Kick yayıncısı ekle"
         },
         "text": {
           "twitch": "Yayıncıyı ve uyarıların gideceği kanalı seç.",
-          "tiktok": "Bağlı bir hesap ve uyarıların gideceği kanalı seç."
+          "tiktok": "Bağlı bir hesap ve uyarıların gideceği kanalı seç.",
+          "kick": "Yayıncıyı yaz ve uyarıların gideceği kanalı seç."
         },
         "streamer": "Yayıncı",
         "streamerHint": "Ada göre ara ya da bir kullanıcı adı veya kanal bağlantısı yapıştır.",
@@ -3921,7 +3958,9 @@
         "change": "Değiştir",
         "account": "TikTok hesabı",
         "accountHint": "Yalnızca bu sunucuya bağlı hesaplar listelenir.",
-        "noAccount": "Henüz bağlı hesap yok. Yukarıdan bir tane bağla."
+        "noAccount": "Henüz bağlı hesap yok. Yukarıdan bir tane bağla.",
+        "kickHint": "Kick kullanıcı adını yaz veya kanal bağlantısını yapıştır.",
+        "kickPlaceholder": "kick.com/kullanici"
       },
       "configure": "Ayarla",
       "reconnect": "Yeniden bağla",
@@ -3985,7 +4024,8 @@
       },
       "advanced": {
         "twitchNote": "Twitch uyarıları EventSub ile anında ulaşır. Yoklama kullanılmaz.",
-        "tiktokNote": "TikTok uyarıları, bağlı yapımcının videoları düzenli aralıklarla kontrol edilerek bulunur."
+        "tiktokNote": "TikTok uyarıları, bağlı yapımcının videoları düzenli aralıklarla kontrol edilerek bulunur.",
+        "kickNote": "Kick uyarıları, kanalın canlı durumu resmi API üzerinden düzenli aralıklarla kontrol edilerek bulunur."
       },
       "sample": {
         "title": "Toplulukla oynuyoruz",
@@ -4512,7 +4552,7 @@
     },
     "invites": {
       "title": "Davet Takibi",
-      "description": "Her üyeyi kimin getirdiğini gör, davet istatistiklerini tut ve en iyi davetçileri sırala. Her sunucu için ücretsiz ve sınırsız.",
+      "description": "Her üyeyi kimin getirdiğini gör, davet istatistiklerini tut ve en iyi davetçileri sırala.",
       "tabs": {
         "overview": "Genel bakış",
         "leaderboard": "Sıralama",
@@ -4523,8 +4563,6 @@
         "statistics": "İstatistikler"
       },
       "overview": {
-        "freeTitle": "Her sunucu için ücretsiz",
-        "freeText": "Davet takibinin sınırı yoktur ve Premium gerektirmez. Sen açana kadar kapalı kalır; Wody'nin davetleri görebilmesi için Sunucuyu Yönet yetkisi gerekir.",
         "resync": "Davet verilerini yenile",
         "resyncDone": "Davet verileri yenilendi.",
         "reasonsTitle": "Eşleştirilemeyen katılımlar",
@@ -4776,12 +4814,10 @@
       }
     },
     "feeds": {
-      "title": "Akışlar",
+      "title": "Pulse",
       "description": "Diğer servislerden yeni videolar, yayınlar, şarkılar, gönderiler, sürümler; seçtiğin sıklıkla bir kanalda paylaşılır.",
       "add": "Akış ekle",
       "edit": "Akışı düzenle",
-      "freeTitle": "Her sunucu için ücretsiz",
-      "freeText": "En fazla {max} akış, 5 dakikada birden günde bire. Premium gerekmez.",
       "counter": "{n} / {max} akış",
       "emptyTitle": "Henüz akış yok",
       "emptyText": "İlk akışını ekle: bir kaynak, bir kanal ve kontrol sıklığı seç. En yeni öğe hemen paylaşılır, sonra yalnızca yeniler.",
@@ -4881,6 +4917,24 @@
         "music": "Müzik ve podcastler",
         "social": "Sosyal ve akışlar",
         "code": "Kod ve oyunlar"
+      },
+      "exampleLabel": "Örnek",
+      "useExample": "Bu örneği kullan",
+      "sourceHints": {
+        "spotify_artist": "Spotify'daki sanatçı bağlantısı (open.spotify.com/artist/...) veya sanatçı kimliği.",
+        "spotify_playlist": "Spotify'daki çalma listesi bağlantısı (open.spotify.com/playlist/...) veya çalma listesi kimliği.",
+        "spotify_podcast": "Spotify'daki podcast bağlantısı (open.spotify.com/show/...) veya program kimliği.",
+        "apple_artist": "Apple Music'teki sanatçı bağlantısı (music.apple.com/.../artist/...) veya sayısal sanatçı kimliği.",
+        "apple_chart": "Listenin iki harfli ülke kodu, örneğin us, gb veya ro. Boş bırakırsan us olur.",
+        "apple_podcast": "Apple Podcasts'teki podcast bağlantısı (podcasts.apple.com/.../id123456789) veya sayısal kimlik.",
+        "reddit": "r/ad biçiminde bir subreddit veya u/ad biçiminde bir kullanıcı. reddit.com bağlantısı da olur.",
+        "tumblr": "Blog adı, örneğin staff, veya bağlantısı (staff.tumblr.com).",
+        "pinterest": "Bir Pinterest kullanıcısı (ad) veya panolarından biri (ad/pano) ya da ikisinden birinin bağlantısı.",
+        "rss": "Herhangi bir RSS veya Atom akışının bağlantısı ya da böyle bir akışı olan sitenin bağlantısı (blog, haber, forum).",
+        "github": "sahip/depo, örneğin python/cpython, veya deponun bağlantısı. Aşağıdan sürümleri veya commit'leri seç.",
+        "steam": "Oyun adı, Steam mağaza bağlantısı (store.steampowered.com/app/...) veya App ID.",
+        "epic": "Ücretsiz oyun listesi için iki harfli ülke kodu, örneğin us veya ro. Boş bırakırsan us olur.",
+        "random_song": "İsteğe bağlı. Spotify çalma listesi bağlantısı veya kimliği, Apple Music ülke kodu, Deezer isteğe bağlı çalma listesi bağlantısı ister."
       }
     },
     "lookups": {
@@ -4902,16 +4956,12 @@
         "convert": "Bir tutarı para birimleri arasında çevirir.",
         "reddit": "Bir subreddit veya Reddit kullanıcısı."
       },
-      "title": "Sorgulamalar",
-      "description": "/lookup altında diğer servislerde {n} sorgulama. Üyeler Discord'dan çıkmadan şarkı, sunucu, profil ve fiyat bulur.",
+      "title": "Radar",
+      "description": "/radar altında diğer servislerde {n} sorgulama. Üyeler Discord'dan çıkmadan şarkı, sunucu, profil ve fiyat bulur.",
       "copied": "{command} kopyalandı",
       "copyFailed": "Kopyalanamadı. Komutu seçip elle kopyala.",
       "copy": "Komutu kopyala",
       "facts": {
-        "free": {
-          "title": "Herkes için ücretsiz",
-          "text": "Premium yok, sunucu başına sınır yok. İstemezsen kenar çubuğundan kapat."
-        },
         "fast": {
           "title": "Resmî ve açık API'ler",
           "text": "Sonuçlar belgelenmiş API'lerden gelir, sayfa kazıma yoktur ve diğer tüm Wody mesajları gibi görünür."
@@ -4947,7 +4997,12 @@
           "text": "Subreddit'ler ve Reddit kullanıcıları."
         }
       },
-      "footer": "Üyeler /lookup yazıp bir servis seçer. Yeni şeyleri kendiliğinden paylaşan bir akış mı istiyorsun? Kenar çubuğunda Akışlar'ı aç."
+      "footer": "Üyeler /radar yazıp bir servis seçer. Yeni şeyleri kendiliğinden paylaşan bir akış mı istiyorsun? Kenar çubuğunda Pulse'ı aç."
+    },
+    "levelsCard": {
+      "useMemberProfile": "Üyelerin profil kartlarını kullan",
+      "useMemberProfileHint": "Genel profil kartı tasarlamış üyeler (/profile customize) bunu bu sunucuda seviye kartı ve /rank için alır. Diğerleri burada ayarlanan kartı korur.",
+      "useMemberProfileLink": "Kendi profil kartını özelleştir"
     }
   },
   "botStatus": {
@@ -5063,7 +5118,7 @@
     },
     "birthdays": {
       "title": "Doğum günleri",
-      "description": "Doğum günlerini rol, duyuru, kart ve hatırlatmalarla kutla. Ücretsiz."
+      "description": "Doğum günlerini rol, duyuru, kart ve hatırlatmalarla kutla."
     },
     "economy": {
       "title": "Ekonomi",
@@ -5083,19 +5138,19 @@
     },
     "invite_tracking": {
       "title": "Davet Takibi",
-      "description": "Her üyeyi kimin davet ettiğini gör; 30 günlük istatistikler, grafikler ve sıralamalarla. Ücretsiz."
+      "description": "Her üyeyi kimin davet ettiğini gör; 30 günlük istatistikler, grafikler ve sıralamalarla."
     },
     "collab": {
       "title": "Collab",
       "description": "Bu sunucu için kendi Collab kategorilerin ve ayarların."
     },
     "lookups": {
-      "title": "Sorgulamalar",
-      "description": "/lookup ile 16 sorgulama: şarkılar, sunucular, profiller ve fiyatlar. Ücretsiz."
+      "title": "Radar",
+      "description": "/radar ile 16 sorgulama: şarkılar, sunucular, profiller ve fiyatlar."
     },
     "feeds": {
-      "title": "Akışlar",
-      "description": "17 kaynak, senin programınla bir kanalda paylaşılır: videolar, yayınlar, müzik, sosyal, kod ve oyunlar. Ücretsiz."
+      "title": "Pulse",
+      "description": "14 kaynak, senin programınla bir kanalda paylaşılır: videolar, yayınlar, müzik, sosyal, kod ve oyunlar."
     }
   },
   "errorPage": {
@@ -6680,7 +6735,7 @@
         ]
       },
       "lookups": {
-        "what": "Üyeler /lookup yazıp bir servis seçer ve Discord'dan çıkmadan şarkı, sunucu, profil veya fiyat alır. Resmî veya açık API'lerden 16 sorgulama.",
+        "what": "Üyeler /radar yazıp bir servis seçer ve Discord'dan çıkmadan şarkı, sunucu, profil veya fiyat alır. Resmî veya açık API'lerden 16 sorgulama.",
         "customize": [
           "Tüm sunucu için aç veya kapat",
           "Hangi servislerin bot sahibinden anahtar istediği",
@@ -6688,7 +6743,7 @@
         ]
       },
       "feeds": {
-        "what": "17 kaynaktan yeni videoları, yayınları, şarkıları, gönderileri, sürümleri 5 dakikada birden günde bire kadar bir programla kanala paylaşır. Yeni bir akış önce en yeni öğeyi gösterir, sonra yalnızca yenileri.",
+        "what": "14 kaynaktan yeni videoları, yayınları, şarkıları, gönderileri, sürümleri 5 dakikada birden günde bire kadar bir programla kanala paylaşır. Yeni bir akış önce en yeni öğeyi gösterir, sonra yalnızca yenileri.",
         "customize": [
           "Kaynak ve neyin izleneceği",
           "Kanal ve kontrol sıklığı",
@@ -6731,7 +6786,7 @@
   },
   "globalBoard": {
     "metaTitle": "Küresel ekonomi sıralaması",
-    "metaDescription": "Wody Economy kullanan tüm sunuculardaki en zengin 100 üye.",
+    "metaDescription": "Wody Economy kullanan tüm sunuculardaki en zengin 100 üye, toplam servete göre sıralanır ve sürekli güncellenir.",
     "badge": "Küresel sıralama",
     "title": "Wody'nin en zengin üyeleri",
     "subtitle": "Wody Economy kullanan tüm sunucuların ilk 100'ü.",
@@ -7273,7 +7328,8 @@
       "applications": "Başvurular",
       "messages": "Mesajlar",
       "servers": "Sunucular",
-      "settings": "Ayarlar"
+      "settings": "Ayarlar",
+      "card": "Profil kartı"
     },
     "hero": {
       "aria": "Profilin",
@@ -7531,5 +7587,206 @@
       "unavailable": "TikTok bağlantısı şu anda kullanılamıyor."
     },
     "cookies": "Çerez Politikası"
+  },
+  "modulesHub": {
+    "metaTitle": "Wody Modülleri | Moderasyon, Bilet, Seviye ve Fazlası",
+    "metaDescription": "Tüm Wody modülleri tek yerde: moderasyon, bilet, seviye, çekiliş, karşılama, Pulse, Radar, ekonomi ve fazlası. Her birinin ne yaptığını gör.",
+    "ogTitle": "Discord için tüm Wody modülleri",
+    "title": "Wody modülleri",
+    "subtitle": "Moderasyon, topluluk, içerik üreticileri ve eğlence için tek bot. Ne yaptığını ve nasıl kurulacağını görmek için bir modül seç.",
+    "breadcrumb": "Modüller",
+    "home": "Ana sayfa"
+  },
+  "cardFonts": {
+    "label": "Yazı tipi",
+    "classic": "Klasik (varsayılan)",
+    "classicBold": "Klasik kalın",
+    "hint": "Kart görselindeki metin için kullanılır. Özel karakterli adlar desteklenir."
+  },
+  "profileCard": {
+    "theme": {
+      "default": "Wody",
+      "minimal": "Minimalist",
+      "dark": "Koyu",
+      "glass": "Glassmorphism",
+      "gradient": "Gradyan",
+      "professional": "Profesyonel",
+      "premium": "Premium",
+      "sunset": "Gün batımı",
+      "ocean": "Okyanus",
+      "forest": "Orman",
+      "custom": "Özel",
+      "label": "Tema",
+      "neon": "Neon",
+      "aurora": "Aurora",
+      "sakura": "Sakura",
+      "midnight": "Gece yarısı",
+      "matrix": "Matrix",
+      "lava": "Lav",
+      "frost": "Ayaz",
+      "royal": "Kraliyet",
+      "candy": "Şeker",
+      "synthwave": "Synthwave",
+      "galaxy": "Galaksi",
+      "mint": "Nane",
+      "rose": "Gül",
+      "noir": "Noir"
+    },
+    "layoutOpt": {
+      "classic": "Klasik",
+      "compact": "Kompakt",
+      "split": "Bölünmüş panel",
+      "centered": "Ortalı"
+    },
+    "opt": {
+      "avatar_pos": {
+        "left": "Sol",
+        "right": "Sağ",
+        "center": "Orta"
+      },
+      "avatar_size": {
+        "small": "Küçük",
+        "medium": "Orta boy",
+        "large": "Büyük"
+      },
+      "avatar_shape": {
+        "circle": "Daire",
+        "rounded": "Yuvarlak kare",
+        "square": "Kare"
+      },
+      "name_align": {
+        "left": "Sol",
+        "center": "Orta",
+        "right": "Sağ"
+      },
+      "stats_pos": {
+        "above_bar": "Çubuğun üstünde",
+        "right": "Sağ üst",
+        "under_name": "Adın altında"
+      },
+      "bar_style": {
+        "rounded": "Yuvarlak",
+        "flat": "Düz",
+        "segmented": "Bölümlü",
+        "glow": "Parlayan"
+      },
+      "font": {
+        "default": "Klasik",
+        "bold": "Klasik kalın"
+      },
+      "effect": {
+        "none": "Yok",
+        "glass": "Cam panel",
+        "vignette": "Vinyet",
+        "noise": "Film greni",
+        "glow": "Parıltı"
+      },
+      "decoration": {
+        "none": "Yok",
+        "dots": "Noktalar",
+        "lines": "Çizgiler",
+        "sparkles": "Parıltılar",
+        "waves": "Dalgalar"
+      },
+      "bg_mode": {
+        "gradient": "Gradyan",
+        "solid": "Düz renk",
+        "image": "Görsel"
+      },
+      "anim": {
+        "none": "Yok",
+        "shimmer": "Parıltı",
+        "stars": "Parıldayan yıldızlar",
+        "aurora": "Aurora",
+        "bubbles": "Baloncuklar",
+        "pulse": "Nabız",
+        "scan": "Tarama çizgisi",
+        "snow": "Kar"
+      }
+    },
+    "setting": {
+      "avatar_pos": "Avatar konumu",
+      "avatar_size": "Avatar boyutu",
+      "avatar_shape": "Avatar şekli",
+      "name_align": "Kullanıcı adı konumu",
+      "stats_pos": "Seviye ve XP konumu",
+      "bar_style": "İlerleme çubuğu stili",
+      "font": "Yazı tipi",
+      "effect": "Görsel efekt",
+      "decoration": "Süsleme",
+      "bg_mode": "Arka plan türü",
+      "anim": "Animasyon"
+    },
+    "field": {
+      "accent": "Vurgu rengi",
+      "text_color": "Metin rengi",
+      "bar_color": "Çubuk rengi",
+      "bar_track": "Çubuk zemini",
+      "gradient_from": "Gradyan başı",
+      "gradient_to": "Gradyan sonu",
+      "gradient_angle": "Gradyan açısı",
+      "bg_url": "Arka plan görseli bağlantısı",
+      "bg_color": "Düz renk",
+      "overlay_color": "Görsel katman rengi",
+      "bg_opacity": "Görsel katman yoğunluğu",
+      "border_width": "Kenarlık kalınlığı",
+      "border_color": "Kenarlık rengi",
+      "radius": "Köşe yuvarlaklığı",
+      "bg_image": "Arka plan resmi"
+    },
+    "layout": "Düzen",
+    "title": "Genel profil kartı",
+    "intro": "Kartını bir kez tasarla. Wody'nin olduğu her sunucuda aynı görünür; seviye, XP ve sıralama ise her zaman kartın gösterildiği sunucudan gelir.",
+    "preview": "Canlı önizleme",
+    "previewNote": "Örnek sayılar. Discord'da her sunucunun gerçek seviyesi, XP'si ve sıralaması gösterilir.",
+    "themes": "Temalar",
+    "sectionAvatar": "Avatar",
+    "sectionText": "Metin ve konumlar",
+    "sectionBar": "İlerleme çubuğu",
+    "sectionBackground": "Arka plan",
+    "sectionFrame": "Çerçeve ve köşeler",
+    "sectionEffects": "Efektler ve süsleme",
+    "save": "Kaydet",
+    "saving": "Kaydediliyor...",
+    "saved": "Kaydedildi. Discord'da zaten aktif.",
+    "discard": "Değişiklikleri at",
+    "resetDefault": "Varsayılana sıfırla",
+    "resetConfirm": "Kartın varsayılan tasarıma sıfırlansın mı? Bu, tüm sunucularda değişir.",
+    "reset": "Sıfırla",
+    "cancel": "İptal",
+    "unsaved": "Kaydedilmemiş değişiklikler var.",
+    "loadError": "Kartın yüklenemedi. Tekrar dene.",
+    "invalid": "{field} geçerli değil.",
+    "saveError": "Şu anda kaydedilemedi. Birazdan tekrar dene.",
+    "sync": "Discord'da /profile customize ile yapılan değişiklikler burada otomatik görünür.",
+    "bgHint": "PNG, JPG, WEBP veya GIF görseline doğrudan bağlantı (yalnızca https). Görseller çizilirken kontrol edilir ve boyutu sınırlandırılır.",
+    "discord": "Discord'u mu tercih edersin? /profile customize kullan. Buradaki her şey orada da var.",
+    "privacy": "Kartını yalnızca sen değiştirebilirsin. Diğer üyeler yalnızca bitmiş görseli görür, ayarlarını asla görmez.",
+    "sampleName": "Adın",
+    "levelText": "Seviye {level}",
+    "rankText": "Sıra #{rank}",
+    "imageErr": {
+      "image_too_large": "Bu resim çok büyük. Sınır 4 MB.",
+      "image_dimensions": "Resim çok küçük veya çok büyük. 64 ile 6000 piksel arasında kullan.",
+      "image_invalid": "Bu dosya geçerli bir resim değil. PNG, JPG, WEBP veya GIF kullan.",
+      "rate_limited": "Çok fazla yükleme. Biraz sonra tekrar dene.",
+      "generic": "Resim yüklenemedi."
+    },
+    "showcaseTitle": "Profil kartın",
+    "viewPublic": "Herkese açık profili gör",
+    "copyLink": "Bağlantıyı kopyala",
+    "linkCopied": "Bağlantı kopyalandı",
+    "editCard": "Kartı düzenle",
+    "tagline": "{date} tarihinden beri Wody üyesi",
+    "publicToggle": "Kartımı herkese açık profilimde göster",
+    "publicHint": "Giriş yapmış ziyaretçiler tasarımını, adını ve resmini görür. Seviye ve XP asla gösterilmez.",
+    "upload": "Resim veya GIF yükle",
+    "uploading": "Yükleniyor…",
+    "removeImage": "Resmi kaldır",
+    "imageHint": "PNG, JPG, WEBP veya GIF, en fazla 4 MB, 64 ile 6000 piksel. GIF kartı hareketlendirir.",
+    "imageCurrent": "Resmin: {w}×{h} piksel, {size} MB",
+    "imageSaved": "Resim kaydedildi",
+    "animNote": "Hareketli efektler ve GIF arka planlar kartın Discord'da animasyonlu GIF olarak görünmesini sağlar.",
+    "sectionTemplates": "Şablonlar"
   }
 }

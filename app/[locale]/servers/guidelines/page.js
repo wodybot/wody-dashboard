@@ -4,6 +4,7 @@ import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import { ROBOTS_INDEX, localizedAlternates, ogLocale } from '@/lib/community/seo';
 import { CONTENT } from '@/lib/content';
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -15,7 +16,8 @@ export async function generateMetadata({ params }) {
   const path = locale === routing.defaultLocale ? '/servers/guidelines' : `/${locale}/servers/guidelines`;
   return {
     title: { absolute: t('guidelines.metaTitle') }, description: t('guidelines.metaDescription'), alternates: localizedAlternates(locale, '/servers/guidelines'), robots: ROBOTS_INDEX,
-    openGraph: { title: t('guidelines.metaTitle'), description: t('guidelines.metaDescription'), url: `${SITE_URL}${path}`, type: 'article', siteName: 'Wody', ...ogLocale(locale) },
+    twitter: TWITTER_CARD,
+      openGraph: { images: OG_IMAGES, title: t('guidelines.metaTitle'), description: t('guidelines.metaDescription'), url: `${SITE_URL}${path}`, type: 'article', siteName: 'Wody', ...ogLocale(locale) },
   };
 }
 
