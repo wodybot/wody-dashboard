@@ -544,13 +544,13 @@
       "f2": "Temi per la card del livello, inclusi Neon Coast e Palm Dusk",
       "f3": "I tuoi link social in un’unica pagina da condividere",
       "cta": "Personalizza la mia pagina",
-      "note": "Grafica originale. Non affiliato né approvato da alcun editore di giochi."
+      "note": "Grafica originale."
     },
     "trio": {
       "badge": "Profilo · Passaporto · Collab",
       "title": "Tre strumenti. Una sola identità.",
       "text": "Crea una pagina profilo memorabile, ottieni il tuo Passaporto Wody e trova partner in Collab, tutto con lo stesso account.",
-      "note": "Grafiche originali. Gli esempi sono illustrativi. Nessun legame con editori di videogiochi né approvazione da parte loro.",
+      "note": "Grafica originale. Gli esempi sono illustrativi.",
       "mock": {
         "name": "tuonome",
         "bio": "Tramonti neon e buona musica.",
@@ -1137,7 +1137,7 @@
       },
       {
         "heading": "28. Immagini del profilo, link musicali e registri di moderazione",
-        "html": "<p>Le immagini, le GIF e gli audio che aggiungi alla tua pagina profilo e alle card del server sono conservati solo come link: Wody non ne tiene una copia. Le immagini vengono caricate tramite il server di Wody dalla piattaforma che le ospita, quindi l’indirizzo IP del visitatore non raggiunge quella piattaforma; restano visibili solo finché il link è valido. Il file audio viene caricato direttamente dal browser del visitatore solo dopo che preme play, quindi il suo indirizzo IP raggiunge il sito che ospita il file. L’unico file che Wody archivia è un’immagine che carichi come sfondo della card del profilo, conservata finché non la sostituisci o la elimini. Wody conserva le segnalazioni, il riferimento al contenuto, la decisione di moderazione e la sua cronologia, nonché l’orario e la versione della tua conferma della policy, per gestire il caso e prevenire violazioni ripetute. Periodi di conservazione: [CONFERMA DELL’OPERATORE RICHIESTA]. La pagina profilo può contare le visualizzazioni con un semplice contatore nel database, senza cookie e senza memorizzare l’indirizzo IP.</p>"
+        "html": "<p>Le immagini, le GIF e gli audio che aggiungi alla tua pagina profilo e alle card del server sono conservati solo come link: Wody non ne tiene una copia. Le immagini vengono caricate tramite il server di Wody dalla piattaforma che le ospita, quindi l’indirizzo IP del visitatore non raggiunge quella piattaforma; restano visibili solo finché il link è valido. Il file audio viene caricato direttamente dal browser del visitatore solo dopo che preme play, quindi il suo indirizzo IP raggiunge il sito che ospita il file. L’unico file che Wody archivia è un’immagine che carichi come sfondo della card del profilo, conservata finché non la sostituisci o la elimini. Wody conserva le segnalazioni, il riferimento al contenuto, la decisione di moderazione e la sua cronologia, nonché l’orario e la versione della tua conferma della policy, per gestire il caso e prevenire violazioni ripetute. La pagina profilo può contare le visualizzazioni con un semplice contatore nel database, senza cookie e senza memorizzare l’indirizzo IP.</p>"
       },
       {
         "heading": "29. Radar e Pulse (ricerche e feed)",
@@ -1257,8 +1257,8 @@
         "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
       },
       {
-        "heading": "28. Personalizzazione del profilo, immagini degli utenti e categoria Miami Style",
-        "html": "<p>Wody offre personalizzazione. Puoi aggiungere immagini, GIF, audio o link solo se hai i diritti necessari o un’altra base giuridica lecita. Ogni volta che pubblichi o modifichi il tuo profilo pubblico devi spuntare una casella non preselezionata per confermarlo e accettare le policy; questa conferma non rende lecita un’immagine non autorizzata. Wody non offre una galleria di grafiche di terzi, non è affiliato ad alcun editore di giochi e la categoria Miami Style è un tema non ufficiale fatto di scene originali. Immagini e audio sono collegati dalla piattaforma che li ospita e sono visibili solo finché il link è valido. Chiunque può segnalare un contenuto; Wody non ha un rilevamento automatico. Dopo la verifica Wody può rimuovere contenuti, limitare o sospendere la personalizzazione e sospendere o bloccare, per le funzioni di Wody, l’account Discord collegato al profilo; puoi presentare ricorso. Dettagli: Policy sui contenuti degli utenti e Policy su diritto d’autore e proprietà intellettuale (bozze, non ancora pubblicate come definitive).</p>"
+        "heading": "28. Personalizzazione del profilo e immagini degli utenti",
+        "html": "<p>Puoi aggiungere immagini, GIF, audio o link al tuo profilo solo se hai i diritti necessari. Ogni volta che pubblichi o modifichi il profilo pubblico spunti una casella che lo conferma e accetti le policy. Immagini e audio sono solo collegati dalla piattaforma che li ospita e restano visibili finché il link è valido. Chiunque può segnalare un contenuto. Dopo la verifica Wody può rimuovere il contenuto, limitare o sospendere la personalizzazione e sospendere o bloccare l’account Discord collegato al profilo per le funzioni Wody; puoi presentare ricorso. Dettagli: Policy sui contenuti degli utenti e Policy sul diritto d’autore e la proprietà intellettuale.</p>"
       }
     ]
   },
@@ -1845,6 +1845,10 @@
             "description": "Mostra la tua card di profilo"
           },
           {
+            "name": "/profile edit",
+            "description": "Modifica pagina del profilo e la card del livello nella dashboard"
+          },
+          {
             "name": "/profile user",
             "description": "Mostra la card di profilo di un membro"
           },
@@ -2130,8 +2134,7 @@
         "content": "Politica sui contenuti",
         "copyright": "Politica sul copyright",
         "required": "Spunta la casella per confermare e accettare le politiche.",
-        "blocked": "Il tuo account è sospeso o bloccato e non può modificare questo profilo.",
-        "miami": "Avviso Miami Style"
+        "blocked": "Il tuo account è sospeso o bloccato e non può modificare questo profilo."
       }
     },
     "groups": {
@@ -7639,8 +7642,7 @@
       "content": "Politica sui contenuti",
       "copyright": "Politica sul copyright",
       "required": "Spunta la casella per confermare e accettare le politiche.",
-      "blocked": "Il tuo account è sospeso o bloccato e non può modificare questo profilo.",
-      "miami": "Avviso Miami Style"
+      "blocked": "Il tuo account è sospeso o bloccato e non può modificare questo profilo."
     },
     "visibility": {
       "makePublic": "Rendi pubblico il mio profilo",
@@ -7651,14 +7653,18 @@
       "confirm": "Rendi pubblico",
       "cancel": "Annulla",
       "saving": "Salvataggio...",
-      "error": "Impossibile cambiare la visibilità. Riprova."
+      "error": "Impossibile cambiare la visibilità. Riprova.",
+      "privateBadge": "Privato: solo i membri Wody con accesso possono aprirlo"
     },
     "metaTitle": "Profilo",
     "saveAll": "Salva tutte le impostazioni",
     "savingAll": "Salvataggio…",
     "discardAll": "Annulla le modifiche",
     "unsavedAll": "Controlla le modifiche, poi salvale tutte insieme.",
-    "backToWody": "Torna a Wody"
+    "backToWody": "Torna a Wody",
+    "saveBar": {
+      "agree": "Accetto le policy:"
+    }
   },
   "humancheck": {
     "label": "Non sono un robot",
@@ -7936,8 +7942,7 @@
       "content": "Politica sui contenuti",
       "copyright": "Politica sul copyright",
       "required": "Spunta la casella per confermare e accettare le politiche.",
-      "blocked": "Il tuo account è sospeso o bloccato e non può modificare questo profilo.",
-      "miami": "Avviso Miami Style"
+      "blocked": "Il tuo account è sospeso o bloccato e non può modificare questo profilo."
     },
     "sectionMiami": "Miami Style",
     "miamiHint": "Scene retrò al tramonto con grafica dedicata, disegnate dietro la tua card. Sceglierne una per l’anteprima."
@@ -8012,7 +8017,8 @@
         "none": "Nessuno",
         "typewriter": "Macchina da scrivere",
         "glow": "Bagliore",
-        "gradient": "Gradiente animato"
+        "gradient": "Gradiente animato",
+        "neon": "Neon tremolante"
       }
     },
     "imageHint": "Link https diretto a un'immagine PNG, JPG, WEBP o GIF.",
@@ -8074,11 +8080,8 @@
       "content": "Politica sui contenuti",
       "copyright": "Politica sul copyright",
       "required": "Spunta la casella per confermare e accettare le politiche.",
-      "blocked": "Il tuo account è sospeso o bloccato e non può modificare questo profilo.",
-      "miami": "Avviso Miami Style"
+      "blocked": "Il tuo account è sospeso o bloccato e non può modificare questo profilo."
     },
-    "miamiNote": "Il tema Miami Style è un tema di personalizzazione non ufficiale disegnato da Wody. Non contiene grafiche di terzi.",
-    "miamiLink": "Leggi l’avviso",
     "miamiHint": "Scene animate per lo sfondo della pagina. Scegline una per l’anteprima.",
     "miamiOff": "Rimuovi la scena",
     "sectionContent": "Contenuto",
@@ -8111,25 +8114,16 @@
   },
   "policies": {
     "index": "Policy",
-    "draft": "Bozza",
-    "draftNote": "Questa è una bozza preparata il {review}. Non è stata approvata dall’operatore né rivista da un legale e non è ancora pubblicata come versione definitiva. I campi contrassegnati [CONFERMA DELL’OPERATORE RICHIESTA] sono dati mancanti.",
     "version": "Versione",
-    "effective": "Data di entrata in vigore",
     "updated": "Ultimo aggiornamento",
-    "status": "Stato",
-    "statusValue": "Bozza, in attesa di conferma dell’operatore e di revisione legale",
-    "effectiveValue": "Non in vigore finché l’operatore non la pubblica",
-    "previous": "Versione precedente",
-    "previousValue": "Nessuna",
     "contact": "Contact",
     "related": "Policy correlate",
     "nav": {
       "content-policy": "Policy sui contenuti degli utenti",
       "copyright": "Policy su diritto d’autore e proprietà intellettuale",
-      "complaint": "Reclamo per violazione del diritto d’autore",
-      "miami-notice": "Avviso sulla categoria Miami Style"
+      "complaint": "Reclamo per violazione del diritto d’autore"
     },
-    "contactHtml": "Operatore: Păcurar Ancuța-Narcisa, Romania, Unione europea. Contatto generale: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Contatto dedicato al diritto d’autore: [CONFERMA DELL’OPERATORE RICHIESTA]. Indirizzo della sede, dati fiscali e di registrazione: [CONFERMA DELL’OPERATORE RICHIESTA].",
+    "contactHtml": "Operatore: Păcurar Ancuța-Narcisa, Romania, Unione europea. Contatto generale: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.",
     "content-policy": {
       "title": "Policy sui contenuti degli utenti",
       "version": "1.0-draft",
@@ -8164,15 +8158,15 @@
         },
         {
           "heading": "8. Ricorsi",
-          "html": "<p>Se viene intrapresa un’azione sul tuo contenuto, vedi un avviso nella scheda della pagina profilo e lì puoi inviare un ricorso. L’operatore esamina i ricorsi e può ripristinare i contenuti o revocare le restrizioni. Tempi di risposta: [CONFERMA DELL’OPERATORE RICHIESTA].</p>"
+          "html": "<p>Se viene intrapresa un’azione sul tuo contenuto, vedi un avviso nella scheda della pagina profilo e lì puoi inviare un ricorso. L’operatore esamina i ricorsi e può ripristinare i contenuti o revocare le restrizioni.</p>"
         },
         {
           "heading": "9. Registri e dati personali",
-          "html": "<p>Wody conserva la segnalazione, il riferimento al contenuto individuato, la decisione e la sua cronologia, nonché l’orario e la versione della conferma della policy, per il tempo necessario a gestire il caso e a prevenire violazioni ripetute. Periodo di conservazione di questi registri: [CONFERMA DELL’OPERATORE RICHIESTA]. Wody non conserva copie di immagini e audio che sono solo collegati. Vedi l’Informativa sulla privacy.</p>"
+          "html": "<p>Wody conserva la segnalazione, il riferimento al contenuto individuato, la decisione e la sua cronologia, nonché l’orario e la versione della conferma della policy, per il tempo necessario a gestire il caso e a prevenire violazioni ripetute. Wody non conserva copie di immagini e audio che sono solo collegati. Vedi l’Informativa sulla privacy.</p>"
         },
         {
           "heading": "10. Contatti",
-          "html": "Operatore: Păcurar Ancuța-Narcisa, Romania, Unione europea. Contatto generale: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Contatto dedicato al diritto d’autore: [CONFERMA DELL’OPERATORE RICHIESTA]. Indirizzo della sede, dati fiscali e di registrazione: [CONFERMA DELL’OPERATORE RICHIESTA]."
+          "html": "Operatore: Păcurar Ancuța-Narcisa, Romania, Unione europea. Contatto generale: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>."
         }
       ]
     },
@@ -8198,7 +8192,7 @@
         },
         {
           "heading": "5. Come viene gestito un reclamo",
-          "html": "<ol><li>Il reclamo viene registrato e il contenuto viene individuato.</li><li>L’operatore lo esamina. Se non è chiaro, possiamo chiederti chiarimenti.</li><li>Se la segnalazione è sufficientemente precisa e il contenuto appare illecito, l’accesso al contenuto viene disabilitato o il contenuto viene rimosso.</li><li>Chi ha caricato il contenuto vede un avviso e può presentare ricorso.</li><li>La decisione, il motivo e l’orario vengono registrati.</li></ol><p>In questa bozza Wody non promette un termine fisso di rimozione. Tempo di risposta previsto: [CONFERMA DELL’OPERATORE RICHIESTA]. Dove la legge richiede passaggi specifici, si applicano quelli.</p>"
+          "html": "<ol><li>Il reclamo viene registrato e il contenuto viene individuato.</li><li>L’operatore lo esamina. Se non è chiaro, possiamo chiederti chiarimenti.</li><li>Se la segnalazione è sufficientemente precisa e il contenuto appare illecito, l’accesso al contenuto viene disabilitato o il contenuto viene rimosso.</li><li>Chi ha caricato il contenuto vede un avviso e può presentare ricorso.</li><li>La decisione, il motivo e l’orario vengono registrati.</li></ol><p>In questa bozza Wody non promette un termine fisso di rimozione. Dove la legge richiede passaggi specifici, si applicano quelli.</p>"
         },
         {
           "heading": "6. Violazioni ripetute",
@@ -8214,7 +8208,7 @@
         },
         {
           "heading": "9. Contatti",
-          "html": "Operatore: Păcurar Ancuța-Narcisa, Romania, Unione europea. Contatto generale: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Contatto dedicato al diritto d’autore: [CONFERMA DELL’OPERATORE RICHIESTA]. Indirizzo della sede, dati fiscali e di registrazione: [CONFERMA DELL’OPERATORE RICHIESTA]."
+          "html": "Operatore: Păcurar Ancuța-Narcisa, Romania, Unione europea. Contatto generale: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>."
         }
       ]
     },
@@ -8247,16 +8241,6 @@
         "notFound": "Nessun profilo con questo nome utente è stato trovato.",
         "rate": "Troppi tentativi. Riprova più tardi."
       }
-    },
-    "miami-notice": {
-      "title": "Avviso sulla categoria Miami Style",
-      "version": "1.0-draft",
-      "sections": [
-        {
-          "heading": "Avviso",
-          "html": "<p>Miami Style è un tema di personalizzazione non ufficiale fatto di colori e scene originali disegnati da Wody, ispirato a un’atmosfera di tramonto, palme e neon. Non è affiliato, approvato né sponsorizzato da alcun editore o studio di giochi e non contiene grafiche, loghi o personaggi di terzi.</p><ul><li>Wody non offre una galleria di immagini di terzi e non distribuisce materiale di alcun gioco.</li><li>Se aggiungi un’immagine o un link in questa categoria, lo fornisci tu e devi avere i diritti necessari o un’altra base giuridica lecita.</li><li>Wody può disabilitare contenuti segnalati o illeciti e può limitare la personalizzazione dopo una verifica.</li><li>La categoria è facoltativa e puoi scegliere un altro tema in qualsiasi momento.</li><li>Questo avviso non dà a nessuno il permesso di usare materiale di terzi.</li></ul><p>Leggi la Policy sui contenuti degli utenti e la Policy su diritto d’autore e proprietà intellettuale per le regole complete.</p>"
-        }
-      ]
     }
   },
   "report": {
@@ -8357,14 +8341,6 @@
     "faqTitle": "Domande",
     "faq": [
       {
-        "q": "Miami Style è legato a un gioco o a un marchio?",
-        "a": "No. È un tema originale disegnato da Wody, ispirato a tramonti, palme e neon. Non è affiliato né approvato da alcun editore di giochi."
-      },
-      {
-        "q": "Include grafiche, loghi o personaggi di terzi?",
-        "a": "No. Wody non include grafiche, loghi o personaggi di alcun gioco o marchio. Se aggiungi una tua immagine, devi avere il diritto di usarla."
-      },
-      {
         "q": "È gratuito?",
         "a": "Puoi iniziare gratis. Alcuni moduli fanno parte di Wody Premium."
       },
@@ -8377,6 +8353,6 @@
     "ctaText": "Aggiungi Wody e scegli la tua scena in meno di un minuto.",
     "cta": "Aggiungi Wody a Discord",
     "ctaProfile": "Personalizza la mia pagina profilo",
-    "disclaimer": "Miami Style è un tema non ufficiale fatto di grafiche originali di Wody. Wody non è affiliato, approvato né sponsorizzato da alcun editore o studio di giochi."
+    "disclaimer": "Miami Style è un tema originale disegnato da Wody."
   }
 }

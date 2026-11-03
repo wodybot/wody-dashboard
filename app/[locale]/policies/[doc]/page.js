@@ -4,7 +4,7 @@ import { Link } from '@/i18n/navigation';
 import { TopNav, Footer } from '@/components/nav';
 import ComplaintForm from '@/components/moderation/ComplaintForm';
 
-const DOCS = ['content-policy', 'copyright', 'miami-notice', 'complaint'];
+const DOCS = ['content-policy', 'copyright', 'complaint'];
 const REVIEW = { en: '3 November 2026', ro: '3 noiembrie 2026' };
 
 export const revalidate = 3600;
@@ -22,15 +22,13 @@ export default async function PolicyPage({ params, searchParams }) {
   const page = t.raw(doc);
   const review = REVIEW[locale] || REVIEW.en;
   const sp = (await searchParams) || {};
-  const rows = [['version', page.version], ['status', t('statusValue')], ['effective', t('effectiveValue')], ['updated', review], ['previous', t('previousValue')]];
+  const rows = [['version', page.version], ['updated', review]];
   return (
     <div className="min-h-screen">
       <TopNav />
       <main id="main-content" className="mx-auto max-w-3xl px-6 py-14">
-        <p className="mb-3 inline-block rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-1 text-xs font-semibold text-amber-200">{t('draft')}</p>
         <h1 className="text-3xl font-bold tracking-tight">{page.title}</h1>
-        <p className="mt-3 rounded-xl border border-amber-400/30 bg-amber-400/5 p-3 text-sm text-muted-foreground">{t('draftNote', { review })}</p>
-        <dl className="mt-5 grid gap-2 rounded-xl border border-border/60 bg-card/40 p-4 text-sm sm:grid-cols-2">
+        <dl className="mt-5 grid grid-cols-2 gap-2 rounded-xl border border-border/60 bg-card/40 p-4 text-sm">
           {rows.map(([k, v]) => (
             <div key={k}><dt className="text-xs text-muted-foreground">{t(k)}</dt><dd className="font-medium">{v}</dd></div>
           ))}

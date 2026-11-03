@@ -544,13 +544,13 @@
       "f2": "Neon Coast ve Palm Dusk dahil seviye kartı temaları",
       "f3": "Sosyal bağlantıların paylaşılabilir tek sayfada",
       "cta": "Sayfamı özelleştir",
-      "note": "Özgün tasarım. Hiçbir oyun yayıncısıyla bağlantılı veya onaylı değildir."
+      "note": "Orijinal çizimler."
     },
     "trio": {
       "badge": "Profil · Pasaport · Collab",
       "title": "Üç araç. Tek kimlik.",
       "text": "Akılda kalan bir profil sayfası oluştur, Wody Pasaportunu al ve Collab’da ortak bul; hepsi aynı hesapla.",
-      "note": "Özgün çizimler. Örnekler temsilidir. Hiçbir oyun yayıncısıyla bağlantılı veya onun tarafından onaylı değildir.",
+      "note": "Orijinal çizimler. Örnekler örnek amaçlıdır.",
       "mock": {
         "name": "adin",
         "bio": "Neon gün batımları ve iyi müzik.",
@@ -1137,7 +1137,7 @@
       },
       {
         "heading": "28. Profil görselleri, müzik bağlantıları ve moderasyon kayıtları",
-        "html": "<p>Profil sayfana ve sunucu kartlarına eklediğin görseller, GIF'ler ve ses dosyaları yalnızca bağlantı olarak saklanır: Wody bunların kopyasını tutmaz. Görseller, onları barındıran platformdan Wody sunucusu üzerinden yüklenir; bu yüzden ziyaretçinin IP adresi o platforma ulaşmaz; yalnızca bağlantı geçerli olduğu sürece görünür kalırlar. Ses dosyası, ziyaretçi oynat'a bastıktan sonra doğrudan ziyaretçinin tarayıcısı tarafından yüklenir; bu nedenle IP adresi dosyayı barındıran siteye ulaşır. Wody'nin sakladığı tek dosya, profil kartı arka planı olarak yüklediğin ve sen değiştirene veya silene kadar tutulan görseldir. Wody; bildirimleri, içerik referansını, moderasyon kararını ve geçmişini, ayrıca politika onayının zamanını ve sürümünü vakayı ele almak ve tekrarlanan ihlalleri önlemek için saklar. Saklama süreleri: [İŞLETMECİ ONAYI GEREKLİ]. Profil sayfası, görüntülenmeleri veritabanında basit bir sayaçla, çerez kullanmadan ve IP adresini saklamadan sayabilir.</p>"
+        "html": "<p>Profil sayfana ve sunucu kartlarına eklediğin görseller, GIF'ler ve ses dosyaları yalnızca bağlantı olarak saklanır: Wody bunların kopyasını tutmaz. Görseller, onları barındıran platformdan Wody sunucusu üzerinden yüklenir; bu yüzden ziyaretçinin IP adresi o platforma ulaşmaz; yalnızca bağlantı geçerli olduğu sürece görünür kalırlar. Ses dosyası, ziyaretçi oynat'a bastıktan sonra doğrudan ziyaretçinin tarayıcısı tarafından yüklenir; bu nedenle IP adresi dosyayı barındıran siteye ulaşır. Wody'nin sakladığı tek dosya, profil kartı arka planı olarak yüklediğin ve sen değiştirene veya silene kadar tutulan görseldir. Wody; bildirimleri, içerik referansını, moderasyon kararını ve geçmişini, ayrıca politika onayının zamanını ve sürümünü vakayı ele almak ve tekrarlanan ihlalleri önlemek için saklar. Profil sayfası, görüntülenmeleri veritabanında basit bir sayaçla, çerez kullanmadan ve IP adresini saklamadan sayabilir.</p>"
       },
       {
         "heading": "29. Radar ve Pulse (sorgular ve akışlar)",
@@ -1257,8 +1257,8 @@
         "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
       },
       {
-        "heading": "28. Profil özelleştirme, kullanıcı görselleri ve Miami Style kategorisi",
-        "html": "<p>Wody özelleştirme sunar. Görsel, GIF, ses veya bağlantıları yalnızca gerekli haklara ya da başka bir hukuki dayanağa sahipsen ekleyebilirsin. Herkese açık profilini her yayımladığında veya düzenlediğinde bunu onaylamak ve politikaları kabul etmek için varsayılan olarak işaretsiz bir kutuyu işaretlemelisin; bu onay izinsiz bir görseli hukuka uygun hale getirmez. Wody, üçüncü tarafların çizimlerinden oluşan bir galeri sunmaz, hiçbir oyun yayıncısıyla bağlantılı değildir ve Miami Style kategorisi özgün sahnelerden oluşan resmî olmayan bir temadır. Görseller ve ses, onları barındıran platformdan bağlanır ve yalnızca bağlantı geçerli olduğu sürece görünür. Herkes içeriği bildirebilir; Wody'nin otomatik tespiti yoktur. İnceleme sonrasında Wody içeriği kaldırabilir, özelleştirmeyi kısıtlayabilir veya askıya alabilir ve profile bağlı Discord hesabını Wody özellikleri bakımından askıya alabilir ya da engelleyebilir; itiraz edebilirsin. Ayrıntılar: Kullanıcı İçeriği Politikası ve Telif Hakkı ve Fikri Mülkiyet Politikası (taslaklar, henüz nihai olarak yayımlanmadı).</p>"
+        "heading": "28. Profil özelleştirme ve kullanıcı görselleri",
+        "html": "<p>Profiline yalnızca gerekli haklara sahipsen görsel, GIF, ses veya bağlantı ekleyebilirsin. Herkese açık profilini her yayınladığında veya düzenlediğinde bunu onaylayan ve politikaları kabul ettiğini belirten bir kutuyu işaretlersin. Görseller ve sesler yalnızca barındıran platformdan bağlanır ve bağlantı geçerli olduğu sürece görünür. Herkes içerik bildirebilir. İnceleme sonrası Wody içeriği kaldırabilir, özelleştirmeyi kısıtlayabilir veya askıya alabilir ve profile bağlı Discord hesabını Wody özellikleri için askıya alabilir ya da engelleyebilir; itiraz edebilirsin. Ayrıntılar: Kullanıcı İçeriği Politikası ve Telif Hakkı ve Fikri Mülkiyet Politikası.</p>"
       }
     ]
   },
@@ -1845,6 +1845,10 @@
             "description": "Profil kartını göster"
           },
           {
+            "name": "/profile edit",
+            "description": "Profil sayfanı ve seviye kartını panelden düzenle"
+          },
+          {
             "name": "/profile user",
             "description": "Bir üyenin profil kartını göster"
           },
@@ -2130,8 +2134,7 @@
         "content": "İçerik Politikası",
         "copyright": "Telif Hakkı Politikası",
         "required": "Önce kutuyu işaretleyerek politikaları onayla ve kabul et.",
-        "blocked": "Hesabın askıya alındı veya engellendi; bu profili düzenleyemez.",
-        "miami": "Miami Style bildirimi"
+        "blocked": "Hesabın askıya alındı veya engellendi; bu profili düzenleyemez."
       }
     },
     "groups": {
@@ -7639,8 +7642,7 @@
       "content": "İçerik Politikası",
       "copyright": "Telif Hakkı Politikası",
       "required": "Önce kutuyu işaretleyerek politikaları onayla ve kabul et.",
-      "blocked": "Hesabın askıya alındı veya engellendi; bu profili düzenleyemez.",
-      "miami": "Miami Style bildirimi"
+      "blocked": "Hesabın askıya alındı veya engellendi; bu profili düzenleyemez."
     },
     "visibility": {
       "makePublic": "Profilimi herkese açık yap",
@@ -7651,14 +7653,18 @@
       "confirm": "Herkese açık yap",
       "cancel": "İptal",
       "saving": "Kaydediliyor...",
-      "error": "Görünürlük değiştirilemedi. Tekrar dene."
+      "error": "Görünürlük değiştirilemedi. Tekrar dene.",
+      "privateBadge": "Özel: yalnızca giriş yapmış Wody üyeleri açabilir"
     },
     "metaTitle": "Profil",
     "saveAll": "Tüm ayarları kaydet",
     "savingAll": "Kaydediliyor…",
     "discardAll": "Değişiklikleri at",
     "unsavedAll": "Değişiklikleri kontrol et, hepsini tek seferde kaydet.",
-    "backToWody": "Wody’ye dön"
+    "backToWody": "Wody’ye dön",
+    "saveBar": {
+      "agree": "Politikaları kabul ediyorum:"
+    }
   },
   "humancheck": {
     "label": "Robot değilim",
@@ -7936,8 +7942,7 @@
       "content": "İçerik Politikası",
       "copyright": "Telif Hakkı Politikası",
       "required": "Önce kutuyu işaretleyerek politikaları onayla ve kabul et.",
-      "blocked": "Hesabın askıya alındı veya engellendi; bu profili düzenleyemez.",
-      "miami": "Miami Style bildirimi"
+      "blocked": "Hesabın askıya alındı veya engellendi; bu profili düzenleyemez."
     },
     "sectionMiami": "Miami Style",
     "miamiHint": "Kartının arkasına çizilen, kendi tasarımına sahip retro gün batımı sahneleri. Önizlemek için birini seç."
@@ -8012,7 +8017,8 @@
         "none": "Yok",
         "typewriter": "Daktilo",
         "glow": "Parıltı",
-        "gradient": "Hareketli geçiş"
+        "gradient": "Hareketli geçiş",
+        "neon": "Titreyen neon"
       }
     },
     "imageHint": "PNG, JPG, WEBP veya GIF görseline doğrudan https bağlantısı.",
@@ -8074,11 +8080,8 @@
       "content": "İçerik Politikası",
       "copyright": "Telif Hakkı Politikası",
       "required": "Önce kutuyu işaretleyerek politikaları onayla ve kabul et.",
-      "blocked": "Hesabın askıya alındı veya engellendi; bu profili düzenleyemez.",
-      "miami": "Miami Style bildirimi"
+      "blocked": "Hesabın askıya alındı veya engellendi; bu profili düzenleyemez."
     },
-    "miamiNote": "Miami Style teması, Wody tarafından çizilmiş resmî olmayan bir özelleştirme temasıdır. Üçüncü tarafların hiçbir çizimini içermez.",
-    "miamiLink": "Bildirimi oku",
     "miamiHint": "Sayfa arka planı için animasyonlu sahneler. Önizlemek için birini seç.",
     "miamiOff": "Sahneyi kaldır",
     "sectionContent": "İçerik",
@@ -8111,25 +8114,16 @@
   },
   "policies": {
     "index": "Politikalar",
-    "draft": "Taslak",
-    "draftNote": "Bu, {review} tarihinde hazırlanmış bir taslaktır. İşletmeci tarafından onaylanmamıştır, bir avukat tarafından incelenmemiştir ve henüz nihai olarak yayımlanmamıştır. [İŞLETMECİ ONAYI GEREKLİ] ile işaretli alanlar eksik bilgilerdir.",
     "version": "Sürüm",
-    "effective": "Yürürlük tarihi",
     "updated": "Son güncelleme",
-    "status": "Durum",
-    "statusValue": "Taslak, işletmeci onayı ve hukuki inceleme bekliyor",
-    "effectiveValue": "İşletmeci yayımlayana kadar yürürlükte değildir",
-    "previous": "Önceki sürüm",
-    "previousValue": "Yok",
     "contact": "Contact",
     "related": "İlgili politikalar",
     "nav": {
       "content-policy": "Kullanıcı İçeriği Politikası",
       "copyright": "Telif Hakkı ve Fikri Mülkiyet Politikası",
-      "complaint": "Telif hakkı şikâyeti",
-      "miami-notice": "Miami Style kategorisi bildirimi"
+      "complaint": "Telif hakkı şikâyeti"
     },
-    "contactHtml": "İşletmeci: Păcurar Ancuța-Narcisa, Romanya, Avrupa Birliği. Genel iletişim: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Telif hakkı için özel iletişim: [İŞLETMECİ ONAYI GEREKLİ]. Kayıtlı adres, vergi ve sicil bilgileri: [İŞLETMECİ ONAYI GEREKLİ].",
+    "contactHtml": "İşletmeci: Păcurar Ancuța-Narcisa, Romanya, Avrupa Birliği. Genel iletişim: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.",
     "content-policy": {
       "title": "Kullanıcı İçeriği Politikası",
       "version": "1.0-draft",
@@ -8164,15 +8158,15 @@
         },
         {
           "heading": "8. İtirazlar",
-          "html": "<p>İçeriğin üzerinde bir işlem yapılırsa profil sayfası sekmesinde bir bildirim görürsün ve oradan itiraz gönderebilirsin. İşletmeci itirazları inceler ve içeriği geri yükleyebilir veya kısıtlamaları kaldırabilir. Yanıt süresi: [İŞLETMECİ ONAYI GEREKLİ].</p>"
+          "html": "<p>İçeriğin üzerinde bir işlem yapılırsa profil sayfası sekmesinde bir bildirim görürsün ve oradan itiraz gönderebilirsin. İşletmeci itirazları inceler ve içeriği geri yükleyebilir veya kısıtlamaları kaldırabilir.</p>"
         },
         {
           "heading": "9. Kayıtlar ve kişisel veriler",
-          "html": "<p>Wody; bildirimi, tespit edilen içeriğe ilişkin referansı, kararı ve geçmişini, ayrıca politika onayının zamanını ve sürümünü, vakayı ele almak ve tekrarlanan ihlalleri önlemek için gerektiği sürece saklar. Bu kayıtların saklama süresi: [İŞLETMECİ ONAYI GEREKLİ]. Wody, yalnızca bağlantı verilen görsellerin ve seslerin kopyalarını saklamaz. Gizlilik Politikası'na bak.</p>"
+          "html": "<p>Wody; bildirimi, tespit edilen içeriğe ilişkin referansı, kararı ve geçmişini, ayrıca politika onayının zamanını ve sürümünü, vakayı ele almak ve tekrarlanan ihlalleri önlemek için gerektiği sürece saklar. Wody, yalnızca bağlantı verilen görsellerin ve seslerin kopyalarını saklamaz. Gizlilik Politikası'na bak.</p>"
         },
         {
           "heading": "10. İletişim",
-          "html": "İşletmeci: Păcurar Ancuța-Narcisa, Romanya, Avrupa Birliği. Genel iletişim: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Telif hakkı için özel iletişim: [İŞLETMECİ ONAYI GEREKLİ]. Kayıtlı adres, vergi ve sicil bilgileri: [İŞLETMECİ ONAYI GEREKLİ]."
+          "html": "İşletmeci: Păcurar Ancuța-Narcisa, Romanya, Avrupa Birliği. Genel iletişim: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>."
         }
       ]
     },
@@ -8198,7 +8192,7 @@
         },
         {
           "heading": "5. Şikâyet nasıl ele alınır",
-          "html": "<ol><li>Şikâyet kaydedilir ve içerik tespit edilir.</li><li>İşletmeci şikâyeti inceler. Belirsizse senden açıklama isteyebiliriz.</li><li>Bildirim yeterince açıksa ve içerik hukuka aykırı görünüyorsa içeriğe erişim devre dışı bırakılır veya içerik kaldırılır.</li><li>Yükleyen kişi bir bildirim görür ve itiraz edebilir.</li><li>Karar, gerekçesi ve zamanı kaydedilir.</li></ol><p>Wody bu taslakta sabit bir kaldırma süresi vaat etmez. Hedeflenen yanıt süresi: [İŞLETMECİ ONAYI GEREKLİ]. Kanunun belirli adımlar gerektirdiği durumlarda o adımlar uygulanır.</p>"
+          "html": "<ol><li>Şikâyet kaydedilir ve içerik tespit edilir.</li><li>İşletmeci şikâyeti inceler. Belirsizse senden açıklama isteyebiliriz.</li><li>Bildirim yeterince açıksa ve içerik hukuka aykırı görünüyorsa içeriğe erişim devre dışı bırakılır veya içerik kaldırılır.</li><li>Yükleyen kişi bir bildirim görür ve itiraz edebilir.</li><li>Karar, gerekçesi ve zamanı kaydedilir.</li></ol><p>Wody sabit bir kaldırma süresi vaat etmez. Kanunun belirli adımlar gerektirdiği durumlarda o adımlar uygulanır.</p>"
         },
         {
           "heading": "6. Tekrarlanan ihlaller",
@@ -8214,7 +8208,7 @@
         },
         {
           "heading": "9. İletişim",
-          "html": "İşletmeci: Păcurar Ancuța-Narcisa, Romanya, Avrupa Birliği. Genel iletişim: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Telif hakkı için özel iletişim: [İŞLETMECİ ONAYI GEREKLİ]. Kayıtlı adres, vergi ve sicil bilgileri: [İŞLETMECİ ONAYI GEREKLİ]."
+          "html": "İşletmeci: Păcurar Ancuța-Narcisa, Romanya, Avrupa Birliği. Genel iletişim: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>."
         }
       ]
     },
@@ -8247,16 +8241,6 @@
         "notFound": "Bu kullanıcı adına sahip bir profil bulunamadı.",
         "rate": "Çok fazla deneme. Daha sonra tekrar dene."
       }
-    },
-    "miami-notice": {
-      "title": "Miami Style kategorisi bildirimi",
-      "version": "1.0-draft",
-      "sections": [
-        {
-          "heading": "Bildirim",
-          "html": "<p>Miami Style, Wody tarafından çizilmiş özgün renklerden ve sahnelerden oluşan, gün batımı, palmiye ve neon görünümünden esinlenen resmî olmayan bir özelleştirme temasıdır. Hiçbir oyun yayıncısı veya stüdyoyla bağlantılı değildir, onlar tarafından onaylanmamıştır veya desteklenmemiştir ve üçüncü tarafların hiçbir çizimini, logosunu veya karakterini içermez.</p><ul><li>Wody, üçüncü taraf görsellerden oluşan bir galeri sunmaz ve hiçbir oyundan materyal dağıtmaz.</li><li>Bu kategoriye bir görsel veya bağlantı eklersen bunu kendin sağlarsın ve gerekli haklara ya da başka bir hukuki dayanağa sahip olmalısın.</li><li>Wody, bildirilen veya hukuka aykırı içeriği devre dışı bırakabilir ve inceleme sonrasında özelleştirmeyi kısıtlayabilir.</li><li>Kategori isteğe bağlıdır ve istediğin zaman başka bir tema seçebilirsin.</li><li>Bu bildirim hiç kimseye üçüncü taraf materyalini kullanma izni vermez.</li></ul><p>Tüm kurallar için Kullanıcı İçeriği Politikası'nı ve Telif Hakkı ve Fikri Mülkiyet Politikası'nı oku.</p>"
-        }
-      ]
     }
   },
   "report": {
@@ -8357,14 +8341,6 @@
     "faqTitle": "Sorular",
     "faq": [
       {
-        "q": "Miami Style herhangi bir oyuna veya markaya bağlı mı?",
-        "a": "Hayır. Gün batımlarından, palmiyelerden ve neondan esinlenen, Wody tarafından çizilmiş özgün bir temadır. Hiçbir oyun yayıncısıyla bağlantılı değildir veya onlar tarafından onaylanmamıştır."
-      },
-      {
-        "q": "Üçüncü tarafların çizimlerini, logolarını veya karakterlerini içeriyor mu?",
-        "a": "Hayır. Wody, hiçbir oyundan veya markadan çizim, logo ya da karakter içermez. Kendi görselini eklersen onu kullanma hakkına sahip olmalısın."
-      },
-      {
         "q": "Ücretsiz mi?",
         "a": "Ücretsiz başlayabilirsin. Bazı modüller Wody Premium'un parçasıdır."
       },
@@ -8377,6 +8353,6 @@
     "ctaText": "Wody'yi ekle ve sahneni bir dakikadan kısa sürede seç.",
     "cta": "Wody'yi Discord'a ekle",
     "ctaProfile": "Profil sayfamı özelleştir",
-    "disclaimer": "Miami Style, Wody'nin özgün çizimlerinden oluşan resmî olmayan bir temadır. Wody hiçbir oyun yayıncısı veya stüdyoyla bağlantılı değildir, onlar tarafından onaylanmamıştır veya desteklenmemiştir."
+    "disclaimer": "Miami Style, Wody tarafından çizilmiş orijinal bir temadır."
   }
 }

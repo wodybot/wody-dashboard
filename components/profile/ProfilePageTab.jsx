@@ -61,7 +61,7 @@ function LivePreview({ page, identity, socials, away, cardCfg, tcard }) {
   useEffect(() => {
     const el = outer.current;
     if (!el || typeof ResizeObserver === 'undefined') return undefined;
-    const ro = new ResizeObserver(() => setZoom(Math.min(1, el.clientWidth / 768)));
+    const ro = new ResizeObserver(() => setZoom(window.innerWidth >= 1024 ? Math.min(1, el.clientWidth / 1200) : 1));
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
@@ -80,7 +80,7 @@ function LivePreview({ page, identity, socials, away, cardCfg, tcard }) {
   return (
     <div ref={outer} className="relative isolate overflow-hidden rounded-2xl border border-border/60 bg-[#120b08]">
       <PageBackdrop page={page} fixed={false} />
-      <div style={{ width: 768, zoom }} className="flex flex-col gap-6 px-6 py-8">
+      <div style={{ width: zoom < 1 || (typeof window !== 'undefined' && window.innerWidth >= 1024) ? 1200 : 'auto', zoom }} className="flex flex-col gap-6 px-6 py-6">
         <ProfilePageView page={publicPageView(page)} name={name} username={identity?.username || ''} avatarSrc={discordCdnUrl(rawSrc)} memberSince={null} away={away} socials={socials} live={0} views={0} locale="en" levelCard={levelCard} />
       </div>
     </div>
@@ -355,7 +355,7 @@ export default function ProfilePageTab({ identity, socials = {}, away = null, on
           <p className="sm:col-span-2 text-xs text-muted-foreground">{page.mode === 'preset' ? t('accentPresetNote') : page.mode === 'none' ? t('accentNoneNote') : t('accentNote')}</p>
         </Panel>
       </div>
-      <SaveBar t={t} dirty={dirty} busy={busy} canSave={!saveBlocked} consent={consent} onConsent={setConsent} onSave={save} onDiscard={() => { setDraft(saved); setMsg(null); }} onReset={reset} msg={msg} />
+      <SaveBar t={t} dirty={dirty} busy={busy} canSave={!saveBlocked} consent={consent} onConsent={setConsent} onSave={save} onDiscard={() => { setDraft(saved); setMsg(null); }} onReset={reset} msg={msg} onMsgDone={() => setMsg(null)} />
     </div>
   );
 }

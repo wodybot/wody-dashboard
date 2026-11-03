@@ -1,37 +1,49 @@
 'use client';
 
-import { useId } from 'react';
-import { Loader2, RotateCcw, Save, Undo2 } from 'lucide-react';
-import { btn, btnMain } from '@/components/collab/ProfileParts';
+import { useEffect, useId } from 'react';
+import { useTranslations } from 'next-intl';
+import { Check, Loader2, RotateCcw, Save, Undo2 } from 'lucide-react';
 
-const LINKS = [['content', '/policies/content-policy'], ['copyright', '/policies/copyright'], ['miami', '/policies/miami-notice']];
+const LINKS = [['content', '/policies/content-policy'], ['copyright', '/policies/copyright']];
+const base = 'inline-flex h-10 min-w-[6.5rem] items-center justify-center gap-2 rounded-full px-4 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-45';
+const ghost = `${base} border border-border/70 bg-white/[0.03] text-foreground/90 hover:border-[#e6cd8c]/50 hover:bg-white/[0.07]`;
 
-/** One always-visible save bar: policy agreement + Save / Discard / Reset. */
-export default function SaveBar({ t, dirty, busy, canSave = true, consent, onConsent, onSave, onDiscard, onReset, msg }) {
+/** Floating save bar: only shown while there is something to save. */
+export default function SaveBar({ t, dirty, busy, canSave = true, consent, onConsent, onSave, onDiscard, onReset, msg, onMsgDone }) {
   const id = useId();
-  const blocked = !dirty || busy || !canSave;
+  const tp = useTranslations('profile');
+  useEffect(() => {
+    if (!msg || msg.kind !== 'ok' || dirty || !onMsgDone) return undefined;
+    const h = setTimeout(onMsgDone, 2600);
+    return () => clearTimeout(h);
+  }, [msg, dirty, onMsgDone]);
+  if (!dirty && !msg) return null;
+  if (!dirty) {
+    return (
+      <div className="sticky bottom-4 z-30 col-span-full flex justify-center" role="status" aria-live="polite">
+        <span className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold shadow-lg backdrop-blur-md ${msg.kind === 'err' ? 'border-red-400/50 bg-red-950/80 text-red-200' : 'border-emerald-400/50 bg-emerald-950/80 text-emerald-200'}`}>{msg.kind === 'err' ? null : <Check className="h-4 w-4" aria-hidden="true" />}{msg.text}</span>
+      </div>
+    );
+  }
   return (
-    <div className="sticky bottom-3 z-30 col-span-full mt-2 rounded-2xl border border-[#e6cd8c]/40 bg-background/90 p-3 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] backdrop-blur-md">
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-        <div className="min-w-[14rem] flex-1">
-          <label htmlFor={id} className="flex cursor-pointer items-start gap-2 text-sm">
-            <input id={id} type="checkbox" className="mt-1 h-4 w-4 shrink-0 accent-[#e6cd8c]" checked={consent} onChange={(e) => onConsent(e.target.checked)} />
-            <span>{t('consent.label')}</span>
-          </label>
-          <p className="mt-1 pl-6 text-xs text-muted-foreground">
-            {t('consent.read')}{' '}
+    <div className="sticky bottom-4 z-30 col-span-full flex justify-center px-1">
+      <div className="flex w-full max-w-3xl flex-wrap items-center justify-between gap-x-4 gap-y-2 rounded-2xl border border-[#e6cd8c]/40 bg-background/95 px-3 py-2.5 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.85)] backdrop-blur-md">
+        <label htmlFor={id} className="flex min-w-0 cursor-pointer items-center gap-2 text-xs">
+          <input id={id} type="checkbox" className="h-4 w-4 shrink-0 accent-[#e6cd8c]" checked={consent} onChange={(e) => onConsent(e.target.checked)} />
+          <span className="min-w-0">
+            {tp('saveBar.agree')}{' '}
             {LINKS.map(([k, href], i) => (
-              <span key={k}><a href={href} target="_blank" rel="noopener noreferrer" className="text-[#e6cd8c] underline-offset-2 hover:underline">{t(`consent.${k}`)}</a>{i < LINKS.length - 1 ? ' · ' : ''}</span>
+              <span key={k}><a href={href} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="text-[#e6cd8c] underline-offset-2 hover:underline">{tp(`consent.${k}`)}</a>{i < LINKS.length - 1 ? ' · ' : ''}</span>
             ))}
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <button type="button" onClick={onSave} disabled={blocked || !consent} className={`${btnMain} disabled:opacity-50`}>{busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Save className="h-4 w-4" aria-hidden="true" />}{busy ? t('saving') : t('save')}</button>
-          <button type="button" onClick={onDiscard} disabled={!dirty || busy} className={`${btn} disabled:opacity-50`}><Undo2 className="h-3.5 w-3.5" aria-hidden="true" />{t('discard')}</button>
-          {onReset ? <button type="button" onClick={onReset} disabled={busy} className={btn}><RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />{t('reset')}</button> : null}
+          </span>
+        </label>
+        <div className="ml-auto flex flex-wrap items-center gap-2">
+          {msg?.kind === 'err' ? <span role="alert" className="mr-1 text-xs text-red-300">{msg.text}</span> : null}
+          {onReset ? <button type="button" onClick={onReset} disabled={busy} className={ghost}><RotateCcw className="h-4 w-4" aria-hidden="true" />{t('reset')}</button> : null}
+          <button type="button" onClick={onDiscard} disabled={busy} className={ghost}><Undo2 className="h-4 w-4" aria-hidden="true" />{t('discard')}</button>
+          <button type="button" onClick={onSave} disabled={busy || !canSave || !consent} className={`${base} bg-gradient-to-b from-[#f0dba4] to-[#e6cd8c] font-bold text-[#1b1204] shadow-[0_6px_20px_-8px_#e6cd8c] hover:brightness-105`}>{busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Save className="h-4 w-4" aria-hidden="true" />}{busy ? t('saving') : t('save')}</button>
         </div>
       </div>
-      <p role="status" aria-live="polite" className={`mt-1.5 min-h-5 text-sm ${msg?.kind === 'err' ? 'text-red-300' : 'text-emerald-300'}`}>{msg ? msg.text : dirty ? <span className="text-amber-300">{consent ? t('unsaved') : t('consent.required')}</span> : ''}</p>
     </div>
   );
 }

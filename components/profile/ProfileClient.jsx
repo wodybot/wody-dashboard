@@ -120,12 +120,15 @@ function PublicToggle({ pf, onChanged }) {
   };
   return (
     <>
-      {isPublic ? (
-        <p className="flex items-center justify-center gap-1.5 rounded-xl border border-emerald-400/40 bg-emerald-400/10 px-3 py-2 text-xs font-semibold text-emerald-200"><Globe className="h-3.5 w-3.5" aria-hidden="true" />{t('visibility.badge')}</p>
-      ) : null}
-      <button type="button" onClick={() => { setErr(''); if (isPublic) send(false); else setOpen(true); }} disabled={busy} className={`${btn} h-10 w-full justify-center`} data-public-toggle>
-        <Globe className="h-4 w-4" aria-hidden="true" />{isPublic ? t('visibility.makePrivate') : t('visibility.makePublic')}
-      </button>
+      <div className={`flex items-center justify-between gap-3 rounded-xl border px-3 py-2 ${isPublic ? 'border-emerald-400/40 bg-emerald-400/10' : 'border-border/60 bg-card/40'}`} data-public-toggle-row>
+        <span className={`flex min-w-0 items-center gap-2 text-xs font-semibold ${isPublic ? 'text-emerald-200' : 'text-muted-foreground'}`}>
+          <span className={`h-2 w-2 shrink-0 rounded-full ${isPublic ? 'bg-emerald-400 shadow-[0_0_8px_#34d399]' : 'bg-zinc-500'}`} aria-hidden="true" />
+          <span className="min-w-0 leading-snug">{isPublic ? t('visibility.badge') : t('visibility.privateBadge')}</span>
+        </span>
+        <button type="button" onClick={() => { setErr(''); if (isPublic) send(false); else setOpen(true); }} disabled={busy} className={`${btn} h-8 shrink-0 px-3 text-xs`} data-public-toggle>
+          <Globe className="h-3.5 w-3.5" aria-hidden="true" />{isPublic ? t('visibility.makePrivate') : t('visibility.makePublic')}
+        </button>
+      </div>
       <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) { setConsent(false); setErr(''); } }}>
         <DialogContent>
           <DialogHeader>
@@ -157,45 +160,43 @@ function Hero({ pf, onGoSettings, onReload }) {
     { k: 'unread', n: pf.stats.unread_messages },
   ];
   return (
-    <section aria-label={t('hero.aria')} className="relative overflow-hidden rounded-3xl border border-[#e6cd8c]/25 bg-gradient-to-br from-[#e6cd8c]/[0.09] via-card/60 to-card/40 p-5 sm:p-7">
-      <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-        <div className="flex items-center gap-4">
+    <section aria-label={t('hero.aria')} className="relative overflow-hidden rounded-3xl border border-[#e6cd8c]/25 bg-gradient-to-br from-[#e6cd8c]/[0.09] via-card/60 to-card/40 p-4 sm:p-6">
+      <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex min-w-0 items-center gap-4">
           <Avatar identity={id} />
-          <div className="min-w-0 sm:hidden">
-            <h1 className="truncate text-2xl font-black">{id.name}</h1>
-            <p className="truncate text-sm text-muted-foreground">@{id.username}</p>
+          <div className="min-w-0">
+            <h1 className="truncate text-2xl font-black sm:text-3xl">{id.name}</h1>
+            <p className="truncate text-sm text-muted-foreground">@{id.username}{pf.member_since ? ` · ${t('hero.memberSince', { date: fmtDate(pf.member_since, locale) })}` : ''}</p>
+            {pf.away?.active && (
+              <p data-away="on" className="mt-2 inline-flex max-w-full items-start gap-2 rounded-2xl border border-sky-400/40 bg-sky-400/10 px-3 py-1.5 text-sm text-sky-200">
+                <TreePalm className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                <span className="min-w-0 break-words"><b>{t('away.badge')}</b>{pf.away.until ? ` · ${t('away.until', { date: fmtDate(pf.away.until, locale) })}` : ''}{pf.away.note ? <span className="block text-xs text-sky-100/90">{pf.away.note}</span> : null}</span>
+              </p>
+            )}
+            <div className="mt-2.5 flex flex-wrap items-center gap-2">
+              {has ? <SocialLinks socials={pf.socials} label={t('hero.socialsAria')} /> : null}
+              <button type="button" onClick={onGoSettings} className={`${btn} h-9 text-xs`}><Pencil className="h-3.5 w-3.5" aria-hidden="true" />{has ? t('hero.editLinks') : t('hero.addLinks')}</button>
+            </div>
           </div>
         </div>
-        <div className="min-w-0 flex-1">
-          <h1 className="hidden truncate text-3xl font-black sm:block">{id.name}</h1>
-          <p className="hidden truncate text-sm text-muted-foreground sm:block">@{id.username}{pf.member_since ? ` · ${t('hero.memberSince', { date: fmtDate(pf.member_since, locale) })}` : ''}</p>
-          {pf.away?.active && (
-            <p data-away="on" className="mt-2 inline-flex max-w-full items-start gap-2 rounded-2xl border border-sky-400/40 bg-sky-400/10 px-3 py-2 text-sm text-sky-200">
-              <TreePalm className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-              <span className="min-w-0 break-words"><b>{t('away.badge')}</b>{pf.away.until ? ` · ${t('away.until', { date: fmtDate(pf.away.until, locale) })}` : ''}{pf.away.note ? <span className="block text-xs text-sky-100/90">{pf.away.note}</span> : null}</span>
-            </p>
-          )}
-          <p className="mt-2 flex items-start gap-1.5 text-xs text-muted-foreground"><Lock className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />{t('hero.discordNote')}</p>
-          <div className="mt-3 flex flex-wrap items-center gap-3">
-            {has ? <SocialLinks socials={pf.socials} label={t('hero.socialsAria')} /> : <p className="text-sm text-muted-foreground">{t('hero.noSocials')}</p>}
-            <button type="button" onClick={onGoSettings} className={btn}><Pencil className="h-3.5 w-3.5" aria-hidden="true" />{has ? t('hero.editLinks') : t('hero.addLinks')}</button>
-          </div>
-          <div className="mt-4 flex w-full flex-col gap-2 sm:w-56">
-            <PublicToggle pf={pf} onChanged={onReload} />
-            {pf.public_path && <Link href={pf.public_path} data-view-profile className={`${btnMain} h-10 w-full justify-center`}><Eye className="h-4 w-4" aria-hidden="true" />{t('hero.viewPublic')}</Link>}
-            <Link href="/dashboard" className={`${pf.public_path ? btn : btnMain} h-10 w-full justify-center`}><LayoutDashboard className="h-4 w-4" aria-hidden="true" />{tn('dashboard')}</Link>
-            <Link href="/servers/favorites" className={`${btn} h-10 w-full justify-center`}><Heart className="h-4 w-4 text-rose-300" aria-hidden="true" />{tn('resourceLinks.favorites.label')}</Link>
+        <div className="flex w-full flex-col gap-2 lg:w-[26rem] lg:shrink-0">
+          <PublicToggle pf={pf} onChanged={onReload} />
+          <div className="grid grid-cols-3 gap-2">
+            {pf.public_path ? <Link href={pf.public_path} data-view-profile className={`${btnMain} h-10 justify-center px-2`}><Eye className="h-4 w-4 shrink-0" aria-hidden="true" /><span className="truncate">{t('hero.viewPublic')}</span></Link> : <span />}
+            <Link href="/dashboard" className={`${pf.public_path ? btn : btnMain} h-10 justify-center px-2`}><LayoutDashboard className="h-4 w-4 shrink-0" aria-hidden="true" /><span className="truncate">{tn('dashboard')}</span></Link>
+            <Link href="/servers/favorites" className={`${btn} h-10 justify-center px-2`}><Heart className="h-4 w-4 shrink-0 text-rose-300" aria-hidden="true" /><span className="truncate">{tn('resourceLinks.favorites.label')}</span></Link>
           </div>
         </div>
       </div>
-      <dl className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <dl className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
         {stats.map((s) => (
-          <div key={s.k} className="rounded-2xl border border-border/50 bg-background/40 px-3 py-2.5">
-            <dd className="text-2xl font-black tabular-nums text-[#e6cd8c]">{s.n}</dd>
-            <dt className="text-xs text-muted-foreground">{t(`stats.${s.k}`)}</dt>
+          <div key={s.k} className="flex items-baseline justify-between gap-2 rounded-xl border border-border/50 bg-background/40 px-3 py-2">
+            <dt className="truncate text-xs text-muted-foreground">{t(`stats.${s.k}`)}</dt>
+            <dd className="text-lg font-black tabular-nums text-[#e6cd8c]">{s.n}</dd>
           </div>
         ))}
       </dl>
+      <p className="mt-3 flex items-center gap-1.5 text-[11px] text-muted-foreground"><Lock className="h-3 w-3 shrink-0" aria-hidden="true" />{t('hero.discordNote')}</p>
     </section>
   );
 }
@@ -691,7 +692,7 @@ function SettingsTab({ pf, cats, reloadProfile }) {
       <AwayCard key={`${bump}-${pf.away?.active}-${pf.away?.until}-${pf.away?.note}`} pf={pf} onSaved={reloadProfile} reg={reg} />
       <SocialsCard key={`s${bump}`} pf={pf} onSaved={reloadProfile} reg={reg} consent={consent} />
       <NotifCard key={`n${bump}`} pf={pf} onSaved={reloadProfile} reg={reg} />
-      <div className="grid"><SaveBar t={bar} dirty={touched} busy={busy} consent={consent} onConsent={setConsent} onSave={saveAll} onDiscard={() => { setBump((b) => b + 1); setTouched(false); setConsent(false); setMsg(null); }} msg={msg} /></div>
+      <div className="grid"><SaveBar t={bar} dirty={touched} busy={busy} consent={consent} onConsent={setConsent} onSave={saveAll} onDiscard={() => { setBump((b) => b + 1); setTouched(false); setConsent(false); setMsg(null); }} msg={msg} onMsgDone={() => setMsg(null)} /></div>
       <section className="rounded-2xl border border-border/60 bg-card/50 p-4 sm:p-5">
         <h2 className="mb-2 text-lg font-semibold">{t('prefs.title')}</h2>
         <PrefsTab cats={cats} />
@@ -796,7 +797,6 @@ export default function ProfileClient() {
               {tab === 'applications' && <MyApplications data={ov} reload={reload} />}
               {tab === 'messages' && <MessagesTab reload={reload} />}
               {tab === 'servers' && <ServersTab guilds={gl.guilds} unavailable={gl.unavailable} reload={reload} />}
-              {(tab === 'card' || tab === 'page') && <div className="mb-4 flex max-w-sm flex-col gap-2"><PublicToggle pf={pf} onChanged={reloadProfile} /></div>}
               {tab === 'card' && <ProfileCardTab identity={pf.identity} />}
               {tab === 'page' && <ProfilePageTab identity={pf.identity} socials={pf.socials || {}} away={pf.away?.active ? pf.away : null} onGoCard={() => go('card')} />}
               {tab === 'settings' && <SettingsTab pf={pf} cats={cats} reloadProfile={reloadProfile} />}

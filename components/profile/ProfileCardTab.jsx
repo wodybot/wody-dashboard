@@ -290,7 +290,7 @@ export default function ProfileCardTab({ identity }) {
           </label>
         </section>
       </div>
-      <SaveBar t={(k) => (k === 'reset' ? t('resetDefault') : t(k))} dirty={dirty} busy={busy} canSave={!urlInvalid} consent={consent} onConsent={setConsent} onSave={save} onDiscard={() => { setDraft(saved.config); setMsg(null); }} onReset={reset} msg={msg} />
+      <SaveBar t={t} dirty={dirty} busy={busy} canSave={!urlInvalid} consent={consent} onConsent={setConsent} onSave={save} onDiscard={() => { setDraft(saved.config); setMsg(null); }} onReset={reset} msg={msg} onMsgDone={() => setMsg(null)} />
     </div>
   );
 }

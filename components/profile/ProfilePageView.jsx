@@ -1,3 +1,4 @@
+import { cloneElement } from 'react';
 import { useTranslations } from 'next-intl';
 import { TreePalm, Lock, Eye, ExternalLink, Link2 } from 'lucide-react';
 import MusicButton from '@/components/profile/MusicButton';
@@ -7,9 +8,9 @@ import { proxiedImageUrl } from '@/lib/utils';
 
 const fmt = (iso, locale) => { try { return new Intl.DateTimeFormat(locale, { dateStyle: 'medium' }).format(new Date(iso)); } catch { return ''; } };
 
-function Block({ title, accent, children }) {
+function Block({ title, accent, span = '', delay = 0, children }) {
   return (
-    <section className="rounded-3xl border bg-card/60 p-4 sm:p-6" style={{ borderColor: `${accent}40` }}>
+    <section className={`pv-in pv-lift rounded-3xl border bg-card/60 p-4 sm:p-6 ${span}`} style={{ borderColor: `${accent}40`, '--ac': accent, animationDelay: `${delay}s` }}>
       <h2 className="mb-3 text-lg font-black">{title}</h2>
       {children}
     </section>
@@ -26,15 +27,15 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
   const order = (page.order && page.order.length ? page.order : ['bio', 'portfolio', 'skills', 'links', 'card']).filter((k) => !hide.has(k));
 
   const sections = {
-    bio: page.bio ? <Block key="bio" title={tp('section.bio')} accent={accent}><p className="whitespace-pre-line break-words text-sm leading-relaxed">{page.bio}</p></Block> : null,
+    bio: page.bio ? <Block key="bio" title={tp('section.bio')} accent={accent} span="lg:col-span-2"><p className="whitespace-pre-line break-words text-sm leading-relaxed">{page.bio}</p></Block> : null,
     skills: page.skills?.length ? (
-      <Block key="skills" title={tp('section.skills')} accent={accent}>
+      <Block key="skills" title={tp('section.skills')} accent={accent} span="lg:col-span-1">
         <ul className="flex flex-wrap gap-2">{page.skills.map((s, i) => <li key={`${s}-${i}`} className="rounded-full border px-3 py-1 text-xs font-semibold" style={{ borderColor: `${accent}55`, background: `${accent}14` }}>{s}</li>)}</ul>
       </Block>
     ) : null,
     links: page.links?.length ? (
-      <Block key="links" title={tp('section.links')} accent={accent}>
-        <ul className="grid gap-2 sm:grid-cols-2">
+      <Block key="links" title={tp('section.links')} accent={accent} span="lg:col-span-3">
+        <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {page.links.map((l, i) => {
             let host = '';
             try { host = new URL(l.url).hostname.replace(/^www\./, ''); } catch { }
@@ -52,8 +53,8 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
       </Block>
     ) : null,
     portfolio: page.portfolio?.length ? (
-      <Block key="portfolio" title={tp('section.portfolio')} accent={accent}>
-        <ul className={`grid gap-3 ${compact ? '' : 'sm:grid-cols-2'}`}>
+      <Block key="portfolio" title={tp('section.portfolio')} accent={accent} span="lg:col-span-3">
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {page.portfolio.map((p, i) => {
             const inner = (
               <>
@@ -73,17 +74,17 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
         </ul>
       </Block>
     ) : null,
-    card: levelCard && !hide.has('card') ? <div key="card">{levelCard}</div> : null,
+    card: levelCard && !hide.has('card') ? <div key="card" className="pv-in lg:col-span-3">{levelCard}</div> : null,
   };
 
   return (
     <>
-      <section aria-label={t('public.aria')} className="overflow-hidden rounded-3xl border bg-gradient-to-br from-[#e6cd8c]/[0.09] via-card/60 to-card/40 p-5 sm:p-7" style={{ borderColor: `${accent}40` }}>
-        <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
+      <section aria-label={t('public.aria')} className="pv-in overflow-hidden rounded-3xl border bg-gradient-to-br from-[#e6cd8c]/[0.09] via-card/60 to-card/40 p-5 sm:p-8 lg:grid lg:grid-cols-[minmax(0,1fr)_16rem] lg:items-center lg:gap-8" style={{ borderColor: `${accent}40` }}>
+        <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:text-left">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={avatarSrc} alt="" className="h-24 w-24 shrink-0 rounded-full border-2 object-cover" style={{ borderColor: `${accent}99` }} />
+          <span className="pv-ring" style={{ '--ac': accent }}><img src={avatarSrc} alt="" className="h-28 w-28 rounded-full border-[3px] border-[#120b08] object-cover sm:h-32 sm:w-32" /></span>
           <div className="min-w-0 flex-1">
-            <h1 className={`break-words text-3xl font-black ${page.name_fx !== 'none' ? `name-fx name-fx-${page.name_fx}` : ''}`} style={page.name_fx === 'typewriter' ? { '--n': Math.max(1, [...name].length), '--accent': accent } : { '--accent': accent }}>{name}</h1>
+            <h1 className={`break-words text-3xl font-black sm:text-4xl ${page.name_fx !== 'none' ? `name-fx name-fx-${page.name_fx}` : ''}`} style={page.name_fx === 'typewriter' ? { '--n': Math.max(1, [...name].length), '--accent': accent } : { '--accent': accent }}>{name}</h1>
             <p className="text-sm text-muted-foreground">@{username}{memberSince ? ` · ${t('hero.memberSince', { date: fmt(memberSince, locale) })}` : ''}</p>
             {away && (
               <p className="mt-3 inline-flex max-w-full items-start gap-2 rounded-2xl border border-sky-400/40 bg-sky-400/10 px-3 py-2 text-left text-sm text-sky-200">
@@ -100,7 +101,7 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
           </div>
         </div>
         {!hide.has('stats') && (
-          <dl className="mt-6 grid grid-cols-2 gap-2">
+          <dl className="mt-6 grid grid-cols-2 gap-2 lg:mt-0 lg:grid-cols-1">
             <div className="rounded-2xl border border-border/50 bg-background/40 px-3 py-2.5 text-center sm:text-left">
               <dd className="text-2xl font-black tabular-nums" style={{ color: accent }}>{live}</dd>
               <dt className="text-xs text-muted-foreground">{t('public.live')}</dt>
@@ -112,9 +113,9 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
             </div>
           </dl>
         )}
-        <p className="mt-4 flex items-start gap-1.5 text-xs text-muted-foreground"><Lock className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />{t('public.note')}</p>
+        <p className="mt-4 flex items-start gap-1.5 text-xs text-muted-foreground lg:col-span-2"><Lock className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />{t('public.note')}</p>
       </section>
-      {order.map((k) => sections[k])}
+      <div className="grid grid-flow-dense gap-6 lg:grid-cols-3">{order.map((k, i) => (sections[k] ? cloneElement(sections[k], { delay: 0.1 + i * 0.08 }) : null))}</div>
     </>
   );
 }

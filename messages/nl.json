@@ -544,13 +544,13 @@
       "f2": "Levelkaart-thema’s, waaronder Neon Coast en Palm Dusk",
       "f3": "Je sociale links op één deelbare pagina",
       "cta": "Mijn pagina aanpassen",
-      "note": "Originele afbeeldingen. Niet verbonden aan of goedgekeurd door een gamepublisher."
+      "note": "Originele illustraties."
     },
     "trio": {
       "badge": "Profiel · Paspoort · Collab",
       "title": "Drie tools. Eén identiteit.",
       "text": "Maak een profielpagina die blijft hangen, claim je Wody-paspoort en vind partners in Collab, allemaal met hetzelfde account.",
-      "note": "Originele illustraties. Voorbeelden zijn illustratief. Geen verband met of goedkeuring door een gamepublisher.",
+      "note": "Originele illustraties. Voorbeelden zijn ter illustratie.",
       "mock": {
         "name": "jouwnaam",
         "bio": "Neonzonsondergangen en goede muziek.",
@@ -1137,7 +1137,7 @@
       },
       {
         "heading": "28. Profielafbeeldingen, muzieklinks en moderatiegegevens",
-        "html": "<p>Afbeeldingen, gifs en audio die je toevoegt aan je profielpagina en aan serverkaarten worden alleen als links bewaard: Wody bewaart geen kopie. Afbeeldingen worden via de Wody-server geladen van het platform dat ze host, zodat het IP-adres van de bezoeker dat platform niet bereikt; ze blijven alleen zichtbaar zolang de link geldig blijft. Het audiobestand wordt pas geladen nadat de bezoeker op afspelen drukt, rechtstreeks door de browser van de bezoeker, waardoor zijn IP-adres de site bereikt die het bestand host. Het enige bestand dat Wody opslaat is een afbeelding die je uploadt als achtergrond van de profielkaart, bewaard totdat je haar vervangt of verwijdert. Wody bewaart meldingen, de verwijzing naar de inhoud, de moderatiebeslissing en het verloop ervan, en het tijdstip en de versie van je beleidsbevestiging, om de zaak af te handelen en herhaalde overtredingen te voorkomen. Bewaartermijnen: [BEVESTIGING VAN DE EXPLOITANT VEREIST]. De profielpagina kan weergaven tellen met een eenvoudige teller in de database, zonder cookies en zonder het IP-adres op te slaan.</p>"
+        "html": "<p>Afbeeldingen, gifs en audio die je toevoegt aan je profielpagina en aan serverkaarten worden alleen als links bewaard: Wody bewaart geen kopie. Afbeeldingen worden via de Wody-server geladen van het platform dat ze host, zodat het IP-adres van de bezoeker dat platform niet bereikt; ze blijven alleen zichtbaar zolang de link geldig blijft. Het audiobestand wordt pas geladen nadat de bezoeker op afspelen drukt, rechtstreeks door de browser van de bezoeker, waardoor zijn IP-adres de site bereikt die het bestand host. Het enige bestand dat Wody opslaat is een afbeelding die je uploadt als achtergrond van de profielkaart, bewaard totdat je haar vervangt of verwijdert. Wody bewaart meldingen, de verwijzing naar de inhoud, de moderatiebeslissing en het verloop ervan, en het tijdstip en de versie van je beleidsbevestiging, om de zaak af te handelen en herhaalde overtredingen te voorkomen. De profielpagina kan weergaven tellen met een eenvoudige teller in de database, zonder cookies en zonder het IP-adres op te slaan.</p>"
       },
       {
         "heading": "29. Radar en Pulse (opzoekingen en feeds)",
@@ -1257,8 +1257,8 @@
         "html": "<p>Questions about these Terms go to <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.</p>"
       },
       {
-        "heading": "28. Profielaanpassing, afbeeldingen van gebruikers en de categorie Miami Style",
-        "html": "<p>Wody biedt aanpassing. Je mag afbeeldingen, gifs, audio of links alleen toevoegen als je de benodigde rechten of een andere rechtmatige grondslag hebt. Elke keer dat je je openbare profiel publiceert of bewerkt, moet je een standaard niet-aangevinkt selectievakje aanvinken om dit te bevestigen en het beleid te accepteren; deze bevestiging maakt een niet-geautoriseerde afbeelding niet rechtmatig. Wody biedt geen galerij met artwork van derden, is niet verbonden aan een gamepublisher en de categorie Miami Style is een onofficieel thema van originele scènes. Afbeeldingen en audio worden gelinkt vanaf het platform dat ze host en zijn alleen zichtbaar zolang de link geldig is. Iedereen kan inhoud melden; Wody heeft geen automatische detectie. Na beoordeling kan Wody inhoud verwijderen, aanpassen beperken of opschorten en het aan het profiel gekoppelde Discord-account voor Wody-functies schorsen of blokkeren; je kunt bezwaar maken. Details: Beleid voor gebruikersinhoud en Beleid voor auteursrecht en intellectueel eigendom (concepten, nog niet als definitief gepubliceerd).</p>"
+        "heading": "28. Profielaanpassing en afbeeldingen van gebruikers",
+        "html": "<p>Je mag alleen afbeeldingen, GIF’s, audio of links aan je profiel toevoegen als je de benodigde rechten hebt. Elke keer dat je je openbare profiel publiceert of bewerkt, vink je een vakje aan dat dit bevestigt en accepteer je het beleid. Afbeeldingen en audio worden alleen gelinkt vanaf het platform dat ze host en blijven zichtbaar zolang de link geldig is. Iedereen kan inhoud melden. Na beoordeling kan Wody inhoud verwijderen, aanpassing beperken of opschorten en het aan het profiel gekoppelde Discord-account voor Wody-functies opschorten of blokkeren; je kunt in beroep gaan. Details: Beleid voor gebruikersinhoud en Beleid voor auteursrecht en intellectueel eigendom.</p>"
       }
     ]
   },
@@ -1845,6 +1845,10 @@
             "description": "Toon je profielkaart"
           },
           {
+            "name": "/profile edit",
+            "description": "Bewerk je profielpagina en levelkaart in het dashboard"
+          },
+          {
             "name": "/profile user",
             "description": "Toon de profielkaart van een lid"
           },
@@ -2130,8 +2134,7 @@
         "content": "Contentbeleid",
         "copyright": "Auteursrechtbeleid",
         "required": "Vink het vakje aan om te bevestigen en het beleid te accepteren.",
-        "blocked": "Je account is geschorst of geblokkeerd en kan dit profiel niet bewerken.",
-        "miami": "Miami Style-melding"
+        "blocked": "Je account is geschorst of geblokkeerd en kan dit profiel niet bewerken."
       }
     },
     "groups": {
@@ -7639,8 +7642,7 @@
       "content": "Contentbeleid",
       "copyright": "Auteursrechtbeleid",
       "required": "Vink het vakje aan om te bevestigen en het beleid te accepteren.",
-      "blocked": "Je account is geschorst of geblokkeerd en kan dit profiel niet bewerken.",
-      "miami": "Miami Style-melding"
+      "blocked": "Je account is geschorst of geblokkeerd en kan dit profiel niet bewerken."
     },
     "visibility": {
       "makePublic": "Maak mijn profiel openbaar",
@@ -7651,14 +7653,18 @@
       "confirm": "Openbaar maken",
       "cancel": "Annuleren",
       "saving": "Opslaan...",
-      "error": "De zichtbaarheid kon niet worden gewijzigd. Probeer het opnieuw."
+      "error": "De zichtbaarheid kon niet worden gewijzigd. Probeer het opnieuw.",
+      "privateBadge": "Privé: alleen ingelogde Wody-leden kunnen het openen"
     },
     "metaTitle": "Profiel",
     "saveAll": "Alle instellingen opslaan",
     "savingAll": "Opslaan…",
     "discardAll": "Wijzigingen negeren",
     "unsavedAll": "Controleer je wijzigingen en sla ze allemaal tegelijk op.",
-    "backToWody": "Terug naar Wody"
+    "backToWody": "Terug naar Wody",
+    "saveBar": {
+      "agree": "Ik accepteer het beleid:"
+    }
   },
   "humancheck": {
     "label": "Ik ben geen robot",
@@ -7936,8 +7942,7 @@
       "content": "Contentbeleid",
       "copyright": "Auteursrechtbeleid",
       "required": "Vink het vakje aan om te bevestigen en het beleid te accepteren.",
-      "blocked": "Je account is geschorst of geblokkeerd en kan dit profiel niet bewerken.",
-      "miami": "Miami Style-melding"
+      "blocked": "Je account is geschorst of geblokkeerd en kan dit profiel niet bewerken."
     },
     "sectionMiami": "Miami Style",
     "miamiHint": "Retro zonsondergangscènes met eigen artwork achter je kaart. Kies er een voor een voorbeeld."
@@ -8012,7 +8017,8 @@
         "none": "Geen",
         "typewriter": "Typemachine",
         "glow": "Gloed",
-        "gradient": "Bewegend verloop"
+        "gradient": "Bewegend verloop",
+        "neon": "Flikkerend neon"
       }
     },
     "imageHint": "Directe https-link naar een PNG-, JPG-, WEBP- of GIF-afbeelding.",
@@ -8074,11 +8080,8 @@
       "content": "Contentbeleid",
       "copyright": "Auteursrechtbeleid",
       "required": "Vink het vakje aan om te bevestigen en het beleid te accepteren.",
-      "blocked": "Je account is geschorst of geblokkeerd en kan dit profiel niet bewerken.",
-      "miami": "Miami Style-melding"
+      "blocked": "Je account is geschorst of geblokkeerd en kan dit profiel niet bewerken."
     },
-    "miamiNote": "Het Miami Style-thema is een onofficieel aanpassingsthema, getekend door Wody. Het bevat geen artwork van derden.",
-    "miamiLink": "Lees de kennisgeving",
     "miamiHint": "Geanimeerde scènes voor de achtergrond van je pagina. Kies er een voor de preview.",
     "miamiOff": "Scène verwijderen",
     "sectionContent": "Inhoud",
@@ -8111,25 +8114,16 @@
   },
   "policies": {
     "index": "Beleid",
-    "draft": "Concept",
-    "draftNote": "Dit is een concept dat op {review} is opgesteld. Het is niet goedgekeurd door de exploitant of beoordeeld door een jurist en nog niet als definitief gepubliceerd. Velden met [BEVESTIGING VAN DE EXPLOITANT VEREIST] zijn ontbrekende gegevens.",
     "version": "Versie",
-    "effective": "Ingangsdatum",
     "updated": "Laatst bijgewerkt",
-    "status": "Status",
-    "statusValue": "Concept, wacht op bevestiging van de exploitant en juridische beoordeling",
-    "effectiveValue": "Niet van kracht totdat de exploitant het publiceert",
-    "previous": "Vorige versie",
-    "previousValue": "Geen",
     "contact": "Contact",
     "related": "Gerelateerd beleid",
     "nav": {
       "content-policy": "Beleid voor gebruikersinhoud",
       "copyright": "Beleid voor auteursrecht en intellectueel eigendom",
-      "complaint": "Klacht over auteursrecht",
-      "miami-notice": "Kennisgeving categorie Miami Style"
+      "complaint": "Klacht over auteursrecht"
     },
-    "contactHtml": "Exploitant: Păcurar Ancuța-Narcisa, Roemenië, Europese Unie. Algemeen contact: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Apart contactadres voor auteursrecht: [BEVESTIGING VAN DE EXPLOITANT VEREIST]. Vestigingsadres, fiscale en registratiegegevens: [BEVESTIGING VAN DE EXPLOITANT VEREIST].",
+    "contactHtml": "Exploitant: Păcurar Ancuța-Narcisa, Roemenië, Europese Unie. Algemeen contact: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>.",
     "content-policy": {
       "title": "Beleid voor gebruikersinhoud",
       "version": "1.0-draft",
@@ -8164,15 +8158,15 @@
         },
         {
           "heading": "8. Bezwaar",
-          "html": "<p>Als er een maatregel wordt genomen over je inhoud, zie je een melding op het tabblad van de profielpagina en kun je daar bezwaar maken. De exploitant beoordeelt bezwaren en kan inhoud herstellen of beperkingen opheffen. Reactietijd: [BEVESTIGING VAN DE EXPLOITANT VEREIST].</p>"
+          "html": "<p>Als er een maatregel wordt genomen over je inhoud, zie je een melding op het tabblad van de profielpagina en kun je daar bezwaar maken. De exploitant beoordeelt bezwaren en kan inhoud herstellen of beperkingen opheffen.</p>"
         },
         {
           "heading": "9. Gegevens en persoonsgegevens",
-          "html": "<p>Wody bewaart de melding, de verwijzing naar de geïdentificeerde inhoud, de beslissing en het verloop ervan, en het tijdstip en de versie van de beleidsbevestiging, zolang dat nodig is om de zaak af te handelen en herhaalde overtredingen te voorkomen. Bewaartermijn van deze gegevens: [BEVESTIGING VAN DE EXPLOITANT VEREIST]. Wody bewaart geen kopieën van afbeeldingen en audio die alleen gelinkt zijn. Zie het Privacybeleid.</p>"
+          "html": "<p>Wody bewaart de melding, de verwijzing naar de geïdentificeerde inhoud, de beslissing en het verloop ervan, en het tijdstip en de versie van de beleidsbevestiging, zolang dat nodig is om de zaak af te handelen en herhaalde overtredingen te voorkomen. Wody bewaart geen kopieën van afbeeldingen en audio die alleen gelinkt zijn. Zie het Privacybeleid.</p>"
         },
         {
           "heading": "10. Contact",
-          "html": "Exploitant: Păcurar Ancuța-Narcisa, Roemenië, Europese Unie. Algemeen contact: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Apart contactadres voor auteursrecht: [BEVESTIGING VAN DE EXPLOITANT VEREIST]. Vestigingsadres, fiscale en registratiegegevens: [BEVESTIGING VAN DE EXPLOITANT VEREIST]."
+          "html": "Exploitant: Păcurar Ancuța-Narcisa, Roemenië, Europese Unie. Algemeen contact: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>."
         }
       ]
     },
@@ -8198,7 +8192,7 @@
         },
         {
           "heading": "5. Hoe een klacht wordt afgehandeld",
-          "html": "<ol><li>De klacht wordt vastgelegd en de inhoud wordt geïdentificeerd.</li><li>De exploitant beoordeelt haar. Als ze onduidelijk is, kunnen we je om opheldering vragen.</li><li>Als de kennisgeving voldoende nauwkeurig is en de inhoud onrechtmatig lijkt, wordt de toegang tot de inhoud uitgeschakeld of de inhoud verwijderd.</li><li>De uploader ziet een melding en kan bezwaar maken.</li><li>De beslissing, de reden en het tijdstip worden vastgelegd.</li></ol><p>Wody belooft in dit concept geen vaste verwijdertermijn. Beoogde reactietijd: [BEVESTIGING VAN DE EXPLOITANT VEREIST]. Waar de wet specifieke stappen voorschrijft, gelden die stappen.</p>"
+          "html": "<ol><li>De klacht wordt vastgelegd en de inhoud wordt geïdentificeerd.</li><li>De exploitant beoordeelt haar. Als ze onduidelijk is, kunnen we je om opheldering vragen.</li><li>Als de kennisgeving voldoende nauwkeurig is en de inhoud onrechtmatig lijkt, wordt de toegang tot de inhoud uitgeschakeld of de inhoud verwijderd.</li><li>De uploader ziet een melding en kan bezwaar maken.</li><li>De beslissing, de reden en het tijdstip worden vastgelegd.</li></ol><p>Wody belooft in dit concept geen vaste verwijdertermijn. Waar de wet specifieke stappen voorschrijft, gelden die stappen.</p>"
         },
         {
           "heading": "6. Herhaalde overtredingen",
@@ -8214,7 +8208,7 @@
         },
         {
           "heading": "9. Contact",
-          "html": "Exploitant: Păcurar Ancuța-Narcisa, Roemenië, Europese Unie. Algemeen contact: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. Apart contactadres voor auteursrecht: [BEVESTIGING VAN DE EXPLOITANT VEREIST]. Vestigingsadres, fiscale en registratiegegevens: [BEVESTIGING VAN DE EXPLOITANT VEREIST]."
+          "html": "Exploitant: Păcurar Ancuța-Narcisa, Roemenië, Europese Unie. Algemeen contact: <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>."
         }
       ]
     },
@@ -8247,16 +8241,6 @@
         "notFound": "Er is geen profiel met die gebruikersnaam gevonden.",
         "rate": "Te veel pogingen. Probeer het later opnieuw."
       }
-    },
-    "miami-notice": {
-      "title": "Kennisgeving categorie Miami Style",
-      "version": "1.0-draft",
-      "sections": [
-        {
-          "heading": "Kennisgeving",
-          "html": "<p>Miami Style is een onofficieel aanpassingsthema van originele kleuren en scènes, getekend door Wody en geïnspireerd op een look met zonsondergang, palmbomen en neon. Het is niet verbonden aan, goedgekeurd door of gesponsord door een gamepublisher of studio en bevat geen artwork, logo's of personages van derden.</p><ul><li>Wody biedt geen galerij met afbeeldingen van derden en verspreidt geen materiaal uit games.</li><li>Als je in deze categorie een afbeelding of link toevoegt, lever je die zelf aan en moet je de benodigde rechten of een andere rechtmatige grondslag hebben.</li><li>Wody kan gemelde of onrechtmatige inhoud uitschakelen en kan het aanpassen na beoordeling beperken.</li><li>De categorie is optioneel en je kunt op elk moment een ander thema kiezen.</li><li>Deze kennisgeving geeft niemand toestemming om materiaal van derden te gebruiken.</li></ul><p>Lees het Beleid voor gebruikersinhoud en het Beleid voor auteursrecht en intellectueel eigendom voor de volledige regels.</p>"
-        }
-      ]
     }
   },
   "report": {
@@ -8357,14 +8341,6 @@
     "faqTitle": "Vragen",
     "faq": [
       {
-        "q": "Is Miami Style gekoppeld aan een game of merk?",
-        "a": "Nee. Het is een origineel thema, getekend door Wody en geïnspireerd op zonsondergangen, palmen en neon. Het is niet verbonden aan of goedgekeurd door een gamepublisher."
-      },
-      {
-        "q": "Bevat het artwork, logo's of personages van derden?",
-        "a": "Nee. Wody bevat geen artwork, logo's of personages uit een game of van een merk. Als je je eigen afbeelding toevoegt, moet je het recht hebben om die te gebruiken."
-      },
-      {
         "q": "Is het gratis?",
         "a": "Je kunt gratis beginnen. Sommige modules maken deel uit van Wody Premium."
       },
@@ -8377,6 +8353,6 @@
     "ctaText": "Voeg Wody toe en kies je scène in minder dan een minuut.",
     "cta": "Wody toevoegen aan Discord",
     "ctaProfile": "Mijn profielpagina aanpassen",
-    "disclaimer": "Miami Style is een onofficieel thema van origineel artwork van Wody. Wody is niet verbonden aan, goedgekeurd door of gesponsord door een gamepublisher of studio."
+    "disclaimer": "Miami Style is een origineel, door Wody getekend thema."
   }
 }
