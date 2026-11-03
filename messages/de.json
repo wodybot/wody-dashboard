@@ -3246,7 +3246,11 @@
         "neon": "Neon",
         "royal": "Royal",
         "forest": "Wald",
-        "midnight": "Mitternacht"
+        "midnight": "Mitternacht",
+        "coast": "Neon Coast",
+        "dusk": "Palm Dusk",
+        "skyline": "Miami Skyline",
+        "miami": "Miami Beach"
       },
       "rwTitle": "Level-Belohnungen",
       "rwHint": "Gib Mitgliedern eine Rolle und/oder Bonus-XP, wenn sie ein Level erreichen (bis zu 50). Übersprungene Level werden alle belohnt, und jede Belohnung wird pro Mitglied nur einmal vergeben.",
@@ -3292,7 +3296,9 @@
       "rbErrMultiplier": "Der Multiplikator muss zwischen 1 und 10 liegen.",
       "rbErrFlat": "Zusätzliche XP müssen eine ganze Zahl von 0 bis 1000 sein.",
       "rbErrPriority": "Die Priorität muss eine ganze Zahl von 0 bis 1000 sein.",
-      "rbErrEmpty": "Jeder Bonus braucht einen Multiplikator über 1 oder zusätzliche XP über 0."
+      "rbErrEmpty": "Jeder Bonus braucht einen Multiplikator über 1 oder zusätzliche XP über 0.",
+      "auroraSpecial": "Spezialkollektion",
+      "auroraSpecialHint": "Retro-Sonnenuntergangsszenen mit eigener Grafik direkt auf der Karte. Gilt für Level-, Willkommens- und Abschiedskarten."
     },
     "suggestions": {
       "title": "Vorschläge",
@@ -7879,7 +7885,9 @@
         "dots": "Punkte",
         "grid": "Raster",
         "stars": "Sterne",
-        "coast": "Neon-Coast-Szene"
+        "coast": "Neon-Coast-Szene",
+        "skyline": "Miami-Skyline (Neon)",
+        "miami": "Miami Beach (Art déco)"
       },
       "card_place": {
         "top": "Über meinen Angaben",
@@ -7929,6 +7937,7 @@
     "shortTitle": "Dein Kurzlink",
     "shortCopy": "Kopieren",
     "shortCopied": "Link kopiert.",
-    "shortHint": "Teile ihn überall. Angemeldete WODY-Mitglieder sehen deine Seite, ihre Besuche erscheinen im Zähler."
+    "shortHint": "Teile ihn überall. Angemeldete WODY-Mitglieder sehen deine Seite, ihre Besuche erscheinen im Zähler.",
+    "specialGroup": "Spezialkollektion"
   }
 }

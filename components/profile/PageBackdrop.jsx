@@ -1,3 +1,4 @@
+import { SvgScene } from '@/components/scenes';
 import { PAGE_PATTERNS, pageGradient } from '@/lib/profile-page';
 import { proxiedImageUrl } from '@/lib/utils';
 
@@ -27,6 +28,7 @@ export default function PageBackdrop({ page, fixed = true }) {
       ) : null}
       {page.mode === 'image' ? <div className="absolute inset-0 bg-black" style={{ opacity: page.dim / 100 }} /> : null}
       {page.pattern === 'coast' ? <CoastScene /> : null}
+      {page.pattern === 'skyline' || page.pattern === 'miami' ? <SvgScene kind={page.pattern} /> : null}
       {pat ? <div className="absolute inset-0" style={{ backgroundImage: pat.image, backgroundSize: pat.size, opacity: page.mode === 'image' ? 0.6 : 1 }} /> : null}
     </div>
   );

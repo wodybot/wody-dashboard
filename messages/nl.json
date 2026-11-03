@@ -3246,7 +3246,11 @@
         "neon": "Neon",
         "royal": "Koninklijk",
         "forest": "Bos",
-        "midnight": "Middernacht"
+        "midnight": "Middernacht",
+        "coast": "Neon Coast",
+        "dusk": "Palm Dusk",
+        "skyline": "Miami Skyline",
+        "miami": "Miami Beach"
       },
       "rwTitle": "Levelbeloningen",
       "rwHint": "Geef leden een rol en/of bonus-XP wanneer ze een level bereiken (tot 50). Overgeslagen levels worden allemaal beloond, en elke beloning wordt maar één keer per lid gegeven.",
@@ -3292,7 +3296,9 @@
       "rbErrMultiplier": "De multiplier moet tussen 1 en 10 liggen.",
       "rbErrFlat": "Extra XP moet een geheel getal van 0 tot 1000 zijn.",
       "rbErrPriority": "De prioriteit moet een geheel getal van 0 tot 1000 zijn.",
-      "rbErrEmpty": "Elke bonus heeft een multiplier boven 1 of extra XP boven 0 nodig."
+      "rbErrEmpty": "Elke bonus heeft een multiplier boven 1 of extra XP boven 0 nodig.",
+      "auroraSpecial": "Speciale collectie",
+      "auroraSpecialHint": "Retro zonsondergangscènes met eigen illustraties op de kaart. Voor level-up-, welkom- en afscheidskaarten."
     },
     "suggestions": {
       "title": "Suggesties",
@@ -7879,7 +7885,9 @@
         "dots": "Stippen",
         "grid": "Raster",
         "stars": "Sterren",
-        "coast": "Neon Coast-scène"
+        "coast": "Neon Coast-scène",
+        "skyline": "Miami skyline (neon)",
+        "miami": "Miami Beach (art deco)"
       },
       "card_place": {
         "top": "Boven mijn gegevens",
@@ -7929,6 +7937,7 @@
     "shortTitle": "Je korte link",
     "shortCopy": "Kopiëren",
     "shortCopied": "Link gekopieerd.",
-    "shortHint": "Deel hem overal. Ingelogde WODY-leden zien je pagina en hun bezoeken komen in de teller."
+    "shortHint": "Deel hem overal. Ingelogde WODY-leden zien je pagina en hun bezoeken komen in de teller.",
+    "specialGroup": "Speciale collectie"
   }
 }

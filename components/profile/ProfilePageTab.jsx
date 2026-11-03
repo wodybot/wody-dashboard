@@ -9,6 +9,8 @@ import HintLink from '@/components/hint-link';
 import { SHORT_RESERVED, PAGE_CHOICES, PAGE_DEFAULT, PAGE_PRESETS, cleanMusicUrl, cleanPageImage, normalizePage, pageAccent, pageGradient } from '@/lib/profile-page';
 import { discordCdnUrl } from '@/lib/utils';
 
+const SPECIAL_PATTERNS = ['coast', 'skyline', 'miami'];
+
 async function api(method, body) {
   try {
     const res = await fetch('/api/profile-page', { method, headers: body ? { 'Content-Type': 'application/json' } : undefined, body: body ? JSON.stringify(body) : undefined, cache: 'no-store' });
@@ -131,7 +133,8 @@ export default function ProfilePageTab({ identity, onGoCard }) {
     <div key={key}>
       <label className={lab} htmlFor={id}>{t(`field.${key}`)}</label>
       <select id={id} className={input} value={page[key]} onChange={(e) => set({ [key]: e.target.value })}>
-        {PAGE_CHOICES[key].map((v) => <option key={v} value={v}>{t(`opt.${key}.${v}`)}</option>)}
+        {PAGE_CHOICES[key].filter((v) => key !== 'pattern' || !SPECIAL_PATTERNS.includes(v)).map((v) => <option key={v} value={v}>{t(`opt.${key}.${v}`)}</option>)}
+        {key === 'pattern' ? <optgroup label={t('specialGroup')}>{SPECIAL_PATTERNS.map((v) => <option key={v} value={v}>{t(`opt.pattern.${v}`)}</option>)}</optgroup> : null}
       </select>
     </div>
   );

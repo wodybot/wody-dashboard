@@ -1,5 +1,6 @@
 
 'use client';
+import { SvgScene } from '@/components/scenes';
 import { Component, createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useState, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
@@ -218,17 +219,23 @@ function MemberCardSizePicker({ value, onChange, t, savedValue, tc }) {
 function AuroraGradientPicker({ value, onChange, hasImage }) {
   const tl = useTranslations('guildSettings.levels');
   const current = AURORA_GRADIENTS[value] ? value : 'ember';
+  const tile = (key) => (
+    <button key={key} type="button" role="radio" aria-checked={current === key} onClick={() => onChange(key)}
+      className={`group rounded-xl border p-1.5 text-left transition ${current === key ? 'border-primary ring-1 ring-primary bg-primary/10' : 'border-border hover:bg-secondary/40'}`}>
+      <span className="relative block h-10 w-full overflow-hidden rounded-lg" style={{ background: auroraBackground(key) }}>{SPECIAL_GRADIENTS.includes(key) ? <AuroraScene kind={key} /> : null}</span>
+      <span className="mt-1.5 flex items-center gap-1.5 px-1 text-xs font-medium"><span className="h-2.5 w-2.5 rounded-full" style={{ background: AURORA_GRADIENTS[key][2] }} />{tl(`auroraGradients.${key}`)}</span>
+    </button>
+  );
   return (
     <div>
       <div className="flex items-center gap-1.5 mb-1"><Label className="mb-0">{tl('auroraGradient')}</Label><InfoHint>{tl('auroraGradientHint')}</InfoHint></div>
       <div role="radiogroup" aria-label={tl('auroraGradient')} className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        {Object.keys(AURORA_GRADIENTS).map((key) => (
-          <button key={key} type="button" role="radio" aria-checked={current === key} onClick={() => onChange(key)}
-            className={`group rounded-xl border p-1.5 text-left transition ${current === key ? 'border-primary ring-1 ring-primary bg-primary/10' : 'border-border hover:bg-secondary/40'}`}>
-            <span className="block h-10 w-full rounded-lg" style={{ background: auroraBackground(key) }} />
-            <span className="mt-1.5 flex items-center gap-1.5 px-1 text-xs font-medium"><span className="h-2.5 w-2.5 rounded-full" style={{ background: AURORA_GRADIENTS[key][2] }} />{tl(`auroraGradients.${key}`)}</span>
-          </button>
-        ))}
+        {Object.keys(AURORA_GRADIENTS).filter((k) => !SPECIAL_GRADIENTS.includes(k)).map(tile)}
+      </div>
+      <div className="mt-3 rounded-xl border border-[#e6cd8c]/30 bg-[#e6cd8c]/5 p-2.5">
+        <p className="text-xs font-semibold text-[#e6cd8c]">{tl('auroraSpecial')}</p>
+        <p className="mb-2 text-[11px] text-muted-foreground">{tl('auroraSpecialHint')}</p>
+        <div role="radiogroup" aria-label={tl('auroraSpecial')} className="grid grid-cols-2 gap-2 sm:grid-cols-4">{SPECIAL_GRADIENTS.map(tile)}</div>
       </div>
       {hasImage ? <p className="mt-2 text-[11px] text-muted-foreground">{tl('auroraImageNote')}</p> : null}
     </div>
@@ -249,6 +256,7 @@ function MemberAuroraPreview({ gradient, backgroundUrl, previewBackgroundUrl, ov
     <div className="relative w-full overflow-hidden select-none" style={{ aspectRatio: '934/282', containerType: 'inline-size', background: useImage ? '#000' : auroraBackground(gradient), ...cardFontStyle(fontId) }}>
       {useImage && <PreviewImage url={previewBackgroundUrl} alt="" className="absolute inset-0 h-full w-full object-cover" draggable="false" />}
       {useImage && <div className="absolute inset-0" style={{ backgroundColor: overlayColor, opacity: overlayOpacity / 100 }} />}
+      {!useImage && SPECIAL_GRADIENTS.includes(gradient) && <AuroraScene kind={gradient} />}
       {!useImage && <div className="absolute inset-0 opacity-[0.07] [background-image:radial-gradient(#fff_1px,transparent_1px)]" style={{ backgroundSize: u(13) + ' ' + u(13) }} />}
       {avatarUrl && <img src={avatarUrl} alt="" draggable="false" className="absolute rounded-full object-cover"
         style={{ left: u(ax), top: u(ay), width: u(avatar), height: u(avatar), boxShadow: ring ? `0 0 0 ${u(6)} ${accent}, 0 0 ${u(30)} ${accent}aa` : undefined }} />}
@@ -4348,7 +4356,15 @@ const AURORA_GRADIENTS = {
   royal:    [['#0b0f1f', '#1d2547', '#3a2f6b'], ['#e9c46a', '#6c5ce7'], '#f4d27a'],
   forest:   [['#05170f', '#0f3d27', '#2f7a4a'], ['#a8e063', '#1fa37a'], '#b8f27c'],
   midnight: [['#050507', '#14141c', '#2a2a38'], ['#8a8aa8', '#c46a2d'], '#e08a4e'],
+  coast:    [['#1a0b3b', '#8a2a7a', '#ff5e8a'], ['#ffb36b', '#7a3cff'], '#ffb36b'],
+  dusk:     [['#0b1f2e', '#1d4f5e', '#e8744f'], ['#5ff0d0', '#ff9a5a'], '#5ff0d0'],
+  skyline:  [['#0a0620', '#2b1458', '#ff6a7a'], ['#ffc46b', '#5b3cff'], '#ffc46b'],
+  miami:    [['#1a0b3b', '#8a2a7a', '#ff5e8a'], ['#3ee0ff', '#ff9ad5'], '#3ee0ff'],
 };
+const SPECIAL_GRADIENTS = ['coast', 'dusk', 'skyline', 'miami'];
+function AuroraScene({ kind }) {
+  return <SvgScene kind={kind} />;
+}
 const auroraBackground = (key) => {
   const [stops, glows] = AURORA_GRADIENTS[key] || AURORA_GRADIENTS.ember;
   return `radial-gradient(60% 120% at 88% 5%, ${glows[0]}78, transparent 60%), radial-gradient(45% 110% at 12% 100%, ${glows[1]}6b, transparent 60%), linear-gradient(105deg, ${stops[0]}, ${stops[1]} 50%, ${stops[2]})`;

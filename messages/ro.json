@@ -3246,7 +3246,11 @@
         "neon": "Neon",
         "royal": "Regal",
         "forest": "Pădure",
-        "midnight": "Miez de noapte"
+        "midnight": "Miez de noapte",
+        "coast": "Neon Coast",
+        "dusk": "Palm Dusk",
+        "skyline": "Miami Skyline",
+        "miami": "Miami Beach"
       },
       "rwTitle": "Recompense de nivel",
       "rwHint": "Oferă membrilor un rol și/sau XP bonus când ating un nivel (până la 50). Nivelurile sărite dintr-un salt sunt recompensate toate, iar fiecare recompensă se acordă o singură dată per membru.",
@@ -3292,7 +3296,9 @@
       "rbErrMultiplier": "Multiplicatorul trebuie să fie între 1 și 10.",
       "rbErrFlat": "XP extra trebuie să fie un număr întreg între 0 și 1000.",
       "rbErrPriority": "Prioritatea trebuie să fie un număr întreg între 0 și 1000.",
-      "rbErrEmpty": "Fiecare bonus are nevoie de un multiplicator peste 1 sau XP extra peste 0."
+      "rbErrEmpty": "Fiecare bonus are nevoie de un multiplicator peste 1 sau XP extra peste 0.",
+      "auroraSpecial": "Colecție specială",
+      "auroraSpecialHint": "Scene retro de apus, cu grafică proprie desenată pe card. Se aplică la cardurile de level up, welcome și goodbye."
     },
     "suggestions": {
       "title": "Sugestii",
@@ -7879,7 +7885,9 @@
         "dots": "Puncte",
         "grid": "Grilă",
         "stars": "Stele",
-        "coast": "Scenă Neon Coast"
+        "coast": "Scenă Neon Coast",
+        "skyline": "Orizont Miami (neon)",
+        "miami": "Miami Beach (art deco)"
       },
       "card_place": {
         "top": "Deasupra detaliilor mele",
@@ -7929,6 +7937,7 @@
     "shortTitle": "Linkul tău scurt",
     "shortCopy": "Copiază",
     "shortCopied": "Link copiat.",
-    "shortHint": "Împarte-l oriunde. Membrii WODY autentificați îți văd pagina, iar vizitele apar în contor."
+    "shortHint": "Împarte-l oriunde. Membrii WODY autentificați îți văd pagina, iar vizitele apar în contor.",
+    "specialGroup": "Colecție specială"
   }
 }

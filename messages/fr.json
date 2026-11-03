@@ -3246,7 +3246,11 @@
         "neon": "Néon",
         "royal": "Royal",
         "forest": "Forêt",
-        "midnight": "Minuit"
+        "midnight": "Minuit",
+        "coast": "Neon Coast",
+        "dusk": "Palm Dusk",
+        "skyline": "Miami Skyline",
+        "miami": "Miami Beach"
       },
       "rwTitle": "Récompenses de niveau",
       "rwHint": "Donnez aux membres un rôle et/ou de l'XP bonus lorsqu'ils atteignent un niveau (jusqu'à 50). Les niveaux sautés d'un coup sont tous récompensés, et chaque récompense n'est donnée qu'une fois par membre.",
@@ -3292,7 +3296,9 @@
       "rbErrMultiplier": "Le multiplicateur doit être compris entre 1 et 10.",
       "rbErrFlat": "L'XP supplémentaire doit être un nombre entier de 0 à 1000.",
       "rbErrPriority": "La priorité doit être un nombre entier de 0 à 1000.",
-      "rbErrEmpty": "Chaque bonus nécessite un multiplicateur supérieur à 1 ou un XP supplémentaire supérieur à 0."
+      "rbErrEmpty": "Chaque bonus nécessite un multiplicateur supérieur à 1 ou un XP supplémentaire supérieur à 0.",
+      "auroraSpecial": "Collection spéciale",
+      "auroraSpecialHint": "Scènes de coucher de soleil rétro avec leurs propres illustrations sur la carte. Valable pour les cartes de niveau, bienvenue et au revoir."
     },
     "suggestions": {
       "title": "Suggestions",
@@ -7879,7 +7885,9 @@
         "dots": "Points",
         "grid": "Grille",
         "stars": "Étoiles",
-        "coast": "Scène Neon Coast"
+        "coast": "Scène Neon Coast",
+        "skyline": "Skyline de Miami (néon)",
+        "miami": "Miami Beach (art déco)"
       },
       "card_place": {
         "top": "Au-dessus de mes infos",
@@ -7929,6 +7937,7 @@
     "shortTitle": "Ton lien court",
     "shortCopy": "Copier",
     "shortCopied": "Lien copié.",
-    "shortHint": "Partage-le partout. Les membres WODY connectés voient ta page et leurs visites s’affichent dans le compteur."
+    "shortHint": "Partage-le partout. Les membres WODY connectés voient ta page et leurs visites s’affichent dans le compteur.",
+    "specialGroup": "Collection spéciale"
   }
 }

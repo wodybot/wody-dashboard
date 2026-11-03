@@ -3246,7 +3246,11 @@
         "neon": "Neon",
         "royal": "Royal",
         "forest": "Forest",
-        "midnight": "Midnight"
+        "midnight": "Midnight",
+        "coast": "Neon Coast",
+        "dusk": "Palm Dusk",
+        "skyline": "Miami Skyline",
+        "miami": "Miami Beach"
       },
       "rwTitle": "Level Rewards",
       "rwHint": "Give members a role and/or bonus XP when they reach a level (up to 50). Levels skipped in one jump are all rewarded, and each reward is given only once per member.",
@@ -3292,7 +3296,9 @@
       "rbErrMultiplier": "Multiplier must be between 1 and 10.",
       "rbErrFlat": "Extra XP must be a whole number from 0 to 1000.",
       "rbErrPriority": "Priority must be a whole number from 0 to 1000.",
-      "rbErrEmpty": "Each bonus needs a multiplier above 1 or extra XP above 0."
+      "rbErrEmpty": "Each bonus needs a multiplier above 1 or extra XP above 0.",
+      "auroraSpecial": "Special collection",
+      "auroraSpecialHint": "Retro sunset scenes with their own artwork, drawn on the card. Used on level-up, welcome and goodbye cards."
     },
     "suggestions": {
       "title": "Suggestions",
@@ -7879,7 +7885,9 @@
         "dots": "Dots",
         "grid": "Grid",
         "stars": "Stars",
-        "coast": "Neon Coast scene"
+        "coast": "Neon Coast scene",
+        "skyline": "Miami skyline (neon)",
+        "miami": "Miami Beach (art deco)"
       },
       "card_place": {
         "top": "Above my details",
@@ -7929,6 +7937,7 @@
     "shortTitle": "Your short link",
     "shortCopy": "Copy",
     "shortCopied": "Link copied.",
-    "shortHint": "Share it anywhere. Signed in WODY members see your page, and you see their visits in the counter."
+    "shortHint": "Share it anywhere. Signed in WODY members see your page, and you see their visits in the counter.",
+    "specialGroup": "Special collection"
   }
 }

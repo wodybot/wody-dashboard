@@ -3246,7 +3246,11 @@
         "neon": "Neon",
         "royal": "Reale",
         "forest": "Foresta",
-        "midnight": "Mezzanotte"
+        "midnight": "Mezzanotte",
+        "coast": "Neon Coast",
+        "dusk": "Palm Dusk",
+        "skyline": "Miami Skyline",
+        "miami": "Miami Beach"
       },
       "rwTitle": "Ricompense di livello",
       "rwHint": "Dai ai membri un ruolo e/o XP bonus quando raggiungono un livello (fino a 50). I livelli saltati in un colpo solo vengono premiati tutti e ogni ricompensa viene data una sola volta per membro.",
@@ -3292,7 +3296,9 @@
       "rbErrMultiplier": "Il moltiplicatore deve essere tra 1 e 10.",
       "rbErrFlat": "L'XP extra deve essere un numero intero da 0 a 1000.",
       "rbErrPriority": "La priorità deve essere un numero intero da 0 a 1000.",
-      "rbErrEmpty": "Ogni bonus richiede un moltiplicatore sopra 1 o XP extra sopra 0."
+      "rbErrEmpty": "Ogni bonus richiede un moltiplicatore sopra 1 o XP extra sopra 0.",
+      "auroraSpecial": "Collezione speciale",
+      "auroraSpecialHint": "Scene retrò al tramonto con grafica propria disegnata sulla card. Valido per le card di livello, benvenuto e addio."
     },
     "suggestions": {
       "title": "Suggerimenti",
@@ -7879,7 +7885,9 @@
         "dots": "Punti",
         "grid": "Griglia",
         "stars": "Stelle",
-        "coast": "Scena Neon Coast"
+        "coast": "Scena Neon Coast",
+        "skyline": "Skyline di Miami (neon)",
+        "miami": "Miami Beach (art déco)"
       },
       "card_place": {
         "top": "Sopra i miei dati",
@@ -7929,6 +7937,7 @@
     "shortTitle": "Il tuo link breve",
     "shortCopy": "Copia",
     "shortCopied": "Link copiato.",
-    "shortHint": "Condividilo ovunque. I membri WODY con accesso vedono la tua pagina e le visite appaiono nel contatore."
+    "shortHint": "Condividilo ovunque. I membri WODY con accesso vedono la tua pagina e le visite appaiono nel contatore.",
+    "specialGroup": "Collezione speciale"
   }
 }

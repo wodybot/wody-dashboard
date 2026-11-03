@@ -3246,7 +3246,11 @@
         "neon": "Neon",
         "royal": "Kraliyet",
         "forest": "Orman",
-        "midnight": "Gece yarısı"
+        "midnight": "Gece yarısı",
+        "coast": "Neon Coast",
+        "dusk": "Palm Dusk",
+        "skyline": "Miami Skyline",
+        "miami": "Miami Beach"
       },
       "rwTitle": "Seviye ödülleri",
       "rwHint": "Üyelere bir seviyeye ulaştıklarında rol ve/veya bonus XP verin (50 adede kadar). Tek seferde atlanan seviyelerin hepsi ödüllendirilir ve her ödül üye başına yalnızca bir kez verilir.",
@@ -3292,7 +3296,9 @@
       "rbErrMultiplier": "Çarpan 1 ile 10 arasında olmalı.",
       "rbErrFlat": "Ekstra XP 0 ile 1000 arasında bir tam sayı olmalı.",
       "rbErrPriority": "Öncelik 0 ile 1000 arasında bir tam sayı olmalı.",
-      "rbErrEmpty": "Her bonus için 1'den büyük çarpan veya 0'dan büyük ekstra XP gerekir."
+      "rbErrEmpty": "Her bonus için 1'den büyük çarpan veya 0'dan büyük ekstra XP gerekir.",
+      "auroraSpecial": "Özel koleksiyon",
+      "auroraSpecialHint": "Kart üzerine çizilmiş özgün illüstrasyonlu retro gün batımı sahneleri. Seviye, karşılama ve veda kartlarında kullanılır."
     },
     "suggestions": {
       "title": "Öneriler",
@@ -7879,7 +7885,9 @@
         "dots": "Noktalar",
         "grid": "Izgara",
         "stars": "Yıldızlar",
-        "coast": "Neon Coast sahnesi"
+        "coast": "Neon Coast sahnesi",
+        "skyline": "Miami silüeti (neon)",
+        "miami": "Miami Beach (art deco)"
       },
       "card_place": {
         "top": "Bilgilerimin üstünde",
@@ -7929,6 +7937,7 @@
     "shortTitle": "Kısa bağlantın",
     "shortCopy": "Kopyala",
     "shortCopied": "Bağlantı kopyalandı.",
-    "shortHint": "Her yere paylaş. Giriş yapmış WODY üyeleri sayfanı görür, ziyaretleri sayaçta görünür."
+    "shortHint": "Her yere paylaş. Giriş yapmış WODY üyeleri sayfanı görür, ziyaretleri sayaçta görünür.",
+    "specialGroup": "Özel koleksiyon"
   }
 }

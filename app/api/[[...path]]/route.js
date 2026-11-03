@@ -2630,7 +2630,7 @@ async function handleMutation(request, context) {
     if (data.level_card_size != null && !['compact', 'balanced', 'banner', 'aurora'].includes(data.level_card_size)) {
       return json({ error: 'invalid_value', field: 'level_card_size' }, { status: 400 });
     }
-    if (data.level_card_gradient != null && !['ember', 'aurora', 'sunset', 'ocean', 'neon', 'royal', 'forest', 'midnight'].includes(data.level_card_gradient)) {
+    if (data.level_card_gradient != null && !['ember', 'aurora', 'sunset', 'ocean', 'neon', 'royal', 'forest', 'midnight', 'coast', 'dusk', 'skyline', 'miami'].includes(data.level_card_gradient)) {
       return json({ error: 'invalid_value', field: 'level_card_gradient' }, { status: 400 });
     }
     if ('language' in data) {
@@ -3012,7 +3012,7 @@ async function handleMutation(request, context) {
     if ('card_avatar_ring' in data) data.card_avatar_ring = Boolean(data.card_avatar_ring);
     if ('card_avatar_mode' in data) data.card_avatar_mode = ['member', 'server', 'none'].includes(data.card_avatar_mode) ? data.card_avatar_mode : 'member';
     if ('card_size' in data) data.card_size = ['narrow', 'medium', 'large', 'aurora'].includes(data.card_size) ? data.card_size : 'medium';
-    if ('card_gradient' in data) data.card_gradient = ['ember', 'aurora', 'sunset', 'ocean', 'neon', 'royal', 'forest', 'midnight'].includes(data.card_gradient) ? data.card_gradient : 'ember';
+    if ('card_gradient' in data) data.card_gradient = ['ember', 'aurora', 'sunset', 'ocean', 'neon', 'royal', 'forest', 'midnight', 'coast', 'dusk', 'skyline', 'miami'].includes(data.card_gradient) ? data.card_gradient : 'ember';
     if ('card_background_url' in data) {
       try { data.card_background_url = sanitizeImageUrl(data.card_background_url); }
       catch { return json({ error: 'invalid_image_url', field: 'card_background_url' }, { status: 400 }); }
@@ -3080,7 +3080,7 @@ async function handleMutation(request, context) {
     if ('card_avatar_ring' in data) data.card_avatar_ring = Boolean(data.card_avatar_ring);
     if ('card_avatar_mode' in data) data.card_avatar_mode = ['member', 'server', 'none'].includes(data.card_avatar_mode) ? data.card_avatar_mode : 'member';
     if ('card_size' in data) data.card_size = ['narrow', 'medium', 'large', 'aurora'].includes(data.card_size) ? data.card_size : 'medium';
-    if ('card_gradient' in data) data.card_gradient = ['ember', 'aurora', 'sunset', 'ocean', 'neon', 'royal', 'forest', 'midnight'].includes(data.card_gradient) ? data.card_gradient : 'ember';
+    if ('card_gradient' in data) data.card_gradient = ['ember', 'aurora', 'sunset', 'ocean', 'neon', 'royal', 'forest', 'midnight', 'coast', 'dusk', 'skyline', 'miami'].includes(data.card_gradient) ? data.card_gradient : 'ember';
     if ('card_background_url' in data) {
       try { data.card_background_url = sanitizeImageUrl(data.card_background_url); }
       catch { return json({ error: 'invalid_image_url', field: 'card_background_url' }, { status: 400 }); }
