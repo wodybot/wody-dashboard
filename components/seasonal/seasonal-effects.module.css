@@ -1,0 +1,169 @@
+/* FILE: seasonal-effects.module.css
+ * PUNE ÎN: components/seasonal/seasonal-effects.module.css
+ * (fișier nou în proiectul wody-dashboard-main la această cale)
+ *
+ * Same engine as components/autumn/autumn-effects.module.css (only
+ * `translate`/`rotate` are ever animated, both GPU-friendly and
+ * independent of each other, no canvas, no JS animation loop), just
+ * renamed away from "autumn" so the one CSS module can serve Autumn,
+ * Winter and Halloween alike (see seasonal-effects-layer.jsx, which picks
+ * the asset pool and colours per season but shares this exact animation).
+ */
+
+.layer {
+  position: fixed;
+  inset: 0;
+  /* Negative but above the page's own ambient background blobs (-z-10,
+     see globals.css): normal in-flow content always paints above
+     z-index:auto/0, so a piece drifting under text or a card gets
+     covered by it automatically, then re-emerges over open background. */
+  z-index: -5;
+  pointer-events: none;
+  overflow: hidden;
+  contain: layout style;
+}
+
+.piece {
+  position: absolute;
+  top: -10%;
+  will-change: translate, rotate;
+  filter: drop-shadow(0 2px 3px rgba(10, 5, 2, 0.25));
+  rotate: var(--rStart, 0deg);
+}
+
+.piece.noShadow {
+  filter: none;
+}
+
+/* Non-animated / prefers-reduced-motion fallback: rest at a scattered
+   static spot across the page instead of piling up near the top edge. */
+.piece:not(.animated):not(.animatedNoSpin) {
+  top: var(--staticTop, 20%);
+}
+
+@keyframes seasonalFall {
+  0%   { translate: 0 0; }
+  20%  { translate: calc(var(--sway, 1) * 2.2vw) 24vh; }
+  40%  { translate: calc(var(--sway, 1) * -1.8vw) 48vh; }
+  60%  { translate: calc(var(--sway, 1) * 2.2vw) 72vh; }
+  80%  { translate: calc(var(--sway, 1) * -1.3vw) 96vh; }
+  100% { translate: calc(var(--sway, 1) * 0.8vw) 120vh; }
+}
+
+/* Independent tumble, running at its own pace so pieces don't all spin in
+   lockstep with their own fall speed. */
+@keyframes seasonalSpin {
+  from { rotate: var(--rStart, 0deg); }
+  to   { rotate: calc(var(--rStart, 0deg) + 360deg); }
+}
+
+.piece.animated {
+  animation:
+    seasonalFall var(--fallDur, 16s) linear infinite,
+    seasonalSpin var(--spinDur, 7s) linear infinite;
+  animation-delay: var(--delay, 0s), var(--spinDelay, 0s);
+}
+
+/* Halloween pieces (ghosts, witches, bats...) have a clear "up", so they
+   never tumble. Instead they keep the fall/sway and add a slow pendulum
+   swing around their (small) starting tilt, so they stay upright. */
+@keyframes seasonalSwing {
+  from { rotate: calc(var(--rStart, 0deg) - 9deg); }
+  to   { rotate: calc(var(--rStart, 0deg) + 9deg); }
+}
+
+.piece.animatedNoSpin {
+  animation:
+    seasonalFall var(--fallDur, 16s) linear infinite,
+    seasonalSwing var(--spinDur, 6s) ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s), var(--spinDelay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .piece.animated,
+  .piece.animatedNoSpin {
+    animation: none;
+    top: var(--staticTop, 20%);
+  }
+}
+
+/* Mobile thins out (a chunk of pieces are hidden by the component, see
+   mobileOk) and shrinks slightly, never overlapping interactive chrome. */
+@media (max-width: 640px) {
+  .piece {
+    scale: 0.82;
+  }
+  .piece.mobileHidden {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Gutter layout (Halloween)
+ *
+ * Pieces live ONLY in the empty side margins next to the content column
+ * (max-w-7xl = 80rem), so they never cross text or cards. Each piece
+ * starts fully above the viewport and leaves fully below it, so nothing
+ * ever pops in or out mid-screen. Sway is bounded to the gutter.
+ * ------------------------------------------------------------------ */
+.gutter {
+  --gutter: clamp(2.5rem, calc((100vw - 80rem) / 2 + 1rem), 24vw);
+  --amp: calc(var(--gutter) * 0.1);
+}
+
+.gutter .piece {
+  --pw: min(var(--w, 2.5rem), var(--gutter));
+  width: var(--pw);
+  opacity: var(--op, 0.9);
+  top: -4.5rem;
+}
+
+.gutter .piece.left {
+  left: calc(var(--amp) + max(0px, var(--gutter) - var(--pw) - 2 * var(--amp)) * var(--pos, 0.5));
+}
+.gutter .piece.right {
+  right: calc(var(--amp) + max(0px, var(--gutter) - var(--pw) - 2 * var(--amp)) * var(--pos, 0.5));
+}
+
+@keyframes gutterFall {
+  0%   { translate: 0 0; }
+  25%  { translate: calc(var(--sway, 1) * var(--amp)) calc((100vh + 9rem) * 0.25); }
+  50%  { translate: calc(var(--sway, 1) * var(--amp) * -1) calc((100vh + 9rem) * 0.5); }
+  75%  { translate: calc(var(--sway, 1) * var(--amp)) calc((100vh + 9rem) * 0.75); }
+  100% { translate: calc(var(--sway, 1) * var(--amp) * -0.5) calc(100vh + 9rem); }
+}
+
+.gutter .piece.animatedNoSpin {
+  animation:
+    gutterFall var(--fallDur, 26s) linear infinite,
+    seasonalSwing var(--spinDur, 6s) ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s), var(--spinDelay, 0s);
+}
+
+/* Static (animations off): evenly spread down the margins, no overlaps. */
+.gutter .piece:not(.animatedNoSpin) {
+  top: var(--staticTop, 20%);
+}
+
+/* Narrow screens: no real margin exists, so pieces peek in from the very
+   edge of the screen (partly off-screen), small, never over the text. */
+@media (max-width: 1360px) {
+  .gutter { --amp: 0.2rem; }
+  .gutter .piece {
+    --pw: min(var(--w, 2.5rem), 2.4rem);
+    scale: 1;
+  }
+  .gutter .piece.left  { left: -0.45rem; }
+  .gutter .piece.right { right: -0.45rem; }
+}
+
+@media (max-width: 640px) {
+  .gutter .piece { --pw: min(var(--w, 2.25rem), 2.1rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gutter .piece.animatedNoSpin {
+    animation: none;
+    top: var(--staticTop, 20%);
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "welcome": [
+    {
+      "id": "welcome-01",
+      "file": "welcome-01.webp",
+      "url": "/presets/welcome/welcome-01.webp"
+    },
+    {
+      "id": "welcome-02",
+      "file": "welcome-02.webp",
+      "url": "/presets/welcome/welcome-02.webp"
+    },
+    {
+      "id": "welcome-03",
+      "file": "welcome-03.webp",
+      "url": "/presets/welcome/welcome-03.webp"
+    },
+    {
+      "id": "welcome-04",
+      "file": "welcome-04.webp",
+      "url": "/presets/welcome/welcome-04.webp"
+    },
+    {
+      "id": "welcome-05",
+      "file": "welcome-05.webp",
+      "url": "/presets/welcome/welcome-05.webp"
+    }
+  ],
+  "goodbye": [
+    {
+      "id": "goodbye-01",
+      "file": "goodbye-01.webp",
+      "url": "/presets/goodbye/goodbye-01.webp"
+    },
+    {
+      "id": "goodbye-02",
+      "file": "goodbye-02.webp",
+      "url": "/presets/goodbye/goodbye-02.webp"
+    },
+    {
+      "id": "goodbye-03",
+      "file": "goodbye-03.webp",
+      "url": "/presets/goodbye/goodbye-03.webp"
+    },
+    {
+      "id": "goodbye-04",
+      "file": "goodbye-04.webp",
+      "url": "/presets/goodbye/goodbye-04.webp"
+    },
+    {
+      "id": "goodbye-05",
+      "file": "goodbye-05.webp",
+      "url": "/presets/goodbye/goodbye-05.webp"
+    },
+    {
+      "id": "goodbye-06",
+      "file": "goodbye-06.webp",
+      "url": "/presets/goodbye/goodbye-06.webp"
+    }
+  ],
+  "welcome-background": [
+    {
+      "id": "welcome-bg-01",
+      "file": "welcome-bg-01.webp",
+      "url": "/presets/welcome-background/welcome-bg-01.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-01.jpg"
+    },
+    {
+      "id": "welcome-bg-03",
+      "file": "welcome-bg-03.webp",
+      "url": "/presets/welcome-background/welcome-bg-03.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-03.jpg"
+    },
+    {
+      "id": "welcome-bg-04",
+      "file": "welcome-bg-04.webp",
+      "url": "/presets/welcome-background/welcome-bg-04.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-04.jpg"
+    },
+    {
+      "id": "welcome-bg-05",
+      "file": "welcome-bg-05.webp",
+      "url": "/presets/welcome-background/welcome-bg-05.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-05.jpg"
+    },
+    {
+      "id": "welcome-bg-06",
+      "file": "welcome-bg-06.webp",
+      "url": "/presets/welcome-background/welcome-bg-06.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-06.jpg"
+    },
+    {
+      "id": "welcome-bg-07",
+      "file": "welcome-bg-07.webp",
+      "url": "/presets/welcome-background/welcome-bg-07.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-07.jpg"
+    },
+    {
+      "id": "welcome-bg-08",
+      "file": "welcome-bg-08.webp",
+      "url": "/presets/welcome-background/welcome-bg-08.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-08.jpg"
+    },
+    {
+      "id": "welcome-bg-09",
+      "file": "welcome-bg-09.webp",
+      "url": "/presets/welcome-background/welcome-bg-09.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-09.jpg"
+    },
+    {
+      "id": "welcome-bg-10",
+      "file": "welcome-bg-10.webp",
+      "url": "/presets/welcome-background/welcome-bg-10.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-10.jpg"
+    },
+    {
+      "id": "welcome-bg-11",
+      "file": "welcome-bg-11.webp",
+      "url": "/presets/welcome-background/welcome-bg-11.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-11.jpg"
+    },
+    {
+      "id": "welcome-bg-13",
+      "file": "welcome-bg-13.webp",
+      "url": "/presets/welcome-background/welcome-bg-13.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-13.jpg"
+    },
+    {
+      "id": "welcome-bg-14",
+      "file": "welcome-bg-14.webp",
+      "url": "/presets/welcome-background/welcome-bg-14.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-14.jpg"
+    },
+    {
+      "id": "welcome-bg-16",
+      "file": "welcome-bg-16.webp",
+      "url": "/presets/welcome-background/welcome-bg-16.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-16.jpg"
+    },
+    {
+      "id": "welcome-bg-17",
+      "file": "welcome-bg-17.webp",
+      "url": "/presets/welcome-background/welcome-bg-17.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-17.jpg"
+    },
+    {
+      "id": "welcome-bg-18",
+      "file": "welcome-bg-18.webp",
+      "url": "/presets/welcome-background/welcome-bg-18.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-18.jpg"
+    },
+    {
+      "id": "welcome-bg-19",
+      "file": "welcome-bg-19.webp",
+      "url": "/presets/welcome-background/welcome-bg-19.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-19.jpg"
+    },
+    {
+      "id": "welcome-bg-20",
+      "file": "welcome-bg-20.webp",
+      "url": "/presets/welcome-background/welcome-bg-20.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-20.jpg"
+    },
+    {
+      "id": "welcome-bg-21",
+      "file": "welcome-bg-21.webp",
+      "url": "/presets/welcome-background/welcome-bg-21.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-21.jpg"
+    },
+    {
+      "id": "welcome-bg-22",
+      "file": "welcome-bg-22.webp",
+      "url": "/presets/welcome-background/welcome-bg-22.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-22.jpg"
+    },
+    {
+      "id": "welcome-bg-23",
+      "file": "welcome-bg-23.webp",
+      "url": "/presets/welcome-background/welcome-bg-23.webp",
+      "bot_url": "/presets/welcome-background/welcome-bg-23.jpg"
+    }
+  ],
+  "level-card-background": [
+    {
+      "id": "level-bg-black",
+      "file": "level-bg-black.webp",
+      "url": "/presets/level-card-background/level-bg-black.webp",
+      "bot_url": "/presets/level-card-background/level-bg-black.jpg"
+    }
+  ]
+}
