@@ -357,6 +357,16 @@
         "desc": "Quién invitó a cada miembro, con un gráfico de los últimos 30 días: entradas, salidas, retención, días, horas, fuentes y antigüedad de las cuentas. /statistics lo muestra en Discord con botones y menús, y el panel muestra los mismos números. Gratis."
       },
       {
+        "key": "lookups",
+        "title": "Radar",
+        "desc": "Los miembros escriben /radar y eligen un servicio para obtener una canción, un servidor, un perfil o un precio sin salir de Discord. 15 consultas con API oficiales o documentadas públicamente. Gratis."
+      },
+      {
+        "key": "feeds",
+        "title": "Pulse",
+        "desc": "Vídeos, directos, canciones, publicaciones, versiones e imágenes nuevas de otros servicios, publicados en un canal con el ritmo que elijas. 10 fuentes, configuradas con /pulse o en el panel."
+      },
+      {
         "key": "community",
         "title": "Community Discovery",
         "desc": "Publica tu servidor en el directorio de Wody. Un perfil público con tu propio tema, revisado por el equipo de Wody, con reseñas, favoritos y estadísticas."
@@ -394,7 +404,7 @@
       {
         "key": "stream_notifications",
         "title": "Notificaciones de stream",
-        "desc": "Avisos cuando un streamer de Twitch entra en directo y cuando un creador de TikTok conectado publica un vídeo."
+        "desc": "Alertas cuando un streamer de Twitch o Kick empieza directo y cuando un creador de TikTok conectado publica un vídeo."
       }
     ],
     "counter": {
@@ -1086,7 +1096,7 @@
         "html": "<p>Birthdays is free and independent from Economy. A member sets a birthday with <code>/birthday</code>. Wody then stores the Discord user ID and server ID, the day and month, an optional birth year, a privacy level (public, community or private), an optional time zone and an on or off switch. Birth year is optional and is never required.</p><p>Privacy levels: public shows the date to the server; community uses the birthday for features such as announcements and reminders while keeping the exact date hidden from other members; private is never listed, announced or shown to other members. Age is displayed only when the server enables it, a birth year was provided and the birthday is not private.</p><p>Server administrators with dashboard access can see and manage all entries of their own server in the administration list, including private ones, but private birthdays are never shown in the calendar, in public boards or in announcements. A short history is kept of each celebration (date, whether it was announced, whether the birthday role was added and removed, and any delivery error). You can remove your birthday at any time with <code>/birthday</code>, and administrators can remove entries. Data is kept until it is removed.</p>"
       },
       {
-        "heading": "18. Stream Notifications (Twitch and TikTok)",
+        "heading": "18. Stream Notifications (Twitch, Kick y TikTok)",
         "html": "<p>Stream Notifications is a Premium feature. For Twitch, Wody stores the public Twitch login, ID, display name and avatar of each streamer an administrator adds, the Discord channel and message settings, and technical subscription data for Twitch EventSub. Incoming Twitch events are processed to post the alert; event records are kept for 7 days and delivery records for 30 days to prevent duplicate messages.</p><p>For TikTok, an administrator can connect their own TikTok account through the official TikTok Login Kit. After consent, Wody stores the TikTok open ID, username, display name and avatar and the access and refresh tokens. The tokens are encrypted on the server (AES-256-GCM), are never shown in the dashboard and are never sent to your browser. Wody uses the scopes you approve to read only the connected creator's own video list (video ID, title, description, creation time, cover image, link and duration) to announce new videos. Wody does not post to TikTok, does not read private messages and does not use TikTok data for advertising or sell it. A server owner who already linked their own TikTok account on the TikTok page can add that same account to a server with one click; Wody then stores an encrypted copy of the same connection for that server, and removing the account from the server deletes that copy only.</p><p>You can disconnect a TikTok account at any time in the dashboard. Wody then revokes the token and deletes the stored connection. You can also remove access in your TikTok settings. Wody does not offer alerts for TikTok creators who have not connected their own account. Twitch and TikTok are independent services with their own privacy policies.</p><p>Requests made from the dashboard to the bot (for example test messages) are stored temporarily and deleted after 24 hours.</p><p>Wody Creator Link (the TikTok page on wody.online): a signed-in Wody user can link their own TikTok account with TikTok Login Kit to see their TikTok profile and latest videos inside Wody. Wody stores the TikTok open ID, username, display name, avatar and the encrypted tokens, only for that user, only read access, and deletes them when the user unlinks the account on the page. Wody does not post to TikTok and does not use this data for advertising.</p><p>Wody Human Check (the \"I'm not a robot\" box used on verification and Collab forms): it uses no cookies, no local storage and no outside service. A short browser challenge and how the box was ticked (such as pointer movement and timing) are sent once to Wody, scored in memory and not stored. Only a one-time token marker is kept for a few minutes to stop reuse.</p>"
       },
       {
@@ -1128,6 +1138,10 @@
       {
         "heading": "28. Imágenes de perfil, enlaces de música y registros de moderación",
         "html": "<p>Las imágenes, los GIF y el audio que añades a tu página de perfil y a las tarjetas de servidor solo se guardan como enlaces: Wody no conserva ninguna copia. Las imágenes se cargan a través del servidor de Wody desde la plataforma que las aloja, de modo que la dirección IP del visitante no llega a esa plataforma; solo se ven mientras el enlace siga siendo válido. El archivo de audio lo carga directamente el navegador del visitante solo después de pulsar reproducir, por lo que su dirección IP llega al sitio que aloja el archivo. El único archivo que Wody almacena es una imagen que subes como fondo de la tarjeta de perfil, conservada hasta que la reemplaces o elimines. Wody conserva los avisos, la referencia al contenido, la decisión de moderación y su historial, y la hora y la versión de tu confirmación de la política, para tramitar el caso y evitar infracciones repetidas. Periodos de conservación: [CONFIRMACIÓN DEL OPERADOR REQUERIDA]. La página de perfil puede contar las visitas con un simple contador en la base de datos, sin cookies y sin guardar la dirección IP.</p>"
+      },
+      {
+        "heading": "29. Radar y Pulse (consultas y feeds)",
+        "html": "<p>Cuando un miembro ejecuta una consulta /radar, el texto que escribe (por ejemplo un nombre de usuario, la dirección de un servidor o el nombre de una moneda) se envía al servicio elegido para obtener la respuesta. Cuando un administrador añade un feed /pulse, la dirección o el nombre introducido se guarda en los ajustes del servidor y se comprueba periódicamente en el servicio de origen. Estas solicitudes las hace el servidor de Wody, por lo que la dirección IP del miembro no llega al servicio. Wody solo conserva los resultados de las consultas en una caché breve y no conserva el contenido de los feeds, solo lo necesario para no publicar dos veces el mismo elemento. Cada servicio aplica su propia política de privacidad.</p>"
       }
     ]
   },
@@ -1279,7 +1293,7 @@
       },
       {
         "title": "Notificaciones de stream",
-        "text": "Avisos de directos de Twitch mediante EventSub y avisos de vídeos de TikTok mediante la API oficial."
+        "text": "Alertas de directo de Twitch mediante EventSub, alertas de directo de Kick mediante su API oficial y alertas de vídeos de TikTok mediante la API oficial."
       }
     ],
     "higherLimitsTitle": "Ilimitado con Premium",
@@ -1671,6 +1685,92 @@
           {
             "name": "/invite-reset",
             "description": "Admin: borra las estadísticas de invitaciones tras una confirmación. Opción: member (vacío restablece todo el servidor). Requiere Administrador"
+          }
+        ]
+      },
+      {
+        "key": "radar",
+        "title": "Radar",
+        "premium": false,
+        "commands": [
+          {
+            "name": "/radar nowplaying",
+            "description": "Lo que escucha ahora un usuario de Last.fm"
+          },
+          {
+            "name": "/radar itunes",
+            "description": "Busca música, pódcast, películas o apps en Apple iTunes"
+          },
+          {
+            "name": "/radar mcserver",
+            "description": "Estado, jugadores y versión de un servidor de Minecraft"
+          },
+          {
+            "name": "/radar mcplayer",
+            "description": "Un jugador de Minecraft: skin, UUID y perfil"
+          },
+          {
+            "name": "/radar roblox",
+            "description": "Un perfil de Roblox: amigos, seguidores y avatar"
+          },
+          {
+            "name": "/radar steam",
+            "description": "Un juego de Steam: precio, jugadores ahora, nota y detalles"
+          },
+          {
+            "name": "/radar chess",
+            "description": "Un jugador de Chess.com: puntuaciones, seguidores y perfil"
+          },
+          {
+            "name": "/radar twitch",
+            "description": "Un canal de Twitch: estado del directo, juego y espectadores"
+          },
+          {
+            "name": "/radar kick",
+            "description": "Un canal de Kick: estado del directo, categoría y espectadores"
+          },
+          {
+            "name": "/radar youtube",
+            "description": "Un canal de YouTube: suscriptores, vídeos y visualizaciones"
+          },
+          {
+            "name": "/radar github",
+            "description": "Un usuario o repositorio de GitHub"
+          },
+          {
+            "name": "/radar movie",
+            "description": "Una película: nota, fecha de estreno, póster y resumen"
+          },
+          {
+            "name": "/radar show",
+            "description": "Una serie: nota, cadena, estado y próximo episodio"
+          },
+          {
+            "name": "/radar crypto",
+            "description": "El precio y los datos de mercado de una criptomoneda"
+          },
+          {
+            "name": "/radar convert",
+            "description": "Convierte una cantidad entre divisas (tipos del BCE)"
+          }
+        ]
+      },
+      {
+        "key": "pulse",
+        "title": "Pulse",
+        "premium": false,
+        "commands": [
+          {
+            "name": "/pulse add",
+            "description": "Añade un feed a un canal"
+          },
+          {
+            "name": "/pulse list",
+            "description": "Mira, prueba, pausa o elimina los feeds del servidor"
+          },
+          {
+            "name": "/pulse sources",
+            "description": "Todas las fuentes que Pulse puede seguir"
           }
         ]
       },
@@ -3866,7 +3966,7 @@
       "description": "Anuncia directos y vídeos nuevos de Twitch, Kick y TikTok.",
       "lock": {
         "title": "Notificaciones de stream",
-        "text": "Recibe avisos automáticos cuando tus streamers favoritos entren en directo. Twitch usa EventSub oficial y TikTok usa la API oficial."
+        "text": "Recibe alertas automáticas cuando tus streamers favoritos empiecen directo. Twitch usa EventSub oficial; Kick y TikTok usan sus API oficiales."
       },
       "provider": {
         "unavailable": "No disponible ahora mismo",
@@ -5133,7 +5233,7 @@
     },
     "stream_notifications": {
       "title": "Notificaciones de stream",
-      "description": "Avisos de directos de Twitch y vídeos de TikTok con mensaje personalizado."
+      "description": "Alertas para streams de Twitch y Kick y vídeos de TikTok con un mensaje personalizado."
     },
     "community": {
       "title": "Community Discovery",
@@ -6708,9 +6808,9 @@
         ]
       },
       "stream_notifications": {
-        "what": "Avisos de directos de Twitch y vídeos de TikTok con un mensaje personalizado.",
+        "what": "Alertas para streams de Twitch y Kick y vídeos de TikTok con un mensaje personalizado.",
         "customize": [
-          "Cuentas de Twitch y TikTok",
+          "Cuentas de Twitch, Kick y TikTok",
           "Canal, rol a mencionar y mensaje"
         ]
       },
@@ -7541,7 +7641,24 @@
       "required": "Marca la casilla para confirmar y aceptar las políticas.",
       "blocked": "Tu cuenta está suspendida o bloqueada y no puede editar este perfil.",
       "miami": "Aviso Miami Style"
-    }
+    },
+    "visibility": {
+      "makePublic": "Hacer público mi perfil",
+      "makePrivate": "Hacer privado el perfil",
+      "badge": "Tu perfil es público: cualquiera puede verlo, incluso sin iniciar sesión",
+      "title": "¿Hacer público tu perfil?",
+      "body": "Cualquiera con el enlace podrá ver tu perfil público (nombre, avatar, tarjeta de nivel, enlaces que elijas compartir y página de perfil) sin iniciar sesión en Wody. Puedes volver a hacerlo privado en cualquier momento.",
+      "confirm": "Hacer público",
+      "cancel": "Cancelar",
+      "saving": "Guardando...",
+      "error": "No se pudo cambiar la visibilidad. Inténtalo de nuevo."
+    },
+    "metaTitle": "Perfil",
+    "saveAll": "Guardar todos los ajustes",
+    "savingAll": "Guardando…",
+    "discardAll": "Descartar cambios",
+    "unsavedAll": "Revisa los cambios y guárdalos todos a la vez.",
+    "backToWody": "Volver a Wody"
   },
   "humancheck": {
     "label": "No soy un robot",
@@ -7850,7 +7967,13 @@
       "body": "Solicitud",
       "name_fx": "Efecto del nombre",
       "music": "Enlace de la música de fondo",
-      "music_title": "Título de la canción (opcional)"
+      "music_title": "Título de la canción (opcional)",
+      "bio": "Sobre ti",
+      "skills": "Habilidades",
+      "links": "Enlaces propios",
+      "portfolio": "Portafolio",
+      "order": "Orden",
+      "hide": "Visibilidad"
     },
     "opt": {
       "mode": {
@@ -7957,7 +8080,34 @@
     "miamiNote": "El tema Miami Style es un tema de personalización no oficial dibujado por Wody. No contiene ilustraciones de terceros.",
     "miamiLink": "Leer el aviso",
     "miamiHint": "Escenas animadas para el fondo de tu página. Elige una para previsualizarla.",
-    "miamiOff": "Quitar escena"
+    "miamiOff": "Quitar escena",
+    "sectionContent": "Contenido",
+    "sectionLayout": "Diseño y visibilidad",
+    "layoutHint": "Ordena las secciones y elige qué es público. Las secciones privadas solo las ves tú.",
+    "skillsHint": "Separadas por comas, máximo {max}.",
+    "linkLabel": "Etiqueta",
+    "linkUrl": "Enlace (https)",
+    "addLink": "Añadir enlace",
+    "portTitle": "Título del proyecto",
+    "portDesc": "Descripción breve",
+    "portUrl": "Enlace del proyecto",
+    "portImage": "Enlace de la imagen",
+    "addItem": "Añadir proyecto",
+    "remove": "Quitar",
+    "moveUp": "Subir",
+    "moveDown": "Bajar",
+    "visPublic": "Público",
+    "visPrivate": "Privado",
+    "portfolioHint": "Las imágenes son solo enlaces a archivos alojados en otro sitio. Todo lo que añadas está cubierto por las políticas que aceptas al guardar.",
+    "section": {
+      "bio": "Acerca de",
+      "portfolio": "Portafolio",
+      "skills": "Habilidades",
+      "links": "Enlaces",
+      "card": "Tarjeta de nivel",
+      "socials": "Redes sociales",
+      "stats": "Estadísticas"
+    }
   },
   "policies": {
     "index": "Políticas",

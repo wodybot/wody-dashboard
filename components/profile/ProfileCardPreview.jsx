@@ -124,9 +124,10 @@ export default function ProfileCardPreview({ cfg, name, avatarSrc, level = 12, x
   const line = bare ? tagline : [levelText, rankText, xpText].filter(Boolean).join('  ·  ');
 
   return (
+    <div className="relative w-full" style={{ aspectRatio: `${W}/${H}`, containerType: 'inline-size' }}>
     <div
-      className="relative w-full select-none overflow-hidden"
-      style={{ aspectRatio: `${W}/${H}`, containerType: 'inline-size', borderRadius: css(cfg.radius), ...bg, ...cardFontStyle(cfg.font === 'bold' ? undefined : cfg.font), fontWeight: cfg.font === 'bold' ? 700 : undefined }}
+      className="absolute inset-0 select-none overflow-hidden"
+      style={{ borderRadius: css(cfg.radius), ...bg, ...cardFontStyle(cfg.font === 'bold' ? undefined : cfg.font), fontWeight: cfg.font === 'bold' ? 700 : undefined }}
     >
       {bgImage && (
         <>
@@ -176,6 +177,7 @@ export default function ProfileCardPreview({ cfg, name, avatarSrc, level = 12, x
       <Anim kind={cfg.anim} accent={accent} />
 
       {cfg.border_width > 0 && <div className="pointer-events-none absolute inset-0" style={{ border: `${css(cfg.border_width)} solid ${cfg.border_color}`, borderRadius: css(cfg.radius) }} />}
+    </div>
     </div>
   );
 }

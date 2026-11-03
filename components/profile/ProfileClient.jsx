@@ -1,11 +1,12 @@
 'use client';
 import PolicyConsent from '@/components/profile/PolicyConsent';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import {
   Ban, Briefcase, Check, IdCard, Link2, CircleCheck, Clock, History, Hourglass, Info, Lock, MessageSquare, Pause, Pencil, Plus,
   Send, Server as ServerIcon, Settings, ShieldAlert, Trash2, UserRound, Eye, EyeOff, LayoutDashboard, Globe, TreePalm, Heart, X, Palette,
 } from 'lucide-react';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Footer, TopNav } from '@/components/nav';
 import { Link } from '@/i18n/navigation';
 import { discordCdnUrl } from '@/lib/utils';
@@ -14,6 +15,7 @@ import { errText } from '@/components/collab/RequestActions';
 import HumanCheck from '@/components/human-check';
 import { Editor, Applications, MyApplications, ServersTab, PrefsTab, StatusChip, input, lab, btn, btnMain } from '@/components/collab/ProfileParts';
 import SocialLinks, { SOCIAL_ICONS } from '@/components/profile/SocialLinks';
+import SaveBar from '@/components/profile/SaveBar';
 import ProfileCardTab from '@/components/profile/ProfileCardTab';
 import ProfilePageTab from '@/components/profile/ProfilePageTab';
 import ProfileCardPreview from '@/components/profile/ProfileCardPreview';
@@ -98,7 +100,51 @@ function ProfileSkeleton({ label }) {
   );
 }
 
-function Hero({ pf, onGoSettings }) {
+function PublicToggle({ pf, onChanged }) {
+  const t = useTranslations('profile');
+  const [open, setOpen] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState('');
+  const isPublic = pf.share_public === true;
+  const send = async (value) => {
+    if (value && !consent) { setErr(t('consent.required')); return; }
+    setBusy(true); setErr('');
+    let ok = false; let code = '';
+    try {
+      const res = await fetch('/api/profile-visibility', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(value ? { public: true, policy_accepted: true } : { public: false }), cache: 'no-store' });
+      ok = res.ok; if (!ok) code = (await res.json().catch(() => ({}))).error || '';
+    } catch { }
+    setBusy(false);
+    if (ok) { setOpen(false); setConsent(false); await onChanged(); } else setErr(code === 'account_blocked' ? t('consent.blocked') : t('visibility.error'));
+  };
+  return (
+    <>
+      {isPublic ? (
+        <p className="flex items-center justify-center gap-1.5 rounded-xl border border-emerald-400/40 bg-emerald-400/10 px-3 py-2 text-xs font-semibold text-emerald-200"><Globe className="h-3.5 w-3.5" aria-hidden="true" />{t('visibility.badge')}</p>
+      ) : null}
+      <button type="button" onClick={() => { setErr(''); if (isPublic) send(false); else setOpen(true); }} disabled={busy} className={`${btn} h-10 w-full justify-center`} data-public-toggle>
+        <Globe className="h-4 w-4" aria-hidden="true" />{isPublic ? t('visibility.makePrivate') : t('visibility.makePublic')}
+      </button>
+      <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) { setConsent(false); setErr(''); } }}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t('visibility.title')}</DialogTitle>
+            <DialogDescription>{t('visibility.body')}</DialogDescription>
+          </DialogHeader>
+          <PolicyConsent ns="profile" checked={consent} onChange={setConsent} />
+          {err ? <p role="alert" className="text-sm text-red-300">{err}</p> : null}
+          <DialogFooter>
+            <button type="button" onClick={() => setOpen(false)} className={btn}>{t('visibility.cancel')}</button>
+            <button type="button" onClick={() => send(true)} disabled={busy || !consent} className={`${btnMain} disabled:opacity-50`}>{busy ? t('visibility.saving') : t('visibility.confirm')}</button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}
+
+function Hero({ pf, onGoSettings, onReload }) {
   const t = useTranslations('profile');
   const tn = useTranslations('nav');
   const locale = useLocale();
@@ -135,6 +181,7 @@ function Hero({ pf, onGoSettings }) {
             <button type="button" onClick={onGoSettings} className={btn}><Pencil className="h-3.5 w-3.5" aria-hidden="true" />{has ? t('hero.editLinks') : t('hero.addLinks')}</button>
           </div>
           <div className="mt-4 flex w-full flex-col gap-2 sm:w-56">
+            <PublicToggle pf={pf} onChanged={onReload} />
             {pf.public_path && <Link href={pf.public_path} data-view-profile className={`${btnMain} h-10 w-full justify-center`}><Eye className="h-4 w-4" aria-hidden="true" />{t('hero.viewPublic')}</Link>}
             <Link href="/dashboard" className={`${pf.public_path ? btn : btnMain} h-10 w-full justify-center`}><LayoutDashboard className="h-4 w-4" aria-hidden="true" />{tn('dashboard')}</Link>
             <Link href="/servers/favorites" className={`${btn} h-10 w-full justify-center`}><Heart className="h-4 w-4 text-rose-300" aria-hidden="true" />{tn('resourceLinks.favorites.label')}</Link>
@@ -439,7 +486,7 @@ function MessagesTab({ reload }) {
   );
 }
 
-function AwayCard({ pf, onSaved }) {
+function AwayCard({ pf, onSaved, reg }) {
   const t = useTranslations('profile');
   const tc = useTranslations('collab');
   const [on, setOn] = useState(Boolean(pf.away?.active));
@@ -447,13 +494,14 @@ function AwayCard({ pf, onSaved }) {
   const [until, setUntil] = useState(pf.away?.until || '');
   const [state, setState] = useState({ busy: false, ok: false, text: '' });
   const save = async (e) => {
-    e.preventDefault();
+    e?.preventDefault?.();
     setState({ busy: true, ok: false, text: '' });
     const r = await mfetch('me/profile', { method: 'PUT', body: { away: { on, note, until } } });
     if (r.ok) { setState({ busy: false, ok: true, text: t('away.saved') }); onSaved(); return; }
     const code = r.data?.errors?.[0]?.code;
     setState({ busy: false, ok: false, text: code && typeof tc.has === 'function' && tc.has(`err.${code}`) ? tc(`err.${code}`) : errText(tc, r.data) });
   };
+  reg.current.away = save;
   return (
     <form onSubmit={save} className="rounded-2xl border border-sky-400/25 bg-card/50 p-4 sm:p-5" noValidate>
       <h2 className="flex items-center gap-2 text-lg font-semibold"><TreePalm className="h-5 w-5 text-sky-300" aria-hidden="true" />{t('away.title')}</h2>
@@ -465,7 +513,6 @@ function AwayCard({ pf, onSaved }) {
       </div>
       <p className="mt-2 text-[11px] text-muted-foreground">{t('away.visible')}</p>
       <div className="mt-4 flex flex-wrap items-center justify-end gap-3">
-        <button type="submit" className={btnMain} disabled={state.busy}><Check className="h-4 w-4" aria-hidden="true" />{t('away.save')}</button>
         {state.text && <span role={state.ok ? 'status' : 'alert'} className={`text-sm ${state.ok ? 'text-emerald-300' : 'text-destructive'}`}>{state.text}</span>}
       </div>
     </form>
@@ -497,7 +544,7 @@ function TikTokRow({ tt, hidden, setHidden, busy, msg, onConnect, onDisconnect }
   );
 }
 
-function SocialsCard({ pf, onSaved }) {
+function SocialsCard({ pf, onSaved, reg, consent }) {
   const t = useTranslations('profile');
   const tc = useTranslations('collab');
   const typed = SOCIALS.filter((s) => s.id !== 'tiktok');
@@ -506,11 +553,10 @@ function SocialsCard({ pf, onSaved }) {
   const [ttBusy, setTtBusy] = useState(false);
   const [ttMsg, setTtMsg] = useState('');
   const [share, setShare] = useState(Boolean(pf.share_socials));
-  const [consent, setConsent] = useState(false);
   const [shown, setShown] = useState(() => new Set(typed.filter((s) => pf.socials?.[s.id]).map((s) => s.id)));
   const [state, setState] = useState({ busy: false, ok: false, text: '', fields: {} });
   const save = async (e) => {
-    e.preventDefault();
+    e?.preventDefault?.();
     if (!consent) return;
     setState({ busy: true, ok: false, text: '', fields: {} });
     const r = await mfetch('me/profile', { method: 'PUT', body: { socials: vals, share_socials: share, tiktok_hidden: ttHidden, policy_accepted: true } });
@@ -518,7 +564,6 @@ function SocialsCard({ pf, onSaved }) {
       setVals((v) => ({ ...v, ...Object.fromEntries(typed.map((s) => [s.id, r.data.socials?.[s.id] || ''])) }));
       setShown(new Set(typed.filter((s) => r.data.socials?.[s.id]).map((s) => s.id)));
       setState({ busy: false, ok: true, text: t('socials.saved'), fields: {} });
-      setConsent(false);
       onSaved();
       return;
     }
@@ -527,6 +572,7 @@ function SocialsCard({ pf, onSaved }) {
     for (const er of r.data?.errors || []) fields[er.field] = (typeof tc.has === 'function' && tc.has(`err.${er.code}`)) ? tc(`err.${er.code}`, er.params || {}) : t(`socials.err.${er.code}`);
     setState({ busy: false, ok: false, text: Object.keys(fields).length ? t('socials.fix') : errText(tc, r.data), fields });
   };
+  reg.current.socials = save;
   return (
     <form onSubmit={save} className="rounded-2xl border border-border/60 bg-card/50 p-4 sm:p-5" noValidate>
       <h2 className="text-lg font-semibold">{t('socials.title')}</h2>
@@ -585,15 +631,13 @@ function SocialsCard({ pf, onSaved }) {
       )}
       <div className="mt-4"><Switch id="soc-share" checked={share} onChange={setShare} label={t('socials.share')} hint={t('socials.shareHint')} /></div>
       <div className="mt-4 flex flex-wrap items-center justify-end gap-3">
-        <PolicyConsent ns="profile" checked={consent} onChange={setConsent} className="mt-3" />
-        <button type="submit" className={`${btnMain} mt-3`} disabled={state.busy || !consent}><Check className="h-4 w-4" aria-hidden="true" />{t('socials.save')}</button>
         {state.text && <span role={state.ok ? 'status' : 'alert'} className={`text-sm ${state.ok ? 'text-emerald-300' : 'text-destructive'}`}>{state.text}</span>}
       </div>
     </form>
   );
 }
 
-function NotifCard({ pf, onSaved }) {
+function NotifCard({ pf, onSaved, reg }) {
   const t = useTranslations('profile');
   const tc = useTranslations('collab');
   const [n, setN] = useState({ ...NOTIF_DEFAULTS, ...(pf.notif || {}) });
@@ -605,6 +649,7 @@ function NotifCard({ pf, onSaved }) {
     setState({ busy: false, ok: r.ok, text: r.ok ? t('notif.saved') : errText(tc, r.data) });
     if (r.ok) onSaved();
   };
+  reg.current.notif = save;
   const groups = ['status', 'applications', 'messages'];
   return (
     <section className="rounded-2xl border border-border/60 bg-card/50 p-4 sm:p-5">
@@ -620,7 +665,6 @@ function NotifCard({ pf, onSaved }) {
       </div>
       <p className="mt-3 flex items-start gap-2 text-xs text-muted-foreground"><Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#e6cd8c]" aria-hidden="true" />{t('notif.critical')}</p>
       <div className="mt-4 flex flex-wrap items-center justify-end gap-3">
-        <button type="button" className={btnMain} onClick={save} disabled={state.busy}><Check className="h-4 w-4" aria-hidden="true" />{t('notif.save')}</button>
         {state.text && <span role={state.ok ? 'status' : 'alert'} className={`text-sm ${state.ok ? 'text-emerald-300' : 'text-destructive'}`}>{state.text}</span>}
       </div>
     </section>
@@ -629,11 +673,25 @@ function NotifCard({ pf, onSaved }) {
 
 function SettingsTab({ pf, cats, reloadProfile }) {
   const t = useTranslations('profile');
+  const reg = useRef({});
+  const [consent, setConsent] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [bump, setBump] = useState(0);
+  const [msg, setMsg] = useState(null);
+  const saveAll = async () => {
+    if (!consent || busy) return;
+    setBusy(true); setMsg(null);
+    for (const k of ['away', 'socials', 'notif']) { try { await reg.current[k]?.(); } catch { } }
+    setBusy(false); setTouched(false); setConsent(false);
+  };
+  const bar = (k) => (k === 'save' ? t('saveAll') : k === 'saving' ? t('savingAll') : k === 'discard' ? t('discardAll') : k === 'unsaved' ? t('unsavedAll') : t(k));
   return (
-    <div className="space-y-6">
-      <AwayCard key={`${pf.away?.active}-${pf.away?.until}-${pf.away?.note}`} pf={pf} onSaved={reloadProfile} />
-      <SocialsCard pf={pf} onSaved={reloadProfile} />
-      <NotifCard pf={pf} onSaved={reloadProfile} />
+    <div className="space-y-6" onChangeCapture={() => setTouched(true)}>
+      <AwayCard key={`${bump}-${pf.away?.active}-${pf.away?.until}-${pf.away?.note}`} pf={pf} onSaved={reloadProfile} reg={reg} />
+      <SocialsCard key={`s${bump}`} pf={pf} onSaved={reloadProfile} reg={reg} consent={consent} />
+      <NotifCard key={`n${bump}`} pf={pf} onSaved={reloadProfile} reg={reg} />
+      <div className="grid"><SaveBar t={bar} dirty={touched} busy={busy} consent={consent} onConsent={setConsent} onSave={saveAll} onDiscard={() => { setBump((b) => b + 1); setTouched(false); setConsent(false); setMsg(null); }} msg={msg} /></div>
       <section className="rounded-2xl border border-border/60 bg-card/50 p-4 sm:p-5">
         <h2 className="mb-2 text-lg font-semibold">{t('prefs.title')}</h2>
         <PrefsTab cats={cats} />
@@ -670,7 +728,7 @@ function CardShowcase({ pf, onEdit }) {
           <Link href={`/profile/${encodeURIComponent(id.username)}`} className={btn}><Globe className="h-3.5 w-3.5" aria-hidden="true" />{t('viewPublic')}</Link>
         </div>
       </div>
-      <div className="mx-auto max-w-3xl" style={{ borderRadius: 26, boxShadow: `0 0 70px -22px ${card.accent}` }}>
+      <div className="mx-auto max-w-3xl" style={{ filter: `drop-shadow(0 0 26px ${card.accent}55)` }}>
         <ProfileCardPreview cfg={card} name={id.name || id.username} avatarSrc={discordCdnUrl(src)} tagline={pf.member_since ? t('tagline', { date: fmtDate(pf.member_since, locale) }) : ''} />
       </div>
     </section>
@@ -722,9 +780,9 @@ export default function ProfileClient() {
           <ProfileSkeleton label={tc('loading')} />
         ) : (
           <>
-            <Hero pf={pf} onGoSettings={() => go('settings')} />
+            <Hero pf={pf} onGoSettings={() => go('settings')} onReload={reloadProfile} />
             {tab !== 'card' && tab !== 'page' && <CardShowcase pf={pf} onEdit={() => go('card')} />}
-            <div role="tablist" aria-label={t('pageTitle')} className="mk-scroll sticky top-0 z-10 -mx-4 mt-6 mb-6 flex gap-2 overflow-x-auto bg-background/85 px-4 py-2 backdrop-blur sm:mx-0 sm:px-0" style={{ scrollbarWidth: 'none' }}>
+            <div role="tablist" aria-label={t('pageTitle')} className="mk-scroll sticky top-0 z-10 -mx-4 mt-6 mb-6 flex flex-wrap gap-2 bg-background/85 px-4 py-2 backdrop-blur sm:mx-0 sm:px-0">
               {TABS.map(({ id, icon: Icon }) => (
                 <button key={id} role="tab" id={`tab-${id}`} aria-selected={tab === id} aria-controls="profile-panel" onClick={() => go(id)}
                   className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e6cd8c] ${tab === id ? 'border-[#e6cd8c] bg-[#e6cd8c] text-[#1a1208]' : 'border-border/60 hover:border-[#e6cd8c]/60'}`}>
@@ -738,8 +796,9 @@ export default function ProfileClient() {
               {tab === 'applications' && <MyApplications data={ov} reload={reload} />}
               {tab === 'messages' && <MessagesTab reload={reload} />}
               {tab === 'servers' && <ServersTab guilds={gl.guilds} unavailable={gl.unavailable} reload={reload} />}
+              {(tab === 'card' || tab === 'page') && <div className="mb-4 flex max-w-sm flex-col gap-2"><PublicToggle pf={pf} onChanged={reloadProfile} /></div>}
               {tab === 'card' && <ProfileCardTab identity={pf.identity} />}
-              {tab === 'page' && <ProfilePageTab identity={pf.identity} onGoCard={() => go('card')} />}
+              {tab === 'page' && <ProfilePageTab identity={pf.identity} socials={pf.socials || {}} away={pf.away?.active ? pf.away : null} onGoCard={() => go('card')} />}
               {tab === 'settings' && <SettingsTab pf={pf} cats={cats} reloadProfile={reloadProfile} />}
             </div>
           </>

@@ -991,13 +991,13 @@ async function handleGet(request, context) {
   const cardImage = path.match(/^profile-card\/image\/([a-f0-9]{24})$/);
   if (cardImage) {
     const session = await getSession();
-    if (!session?.user?.id) return json({ error: 'unauthenticated' }, { status: 401 });
     const gdb = await getDb();
     const img = await gdb.collection('profile_card_images').findOne({ _id: new ProfileObjectId(cardImage[1]) });
     if (!img || !PROFILE_IMAGE_MIME.has(img.mime)) return json({ error: 'not_found' }, { status: 404 });
-    if (String(img.user) !== String(session.user.id)) {
-      const owner = await gdb.collection('profile_cards').findOne({ _id: String(img.user) }, { projection: { public: 1, 'cfg.bg_image': 1 } });
+    if (String(img.user) !== String(session?.user?.id || '')) {
+      const owner = await gdb.collection('profile_cards').findOne({ _id: String(img.user) }, { projection: { public: 1, share_public: 1, 'cfg.bg_image': 1 } });
       if (!owner || owner.public === false || owner.cfg?.bg_image !== cardImage[1]) return json({ error: 'not_found' }, { status: 404 });
+      if (!session?.user?.id && owner.share_public !== true) return json({ error: 'unauthenticated' }, { status: 401 });
     }
     return new Response(Buffer.from(img.data.buffer ? img.data.buffer : img.data), {
       headers: { 'Content-Type': img.mime, 'X-Content-Type-Options': 'nosniff', 'Content-Security-Policy': "default-src 'none'; sandbox", 'Cache-Control': 'private, max-age=86400, immutable' },
@@ -1937,7 +1937,7 @@ async function handleMutation(request, context) {
     const mod = publicModeration((await db.collection('profile_cards').findOne({ _id: userId }, { projection: { moderation: 1 } }))?.moderation);
     if (mod.account_blocked) return json({ error: 'account_blocked' }, { status: 403 });
     if (mod.suspended) return json({ error: 'customization_suspended' }, { status: 403 });
-    const touchesMedia = ('image' in clean && clean.image) || ('music' in clean && clean.music);
+    const touchesMedia = ('image' in clean && clean.image) || ('music' in clean && clean.music) || ('portfolio' in clean && clean.portfolio.some((x) => x.image));
     if (touchesMedia && mod.uploads_restricted) return json({ error: 'uploads_restricted' }, { status: 403 });
     if (Object.keys(clean).length && policyAccepted !== true) return json({ error: 'policy_acceptance_required' }, { status: 400 });
     if (Object.keys(clean).length) {
@@ -1947,6 +1947,23 @@ async function handleMutation(request, context) {
     }
     const doc = await db.collection('profile_cards').findOne({ _id: userId }, { projection: { page: 1 } });
     return json({ page: normalizePage(doc?.page), customized: Boolean(doc?.page && Object.keys(doc.page).length) }, { headers: { 'Cache-Control': 'no-store' } });
+  }
+
+  if (path === 'profile-visibility' && method === 'PUT') {
+    const session = await getSession();
+    if (!session?.user?.id) return json({ error: 'unauthenticated' }, { status: 401 });
+    const userId = String(session.user.id);
+    if (await rateLimited(db, `profilevis:${userId}`)) return json({ error: 'rate_limited' }, { status: 429 });
+    if (typeof body.public !== 'boolean') return json({ error: 'invalid_value', field: 'public' }, { status: 400 });
+    if (body.public === true) {
+      if (body.policy_accepted !== true) return json({ error: 'policy_acceptance_required' }, { status: 400 });
+      const doc = await db.collection('profile_cards').findOne({ _id: userId }, { projection: { moderation: 1 } });
+      if (accountState(doc?.moderation).blocked) return json({ error: 'account_blocked' }, { status: 403 });
+      await db.collection('profile_cards').updateOne({ _id: userId }, { $set: { share_public: true, share_public_at: new Date(), share_public_policy_version: POLICY_VERSION, updated_at: new Date() } }, { upsert: true });
+    } else {
+      await db.collection('profile_cards').updateOne({ _id: userId }, { $set: { share_public: false, updated_at: new Date() } }, { upsert: true });
+    }
+    return json({ share_public: body.public }, { headers: { 'Cache-Control': 'no-store' } });
   }
 
   if (path === 'profile-card' && ['PATCH', 'PUT', 'DELETE'].includes(method)) {

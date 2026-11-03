@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { ImagePlus, Loader2, RotateCcw, Save, Trash2, Undo2 } from 'lucide-react';
 import { input, lab, btn, btnMain } from '@/components/collab/ProfileParts';
 import ProfileCardPreview from '@/components/profile/ProfileCardPreview';
-import PolicyConsent from '@/components/profile/PolicyConsent';
+import SaveBar from '@/components/profile/SaveBar';
 import { CARD_FONTS, cardFontStyle } from '@/lib/card-fonts';
 import { discordCdnUrl } from '@/lib/utils';
 import { SvgScene } from '@/components/scenes';
@@ -109,10 +109,8 @@ export default function ProfileCardTab({ identity }) {
     const patch = {};
     for (const [k, v] of Object.entries(draft)) if (JSON.stringify(v) !== JSON.stringify(saved.config[k])) patch[k] = v;
     if (patch.theme === 'custom' && Object.keys(patch).length === 1) delete patch.theme;
-    if (patch.bg_url) {
-      if (!consent) { setMsg({ kind: 'err', text: t('consent.required') }); return; }
-      patch.policy_accepted = true;
-    }
+    if (!consent) { setMsg({ kind: 'err', text: t('consent.required') }); return; }
+    patch.policy_accepted = true;
     setBusy(true);
     const r = await api('PATCH', patch);
     setBusy(false);
@@ -218,12 +216,6 @@ export default function ProfileCardTab({ identity }) {
           <ProfileCardPreview cfg={cfg} name={identity?.name || t('sampleName')} avatarSrc={avatarSrc} levelText={t('levelText', { level: 12 })} rankText={t('rankText', { rank: 3 })} xpText="429 / 1.3K XP" />
           <p className="mt-2 text-xs text-muted-foreground">{t('previewNote')}</p>
         </div>
-        <div className="mt-3 flex flex-wrap items-center gap-2">
-          <button type="button" onClick={save} disabled={!dirty || busy || urlInvalid} className={`${btnMain} disabled:opacity-50`}>{busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Save className="h-4 w-4" aria-hidden="true" />}{busy ? t('saving') : t('save')}</button>
-          <button type="button" onClick={() => { setDraft(saved.config); setMsg(null); }} disabled={!dirty || busy} className={`${btn} disabled:opacity-50`}><Undo2 className="h-3.5 w-3.5" aria-hidden="true" />{t('discard')}</button>
-          <button type="button" onClick={reset} disabled={busy} className={btn}><RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />{t('resetDefault')}</button>
-        </div>
-        <p role="status" aria-live="polite" className={`mt-2 min-h-5 text-sm ${msg?.kind === 'err' ? 'text-red-300' : 'text-emerald-300'}`}>{msg ? msg.text : dirty ? <span className="text-amber-300">{t('unsaved')}</span> : ''}</p>
         <p className="mt-1 text-xs text-muted-foreground">{t('sync')} {t('discord')}</p>
         <p className="mt-1 text-xs text-muted-foreground">{t('privacy')}</p>
       </div>
@@ -292,13 +284,13 @@ export default function ProfileCardTab({ identity }) {
           <p className="sm:col-span-2 text-xs text-muted-foreground">{t('animNote')}</p>
         </Section>
         <section className="space-y-3 rounded-2xl border border-border/60 bg-card/40 p-4">
-          <PolicyConsent ns="profileCard" checked={consent} onChange={setConsent} />
           <label className="flex cursor-pointer items-start gap-3">
             <input type="checkbox" className="mt-1 h-4 w-4 accent-[#e6cd8c]" checked={saved.public} onChange={(e) => togglePublic(e.target.checked)} />
             <span><span className="block text-sm font-bold">{t('publicToggle')}</span><span className="block text-xs text-muted-foreground">{t('publicHint')}</span></span>
           </label>
         </section>
       </div>
+      <SaveBar t={(k) => (k === 'reset' ? t('resetDefault') : t(k))} dirty={dirty} busy={busy} canSave={!urlInvalid} consent={consent} onConsent={setConsent} onSave={save} onDiscard={() => { setDraft(saved.config); setMsg(null); }} onReset={reset} msg={msg} />
     </div>
   );
 }

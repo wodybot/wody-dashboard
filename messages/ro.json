@@ -359,6 +359,16 @@
         "desc": "Cine a invitat fiecare membru, cu un grafic al ultimelor 30 de zile: intrări, ieșiri, retenție, zile, ore, surse și vârsta conturilor. /statistics îl arată în Discord cu butoane și selecturi, iar dashboardul arată aceleași cifre. Gratuit."
       },
       {
+        "key": "lookups",
+        "title": "Radar",
+        "desc": "Membrii scriu /radar și aleg un serviciu ca să afle o melodie, un server, un profil sau un preț fără să iasă din Discord. 15 căutări din API-uri oficiale sau documentate public. Gratuit."
+      },
+      {
+        "key": "feeds",
+        "title": "Pulse",
+        "desc": "Clipuri, live-uri, melodii, postări, versiuni și poze noi de pe alte servicii, postate într-un canal după programul ales de tine. 10 surse, configurate cu /pulse sau din dashboard."
+      },
+      {
         "key": "community",
         "title": "Community Discovery",
         "desc": "Listează-ți serverul în directorul Wody. Un profil public cu tema ta, verificat de echipa Wody, cu recenzii, favorite și statistici."
@@ -396,7 +406,7 @@
       {
         "key": "stream_notifications",
         "title": "Notificări stream",
-        "desc": "Alerte când un streamer Twitch începe live și când un creator TikTok conectat postează un videoclip."
+        "desc": "Alerte când un streamer Twitch sau Kick începe live și când un creator TikTok conectat postează un videoclip."
       }
     ],
     "counter": {
@@ -1088,7 +1098,7 @@
         "html": "<p>Birthdays is free and independent from Economy. A member sets a birthday with <code>/birthday</code>. Wody then stores the Discord user ID and server ID, the day and month, an optional birth year, a privacy level (public, community or private), an optional time zone and an on or off switch. Birth year is optional and is never required.</p><p>Privacy levels: public shows the date to the server; community uses the birthday for features such as announcements and reminders while keeping the exact date hidden from other members; private is never listed, announced or shown to other members. Age is displayed only when the server enables it, a birth year was provided and the birthday is not private.</p><p>Server administrators with dashboard access can see and manage all entries of their own server in the administration list, including private ones, but private birthdays are never shown in the calendar, in public boards or in announcements. A short history is kept of each celebration (date, whether it was announced, whether the birthday role was added and removed, and any delivery error). You can remove your birthday at any time with <code>/birthday</code>, and administrators can remove entries. Data is kept until it is removed.</p>"
       },
       {
-        "heading": "18. Stream Notifications (Twitch and TikTok)",
+        "heading": "18. Stream Notifications (Twitch, Kick și TikTok)",
         "html": "<p>Stream Notifications is a Premium feature. For Twitch, Wody stores the public Twitch login, ID, display name and avatar of each streamer an administrator adds, the Discord channel and message settings, and technical subscription data for Twitch EventSub. Incoming Twitch events are processed to post the alert; event records are kept for 7 days and delivery records for 30 days to prevent duplicate messages.</p><p>For TikTok, an administrator can connect their own TikTok account through the official TikTok Login Kit. After consent, Wody stores the TikTok open ID, username, display name and avatar and the access and refresh tokens. The tokens are encrypted on the server (AES-256-GCM), are never shown in the dashboard and are never sent to your browser. Wody uses the scopes you approve to read only the connected creator's own video list (video ID, title, description, creation time, cover image, link and duration) to announce new videos. Wody does not post to TikTok, does not read private messages and does not use TikTok data for advertising or sell it. A server owner who already linked their own TikTok account on the TikTok page can add that same account to a server with one click; Wody then stores an encrypted copy of the same connection for that server, and removing the account from the server deletes that copy only.</p><p>You can disconnect a TikTok account at any time in the dashboard. Wody then revokes the token and deletes the stored connection. You can also remove access in your TikTok settings. Wody does not offer alerts for TikTok creators who have not connected their own account. Twitch and TikTok are independent services with their own privacy policies.</p><p>Requests made from the dashboard to the bot (for example test messages) are stored temporarily and deleted after 24 hours.</p><p>Wody Creator Link (the TikTok page on wody.online): a signed-in Wody user can link their own TikTok account with TikTok Login Kit to see their TikTok profile and latest videos inside Wody. Wody stores the TikTok open ID, username, display name, avatar and the encrypted tokens, only for that user, only read access, and deletes them when the user unlinks the account on the page. Wody does not post to TikTok and does not use this data for advertising.</p><p>Wody Human Check (the \"I'm not a robot\" box used on verification and Collab forms): it uses no cookies, no local storage and no outside service. A short browser challenge and how the box was ticked (such as pointer movement and timing) are sent once to Wody, scored in memory and not stored. Only a one-time token marker is kept for a few minutes to stop reuse.</p>"
       },
       {
@@ -1130,6 +1140,10 @@
       {
         "heading": "28. Imagini de profil, linkuri muzicale și evidențe de moderare",
         "html": "<p>Imaginile, GIF-urile și fișierele audio pe care le adaugi pe pagina ta de profil și pe cardurile serverului sunt păstrate doar ca linkuri: Wody nu păstrează o copie. Imaginile sunt încărcate prin serverul Wody de pe platforma care le găzduiește, deci adresa IP a vizitatorului nu ajunge la acea platformă; rămân vizibile doar cât timp linkul este valid. Fișierul audio este încărcat direct de browserul vizitatorului abia după ce apasă play, astfel încât adresa lui IP ajunge la site-ul care găzduiește fișierul. Singurul fișier pe care Wody îl stochează este o imagine încărcată de tine ca fundal al cardului de profil, păstrată până o înlocuiești sau o ștergi. Wody păstrează raportările, referința conținutului, decizia de moderare și istoricul ei, precum și momentul și versiunea confirmării politicilor, pentru a trata cazul și a preveni repetarea. Perioadele de păstrare: [REQUIRES OPERATOR CONFIRMATION]. Pagina de profil poate număra vizualizările ca un simplu contor în baza de date, fără cookie-uri și fără stocarea adresei IP.</p>"
+      },
+      {
+        "heading": "29. Radar și Pulse (căutări și feeduri)",
+        "html": "<p>Când un membru folosește o căutare /radar, textul introdus (de exemplu un nume de utilizator, o adresă de server sau numele unei monede) este trimis serviciului ales ca să obțină răspunsul. Când un administrator adaugă un feed /pulse, adresa sau numele introdus este păstrat în setările serverului și verificat periodic la serviciul sursă. Cererile sunt făcute de serverul Wody, deci adresa IP a membrului nu ajunge la serviciu. Wody nu păstrează rezultatele căutărilor decât într-un cache scurt și nu păstrează conținutul feedurilor, ci doar ce este necesar ca să nu posteze același element de două ori. Fiecare serviciu își aplică propria politică de confidențialitate.</p>"
       }
     ]
   },
@@ -1281,7 +1295,7 @@
       },
       {
         "title": "Notificări stream",
-        "text": "Alerte live Twitch prin EventSub și alerte pentru videoclipuri TikTok prin API-ul oficial."
+        "text": "Alerte live Twitch prin EventSub, alerte live Kick prin API-ul oficial și alerte pentru videoclipuri TikTok prin API-ul oficial."
       }
     ],
     "higherLimitsTitle": "Nelimitat cu Premium",
@@ -1673,6 +1687,92 @@
           {
             "name": "/invite-reset",
             "description": "Admin: șterge statisticile invitațiilor după o confirmare. Opțiune: member (gol resetează tot serverul). Necesită Administrator"
+          }
+        ]
+      },
+      {
+        "key": "radar",
+        "title": "Radar",
+        "premium": false,
+        "commands": [
+          {
+            "name": "/radar nowplaying",
+            "description": "Ce ascultă acum un utilizator Last.fm"
+          },
+          {
+            "name": "/radar itunes",
+            "description": "Caută muzică, podcasturi, filme sau aplicații pe Apple iTunes"
+          },
+          {
+            "name": "/radar mcserver",
+            "description": "Status, jucători și versiune pentru un server Minecraft"
+          },
+          {
+            "name": "/radar mcplayer",
+            "description": "Un jucător Minecraft: skin, UUID și profil"
+          },
+          {
+            "name": "/radar roblox",
+            "description": "Un profil Roblox: prieteni, urmăritori și avatar"
+          },
+          {
+            "name": "/radar steam",
+            "description": "Un joc Steam: preț, jucători acum, scor și detalii"
+          },
+          {
+            "name": "/radar chess",
+            "description": "Un jucător Chess.com: rating-uri, urmăritori și profil"
+          },
+          {
+            "name": "/radar twitch",
+            "description": "Un canal Twitch: status live, joc și spectatori"
+          },
+          {
+            "name": "/radar kick",
+            "description": "Un canal Kick: status live, categorie și spectatori"
+          },
+          {
+            "name": "/radar youtube",
+            "description": "Un canal YouTube: abonați, videoclipuri și vizualizări"
+          },
+          {
+            "name": "/radar github",
+            "description": "Un utilizator sau depozit GitHub"
+          },
+          {
+            "name": "/radar movie",
+            "description": "Un film: notă, data lansării, afiș și rezumat"
+          },
+          {
+            "name": "/radar show",
+            "description": "Un serial: notă, canal, status și următorul episod"
+          },
+          {
+            "name": "/radar crypto",
+            "description": "Prețul și datele de piață ale unei criptomonede"
+          },
+          {
+            "name": "/radar convert",
+            "description": "Convertește o sumă între monede (cursuri Banca Centrală Europeană)"
+          }
+        ]
+      },
+      {
+        "key": "pulse",
+        "title": "Pulse",
+        "premium": false,
+        "commands": [
+          {
+            "name": "/pulse add",
+            "description": "Adaugă un feed într-un canal"
+          },
+          {
+            "name": "/pulse list",
+            "description": "Vezi, testează, oprește sau șterge feed-urile serverului"
+          },
+          {
+            "name": "/pulse sources",
+            "description": "Toate sursele pe care le poate urmări Pulse"
           }
         ]
       },
@@ -3868,7 +3968,7 @@
       "description": "Anunță live-urile și videoclipurile noi de pe Twitch, Kick și TikTok.",
       "lock": {
         "title": "Notificări stream",
-        "text": "Primește alerte automate când streamerii preferați încep live. Twitch folosește EventSub oficial, TikTok folosește API-ul oficial."
+        "text": "Primește alerte automate când streamerii preferați încep live. Twitch folosește EventSub oficial, Kick și TikTok folosesc API-urile lor oficiale."
       },
       "provider": {
         "unavailable": "Indisponibil momentan",
@@ -5135,7 +5235,7 @@
     },
     "stream_notifications": {
       "title": "Notificări stream",
-      "description": "Alerte pentru transmisiuni Twitch și videoclipuri TikTok, cu mesaj personalizat."
+      "description": "Alerte pentru transmisiuni Twitch și Kick și videoclipuri TikTok, cu mesaj personalizat."
     },
     "community": {
       "title": "Community Discovery",
@@ -6710,9 +6810,9 @@
         ]
       },
       "stream_notifications": {
-        "what": "Alerte pentru stream-uri Twitch și videoclipuri TikTok cu mesaj personalizat.",
+        "what": "Alerte pentru stream-uri Twitch și Kick și videoclipuri TikTok cu mesaj personalizat.",
         "customize": [
-          "Conturile Twitch și TikTok",
+          "Conturile Twitch, Kick și TikTok",
           "Canalul, rolul de menționat și mesajul"
         ]
       },
@@ -7543,7 +7643,24 @@
       "required": "Bifează caseta pentru a confirma și a accepta politicile.",
       "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil.",
       "miami": "Nota Miami Style"
-    }
+    },
+    "visibility": {
+      "makePublic": "Fă profilul public",
+      "makePrivate": "Fă profilul privat",
+      "badge": "Profilul tău este public: oricine îl poate vedea, chiar și fără cont",
+      "title": "Faci profilul public?",
+      "body": "Oricine are linkul va putea vedea profilul tău public (nume, avatar, cardul de nivel, linkurile pe care ai ales să le arăți și pagina de profil) fără să se conecteze la Wody. Îl poți face din nou privat oricând.",
+      "confirm": "Fă-l public",
+      "cancel": "Anulează",
+      "saving": "Se salvează...",
+      "error": "Nu am putut schimba vizibilitatea. Încearcă din nou."
+    },
+    "metaTitle": "Profil",
+    "saveAll": "Salvează toate setările",
+    "savingAll": "Se salvează…",
+    "discardAll": "Renunță la modificări",
+    "unsavedAll": "Verifică modificările, apoi salvează-le pe toate odată.",
+    "backToWody": "Înapoi la Wody"
   },
   "humancheck": {
     "label": "Nu sunt robot",
@@ -7852,7 +7969,13 @@
       "body": "Cererea",
       "name_fx": "Efect pe nume",
       "music": "Link muzică de fundal",
-      "music_title": "Titlul melodiei (opțional)"
+      "music_title": "Titlul melodiei (opțional)",
+      "bio": "Despre tine",
+      "skills": "Abilități",
+      "links": "Linkuri proprii",
+      "portfolio": "Portofoliu",
+      "order": "Ordine",
+      "hide": "Vizibilitate"
     },
     "opt": {
       "mode": {
@@ -7959,7 +8082,34 @@
     "miamiNote": "Tema Miami Style este o temă neoficială de personalizare desenată de Wody. Nu conține artă oficială din jocuri.",
     "miamiLink": "Citește nota",
     "miamiHint": "Scene animate pentru fundalul paginii. Alege una ca să o previzualizezi.",
-    "miamiOff": "Elimină scena"
+    "miamiOff": "Elimină scena",
+    "sectionContent": "Conținut",
+    "sectionLayout": "Aspect și vizibilitate",
+    "layoutHint": "Ordonează secțiunile și alege ce este public. Secțiunile private sunt ascunse pentru toți, în afară de tine.",
+    "skillsHint": "Separate prin virgulă, maxim {max}.",
+    "linkLabel": "Etichetă",
+    "linkUrl": "Link (https)",
+    "addLink": "Adaugă link",
+    "portTitle": "Titlul proiectului",
+    "portDesc": "Descriere scurtă",
+    "portUrl": "Linkul proiectului",
+    "portImage": "Link imagine",
+    "addItem": "Adaugă proiect",
+    "remove": "Șterge",
+    "moveUp": "Mută sus",
+    "moveDown": "Mută jos",
+    "visPublic": "Public",
+    "visPrivate": "Privat",
+    "portfolioHint": "Imaginile sunt doar linkuri către fișiere găzduite în altă parte. Tot ce adaugi este acoperit de politicile pe care le accepți la salvare.",
+    "section": {
+      "bio": "Despre",
+      "portfolio": "Portofoliu",
+      "skills": "Abilități",
+      "links": "Linkuri",
+      "card": "Cardul de nivel",
+      "socials": "Rețele sociale",
+      "stats": "Statistici"
+    }
   },
   "policies": {
     "index": "Politici",

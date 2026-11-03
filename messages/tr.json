@@ -357,6 +357,16 @@
         "desc": "Her üyeyi kimin davet ettiği, son 30 günün grafiğiyle: katılımlar, ayrılışlar, elde tutma, günler, saatler, kaynaklar ve hesap yaşı. /statistics bunu Discord'da düğmeler ve seçim menüleriyle gösterir, panel aynı rakamları gösterir. Ücretsiz."
       },
       {
+        "key": "lookups",
+        "title": "Radar",
+        "desc": "Üyeler /radar yazıp bir hizmet seçerek Discord'dan çıkmadan bir şarkı, sunucu, profil veya fiyat öğrenir. Resmî veya herkese açık belgelenmiş API'lerden 15 sorgu. Ücretsiz."
+      },
+      {
+        "key": "feeds",
+        "title": "Pulse",
+        "desc": "Diğer hizmetlerden yeni videolar, yayınlar, şarkılar, gönderiler, sürümler ve resimler, seçtiğin programa göre bir kanala paylaşılır. 10 kaynak, /pulse ile veya panelden kurulur."
+      },
+      {
         "key": "community",
         "title": "Community Discovery",
         "desc": "Sunucunu Wody dizininde listele. Kendi temanla, Wody ekibinin incelediği, yorumlar, favoriler ve istatistikler içeren herkese açık bir profil."
@@ -394,7 +404,7 @@
       {
         "key": "stream_notifications",
         "title": "Yayın bildirimleri",
-        "desc": "Bir Twitch yayıncısı canlıya çıktığında ve bağlı bir TikTok yapımcısı video paylaştığında uyarılar."
+        "desc": "Bir Twitch veya Kick yayıncısı canlı yayına başladığında ve bağlı bir TikTok içerik üreticisi video paylaştığında uyarılar."
       }
     ],
     "counter": {
@@ -1086,7 +1096,7 @@
         "html": "<p>Birthdays is free and independent from Economy. A member sets a birthday with <code>/birthday</code>. Wody then stores the Discord user ID and server ID, the day and month, an optional birth year, a privacy level (public, community or private), an optional time zone and an on or off switch. Birth year is optional and is never required.</p><p>Privacy levels: public shows the date to the server; community uses the birthday for features such as announcements and reminders while keeping the exact date hidden from other members; private is never listed, announced or shown to other members. Age is displayed only when the server enables it, a birth year was provided and the birthday is not private.</p><p>Server administrators with dashboard access can see and manage all entries of their own server in the administration list, including private ones, but private birthdays are never shown in the calendar, in public boards or in announcements. A short history is kept of each celebration (date, whether it was announced, whether the birthday role was added and removed, and any delivery error). You can remove your birthday at any time with <code>/birthday</code>, and administrators can remove entries. Data is kept until it is removed.</p>"
       },
       {
-        "heading": "18. Stream Notifications (Twitch and TikTok)",
+        "heading": "18. Stream Notifications (Twitch, Kick ve TikTok)",
         "html": "<p>Stream Notifications is a Premium feature. For Twitch, Wody stores the public Twitch login, ID, display name and avatar of each streamer an administrator adds, the Discord channel and message settings, and technical subscription data for Twitch EventSub. Incoming Twitch events are processed to post the alert; event records are kept for 7 days and delivery records for 30 days to prevent duplicate messages.</p><p>For TikTok, an administrator can connect their own TikTok account through the official TikTok Login Kit. After consent, Wody stores the TikTok open ID, username, display name and avatar and the access and refresh tokens. The tokens are encrypted on the server (AES-256-GCM), are never shown in the dashboard and are never sent to your browser. Wody uses the scopes you approve to read only the connected creator's own video list (video ID, title, description, creation time, cover image, link and duration) to announce new videos. Wody does not post to TikTok, does not read private messages and does not use TikTok data for advertising or sell it. A server owner who already linked their own TikTok account on the TikTok page can add that same account to a server with one click; Wody then stores an encrypted copy of the same connection for that server, and removing the account from the server deletes that copy only.</p><p>You can disconnect a TikTok account at any time in the dashboard. Wody then revokes the token and deletes the stored connection. You can also remove access in your TikTok settings. Wody does not offer alerts for TikTok creators who have not connected their own account. Twitch and TikTok are independent services with their own privacy policies.</p><p>Requests made from the dashboard to the bot (for example test messages) are stored temporarily and deleted after 24 hours.</p><p>Wody Creator Link (the TikTok page on wody.online): a signed-in Wody user can link their own TikTok account with TikTok Login Kit to see their TikTok profile and latest videos inside Wody. Wody stores the TikTok open ID, username, display name, avatar and the encrypted tokens, only for that user, only read access, and deletes them when the user unlinks the account on the page. Wody does not post to TikTok and does not use this data for advertising.</p><p>Wody Human Check (the \"I'm not a robot\" box used on verification and Collab forms): it uses no cookies, no local storage and no outside service. A short browser challenge and how the box was ticked (such as pointer movement and timing) are sent once to Wody, scored in memory and not stored. Only a one-time token marker is kept for a few minutes to stop reuse.</p>"
       },
       {
@@ -1128,6 +1138,10 @@
       {
         "heading": "28. Profil görselleri, müzik bağlantıları ve moderasyon kayıtları",
         "html": "<p>Profil sayfana ve sunucu kartlarına eklediğin görseller, GIF'ler ve ses dosyaları yalnızca bağlantı olarak saklanır: Wody bunların kopyasını tutmaz. Görseller, onları barındıran platformdan Wody sunucusu üzerinden yüklenir; bu yüzden ziyaretçinin IP adresi o platforma ulaşmaz; yalnızca bağlantı geçerli olduğu sürece görünür kalırlar. Ses dosyası, ziyaretçi oynat'a bastıktan sonra doğrudan ziyaretçinin tarayıcısı tarafından yüklenir; bu nedenle IP adresi dosyayı barındıran siteye ulaşır. Wody'nin sakladığı tek dosya, profil kartı arka planı olarak yüklediğin ve sen değiştirene veya silene kadar tutulan görseldir. Wody; bildirimleri, içerik referansını, moderasyon kararını ve geçmişini, ayrıca politika onayının zamanını ve sürümünü vakayı ele almak ve tekrarlanan ihlalleri önlemek için saklar. Saklama süreleri: [İŞLETMECİ ONAYI GEREKLİ]. Profil sayfası, görüntülenmeleri veritabanında basit bir sayaçla, çerez kullanmadan ve IP adresini saklamadan sayabilir.</p>"
+      },
+      {
+        "heading": "29. Radar ve Pulse (sorgular ve akışlar)",
+        "html": "<p>Bir üye /radar sorgusu çalıştırdığında, yazdığı metin (örneğin bir kullanıcı adı, sunucu adresi veya madeni para adı) yanıtı almak için seçilen hizmete gönderilir. Bir sunucu yöneticisi /pulse akışı eklediğinde, girdiği adres veya ad sunucu ayarlarında saklanır ve kaynak hizmette belirli aralıklarla kontrol edilir. Bu istekleri Wody sunucusu yapar, bu nedenle üyenin IP adresi hizmete ulaşmaz. Wody sorgu sonuçlarını yalnızca kısa süreli bir önbellekte tutar ve akışların içeriğini saklamaz; yalnızca aynı öğeyi iki kez paylaşmamak için gerekeni saklar. Her hizmet kendi gizlilik politikasını uygular.</p>"
       }
     ]
   },
@@ -1279,7 +1293,7 @@
       },
       {
         "title": "Yayın bildirimleri",
-        "text": "EventSub ile Twitch canlı uyarıları ve resmi API ile TikTok video uyarıları."
+        "text": "EventSub ile Twitch canlı yayın uyarıları, resmî API ile Kick canlı yayın uyarıları ve resmî API ile TikTok video uyarıları."
       }
     ],
     "higherLimitsTitle": "Premium ile sınırsız",
@@ -1671,6 +1685,92 @@
           {
             "name": "/invite-reset",
             "description": "Yönetici: onaydan sonra davet istatistiklerini siler. Seçenek: member (boşsa tüm sunucuyu sıfırlar). Yönetici gerekir"
+          }
+        ]
+      },
+      {
+        "key": "radar",
+        "title": "Radar",
+        "premium": false,
+        "commands": [
+          {
+            "name": "/radar nowplaying",
+            "description": "Bir Last.fm kullanıcısının şu an dinlediği"
+          },
+          {
+            "name": "/radar itunes",
+            "description": "Apple iTunes'ta müzik, podcast, film veya uygulama bul"
+          },
+          {
+            "name": "/radar mcserver",
+            "description": "Bir Minecraft sunucusunun durumu, oyuncuları ve sürümü"
+          },
+          {
+            "name": "/radar mcplayer",
+            "description": "Bir Minecraft oyuncusu: skin, UUID ve profil"
+          },
+          {
+            "name": "/radar roblox",
+            "description": "Bir Roblox profili: arkadaşlar, takipçiler ve avatar"
+          },
+          {
+            "name": "/radar steam",
+            "description": "Bir Steam oyunu: fiyat, şu anki oyuncular, puan ve ayrıntılar"
+          },
+          {
+            "name": "/radar chess",
+            "description": "Bir Chess.com oyuncusu: puanlar, takipçiler ve profil"
+          },
+          {
+            "name": "/radar twitch",
+            "description": "Bir Twitch kanalı: canlı durumu, oyun ve izleyiciler"
+          },
+          {
+            "name": "/radar kick",
+            "description": "Bir Kick kanalı: canlı durumu, kategori ve izleyiciler"
+          },
+          {
+            "name": "/radar youtube",
+            "description": "Bir YouTube kanalı: aboneler, videolar ve izlenmeler"
+          },
+          {
+            "name": "/radar github",
+            "description": "Bir GitHub kullanıcısı veya deposu"
+          },
+          {
+            "name": "/radar movie",
+            "description": "Bir film: puan, çıkış tarihi, afiş ve özet"
+          },
+          {
+            "name": "/radar show",
+            "description": "Bir dizi: puan, kanal, durum ve sonraki bölüm"
+          },
+          {
+            "name": "/radar crypto",
+            "description": "Bir kripto paranın fiyatı ve piyasa verileri"
+          },
+          {
+            "name": "/radar convert",
+            "description": "Para birimleri arasında tutar dönüştür (ECB kurları)"
+          }
+        ]
+      },
+      {
+        "key": "pulse",
+        "title": "Pulse",
+        "premium": false,
+        "commands": [
+          {
+            "name": "/pulse add",
+            "description": "Bir kanala akış ekle"
+          },
+          {
+            "name": "/pulse list",
+            "description": "Sunucunun akışlarını gör, test et, duraklat veya kaldır"
+          },
+          {
+            "name": "/pulse sources",
+            "description": "Pulse'ın izleyebildiği tüm kaynaklar"
           }
         ]
       },
@@ -3866,7 +3966,7 @@
       "description": "Twitch, Kick ve TikTok'taki canlı yayınları ve yeni videoları duyurur.",
       "lock": {
         "title": "Yayın bildirimleri",
-        "text": "Favori yayıncıların canlı yayına çıktığında otomatik uyarı al. Twitch resmi EventSub'ı, TikTok resmi API'yi kullanır."
+        "text": "Favori yayıncıların canlı yayına başladığında otomatik uyarılar al. Twitch resmî EventSub'ı, Kick ve TikTok kendi resmî API'lerini kullanır."
       },
       "provider": {
         "unavailable": "Şu anda kullanılamıyor",
@@ -5133,7 +5233,7 @@
     },
     "stream_notifications": {
       "title": "Yayın bildirimleri",
-      "description": "Özel mesajlı Twitch yayınları ve TikTok videoları için uyarılar."
+      "description": "Twitch ve Kick yayınları ile TikTok videoları için özel mesajlı uyarılar."
     },
     "community": {
       "title": "Community Discovery",
@@ -6708,9 +6808,9 @@
         ]
       },
       "stream_notifications": {
-        "what": "Özel mesajla Twitch yayınları ve TikTok videoları için bildirimler.",
+        "what": "Twitch ve Kick yayınları ile TikTok videoları için özel mesajlı uyarılar.",
         "customize": [
-          "Twitch ve TikTok hesapları",
+          "Twitch, Kick ve TikTok hesapları",
           "Kanal, etiketlenecek rol ve mesaj"
         ]
       },
@@ -7541,7 +7641,24 @@
       "required": "Önce kutuyu işaretleyerek politikaları onayla ve kabul et.",
       "blocked": "Hesabın askıya alındı veya engellendi; bu profili düzenleyemez.",
       "miami": "Miami Style bildirimi"
-    }
+    },
+    "visibility": {
+      "makePublic": "Profilimi herkese açık yap",
+      "makePrivate": "Profili gizli yap",
+      "badge": "Profilin herkese açık: giriş yapmadan bile herkes görebilir",
+      "title": "Profilin herkese açık yapılsın mı?",
+      "body": "Bağlantıya sahip herkes, Wody'ye giriş yapmadan herkese açık profilini (ad, avatar, seviye kartı, paylaşmayı seçtiğin bağlantılar ve profil sayfası) görebilecek. İstediğin zaman tekrar gizli yapabilirsin.",
+      "confirm": "Herkese açık yap",
+      "cancel": "İptal",
+      "saving": "Kaydediliyor...",
+      "error": "Görünürlük değiştirilemedi. Tekrar dene."
+    },
+    "metaTitle": "Profil",
+    "saveAll": "Tüm ayarları kaydet",
+    "savingAll": "Kaydediliyor…",
+    "discardAll": "Değişiklikleri at",
+    "unsavedAll": "Değişiklikleri kontrol et, hepsini tek seferde kaydet.",
+    "backToWody": "Wody’ye dön"
   },
   "humancheck": {
     "label": "Robot değilim",
@@ -7850,7 +7967,13 @@
       "body": "İstek",
       "name_fx": "Ad efekti",
       "music": "Arka plan müziği bağlantısı",
-      "music_title": "Şarkı adı (isteğe bağlı)"
+      "music_title": "Şarkı adı (isteğe bağlı)",
+      "bio": "Senin hakkında",
+      "skills": "Yetenekler",
+      "links": "Özel bağlantılar",
+      "portfolio": "Portfolyo",
+      "order": "Sıra",
+      "hide": "Görünürlük"
     },
     "opt": {
       "mode": {
@@ -7957,7 +8080,34 @@
     "miamiNote": "Miami Style teması, Wody tarafından çizilmiş resmî olmayan bir özelleştirme temasıdır. Üçüncü tarafların hiçbir çizimini içermez.",
     "miamiLink": "Bildirimi oku",
     "miamiHint": "Sayfa arka planı için animasyonlu sahneler. Önizlemek için birini seç.",
-    "miamiOff": "Sahneyi kaldır"
+    "miamiOff": "Sahneyi kaldır",
+    "sectionContent": "İçerik",
+    "sectionLayout": "Düzen ve görünürlük",
+    "layoutHint": "Bölümleri sırala ve neyin herkese açık olacağını seç. Özel bölümleri yalnızca sen görürsün.",
+    "skillsHint": "Virgülle ayır, en fazla {max}.",
+    "linkLabel": "Etiket",
+    "linkUrl": "Bağlantı (https)",
+    "addLink": "Bağlantı ekle",
+    "portTitle": "Proje başlığı",
+    "portDesc": "Kısa açıklama",
+    "portUrl": "Proje bağlantısı",
+    "portImage": "Görsel bağlantısı",
+    "addItem": "Proje ekle",
+    "remove": "Kaldır",
+    "moveUp": "Yukarı taşı",
+    "moveDown": "Aşağı taşı",
+    "visPublic": "Herkese açık",
+    "visPrivate": "Özel",
+    "portfolioHint": "Görseller yalnızca başka yerde barındırılan dosyalara bağlantıdır. Eklediğin her şey, kaydederken kabul ettiğin politikalara tabidir.",
+    "section": {
+      "bio": "Hakkında",
+      "portfolio": "Portfolyo",
+      "skills": "Yetenekler",
+      "links": "Bağlantılar",
+      "card": "Seviye kartı",
+      "socials": "Sosyal ağlar",
+      "stats": "İstatistikler"
+    }
   },
   "policies": {
     "index": "Politikalar",
