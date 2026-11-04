@@ -39,19 +39,9 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Footer } from '@/components/nav';
 import { DiscordMessagePreview } from '@/components/module-kit';
 import GeneralQuickSettings from '@/components/general-quick-settings';
-import ServerCollabSettings from '@/components/collab/ServerCollabSettings';
-import ServerCategoriesPanel from '@/components/collab/ServerCategoriesPanel';
 import { BotOfflineBanner, BotStatusProvider, useBotStatusPoll } from '@/components/bot-offline';
 import { LOCALE_LABELS } from '@/i18n/routing';
-import BirthdaysPanel from '@/components/modules/BirthdaysPanel';
-import InvitesPanel from '@/components/modules/InvitesPanel';
-import LookupsPanel from '@/components/modules/LookupsPanel';
-import FeedsPanel from '@/components/modules/FeedsPanel';
-import StreamsPanel from '@/components/modules/StreamsPanel';
-import EconomyPanel from '@/components/modules/EconomyPanel';
 import { LevelRewardsEditor, RoleXpBonusesEditor, levelRulesIssue } from '@/components/modules/LevelRewardsEditors';
-import BlackjackPanel from '@/components/modules/BlackjackPanel';
-import CommunityOwnerPanel from '@/components/community/OwnerPanel';
 import { FREE_LIMITS, isUnlimited } from '@/lib/limits';
 import { hasModulePage } from '@/lib/module-slugs';
 import { EMOJI_GROUPS, SKIN_TONES, NICK_EMOJI_MAX, NICK_ROLE_MAX, NICK_POSITIONS, extractEmojis, previewNickname, searchEmojis, toneSwatch, withTone } from '@/lib/nick-emojis';
@@ -67,6 +57,20 @@ import {
 } from '@/components/dashboard-kit';
 import { CARD_FONTS, CARD_FONT_IDS, cardFontStyle } from '@/lib/card-fonts';
 
+
+import dynamic from 'next/dynamic';
+
+const PanelLoading = () => <div className="h-64 animate-pulse rounded-2xl bg-card/40" />;
+const BirthdaysPanel = dynamic(() => import('@/components/modules/BirthdaysPanel'), { loading: PanelLoading });
+const InvitesPanel = dynamic(() => import('@/components/modules/InvitesPanel'), { loading: PanelLoading });
+const LookupsPanel = dynamic(() => import('@/components/modules/LookupsPanel'), { loading: PanelLoading });
+const FeedsPanel = dynamic(() => import('@/components/modules/FeedsPanel'), { loading: PanelLoading });
+const StreamsPanel = dynamic(() => import('@/components/modules/StreamsPanel'), { loading: PanelLoading });
+const EconomyPanel = dynamic(() => import('@/components/modules/EconomyPanel'), { loading: PanelLoading });
+const BlackjackPanel = dynamic(() => import('@/components/modules/BlackjackPanel'), { loading: PanelLoading });
+const CommunityOwnerPanel = dynamic(() => import('@/components/community/OwnerPanel'), { loading: PanelLoading });
+const ServerCollabSettings = dynamic(() => import('@/components/collab/ServerCollabSettings'), { loading: PanelLoading });
+const ServerCategoriesPanel = dynamic(() => import('@/components/collab/ServerCategoriesPanel'), { loading: PanelLoading });
 
 const statsCache = new Map();
 
@@ -318,6 +322,8 @@ const MODULES = [
   { key: 'suggestions', label: 'Suggestions', icon: Lightbulb },
   { key: 'birthdays', label: 'Birthdays', icon: Cake },
   { key: 'invite_tracking', label: 'Invite Tracking', icon: Link2, free: true, optIn: true },
+  { key: 'lookups', label: 'Radar', icon: Search },
+  { key: 'feeds', label: 'Pulse', icon: Rss },
   { key: 'community', label: 'Community Discovery', icon: Compass },
   { key: 'collab', label: 'Collab', icon: Briefcase },
   { key: 'economy', label: 'Economy', icon: Coins, premium: true },
@@ -711,7 +717,7 @@ export default function GuildDashboardClient() {
     <style jsx global>{`
       html, body {
         max-width: 100%;
-        overflow-x: hidden;
+        overflow-x: clip;
       }
 
       @media (max-width: 640px) {
