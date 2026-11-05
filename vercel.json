@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/websub/renew",
+      "schedule": "0 3 * * *"
+    }
+  ]
+}

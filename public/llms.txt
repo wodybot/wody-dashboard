@@ -1,0 +1,31 @@
+# Wody
+
+> Wody is a free-to-start Discord bot with a web dashboard, available in 9 languages (English, Romanian, French, Italian, German, Spanish, Portuguese, Dutch, Turkish). Website: https://wody.online
+
+## What Wody does
+- Moderation, automod, tickets, reaction roles, giveaways, levels, welcome and goodbye messages, economy and more.
+- Level-up, welcome and goodbye cards with an optional Miami Style theme collection (Neon Coast, Palm Dusk, Skyline, Miami art deco). The artwork is original, drawn for Wody, and is not affiliated with any game publisher or studio.
+- A personal profile page at wody.online/<name> with a view counter, background music and name effects.
+- Wody Passport: a fictional collectible identity card for a Discord account.
+- Wody Battle Pass: seasonal progress with levels, rewards, quests and badges. A Global season runs on every server; owners of Premium servers can run their own season. Only counters are stored, never message text or voice audio.
+- Wody Collab: requests and partnerships between communities, checked before they go live.
+
+## Key pages
+- Home: https://wody.online/
+- Miami Style Discord bot theme: https://wody.online/miami-style-discord-bot
+- Modules: https://wody.online/modules
+- Commands: https://wody.online/commands
+- Premium: https://wody.online/premium
+- Battle Pass (Global season, live progress): https://wody.online/battlepass
+- Battle Pass help and FAQ: https://wody.online/battlepass/help
+- Website themes help and FAQ (themes, effects, cinematic intro, accessibility, Premium Theme Studio): https://wody.online/themes/help
+- Battle Pass season pages: each published Global season has its own page at https://wody.online/battlepass/<season-address>, listed in https://wody.online/sitemap.xml
+- Counting (public counting games, global leaderboard): https://wody.online/counting
+- Counting help and FAQ: https://wody.online/counting/help
+- Statistics help and FAQ (privacy-first server analytics, aggregate counters only): https://wody.online/statistics/help
+- Privacy: https://wody.online/privacy
+- Terms: https://wody.online/terms
+
+## Facts to keep accurate
+- Wody does not include artwork, logos or characters from any game or brand.
+- Core features are free; some modules are part of Wody Premium.
