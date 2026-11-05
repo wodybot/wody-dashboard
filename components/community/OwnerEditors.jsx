@@ -16,8 +16,9 @@ import { previewProfile } from '@/lib/community/preview';
 import { resolveTheme } from '@/components/community/theme';
 import { LIMITS, THEME_PRESETS, SOCIAL_PLATFORMS, LOCKED_SECTIONS, CARD_STYLES, BUTTON_STYLES, SERVER_TYPES, LANGUAGES } from '@/lib/community/constants';
 import { routing } from '@/i18n/routing';
+import IconText from '@/components/icon-text';
 
-const EMOJI = ['😀', '😄', '😎', '🥳', '🔥', '⭐', '🎮', '🎧', '🏆', '🎉', '💬', '❤️', '🤝', '🌍', '📚', '💻', '🎨', '🎵', '🚀', '✨', '👾', '⚔️', '🎲', '☕'];
+const EMOJI = ['{wy:smile}', '{wy:laugh}', '{wy:cool}', '{wy:party}', '{wy:fire}', '{wy:star}', '{wy:game}', '{wy:headphones}', '{wy:winner}', '{wy:giveaway}', '{wy:community}', '{wy:support}', '{wy:partner}', '{wy:language}', '{wy:docs}', '{wy:terminal}', '{wy:colors}', '{wy:speaker}', '{wy:growth}', '{wy:sparkles}', '{wy:bot}', '{wy:eco_dagger}', '{wy:dice}', '{wy:eco_coffee}'];
 
 function Chips({ items, selected, onToggle, label, disabled, max }) {
   const t = useTranslations('community');
@@ -104,7 +105,7 @@ export function OwnerProfile({ guildId, draft, set, options, errors, disabled, u
                   <Button type="button" size="icon" variant="ghost" onClick={() => wrap('[', '](https://)', t('owner.editor.linkText'))} aria-label={t('owner.editor.link')} disabled={disabled}><Link2 className="h-4 w-4" /></Button>
                   <div className="relative">
                     <Button type="button" size="icon" variant="ghost" onClick={() => setEmojiOpen((o) => !o)} aria-expanded={emojiOpen} aria-label={t('owner.editor.emoji')} disabled={disabled}><Smile className="h-4 w-4" /></Button>
-                    {emojiOpen ? <div role="dialog" aria-label={t('owner.editor.emoji')} className="absolute left-0 top-10 z-20 grid w-56 grid-cols-6 gap-1 rounded-lg border border-border bg-popover p-2 shadow-xl">{EMOJI.map((e) => <button key={e} type="button" onClick={() => insert(e)} className="rounded p-1 text-lg hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#e6cd8c]" aria-label={e}>{e}</button>)}</div> : null}
+                    {emojiOpen ? <div role="dialog" aria-label={t('owner.editor.emoji')} className="absolute left-0 top-10 z-20 grid w-56 grid-cols-6 gap-1 rounded-lg border border-border bg-popover p-2 shadow-xl">{EMOJI.map((e) => <button key={e} type="button" onClick={() => insert(e)} className="rounded p-1 text-lg hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#e6cd8c]" aria-label={e.replace(/[{}]|wy:/g, '')}><IconText text={e} size={22} /></button>)}</div> : null}
                   </div>
                   <div className="ml-auto"><Button type="button" size="sm" variant={showPreview ? 'secondary' : 'ghost'} onClick={() => setShowPreview((v) => !v)} aria-pressed={showPreview}>{t('owner.editor.preview')}</Button></div>
                 </div>

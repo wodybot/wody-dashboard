@@ -33,8 +33,8 @@ import {
   Crown, Loader2, Trash2, Plus, RefreshCw, Menu, X, Copy, Key,
   Clock, LayoutTemplate, Star, AlertTriangle, MessagesSquare, Users, LogOut,
   Youtube, ChevronDown, ChevronRight, Eye, Palette, Route, FileText, MessageSquareText, Image as ImageIcon, Power,
-  LayoutGrid, ShieldCheck, ExternalLink, Sparkles, HelpCircle, Coins, Cake, Radio, Compass, Briefcase, Info, SlidersHorizontal, Gamepad2, Link2, Hash, Languages, UserCog, Search, Rss,
-} from 'lucide-react';
+  LayoutGrid, ShieldCheck, ExternalLink, Sparkles, HelpCircle, Coins, Cake, Radio, Compass, Briefcase, Info, SlidersHorizontal, Gamepad2, Link2, Hash, BarChart3, Languages, UserCog, Search, Rss, ArrowLeftRight,
+Trophy, Wand2, Flame } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Footer } from '@/components/nav';
 import { DiscordMessagePreview } from '@/components/module-kit';
@@ -59,12 +59,19 @@ import { CARD_FONTS, CARD_FONT_IDS, cardFontStyle } from '@/lib/card-fonts';
 
 
 import dynamic from 'next/dynamic';
+import IconText, { Icon } from '@/components/icon-text';
 
 const PanelLoading = () => <div className="h-64 animate-pulse rounded-2xl bg-card/40" />;
 const BirthdaysPanel = dynamic(() => import('@/components/modules/BirthdaysPanel'), { loading: PanelLoading });
 const InvitesPanel = dynamic(() => import('@/components/modules/InvitesPanel'), { loading: PanelLoading });
 const LookupsPanel = dynamic(() => import('@/components/modules/LookupsPanel'), { loading: PanelLoading });
 const FeedsPanel = dynamic(() => import('@/components/modules/FeedsPanel'), { loading: PanelLoading });
+const LinkPanel = dynamic(() => import('@/components/modules/LinkPanel'), { loading: PanelLoading });
+const DragonsPanel = dynamic(() => import('@/components/dragons/DragonsPanel'), { loading: PanelLoading });
+const CountingPanel = dynamic(() => import('@/components/counting/CountingPanel'), { loading: PanelLoading });
+const StatisticsPanel = dynamic(() => import('@/components/statistics/StatisticsPanel'), { loading: PanelLoading });
+const ServerThemePanel = dynamic(() => import('@/components/themes/ServerThemePanel'), { loading: PanelLoading });
+const BattlePassPremiumPanel = dynamic(() => import('@/components/battlepass/BattlePassPremiumPanel'), { loading: PanelLoading });
 const StreamsPanel = dynamic(() => import('@/components/modules/StreamsPanel'), { loading: PanelLoading });
 const EconomyPanel = dynamic(() => import('@/components/modules/EconomyPanel'), { loading: PanelLoading });
 const BlackjackPanel = dynamic(() => import('@/components/modules/BlackjackPanel'), { loading: PanelLoading });
@@ -322,6 +329,7 @@ const MODULES = [
   { key: 'suggestions', label: 'Suggestions', icon: Lightbulb },
   { key: 'birthdays', label: 'Birthdays', icon: Cake },
   { key: 'invite_tracking', label: 'Invite Tracking', icon: Link2, free: true, optIn: true },
+  { key: 'link', label: 'Wody Link', icon: ArrowLeftRight, free: true, optIn: true },
   { key: 'lookups', label: 'Radar', icon: Search },
   { key: 'feeds', label: 'Pulse', icon: Rss },
   { key: 'community', label: 'Community Discovery', icon: Compass },
@@ -332,14 +340,21 @@ const MODULES = [
   { key: 'temporary_voice', label: 'Temp Voice', icon: Mic2, premium: true },
   { key: 'youtube_notify', label: 'YouTube Notifications', icon: Youtube, premium: true },
   { key: 'stream_notifications', label: 'Stream Notifications', icon: Radio, premium: true },
+  { key: 'battlepass', label: 'Battle Pass', icon: Trophy, premium: true },
+  { key: 'counting', label: 'Counting', icon: Hash },
+  { key: 'statistics', label: 'Statistics', icon: BarChart3 },
+  { key: 'dragons', label: 'Dragons', icon: Flame },
+  { key: 'website_theme', label: 'Theme', icon: Palette, free: true },
+  { key: 'theme_studio', label: 'Theme Studio', icon: Wand2, premium: true },
   { key: 'premium', label: 'Premium', icon: Crown, status: true },
 ];
 
 const MODULE_GROUPS = [
   { key: 'server', keys: ['general', 'welcome', 'goodbye', 'autorole'] },
   { key: 'moderation', keys: ['moderation', 'automod', 'logging', 'captcha'] },
-  { key: 'community', keys: ['community', 'collab', 'embeds', 'levels', 'suggestions', 'birthdays', 'invite_tracking', 'lookups', 'feeds', 'tickets', 'reaction_roles', 'auto_responses', 'custom_commands', 'giveaways', 'scheduled_messages', 'forums'] },
-  { key: 'premium', keys: ['premium', 'economy', 'blackjack', 'backups', 'temporary_voice', 'youtube_notify', 'stream_notifications'] },
+  { key: 'community', keys: ['community', 'collab', 'embeds', 'levels', 'suggestions', 'birthdays', 'invite_tracking', 'link', 'lookups', 'feeds', 'tickets', 'reaction_roles', 'auto_responses', 'custom_commands', 'giveaways', 'scheduled_messages', 'forums', 'counting', 'statistics', 'dragons'] },
+  { key: 'website', keys: ['website_theme'] },
+  { key: 'premium', keys: ['premium', 'economy', 'blackjack', 'backups', 'temporary_voice', 'youtube_notify', 'stream_notifications', 'battlepass', 'theme_studio'] },
 ];
 
 const PREMIUM_MOVING_KEYS = MODULES.filter((m) => (m.limited || m.premium) && !m.status).map((m) => m.key);
@@ -356,7 +371,7 @@ function buildGroups(premiumActive, labelOf) {
   });
 }
 
-const NON_TOGGLEABLE_KEYS = new Set(['general', 'premium', 'embeds', 'community', 'collab']);
+const NON_TOGGLEABLE_KEYS = new Set(['general', 'premium', 'embeds', 'community', 'collab', 'battlepass', 'counting', 'statistics', 'dragons', 'website_theme', 'theme_studio']);
 
 const OPT_IN_KEYS = new Set(MODULES.filter((m) => m.optIn).map((m) => m.key));
 
@@ -371,7 +386,7 @@ const THEME = {
   chip: 'border-[#e6cd8c]/40 bg-[#e6cd8c]/10 text-[#e6cd8c]',
   track: 'data-[state=checked]:bg-[#e6cd8c]',
 };
-const CATEGORY_THEME = { server: THEME, moderation: THEME, community: THEME, premium: THEME };
+const CATEGORY_THEME = { server: THEME, moderation: THEME, community: THEME, website: THEME, premium: THEME };
 
 function categoryOf(moduleKey) {
   return MODULE_GROUPS.find((g) => g.keys.includes(moduleKey))?.key || 'community';
@@ -1294,13 +1309,20 @@ function ModulePanel({ moduleKey, guildId, meta, isOn = true, onEnable, premiumA
     case 'forums': return <ForumsPanel guildId={guildId} meta={safeMeta} />;
     case 'birthdays': return <BirthdaysPanel guildId={guildId} meta={safeMeta} />;
     case 'invite_tracking': return <InvitesPanel guildId={guildId} meta={safeMeta} onOpenModule={onOpenModule} />;
+    case 'link': return <LinkPanel guildId={guildId} meta={safeMeta} />;
     case 'lookups': return <LookupsPanel onOpenModule={onOpenModule} />;
     case 'feeds': return <FeedsPanel guildId={guildId} meta={safeMeta} />;
     case 'community': return <CommunityOwnerPanel guildId={guildId} />;
     case 'collab': return <ServerCategoriesPanel guildId={guildId} />;
     case 'economy': return <EconomyPanel guildId={guildId} meta={safeMeta} onGetPremium={() => onOpenModule?.('premium')} />;
     case 'blackjack': return <BlackjackPanel guildId={guildId} onGetPremium={() => onOpenModule?.('premium')} />;
+    case 'dragons': return <DragonsPanel guildId={guildId} />;
+    case 'counting': return <CountingPanel guildId={guildId} meta={safeMeta} />;
+    case 'statistics': return <StatisticsPanel guildId={guildId} />;
+    case 'battlepass': return <BattlePassPremiumPanel guildId={guildId} premium={Boolean(premiumActive)} onGetPremium={() => onOpenModule?.('premium')} />;
     case 'stream_notifications': return <StreamsPanel guildId={guildId} meta={safeMeta} onGetPremium={() => onOpenModule?.('premium')} />;
+    case 'website_theme': return <ServerThemePanel guildId={guildId} mode="basic" premium={Boolean(premiumActive)} />;
+    case 'theme_studio': return <ServerThemePanel guildId={guildId} mode="premium" premium={Boolean(premiumActive)} onGetPremium={() => onOpenModule?.('premium')} />;
     case 'premium': return <PremiumPanel guildId={guildId} meta={safeMeta} />;
     default: return null;
   }
@@ -2233,7 +2255,7 @@ function CaptchaPanel({ guildId, meta }) {
       embed_image_url: data.embed_image_url || null,
       embed_footer: data.embed_footer || '',
       button_label: data.button_label || 'Verify',
-      button_emoji: data.button_emoji || '✅',
+      button_emoji: data.button_emoji || '{wy:success}',
       page_heading: data.page_heading || 'Captcha',
       page_description: data.page_description || '',
       page_button_label: data.page_button_label || 'Verify',
@@ -2344,7 +2366,7 @@ function CaptchaPanel({ guildId, meta }) {
                 description={data.embed_description || ''}
                 imageUrl={data.embed_image_url || null}
                 footer={data.embed_footer || ''}
-                buttons={[{ label: data.button_label || 'Verifica te', emoji: /^<a?:/.test(String(data.button_emoji || '')) ? null : (data.button_emoji || '✅'), style: 'link' }]}
+                buttons={[{ label: data.button_label || 'Verifica te', emoji: /^<a?:/.test(String(data.button_emoji || '')) ? null : (data.button_emoji || '{wy:success}'), style: 'link' }]}
               />
             </DiscordMessage>
           </Card>
@@ -2662,7 +2684,7 @@ function TicketsPanel({ guildId, meta }) {
   useEffect(() => { load(); }, [guildId]);
 
   function blankPanel() {
-    return { version: 2, title: t('defaults.title'), description: t('defaults.description'), channel_id: null, category_id: null, support_role_id: null, transcript_channel_id: null, transcript_default_channel_id: null, panel_color: 0xe08a4e, panel_image_url: '', panel_image_position: 'image', control_staff_role_ids: [], button_style: 1, button_label: t('defaults.buttonLabel'), button_emoji: '🎫', select_placeholder: t('defaults.selectPlaceholder'), footer_text: t('defaults.footerText'), welcome_title: t('defaults.title'), welcome_message: t('defaults.welcomeMessage'), welcome_footer: t('defaults.welcomeFooter'), form: { title: t('defaults.formTitle'), description_label: t('defaults.descriptionLabel'), description_placeholder: t('defaults.descriptionPlaceholder'), links_label: t('defaults.linksLabel'), links_placeholder: t('defaults.linksPlaceholder'), extra_label: t('defaults.extraLabel'), extra_placeholder: t('defaults.extraPlaceholder'), details_title: t('defaults.detailsTitle'), custom_fields: [] }, message_overrides: { welcome_title: '', welcome_message: '', close_title: t('defaults.closeTitle'), close_message: t('defaults.closeMessage'), reopen_message: t('defaults.reopenMessage'), delete_warning: t('defaults.deleteWarning'), transcript_message: t('defaults.transcriptMessage') }, options: [{ id: `new-${Date.now()}`, label: t('defaults.title'), emoji: '🎫', category_id: null, support_role_id: null, transcript_channel_id: null, welcome_title: t('defaults.title'), welcome_message: t('defaults.welcomeMessage'), welcome_image_mode: 'none', welcome_image_url: null }] };
+    return { version: 2, title: t('defaults.title'), description: t('defaults.description'), channel_id: null, category_id: null, support_role_id: null, transcript_channel_id: null, transcript_default_channel_id: null, panel_color: 0xe08a4e, panel_image_url: '', panel_image_position: 'image', control_staff_role_ids: [], button_style: 1, button_label: t('defaults.buttonLabel'), button_emoji: '{wy:ticket}', select_placeholder: t('defaults.selectPlaceholder'), footer_text: t('defaults.footerText'), welcome_title: t('defaults.title'), welcome_message: t('defaults.welcomeMessage'), welcome_footer: t('defaults.welcomeFooter'), form: { title: t('defaults.formTitle'), description_label: t('defaults.descriptionLabel'), description_placeholder: t('defaults.descriptionPlaceholder'), links_label: t('defaults.linksLabel'), links_placeholder: t('defaults.linksPlaceholder'), extra_label: t('defaults.extraLabel'), extra_placeholder: t('defaults.extraPlaceholder'), details_title: t('defaults.detailsTitle'), custom_fields: [] }, message_overrides: { welcome_title: '', welcome_message: '', close_title: t('defaults.closeTitle'), close_message: t('defaults.closeMessage'), reopen_message: t('defaults.reopenMessage'), delete_warning: t('defaults.deleteWarning'), transcript_message: t('defaults.transcriptMessage') }, options: [{ id: `new-${Date.now()}`, label: t('defaults.title'), emoji: '{wy:ticket}', category_id: null, support_role_id: null, transcript_channel_id: null, welcome_title: t('defaults.title'), welcome_message: t('defaults.welcomeMessage'), welcome_image_mode: 'none', welcome_image_url: null }] };
   }
 
   async function savePanel() {
@@ -2724,7 +2746,7 @@ function TicketsPanel({ guildId, meta }) {
   }
   function addOption() {
     if ((editing.options || []).length >= MAX_TICKET_TYPES) return toast.error(t('errors.maxTypes', { max: MAX_TICKET_TYPES }));
-    setEditing((p) => ({ ...p, options: [...p.options, { id: `new-${Date.now()}`, label: t('defaults.ticketN', { n: p.options.length + 1 }), emoji: '🎫', category_id: null, support_role_id: null, transcript_channel_id: null, welcome_title: p.title || t('defaults.title'), welcome_message: p.welcome_message || t('defaults.welcomeMessage'), welcome_image_mode: 'none', welcome_image_url: null }] }));
+    setEditing((p) => ({ ...p, options: [...p.options, { id: `new-${Date.now()}`, label: t('defaults.ticketN', { n: p.options.length + 1 }), emoji: '{wy:ticket}', category_id: null, support_role_id: null, transcript_channel_id: null, welcome_title: p.title || t('defaults.title'), welcome_message: p.welcome_message || t('defaults.welcomeMessage'), welcome_image_mode: 'none', welcome_image_url: null }] }));
   }
 
   if (!data) return <Skeleton />;
@@ -2783,7 +2805,7 @@ function TicketsPanel({ guildId, meta }) {
               imageAsThumbnail={editing.panel_image_position==='thumbnail'}
               footer={editing.footer_text||''}
               select={(editing.options||[]).length > 1 ? (editing.select_placeholder||'Choose a ticket type…') : null}
-              buttons={(editing.options||[]).length > 1 ? [] : [{ label: editing.button_label||'Open ticket', emoji: /^<a?:/.test(String(editing.button_emoji||'')) ? null : (editing.button_emoji||'🎫'), style: ({1:'primary',2:'secondary',3:'success',4:'danger'})[editing.button_style||1] || 'primary' }]}
+              buttons={(editing.options||[]).length > 1 ? [] : [{ label: editing.button_label||'Open ticket', emoji: /^<a?:/.test(String(editing.button_emoji||'')) ? null : (editing.button_emoji||'{wy:ticket}'), style: ({1:'primary',2:'secondary',3:'success',4:'danger'})[editing.button_style||1] || 'primary' }]}
             />
           </DiscordMessage>
           <Separator className="my-4"/>
@@ -2816,7 +2838,7 @@ function TicketsPanel({ guildId, meta }) {
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3"><div><div className="font-semibold flex items-center gap-2">{p.title}<Badge variant="secondary">{Number(p.version || 1) >= 2 ? t('v2.newVersion') : t('v2.legacy')}</Badge></div><div className="text-xs text-muted-foreground mt-1">{channelName(meta, p.channel_id) || t('unknown')} · {t('ticketTypeCount', { count: (p.options || []).length, plural: (p.options || []).length === 1 ? '' : 's' })}</div></div><div className="flex gap-1"><Button size="sm" variant="outline" onClick={() => { setWizardStep(1); setEditing({ ...p, transcript_default_channel_id: panelDefaultTranscriptId(p), form: { ...(p.form || {}) } }); }}>{t('edit')}</Button><Button size="icon" variant="ghost" onClick={() => deletePanel(p._id)}><Trash2 className="w-4 h-4 text-destructive" /></Button></div></div>
             <p className="text-sm text-muted-foreground whitespace-pre-wrap">{p.description}</p>
             <div className="text-xs text-muted-foreground">{t('support')}: {roleName(meta, p.support_role_id) || roleName(meta, p.options?.[0]?.support_role_id) || t('none')} · {t('transcriptChannel')}: {channelName(meta, panelDefaultTranscriptId(p)) || ((p.options || []).some((o) => o.transcript_channel_id) ? t('transcriptPerType') : t('serverModLogFallback'))}</div>
-            <div className="flex flex-wrap gap-2">{(p.options || []).map((o) => <Badge key={o.id} variant="secondary">{o.emoji || '🎫'} {o.label}</Badge>)}</div>
+            <div className="flex flex-wrap gap-2">{(p.options || []).map((o) => <Badge key={o.id} variant="secondary"><IconText text={o.emoji || '{wy:ticket}'} size={14} /> {o.label}</Badge>)}</div>
           </div>)}
         </div>}
       </Card>
@@ -2830,7 +2852,7 @@ function TicketsPanel({ guildId, meta }) {
       </Card>
       <Card className="p-6 bg-card/60">
         <div className="flex items-center justify-between mb-3"><div className="font-semibold">{t('reviewsCount', { count: data.review_total || 0 })}</div>{data.review_total > 0 && <div className="flex items-center gap-1 text-sm text-muted-foreground"><Star className="w-4 h-4 fill-current text-yellow-500" />{Number(data.review_avg || 0).toFixed(1)} / 5</div>}</div>
-        {!data.reviews?.length ? <Empty title={t('noReviewsTitle')} text={t('noReviewsText')} /> : <div className={`space-y-2 ${data.reviews.length > 20 ? 'max-h-[70vh] overflow-y-auto pr-1' : ''}`}>{data.reviews.map((r) => <div key={r._id} className="rounded-lg border border-border/50 p-3 text-sm"><div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1"><span className="shrink-0">{'⭐'.repeat(r.rating || 0)}</span><span className="text-xs text-muted-foreground">{r.user_name || t('userFallback', { id: r.user_id })} · {r.option_label || t('ticketFallback')}</span></div>{r.comment && <p className="text-muted-foreground mt-1">{r.comment}</p>}</div>)}</div>}
+        {!data.reviews?.length ? <Empty title={t('noReviewsTitle')} text={t('noReviewsText')} /> : <div className={`space-y-2 ${data.reviews.length > 20 ? 'max-h-[70vh] overflow-y-auto pr-1' : ''}`}>{data.reviews.map((r) => <div key={r._id} className="rounded-lg border border-border/50 p-3 text-sm"><div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1"><span className="shrink-0"><IconText text={'{wy:star}'.repeat(r.rating || 0)} size={14} /></span><span className="text-xs text-muted-foreground">{r.user_name || t('userFallback', { id: r.user_id })} · {r.option_label || t('ticketFallback')}</span></div>{r.comment && <p className="text-muted-foreground mt-1">{r.comment}</p>}</div>)}</div>}
       </Card>
     </div>
   );
@@ -3107,7 +3129,7 @@ function ReactionRolesPanel({ guildId, meta }) {
           <div className="mt-3">
             <div className="mb-1.5 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{t('previewReactions')}</div>
             <div className="flex flex-wrap gap-1.5">
-              {pairs.filter((p) => p.emoji && p.role_id).map((p, i) => <span key={i} className="inline-flex h-7 min-w-[2.25rem] items-center justify-center rounded-lg border border-[#5865f2]/60 bg-[#5865f2]/20 px-2 text-sm">{p.emoji}</span>)}
+              {pairs.filter((p) => p.emoji && p.role_id).map((p, i) => <span key={i} className="inline-flex h-7 min-w-[2.25rem] items-center justify-center rounded-lg border border-[#5865f2]/60 bg-[#5865f2]/20 px-2 text-sm"><IconText text={p.emoji} size={18} /></span>)}
             </div>
           </div>
         ) : null}
@@ -3777,7 +3799,7 @@ function GiveawaysPanel({ guildId, meta }) {
             {items.map((g) => (
               <div key={g._id} className="rounded-lg border border-border/50 p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="min-w-0">
-                  <div className="text-sm font-medium">🎁 {g.prize || t('prizeFallback')}</div>
+                  <div className="text-sm font-medium"><Icon file="giveaway" size={16} /> {g.prize || t('prizeFallback')}</div>
                   <div className="text-xs text-muted-foreground mt-1">
                     {t('winnersColon')} {g.winners_count || 1} · {t('channelColon')} {channelName(meta, g.channel_id) || t('unknownChannel')} · {g.ended ? t('statusEnded') : t('statusActive')}
                     {!g.ended ? ` · ${t('joinedCount', { count: g.participant_count ?? 0 })}` : ''}
@@ -4472,8 +4494,8 @@ function LevelsPanel({ guildId, meta }) {
       setSavedCardSize(settings.level_card_size || 'compact');
     }
   }, [settings, savedFormat, savedCardSize]);
-  if (!data || !settings) return <Skeleton />;
-  const leaderboard = Array.isArray(data.leaderboard) ? data.leaderboard : [];
+  if (!settings) return <Skeleton />;
+  const leaderboard = Array.isArray(data?.leaderboard) ? data.leaderboard : [];
 
   const levelEnabled = true;
   const storedFormat = settings.level_message_format || 'legacy';
@@ -4502,7 +4524,7 @@ function LevelsPanel({ guildId, meta }) {
     .replaceAll('{user.name}', 'Member')
     .replaceAll('{level}', '12')
     .replaceAll('{guild.name}', meta.guild.name || 'Your Server');
-  const levelPreviewText = replacePreview(settings.level_message || '🎉 {user.mention} reached **level {level}**!');
+  const levelPreviewText = replacePreview(settings.level_message || '{wy:giveaway} {user.mention} reached **level {level}**!');
   const setFormat = (format) => setSettings({ ...settings, level_message_format: format });
   const savePayload = {
     level_channel_id: settings.level_channel_id,
@@ -4543,7 +4565,7 @@ function LevelsPanel({ guildId, meta }) {
                 ))}
               </div>
             </div>
-            <div><Label>{t('levelUpMessage')}</Label><Textarea rows={3} value={settings.level_message || ''} onChange={(e) => setSettings({ ...settings, level_message: e.target.value })} placeholder="🎉 {user.mention} reached **level {level}**!" disabled={!levelEnabled} /></div>
+            <div><Label>{t('levelUpMessage')}</Label><Textarea rows={3} value={settings.level_message || ''} onChange={(e) => setSettings({ ...settings, level_message: e.target.value })} placeholder="{user.mention} reached **level {level}**!" disabled={!levelEnabled} /></div>
             <div><Label>{tc('variablesLabel')}</Label><div className="flex flex-wrap gap-2 mt-2">{['{user.name}', '{user.mention}', '{user}', '{level}', '{guild.name}'].map((v) => (<button key={v} type="button" disabled={!levelEnabled} onClick={() => setSettings({ ...settings, level_message: `${settings.level_message || ''}${settings.level_message ? ' ' : ''}${v}` })} className="rounded-full border border-border bg-secondary/50 px-2.5 py-1 text-xs hover:bg-secondary transition disabled:opacity-50">{v}</button>))}</div></div>
             <div><div className="flex items-center gap-1.5 mb-1"><Label className="mb-0">{t('blockedChannels')}</Label><InfoHint>{t('blockedChannelsHint')}</InfoHint></div><ChannelPickerList value={settings.level_ignored_channel_ids} onChange={(v) => setSettings({ ...settings, level_ignored_channel_ids: v })} channels={meta.channels} disabled={!levelEnabled} addLabel={t('noChannelsBlocked')} /></div>
             <div><div className="flex items-center gap-1.5 mb-1"><Label className="mb-0">{t('boostedChannels')}</Label><InfoHint>{t('boostedChannelsHint')}</InfoHint></div><ChannelMultiplierList value={settings.level_channel_multipliers} onChange={(v) => setSettings({ ...settings, level_channel_multipliers: v })} channels={meta.channels} disabled={!levelEnabled} addLabel={t('addBoostedChannel')} /></div>
@@ -4607,7 +4629,7 @@ function LevelsPanel({ guildId, meta }) {
           <SaveBar saving={saving} dirty={dirty} onDiscard={discard} onSave={async () => { const issue = levelRulesIssue(settings, meta.roles); if (issue) { toast.error(t(issue)); return; } const ok = await save(savePayload); if (ok) { setSavedFormat(messageFormat); setSavedCardSize(cardSize); } }} />
           <Card className="p-6 bg-card/60">
             <div className="font-semibold mb-3">{t('leaderboardTitle')}</div>
-            {leaderboard.length === 0 ? <Empty text={t('noXpData')} /> : <div className="space-y-1">{leaderboard.map((u, i) => <div key={u._id} className="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-secondary/30"><div className="text-sm"><span className="text-muted-foreground w-8 inline-block">#{i + 1}</span> {u.user_name || t('unknownUser')}</div><div className="text-sm"><span className="text-primary font-semibold">{t('levelAbbrev')} {u.level}</span> · {u.xp} XP</div></div>)}</div>}
+            {!data ? <div className="h-40 animate-pulse rounded-xl bg-secondary/30" /> : leaderboard.length === 0 ? <Empty text={t('noXpData')} /> : <div className="space-y-1">{leaderboard.map((u, i) => <div key={u._id} className="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-secondary/30"><div className="text-sm"><span className="text-muted-foreground w-8 inline-block">#{i + 1}</span> {u.user_name || t('unknownUser')}</div><div className="text-sm"><span className="text-primary font-semibold">{t('levelAbbrev')} {u.level}</span> · {u.xp} XP</div></div>)}</div>}
           </Card>
         </div>
         <div className="space-y-6 xl:sticky xl:top-6">
@@ -4622,7 +4644,7 @@ function LevelsPanel({ guildId, meta }) {
               ) : messageFormat === 'embed' ? (
                 <EmbedPreview
                   accentColor="#57F287"
-                  title="🎉 Level up!"
+                  title="{wy:giveaway} Level up!"
                   description={levelPreviewText}
                   timestamp
                   imageUrl={levelEmbedPreviewImage || null}
@@ -4632,7 +4654,7 @@ function LevelsPanel({ guildId, meta }) {
               ) : (
                 <EmbedPreview
                   accentColor={messageFormat === 'card' ? accentColor : '#57F287'}
-                  title="🎉 Level up!"
+                  title="{wy:giveaway} Level up!"
                   description={levelPreviewText}
                   timestamp
                   buttons={[{ label: 'Leaderboard', style: 'link' }]}
@@ -4815,15 +4837,15 @@ function YoutubeNotificationPreview({ kind, cfg, roleName, channelTitle }) {
   if (cfg.role) lines.push(`@${roleName || 'Role'}`);
   const custom = String(cfg.message || '')
     .replaceAll('{video_title}', ytCleanTitle(videoTitle))
-    .replaceAll('{video_url}', '[▶️ Watch now](<https://youtu.be>)')
+    .replaceAll('{video_url}', '[{wy:next} Watch now](<https://youtu.be>)')
     .replaceAll('{channel_title}', channelTitle)
     .trim();
   if (custom) lines.push(custom);
   if (cfg.format === 'plain') {
     if (!custom) {
       lines.push(isLive
-        ? `🔴 **${channelTitle}** is live now: **${ytCleanTitle(videoTitle)}**`
-        : `📺 **${channelTitle}** uploaded a new video: **${ytCleanTitle(videoTitle)}**`);
+        ? `{wy:offline} **${channelTitle}** is live now: **${ytCleanTitle(videoTitle)}**`
+        : `{wy:video} **${channelTitle}** uploaded a new video: **${ytCleanTitle(videoTitle)}**`);
     }
     lines.push(videoUrl);
     return (
@@ -4834,9 +4856,9 @@ function YoutubeNotificationPreview({ kind, cfg, roleName, channelTitle }) {
     );
   }
   const header = [
-    isLive ? '-# 📺 YouTube  ·  🔴 LIVE now' : '-# 📺 YouTube  ·  🔴 New upload',
-    `## ${isLive ? '🔴' : '🎬'} ${ytCleanTitle(videoTitle)}`,
-    `👤 **${channelTitle}**  ·  🕒 <t:${Math.floor(Date.now() / 1000) - 120}:R>`,
+    isLive ? '-# {wy:video} YouTube  ·  {wy:offline} LIVE now' : '-# {wy:video} YouTube  ·  {wy:offline} New upload',
+    `## ${isLive ? '{wy:offline}' : '{wy:video}'} ${ytCleanTitle(videoTitle)}`,
+    `{wy:member} **${channelTitle}**  ·  {wy:time} <t:${Math.floor(Date.now() / 1000) - 120}:R>`,
   ].join('\n');
   return (
     <DiscordMessage>
@@ -4850,10 +4872,10 @@ function YoutubeNotificationPreview({ kind, cfg, roleName, channelTitle }) {
           {isLive ? <span className="absolute bottom-2 right-2 rounded bg-[#cc0000] px-1.5 py-0.5 text-[11px] font-bold text-white">LIVE</span> : <span className="absolute bottom-2 right-2 rounded bg-black/80 px-1.5 py-0.5 text-[11px] font-medium text-white">12:48</span>}
         </div>
         <V2Separator />
-        <DiscordText>-# 🔔 Wody · YouTube Notifications</DiscordText>
+        <DiscordText>{'-# {wy:notification} Wody · YouTube Notifications'}</DiscordText>
         <DiscordButtons buttons={[
-          { label: isLive ? 'Watch live' : 'Watch on YouTube', emoji: '▶️', style: 'link' },
-          { label: 'Open channel', emoji: '📺', style: 'link' },
+          { label: isLive ? 'Watch live' : 'Watch on YouTube', emoji: '{wy:next}', style: 'link' },
+          { label: 'Open channel', emoji: '{wy:video}', style: 'link' },
         ]} />
       </V2Container>
     </DiscordMessage>
@@ -5183,7 +5205,7 @@ function TempVoicePanel({ guildId, meta }) {
         </FieldRow>
         <div>
           <div className="flex items-center gap-1.5 mb-1"><Label className="mb-0">{t('nameTemplateLabel')}</Label><InfoHint>{t('nameTemplateHint')}</InfoHint></div>
-          <Input value={data.temp_voice_name_template || ''} onChange={(e) => setData({ ...data, temp_voice_name_template: e.target.value || null })} placeholder="🔊 {user.name}'s channel" maxLength={100} />
+          <Input value={data.temp_voice_name_template || ''} onChange={(e) => setData({ ...data, temp_voice_name_template: e.target.value || null })} placeholder="{user.name}'s channel" maxLength={100} />
         </div>
         <div>
           <div className="flex items-center gap-1.5 mb-1"><Label className="mb-0">{t('defaultLimitLabel')}</Label><InfoHint>{t('defaultLimitHint')}</InfoHint></div>

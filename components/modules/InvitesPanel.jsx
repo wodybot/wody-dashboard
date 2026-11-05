@@ -15,6 +15,7 @@ import {
   ConfirmDialog, Field, IssueBanner, LoadingOrError, ModuleTabs, NativeSelect, Pager, Section, SaveFooter, SwitchRow, VariableChips,
   avatarSrc, callApi, formatDate, useApi, useDiagnose, useDraft, useErrorText, useSave,
 } from '@/components/module-kit';
+import IconText, { Icon } from '@/components/icon-text';
 
 const NOTIFY_VARS = ['user.mention', 'user.name', 'user.id', 'guild.name', 'member_count', 'inviter', 'inviter.mention', 'inviter.name', 'inviter.id', 'inviter.invites', 'invite.code'];
 const WELCOME_VARS = ['inviter', 'inviter.mention', 'inviter.name', 'inviter.id', 'inviter.invites', 'invite.code'];
@@ -78,7 +79,7 @@ function Stat({ label, value, hint, text }) {
   return (
     <Card className="bg-card/60 p-4">
       <div className="text-xs text-muted-foreground">{label}</div>
-      <div className="mt-1 text-2xl font-semibold tabular-nums">{text ?? Number(value || 0).toLocaleString()}</div>
+      <div className="mt-1 text-2xl font-semibold tabular-nums">{text != null ? <IconText text={text} size={28} /> : Number(value || 0).toLocaleString()}</div>
       {hint ? <div className="mt-1 text-[11px] leading-snug text-muted-foreground">{hint}</div> : null}
     </Card>
   );
@@ -128,7 +129,7 @@ function OverviewTab({ guildId, data, diagnose, reload, t }) {
         <Stat label={t('stats.left')} value={tot.left} />
         <Stat label={t('stats.joins30')} value={tot.joins_30d} />
         <Stat label={t('stats.codes')} value={tot.codes} />
-        <Stat label={t('stats.baseline')} text={data.baseline ? '✓' : '✗'} hint={data.baseline ? t('stats.baselineYes') : t('stats.baselineNo')} />
+        <Stat label={t('stats.baseline')} text={data.baseline ? '{wy:check}' : '{wy:cross}'} hint={data.baseline ? t('stats.baselineYes') : t('stats.baselineNo')} />
       </div>
 
       {reasonRows.length ? (

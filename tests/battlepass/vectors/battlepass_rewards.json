@@ -1,0 +1,204 @@
+{
+  "now": "2026-11-05T12:00:00+00:00",
+  "rewards": [
+    {
+      "name": "locked below the level",
+      "reward": {
+        "id": "r",
+        "level": 5
+      },
+      "status": "active",
+      "level": 4,
+      "xp": 0,
+      "claimed": false,
+      "state": "locked",
+      "claim": [
+        false,
+        "not_unlocked"
+      ]
+    },
+    {
+      "name": "available at the level",
+      "reward": {
+        "id": "r",
+        "level": 5
+      },
+      "status": "active",
+      "level": 5,
+      "xp": 0,
+      "claimed": false,
+      "state": "available",
+      "claim": [
+        true,
+        null
+      ]
+    },
+    {
+      "name": "required xp is enforced too",
+      "reward": {
+        "id": "r",
+        "level": 1,
+        "required_xp": 500
+      },
+      "status": "active",
+      "level": 3,
+      "xp": 400,
+      "claimed": false,
+      "state": "locked",
+      "claim": [
+        false,
+        "not_unlocked"
+      ]
+    },
+    {
+      "name": "claimed stays claimed",
+      "reward": {
+        "id": "r",
+        "level": 1
+      },
+      "status": "active",
+      "level": 9,
+      "xp": 900,
+      "claimed": true,
+      "state": "claimed",
+      "claim": [
+        false,
+        "already_claimed"
+      ]
+    },
+    {
+      "name": "paused season still allows claims by default",
+      "reward": {
+        "id": "r",
+        "level": 1
+      },
+      "status": "paused",
+      "level": 2,
+      "xp": 200,
+      "claimed": false,
+      "state": "available",
+      "claim": [
+        true,
+        null
+      ]
+    },
+    {
+      "name": "paused season blocks claims when configured",
+      "reward": {
+        "id": "r",
+        "level": 1
+      },
+      "status": "paused",
+      "level": 2,
+      "xp": 200,
+      "claimed": false,
+      "protection": {
+        "claim_while_paused": false
+      },
+      "state": "unlocked",
+      "claim": [
+        false,
+        "season_closed"
+      ]
+    },
+    {
+      "name": "completed season keeps claims by default",
+      "reward": {
+        "id": "r",
+        "level": 1
+      },
+      "status": "completed",
+      "level": 2,
+      "xp": 200,
+      "claimed": false,
+      "state": "available",
+      "claim": [
+        true,
+        null
+      ]
+    },
+    {
+      "name": "completed season expires when configured",
+      "reward": {
+        "id": "r",
+        "level": 1
+      },
+      "status": "completed",
+      "level": 2,
+      "xp": 200,
+      "claimed": false,
+      "protection": {
+        "claim_after_end": false
+      },
+      "state": "expired",
+      "claim": [
+        false,
+        "expired"
+      ]
+    },
+    {
+      "name": "archived is closed",
+      "reward": {
+        "id": "r",
+        "level": 1
+      },
+      "status": "archived",
+      "level": 2,
+      "xp": 200,
+      "claimed": false,
+      "state": "expired",
+      "claim": [
+        false,
+        "expired"
+      ]
+    },
+    {
+      "name": "scheduled season has nothing to claim",
+      "reward": {
+        "id": "r",
+        "level": 1
+      },
+      "status": "scheduled",
+      "level": 9,
+      "xp": 900,
+      "claimed": false,
+      "state": "locked",
+      "claim": [
+        false,
+        "season_not_started"
+      ]
+    },
+    {
+      "name": "unknown reward",
+      "reward": null,
+      "status": "active",
+      "level": 9,
+      "xp": 900,
+      "claimed": false,
+      "state": null,
+      "claim": [
+        false,
+        "unknown_reward"
+      ]
+    },
+    {
+      "name": "availability window passed",
+      "reward": {
+        "id": "r",
+        "level": 1,
+        "availability": {
+          "until": "2026-11-01T00:00:00+00:00"
+        }
+      },
+      "status": "active",
+      "level": 2,
+      "xp": 200,
+      "claimed": false,
+      "state": "expired",
+      "claim": [
+        false,
+        "expired"
+      ]
+    }
+  ]
+}

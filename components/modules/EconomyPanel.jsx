@@ -15,6 +15,7 @@ import {
   ConfirmDialog, Field, LoadingOrError, ModuleTabs, NativeSelect, PremiumLock, QuickSetup, RecommendedBar, Section, SaveFooter,
   SwitchRow, Pager, callApi, formatDate, useApi, useDraft, useErrorText, useSave,
 } from '@/components/module-kit';
+import IconText, { Icon } from '@/components/icon-text';
 
 const RATE_KEYS = ['bank_interest_rate', 'savings_interest_rate', 'transfer_tax', 'market_tax', 'money_multiplier', 'xp_multiplier', 'job_reward_multiplier'];
 const num = (v) => (v === '' || v === null || v === undefined ? '' : Number(v));
@@ -226,7 +227,7 @@ function CatalogGrid({ group, catalog, s, setIn, extra, t, errors }) {
         const cur = s[group]?.[key] || { enabled: true, [extra]: 1 };
         return (
           <Card key={key} className="flex items-center gap-3 p-3">
-            <span className="text-2xl" aria-hidden>{def.emoji}</span>
+            <span className="text-2xl" aria-hidden><IconText text={def.emoji} size={28} /></span>
             <div className="min-w-0 flex-1">
               <div className="truncate text-sm font-medium">{def.name}</div>
               <div className="mt-1 flex items-center gap-2">
@@ -247,7 +248,7 @@ function RoleMulti({ value, onChange, roles, max, t }) {
 }
 
 
-const BLANK_ITEM = { name: '', description: '', emoji: '📦', image: '', category: 'custom', rarity: 'common', currency: 'coins', price: 100, stock: null, max_purchase: null, restock_amount: null, restock_hours: null, cooldown: 0, discount: 0, enabled: true, featured: false, available_from: null, available_until: null, sale_ends_at: null };
+const BLANK_ITEM = { name: '', description: '', emoji: '{wy:inventory}', image: '', category: 'custom', rarity: 'common', currency: 'coins', price: 100, stock: null, max_purchase: null, restock_amount: null, restock_hours: null, cooldown: 0, discount: 0, enabled: true, featured: false, available_from: null, available_until: null, sale_ends_at: null };
 const toLocalInput = (v) => { if (!v) return ''; const d = new Date(v); if (Number.isNaN(d.getTime())) return ''; const p = (n) => String(n).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`; };
 
 function ShopTab({ guildId, reference, settings }) {
@@ -275,7 +276,7 @@ function ShopTab({ guildId, reference, settings }) {
     <div>
       <div className="mb-4 flex flex-wrap items-center gap-2">
         <NativeSelect value={filter} onChange={setFilter} label={t('shop.category')} className="max-w-[220px]"
-          options={[{ value: 'all', label: t('shop.allCategories') }, ...reference.categories.map(([k, name, emoji]) => ({ value: k, label: `${emoji} ${name}` }))]} />
+          options={[{ value: 'all', label: t('shop.allCategories') }, ...reference.categories.map(([k, name, emoji]) => ({ value: k, label: name }))]} />
         <div className="flex-1" />
         <Button size="sm" className="gap-1.5" onClick={() => setEditing({ ...BLANK_ITEM, isNew: true })}><Plus className="h-4 w-4" />{t('shop.add')}</Button>
       </div>
@@ -284,7 +285,7 @@ function ShopTab({ guildId, reference, settings }) {
         <div className="grid gap-3 md:grid-cols-2">
           {items.map((i) => (
             <Card key={i.item_id} className={`flex items-center gap-3 p-3 ${i.enabled === false ? 'opacity-60' : ''}`}>
-              <span className="text-2xl" aria-hidden>{i.emoji}</span>
+              <span className="text-2xl" aria-hidden><IconText text={i.emoji} size={28} /></span>
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2"><span className="truncate text-sm font-medium">{i.name}</span><Badge variant="secondary" className="text-[10px]">{i.rarity}</Badge>{i.featured ? <Badge className="text-[10px]">{t('shop.featured')}</Badge> : null}</div>
                 <p className="text-xs text-muted-foreground">{Number(i.price).toLocaleString()} {i.currency === 'gems' ? t('shop.gems') : settings.currency_name}{i.stock !== null && i.stock !== undefined ? ` · ${t('shop.stock', { count: i.stock })}` : ''}</p>
@@ -338,7 +339,7 @@ function ItemDialog({ guildId, item, reference, settings, onClose, onSaved }) {
           <Field label={t('shop.name')} hint={t('shopHints.name')} level="required" errors={errors} field="name"><Input maxLength={60} value={it.name} onChange={(e) => set({ name: e.target.value })} /></Field>
           <Field label={t('shop.emoji')} hint={t('shopHints.emoji')} level="optional" errors={errors} field="emoji"><Input maxLength={40} value={it.emoji} onChange={(e) => set({ emoji: e.target.value })} /></Field>
           <div className="sm:col-span-2"><Field label={t('shop.description')} hint={t('shopHints.description')} level="optional" errors={errors} field="description"><Textarea rows={2} maxLength={300} value={it.description} onChange={(e) => set({ description: e.target.value })} /></Field></div>
-          <Field label={t('shop.category')} hint={t('shopHints.category')} level="required" errors={errors} field="category"><NativeSelect value={it.category} onChange={(v) => set({ category: v })} label={t('shop.category')} options={reference.categories.map(([k, name, emoji]) => ({ value: k, label: `${emoji} ${name}` }))} /></Field>
+          <Field label={t('shop.category')} hint={t('shopHints.category')} level="required" errors={errors} field="category"><NativeSelect value={it.category} onChange={(v) => set({ category: v })} label={t('shop.category')} options={reference.categories.map(([k, name, emoji]) => ({ value: k, label: name }))} /></Field>
           <Field label={t('shop.rarity')} hint={t('shopHints.rarity')} level="optional" errors={errors} field="rarity"><NativeSelect value={it.rarity} onChange={(v) => set({ rarity: v })} label={t('shop.rarity')} options={reference.rarities.map((r) => ({ value: r, label: r }))} /></Field>
           <Field label={t('shop.currency')} hint={t('shopHints.currency')} level="required" errors={errors} field="currency"><NativeSelect value={it.currency} onChange={(v) => set({ currency: v })} label={t('shop.currency')} options={[{ value: 'coins', label: settings.currency_name }, { value: 'gems', label: t('shop.gems') }]} /></Field>
           <Field label={t('shop.price')} hint={t('shopHints.price')} level="required" errors={errors} field="price"><Input type="number" min={0} value={it.price} onChange={(e) => set({ price: e.target.value })} /></Field>
@@ -358,7 +359,7 @@ function ItemDialog({ guildId, item, reference, settings, onClose, onSaved }) {
           </div>
           <Card className="border-dashed bg-secondary/10 p-3 sm:col-span-2" aria-label={t('shop.preview')}>
             <div className="mb-1 text-[11px] uppercase tracking-wide text-muted-foreground">{t('shop.preview')}</div>
-            <div className="flex items-center gap-3"><span className="text-3xl">{it.emoji}</span><div><div className="font-semibold">{it.name || t('shop.name')}</div><div className="text-xs text-muted-foreground">{it.description}</div><div className="mt-1 text-sm">{Number(it.discount) > 0 ? <><s className="text-muted-foreground">{Number(it.price || 0).toLocaleString()}</s> </> : null}<b>{finalPrice.toLocaleString()}</b> {unit}</div></div></div>
+            <div className="flex items-center gap-3"><span className="text-3xl"><IconText text={it.emoji} size={36} /></span><div><div className="font-semibold">{it.name || t('shop.name')}</div><div className="text-xs text-muted-foreground">{it.description}</div><div className="mt-1 text-sm">{Number(it.discount) > 0 ? <><s className="text-muted-foreground">{Number(it.price || 0).toLocaleString()}</s> </> : null}<b>{finalPrice.toLocaleString()}</b> {unit}</div></div></div>
           </Card>
         </div>
         <DialogFooter className="gap-2"><Button variant="outline" onClick={onClose}>{tk('cancel')}</Button><Button onClick={submit} disabled={saving} className="gap-2">{saving ? <Loader2 className="h-4 w-4 animate-spin" /> : null}{tk('save')}</Button></DialogFooter>
@@ -396,7 +397,7 @@ function EventsTab({ guildId, reference }) {
       <Section title={t('events.startTitle')} description={t('events.startText')}>
         <div className="grid gap-4 sm:grid-cols-4">
           <Field label={t('events.type')} hint={t('events.typeHint')} level="required">
-            <NativeSelect value={type} onChange={setType} label={t('events.type')} options={Object.entries(reference.events).map(([k, e]) => ({ value: k, label: `${e.emoji} ${e.name}` }))} />
+            <NativeSelect value={type} onChange={setType} label={t('events.type')} options={Object.entries(reference.events).map(([k, e]) => ({ value: k, label: e.name }))} />
           </Field>
           <Field label={t('events.hours')} hint={t('events.hoursHint')} level="required"><Input type="number" min={0.25} max={720} step="0.25" value={hours} onChange={(e) => setHours(e.target.value)} /></Field>
           <Field label={t('events.multiplier')} hint={t('events.multiplierHint')} level="optional"><Input type="number" min={1} max={10} step="0.5" value={multiplier} onChange={(e) => setMultiplier(e.target.value)} /></Field>
@@ -411,7 +412,7 @@ function EventsTab({ guildId, reference }) {
           <ul className="divide-y divide-border/50">
             {(api.data?.events || []).map((e) => (
               <li key={e._id} className="flex flex-wrap items-center gap-3 py-2 text-sm">
-                <span>{reference.events[e.type]?.emoji}</span>
+                <span><IconText text={reference.events[e.type]?.emoji} size={16} /></span>
                 <span className="flex-1">{reference.events[e.type]?.name || e.type} <span className="text-xs text-muted-foreground">x{e.multiplier} · {formatDate(e.starts_at, locale)} / {formatDate(e.ends_at, locale)}</span></span>
                 {e.running ? <><Badge className="bg-emerald-600/80">{t('events.running')}</Badge><Button size="sm" variant="outline" onClick={() => stop(e._id)}>{t('events.stop')}</Button></> : <Badge variant="outline">{t('events.ended')}</Badge>}
               </li>

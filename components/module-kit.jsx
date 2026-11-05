@@ -1,4 +1,5 @@
 'use client';
+import FloatingBar from '@/components/floating-bar';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
@@ -16,6 +17,7 @@ import {
 import { InfoHint, EmbedPreview, CardPreview, Skeleton, DiscordMessage, DiscordText, DiscordButtons, V2Container, PreviewImage } from '@/components/dashboard-kit';
 import { discordCdnUrl } from '@/lib/utils';
 import { useBotStatus } from '@/components/bot-offline';
+import IconText, { Icon } from '@/components/icon-text';
 
 
 export async function callApi(guildId, path, { method = 'GET', body } = {}) {
@@ -242,7 +244,7 @@ export function SaveFooter({ dirty, saving, onSave, onDiscard, errors = [], disa
   const { errorText } = useErrorText();
   if (!dirty && !errors.length) return null;
   return (
-    <div className="sticky bottom-4 z-30 mt-6 flex justify-center">
+    <FloatingBar>
       <div className="flex w-full max-w-3xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#e6cd8c]/40 bg-background/95 px-4 py-2.5 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.85)] backdrop-blur-md">
         <div className="min-w-0 text-sm">
           {errors.length ? (
@@ -262,7 +264,7 @@ export function SaveFooter({ dirty, saving, onSave, onDiscard, errors = [], disa
           </Button>
         </div>
       </div>
-    </div>
+    </FloatingBar>
   );
 }
 
@@ -453,7 +455,7 @@ export function DiscordMessagePreview({
         {sampleNote ? <Badge variant="secondary" className="text-[10px]">{t('preview.sample')}</Badge> : null}
       </div>
       <DiscordMessage>
-        {banner ? <DiscordText>{`-# 🧪 ${banner}`}</DiscordText> : null}
+        {banner ? <DiscordText>{`-# {wy:eco_testtube} ${banner}`}</DiscordText> : null}
         {mention ? <DiscordText>{mention}</DiscordText> : null}
         {useEmbed ? (
           <EmbedPreview
@@ -498,7 +500,7 @@ export function PremiumLock({ title, text, onGetPremium }) {
   return (
     <Card className="mx-auto max-w-xl border-[#e6cd8c]/40 bg-gradient-to-br from-[#7c3010]/20 to-transparent p-8 text-center">
       <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#e6cd8c]/20 text-[#f2c091]"><Crown className="h-7 w-7" /></div>
-      <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[#e6cd8c]">🔒 {t('lock.badge')}</div>
+      <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[#e6cd8c]"><Icon file="lock" size={14} /> {t('lock.badge')}</div>
       <h2 className="mt-2 text-2xl font-bold">{title}</h2>
       <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">{text}</p>
       <p className="mx-auto mt-3 max-w-md text-xs text-muted-foreground">{t('lock.availableWith')}</p>
@@ -508,7 +510,7 @@ export function PremiumLock({ title, text, onGetPremium }) {
 }
 
 
-export function ConfirmDialog({ open, onOpenChange, title, description, confirmLabel, onConfirm, typed, destructive = true, busy, confirmDisabled = false, children = null }) {
+export function ConfirmDialog({ icon, open, onOpenChange, title, description, confirmLabel, onConfirm, typed, destructive = true, busy, confirmDisabled = false, children = null }) {
   const t = useTranslations('guildSettings.kit');
   const [value, setValue] = useState('');
   useEffect(() => { if (!open) setValue(''); }, [open]);
@@ -517,7 +519,7 @@ export function ConfirmDialog({ open, onOpenChange, title, description, confirmL
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle className="flex items-center gap-2">{destructive ? <AlertTriangle className="h-5 w-5 text-amber-400" /> : <Info className="h-5 w-5" />}{title}</AlertDialogTitle>
+          <AlertDialogTitle className="flex items-center gap-2">{icon ?? (destructive ? <AlertTriangle className="h-5 w-5 text-amber-400" /> : <Info className="h-5 w-5" />)}{title}</AlertDialogTitle>
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         {typed ? (

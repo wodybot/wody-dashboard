@@ -11,10 +11,10 @@ import { TrioSection } from '@/components/trio-section';
 import { isVisibleModule } from '@/lib/hidden-modules';
 import { HeroActions } from '@/components/hero-actions';
 import { ModuleFlipCard } from '@/components/module-flip-card';
-import { COUNTER_INVITE_URL, COMMUNITY_INVITE } from '@/lib/content';
+import { COMMUNITY_INVITE } from '@/lib/content';
 import {
   Zap, Shield, Lock, Sparkles, Package, MessageCircle, Users,
-  Bot, Crown, ArrowRight, Check, Star, Hash, Trophy, Clock, Gift,
+  Crown, ArrowRight, Star, Trophy, Clock, Gift,
 } from 'lucide-react';
 import { BrandText } from '@/components/brand-text';
 
@@ -208,45 +208,6 @@ export default async function Home({ params }) {
                 </div>
               );
             })}
-          </div>
-        </section>
-
-        <section className="max-w-7xl mx-auto px-6 py-16">
-          <div className="rounded-3xl border border-border bg-gradient-to-br from-[#4a1e0a]/40 via-card/40 to-transparent p-6 sm:p-8 md:p-12 relative overflow-hidden">
-            <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-[#c46a2d]/20 blur-3xl pointer-events-none" />
-            <div className="grid md:grid-cols-2 gap-8 items-center relative">
-              <div className="text-center md:text-left">
-                <div className="inline-flex items-center gap-1.5 rounded-full border border-[#e6cd8c]/40 bg-[#e6cd8c]/10 text-[#f3e1b0] px-3 py-1 text-xs mb-4">
-                  <Hash className="w-3 h-3" /> {t('counter.badge')}
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-2">{t('counter.title')}</h2>
-                <p className="text-lg text-muted-foreground mb-4">{t('counter.subtitle')}</p>
-                <p className="text-sm text-muted-foreground mb-6">{t('counter.body')}</p>
-                <ul className="space-y-2 mb-6">
-                  {t.raw('counter.bullets').map((b, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <Check className="w-4 h-4 text-[#e08a4e] shrink-0 mt-0.5" />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a href={COUNTER_INVITE_URL} target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" className="gradient-primary">
-                    <Bot className="w-4 h-4 mr-2" /> {t('counter.cta')}
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </a>
-              </div>
-              <div className="flex items-center justify-center">
-                <div className="grid grid-cols-3 gap-3 max-w-xs">
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
-                    <div key={n} className={`aspect-square rounded-xl border border-border flex items-center justify-center font-bold text-2xl ${n === 5 ? 'bg-[#7c3010]/40 text-[#f2c091] border-[#a04820]' : 'bg-card/30 text-muted-foreground'}`}>
-                      {n}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 

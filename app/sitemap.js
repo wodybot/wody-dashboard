@@ -66,6 +66,19 @@ async function getPublishedCommunities() {
   }
 }
 
+// Season pages built in the Battle Pass Page Studio: only published Global seasons whose Owner did not switch indexing off.
+async function getPublishedSeasonPages() {
+  try {
+    const db = await getDb();
+    const rows = await db.collection('bp_pages')
+      .find({ status: 'published', scope: 'global', 'published.seo.noindex': { $ne: true } })
+      .project({ slug: 1, published_at: 1, updated_at: 1 }).limit(500).toArray();
+    return rows.map((r) => ({ path: `/battlepass/${r.slug}`, lastModified: new Date(r.published_at || r.updated_at || Date.now()) }));
+  } catch {
+    return [];
+  }
+}
+
 async function getPublishedRequests() {
   try {
     const db = await getDb();
@@ -84,12 +97,20 @@ export default async function sitemap() {
   const blogPosts = await getPublishedBlogSlugs(lastModified);
   const communities = await getPublishedCommunities();
   const requests = await getPublishedRequests();
+  const seasonPages = await getPublishedSeasonPages();
 
   return [
     ...localizedEntry('/', { lastModified, changeFrequency: 'weekly', priority: 1 }),
     ...localizedEntry('/premium', { lastModified, changeFrequency: 'monthly', priority: 0.9 }),
     ...localizedEntry('/help', { lastModified, changeFrequency: 'monthly', priority: 0.8 }),
     ...localizedEntry('/commands', { lastModified, changeFrequency: 'monthly', priority: 0.8 }),
+    ...localizedEntry('/battlepass', { lastModified, changeFrequency: 'daily', priority: 0.75 }),
+    ...seasonPages.flatMap(({ path, lastModified: pageModified }) => localizedEntry(path, { lastModified: pageModified, changeFrequency: 'daily', priority: 0.7 })),
+    ...localizedEntry('/themes/help', { lastModified, changeFrequency: 'monthly', priority: 0.6 }),
+    ...localizedEntry('/battlepass/help', { lastModified, changeFrequency: 'monthly', priority: 0.7 }),
+    ...localizedEntry('/counting', { lastModified, changeFrequency: 'daily', priority: 0.7 }),
+    ...localizedEntry('/counting/help', { lastModified, changeFrequency: 'monthly', priority: 0.6 }),
+    ...localizedEntry('/statistics/help', { lastModified, changeFrequency: 'monthly', priority: 0.6 }),
     ...localizedEntry('/modules', { lastModified, changeFrequency: 'weekly', priority: 0.85 }),
     ...MODULE_SEO_SLUGS.flatMap((slug) =>
       localizedEntry(`/modules/${slug}`, { lastModified, changeFrequency: 'monthly', priority: 0.75 }, SEO_COPY_LOCALES)

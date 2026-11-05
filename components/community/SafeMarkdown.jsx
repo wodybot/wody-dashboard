@@ -1,12 +1,13 @@
 import { Fragment } from 'react';
 import { safeUrl } from '@/lib/community/validation';
+import IconText from '@/components/icon-text';
 
 function inline(text, key) {
   const out = [];
   const re = /\[([^\]]{1,120})\]\(([^)\s]{1,300})\)|\*\*(.+?)\*\*|\*(.+?)\*/g;
   let last = 0; let m; let i = 0;
   while ((m = re.exec(text))) {
-    if (m.index > last) out.push(text.slice(last, m.index));
+    if (m.index > last) out.push(<IconText key={`${key}-p${out.length}`} text={text.slice(last, m.index)} size={16} />);
     if (m[1] !== undefined) {
       const href = safeUrl(m[2]);
       out.push(href
@@ -16,7 +17,7 @@ function inline(text, key) {
     else out.push(<em key={`${key}-${i++}`}>{m[4]}</em>);
     last = m.index + m[0].length;
   }
-  if (last < text.length) out.push(text.slice(last));
+  if (last < text.length) out.push(<IconText key={`${key}-p${out.length}`} text={text.slice(last)} size={16} />);
   return out;
 }
 

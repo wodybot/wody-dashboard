@@ -1,28 +1,6 @@
 {
  "sources": [
   {
-   "key": "apple_artist",
-   "group": "music",
-   "label": "Apple Music artist",
-   "hint": "Artist link or ID",
-   "example": "https://music.apple.com/us/artist/artist-name/1234567890",
-   "needs": null,
-   "generator": false,
-   "targetOptional": false,
-   "options": {}
-  },
-  {
-   "key": "apple_chart",
-   "group": "music",
-   "label": "Apple Music charts",
-   "hint": "Country code such as us, gb, ro",
-   "example": "us",
-   "needs": null,
-   "generator": false,
-   "targetOptional": true,
-   "options": {}
-  },
-  {
    "key": "apple_podcast",
    "group": "music",
    "label": "Apple Podcasts",
@@ -108,17 +86,12 @@
    "key": "random_song",
    "group": "music",
    "label": "Random song",
-   "hint": "Optional: playlist link or ID, country code",
+   "hint": "Optional: Deezer playlist link or ID",
    "example": "",
    "needs": null,
    "generator": true,
    "targetOptional": true,
-   "options": {
-    "provider": [
-     "deezer",
-     "apple"
-    ]
-   }
+   "options": {}
   }
  ],
  "intervals": [

@@ -40,7 +40,7 @@ function Section({ id, title, children, style }) {
   );
 }
 
-export default function ListingView({ listing, catalog, slots = {}, similar = [], preview = false, optimize = true, fullBleed = false }) {
+export default function ListingView({ listing, catalog, slots = {}, similar = [], preview = false, optimize = true, fullBleed = false, transparentBg = false }) {
   const t = useTranslations('community');
   const locale = useLocale();
   const theme = resolveTheme(listing.theme);
@@ -158,8 +158,8 @@ export default function ListingView({ listing, catalog, slots = {}, similar = []
 
   return (
     <div style={themeVars(listing.theme)} className={`relative isolate overflow-hidden text-white ${fullBleed ? `w-full ${preview ? '' : 'min-h-[calc(100vh-4rem)]'}` : 'rounded-3xl'}`} data-community-profile>
-      <div className="absolute inset-0 -z-10 bg-[color:var(--cm-bg)]" />
-      {listing.background ? <div className="absolute inset-0 -z-10 opacity-30"><CardImage src={listing.background} sizes="100vw" className="object-cover" optimize={optimize} /></div> : null}
+      {transparentBg ? null : <div className="absolute inset-0 -z-10 bg-[color:var(--cm-bg)]" />}
+      {listing.background && !transparentBg ? <div className="absolute inset-0 -z-10 opacity-30"><CardImage src={listing.background} sizes="100vw" className="object-cover" optimize={optimize} /></div> : null}
       <div className={fullBleed ? 'mx-auto w-full max-w-6xl space-y-5 px-3 py-5 sm:px-6 sm:py-8 lg:px-8' : 'mx-auto max-w-5xl space-y-5 p-3 sm:p-6'}>
         {enabled.map((s) => render(s.key))}
         {!preview ? (

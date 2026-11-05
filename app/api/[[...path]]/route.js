@@ -58,6 +58,7 @@ import { getBotWelcomeConfig, saveBotWelcomeConfig } from '@/lib/bot-welcome';
 import { getPromoBannerConfig, parsePromoBannerPatch, savePromoBannerPatch } from '@/lib/promo-banner';
 import { getCountdownBannerConfig, parseCountdownBannerPatch, saveCountdownBannerPatch, withBackgroundSrc } from '@/lib/countdown-banner';
 import { getOgEmbedConfig, parseOgEmbedPatch, saveOgEmbedPatch } from '@/lib/og-embed';
+import { publishedBySlug } from '@/lib/gifstudio/publish';
 import { getCareersRolesConfig, parseCareersRolesPatch, saveCareersRolesPatch } from '@/lib/careers-roles';
 import { slugify, parseBlogPostInput, ensureUniqueSlug, BLOG_COLLECTION, readWithRetry } from '@/lib/blog';
 import { UNLIMITED_LIMIT } from '@/lib/limits';
@@ -83,7 +84,7 @@ const MODULE_TOGGLE_KEYS = [
   'levels', 'suggestions', 'captcha',
   'backups', 'temporary_voice', 'youtube_notify',
   'economy', 'blackjack', 'stream_notifications', 'birthdays', 'invite_tracking',
-  'lookups', 'feeds',
+  'lookups', 'feeds', 'link',
 ];
 
 const PREMIUM_ONLY_TOGGLE_KEYS = new Set(['backups', 'temporary_voice', 'youtube_notify', 'economy', 'blackjack', 'stream_notifications']);
@@ -265,7 +266,7 @@ function ticketPanelComponents(panel) {
     }] }];
   }
   const o = options[0] || {};
-  const emoji = String(panel.button_emoji || '🎫');
+  const emoji = String(panel.button_emoji || '{wy:ticket}');
   const custom = emoji.match(/^<a?:([^:]+):(\d+)>$/);
   return [{ type: 1, components: [{
     type: 2, style: Number.isInteger(panel.button_style) && [1,2,3,4].includes(panel.button_style) ? panel.button_style : 1, custom_id: 'wody:ticket:open',
@@ -288,7 +289,7 @@ function captchaPanelEmbed(settings) {
 }
 
 function captchaPanelComponents(settings, guildId) {
-  const emoji = String(settings.button_emoji || '✅');
+  const emoji = String(settings.button_emoji || '{wy:success}');
   const custom = emoji.match(/^<a?:([^:]+):(\d+)>$/);
   return [{ type: 1, components: [{
     type: 2, style: 5,
@@ -1320,7 +1321,7 @@ async function handleGet(request, context) {
         admin_role_id: null, moderator_role_id: null, ticket_role_id: null,
         mod_log_channel_id: null, mod_log_enabled: false,
         suggestion_channel_id: null, level_channel_id: null,
-        level_message: '🎉 {user.mention} reached **level {level}**!', level_up_embed: true,
+        level_message: '{wy:giveaway} {user.mention} reached **level {level}**!', level_up_embed: true,
         level_enabled: true, level_ignored_channel_ids: [],
         level_message_format: 'legacy', level_card_background_url: null,
         level_card_overlay_color: '#111827', level_card_overlay_opacity: 55,
@@ -1330,7 +1331,7 @@ async function handleGet(request, context) {
         ticket_transcript_channel_id: null,
         temp_voice_hub_channel_id: null, temp_voice_category_id: null,
         temp_voice_name_template: null, temp_voice_default_user_limit: null,
-        module_states: Object.fromEntries(MODULE_TOGGLE_KEYS.map((key) => [key, key === 'lookups'])),
+        module_states: Object.fromEntries(MODULE_TOGGLE_KEYS.map((key) => [key, key === 'lookups' || key === 'feeds'])),
       }));
     }
 
@@ -1393,7 +1394,7 @@ async function handleGet(request, context) {
         embed_image_url: null,
         embed_footer: '',
         button_label: 'Verify',
-        button_emoji: '✅',
+        button_emoji: '{wy:success}',
         page_heading: 'Member Verification',
         page_description: 'Confirm you are a real person to get access to the server.',
         page_button_label: 'Verify',
@@ -2503,6 +2504,11 @@ async function handleMutation(request, context) {
     if (session.user.id !== OWNER_ID) return json({ error: 'forbidden' }, { status: 403 });
     const parsed = parseOgEmbedPatch(body);
     if (!parsed.ok) return json({ error: parsed.error }, { status: 400 });
+    if (parsed.patch.preview_gif) {
+      // only a GIF that is published right now can be chosen for the Discord preview
+      const gif = await publishedBySlug(await getDb(), parsed.patch.preview_gif);
+      if (!gif) return json({ error: 'gif_not_published' }, { status: 409 });
+    }
     const config = await saveOgEmbedPatch(parsed.patch, session.user.id);
     return json(config);
   }
@@ -2639,7 +2645,7 @@ async function handleMutation(request, context) {
       { $set: { [`module_states.${key}`]: enabled, updated_at: new Date() } },
       { upsert: true, returnDocument: 'before' },
     );
-    const before = key === 'invite_tracking' ? existing?.module_states?.[key] === true : existing?.module_states?.[key] !== false;
+    const before = (key === 'invite_tracking' || key === 'link') ? existing?.module_states?.[key] === true : existing?.module_states?.[key] !== false;
     if (key === 'invite_tracking' && before !== enabled) {
       await db.collection('invite_settings').updateOne(filter, { $unset: { baseline_at: '' } }).catch(() => {});
     }
@@ -3101,7 +3107,7 @@ async function handleMutation(request, context) {
       options.push({
         id: String(o.id || crypto.randomUUID().replaceAll('-', '').slice(0, 8)),
         label: String(o.label || title).slice(0, 80),
-        emoji: o.emoji ? String(o.emoji).slice(0, 64) : '🎫',
+        emoji: o.emoji ? String(o.emoji).slice(0, 64) : '{wy:ticket}',
         category_id: optCategoryId ? toLong(optCategoryId) : null,
         support_role_id: optSupportRoleId ? toLong(optSupportRoleId) : null,
         transcript_channel_id: optTranscriptId ? toLong(optTranscriptId) : null,
@@ -3138,7 +3144,7 @@ async function handleMutation(request, context) {
       transcript_channel_id: transcriptId ? toLong(transcriptId) : null,
       options, button_label: String(body.button_label || 'Open ticket').slice(0, 80),
       button_style: [1,2,3,4].includes(Number(body.button_style)) ? Number(body.button_style) : 1,
-      button_emoji: String(body.button_emoji || '🎫').slice(0, 64), select_placeholder: String(body.select_placeholder || 'Choose a ticket type…').slice(0, 150),
+      button_emoji: String(body.button_emoji || '{wy:ticket}').slice(0, 64), select_placeholder: String(body.select_placeholder || 'Choose a ticket type…').slice(0, 150),
       footer_text: String(body.footer_text || 'Click the button below to open a ticket.').slice(0, 2048),
       welcome_title: options[0].welcome_title, welcome_message: options[0].welcome_message, welcome_footer: String(body.welcome_footer || 'Use the buttons below to manage this ticket.').slice(0, 2048),
       form: {
@@ -3149,7 +3155,7 @@ async function handleMutation(request, context) {
         links_placeholder: String(body.form?.links_placeholder || body.form_links_placeholder || 'Paste any relevant links or image URLs here').slice(0, 100),
         extra_label: String(body.form?.extra_label || body.form_extra_label || 'Other useful info (optional)').slice(0, 45),
         extra_placeholder: String(body.form?.extra_placeholder || body.form_extra_placeholder || 'Add anything else the support team should know').slice(0, 100),
-        details_title: String(body.form?.details_title || body.form_details_title || '📝 Ticket details').slice(0, 256),
+        details_title: String(body.form?.details_title || body.form_details_title || '{wy:edit} Ticket details').slice(0, 256),
         custom_fields: customFields,
       },
       message_overrides: messageOverrides,
@@ -3437,7 +3443,7 @@ async function handleMutation(request, context) {
     if ('embed_description' in data) data.embed_description = String(data.embed_description || '').slice(0, 4096);
     if ('embed_footer' in data) data.embed_footer = String(data.embed_footer || '').slice(0, 2048);
     if ('button_label' in data) data.button_label = String(data.button_label || 'Verifica te').slice(0, 80);
-    if ('button_emoji' in data) data.button_emoji = String(data.button_emoji || '✅').slice(0, 64);
+    if ('button_emoji' in data) data.button_emoji = String(data.button_emoji || '{wy:success}').slice(0, 64);
     if ('page_heading' in data) data.page_heading = String(data.page_heading || '').slice(0, 256);
     if ('page_description' in data) data.page_description = String(data.page_description || '').slice(0, 1024);
     if ('page_button_label' in data) data.page_button_label = String(data.page_button_label || 'Verifica').slice(0, 80);
@@ -3770,20 +3776,20 @@ async function handleMutation(request, context) {
 
     const mentionContent = mentionRoleIds.map((id) => `<@&${id}>`).join(' ');
     const blockedNote = blockedRoleIds.length
-      ? `\n\n🚫 Not open to: ${blockedRoleIds.map((id) => `<@&${id}>`).join(', ')}`
+      ? `\n\n{wy:ban} Not open to: ${blockedRoleIds.map((id) => `<@&${id}>`).join(', ')}`
       : '';
     const allowedNote = allowedRoleIds.length
-      ? `\n\n🔒 Only members with: ${allowedRoleIds.map((id) => `<@&${id}>`).join(', ')} can enter.`
+      ? `\n\n{wy:lock} Only members with: ${allowedRoleIds.map((id) => `<@&${id}>`).join(', ')} can enter.`
       : '';
 
     let msg;
     try {
       const enterRow = [{
         type: 1,
-        components: [{ type: 2, style: 1, custom_id: 'wody:giveaway:enter', label: 'Enter', emoji: { name: '🎉' } }],
+        components: [{ type: 2, style: 1, custom_id: 'wody:giveaway:enter', label: 'Enter', emoji: { name: '{wy:giveaway}' } }],
       }];
       const giveawayEmbed = {
-        title: '🎉 Giveaway!',
+        title: '{wy:giveaway} Giveaway!',
         description: `Prize: **${prize}**\nWinners: **${winnersCount}**\nEnds: <t:${endTs}:R>\n\nClick **Enter** to participate.${blockedNote}${allowedNote}`,
         color: 0xe08a4e,
       };
@@ -3842,7 +3848,7 @@ async function handleMutation(request, context) {
       const viewRows = doc.message_id
         ? [{ type: 1, components: [{ type: 2, style: 5, label: 'View giveaway', url: `https://discord.com/channels/${guildId}/${String(doc.channel_id)}/${String(doc.message_id)}` }] }]
         : [];
-      await sendGuildMessage(String(doc.channel_id), embedToV2Payload({ title: '🎉 Reroll winner', description: `Congrats <@${winner}>!`, color: 0xe08a4e }, viewRows));
+      await sendGuildMessage(String(doc.channel_id), embedToV2Payload({ title: '{wy:giveaway} Reroll winner', description: `Congrats <@${winner}>!`, color: 0xe08a4e }, viewRows));
     } catch (e) {
       return json({ error: 'discord_send_failed', detail: String(e.message || e) }, { status: 502 });
     }
@@ -3857,7 +3863,7 @@ async function handleMutation(request, context) {
     const doc = await db.collection('giveaways').findOne({ _id: objId, guild_id: gidLong });
     if (doc && !doc.ended) {
       await editGuildMessage(String(doc.channel_id), String(doc.message_id),
-        embedToV2Payload({ title: '🎉 Giveaway cancelled', description: `~~Prize: ${doc.prize}~~`, color: 0x808080 })
+        embedToV2Payload({ title: '{wy:giveaway} Giveaway cancelled', description: `~~Prize: ${doc.prize}~~`, color: 0x808080 })
       ).catch(() => {});
     }
     await db.collection('giveaways').deleteOne({ _id: objId, guild_id: gidLong });

@@ -11,7 +11,15 @@
         "dev:no-reload": "next dev --hostname 0.0.0.0 --port 3000",
         "dev:webpack": "next dev --hostname 0.0.0.0 --port 3000",
         "build": "next build",
-        "start": "next start"
+        "start": "next start",
+        "test:link": "node --import ./tests/link/register.mjs --test tests/link/link.test.mjs",
+        "test:battlepass": "node --import ./tests/battlepass/register.mjs --test tests/battlepass/battlepass.test.mjs tests/battlepass/api.test.mjs tests/battlepass/forms.test.mjs tests/battlepass/studio.test.mjs",
+        "test:counting": "node --import ./tests/battlepass/register.mjs --test tests/counting/api.test.mjs tests/counting/messages.test.mjs",
+        "test:emoji": "node --test tests/emoji/emoji.test.mjs",
+        "test:dragons": "node --import ./tests/battlepass/register.mjs --test tests/dragons/dragons.test.mjs",
+        "test:themes": "node --import ./tests/battlepass/register.mjs --test tests/themes/themes.test.mjs && node --import ./tests/gifstudio/register.mjs --test tests/themes/engine.test.mjs",
+        "test:gifstudio": "node --import ./tests/gifstudio/register.mjs --test tests/gifstudio/gifstudio.test.mjs",
+        "test:statistics": "node --import ./tests/battlepass/register.mjs --test tests/statistics/api.test.mjs tests/statistics/chart-math.test.mjs tests/statistics/messages.test.mjs"
     },
     "dependencies": {
         "@hookform/resolvers": "5.1.1",
@@ -49,6 +57,7 @@
         "cmdk": "1.1.1",
         "date-fns": "4.1.0",
         "dayjs": "1.11.13",
+        "gifenc": "^1.0.3",
         "input-otp": "1.4.2",
         "lucide-react": "0.516.0",
         "mongodb": "6.6.0",
@@ -61,10 +70,12 @@
         "react-hook-form": "7.58.1",
         "react-resizable-panels": "3.0.3",
         "recharts": "2.15.3",
+        "sharp": "^0.35.5",
         "sonner": "2.0.5",
         "swr": "2.3.8",
         "tailwind-merge": "3.3.1",
         "tailwindcss-animate": "1.0.7",
+        "three": "^0.170.0",
         "uuid": "11.1.1",
         "vaul": "1.1.2",
         "zod": "3.25.67"

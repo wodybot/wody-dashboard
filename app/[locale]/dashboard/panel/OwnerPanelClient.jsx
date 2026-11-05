@@ -27,6 +27,10 @@ const CommunityAdminPanel = dynamic(() => import('@/components/community/AdminPa
 const CollabAdminPanel = dynamic(() => import('@/components/collab/AdminPanel'), { ssr: false });
 const ReportsAdmin = dynamic(() => import('@/components/moderation/ReportsAdmin'), { ssr: false });
 const OwnerAccessAdmin = dynamic(() => import('@/components/community/OwnerAccess'), { ssr: false });
+const CountingAdmin = dynamic(() => import('@/components/counting/CountingAdmin'), { ssr: false });
+const GifStudio = dynamic(() => import('@/components/gifstudio/GifStudio'), { ssr: false });
+const ThemeStudio = dynamic(() => import('@/components/themes/ThemeStudio'), { ssr: false });
+const BattlePassAdmin = dynamic(() => import('@/components/battlepass/BattlePassAdmin'), { ssr: false });
 import {
   Crown, Sparkles, Key, Copy, Plus, Loader2, RefreshCw, Home,
   Server, Users, ShieldCheck, ShieldAlert, Megaphone, Trash2, Ban, Undo2, MessageSquare,
@@ -36,6 +40,8 @@ import {
 } from 'lucide-react';
 import PartnersAdmin from '@/components/partners/PartnersAdmin';
 import OwnerConfigCard from '@/components/owner-config-card';
+import WodyIcon from '@/components/wody-icon';
+import { useTranslations } from 'next-intl';
 import { DiscordMessage, DiscordText } from '@/components/dashboard-kit';
 
 const AutumnEffectsLayer = dynamic(() => import('@/components/autumn/autumn-effects-layer'), { ssr: false });
@@ -51,11 +57,14 @@ const SECTIONS = [
   { id: 'enforcement', label: 'Server Enforcement', icon: ShieldAlert, group: 'Servers', desc: 'Ban or unban servers' },
   { id: 'community', label: 'Community Discovery', icon: Compass, group: 'Servers', desc: 'Review listings' },
   { id: 'collab', label: 'Collab', icon: Briefcase, group: 'Servers', desc: 'Moderation queue, reports, settings' },
+  { id: 'battlepass', label: 'Battle Pass', icon: Crown, group: 'Seasons', desc: 'Global seasons, rewards, limits' },
+  { id: 'counting', label: 'Counting', icon: Crown, group: 'Seasons', desc: 'Modes, rules, badges, seasons, competitions' },
   { id: 'updates', label: 'Announcements', icon: Megaphone, group: 'Content', desc: 'Public updates page' },
   { id: 'blog', label: 'Blog', icon: BookOpen, group: 'Content', desc: 'Write and publish posts' },
   { id: 'staff', label: 'Team / Staff', icon: Users, group: 'Content', desc: 'Team page members' },
   { id: 'reports', label: 'Content reports', icon: Flag, group: 'Content', desc: 'Copyright and content reports' },
   { id: 'partners', label: 'Partners', icon: Handshake, group: 'Content', desc: 'Partner bots page' },
+  { id: 'themes', label: 'Themes', icon: Leaf, group: 'Website', desc: 'Global themes, characters, assets' },
   { id: 'appearance', label: 'Appearance', icon: Leaf, group: 'Website', desc: 'Banners, effects, link preview' },
   { id: 'access', label: 'Panel Access', icon: KeyRound, group: 'Security', desc: 'Who can open the community part' },
 ];
@@ -212,6 +221,8 @@ export default function OwnerPanelClient({ restricted = false }) {
   const visibleSections = restricted ? DELEGATE_SECTIONS : SECTIONS;
   const SECTION_GROUPS = groupSections(visibleSections);
   const [appearanceCategory, setAppearanceCategory] = useState('seasonal');
+  const [linkPreviewTab, setLinkPreviewTab] = useState('image');
+  const tg = useTranslations('gifStudio.ui');
   const APPEARANCE_CATEGORIES = [
     { id: 'seasonal', label: 'Seasonal Effects', icon: Leaf },
     { id: 'showcase', label: 'Community Showcase', icon: Users },
@@ -2331,6 +2342,9 @@ function DiscordComponentPreview({ config, imageSrc }) {
             {section === 'community' && <CommunityAdminPanel />}
             {section === 'collab' && <CollabAdminPanel ownerOnly={!restricted} />}
             {section === 'access' && !restricted && <OwnerAccessAdmin />}
+            {section === 'battlepass' && !restricted && <BattlePassAdmin />}
+            {section === 'themes' && !restricted && <ThemeStudio writer />}
+            {section === 'counting' && !restricted && <CountingAdmin writable />}
             {section === 'partners' && <PartnersAdmin />}
             {section === 'reports' && !restricted && <ReportsAdmin />}
 
@@ -2864,6 +2878,19 @@ function DiscordComponentPreview({ config, imageSrc }) {
                 )}
 
                 {appearanceCategory === 'discord' && (
+                  <div role="tablist" aria-label="Discord Link Preview" className="mb-4 flex gap-1 rounded-xl border border-border/50 bg-card/40 p-1">
+                    {[{ id: 'image', label: tg('source.opt.image'), icon: 'image' }, { id: 'gif', label: tg('title'), icon: 'gif' }].map((tb) => (
+                      <button key={tb.id} type="button" role="tab" aria-selected={linkPreviewTab === tb.id} onClick={() => setLinkPreviewTab(tb.id)}
+                        className={`inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition-colors ${linkPreviewTab === tb.id ? 'bg-[#e6cd8c]/20 text-[#e6cd8c]' : 'text-muted-foreground hover:text-foreground'}`}>
+                        <WodyIcon name={tb.icon} size={16} />{tb.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {appearanceCategory === 'discord' && linkPreviewTab === 'gif' && <GifStudio />}
+
+                {appearanceCategory === 'discord' && linkPreviewTab === 'image' && (
                 <Card className="p-6 bg-card/60 border-[#a04820]/40 relative overflow-hidden">
                   <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[#a04820]/15 blur-3xl pointer-events-none" />
                   <div className="relative">

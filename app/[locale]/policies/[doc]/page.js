@@ -4,7 +4,7 @@ import { Link } from '@/i18n/navigation';
 import { TopNav, Footer } from '@/components/nav';
 import ComplaintForm from '@/components/moderation/ComplaintForm';
 
-const DOCS = ['content-policy', 'copyright', 'complaint'];
+const DOCS = ['content-policy', 'copyright', 'complaint', 'battle-pass'];
 const REVIEW = { en: '4 November 2026', ro: '4 noiembrie 2026' };
 
 export const revalidate = 3600;

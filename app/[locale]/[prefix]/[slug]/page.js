@@ -5,6 +5,9 @@ import ListingView from '@/components/community/ListingView';
 import ProfileInteractive, { ViewPing } from '@/components/community/ProfileActions';
 import { cdb, getCatalog, currentPrefix } from '@/lib/community/db';
 import { getProfile, similarListings } from '@/lib/community/query';
+import ThemeStage, { stageLabels } from '@/components/themes/ThemeStage';
+import { resolveGuildTheme } from '@/lib/themes/store';
+import { listingThemeFrom } from '@/lib/themes/community';
 import { routing } from '@/i18n/routing';
 import { catalogName, formatCount } from '@/lib/community/names';
 import { ROBOTS_INDEX, absolute, clip, jsonLd, languageNames, localePath, localizedAlternates, ogLocale } from '@/lib/community/seo';
@@ -82,6 +85,8 @@ export default async function ServerProfilePage({ params }) {
   const similar = await similarListings(db, raw, 6);
   const t = await getTranslations('community');
   const seo = seoFor(listing, catalog, t, locale);
+  const siteTheme = raw?.guild_id ? await resolveGuildTheme(db, String(raw.guild_id), { locale }).catch(() => null) : null;
+  const tt = siteTheme ? await getTranslations('themes') : null;
   const pagePath = `/${currentPrefix()}/${listing.slug}`;
   const url = absolute(localePath(locale, pagePath));
   const categoryRow = catalog.categories.find((c) => c.slug === listing.category);
@@ -122,17 +127,23 @@ export default async function ServerProfilePage({ params }) {
       <main id="main-content" className="w-full">
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(ld)} />
         <ViewPing slug={listing.slug} />
-        <ListingView
-          listing={listing}
-          catalog={catalog}
-          similar={similar}
-          fullBleed
-          slots={{
-            footerNote: <p className="pt-2 text-center text-xs text-white/55">{t('profile.disclaimer')}</p>,
-            heroActions: <ProfileInteractive slug={listing.slug} part="buttons" />,
-            reviews: <ProfileInteractive slug={listing.slug} part="reviews" summary={listing.review_summary} />,
-          }}
-        />
+        {(() => {
+          const view = (
+            <ListingView
+              listing={siteTheme ? { ...listing, theme: listingThemeFrom(siteTheme) } : listing}
+              catalog={catalog}
+              similar={similar}
+              fullBleed
+              transparentBg={Boolean(siteTheme)}
+              slots={{
+                footerNote: <p className="pt-2 text-center text-xs text-white/55">{t('profile.disclaimer')}</p>,
+                heroActions: <ProfileInteractive slug={listing.slug} part="buttons" />,
+                reviews: <ProfileInteractive slug={listing.slug} part="reviews" summary={listing.review_summary} />,
+              }}
+            />
+          );
+          return siteTheme ? <ThemeStage theme={siteTheme} labels={stageLabels(tt)} mode="page">{view}</ThemeStage> : view;
+        })()}
       </main>
       <Footer />
     </div>

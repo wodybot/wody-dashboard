@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 import {
   AlertTriangle, BarChart3, Bell, CheckCircle2, Clock, Compass, Eye, ExternalLink, History, LayoutList, Link2, Loader2, Palette, Send, ShieldCheck, Sparkles, Users, UserCog, UserPlus, Trash2, XCircle, Info, Minus, Pencil, Plus, GitCommitHorizontal, CircleDot,
 } from 'lucide-react';
+import FloatingBar from '@/components/floating-bar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -171,8 +172,9 @@ function Editor({ guildId, data, api, standalone }) {
       {tab === 'history' ? <HistoryTab state={state} /> : null}
       {tab === 'managers' ? <Managers guildId={guildId} /> : null}
 
-      {['profile', 'design', 'social', 'sections'].includes(tab) && canEdit ? (
-        <div className="sticky bottom-3 z-20 mt-6">
+      {['profile', 'design', 'social', 'sections'].includes(tab) && canEdit && (dirty || errors.length > 0) ? (
+        <FloatingBar sidebar={!standalone}>
+          <div className="w-full">
           <Card className={`border p-3 shadow-lg backdrop-blur ${errors.length ? 'border-red-400/40 bg-background/95' : dirty ? 'border-[#e6cd8c]/50 bg-background/90' : 'border-border/50 bg-background/70'}`}>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex flex-wrap items-center gap-2.5 text-sm" role="status">
@@ -196,7 +198,8 @@ function Editor({ guildId, data, api, standalone }) {
             </div>
             {errors.length ? <SaveErrors errors={errors} onGo={setTab} /> : null}
           </Card>
-        </div>
+          </div>
+        </FloatingBar>
       ) : null}
       <ConfirmDialog open={submitOpen} onOpenChange={setSubmitOpen} destructive={false} title={t('owner.submitConfirmTitle')} description={t('owner.submitConfirmText')} confirmLabel={t('owner.submit')} onConfirm={submit} busy={submitting} confirmDisabled={!terms}>
         <label className="flex items-start gap-2.5 rounded-lg border border-border/60 bg-secondary/30 p-3 text-sm">

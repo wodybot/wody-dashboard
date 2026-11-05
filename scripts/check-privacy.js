@@ -73,7 +73,7 @@ for (const dir of SCAN_DIRS) {
 }
 
 if (problems.length) {
-  console.error('\n\u274c Privacy check failed: third-party requests could reach visitors\' browsers.\n');
+  console.error('\nPrivacy check failed: third-party requests could reach visitors\' browsers.\n');
   for (const p of problems) console.error('  - ' + p);
   console.error('\nFix the lines above (see scripts/check-privacy.js for the rules).\n');
   process.exit(1);

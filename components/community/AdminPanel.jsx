@@ -18,6 +18,7 @@ import { CatalogManager, BadgeManager } from '@/components/community/AdminCatalo
 import { NotificationsBell } from '@/components/community/OwnerPanel';
 import { cfetch, useCApi } from '@/components/community/client';
 import { REPORT_STATUSES } from '@/lib/community/constants';
+import IconText, { Icon } from '@/components/icon-text';
 
 const NAV = [
   ['overview', Gauge], ['applications', Inbox], ['pending', FileClock], ['published', Rocket], ['changes', MessageSquareWarning], ['rejected', XCircle], ['suspended', PauseCircle],
@@ -252,7 +253,7 @@ function Reviews() {
         {api.data?.items.length === 0 ? <Card className="p-10 text-center text-sm text-muted-foreground">{t('admin.reviews.empty')}</Card> : null}
         <ul className="space-y-3">{(api.data?.items || []).map((r) => (
           <li key={r.id}><Card className="p-4">
-            <div className="flex flex-wrap items-center justify-between gap-2"><span className="font-semibold">{r.name || r.slug} <span className="text-amber-400" aria-label={t('reviews.rating', { value: r.rating })}>{'★'.repeat(r.rating)}</span></span><span className="text-xs text-muted-foreground">{r.author} · {fmt(r.at, locale)}</span></div>
+            <div className="flex flex-wrap items-center justify-between gap-2"><span className="font-semibold">{r.name || r.slug} <span className="text-amber-400" aria-label={t('reviews.rating', { value: r.rating })}><IconText text={'{wy:star}'.repeat(r.rating)} size={14} /></span></span><span className="text-xs text-muted-foreground">{r.author} · {fmt(r.at, locale)}</span></div>
             <p className="mt-2 whitespace-pre-line break-words text-sm">{r.text}</p>
             <div className="mt-3 flex gap-2">
               {r.status !== 'approved' ? <Button size="sm" onClick={() => decide(r.id, 'approved')}>{t('admin.reviews.approve')}</Button> : null}

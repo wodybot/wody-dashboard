@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { proxiedImageUrl } from '@/lib/utils';
 import { auditTitle, auditIcon, auditRole, auditOutcome, auditDetail } from '@/lib/audit-labels';
+import IconText from '@/components/icon-text';
 
 async function call(url, options) {
   try {
@@ -168,7 +169,7 @@ export default function OwnerAccess() {
           <ul className="space-y-2 max-h-96 overflow-y-auto">
             {d.audit.map((a, i) => (
               <li key={i} className="flex gap-3 rounded-lg border border-border/40 bg-background/40 px-3 py-2.5">
-                <span className="text-base leading-6 shrink-0" aria-hidden="true">{auditIcon(a.action, a.outcome)}</span>
+                <span className="text-base leading-6 shrink-0" aria-hidden="true"><IconText text={auditIcon(a.action, a.outcome)} size={20} /></span>
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                     <span className="text-sm font-medium">{auditTitle(a.action)}</span>

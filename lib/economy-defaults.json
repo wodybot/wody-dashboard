@@ -3,7 +3,7 @@
     "settings": {
       "currency_name": "Coins",
       "currency_symbol": "$",
-      "currency_icon": "🪙",
+      "currency_icon": "{wy:coins}",
       "starting_balance": 1000,
       "daily_reward": 500,
       "daily_streak_bonus": 10,
@@ -194,7 +194,7 @@
       {
         "item_id": "energy_drink",
         "name": "Energy Drink",
-        "emoji": "🥤",
+        "emoji": "{wy:eco_drink}",
         "category": "consumables",
         "rarity": "common",
         "price": 750,
@@ -220,7 +220,7 @@
       {
         "item_id": "lucky_charm",
         "name": "Lucky Charm",
-        "emoji": "🍀",
+        "emoji": "{wy:eco_clover}",
         "category": "consumables",
         "rarity": "rare",
         "price": 2500,
@@ -248,7 +248,7 @@
       {
         "item_id": "xp_boost",
         "name": "XP Boost",
-        "emoji": "⚡",
+        "emoji": "{wy:activity}",
         "category": "consumables",
         "rarity": "rare",
         "price": 4000,
@@ -276,7 +276,7 @@
       {
         "item_id": "pet_food",
         "name": "Pet Food",
-        "emoji": "🦴",
+        "emoji": "{wy:eco_bone}",
         "category": "consumables",
         "rarity": "common",
         "price": 300,
@@ -302,7 +302,7 @@
       {
         "item_id": "fertilizer",
         "name": "Fertilizer",
-        "emoji": "🧴",
+        "emoji": "{wy:eco_fertilizer}",
         "category": "farming",
         "rarity": "uncommon",
         "price": 250,
@@ -328,7 +328,7 @@
       {
         "item_id": "mystery_chest",
         "name": "Mystery Chest",
-        "emoji": "🎁",
+        "emoji": "{wy:giveaway}",
         "category": "rare",
         "rarity": "epic",
         "price": 25,
@@ -355,7 +355,7 @@
       {
         "item_id": "rare_chest",
         "name": "Rare Chest",
-        "emoji": "🧰",
+        "emoji": "{wy:tools}",
         "category": "rare",
         "rarity": "legendary",
         "price": 60,
@@ -382,7 +382,7 @@
       {
         "item_id": "pet_cat",
         "name": "Cat",
-        "emoji": "🐱",
+        "emoji": "{wy:eco_cat}",
         "category": "pets",
         "rarity": "common",
         "price": 5000,
@@ -408,7 +408,7 @@
       {
         "item_id": "pet_dog",
         "name": "Dog",
-        "emoji": "🐶",
+        "emoji": "{wy:eco_dog}",
         "category": "pets",
         "rarity": "common",
         "price": 5000,
@@ -434,7 +434,7 @@
       {
         "item_id": "pet_fox",
         "name": "Fox",
-        "emoji": "🦊",
+        "emoji": "{wy:eco_fox}",
         "category": "pets",
         "rarity": "uncommon",
         "price": 12000,
@@ -460,7 +460,7 @@
       {
         "item_id": "pet_owl",
         "name": "Owl",
-        "emoji": "🦉",
+        "emoji": "{wy:eco_owl}",
         "category": "pets",
         "rarity": "rare",
         "price": 30000,
@@ -486,7 +486,7 @@
       {
         "item_id": "pet_wolf",
         "name": "Wolf",
-        "emoji": "🐺",
+        "emoji": "{wy:eco_wolf}",
         "category": "pets",
         "rarity": "epic",
         "price": 75000,
@@ -512,7 +512,7 @@
       {
         "item_id": "pet_dragon",
         "name": "Dragon",
-        "emoji": "🐉",
+        "emoji": "{wy:eco_dragon}",
         "category": "pets",
         "rarity": "legendary",
         "price": 250,
@@ -538,7 +538,7 @@
       {
         "item_id": "pet_phoenix",
         "name": "Phoenix",
-        "emoji": "🐦‍🔥",
+        "emoji": "{wy:eco_phoenix}",
         "category": "limited",
         "rarity": "mythic",
         "price": 500,
@@ -564,7 +564,7 @@
       {
         "item_id": "bicycle",
         "name": "Bicycle",
-        "emoji": "🚲",
+        "emoji": "{wy:eco_bicycle}",
         "category": "vehicles",
         "rarity": "common",
         "price": 3000,
@@ -591,7 +591,7 @@
       {
         "item_id": "scooter",
         "name": "Scooter",
-        "emoji": "🛵",
+        "emoji": "{wy:eco_scooter}",
         "category": "vehicles",
         "rarity": "uncommon",
         "price": 12000,
@@ -618,7 +618,7 @@
       {
         "item_id": "sports_car",
         "name": "Sports Car",
-        "emoji": "🏎️",
+        "emoji": "{wy:eco_racecar}",
         "category": "vehicles",
         "rarity": "epic",
         "price": 150000,
@@ -645,7 +645,7 @@
       {
         "item_id": "yacht",
         "name": "Yacht",
-        "emoji": "🛥️",
+        "emoji": "{wy:eco_boat}",
         "category": "vehicles",
         "rarity": "legendary",
         "price": 1000000,
@@ -672,7 +672,7 @@
       {
         "item_id": "apartment",
         "name": "Apartment",
-        "emoji": "🏢",
+        "emoji": "{wy:server}",
         "category": "properties",
         "rarity": "rare",
         "price": 80000,
@@ -698,7 +698,7 @@
       {
         "item_id": "house",
         "name": "House",
-        "emoji": "🏡",
+        "emoji": "{wy:home}",
         "category": "properties",
         "rarity": "epic",
         "price": 300000,
@@ -724,7 +724,7 @@
       {
         "item_id": "mansion",
         "name": "Mansion",
-        "emoji": "🏰",
+        "emoji": "{wy:server}",
         "category": "properties",
         "rarity": "legendary",
         "price": 2000000,
@@ -750,7 +750,7 @@
       {
         "item_id": "badge_star",
         "name": "Star Badge",
-        "emoji": "⭐",
+        "emoji": "{wy:star}",
         "category": "cosmetics",
         "rarity": "common",
         "price": 1500,
@@ -771,13 +771,13 @@
         "meta": {
           "type": "equipment",
           "slot": "badge",
-          "display": "⭐"
+          "display": "{wy:star}"
         }
       },
       {
         "item_id": "badge_crown",
         "name": "Crown Badge",
-        "emoji": "👑",
+        "emoji": "{wy:premium}",
         "category": "cosmetics",
         "rarity": "epic",
         "price": 50,
@@ -798,13 +798,13 @@
         "meta": {
           "type": "equipment",
           "slot": "badge",
-          "display": "👑"
+          "display": "{wy:premium}"
         }
       },
       {
         "item_id": "title_tycoon",
         "name": "Tycoon Title",
-        "emoji": "💼",
+        "emoji": "{wy:eco_briefcase}",
         "category": "cosmetics",
         "rarity": "legendary",
         "price": 500000,
@@ -831,7 +831,7 @@
       {
         "item_id": "toolbox",
         "name": "Toolbox",
-        "emoji": "🧰",
+        "emoji": "{wy:tools}",
         "category": "tools",
         "rarity": "uncommon",
         "price": 8000,
@@ -858,7 +858,7 @@
       {
         "item_id": "rod_basic",
         "name": "Basic Rod",
-        "emoji": "🎣",
+        "emoji": "{wy:eco_rod}",
         "category": "fishing",
         "rarity": "common",
         "price": 500,
@@ -886,7 +886,7 @@
       {
         "item_id": "rod_carbon",
         "name": "Carbon Rod",
-        "emoji": "🎣",
+        "emoji": "{wy:eco_rod}",
         "category": "fishing",
         "rarity": "uncommon",
         "price": 5000,
@@ -914,7 +914,7 @@
       {
         "item_id": "rod_pro",
         "name": "Pro Rod",
-        "emoji": "🎣",
+        "emoji": "{wy:eco_rod}",
         "category": "fishing",
         "rarity": "rare",
         "price": 25000,
@@ -942,7 +942,7 @@
       {
         "item_id": "rod_legend",
         "name": "Legend Rod",
-        "emoji": "🎣",
+        "emoji": "{wy:eco_rod}",
         "category": "fishing",
         "rarity": "legendary",
         "price": 150000,
@@ -970,7 +970,7 @@
       {
         "item_id": "bait_worm",
         "name": "Worm Bait",
-        "emoji": "🪱",
+        "emoji": "{wy:eco_worm}",
         "category": "fishing",
         "rarity": "common",
         "price": 50,
@@ -996,7 +996,7 @@
       {
         "item_id": "bait_premium",
         "name": "Premium Bait",
-        "emoji": "🦐",
+        "emoji": "{wy:eco_shrimp}",
         "category": "fishing",
         "rarity": "rare",
         "price": 400,
@@ -1022,7 +1022,7 @@
       {
         "item_id": "hoe_basic",
         "name": "Basic Hoe",
-        "emoji": "⛏️",
+        "emoji": "{wy:maintenance}",
         "category": "farming",
         "rarity": "common",
         "price": 800,
@@ -1049,7 +1049,7 @@
       {
         "item_id": "hoe_steel",
         "name": "Steel Hoe",
-        "emoji": "⛏️",
+        "emoji": "{wy:maintenance}",
         "category": "farming",
         "rarity": "uncommon",
         "price": 6000,
@@ -1076,7 +1076,7 @@
       {
         "item_id": "hoe_gold",
         "name": "Golden Hoe",
-        "emoji": "⛏️",
+        "emoji": "{wy:maintenance}",
         "category": "farming",
         "rarity": "epic",
         "price": 40000,
@@ -1103,7 +1103,7 @@
       {
         "item_id": "seed_wheat",
         "name": "Wheat Seeds",
-        "emoji": "🌾",
+        "emoji": "{wy:eco_wheat}",
         "category": "farming",
         "rarity": "common",
         "price": 40,
@@ -1129,7 +1129,7 @@
       {
         "item_id": "seed_carrot",
         "name": "Carrot Seeds",
-        "emoji": "🥕",
+        "emoji": "{wy:eco_carrot}",
         "category": "farming",
         "rarity": "common",
         "price": 80,
@@ -1155,7 +1155,7 @@
       {
         "item_id": "seed_potato",
         "name": "Potato Seeds",
-        "emoji": "🥔",
+        "emoji": "{wy:eco_potato}",
         "category": "farming",
         "rarity": "uncommon",
         "price": 120,
@@ -1181,7 +1181,7 @@
       {
         "item_id": "seed_pumpkin",
         "name": "Pumpkin Seeds",
-        "emoji": "🎃",
+        "emoji": "{wy:event}",
         "category": "farming",
         "rarity": "rare",
         "price": 400,
@@ -1207,7 +1207,7 @@
       {
         "item_id": "seed_strawberry",
         "name": "Strawberry Seeds",
-        "emoji": "🍓",
+        "emoji": "{wy:eco_strawberry}",
         "category": "farming",
         "rarity": "rare",
         "price": 600,
@@ -1233,7 +1233,7 @@
       {
         "item_id": "seed_golden_apple",
         "name": "Golden Apple Seeds",
-        "emoji": "🍏",
+        "emoji": "{wy:eco_apple}",
         "category": "farming",
         "rarity": "epic",
         "price": 5000,
@@ -1259,7 +1259,7 @@
       {
         "item_id": "trophy_founder",
         "name": "Founder Trophy",
-        "emoji": "🏆",
+        "emoji": "{wy:winner}",
         "category": "limited",
         "rarity": "legendary",
         "price": 1000000,
@@ -1294,68 +1294,68 @@
       [
         "featured",
         "Featured",
-        "⭐"
+        "{wy:star}"
       ],
       [
         "pets",
         "Pets",
-        "🐾"
+        "{wy:eco_paw}"
       ],
       [
         "vehicles",
         "Vehicles",
-        "🚗"
+        "{wy:eco_car}"
       ],
       [
         "properties",
         "Properties",
-        "🏠"
+        "{wy:home}"
       ],
       [
         "cosmetics",
         "Cosmetics",
-        "🎨"
+        "{wy:colors}"
       ],
       [
         "tools",
         "Tools",
-        "🧰"
+        "{wy:tools}"
       ],
       [
         "fishing",
         "Fishing",
-        "🎣"
+        "{wy:eco_rod}"
       ],
       [
         "farming",
         "Farming",
-        "🌾"
+        "{wy:eco_wheat}"
       ],
       [
         "rare",
         "Rare",
-        "💠"
+        "{wy:eco_diamond_dot}"
       ],
       [
         "limited",
         "Limited",
-        "⏳"
+        "{wy:loading}"
       ],
       [
         "consumables",
         "Consumables",
-        "🧪"
+        "{wy:eco_testtube}"
       ],
       [
         "custom",
         "Custom",
-        "✨"
+        "{wy:sparkles}"
       ]
     ],
     "jobs": {
       "developer": {
         "name": "Developer",
-        "emoji": "💻",
+        "emoji": "{wy:terminal}",
         "salary": 420,
         "requires": {
           "level": 1,
@@ -1364,7 +1364,7 @@
       },
       "engineer": {
         "name": "Engineer",
-        "emoji": "🛠️",
+        "emoji": "{wy:configuration}",
         "salary": 560,
         "requires": {
           "level": 5,
@@ -1376,7 +1376,7 @@
       },
       "police": {
         "name": "Police Officer",
-        "emoji": "👮",
+        "emoji": "{wy:moderation}",
         "salary": 380,
         "requires": {
           "level": 1,
@@ -1385,7 +1385,7 @@
       },
       "detective": {
         "name": "Detective",
-        "emoji": "🕵️",
+        "emoji": "{wy:audit_log}",
         "salary": 540,
         "requires": {
           "level": 5,
@@ -1397,7 +1397,7 @@
       },
       "trader": {
         "name": "Trader",
-        "emoji": "📈",
+        "emoji": "{wy:growth}",
         "salary": 500,
         "requires": {
           "level": 5,
@@ -1406,7 +1406,7 @@
       },
       "business_manager": {
         "name": "Business Manager",
-        "emoji": "💼",
+        "emoji": "{wy:eco_briefcase}",
         "salary": 650,
         "requires": {
           "level": 15,
@@ -1418,7 +1418,7 @@
       },
       "chef": {
         "name": "Chef",
-        "emoji": "👨‍🍳",
+        "emoji": "{wy:eco_chef}",
         "salary": 300,
         "requires": {
           "level": 1,
@@ -1427,7 +1427,7 @@
       },
       "driver": {
         "name": "Driver",
-        "emoji": "🚕",
+        "emoji": "{wy:eco_taxi}",
         "salary": 260,
         "requires": {
           "level": 1,
@@ -1436,7 +1436,7 @@
       },
       "miner": {
         "name": "Miner",
-        "emoji": "⛏️",
+        "emoji": "{wy:maintenance}",
         "salary": 340,
         "requires": {
           "level": 1,
@@ -1445,7 +1445,7 @@
       },
       "farmer": {
         "name": "Farmer",
-        "emoji": "🧑‍🌾",
+        "emoji": "{wy:eco_farmer}",
         "salary": 280,
         "requires": {
           "level": 1,
@@ -1454,7 +1454,7 @@
       },
       "fisher": {
         "name": "Fisher",
-        "emoji": "🎣",
+        "emoji": "{wy:eco_rod}",
         "salary": 300,
         "requires": {
           "level": 1,
@@ -1465,7 +1465,7 @@
     "businesses": {
       "shop": {
         "name": "Shop",
-        "emoji": "🏪",
+        "emoji": "{wy:marketplace}",
         "price": 35000,
         "revenue": 1200,
         "expenses": 450,
@@ -1474,7 +1474,7 @@
       },
       "restaurant": {
         "name": "Restaurant",
-        "emoji": "🍽️",
+        "emoji": "{wy:eco_restaurant}",
         "price": 50000,
         "revenue": 1800,
         "expenses": 700,
@@ -1483,7 +1483,7 @@
       },
       "farm": {
         "name": "Farm",
-        "emoji": "🚜",
+        "emoji": "{wy:eco_tractor}",
         "price": 80000,
         "revenue": 2800,
         "expenses": 1000,
@@ -1492,7 +1492,7 @@
       },
       "fishing_company": {
         "name": "Fishing Company",
-        "emoji": "🚢",
+        "emoji": "{wy:eco_ship}",
         "price": 120000,
         "revenue": 4200,
         "expenses": 1600,
@@ -1501,7 +1501,7 @@
       },
       "factory": {
         "name": "Factory",
-        "emoji": "🏭",
+        "emoji": "{wy:eco_factory}",
         "price": 250000,
         "revenue": 9000,
         "expenses": 3800,
@@ -1510,7 +1510,7 @@
       },
       "mine": {
         "name": "Mine",
-        "emoji": "⛰️",
+        "emoji": "{wy:eco_mountain}",
         "price": 400000,
         "revenue": 14000,
         "expenses": 6000,
@@ -1519,7 +1519,7 @@
       },
       "dealership": {
         "name": "Dealership",
-        "emoji": "🚘",
+        "emoji": "{wy:eco_dealer}",
         "price": 600000,
         "revenue": 21000,
         "expenses": 9000,
@@ -1528,7 +1528,7 @@
       },
       "tech_company": {
         "name": "Tech Company",
-        "emoji": "🖥️",
+        "emoji": "{wy:eco_desktop}",
         "price": 1500000,
         "revenue": 52000,
         "expenses": 22000,
@@ -1539,49 +1539,49 @@
     "commodities": {
       "GOLD": {
         "name": "Gold",
-        "emoji": "🥇",
+        "emoji": "{wy:rank}",
         "price": 4820,
         "volatility": 0.03
       },
       "SILVER": {
         "name": "Silver",
-        "emoji": "🥈",
+        "emoji": "{wy:rank}",
         "price": 310,
         "volatility": 0.025
       },
       "IRON": {
         "name": "Iron",
-        "emoji": "🔩",
+        "emoji": "{wy:configuration}",
         "price": 184,
         "volatility": 0.02
       },
       "OIL": {
         "name": "Oil",
-        "emoji": "🛢️",
+        "emoji": "{wy:eco_oil}",
         "price": 920,
         "volatility": 0.04
       },
       "DIAMOND": {
         "name": "Diamond",
-        "emoji": "💎",
+        "emoji": "{wy:gem}",
         "price": 18400,
         "volatility": 0.05
       },
       "WHEAT": {
         "name": "Wheat",
-        "emoji": "🌾",
+        "emoji": "{wy:eco_wheat}",
         "price": 45,
         "volatility": 0.03
       },
       "WOOD": {
         "name": "Wood",
-        "emoji": "🪵",
+        "emoji": "{wy:eco_wood}",
         "price": 60,
         "volatility": 0.02
       },
       "COFFEE": {
         "name": "Coffee",
-        "emoji": "☕",
+        "emoji": "{wy:eco_coffee}",
         "price": 140,
         "volatility": 0.035
       }
@@ -1589,42 +1589,42 @@
     "events": {
       "double_money": {
         "name": "Double Money",
-        "emoji": "💸",
+        "emoji": "{wy:cash}",
         "text": "All earnings are doubled."
       },
       "double_xp": {
         "name": "Double XP",
-        "emoji": "✨",
+        "emoji": "{wy:sparkles}",
         "text": "All economy XP is doubled."
       },
       "fishing_week": {
         "name": "Fishing Week",
-        "emoji": "🎣",
+        "emoji": "{wy:eco_rod}",
         "text": "Better catches, worth 50% more, faster casts."
       },
       "gem_hunt": {
         "name": "Gem Hunt",
-        "emoji": "💎",
+        "emoji": "{wy:gem}",
         "text": "Work, fishing and farming can drop gems."
       },
       "market_crash": {
         "name": "Market Crash",
-        "emoji": "📉",
+        "emoji": "{wy:analytics}",
         "text": "Commodity prices are falling."
       },
       "market_boom": {
         "name": "Market Boom",
-        "emoji": "📈",
+        "emoji": "{wy:growth}",
         "text": "Commodity prices are rising."
       },
       "community_goal": {
         "name": "Community Goal",
-        "emoji": "🤝",
+        "emoji": "{wy:partner}",
         "text": "Earn money together to unlock a reward for everyone who helped."
       },
       "rare_item": {
         "name": "Rare Item Event",
-        "emoji": "🎁",
+        "emoji": "{wy:giveaway}",
         "text": "Work and fishing can drop Mystery Chests."
       }
     }

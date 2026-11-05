@@ -14,8 +14,6 @@ import { EXAMPLE, GROUPS, INTERVALS, SOURCES, DEFAULT_INTERVAL } from '@/lib/fee
 
 const GROUP_ORDER = GROUPS;
 const MORE_EXAMPLES = {
-  apple_artist: ['https://music.apple.com/us/artist/artist-name/1234567890'],
-  apple_chart: ['us', 'ro', 'gb', 'de'],
   apple_podcast: ['https://podcasts.apple.com/us/podcast/serial/id917918570'],
   tumblr: ['staff', 'nasa.tumblr.com'],
   pinterest: ['pinterest/official-news', 'pinterest'],
@@ -187,7 +185,6 @@ function FeedDialog({ guildId, meta, feed, onClose, onSaved }) {
             </div>
           </div>
 
-          {src?.needs ? <p className="rounded-lg border border-amber-400/30 bg-amber-400/5 p-3 text-xs text-amber-200">{t('needsKey')}</p> : null}
 
           {f.source ? (
             <div className="rounded-xl border border-[#e6cd8c]/25 bg-[#e6cd8c]/5 p-3">

@@ -10,12 +10,13 @@ import { SectionHeader } from '@/components/dashboard-kit';
 import {
   ConfirmDialog, Field, LoadingOrError, ModuleTabs, NativeSelect, PremiumLock, QuickSetup, RecommendedBar, Section, SaveFooter, SwitchRow, callApi, useApi, useDraft, useSave,
 } from '@/components/module-kit';
+import IconText, { Icon } from '@/components/icon-text';
 
 const GAME_ROWS = [
   ['blackjack', 'min_bet', 'max_bet'], ['slots', 'slots_min_bet', 'slots_max_bet'],
   ['coinflip', 'coinflip_min_bet', 'coinflip_max_bet'], ['dice', 'dice_min_bet', 'dice_max_bet'],
 ];
-const GAME_EMOJI = { blackjack: '♠️', slots: '🎰', coinflip: '🪙', dice: '🎲' };
+const GAME_EMOJI = { blackjack: '{wy:blackjack}', slots: '{wy:jackpot}', coinflip: '{wy:coins}', dice: '{wy:dice}' };
 const LIMIT_KEYS = GAME_ROWS.flatMap(([, a, b]) => [a, b]);
 
 function GameLimits({ t, s, d, set, errors }) {
@@ -23,7 +24,7 @@ function GameLimits({ t, s, d, set, errors }) {
     <div className="grid gap-4 md:grid-cols-2">
       {GAME_ROWS.map(([game, minKey, maxKey]) => (
         <Card key={game} className="p-4 bg-secondary/10">
-          <div className="mb-3 flex items-center gap-2 font-semibold"><span className="text-lg" aria-hidden="true">{GAME_EMOJI[game]}</span>{t(`games.${game}`)}</div>
+          <div className="mb-3 flex items-center gap-2 font-semibold"><span className="text-lg" aria-hidden="true"><IconText text={GAME_EMOJI[game]} size={24} /></span>{t(`games.${game}`)}</div>
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label={t(game === 'blackjack' ? 'fields.min_bet' : `fields.${minKey}`)} hint={t(game === 'blackjack' ? 'hints.min_bet' : `hints.${minKey}`)} level="required" errors={errors} field={minKey} recommended={d[minKey]}><Input type="number" min={1} value={s[minKey]} onChange={(e) => set(minKey, num(e.target.value))} /></Field>
             <Field label={t(game === 'blackjack' ? 'fields.max_bet' : `fields.${maxKey}`)} hint={t(game === 'blackjack' ? 'hints.max_bet' : `hints.${maxKey}`)} level="required" errors={errors} field={maxKey} recommended={d[maxKey]}><Input type="number" min={1} value={s[maxKey]} onChange={(e) => set(maxKey, num(e.target.value))} /></Field>

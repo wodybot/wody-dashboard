@@ -1,4 +1,5 @@
 'use client';
+import FloatingBar from '@/components/floating-bar';
 import PreviewZoom from '@/components/preview-zoom';
 import DiscordAppTag from '@/components/discord-app-tag';
 import { useEffect, useMemo, useState } from 'react';
@@ -12,6 +13,7 @@ import { Tooltip as UiTooltip, TooltipTrigger, TooltipContent, TooltipProvider }
 import { proxiedImageUrl } from '@/lib/utils';
 import { MultiPicker, SearchableSelect, channelOptions, roleOptions } from '@/components/entity-picker';
 import { CARD_FONTS, cardFontStyle } from '@/lib/card-fonts';
+import IconText from '@/components/icon-text';
 
 export function InfoHint({ children }) {
   const [open, setOpen] = useState(false);
@@ -126,7 +128,7 @@ function renderInline(line, keyPrefix) {
   let n = 0;
   const re = new RegExp(INLINE_RE.source, 'g');
   while ((m = re.exec(line)) !== null) {
-    if (m.index > last) out.push(<span key={`${keyPrefix}-t${n++}`}>{line.slice(last, m.index)}</span>);
+    if (m.index > last) out.push(<span key={`${keyPrefix}-t${n++}`}><IconText text={line.slice(last, m.index)} /></span>);
     const raw = m[0];
     const key = `${keyPrefix}-m${n++}`;
     if (m[1]) out.push(<code key={key} className="rounded-[4px] bg-[#1e1f22] px-1 py-0.5 font-mono text-[0.85em] text-[#dbdee1]">{raw.slice(1, -1)}</code>);
@@ -153,7 +155,7 @@ function renderInline(line, keyPrefix) {
     }
     last = re.lastIndex;
   }
-  if (last < line.length) out.push(<span key={`${keyPrefix}-t${n++}`}>{line.slice(last)}</span>);
+  if (last < line.length) out.push(<span key={`${keyPrefix}-t${n++}`}><IconText text={line.slice(last)} /></span>);
   return out;
 }
 
@@ -385,7 +387,7 @@ export function DiscordButtons({ buttons }) {
           key={`${b.label || ''}-${i}`}
           className={`inline-flex h-8 min-w-[60px] items-center justify-center gap-1.5 rounded-[8px] px-4 text-[14px] font-medium leading-none transition-colors ${DISCORD_BUTTON_STYLES[b.style || 'secondary'] || DISCORD_BUTTON_STYLES.secondary} ${b.disabled ? 'opacity-50' : ''}`}
         >
-          {b.emoji ? <span className="text-[1.1em] leading-none">{b.emoji}</span> : null}
+          {b.emoji ? <span className="text-[1.1em] leading-none"><IconText text={b.emoji} /></span> : null}
           {b.label ? <span className="truncate max-w-[14rem]">{b.label}</span> : null}
           {b.style === 'link' ? (
             <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 opacity-90" aria-hidden="true"><path fill="currentColor" d="M15 3h6v6h-2V6.41l-8.29 8.3-1.42-1.42L17.59 5H15V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z" /></svg>
@@ -563,7 +565,7 @@ export function SaveBar({ saving, onSave, dirty, onDiscard, disabled = false }) 
   }
   if (!dirty) return null;
   return (
-    <div className="sticky bottom-4 z-30 flex justify-center pt-2">
+    <FloatingBar>
       <div role="status" aria-live="polite" className="flex w-full max-w-3xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#e6cd8c]/40 bg-background/95 px-4 py-2.5 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.85)] backdrop-blur-md">
         <span className="inline-flex min-w-0 items-center gap-2 text-sm font-medium text-[#e6cd8c]"><span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-[#e08a4e]" />{tk('unsaved')}</span>
         <div className="ml-auto flex shrink-0 gap-2">
@@ -574,7 +576,7 @@ export function SaveBar({ saving, onSave, dirty, onDiscard, disabled = false }) 
           </Button>
         </div>
       </div>
-    </div>
+    </FloatingBar>
   );
 }
 

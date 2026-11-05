@@ -1,0 +1,411 @@
+{
+  "now": "2026-11-05T12:00:00+00:00",
+  "resolve": [
+    {
+      "name": "nothing running",
+      "seasons": [],
+      "guild_id": 10,
+      "premium": true,
+      "expect": null,
+      "reason": null
+    },
+    {
+      "name": "global active wins for every server",
+      "seasons": [
+        {
+          "id": "g1",
+          "scope": "global",
+          "status": "active",
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        }
+      ],
+      "guild_id": 10,
+      "premium": false,
+      "expect": "g1",
+      "reason": null
+    },
+    {
+      "name": "global beats active premium server season",
+      "seasons": [
+        {
+          "id": "g1",
+          "scope": "global",
+          "status": "active",
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        },
+        {
+          "id": "p1",
+          "scope": "guild",
+          "status": "active",
+          "guild_id": 10,
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        }
+      ],
+      "guild_id": 10,
+      "premium": true,
+      "expect": "g1",
+      "reason": "global_active"
+    },
+    {
+      "name": "premium server season runs when no global",
+      "seasons": [
+        {
+          "id": "p1",
+          "scope": "guild",
+          "status": "active",
+          "guild_id": 10,
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        }
+      ],
+      "guild_id": 10,
+      "premium": true,
+      "expect": "p1",
+      "reason": null
+    },
+    {
+      "name": "server season of another server never applies",
+      "seasons": [
+        {
+          "id": "p1",
+          "scope": "guild",
+          "status": "active",
+          "guild_id": 11,
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        }
+      ],
+      "guild_id": 10,
+      "premium": true,
+      "expect": null,
+      "reason": null
+    },
+    {
+      "name": "not premium means a server season does not run",
+      "seasons": [
+        {
+          "id": "p1",
+          "scope": "guild",
+          "status": "active",
+          "guild_id": 10,
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        }
+      ],
+      "guild_id": 10,
+      "premium": false,
+      "expect": null,
+      "reason": "not_premium"
+    },
+    {
+      "name": "scheduled global in the future does not take over",
+      "seasons": [
+        {
+          "id": "g1",
+          "scope": "global",
+          "status": "scheduled",
+          "starts_at": "2026-12-01T00:00:00+00:00"
+        },
+        {
+          "id": "p1",
+          "scope": "guild",
+          "status": "active",
+          "guild_id": 10,
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        }
+      ],
+      "guild_id": 10,
+      "premium": true,
+      "expect": "p1",
+      "reason": null
+    },
+    {
+      "name": "scheduled global whose date arrived takes over lazily",
+      "seasons": [
+        {
+          "id": "g1",
+          "scope": "global",
+          "status": "scheduled",
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        },
+        {
+          "id": "p1",
+          "scope": "guild",
+          "status": "active",
+          "guild_id": 10,
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        }
+      ],
+      "guild_id": 10,
+      "premium": true,
+      "expect": "g1",
+      "reason": "global_active"
+    },
+    {
+      "name": "ended global stops by date",
+      "seasons": [
+        {
+          "id": "g1",
+          "scope": "global",
+          "status": "active",
+          "starts_at": "2026-10-01T00:00:00+00:00",
+          "ends_at": "2026-11-01T00:00:00+00:00"
+        },
+        {
+          "id": "p1",
+          "scope": "guild",
+          "status": "active",
+          "guild_id": 10,
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        }
+      ],
+      "guild_id": 10,
+      "premium": true,
+      "expect": "p1",
+      "reason": null
+    },
+    {
+      "name": "paused global lets the server season run",
+      "seasons": [
+        {
+          "id": "g1",
+          "scope": "global",
+          "status": "paused",
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        },
+        {
+          "id": "p1",
+          "scope": "guild",
+          "status": "active",
+          "guild_id": 10,
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        }
+      ],
+      "guild_id": 10,
+      "premium": true,
+      "expect": "p1",
+      "reason": null
+    },
+    {
+      "name": "draft is never running",
+      "seasons": [
+        {
+          "id": "p1",
+          "scope": "guild",
+          "status": "draft",
+          "guild_id": 10
+        }
+      ],
+      "guild_id": 10,
+      "premium": true,
+      "expect": null,
+      "reason": null
+    },
+    {
+      "name": "earliest activated global wins a tie",
+      "seasons": [
+        {
+          "id": "g2",
+          "scope": "global",
+          "status": "active",
+          "starts_at": "2026-10-01T00:00:00+00:00",
+          "activated_at": "2026-10-05T00:00:00+00:00"
+        },
+        {
+          "id": "g1",
+          "scope": "global",
+          "status": "active",
+          "starts_at": "2026-10-01T00:00:00+00:00",
+          "activated_at": "2026-10-02T00:00:00+00:00"
+        }
+      ],
+      "guild_id": 10,
+      "premium": false,
+      "expect": "g1",
+      "reason": null
+    }
+  ],
+  "activation": [
+    {
+      "name": "premium owner activates when nothing runs",
+      "candidate": {
+        "id": "p1",
+        "scope": "guild",
+        "status": "draft",
+        "guild_id": 10
+      },
+      "others": [],
+      "premium": true,
+      "owner_ok": true,
+      "ok": true,
+      "reason": null
+    },
+    {
+      "name": "blocked while a global is active",
+      "candidate": {
+        "id": "p1",
+        "scope": "guild",
+        "status": "draft",
+        "guild_id": 10
+      },
+      "others": [
+        {
+          "id": "g1",
+          "scope": "global",
+          "status": "active",
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        }
+      ],
+      "premium": true,
+      "owner_ok": true,
+      "ok": false,
+      "reason": "global_active"
+    },
+    {
+      "name": "blocked when not premium",
+      "candidate": {
+        "id": "p1",
+        "scope": "guild",
+        "status": "draft",
+        "guild_id": 10
+      },
+      "others": [],
+      "premium": false,
+      "owner_ok": true,
+      "ok": false,
+      "reason": "not_premium"
+    },
+    {
+      "name": "blocked when not the owner",
+      "candidate": {
+        "id": "p1",
+        "scope": "guild",
+        "status": "draft",
+        "guild_id": 10
+      },
+      "others": [],
+      "premium": true,
+      "owner_ok": false,
+      "ok": false,
+      "reason": "not_owner"
+    },
+    {
+      "name": "one running server season per server",
+      "candidate": {
+        "id": "p2",
+        "scope": "guild",
+        "status": "draft",
+        "guild_id": 10
+      },
+      "others": [
+        {
+          "id": "p1",
+          "scope": "guild",
+          "status": "active",
+          "guild_id": 10,
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        }
+      ],
+      "premium": true,
+      "owner_ok": true,
+      "ok": false,
+      "reason": "another_guild_active"
+    },
+    {
+      "name": "another server does not block",
+      "candidate": {
+        "id": "p2",
+        "scope": "guild",
+        "status": "draft",
+        "guild_id": 10
+      },
+      "others": [
+        {
+          "id": "p1",
+          "scope": "guild",
+          "status": "active",
+          "guild_id": 11,
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        }
+      ],
+      "premium": true,
+      "owner_ok": true,
+      "ok": true,
+      "reason": null
+    },
+    {
+      "name": "global cannot start while another global runs",
+      "candidate": {
+        "id": "g2",
+        "scope": "global",
+        "status": "draft"
+      },
+      "others": [
+        {
+          "id": "g1",
+          "scope": "global",
+          "status": "active",
+          "starts_at": "2026-10-01T00:00:00+00:00"
+        }
+      ],
+      "premium": false,
+      "owner_ok": true,
+      "ok": false,
+      "reason": "another_global_active"
+    },
+    {
+      "name": "completed season cannot be activated",
+      "candidate": {
+        "id": "p1",
+        "scope": "guild",
+        "status": "completed",
+        "guild_id": 10
+      },
+      "others": [],
+      "premium": true,
+      "owner_ok": true,
+      "ok": false,
+      "reason": "bad_status"
+    },
+    {
+      "name": "paused server season may resume once the global ended",
+      "candidate": {
+        "id": "p1",
+        "scope": "guild",
+        "status": "paused",
+        "guild_id": 10
+      },
+      "others": [
+        {
+          "id": "g1",
+          "scope": "global",
+          "status": "completed",
+          "starts_at": "2026-10-01T00:00:00+00:00",
+          "ends_at": "2026-11-01T00:00:00+00:00"
+        }
+      ],
+      "premium": true,
+      "owner_ok": true,
+      "ok": true,
+      "reason": null
+    },
+    {
+      "name": "scheduled global in the future does not block",
+      "candidate": {
+        "id": "p1",
+        "scope": "guild",
+        "status": "draft",
+        "guild_id": 10
+      },
+      "others": [
+        {
+          "id": "g1",
+          "scope": "global",
+          "status": "scheduled",
+          "starts_at": "2026-12-01T00:00:00+00:00"
+        }
+      ],
+      "premium": true,
+      "owner_ok": true,
+      "ok": true,
+      "reason": null
+    }
+  ]
+}

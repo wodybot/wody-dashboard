@@ -7,6 +7,7 @@ import { getDb, toLong } from '@/lib/mongo';
 import { getBotGuild, getGuildMembersProfileMap, guildIconUrl } from '@/lib/discord';
 import { discordCdnUrl } from '@/lib/utils';
 import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
+import IconText, { Icon } from '@/components/icon-text';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 const PAGE_SIZE = 25;
@@ -83,7 +84,7 @@ async function getLeaderboard(guildId, page) {
   }
 }
 
-const RANK_MEDAL = { 1: '🥇', 2: '🥈', 3: '🥉' };
+const RANK_MEDAL = { 1: '{wy:trophy}', 2: '{wy:medal}', 3: '{wy:rank}' };
 
 function paginationItems(current, total) {
   const items = [1];
@@ -217,7 +218,7 @@ export default async function LeaderboardPage({ params, searchParams }) {
                 className="flex items-center gap-3 sm:gap-4 px-4 sm:px-5 py-3 border-b border-border/40 last:border-b-0 hover:bg-secondary/20 transition-colors"
               >
                 <div className="w-8 shrink-0 text-center text-sm font-semibold text-muted-foreground">
-                  {RANK_MEDAL[m.rank] || `#${m.rank}`}
+                  {RANK_MEDAL[m.rank] ? <IconText text={RANK_MEDAL[m.rank]} size={20} /> : `#${m.rank}`}
                 </div>
                 {m.avatar_url ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -232,7 +233,7 @@ export default async function LeaderboardPage({ params, searchParams }) {
                     <span className="truncate min-w-0">{m.name || t('userFallback', { id: m.user_id })}</span>
                     {m.left_server && (
                       <span className="text-[10px] font-normal text-muted-foreground/70 whitespace-nowrap shrink-0">
-                        🚪 <em className="not-italic">{t('leftServer')}</em>
+                        <Icon file="leave" size={12} /> <em className="not-italic">{t('leftServer')}</em>
                       </span>
                     )}
                   </div>

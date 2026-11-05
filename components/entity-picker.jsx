@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Check, ChevronsUpDown, Plus, X } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
+import IconText, { Icon } from '@/components/icon-text';
 
 const trigger = 'flex h-10 w-full items-center justify-between gap-2 rounded-md border border-input bg-background px-3 py-2 text-left text-sm transition hover:border-[#e6cd8c]/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50';
 
@@ -16,14 +17,14 @@ function dot(color) {
 
 export const channelOptions = (channels, types = [0, 5]) => (Array.isArray(channels) ? channels : [])
   .filter((c) => types.includes(c.type))
-  .map((c) => ({ id: String(c.id), label: c.name, prefix: c.type === 2 ? '🔊' : c.type === 4 ? '📁' : '#' }));
+  .map((c) => ({ id: String(c.id), label: c.name, prefix: c.type === 2 ? '{wy:speaker}' : c.type === 4 ? '{wy:folder}' : '#' }));
 
 export const roleOptions = (roles) => (Array.isArray(roles) ? roles : [])
   .filter((r) => !r.managed)
   .map((r) => ({ id: String(r.id), label: r.name, prefix: '@', color: r.color }));
 
 function Label({ o }) {
-  return <span className="flex min-w-0 items-center truncate">{dot(o.color)}<span className="mr-1 text-muted-foreground">{o.prefix}</span><span className="truncate">{o.label}</span></span>;
+  return <span className="flex min-w-0 items-center truncate">{dot(o.color)}<span className="mr-1 text-muted-foreground"><IconText text={o.prefix} size={14} /></span><span className="truncate">{o.label}</span></span>;
 }
 
 function OptionList({ options, isOn, onPick, multi, empty }) {
@@ -35,7 +36,7 @@ function OptionList({ options, isOn, onPick, multi, empty }) {
         <CommandEmpty>{empty || t('noResults')}</CommandEmpty>
         <CommandGroup>
           {options.map((o) => (
-            <CommandItem key={o.id} value={`${o.prefix}${o.label} ${o.id}`} onSelect={() => onPick(o.id)} className="cursor-pointer gap-2">
+            <CommandItem key={o.id} value={`${o.label} ${o.id}`} onSelect={() => onPick(o.id)} className="cursor-pointer gap-2">
               <Check className={`h-4 w-4 shrink-0 ${isOn(o.id) ? 'opacity-100 text-[#e6cd8c]' : 'opacity-0'}`} aria-hidden="true" />
               <Label o={o} />
             </CommandItem>
