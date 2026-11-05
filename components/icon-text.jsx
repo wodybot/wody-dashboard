@@ -1,6 +1,6 @@
 'use client';
 // Draws a text with every emoji or {wy:name} token as a Wody custom icon. Nothing is ever drawn as a standard emoji.
-import { Fragment } from 'react';
+import { Fragment, memo } from 'react';
 import { splitIcons, iconUrl } from '@/lib/emoji-icons';
 import { proxiedImageUrl } from '@/lib/utils';
 
@@ -12,6 +12,8 @@ export function Icon({ file, size = 18, className = '', title }) {
   return <img src={proxiedImageUrl(url)} alt={title || ''} aria-hidden={title ? undefined : 'true'} title={title} width={size} height={size} draggable={false} loading="lazy" decoding="async" className={`inline-block object-contain select-none ${className}`} style={box} />;
 }
 
-export default function IconText({ text, size = 18, className = '' }) {
+function IconTextBase({ text, size = 18, className = '' }) {
   return <>{splitIcons(text).map((p, i) => (p.icon !== undefined ? <Icon key={i} file={p.icon} size={size} className={className} /> : <Fragment key={i}>{p.text}</Fragment>))}</>;
 }
+
+export default memo(IconTextBase);

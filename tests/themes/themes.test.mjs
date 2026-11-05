@@ -273,13 +273,13 @@ test('premium logo: checked, resized, cleaned, only for Premium servers, shown a
 test('official artwork: a copy stored before the redraw is brought up to date once, never duplicated', async () => {
   const db = fresh(); await store.seedOfficial(db);
   const assets = db.collection(C.ASSET_COLL); const all = await assets.find({ official_key: { $exists: true } }).toArray();
-  assert.equal(all.length, 5); assert.ok(all.every((a) => a.art_version === 2));
+  assert.equal(all.length, 5); assert.ok(all.every((a) => a.art_version === 3));
   const one = all[0]; const imgs = db.collection('site_images');
   const imgId = one.site_image.split('/').pop(); const img = (await imgs.find({}).toArray()).find((x) => String(x._id) === imgId);
   await assets.updateOne({ _id: one._id }, { $set: { art_version: 1, width: 10 } });
   await imgs.updateOne({ _id: img._id }, { $set: { w: 10, data: Buffer.from('old') } });
-  await store.seedOfficial(db);
+  store.resetIndexCache(); await store.seedOfficial(db);
   const after = await assets.findOne({ _id: one._id }); const img2 = (await imgs.find({}).toArray()).find((x) => String(x._id) === imgId);
-  assert.equal(after.art_version, 2); assert.ok(after.width >= 600 && img2.w >= 600 && Buffer.from(img2.data.buffer || img2.data).length > 1000);
+  assert.equal(after.art_version, 3); assert.ok(after.width >= 600 && img2.w >= 600 && Buffer.from(img2.data.buffer || img2.data).length > 1000);
   assert.equal((await assets.find({ official_key: { $exists: true } }).toArray()).length, 5, 'no duplicates');
 });

@@ -589,7 +589,7 @@
         "server": "Sunucu",
         "global": "Genel"
       },
-      "miamiLink": "Miami Style temalı Discord botu"
+      "miamiLink": "Miami Style temasını incele"
     }
   },
   "careers": {
@@ -5360,6 +5360,14 @@
     "presentTitle": "Wody olan sunucular"
   },
   "modules": {
+    "statistics": {
+      "title": "İstatistikler",
+      "description": "Sunucunuz için kanal etkinliği, topluluk sağlığı ve eğilimler, yalnızca toplu sayaçlardan."
+    },
+    "counting": {
+      "title": "Sayma",
+      "description": "Sunucunuz için seriler, kurtarmalar ve sıralama içeren bir sayma oyunu."
+    },
     "general": {
       "title": "Genel",
       "description": "Sunucu özeti ve temel ayarlar."
@@ -11793,6 +11801,7 @@
       "saved": "Taslak kaydedildi.",
       "published": "Temanız yayında.",
       "unsaved": "Kaydedilmemiş değişiklikler",
+      "discardForTheme": "Kaydedilmemiş değişiklikleriniz var. Başka bir tema seçmek onları siler. Devam edilsin mi?",
       "livePublished": "Sunucu sayfalarınızda bir tema yayında.",
       "notPublished": "Henüz yayınlanmış tema yok.",
       "premiumBadge": "Premium",
@@ -11941,6 +11950,7 @@
         "audit": "Denetim günlüğü"
       },
       "readOnly": "Temaları görebilirsiniz ancak yalnızca sahip değiştirebilir.",
+      "charactersHint": "Karakterler: Karakterini düzenlemek için bir tema seçin (ad, görsel, konum, boyut, bekleme hareketi ve etkileşimler).",
       "pick": "Listeden bir tema seçin veya yeni bir tane oluşturun.",
       "discard": "Kaydedilmemiş değişiklikleriniz var. Vazgeçilsin mi?",
       "officialHint": "WODY, yani Wody ejderhasıyla resmi tema. Platformla birlikte yayınlanır; buradan düzenleyebilir veya karakter görselini değiştirebilirsin.",
@@ -12083,6 +12093,32 @@
       "asset_corrupt": "Görsel okunamadı. Hasarlı olabilir.",
       "asset_needs_transparency": "Bu varlık türü şeffaf arka plan gerektirir.",
       "asset_in_use": "Bu varlık hâlâ bir tema tarafından kullanılıyor."
+    },
+    "where": {
+      "title": "Temanın göründüğü yerler",
+      "hintLive": "Temanız etkin. Üyeleriniz onu şu yerlerde görür.",
+      "hintDraft": "Aşağıdan bir tema seçin, hemen yayına girer. Şu yerlerde görünecek.",
+      "statusOn": "Görünüyor",
+      "statusOff": "Görünmüyor",
+      "open": "Sayfayı gör",
+      "battlepass": {
+        "name": "Battle Pass sayfası",
+        "text": "Sunucunuzun herkese açık Battle Pass sayfası renklerinizi, arka planınızı ve karakterinizi kullanır."
+      },
+      "leaderboard": {
+        "name": "Sıralama",
+        "text": "Sunucunuzun herkese açık sıralaması aynı görünümü kullanır."
+      },
+      "community": {
+        "name": "Sunucu sayfası",
+        "text": "Sunucunuz topluluk listesindeyse herkese açık sayfası temanızı kullanır."
+      },
+      "dashboard": {
+        "name": "Bu panel",
+        "text": "Burada renkler ve hafif efektler, karakter ve intro olmadan.",
+        "turnOn": "Burada da kullan",
+        "turnOff": "Burada kullanmayı bırak"
+      }
     }
   },
   "themesHelp": {

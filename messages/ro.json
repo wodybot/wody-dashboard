@@ -590,7 +590,7 @@
         "server": "Server",
         "global": "Global"
       },
-      "miamiLink": "Bot Discord cu temă Miami Style"
+      "miamiLink": "Vezi tema Miami Style"
     }
   },
   "careers": {
@@ -5361,6 +5361,14 @@
     "presentTitle": "Servere cu Wody"
   },
   "modules": {
+    "statistics": {
+      "title": "Statistici",
+      "description": "Activitatea canalelor, sănătatea comunității și tendințe pentru serverul tău, din contoare agregate."
+    },
+    "counting": {
+      "title": "Numărare",
+      "description": "Un joc de numărare pentru serverul tău, cu serii, salvări și clasament."
+    },
     "general": {
       "title": "General",
       "description": "Prezentarea serverului și setările esențiale."
@@ -11794,6 +11802,7 @@
       "saved": "Ciorna a fost salvată.",
       "published": "Tema ta este activă.",
       "unsaved": "Modificări nesalvate",
+      "discardForTheme": "Ai modificări nesalvate. Alegerea altei teme le șterge. Continui?",
       "livePublished": "O temă este publicată pe paginile serverului tău.",
       "notPublished": "Nicio temă nu este publicată încă.",
       "premiumBadge": "Premium",
@@ -11942,6 +11951,7 @@
         "audit": "Jurnal de audit"
       },
       "readOnly": "Poți vedea temele, dar doar Owner-ul le poate modifica.",
+      "charactersHint": "Personaje: alege o temă ca să îi editezi personajul (nume, imagine, poziție, mărime, mișcare în repaus și interacțiuni).",
       "pick": "Alege o temă din listă sau creează una nouă.",
       "discard": "Ai modificări nesalvate. Le renunți?",
       "officialHint": "Temă oficială cu WODY, dragonul Wody. Este publicată odată cu platforma; o poți edita sau poți înlocui imaginea personajului de aici.",
@@ -12084,6 +12094,32 @@
       "asset_corrupt": "Imaginea nu a putut fi citită. Poate fi deteriorată.",
       "asset_needs_transparency": "Acest tip de resursă necesită fundal transparent.",
       "asset_in_use": "Această resursă este încă folosită de o temă."
+    },
+    "where": {
+      "title": "Unde se vede tema ta",
+      "hintLive": "Tema ta este activă. Acestea sunt locurile în care o văd membrii.",
+      "hintDraft": "Alege o temă mai jos și devine activă imediat. Acestea sunt locurile în care se va vedea.",
+      "statusOn": "Se vede",
+      "statusOff": "Nu se vede",
+      "open": "Vezi pagina",
+      "battlepass": {
+        "name": "Pagina Battle Pass",
+        "text": "Pagina publică Battle Pass a serverului folosește culorile, fundalul și personajul tău."
+      },
+      "leaderboard": {
+        "name": "Clasament",
+        "text": "Clasamentul public al serverului are același aspect."
+      },
+      "community": {
+        "name": "Pagina serverului",
+        "text": "Dacă serverul tău este listat în comunitate, pagina lui publică folosește tema ta."
+      },
+      "dashboard": {
+        "name": "Acest dashboard",
+        "text": "Culori și efecte discrete aici, fără personaj și fără intro.",
+        "turnOn": "Folosește și aici",
+        "turnOff": "Nu mai folosi aici"
+      }
     }
   },
   "themesHelp": {

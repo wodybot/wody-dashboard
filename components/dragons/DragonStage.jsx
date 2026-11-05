@@ -42,24 +42,28 @@ export default function DragonStage({ dragon, state = 'idle', playKey = 0, label
     const loop = (now) => {
       const dt = Math.min(0.05, (now - last) / 1000); last = now;
       const { state: st, dragon: d } = live.current; const [fr, fg, fb] = rgb(d.fire_color); const W = cv.width; const H = cv.height;
-      const h = H; const sc = SIZE_SCALE[d.size] || 1; const dw = h * 0.75 * sc; const left = W * 0.5 - dw * 0.15; // artwork box
-      const mouth = { x: left + dw * 0.1, y: h * (0.9 - 0.9 * sc) + h * sc * 0.33 };
-      const rate = (st === 'fire_attack' && d.effects.fire ? 170 : st === 'roar' && d.effects.sparks ? 40 : st === 'idle' && d.effects.fire ? 6 : 0);
+      // the mouth is read from where the artwork really is on screen right now (it moves with hovering, flying and landing), so
+      // fire and sparks always leave the mouth: the opening sits at 9.5% across and 35.5% down the picture of the dragon
+      const rig = box.querySelector('.dg-rig'); const rr = rig?.getBoundingClientRect(); const br = box.getBoundingClientRect();
+      if (!rr || !rr.height) { raf = requestAnimationFrame(loop); return; }
+      const k = rr.height / 600; const jaw = st === 'fire_attack' ? 0.02 : st === 'roar' ? 0.03 : 0;
+      const mouth = { x: rr.left - br.left + rr.width * 0.095, y: rr.top - br.top + rr.height * (0.355 + jaw) };
+      const rate = (st === 'fire_attack' && d.effects.fire ? 150 : st === 'roar' && d.effects.sparks ? 40 : st === 'idle' && d.effects.fire ? 3 : 0);
       carry += dt * rate; while (carry >= 1 && ps.length < 420) {
         carry -= 1;
-        if (st === 'fire_attack') ps.push({ k: 'fire', x: mouth.x, y: mouth.y, vx: -(260 + Math.random() * 220) * sc, vy: (Math.random() - 0.5) * 70, life: 0.9 + Math.random() * 0.5, age: 0, r: 8 + Math.random() * 14 });
-        else if (st === 'roar') ps.push({ k: 'spark', x: mouth.x, y: mouth.y, vx: -(80 + Math.random() * 200), vy: -(Math.random() * 160), life: 0.8, age: 0, r: 1.6 });
-        else ps.push({ k: 'spark', x: left + dw * (0.3 + Math.random() * 0.5), y: h * 0.8, vx: (Math.random() - 0.5) * 20, vy: -(30 + Math.random() * 40), life: 2.4, age: 0, r: 1.4 });
+        if (st === 'fire_attack') ps.push({ k: 'fire', x: mouth.x + (Math.random() - 0.5) * 4, y: mouth.y + (Math.random() - 0.5) * 6 * k, vx: -(300 + Math.random() * 260) * k, vy: (Math.random() - 0.35) * 55 * k, life: 0.7 + Math.random() * 0.5, age: 0, r: (4 + Math.random() * 7) * Math.max(0.6, k) });
+        else if (st === 'roar') ps.push({ k: 'spark', x: mouth.x, y: mouth.y, vx: -(80 + Math.random() * 200) * k, vy: -(Math.random() * 120) * k, life: 0.8, age: 0, r: 1.6 });
+        else ps.push({ k: 'spark', x: mouth.x + 4, y: mouth.y - 2, vx: -(6 + Math.random() * 14) * k, vy: -(14 + Math.random() * 22) * k, life: 1.6, age: 0, r: 1.2 });
       }
-      if (st === 'fire_attack' && d.effects.smoke && Math.random() < dt * 30) ps.push({ k: 'smoke', x: mouth.x - 80, y: mouth.y - 10, vx: -50, vy: -40 - Math.random() * 30, life: 2.2, age: 0, r: 18 });
-      if (st === 'land' && d.effects.dust && Math.random() < dt * 90) ps.push({ k: 'dust', x: W * 0.5 + (Math.random() - 0.5) * dw * 0.8, y: h * 0.93, vx: (Math.random() - 0.5) * 220, vy: -(Math.random() * 40), life: 1.4, age: 0, r: 10 + Math.random() * 12 });
+      if (st === 'fire_attack' && d.effects.smoke && Math.random() < dt * 24) ps.push({ k: 'smoke', x: mouth.x - 60 * k, y: mouth.y - 6 * k, vx: -40 * k, vy: -(36 + Math.random() * 26) * k, life: 2, age: 0, r: 8 * Math.max(0.6, k) });
+      if (st === 'land' && d.effects.dust && Math.random() < dt * 90) ps.push({ k: 'dust', x: rr.left - br.left + rr.width * (0.3 + Math.random() * 0.5), y: rr.bottom - br.top - 6, vx: (Math.random() - 0.5) * 220 * k, vy: -(Math.random() * 40), life: 1.4, age: 0, r: (10 + Math.random() * 12) * Math.max(0.6, k) });
       g.clearRect(0, 0, W, H);
       for (let i = ps.length - 1; i >= 0; i -= 1) {
         const p = ps[i]; p.age += dt; if (p.age >= p.life) { ps.splice(i, 1); continue; }
         const f = p.age / p.life; p.x += p.vx * dt; p.y += p.vy * dt; p.vx *= 0.985; p.vy += (p.k === 'fire' ? -40 : p.k === 'dust' ? 20 : 20) * dt;
-        if (p.k === 'fire') { g.globalCompositeOperation = 'lighter'; const a = (1 - f) * 0.55; const gr = g.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * (1 + f * 2)); gr.addColorStop(0, `rgba(255,${Math.round(240 - f * 90)},${Math.round(190 - f * 150)},${a})`); gr.addColorStop(0.5, `rgba(${fr},${fg},${fb},${a * 0.7})`); gr.addColorStop(1, `rgba(${fr},${fg},${fb},0)`); g.fillStyle = gr; g.beginPath(); g.arc(p.x, p.y, p.r * (1 + f * 2), 0, 6.3); g.fill(); }
+        if (p.k === 'fire') { g.globalCompositeOperation = 'lighter'; const a = (1 - f) * 0.55; const gr = g.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * (1 + f * 1.5)); gr.addColorStop(0, `rgba(255,${Math.round(240 - f * 90)},${Math.round(190 - f * 150)},${a})`); gr.addColorStop(0.5, `rgba(${fr},${fg},${fb},${a * 0.7})`); gr.addColorStop(1, `rgba(${fr},${fg},${fb},0)`); g.fillStyle = gr; g.beginPath(); g.arc(p.x, p.y, p.r * (1 + f * 2), 0, 6.3); g.fill(); }
         else if (p.k === 'spark') { g.globalCompositeOperation = 'lighter'; g.fillStyle = `rgba(255,${Math.round(220 - f * 100)},${Math.round(150 - f * 100)},${1 - f})`; g.beginPath(); g.arc(p.x, p.y, p.r, 0, 6.3); g.fill(); }
-        else { g.globalCompositeOperation = 'source-over'; const a = (p.k === 'smoke' ? 0.28 : 0.22) * (1 - f); g.fillStyle = p.k === 'smoke' ? `rgba(40,36,36,${a})` : `rgba(150,130,110,${a})`; g.beginPath(); g.arc(p.x, p.y, p.r * (1 + f * 2.2), 0, 6.3); g.fill(); }
+        else { g.globalCompositeOperation = 'source-over'; const a = (p.k === 'smoke' ? 0.13 : 0.22) * (1 - f); g.fillStyle = p.k === 'smoke' ? `rgba(40,36,36,${a})` : `rgba(150,130,110,${a})`; g.beginPath(); g.arc(p.x, p.y, p.r * (1 + f * 2.2), 0, 6.3); g.fill(); }
       }
       raf = requestAnimationFrame(loop);
     };

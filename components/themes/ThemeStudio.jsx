@@ -92,6 +92,7 @@ export default function ThemeStudio({ writer = true }) {
           </aside>
 
           <div className="grid min-w-0 content-start gap-4">
+            {tab === 'characters' ? <p className="text-sm text-muted-foreground">{t('owner.charactersHint')}</p> : null}
             {!sel || !cfg ? <p className="text-sm text-muted-foreground">{t('owner.pick')}</p> : (
               <>
                 <Card title={`${sel.official && t.has(`official.${sel.id}.name`) ? t(`official.${sel.id}.name`) : sel.name}`} hint={sel.official ? t('owner.officialHint') : null}>
@@ -116,7 +117,7 @@ export default function ThemeStudio({ writer = true }) {
                   ) : null}
                   {writer ? <Schedule t={t} disabled={Boolean(busy) || dirty || sel.status === 'archived'} onSchedule={(start, end) => post('schedule', { start, ...(end ? { end } : {}) }, t('owner.scheduledOk'))} /> : null}
                 </Card>
-                <ThemeEditor theme={sel} cfg={cfg} setCfg={setCfgDirty} assets={assets} section={section} setSection={setSection} readOnly={readOnly || sel.status === 'archived'} />
+                <ThemeEditor theme={sel} cfg={cfg} setCfg={setCfgDirty} assets={assets} section={tab === 'characters' ? 'character' : section} setSection={setSection} only={tab === 'characters' ? 'character' : null} readOnly={readOnly || sel.status === 'archived'} />
                 <Card title={t('owner.versions')}>
                   {sel.versions.length === 0 ? <p className="text-sm text-muted-foreground">{t('owner.noVersions')}</p> : (
                     <ul className="grid gap-1.5">{sel.versions.map((v) => <li key={v.v} className="flex flex-wrap items-center justify-between gap-2 text-sm"><span>v{v.v} · {fmt(v.at, locale)} · {v.by}</span>{writer ? <Btn disabled={Boolean(busy)} onClick={() => window.confirm(t('owner.restoreConfirm', { v: v.v })) && post('restore', { version: v.v }, t('owner.restoredOk'))}>{t('owner.restore')}</Btn> : null}</li>)}</ul>

@@ -4,6 +4,9 @@ import PassShell from '@/components/battlepass/PassShell';
 import { loadPublicPass } from '@/lib/battlepass/public';
 import { passMetadata, passJsonLd } from '@/lib/battlepass/seo';
 import { getBotGuild } from '@/lib/discord';
+import ThemeStage, { stageLabels } from '@/components/themes/ThemeStage';
+import { getDb } from '@/lib/mongo';
+import { resolveGuildTheme } from '@/lib/themes/store';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -31,10 +34,16 @@ export default async function ServerBattlePassPage({ params }) {
   const loginHref = `/api/auth/login?next=${encodeURIComponent(`${prefix}${path}`)}`;
   const emptyKey = data.reason === 'not_premium' ? 'emptyNotPremium' : 'emptyServer';
   const ld = passJsonLd({ locale, path, t, season: data.season, guildName: name });
-  return (
+  // the server's published theme (if it chose one) dresses this page too
+  let theme = null;
+  try { theme = await resolveGuildTheme(await getDb(), String(server), { locale }); } catch { theme = null; }
+  const page = (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld).replace(/</g, '\\u003c') }} />
       <PassShell data={data} t={t} backHref="/servers" guildName={name} loginHref={loginHref} emptyKey={emptyKey} />
     </>
   );
+  if (!theme) return page;
+  const tt = await getTranslations({ locale, namespace: 'themes' });
+  return <ThemeStage theme={theme} labels={stageLabels(tt)} mode="page">{page}</ThemeStage>;
 }

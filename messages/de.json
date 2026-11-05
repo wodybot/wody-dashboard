@@ -589,7 +589,7 @@
         "server": "Server",
         "global": "Global"
       },
-      "miamiLink": "Discord-Bot mit Miami-Style-Design"
+      "miamiLink": "Miami-Style-Design ansehen"
     }
   },
   "careers": {
@@ -5360,6 +5360,14 @@
     "presentTitle": "Server mit Wody"
   },
   "modules": {
+    "statistics": {
+      "title": "Statistiken",
+      "description": "Kanalaktivität, Community-Gesundheit und Trends für deinen Server, nur aus aggregierten Zählern."
+    },
+    "counting": {
+      "title": "Zählen",
+      "description": "Ein Zählspiel für deinen Server mit Serien, Rettungen und Rangliste."
+    },
     "general": {
       "title": "Allgemein",
       "description": "Serverübersicht und wichtige Einstellungen."
@@ -11793,6 +11801,7 @@
       "saved": "Entwurf gespeichert.",
       "published": "Ihr Thema ist live.",
       "unsaved": "Ungespeicherte Änderungen",
+      "discardForTheme": "Du hast ungespeicherte Änderungen. Ein anderes Theme zu wählen verwirft sie. Fortfahren?",
       "livePublished": "Ein Thema ist auf Ihren Serverseiten veröffentlicht.",
       "notPublished": "Noch kein Thema veröffentlicht.",
       "premiumBadge": "Premium",
@@ -11941,6 +11950,7 @@
         "audit": "Audit-Protokoll"
       },
       "readOnly": "Sie können Themen ansehen, aber nur der Owner kann sie ändern.",
+      "charactersHint": "Figuren: Wähle ein Theme, um dessen Figur zu bearbeiten (Name, Grafik, Position, Größe, Ruhebewegung und Interaktionen).",
       "pick": "Wählen Sie ein Thema aus der Liste oder erstellen Sie ein neues.",
       "discard": "Sie haben ungespeicherte Änderungen. Verwerfen?",
       "officialHint": "Offizielles Theme mit WODY, dem Wody-Drachen. Es wird mit der Plattform veröffentlicht; hier kannst du es bearbeiten oder das Charakterbild ersetzen.",
@@ -12083,6 +12093,32 @@
       "asset_corrupt": "Das Bild konnte nicht gelesen werden. Es ist möglicherweise beschädigt.",
       "asset_needs_transparency": "Dieser Asset-Typ braucht einen transparenten Hintergrund.",
       "asset_in_use": "Dieses Asset wird noch von einem Thema verwendet."
+    },
+    "where": {
+      "title": "Wo dein Theme zu sehen ist",
+      "hintLive": "Dein Theme ist aktiv. An diesen Stellen sehen es deine Mitglieder.",
+      "hintDraft": "Wähle unten ein Theme, es wird sofort aktiv. An diesen Stellen wird es zu sehen sein.",
+      "statusOn": "Sichtbar",
+      "statusOff": "Nicht sichtbar",
+      "open": "Seite ansehen",
+      "battlepass": {
+        "name": "Battle-Pass-Seite",
+        "text": "Die öffentliche Battle-Pass-Seite deines Servers nutzt deine Farben, deinen Hintergrund und deinen Charakter."
+      },
+      "leaderboard": {
+        "name": "Rangliste",
+        "text": "Die öffentliche Rangliste deines Servers sieht genauso aus."
+      },
+      "community": {
+        "name": "Serverseite",
+        "text": "Ist dein Server in der Community gelistet, nutzt seine öffentliche Seite dein Theme."
+      },
+      "dashboard": {
+        "name": "Dieses Dashboard",
+        "text": "Hier Farben und dezente Effekte, ohne Charakter und Intro.",
+        "turnOn": "Auch hier nutzen",
+        "turnOff": "Hier nicht mehr nutzen"
+      }
     }
   },
   "themesHelp": {

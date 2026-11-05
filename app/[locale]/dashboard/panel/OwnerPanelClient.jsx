@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'sonner';
@@ -572,30 +572,41 @@ function DiscordComponentPreview({ config, imageSrc }) {
         setChecked(true);
         return;
       }
-      safeJson('/api/owner/config-status').then((c) => setConfigStatus(c?.groups ? c : null));
       const u = await safeJson('/api/auth/me');
       setUser(u?.user || null);
       setChecked(true);
-      loadKeys();
-      loadServers();
-      loadAllServers();
-      loadJoined();
-      loadLeft();
-      loadBotWelcome();
-      loadInvites();
-      loadGuildBans();
-      loadUpdates();
-      loadSeason();
-      loadShowcase();
-      loadBanner();
-      loadFooterSocials();
-      loadCountdownBanner();
-      loadOgEmbed();
-      loadCareersRoles();
-      loadBlogPosts();
-      loadStaff();
     })();
   }, []);
+  // Each section loads its own tables the first time it is opened, a few at a time, instead of firing every request at once
+  // when the panel opens (the browser only runs a handful in parallel and the slow ones used to hold up the rest).
+  const loadedParts = useRef(new Set());
+  useEffect(() => {
+    if (!checked || !me?.is_owner) return;
+    const parts = {
+      status: () => safeJson('/api/owner/config-status').then((c) => setConfigStatus(c?.groups ? c : null)),
+      keys: loadKeys, servers: loadServers, allServers: loadAllServers, joined: loadJoined, left: loadLeft, welcome: loadBotWelcome,
+      invites: loadInvites, bans: loadGuildBans, updates: loadUpdates, blog: loadBlogPosts, staff: loadStaff,
+      season: loadSeason, showcase: loadShowcase, banner: loadBanner, socials: loadFooterSocials, countdown: loadCountdownBanner,
+      og: loadOgEmbed, careers: loadCareersRoles,
+    };
+    const bySection = {
+      overview: ['keys', 'servers', 'allServers', 'status'],
+      keys: ['keys'],
+      'premium-servers': ['servers'],
+      'all-servers': ['allServers', 'servers', 'welcome', 'joined', 'left', 'invites'],
+      enforcement: ['bans', 'allServers', 'servers'],
+      updates: ['updates'], blog: ['blog'], staff: ['staff'],
+      appearance: ['season', 'showcase', 'banner', 'socials', 'countdown', 'og', 'careers', 'servers'],
+    };
+    const todo = (bySection[section] || []).filter((k) => !loadedParts.current.has(k));
+    todo.forEach((k) => loadedParts.current.add(k));
+    let cancelled = false;
+    (async () => {
+      for (let n = 0; n < todo.length && !cancelled; n += 3) await Promise.all(todo.slice(n, n + 3).map((k) => parts[k]()));
+    })();
+    return () => { cancelled = true; };
+  }, [section, checked, me]);
+
 
   async function loadAutumn() {
     setAutumnLoading(true);

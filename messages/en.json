@@ -589,7 +589,7 @@
         "server": "Server",
         "global": "Global"
       },
-      "miamiLink": "Discord bot with a Miami Style theme"
+      "miamiLink": "View the Miami Style theme"
     }
   },
   "careers": {
@@ -5360,6 +5360,14 @@
     "presentTitle": "Servers with Wody"
   },
   "modules": {
+    "statistics": {
+      "title": "Statistics",
+      "description": "Channel activity, community health and trends for your server, built from aggregate counters only."
+    },
+    "counting": {
+      "title": "Counting",
+      "description": "A counting game for your server with streaks, saves and a leaderboard."
+    },
     "general": {
       "title": "General",
       "description": "Server overview and essential settings."
@@ -11793,6 +11801,7 @@
       "saved": "Draft saved.",
       "published": "Your theme is live.",
       "unsaved": "Unsaved changes",
+      "discardForTheme": "You have unsaved changes. Choosing another theme discards them. Continue?",
       "livePublished": "A theme is published on your server pages.",
       "notPublished": "No theme is published yet.",
       "premiumBadge": "Premium",
@@ -11941,6 +11950,7 @@
         "audit": "Audit log"
       },
       "readOnly": "You can view themes but only the Owner can change them.",
+      "charactersHint": "Characters: choose a theme to edit its character (name, artwork, position, size, idle motion and interactions).",
       "pick": "Pick a theme from the list or create a new one.",
       "discard": "You have unsaved changes. Discard them?",
       "officialHint": "Official theme with WODY, the Wody dragon. It is published with the platform; you can edit it or replace the character art from here.",
@@ -12083,6 +12093,32 @@
       "asset_corrupt": "The image could not be read. It may be damaged.",
       "asset_needs_transparency": "This asset type needs a transparent background.",
       "asset_in_use": "This asset is still used by a theme."
+    },
+    "where": {
+      "title": "Where your theme shows",
+      "hintLive": "Your theme is live. These are the places where your members will see it.",
+      "hintDraft": "Choose a theme below and it goes live right away. These are the places where it will show.",
+      "statusOn": "Showing",
+      "statusOff": "Not showing",
+      "open": "View page",
+      "battlepass": {
+        "name": "Battle Pass page",
+        "text": "The public Battle Pass page of your server wears your colors, background and character."
+      },
+      "leaderboard": {
+        "name": "Leaderboard",
+        "text": "The public ranking of your server uses the same look."
+      },
+      "community": {
+        "name": "Server page",
+        "text": "If your server is listed in the community, its public page uses your theme."
+      },
+      "dashboard": {
+        "name": "This dashboard",
+        "text": "Colors and soft effects here, without the character or the intro.",
+        "turnOn": "Use here too",
+        "turnOff": "Stop using here"
+      }
     }
   },
   "themesHelp": {

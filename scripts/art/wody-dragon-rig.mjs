@@ -30,6 +30,7 @@ function tube(pts, radii, steps = 90) {
 
 const defs = (c, id) => `<defs>
   <linearGradient id="skin${id}" x1="0.85" y1="0" x2="0.1" y2="1"><stop offset="0" stop-color="${c.skin[3]}"/><stop offset="0.22" stop-color="${c.skin[2]}"/><stop offset="0.6" stop-color="${c.skin[1]}"/><stop offset="1" stop-color="${c.skin[0]}"/></linearGradient>
+  <linearGradient id="tooth${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffaf0"/><stop offset="0.7" stop-color="#eadfc6"/><stop offset="1" stop-color="#bfae8c"/></linearGradient>
   <linearGradient id="belly${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c.belly[0]}"/><stop offset="1" stop-color="${c.belly[1]}"/></linearGradient>
   <linearGradient id="horn${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c.horn[0]}"/><stop offset="1" stop-color="${c.horn[1]}"/></linearGradient>
   <linearGradient id="wing${id}" x1="0.1" y1="1" x2="0.9" y2="0"><stop offset="0" stop-color="${c.wing[0]}" stop-opacity="0.98"/><stop offset="0.55" stop-color="${c.wing[1]}" stop-opacity="0.9"/><stop offset="1" stop-color="${c.wing[2]}" stop-opacity="0.82"/></linearGradient>
@@ -50,12 +51,23 @@ const wrap = (c, id, body) => `<svg xmlns="http://www.w3.org/2000/svg" width="${
 // ------------------------------------------------------------------ parts
 const TORSO = 'M 400 520 C 470 498 560 540 620 620 C 680 700 705 760 785 790 C 865 820 935 860 965 930 C 980 985 950 1035 900 1065 L 845 1092 C 805 1122 762 1132 722 1102 C 660 1062 640 1012 600 962 C 560 912 520 862 520 802 C 520 742 500 692 470 652 C 440 622 405 602 382 572 Z';
 
-function torso(c, id) {
-  const ridge = Array.from({ length: 15 }, (_, i) => {
-    const t = i / 14; const x = 470 + t * 500; const y = 506 + (t < 0.5 ? t * 300 : 150 + (t - 0.5) * 450) + (t > 0.5 ? 0 : 0);
-    const px = 470 + t * 480; const py = 508 + Math.pow(t, 1.15) * 400 + Math.sin(t * 6) * 6; const s = 52 - t * 26;
-    return `<path d="M ${px - 14} ${py + 6} L ${px + 6} ${py - s} L ${px + 24} ${py + 12} Z" fill="url(#horn${id})" stroke="${c.bone}" stroke-width="3"/>`;
-  }).join('');
+
+// dorsal spikes standing on the real back outline: the outline is read from the drawn torso, so the spikes always touch the skin
+function spikes(c, id, back) {
+  return back.map((p, i) => { const s = 46 - (i / Math.max(1, back.length - 1)) * 22; const nx = p.nx; const ny = p.ny; const tx = -ny; const ty = nx; const w = 15 - i * 0.4;
+    const bx1 = p.x - tx * w - nx * 6; const by1 = p.y - ty * w - ny * 6; const bx2 = p.x + tx * w - nx * 6; const by2 = p.y + ty * w - ny * 6;
+    return `<path d="M ${bx1.toFixed(1)} ${by1.toFixed(1)} L ${(p.x + nx * s + tx * 3).toFixed(1)} ${(p.y + ny * s + ty * 3).toFixed(1)} L ${bx2.toFixed(1)} ${by2.toFixed(1)} Z" fill="url(#horn${id})" stroke="${c.bone}" stroke-width="3" stroke-linejoin="round"/>`; }).join('');
+}
+async function backOutline(c) {
+  const probe = await sharp(Buffer.from(wrap(c, 'probe', torso(c, 'probe', [])))).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const { data, info } = probe; const top = (x) => { for (let y = 0; y < info.height; y += 1) if (data[(y * info.width + x) * 4 + 3] > 200) return y; return -1; };
+  const xs = []; for (let x = 452; x <= 950; x += 34) xs.push(x);
+  return xs.map((x) => { const y = top(x); const y0 = top(x - 14); const y1 = top(x + 14); if (y < 0 || y0 < 0 || y1 < 0) return null;
+    let tx = 28; let ty = y1 - y0; const l = Math.hypot(tx, ty); tx /= l; ty /= l; return { x, y, nx: ty, ny: -tx }; }).filter(Boolean);
+}
+
+function torso(c, id, back = []) {
+  const ridge = spikes(c, id, back);
   const hindLeg = `<path d="M 790 960 C 870 980 910 1040 880 1120 C 860 1180 800 1230 790 1290 L 700 1296 C 690 1250 730 1190 740 1130 C 700 1110 700 1040 730 990 Z" fill="url(#skin${id})" stroke="${c.skin[0]}" stroke-width="4"/>
     <path d="M 800 990 C 860 1010 880 1060 860 1110" stroke="#fff" stroke-opacity="0.18" stroke-width="14" fill="none" stroke-linecap="round"/><path d="M 700 1296 l -34 70 l 48 -44 l 6 66 l 34 -66 l 36 62 l 0 -80 Z" fill="url(#horn${id})" stroke="${c.bone}" stroke-width="3"/>`;
   const foreLeg = `<path d="M 580 880 C 540 930 560 990 610 1020 C 650 1048 640 1090 600 1120 L 640 1150 C 700 1110 720 1050 680 1000 C 650 960 650 920 620 880 Z" fill="url(#skin${id})" stroke="${c.skin[0]}" stroke-width="4"/>
@@ -96,7 +108,8 @@ function head(c, id) {
   <path d="M 520 540 C 570 520 620 540 660 590 C 600 580 560 590 520 600 Z" fill="${c.wing[1]}" opacity="0.9" stroke="${c.bone}" stroke-width="3"/>
   <!-- mouth cavity -->
   <path d="M 214 548 L 330 568 C 400 586 458 598 508 582 L 500 616 C 430 630 330 620 236 592 Z" fill="#12030a"/>
-  <ellipse cx="380" cy="598" rx="120" ry="22" fill="${c.mouth}" opacity="0.8" filter="url(#soft4${id})"/>
+  <clipPath id="mc${id}"><path d="M 214 548 L 330 568 C 400 586 458 598 508 582 L 500 616 C 430 630 330 620 236 592 Z"/></clipPath>
+  <ellipse cx="370" cy="586" rx="110" ry="16" fill="${c.mouth}" opacity="0.5" filter="url(#soft4${id})" clip-path="url(#mc${id})"/>
   <!-- skull -->
   <path d="${HEAD}" fill="url(#skin${id})" stroke="${c.skin[0]}" stroke-width="5" filter="url(#skinfx${id})"/>
   <clipPath id="hc${id}"><path d="${HEAD}"/></clipPath>
@@ -110,8 +123,9 @@ function head(c, id) {
   <path d="M 318 484 C 346 456 396 454 430 476" stroke="${c.skin[3]}" stroke-opacity="0.7" stroke-width="3" fill="none" stroke-linecap="round"/>
   <ellipse cx="226" cy="512" rx="9" ry="5" fill="#000" opacity="0.8" transform="rotate(14 226 512)"/>
   <path d="M 470 560 l 40 14 l -20 -36 Z M 446 570 l 30 24 l -8 -40 Z" fill="url(#horn${id})" stroke="${c.bone}" stroke-width="2"/>
-  <!-- upper teeth -->
-  ${Array.from({ length: 8 }, (_, i) => { const x = 236 + i * 32; const y = 552 + i * 3.2; return `<path d="M ${x} ${y} l 9 ${i % 2 === 0 ? 44 : 28} l 9 -${i % 2 === 0 ? 42 : 26} Z" fill="#fbf6ea" stroke="#2a1a10" stroke-width="1.5"/>`; }).join('')}
+  <!-- upper teeth: a gum line with slim, slightly curved fangs that get smaller towards the back -->
+  <path d="M 222 551 C 300 560 400 580 500 582" stroke="#4a1218" stroke-width="9" fill="none" stroke-linecap="round"/>
+  ${[[240, 38], [276, 20], [308, 27], [342, 18], [376, 23], [412, 15], [446, 17]].map(([x, h], i) => { const y = 553 + (x - 236) * 0.1; return `<path d="M ${x} ${y} Q ${x + 2} ${y + h * 0.6} ${x + 7 + (i === 0 ? 1 : 0)} ${y + h} Q ${x + 11} ${y + h * 0.55} ${x + 14} ${y} Z" fill="url(#tooth${id})" stroke="#3a2418" stroke-width="1.2" stroke-linejoin="round"/>`; }).join('')}
   <!-- eye: narrowed and angry -->
   <ellipse cx="376" cy="498" rx="62" ry="34" fill="url(#eye${id})" filter="url(#soft4${id})"/>
   <path d="M 330 490 C 356 486 404 490 428 512 C 398 522 356 516 330 490 Z" fill="${c.eye}" stroke="#000" stroke-width="2.5"/>
@@ -132,7 +146,8 @@ function jaw(c, id) {
   const J = 'M 214 556 L 330 580 C 400 598 462 610 510 590 L 486 632 C 420 658 330 650 250 618 C 226 606 210 580 214 556 Z';
   return `<path d="${J}" fill="url(#skin${id})" stroke="${c.skin[0]}" stroke-width="5" filter="url(#skinfx${id})"/>
   <path d="M 226 592 C 300 626 400 640 480 622" stroke="url(#belly${id})" stroke-width="16" fill="none" opacity="0.9"/>
-  ${Array.from({ length: 6 }, (_, i) => { const x = 248 + i * 36; const y = 576 + i * 3.6; return `<path d="M ${x} ${y} l 7 -34 l 9 34 Z" fill="#fbf6ea" stroke="#2a1a10" stroke-width="1.5"/>`; }).join('')}
+  <path d="M 232 574 C 300 590 400 608 492 600" stroke="#4a1218" stroke-width="8" fill="none" stroke-linecap="round"/>
+  ${[[262, 17], [304, 13], [346, 19], [388, 12], [428, 14]].map(([x, h]) => { const y = 586 + (x - 262) * 0.075; return `<path d="M ${x} ${y} Q ${x + 3} ${y - h * 0.55} ${x + 6} ${y - h} Q ${x + 10} ${y - h * 0.5} ${x + 12} ${y} Z" fill="url(#tooth${id})" stroke="#3a2418" stroke-width="1.2" stroke-linejoin="round"/>`; }).join('')}
   <path d="M 214 560 C 250 570 300 582 340 590" stroke="${c.skin[3]}" stroke-opacity="0.35" stroke-width="5" fill="none"/>`;
 }
 
@@ -176,7 +191,7 @@ function tail(c, id) {
 export const PARTS = ['wing_far', 'tail', 'body', 'head', 'jaw', 'wing_near'];
 const build = {
   wing_far: (c, id) => `<g transform="rotate(14 715 745)">${wing(c, id, true)}</g>`,
-  tail, body: torso,
+  tail, body: torso, // the body is built with its back outline, see below
   head: (c, id) => `<g transform="translate(500 590) scale(1.32) translate(-500 -590)">${head(c, id)}</g>`,
   jaw: (c, id) => `<g transform="translate(500 590) scale(1.32) translate(-500 -590)">${jaw(c, id)}</g>`,
   wing_near: (c, id) => `<g transform="rotate(-6 790 785)">${wing(c, id, false)}</g>`,
@@ -187,7 +202,7 @@ for (const el of which) {
   const c = P[el]; mkdirSync(`${out}${el}`, { recursive: true });
   const layers = [];
   for (const part of PARTS) {
-    const svg = wrap(c, part, build[part](c, part));
+    const svg = wrap(c, part, part === 'body' ? torso(c, part, await backOutline(c)) : build[part](c, part));
     const png = await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toBuffer();
     writeFileSync(`${out}${el}/${part}.webp`.replace('.webp', '.png'), png);
     layers.push({ input: png });

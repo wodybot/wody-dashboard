@@ -23,7 +23,7 @@ function autoProfile() {
   const nav = navigator; const mem = nav.deviceMemory; const cores = nav.hardwareConcurrency || 4;
   if (nav.connection?.saveData || (mem && mem <= 2) || cores <= 2) return 'low';
   if (window.innerWidth < 768) return mem && mem <= 4 ? 'low' : 'medium';
-  if (cores >= 8 && (!mem || mem >= 8)) return 'ultra';
+  if (cores >= 12 && mem && mem >= 8) return 'ultra';
   return cores >= 4 ? 'high' : 'medium';
 }
 
@@ -68,7 +68,7 @@ function Character({ c, animate, mobile, rich }) {
   return (
     <div className={`wt-char ${c.layer === 'foreground' ? 'wt-char-front' : ''}`} style={{ ...pos, marginLeft: `${c.offset_x}%`, marginTop: `${c.offset_y}%`, height: `${c.scale * (mobile ? 0.62 : 0.9)}%`, opacity: mobile ? 0.62 : 1 }}>
       {rig ? (
-        <div style={{ height: '100%', transform: `${c.position === 'left' ? 'scaleX(-1) ' : ''}rotate(${c.rotation}deg)`, filter: 'drop-shadow(0 18px 28px rgba(0,0,0,.5))' }}><Rig element={rig} animate={animate} rich={rich} onFail={() => setRigBroken(true)} /></div>
+        <div style={{ height: '100%', transform: `${c.position === 'left' ? 'scaleX(-1) ' : ''}rotate(${c.rotation}deg)`, willChange: 'transform' }}><Rig element={rig} animate={animate} rich={rich} onFail={() => setRigBroken(true)} /></div>
       ) : (
       // eslint-disable-next-line @next/next/no-img-element
       <img src={proxiedImageUrl(src)} alt="" decoding="async" loading="eager" draggable={false} onError={() => setBroken(true)}

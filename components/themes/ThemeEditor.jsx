@@ -29,7 +29,7 @@ function Num({ id, label, value, min, max, onChange, suffix = '' }) {
   return <Range id={id} label={label} value={value} min={min} max={max} suffix={suffix} onChange={onChange} />;
 }
 
-export default function ThemeEditor({ theme, cfg, setCfg, assets, section, setSection, readOnly, noteId }) {
+export default function ThemeEditor({ theme, cfg, setCfg, assets, section, setSection, readOnly, noteId, only = null }) {
   const t = useTranslations('themes');
   const locale = useLocale();
   const [openLoc, setOpenLoc] = useState('en');
@@ -45,9 +45,9 @@ export default function ThemeEditor({ theme, cfg, setCfg, assets, section, setSe
 
   return (
     <div className={`grid gap-4 ${readOnly ? 'opacity-90' : ''}`} data-theme-editor aria-describedby={noteId}>
-      <div role="tablist" aria-label={t('editor.sections')} className="flex flex-wrap gap-1.5">
+      {only ? null : <div role="tablist" aria-label={t('editor.sections')} className="flex flex-wrap gap-1.5">
         {SECTIONS.map((s) => <button key={s} role="tab" aria-selected={section === s} type="button" onClick={() => setSection(s)} className={`min-h-9 rounded-lg border px-3 text-sm ${section === s ? 'border-primary bg-primary/15' : 'border-border'}`}>{t(`editor.tab.${s}`)}</button>)}
-      </div>
+      </div>}
 
       <fieldset disabled={readOnly} className="grid gap-4 border-0 p-0">
         {section === 'identity' ? (

@@ -8,6 +8,8 @@ import { getBotGuild, getGuildMembersProfileMap, guildIconUrl } from '@/lib/disc
 import { discordCdnUrl } from '@/lib/utils';
 import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 import IconText, { Icon } from '@/components/icon-text';
+import ThemeStage, { stageLabels } from '@/components/themes/ThemeStage';
+import { resolveGuildTheme } from '@/lib/themes/store';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 const PAGE_SIZE = 25;
@@ -160,8 +162,11 @@ export default async function LeaderboardPage({ params, searchParams }) {
   }
 
   const { guild, members, total, totalPages } = await getLeaderboard(guildId, page);
+  const locale = await getLocale();
+  let theme = null;
+  try { theme = await resolveGuildTheme(await getDb(), String(guildId), { locale }); } catch { theme = null; }
 
-  return (
+  const view = (
     <div className="relative min-h-screen overflow-x-hidden">
       <div className="absolute inset-0 pointer-events-none -z-10">
         <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#7c3010]/20 blur-3xl" />
@@ -265,5 +270,8 @@ export default async function LeaderboardPage({ params, searchParams }) {
       <Footer />
     </div>
   );
+  if (!theme) return view;
+  const tt = await getTranslations({ locale, namespace: 'themes' });
+  return <ThemeStage theme={theme} labels={stageLabels(tt)} mode="page">{view}</ThemeStage>;
 }
 

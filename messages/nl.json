@@ -589,7 +589,7 @@
         "server": "Server",
         "global": "Wereldwijd"
       },
-      "miamiLink": "Discord-bot met een Miami Style-thema"
+      "miamiLink": "Bekijk het Miami Style-thema"
     }
   },
   "careers": {
@@ -5360,6 +5360,14 @@
     "presentTitle": "Servers met Wody"
   },
   "modules": {
+    "statistics": {
+      "title": "Statistieken",
+      "description": "Kanaalactiviteit, gezondheid van de community en trends voor je server, alleen op basis van geaggregeerde tellers."
+    },
+    "counting": {
+      "title": "Tellen",
+      "description": "Een telspel voor je server met reeksen, redders en een ranglijst."
+    },
     "general": {
       "title": "Algemeen",
       "description": "Serveroverzicht en essentiële instellingen."
@@ -11793,6 +11801,7 @@
       "saved": "Concept opgeslagen.",
       "published": "Je thema is live.",
       "unsaved": "Niet-opgeslagen wijzigingen",
+      "discardForTheme": "Je hebt niet-opgeslagen wijzigingen. Een ander thema kiezen verwerpt ze. Doorgaan?",
       "livePublished": "Er is een thema gepubliceerd op de pagina’s van je server.",
       "notPublished": "Er is nog geen thema gepubliceerd.",
       "premiumBadge": "Premium",
@@ -11941,6 +11950,7 @@
         "audit": "Auditlogboek"
       },
       "readOnly": "Je kunt thema’s bekijken, maar alleen de eigenaar kan ze wijzigen.",
+      "charactersHint": "Personages: kies een thema om het personage te bewerken (naam, afbeelding, positie, grootte, rustbeweging en interacties).",
       "pick": "Kies een thema uit de lijst of maak een nieuw thema.",
       "discard": "Je hebt niet-opgeslagen wijzigingen. Weggooien?",
       "officialHint": "Officieel thema met WODY, de Wody-draak. Het wordt met het platform gepubliceerd; je kunt het hier bewerken of het personagebeeld vervangen.",
@@ -12083,6 +12093,32 @@
       "asset_corrupt": "De afbeelding kon niet worden gelezen. Mogelijk is ze beschadigd.",
       "asset_needs_transparency": "Dit assettype heeft een transparante achtergrond nodig.",
       "asset_in_use": "Deze asset wordt nog door een thema gebruikt."
+    },
+    "where": {
+      "title": "Waar je thema te zien is",
+      "hintLive": "Je thema is actief. Op deze plekken zien je leden het.",
+      "hintDraft": "Kies hieronder een thema en het gaat meteen live. Op deze plekken wordt het getoond.",
+      "statusOn": "Zichtbaar",
+      "statusOff": "Niet zichtbaar",
+      "open": "Pagina bekijken",
+      "battlepass": {
+        "name": "Battle Pass-pagina",
+        "text": "De openbare Battle Pass-pagina van je server gebruikt je kleuren, achtergrond en personage."
+      },
+      "leaderboard": {
+        "name": "Ranglijst",
+        "text": "De openbare ranglijst van je server heeft dezelfde look."
+      },
+      "community": {
+        "name": "Serverpagina",
+        "text": "Staat je server in de community-lijst, dan gebruikt de openbare pagina je thema."
+      },
+      "dashboard": {
+        "name": "Dit dashboard",
+        "text": "Hier kleuren en subtiele effecten, zonder personage of intro.",
+        "turnOn": "Ook hier gebruiken",
+        "turnOff": "Hier niet meer gebruiken"
+      }
     }
   },
   "themesHelp": {

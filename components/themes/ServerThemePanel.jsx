@@ -6,12 +6,26 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import WodyIcon from '@/components/wody-icon';
 import Preview from './Preview';
+import WhereItShows from './WhereItShows';
 import { SaveBar } from '@/components/dashboard-kit';
 import { Card, Row, Color, Range, Select, Toggle, clone } from './fields';
 import { themeApi, errorText } from './api';
 import { buildRenderTheme } from '@/lib/themes/render';
 import { SERVER_DEFAULT } from '@/lib/themes/schema';
 import { CARD_STYLES, BUTTON_STYLES, HEADER_STYLES, NAV_STYLES, BORDER_STYLES, SHADOW_STYLES, SCENES, CHAR_POSITIONS, BG_MOVEMENT, LIMITS } from '@/lib/themes/constants';
+
+// A saved draft from an older version may miss whole sections: every section is completed from the defaults before it is drawn.
+const whole = (d) => {
+  const base = clone(SERVER_DEFAULT); const src = d && typeof d === 'object' ? d : {};
+  const prem = src.premium && typeof src.premium === 'object' ? src.premium : {};
+  return {
+    ...base, ...src,
+    palette: { ...(src.palette || {}) }, components: { ...(src.components || {}) },
+    effects: { ...base.effects, ...(src.effects || {}), items: { ...(src.effects?.items || {}) } },
+    intro: { ...base.intro, ...(src.intro || {}) },
+    premium: { ...base.premium, ...prem, character: { ...base.premium.character, ...(prem.character || {}) }, blocks: Array.isArray(prem.blocks) ? prem.blocks : [] },
+  };
+};
 
 export default function ServerThemePanel({ guildId, mode = 'basic', premium: premiumProp = false, onGetPremium }) {
   const t = useTranslations('themes');
@@ -29,7 +43,7 @@ export default function ServerThemePanel({ guildId, mode = 'basic', premium: pre
     if (!g.ok) { setState({ loading: false, error: errorText(t, g) }); return; }
     setCatalog(c.ok ? c.data.themes || [] : []);
     setState({ loading: false, ...g.data });
-    setDraft(clone(g.data.server.draft || SERVER_DEFAULT));
+    setDraft(whole(g.data.server.draft));
     setDirty(false);
   }, [guildId, t]);
   useEffect(() => { load(); }, [load]);
@@ -50,7 +64,7 @@ export default function ServerThemePanel({ guildId, mode = 'basic', premium: pre
     const r = await fn();
     setBusy('');
     if (!r.ok) { setMsg({ bad: true, text: errorText(t, r) }); return false; }
-    setState((s) => ({ ...s, ...r.data, loading: false })); setDraft(clone(r.data.server.draft || SERVER_DEFAULT)); setDirty(false);
+    setState((s) => ({ ...s, ...r.data, loading: false })); setDraft(whole(r.data.server.draft)); setDirty(false);
     return true;
   }
   const BASIC_KEYS = ['theme_id', 'preset', 'palette', 'surface_opacity', 'components', 'effects', 'intro', 'dashboard'];
@@ -83,10 +97,16 @@ export default function ServerThemePanel({ guildId, mode = 'basic', premium: pre
     setMsg({ text: t('premium.logoSaved') });
   };
   const reset = async () => { if (!window.confirm(t('server.resetConfirm'))) return; if (await run('reset', () => themeApi(`guild/${guildId}/reset`, { method: 'POST' }))) setMsg({ text: t('server.resetDone') }); };
+  // Choosing a theme is one click: it is saved and goes live right away (a theme is meant to be seen on the server pages, not kept
+  // as a draft). Everything else stays a draft until Publish or the save bar.
   const pick = async (id) => {
-    const r = await themeApi(`guild/${guildId}`, { method: 'PUT', body: { config: { theme_id: id } } });
+    if (dirty && !window.confirm(t('server.discardForTheme'))) return;
+    setBusy('pick'); setMsg(null);
+    let r = await themeApi(`guild/${guildId}`, { method: 'PUT', body: { config: { theme_id: id } } });
+    if (r.ok) r = await themeApi(`guild/${guildId}/publish`, { method: 'POST' });
+    setBusy('');
     if (!r.ok) { setMsg({ bad: true, text: errorText(t, r) }); return; }
-    setState((s) => ({ ...s, ...r.data })); setDraft(clone(r.data.server.draft)); setDirty(false); setMsg(null);
+    setState((st) => ({ ...st, ...r.data, loading: false })); setDraft(whole(r.data.server.draft)); setDirty(false); setMsg({ text: t('server.published') });
   };
 
   if (state.loading || !draft) return <p className="text-sm text-muted-foreground" role="status">{t('common.loading')}</p>;
@@ -114,6 +134,8 @@ export default function ServerThemePanel({ guildId, mode = 'basic', premium: pre
           {onGetPremium ? <button type="button" onClick={onGetPremium} className="mt-3 min-h-10 rounded-lg border border-[#e6cd8c]/50 px-4 text-sm text-[#e6cd8c]">{t('server.getPremium')}</button> : null}
         </div>
       ) : null}
+
+      <WhereItShows guildId={guildId} published={Boolean(state.server.published_at)} dashboardOn={draft.dashboard === true} onToggleDashboard={(v) => edit((d) => { d.dashboard = v; })} />
 
       <Card title={t('server.chooseTheme')} hint={t('server.chooseHint')}>
         {catalog.length === 0 ? <p className="text-sm text-muted-foreground">{t('server.noThemes')}</p> : (
@@ -251,7 +273,7 @@ export default function ServerThemePanel({ guildId, mode = 'basic', premium: pre
           <button type="button" disabled={Boolean(busy)} onClick={reset} className="min-h-10 rounded-lg border border-red-400/40 px-4 text-sm text-red-300 disabled:opacity-50">{t('server.reset')}</button>
         </div>
       ) : null}
-      {!locked ? <SaveBar dirty={dirty} saving={busy === 'save'} onSave={save} onDiscard={() => { setDraft(clone(state.server.draft || SERVER_DEFAULT)); setDirty(false); setMsg(null); }} /> : null}
+      {!locked ? <SaveBar dirty={dirty} saving={busy === 'save'} onSave={save} onDiscard={() => { setDraft(whole(state.server.draft)); setDirty(false); setMsg(null); }} /> : null}
     </div>
   );
 }

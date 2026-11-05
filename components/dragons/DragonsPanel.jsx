@@ -35,7 +35,7 @@ function Switch({ id, label, checked, onChange, disabled }) {
 function Field({ label, id, children }) {
   return <div className="flex items-center justify-between gap-3"><label htmlFor={id} className="text-sm text-muted-foreground">{label}</label><div className="flex items-center gap-2">{children}</div></div>;
 }
-const selectCls = 'min-h-9 rounded-lg border border-border bg-background px-2 text-sm';
+const selectCls = 'min-h-9 rounded-lg border border-border bg-background px-2 text-sm [&>option]:bg-[#1b1214] [&>option]:text-[#f4ead4]';
 
 export default function DragonsPanel({ guildId }) {
   const t = useTranslations('dragons');
@@ -105,7 +105,7 @@ export default function DragonsPanel({ guildId }) {
         {draft.length < MAX_DRAGONS ? (
           <label className="inline-flex min-h-9 items-center gap-1 rounded-full border border-dashed border-border px-3 text-sm">
             <Plus className="h-4 w-4" aria-hidden="true" /><span className="sr-only">{t('add')}</span>
-            <select aria-label={t('add')} value="" onChange={(e) => e.target.value && add(e.target.value)} className="bg-transparent text-sm">
+            <select aria-label={t('add')} value="" onChange={(e) => e.target.value && add(e.target.value)} className="bg-transparent text-sm [&>option]:bg-[#1b1214] [&>option]:text-[#f4ead4]">
               <option value="">{t('add')}</option>{TYPES.map((x) => <option key={x} value={x}>{t(`types.${x}`)}</option>)}
             </select>
           </label>
@@ -117,22 +117,26 @@ export default function DragonsPanel({ guildId }) {
       ) : (
         <>
           <div className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
-            <section className="relative min-h-[420px] overflow-hidden rounded-2xl border border-border sm:min-h-[520px]" aria-label={t('stageLabel')}>
-              <div className="absolute inset-0"><DragonStage dragon={dragon} state={dragon.enabled ? state : 'rest'} playKey={playKey} label={t('stageLabel')} /></div>
-              <div className="relative z-10 flex max-w-[22rem] flex-col gap-3 p-5">
-                <h2 className="font-serif text-3xl font-semibold text-[#f6e3b4] drop-shadow">{shownName}</h2>
-                <div className="flex flex-wrap gap-2 text-sm">
-                  <span className="inline-flex items-center gap-1 rounded-full border border-[#e6cd8c]/60 bg-black/40 px-3 py-1 text-[#e6cd8c]"><Crown className="h-3.5 w-3.5" aria-hidden="true" />{t(`rarities.${dragon.rarity}`)}</span>
-                  <span className="rounded-full border border-white/20 bg-black/40 px-3 py-1">{t('levelN', { n: dragon.level })}</span>
-                  {!dragon.enabled ? <span className="rounded-full border border-white/20 bg-black/40 px-3 py-1">{t('disabled')}</span> : null}
+            <section className="flex min-h-[460px] flex-col overflow-hidden rounded-2xl border border-border sm:min-h-[560px]" aria-label={t('stageLabel')}>
+              <div className="relative min-h-[320px] flex-1">
+                <div className="absolute inset-0"><DragonStage dragon={dragon} state={dragon.enabled ? state : 'rest'} playKey={playKey} label={t('stageLabel')} /></div>
+                <div className="relative z-10 flex max-w-[22rem] flex-col gap-3 p-5">
+                  <h2 className="font-serif text-3xl font-semibold text-[#f6e3b4] drop-shadow">{shownName}</h2>
+                  <div className="flex flex-wrap gap-2 text-sm">
+                    <span className="inline-flex items-center gap-1 rounded-full border border-[#e6cd8c]/60 bg-black/40 px-3 py-1 text-[#e6cd8c]"><Crown className="h-3.5 w-3.5" aria-hidden="true" />{t(`rarities.${dragon.rarity}`)}</span>
+                    <span className="rounded-full border border-white/20 bg-black/40 px-3 py-1">{t('levelN', { n: dragon.level })}</span>
+                    {!dragon.enabled ? <span className="rounded-full border border-white/20 bg-black/40 px-3 py-1">{t('disabled')}</span> : null}
+                  </div>
+                  <p className="text-sm text-white/80 drop-shadow">{t(`personalityText.${dragon.personality}`, { type: t(`types.${dragon.type}`) })}</p>
                 </div>
-                <p className="text-sm text-white/80 drop-shadow">{t(`personalityText.${dragon.personality}`, { type: t(`types.${dragon.type}`) })}</p>
-                <dl className="grid grid-cols-3 gap-2 rounded-xl border border-white/10 bg-black/45 p-3 text-center backdrop-blur-sm">
+              </div>
+              <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 bg-[#0b0708]/90 p-3 sm:px-5">
+                <dl className="grid min-w-0 flex-1 grid-cols-3 gap-2 text-center sm:max-w-md">
                   {[['attack', Swords, stats.attack], ['defense', ShieldCheck, stats.defense], ['life', Heart, stats.life]].map(([k, Icon, v]) => (
-                    <div key={k}><Icon className="mx-auto h-5 w-5 text-[#e6cd8c]" aria-hidden="true" /><dt className="mt-1 text-xs text-white/70">{t(`stats.${k}`)}</dt><dd className="text-lg font-semibold">{fmt(v)}</dd></div>
+                    <div key={k} className="rounded-xl border border-white/10 bg-white/[0.04] px-2 py-2"><Icon className="mx-auto h-5 w-5 text-[#e6cd8c]" aria-hidden="true" /><dt className="mt-1 text-xs text-white/70">{t(`stats.${k}`)}</dt><dd className="text-lg font-semibold tabular-nums">{fmt(v)}</dd></div>
                   ))}
                 </dl>
-                <button type="button" onClick={() => play('fire_attack')} className="inline-flex min-h-11 w-fit items-center gap-2 rounded-xl border border-[#e6cd8c]/60 bg-black/50 px-4 text-sm font-medium text-[#f6e3b4] hover:bg-black/70"><Play className="h-4 w-4" aria-hidden="true" />{t('preview')}</button>
+                <button type="button" onClick={() => play('fire_attack')} className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-xl border border-[#e6cd8c]/60 bg-black/50 px-4 text-sm font-medium text-[#f6e3b4] hover:bg-black/70"><Play className="h-4 w-4" aria-hidden="true" />{t('preview')}</button>
               </div>
             </section>
 

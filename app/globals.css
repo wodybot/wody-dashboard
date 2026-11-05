@@ -728,8 +728,9 @@
 .wt-vignette { z-index: 5; background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(0,0,0,.45) 100%); }
 .wt-char { position: absolute; bottom: 0; z-index: 2; display: flex; align-items: flex-end; pointer-events: none; }
 .wt-char-front { z-index: 4; }
-.wt-char img { filter: drop-shadow(0 18px 28px rgba(0,0,0,.5)); transform-origin: 50% 90%; }
-.wt-rig { position: relative; }
+.wt-char img { transform-origin: 50% 90%; }  /* no blur filter on a moving picture: it is repainted every frame and made the intro lag */
+.wt-rig { position: relative; contain: layout style; }
+.wt-rig-on .wt-rig-part { will-change: transform; backface-visibility: hidden; }
 .wt-rig-part { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
 .wt-rig .wt-rig-part { filter: none; }
 .wt-rig-on { animation: wt-rig-hover 5.6s ease-in-out infinite; transform-origin: 55% 60%; }
@@ -752,6 +753,7 @@
 @keyframes wt-breathe { 0%,100% { scale: 1; } 50% { scale: calc(1 + .03 * var(--wt-idle, .5)); } }
 @keyframes wt-float { 0%,100% { translate: 0 0; } 50% { translate: 0 calc(-14px * var(--wt-idle, .5)); } }
 @keyframes wt-sway { 0%,100% { rotate: 0deg; } 50% { rotate: calc(2.4deg * var(--wt-idle, .5)); } }
+.wt-drift, .wt-clouds-on, .wt-fog { will-change: transform; }
 .wt-drift { animation: wt-drift 60s linear infinite alternate; }
 .wt-clouds-on { animation: wt-drift 90s linear infinite alternate; }
 .wt-aurora-on { animation: wt-aurora 14s ease-in-out infinite alternate; }
@@ -814,10 +816,10 @@
 .dg-stage[data-state="appear"] .dg-art { animation: dg-appear 1.8s cubic-bezier(.2,.7,.2,1) both; }
 .dg-stage[data-state="fly"] .dg-art { animation: dg-fly 3.6s ease-in-out infinite; }
 .dg-stage[data-state="fly"] .wt-rig-wing-near, .dg-stage[data-state="fly"] .wt-rig-wing-far { animation-duration: 1.1s; }
-.dg-stage[data-state="fire_attack"] .wt-rig-jaw { animation: none; transform: rotate(14deg); transform-origin: 40% 37%; }
+.dg-stage[data-state="fire_attack"] .wt-rig-jaw { animation: none; transform: rotate(8deg); transform-origin: 40% 37%; }
 .dg-stage[data-state="fire_attack"] .wt-rig-head { animation: none; transform: rotate(-5deg); transform-origin: 40% 37%; }
 .dg-stage[data-state="roar"] .dg-art { animation: dg-shake .12s linear infinite; }
-.dg-stage[data-state="roar"] .wt-rig-jaw { animation: none; transform: rotate(18deg); transform-origin: 40% 37%; }
+.dg-stage[data-state="roar"] .wt-rig-jaw { animation: none; transform: rotate(11deg); transform-origin: 40% 37%; }
 .dg-stage[data-state="roar"] .wt-rig-head { animation: none; transform: rotate(-8deg); transform-origin: 40% 37%; }
 .dg-stage[data-state="land"] .dg-art { animation: dg-land 2s cubic-bezier(.3,.8,.3,1) both; }
 .dg-stage[data-state="rest"] .wt-rig-wing-near, .dg-stage[data-state="rest"] .wt-rig-wing-far { animation: none; transform: rotate(38deg) scaleY(.82); }

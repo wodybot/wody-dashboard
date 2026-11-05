@@ -589,7 +589,7 @@
         "server": "Servidor",
         "global": "Global"
       },
-      "miamiLink": "Bot de Discord com tema Miami Style"
+      "miamiLink": "Ver o tema Miami Style"
     }
   },
   "careers": {
@@ -5360,6 +5360,14 @@
     "presentTitle": "Servidores com o Wody"
   },
   "modules": {
+    "statistics": {
+      "title": "Estatísticas",
+      "description": "Atividade dos canais, saúde da comunidade e tendências do seu servidor, apenas com contadores agregados."
+    },
+    "counting": {
+      "title": "Contagem",
+      "description": "Um jogo de contagem para o seu servidor com sequências, salvamentos e classificação."
+    },
     "general": {
       "title": "Geral",
       "description": "Visão geral do servidor e configurações essenciais."
@@ -11793,6 +11801,7 @@
       "saved": "Rascunho guardado.",
       "published": "O seu tema está ativo.",
       "unsaved": "Alterações por guardar",
+      "discardForTheme": "Você tem alterações não salvas. Escolher outro tema as descarta. Continuar?",
       "livePublished": "Há um tema publicado nas páginas do seu servidor.",
       "notPublished": "Ainda não há nenhum tema publicado.",
       "premiumBadge": "Premium",
@@ -11941,6 +11950,7 @@
         "audit": "Registo de auditoria"
       },
       "readOnly": "Pode ver os temas, mas só o proprietário os pode alterar.",
+      "charactersHint": "Personagens: escolha um tema para editar o personagem (nome, imagem, posição, tamanho, movimento em repouso e interações).",
       "pick": "Escolha um tema da lista ou crie um novo.",
       "discard": "Tem alterações por guardar. Descartá-las?",
       "officialHint": "Tema oficial com WODY, o dragão da Wody. É publicado com a plataforma; daqui podes editá-lo ou substituir a imagem da personagem.",
@@ -12083,6 +12093,32 @@
       "asset_corrupt": "Não foi possível ler a imagem. Pode estar danificada.",
       "asset_needs_transparency": "Este tipo de recurso precisa de fundo transparente.",
       "asset_in_use": "Este recurso ainda é usado por um tema."
+    },
+    "where": {
+      "title": "Onde o teu tema aparece",
+      "hintLive": "O teu tema está ativo. Estes são os locais onde os teus membros o veem.",
+      "hintDraft": "Escolhe um tema abaixo e fica ativo de imediato. Estes são os locais onde vai aparecer.",
+      "statusOn": "Visível",
+      "statusOff": "Não visível",
+      "open": "Ver a página",
+      "battlepass": {
+        "name": "Página do Battle Pass",
+        "text": "A página pública do Battle Pass do teu servidor usa as tuas cores, o fundo e a personagem."
+      },
+      "leaderboard": {
+        "name": "Classificação",
+        "text": "A classificação pública do teu servidor tem o mesmo aspeto."
+      },
+      "community": {
+        "name": "Página do servidor",
+        "text": "Se o teu servidor estiver na lista da comunidade, a página pública usa o teu tema."
+      },
+      "dashboard": {
+        "name": "Este painel",
+        "text": "Cores e efeitos suaves aqui, sem personagem nem intro.",
+        "turnOn": "Usar também aqui",
+        "turnOff": "Deixar de usar aqui"
+      }
     }
   },
   "themesHelp": {
