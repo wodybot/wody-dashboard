@@ -1,9 +1,0 @@
-
-import DashboardHomeClient from './DashboardHomeClient';
-
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-
-export default function DashboardHomePage() {
-  return <DashboardHomeClient />;
-}
