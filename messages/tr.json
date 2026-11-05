@@ -2138,7 +2138,8 @@
       "addMore": "Daha fazla ekle",
       "clearAll": "Tümünü temizle",
       "remove": "Kaldır",
-      "limitReached": "Sınıra ulaşıldı ({max})"
+      "limitReached": "Sınıra ulaşıldı ({max})",
+      "moduleSwitchOnlyDesc": "Bu modülü, modüllere genel bakıştaki anahtarıyla açın. Kapalıyken bot burada hiçbir şey yapmaz ve kayıtlı ayarlarınız olduğu gibi kalır."
     },
     "groups": {
       "server": "Sunucu",
@@ -7889,7 +7890,8 @@
       "aria": "Herkese açık profil",
       "noSocials": "Paylaşılan sosyal bağlantı yok.",
       "live": "Aktif collablar",
-      "note": "Bu profili yalnızca giriş yapmış WODY üyeleri görebilir. Ad ve fotoğraf Discord'dan gelir."
+      "note": "Bu profili yalnızca giriş yapmış WODY üyeleri görebilir. Ad ve fotoğraf Discord'dan gelir.",
+      "notePublic": "Bu profil herkese açık: bağlantıya sahip herkes görebilir. Ad ve resim Discord’dan gelir."
     },
     "consent": {
       "label": "Eklediğim her görsel, GIF, bağlantı ve sesin sahibi olduğumu veya kullanma iznim olduğunu, aşağıdaki politikaları okuyup kabul ettiğimi onaylıyorum. Wody’nin yalnızca başka platformlarda barındırılan içeriklere bağlantı verdiğini, herkesin bunu bildirebileceğini ve Wody’nin ihlal durumunda içeriği kaldırıp Discord hesabımı askıya alabileceğini veya engelleyebileceğini anlıyorum.",

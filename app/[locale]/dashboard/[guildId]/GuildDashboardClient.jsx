@@ -367,7 +367,9 @@ function buildGroups(premiumActive, labelOf) {
   });
 }
 
-const NON_TOGGLEABLE_KEYS = new Set(['general', 'premium', 'embeds', 'community', 'collab', 'battlepass', 'counting', 'statistics', 'theme_studio']);
+const NON_TOGGLEABLE_KEYS = new Set(['general', 'premium', 'embeds', 'community', 'collab']);
+// Newer modules: turned on and off only with the switch on the Modules overview, never from a button inside the module.
+const SWITCH_ONLY_KEYS = new Set(['counting', 'statistics', 'battlepass', 'theme_studio']);
 
 const OPT_IN_KEYS = new Set(MODULES.filter((m) => m.optIn).map((m) => m.key));
 
@@ -486,9 +488,17 @@ export default function GuildDashboardClient() {
   const [statesReady, setStatesReady] = useState(false);
   const [toggling, setToggling] = useState(null);
   const [stats, setStats] = useState(null);
+  const [statsOn, setStatsOn] = useState(null);   // is message counting on? (null until known)
+  useEffect(() => {
+    let live = true;
+    fetch(`/api/statistics/guilds/${guildId}/settings`, { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)).then((d) => { if (live && d?.settings) setStatsOn(Boolean(d.settings.enabled)); }).catch(() => {});
+    const on = (e) => { if (String(e.detail?.guildId) === String(guildId)) setStatsOn(Boolean(e.detail.enabled)); };
+    window.addEventListener('wody:statistics-state', on);
+    return () => { live = false; window.removeEventListener('wody:statistics-state', on); };
+  }, [guildId]);
   const botStatus = useBotStatusPoll();
 
-  const isModuleOn = (key) => NON_TOGGLEABLE_KEYS.has(key) || (OPT_IN_KEYS.has(key) ? moduleStates[key] === true : moduleStates[key] !== false);
+  const isModuleOn = (key) => key === 'statistics' ? statsOn !== false : NON_TOGGLEABLE_KEYS.has(key) || (OPT_IN_KEYS.has(key) ? moduleStates[key] === true : moduleStates[key] !== false);
 
   useEffect(() => {
     let startView = 'overview';
@@ -552,15 +562,18 @@ export default function GuildDashboardClient() {
     }
     const prev = moduleStates[key];
     setToggling(key);
-    setModuleStates((s) => ({ ...s, [key]: nextEnabled }));
+    if (key !== 'statistics') setModuleStates((s) => ({ ...s, [key]: nextEnabled }));
+    else setStatsOn(nextEnabled);
     try {
-      const r = await fetch(`/api/guilds/${guildId}/modules/toggle`, {
+      const r = key === 'statistics'
+        ? await fetch(`/api/statistics/guilds/${guildId}/settings`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ enabled: nextEnabled }) })
+        : await fetch(`/api/guilds/${guildId}/modules/toggle`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ key, enabled: nextEnabled }),
       });
       if (r.status === 403) {
-        setModuleStates((s) => ({ ...s, [key]: prev }));
+        if (key === 'statistics') setStatsOn(!nextEnabled); else setModuleStates((s) => ({ ...s, [key]: prev }));
         toast.error(t('common.premiumNotActiveTitle'));
         return;
       }
@@ -570,7 +583,7 @@ export default function GuildDashboardClient() {
         botStatus.state === 'offline' ? { description: t('common.botOfflineSavedDesc') } : undefined,
       );
     } catch {
-      setModuleStates((s) => ({ ...s, [key]: prev }));
+      if (key === 'statistics') setStatsOn(!nextEnabled); else setModuleStates((s) => ({ ...s, [key]: prev }));
       toast.error(t('common.couldNotSave'));
     } finally {
       setToggling(null);
@@ -578,7 +591,7 @@ export default function GuildDashboardClient() {
   };
 
   const toggleCategory = async (groupKey, nextEnabled) => {
-    let targets = (buildGroups(premiumActive, (k) => k).find((g) => g.key === groupKey)?.keys || []).filter((k) => !NON_TOGGLEABLE_KEYS.has(k));
+    let targets = (buildGroups(premiumActive, (k) => k).find((g) => g.key === groupKey)?.keys || []).filter((k) => !NON_TOGGLEABLE_KEYS.has(k) && k !== 'statistics');
     if (nextEnabled && !premiumActive) {
       const skipped = targets.some((k) => PREMIUM_ONLY_KEYS.has(k));
       targets = targets.filter((k) => !PREMIUM_ONLY_KEYS.has(k));
@@ -1280,7 +1293,7 @@ function ModulePanel({ moduleKey, guildId, meta, isOn = true, onEnable, premiumA
   };
   const content = (() => {
   const ownsLock = PREMIUM_LOCK_PANELS.has(moduleKey) && !premiumActive;
-  if (!isOn && !NON_TOGGLEABLE_KEYS.has(moduleKey) && !ownsLock) return <ModuleDisabledNotice moduleKey={moduleKey} onEnable={onEnable} />;
+  if (!isOn && !NON_TOGGLEABLE_KEYS.has(moduleKey) && !ownsLock) return <ModuleDisabledNotice moduleKey={moduleKey} onEnable={onEnable} switchOnly={SWITCH_ONLY_KEYS.has(moduleKey)} />;
   switch (moduleKey) {
     case 'general': return <GeneralPanel key={guildId} guildId={guildId} meta={safeMeta} premiumActive={premiumActive} onOpenModule={onOpenModule} moduleSwitch={moduleSwitch} />;
     case 'welcome': return <WelcomePanel guildId={guildId} meta={safeMeta} />;
@@ -1385,14 +1398,14 @@ function ModuleGuide({ moduleKey }) {
   );
 }
 
-function ModuleDisabledNotice({ moduleKey, onEnable }) {
+function ModuleDisabledNotice({ moduleKey, onEnable, switchOnly = false }) {
   const t = useTranslations('guildSettings.common');
   const tm = useTranslations('modules');
   return (
     <Card className="p-8 text-center space-y-4 bg-card/60">
       <div className="mx-auto h-12 w-12 rounded-full bg-[#e6cd8c]/15 text-[#e6cd8c] flex items-center justify-center"><Power className="w-6 h-6" /></div>
-      <div><h2 className="text-xl font-bold">{t('moduleDisabledTitle', { module: tm(`${moduleKey}.title`) })}</h2><p className="text-sm text-muted-foreground mt-2">{t('moduleDisabledDesc')}</p></div>
-      <div><Button onClick={onEnable} className="bg-[#e6cd8c] text-[#1a1208] hover:bg-[#f3e1b0]">{t('enableModuleButton')}</Button></div>
+      <div><h2 className="text-xl font-bold">{t('moduleDisabledTitle', { module: tm(`${moduleKey}.title`) })}</h2><p className="text-sm text-muted-foreground mt-2">{t(switchOnly ? 'moduleSwitchOnlyDesc' : 'moduleDisabledDesc')}</p></div>
+      {switchOnly ? null : <div><Button onClick={onEnable} className="bg-[#e6cd8c] text-[#1a1208] hover:bg-[#f3e1b0]">{t('enableModuleButton')}</Button></div>}
     </Card>
   );
 }

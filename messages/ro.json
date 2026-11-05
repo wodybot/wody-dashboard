@@ -2139,7 +2139,8 @@
       "addMore": "Adaugă încă",
       "clearAll": "Șterge tot",
       "remove": "Elimină",
-      "limitReached": "Limită atinsă ({max})"
+      "limitReached": "Limită atinsă ({max})",
+      "moduleSwitchOnlyDesc": "Pornește acest modul din comutatorul lui din vederea generală a modulelor. Cât timp e oprit, botul nu face nimic aici, iar setările salvate rămân neschimbate."
     },
     "groups": {
       "server": "Server",
@@ -7890,7 +7891,8 @@
       "aria": "Profil public",
       "noSocials": "Nu sunt distribuite linkuri sociale.",
       "live": "Collaburi active",
-      "note": "Doar membrii WODY conectați pot vedea acest profil. Numele și poza vin de la Discord."
+      "note": "Doar membrii WODY conectați pot vedea acest profil. Numele și poza vin de la Discord.",
+      "notePublic": "Acest profil este public: oricine are linkul îl poate vedea. Numele și poza vin din Discord."
     },
     "consent": {
       "label": "Confirm că sunt proprietarul sau am permisiunea să folosesc fiecare imagine, GIF, link și fișier audio pe care îl adaug și că am citit și accept politicile de mai jos. Înțeleg că Wody doar face legătura către conținut găzduit pe alte platforme, că oricine îl poate raporta și că Wody îl poate elimina și îmi poate suspenda sau bloca contul de Discord pentru încălcări.",

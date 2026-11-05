@@ -91,7 +91,7 @@ export default function LinkPanel({ guildId }) {
       <SectionHeader
         title={t('title')}
         description={t('description')}
-        action={<Button onClick={() => setWizard(true)} className="gradient-primary gap-2 self-start"><Plus className="h-4 w-4" />{t('new')}</Button>}
+        action={state.bridges.length ? <Button onClick={() => setWizard(true)} className="gradient-primary gap-2 self-start"><Plus className="h-4 w-4" />{t('new')}</Button> : null}
       />
       <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         {['total', 'active', 'paused', 'attention'].map((k) => (
@@ -474,7 +474,7 @@ function Wizard({ open, onOpenChange, caps, startGuildId, onCreated }) {
       case 2: return <Field label={t('wizard.serverB')} hint={t('wizard.ownerOnly')}><NativeSelect value={sel.gb} onChange={(v) => setSel({ ...sel, gb: v, cb: '' })} options={serverOptions(sel.ga)} label={t('wizard.serverB')} /></Field>;
       case 4: return (
         <div className="space-y-4">
-          <Field label={t('wizard.name')} hint={t('wizard.nameHint')}><Input value={name} maxLength={caps?.limits?.name_max || 60} onChange={(e) => setName(e.target.value)} placeholder={`${nameOf(sel.ga)} {wy:sync} ${nameOf(sel.gb)}`} /></Field>
+          <Field label={t('wizard.name')} hint={t('wizard.nameHint')}><Input value={name} maxLength={caps?.limits?.name_max || 60} onChange={(e) => setName(e.target.value)} placeholder={`${nameOf(sel.ga)} + ${nameOf(sel.gb)}`} /></Field>
           <SwitchRow
             label={t('translation.enable')} hint={t('translation.enableHint')} checked={Boolean(translation?.enabled && caps?.translation)}
             disabled={!caps?.translation} onChange={(v) => setTranslation({ ...translation, enabled: v })}

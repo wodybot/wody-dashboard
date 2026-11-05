@@ -2138,7 +2138,8 @@
       "addMore": "Meer toevoegen",
       "clearAll": "Alles wissen",
       "remove": "Verwijderen",
-      "limitReached": "Limiet bereikt ({max})"
+      "limitReached": "Limiet bereikt ({max})",
+      "moduleSwitchOnlyDesc": "Zet deze module aan met de schakelaar in het modulesoverzicht. Zolang hij uit staat doet de bot hier niets en blijven je opgeslagen instellingen ongewijzigd."
     },
     "groups": {
       "server": "Server",
@@ -7889,7 +7890,8 @@
       "aria": "Openbaar profiel",
       "noSocials": "Geen sociale links gedeeld.",
       "live": "Actieve collabs",
-      "note": "Alleen ingelogde WODY-leden kunnen dit profiel zien. Naam en foto komen van Discord."
+      "note": "Alleen ingelogde WODY-leden kunnen dit profiel zien. Naam en foto komen van Discord.",
+      "notePublic": "Dit profiel is openbaar: iedereen met de link kan het zien. Naam en afbeelding komen van Discord."
     },
     "consent": {
       "label": "Ik bevestig dat ik eigenaar ben van elke afbeelding, GIF, link en audio die ik toevoeg of toestemming heb om die te gebruiken, en dat ik het onderstaande beleid heb gelezen en accepteer. Ik begrijp dat Wody alleen linkt naar content die op andere platforms wordt gehost, dat iedereen die kan melden en dat Wody die kan verwijderen en mijn Discord-account bij overtredingen kan schorsen of blokkeren.",

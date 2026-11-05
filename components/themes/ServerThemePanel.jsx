@@ -52,7 +52,9 @@ export default function ServerThemePanel({ guildId, mode = 'basic', premium: pre
   const descOf = useCallback((c) => (c.official && t.has(`official.${c.id}.description`) ? t(`official.${c.id}.description`) : c.i18n?.[locale]?.description || c.description), [t, locale]);
   const edit = (fn) => { setDraft((d) => { const n = clone(d); fn(n); return n; }); setDirty(true); setMsg(null); };
 
-  const theme = state.theme;
+  // the theme being edited: the saved one, or the one just clicked in the list (no waiting for the server)
+  const picked = draft && draft.theme_id && draft.theme_id !== state.theme?.id ? catalog.find((c) => c.id === draft.theme_id) : null;
+  const theme = !draft?.theme_id ? null : picked ? { id: picked.id, version: picked.version, config: picked.config, assets: picked.assets } : state.theme;
   const rendered = useMemo(() => {
     if (!theme || !draft) return null;
     try { return buildRenderTheme({ id: theme.id, version: theme.version, config: theme.config, assets: theme.assets }, draft, { premium, locale, label: null }); } catch { return null; }
@@ -93,14 +95,9 @@ export default function ServerThemePanel({ guildId, mode = 'basic', premium: pre
   const reset = async () => { if (!window.confirm(t('server.resetConfirm'))) return; if (await run('reset', () => themeApi(`guild/${guildId}/reset`, { method: 'POST' }))) setMsg({ text: t('server.resetDone') }); };
   // Choosing a theme is one click: it is saved and goes live right away (a theme is meant to be seen on the server pages, not kept
   // as a draft). Everything else stays a draft until Publish or the save bar.
-  const pick = async (id) => {
-    if (dirty && !window.confirm(t('server.discardForTheme'))) return;
-    setBusy('pick'); setMsg(null);
-    let r = await themeApi(`guild/${guildId}`, { method: 'PUT', body: { config: { theme_id: id } } });
-    if (r.ok) r = await themeApi(`guild/${guildId}/publish`, { method: 'POST' });
-    setBusy('');
-    if (!r.ok) { setMsg({ bad: true, text: errorText(t, r) }); return; }
-    setState((st) => ({ ...st, ...r.data, loading: false })); setDraft(whole(r.data.server.draft)); setDirty(false); setMsg({ text: t('server.published') });
+  const pick = (id) => {
+    if (id === (draft.theme_id || null)) return;
+    edit((d) => { d.theme_id = id; d.preset = ''; d.palette = {}; d.effects = { ...d.effects, items: {} }; });
   };
 
   if (state.loading || !draft) return <p className="text-sm text-muted-foreground" role="status">{t('common.loading')}</p>;

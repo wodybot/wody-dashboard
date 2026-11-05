@@ -8,7 +8,7 @@ import WodyIcon from '@/components/wody-icon';
 const PLACES = [
   { id: 'battlepass', icon: 'trophy', path: (g) => `/servers/${g}/battlepass` },
   { id: 'leaderboard', icon: 'medal', path: (g) => `/leaderboard/${g}` },
-  { id: 'community', icon: 'website', path: null },
+  { id: 'community', icon: 'community', path: () => '/dashboard/community' },
   { id: 'dashboard', icon: 'dashboard', path: null },
 ];
 

@@ -85,9 +85,10 @@ const MODULE_TOGGLE_KEYS = [
   'backups', 'temporary_voice', 'youtube_notify',
   'economy', 'blackjack', 'stream_notifications', 'birthdays', 'invite_tracking',
   'lookups', 'feeds', 'link',
+  'counting', 'battlepass', 'theme_studio',
 ];
 
-const PREMIUM_ONLY_TOGGLE_KEYS = new Set(['backups', 'temporary_voice', 'youtube_notify', 'economy', 'blackjack', 'stream_notifications']);
+const PREMIUM_ONLY_TOGGLE_KEYS = new Set(['backups', 'temporary_voice', 'youtube_notify', 'economy', 'blackjack', 'stream_notifications', 'battlepass', 'theme_studio']);
 
 const UPDATES_ANNOUNCE_CHANNEL_ID = process.env.UPDATES_ANNOUNCE_CHANNEL_ID || '1529784783847166032';
 

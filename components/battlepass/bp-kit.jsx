@@ -8,15 +8,24 @@ import { Field, NativeSelect } from '@/components/module-kit';
 
 /** Calls /api/battlepass/<path>. Never throws: { ok, status, data }. */
 export async function bp(path, { method = 'GET', body } = {}) {
-  try {
-    const res = await fetch(`/api/battlepass/${path}`, {
-      method, headers: body ? { 'Content-Type': 'application/json' } : undefined, body: body ? JSON.stringify(body) : undefined,
-    });
-    const data = await res.json().catch(() => ({}));
-    return { ok: res.ok, status: res.status, data };
-  } catch {
-    return { ok: false, status: 0, data: { error: 'unreachable' } };
+  const once = async () => {
+    try {
+      const res = await fetch(`/api/battlepass/${path}`, {
+        method, headers: body ? { 'Content-Type': 'application/json' } : undefined, body: body ? JSON.stringify(body) : undefined,
+      });
+      const data = await res.json().catch(() => ({}));
+      return { ok: res.ok, status: res.status, data };
+    } catch {
+      return { ok: false, status: 0, data: { error: 'unreachable' } };
+    }
+  };
+  const first = await once();
+  // Discord or the database can be busy for a moment: reads are tried once more before an error is shown
+  if (method === 'GET' && (first.status === 503 || first.status === 500 || first.status === 0)) {
+    await new Promise((r) => setTimeout(r, 1200));
+    return once();
   }
+  return first;
 }
 
 /** Text for an API error code or a field error ({ code, params }). Unknown codes fall back to a generic sentence. */

@@ -715,7 +715,9 @@
 /* The server dashboard wears the chosen theme: the dashboard colour tokens are mapped onto the theme palette. Only inside .wt-mode-dashboard. */
 .wt-mode-dashboard { --background: var(--wt-h-bg); --foreground: var(--wt-h-text); --card: var(--wt-h-card); --card-foreground: var(--wt-h-text); --popover: var(--wt-h-surface); --popover-foreground: var(--wt-h-text);
   --primary: var(--wt-h-primary); --primary-foreground: var(--wt-h-on-primary); --secondary: var(--wt-h-surface); --secondary-foreground: var(--wt-h-text); --muted: var(--wt-h-surface); --muted-foreground: var(--wt-h-muted);
-  --accent: var(--wt-h-accent); --accent-foreground: var(--wt-h-text); --border: var(--wt-h-border); --input: var(--wt-h-border); --ring: var(--wt-h-primary); background: transparent; }
+  --accent: var(--wt-h-accent); --accent-foreground: var(--wt-h-text); --border: var(--wt-h-border); --input: var(--wt-h-border); --ring: var(--wt-h-primary); background: transparent;
+  --sidebar: var(--wt-h-surface); --sidebar-background: var(--wt-h-surface); --sidebar-foreground: var(--wt-h-text); --sidebar-primary: var(--wt-h-primary); --sidebar-primary-foreground: var(--wt-h-on-primary);
+  --sidebar-accent: var(--wt-h-card); --sidebar-accent-foreground: var(--wt-h-text); --sidebar-border: var(--wt-h-border); }
 .wt-scene, .wt-scene-sky, .wt-scene-svg, .wt-scene-photo, .wt-scene-glow, .wt-fx, .wt-scrim, .wt-vignette, .wt-banner { position: absolute; inset: 0; width: 100%; height: 100%; }
 .wt-scene-photo { object-fit: cover; }
 .wt-scene-svg { transform: translate3d(calc(var(--wt-px, 0) * -6px), calc(var(--wt-py, 0) * -4px), 0); transition: transform .4s ease-out; }

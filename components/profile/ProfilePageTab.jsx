@@ -73,13 +73,13 @@ function LivePreview({ page, identity, socials, away, cardCfg, passport }) {
     <div ref={outer} className="relative isolate overflow-hidden rounded-2xl border border-border/60 bg-[#120b08]">
       <PageBackdrop page={page} fixed={false} />
       <div style={{ width: zoom < 1 || (typeof window !== 'undefined' && window.innerWidth >= 1024) ? 1200 : 'auto', zoom }} className="flex flex-col gap-6 px-6 py-6">
-        <ProfilePageView page={publicPageView(page)} name={name} username={identity?.username || ''} avatarSrc={discordCdnUrl(rawSrc)} memberSince={null} away={away} socials={socials} live={0} views={0} locale="en" card={card} passport={passport} />
+        <ProfilePageView page={publicPageView(page)} name={name} username={identity?.username || ''} avatarSrc={discordCdnUrl(rawSrc)} memberSince={null} away={away} socials={socials} live={0} views={views} isPublic={isPublic} locale="en" card={card} passport={passport} />
       </div>
     </div>
   );
 }
 
-export default function ProfilePageTab({ identity, socials = {}, away = null, onGoCard }) {
+export default function ProfilePageTab({ isPublic = false, views = 0, identity, socials = {}, away = null, onGoCard }) {
   const t = useTranslations('profilePage');
   const [passport, setPassport] = useState(null);
   const [cardCfg, setCardCfg] = useState(null);

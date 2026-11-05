@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Footer, TopNav } from '@/components/nav';
 import { getDb } from '@/lib/mongo';
+import GuildThemed from '@/components/themes/GuildThemed';
 import { loadGame } from '@/lib/counting/public';
 import { countingMetadata, gameJsonLd, ldScript } from '@/lib/counting/seo';
 
@@ -31,6 +32,7 @@ export default async function CountingGamePage({ params }) {
   const max = Math.max(1, ...daily.map((d) => d.valid + d.errors));
   const accuracy = game.stats.total_valid + game.stats.total_errors ? Math.round((1000 * game.stats.total_valid) / (game.stats.total_valid + game.stats.total_errors)) / 10 : 0;
   return (
+    <GuildThemed guildId={data.guild_id} locale={locale}>
     <div className="relative min-h-screen overflow-x-hidden">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript(gameJsonLd({ locale, t, game })) }} />
       <TopNav />
@@ -68,5 +70,6 @@ export default async function CountingGamePage({ params }) {
       </main>
       <Footer />
     </div>
+    </GuildThemed>
   );
 }

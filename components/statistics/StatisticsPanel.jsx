@@ -91,24 +91,6 @@ function Reasons({ a }) {
 }
 
 // ---------------------------------------------------------------------------------------------- set up card
-function SetupCard({ settings, onEnable, busy, readOnly }) {
-  const t = useTranslations('statistics');
-  return (
-    <Card className="space-y-4 border-[#e6cd8c]/30 p-5">
-      <div className="flex items-start gap-3">
-        <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-[#e6cd8c]" />
-        <div className="space-y-2">
-          <h3 className="font-semibold">{t('setup.title')}</h3>
-          <p className="text-sm text-muted-foreground">{t('setup.text')}</p>
-          <p className="text-sm text-muted-foreground">{t('setup.privacy')}</p>
-          {settings.configured && settings.coverage?.length ? <p className="text-xs text-muted-foreground">{t('setup.pausedSince')}</p> : null}
-        </div>
-      </div>
-      {readOnly ? null : <Button onClick={onEnable} disabled={busy} className="gap-2">{busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Activity className="h-4 w-4" />}{t('setup.enable')}</Button>}
-    </Card>
-  );
-}
-
 // ---------------------------------------------------------------------------------------------- overview
 function OverviewTab({ a, locale }) {
   const t = useTranslations('statistics');
@@ -463,7 +445,6 @@ function SettingsTab({ guildId, settings, onSaved, readOnly }) {
     <div className="space-y-6">
       <Toast note={note} />
       <Section title={t('settings.collection')} description={t('settings.collectionHint')} icon={Activity}>
-        <SwitchRow label={t('settings.enabled')} hint={t('settings.enabledHint')} checked={draft.enabled} onChange={(v) => setDraft({ ...draft, enabled: v })} disabled={readOnly} />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label className="mb-1.5 block text-sm font-medium" htmlFor="st-retention">{t('settings.retention')}</label>
@@ -548,14 +529,10 @@ export default function StatisticsPanel({ guildId }) {
   const settings = settingsQ.data?.settings;
   const analysisTab = ['overview', 'channels', 'health'].includes(tab);
   const a = overview.data?.analysis;
-  const enable = async () => {
-    setBusy(true); setNote(null);
-    const r = await st(`guilds/${guildId}/settings`, { method: 'PATCH', body: { enabled: true } });
-    setBusy(false);
-    if (r.ok) { settingsQ.reload(); overview.reload('&force=1'); } else setNote({ tone: 'error', text: apiText(r.data?.error) });
-  };
   const tabs = TABS.map((x) => ({ ...x, label: t(`tab.${x.key}`) }));
   const collecting = Boolean(settings?.enabled);
+  // the dashboard sidebar shows this module as active only while counting is on
+  useEffect(() => { if (settings) window.dispatchEvent(new CustomEvent('wody:statistics-state', { detail: { guildId, enabled: Boolean(settings.enabled) } })); }, [settings, guildId]);
   const afterSave = () => { settingsQ.reload(); overview.reload('&force=1'); };
   return (
     <div className="space-y-6">
@@ -578,7 +555,6 @@ export default function StatisticsPanel({ guildId }) {
       <ModuleTabs tabs={tabs} active={tab} onChange={setTab} />
       <Toast note={note} />
       {settingsQ.error ? <Toast note={{ tone: 'error', text: apiText(settingsQ.error) }} /> : null}
-      {settings && !collecting && !a?.period?.covered_days && analysisTab ? <SetupCard settings={settings} onEnable={enable} busy={busy} /> : null}
       {analysisTab ? (
         overview.error && !a ? (
           <Card className="space-y-3 p-8 text-center"><p className="text-sm text-muted-foreground">{apiText(overview.error)}</p><Button variant="outline" onClick={() => overview.reload()} className="gap-2"><RefreshCw className="h-4 w-4" />{t('retry')}</Button></Card>

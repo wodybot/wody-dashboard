@@ -2138,7 +2138,8 @@
       "addMore": "Adicionar mais",
       "clearAll": "Limpar tudo",
       "remove": "Remover",
-      "limitReached": "Limite atingido ({max})"
+      "limitReached": "Limite atingido ({max})",
+      "moduleSwitchOnlyDesc": "Ative este módulo com o interruptor dele na visão geral dos módulos. Enquanto estiver desligado, o bot não faz nada aqui e as suas configurações salvas ficam intactas."
     },
     "groups": {
       "server": "Servidor",
@@ -7889,7 +7890,8 @@
       "aria": "Perfil público",
       "noSocials": "Nenhum link social partilhado.",
       "live": "Collabs ativos",
-      "note": "Apenas membros WODY com sessão iniciada podem ver este perfil. O nome e a foto vêm do Discord."
+      "note": "Apenas membros WODY com sessão iniciada podem ver este perfil. O nome e a foto vêm do Discord.",
+      "notePublic": "Este perfil é público: qualquer pessoa com o link pode vê-lo. O nome e a imagem vêm do Discord."
     },
     "consent": {
       "label": "Confirmo que sou proprietário de cada imagem, GIF, link e áudio que adiciono ou que tenho permissão para o usar, e que li e aceito as políticas abaixo. Compreendo que o Wody apenas liga a conteúdo alojado noutras plataformas, que qualquer pessoa o pode denunciar e que o Wody o pode remover e suspender ou bloquear a minha conta Discord por violações.",

@@ -58,7 +58,8 @@ test('the dashboard module is registered', () => {
   const src = fs.readFileSync(path.join(root, 'app/[locale]/dashboard/[guildId]/GuildDashboardClient.jsx'), 'utf8');
   assert.match(src, /key: 'statistics'/);
   assert.match(src, /case 'statistics'/);
-  assert.match(src, /NON_TOGGLEABLE_KEYS = new Set\([^)]*'statistics'/);
+  assert.match(src, /SWITCH_ONLY_KEYS = new Set\([^)]*'statistics'/, 'turned on only from the switch on the overview');
+  assert.doesNotMatch(src, /NON_TOGGLEABLE_KEYS = new Set\([^)]*'statistics'/);
 });
 
 test('the help page namespace is complete in every language', () => {

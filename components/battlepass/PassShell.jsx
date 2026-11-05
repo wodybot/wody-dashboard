@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { ArrowLeft } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import WodyIcon from '@/components/wody-icon';
 import PageBackdrop from '@/components/profile/PageBackdrop';
 import PassPage from './PassPage';
 
@@ -20,12 +20,11 @@ export default async function PassShell({ data, t, backHref, guildName, loginHre
       {season ? <PassPage season={season} initialState={state} viewer={viewer} guildName={guildName} backHref={backHref} loginHref={loginHref} leaderboard={leaderboard} studio={studio} theme={theme} /> : (
         <>
           <PageBackdrop page={{}} />
-          <div className="mx-auto w-full max-w-3xl px-4 pt-5 sm:px-8">
-            <Link href={backHref} className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3.5 py-1.5 text-xs font-semibold backdrop-blur transition hover:border-[#e6cd8c]/60 hover:text-[#e6cd8c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#e6cd8c]"><ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />{t('page.back')}</Link>
-          </div>
-          <main id="main-content" className="mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center gap-3 px-4 py-16 sm:px-8">
-            <h1 className="text-3xl font-bold tracking-tight">{t(`page.${emptyKey}.title`)}</h1>
-            <p className="text-muted-foreground">{t(`page.${emptyKey}.text`)}</p>
+          <main id="main-content" className="mx-auto flex w-full max-w-xl flex-1 flex-col items-center justify-center gap-4 px-4 py-16 text-center sm:px-8">
+            <span className="grid h-20 w-20 place-items-center rounded-3xl border border-[#e6cd8c]/30 bg-[#e6cd8c]/10"><WodyIcon name="trophy" size={44} inline={false} /></span>
+            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{t(`page.${emptyKey}.title`)}</h1>
+            <p className="max-w-md text-muted-foreground">{t(`page.${emptyKey}.text`)}</p>
+            <Link href={backHref} className="mt-2 inline-flex min-h-11 items-center rounded-full bg-[#e6cd8c] px-6 text-sm font-semibold text-black transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e6cd8c]">{t('page.back')}</Link>
           </main>
         </>
       )}

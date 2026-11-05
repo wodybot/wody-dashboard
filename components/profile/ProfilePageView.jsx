@@ -1,6 +1,6 @@
 import { cloneElement } from 'react';
 import { useTranslations } from 'next-intl';
-import { TreePalm, Lock, Eye, ExternalLink, Link2, IdCard } from 'lucide-react';
+import { TreePalm, Lock, Eye, ExternalLink, Link2, IdCard, Globe, Users } from 'lucide-react';
 import ProfileCardPreview from '@/components/profile/ProfileCardPreview';
 import MusicButton from '@/components/profile/MusicButton';
 import SocialLinks from '@/components/profile/SocialLinks';
@@ -19,7 +19,7 @@ function Block({ title, accent, span = '', delay = 0, children }) {
 }
 
 /** Single renderer used by the public profile page and by the editor's live preview. */
-export default function ProfilePageView({ page, name, username, avatarSrc, memberSince, away, socials = {}, live = 0, views = 0, locale = 'en', card = null, passport = null, compact = false }) {
+export default function ProfilePageView({ page, name, username, avatarSrc, memberSince, away, socials = {}, live = 0, views = 0, isPublic = false, locale = 'en', card = null, passport = null, compact = false }) {
   const t = useTranslations('profile');
   const tp = useTranslations('profilePage');
   const accent = pageAccent(page) || '#e6cd8c';
@@ -76,8 +76,8 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
       </Block>
     ) : null,
     card: card ? (
-      <section key="card" aria-label={tp('levelCardTitle')} className="pv-in pv-lift relative overflow-hidden rounded-3xl border bg-card/60 p-3 sm:p-4 lg:col-span-2" style={{ borderColor: `${accent}66`, '--ac': accent }}>
-        <div className="mb-3 flex items-center gap-2.5">
+      <section key="card" aria-label={tp('levelCardTitle')} className="pv-in pv-lift relative mx-auto w-full max-w-2xl overflow-hidden rounded-3xl border bg-card/60 p-3 sm:p-4 lg:col-span-3" style={{ borderColor: `${accent}66`, '--ac': accent }}>
+        <div className="mb-3 flex items-center justify-center gap-2.5">
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl" style={{ background: `${accent}26`, color: accent }}><IdCard className="h-4 w-4" aria-hidden="true" /></span>
           <h2 className="text-base font-black leading-tight">{tp('levelCardTitle')}</h2>
         </div>
@@ -124,19 +124,22 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
           </div>
         </div>
         {!hide.has('stats') && (
-          <dl className="mt-6 grid grid-cols-2 gap-2 lg:mt-0 lg:grid-cols-1">
-            <div className="rounded-2xl border border-border/50 bg-background/40 px-3 py-2.5 text-center sm:text-left">
-              <dd className="text-2xl font-black tabular-nums" style={{ color: accent }}>{live}</dd>
-              <dt className="text-xs text-muted-foreground">{t('public.live')}</dt>
-            </div>
-            <div className="flex items-center justify-center gap-2 rounded-2xl border border-border/50 bg-background/40 px-3 py-2.5 sm:justify-start">
-              <Eye className="h-4 w-4" style={{ color: accent }} aria-hidden="true" />
-              <dd className="text-lg font-black tabular-nums">{new Intl.NumberFormat(locale).format(views)}</dd>
-              <dt className="text-xs text-muted-foreground">{tp('views')}</dt>
-            </div>
+          <dl className="mt-6 grid grid-cols-2 gap-3 lg:mt-0 lg:grid-cols-1">
+            {[[Users, live, t('public.live')], [Eye, views, tp('views')]].map(([Icn, value, label]) => (
+              <div key={label} className="flex min-h-[4.25rem] items-center gap-3 rounded-2xl border border-border/50 bg-background/40 px-4 py-3">
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl" style={{ background: `${accent}22`, color: accent }}><Icn className="h-4 w-4" aria-hidden="true" /></span>
+                <div className="min-w-0">
+                  <dd className="text-xl font-black leading-none tabular-nums">{new Intl.NumberFormat(locale).format(value)}</dd>
+                  <dt className="mt-1 truncate text-xs text-muted-foreground">{label}</dt>
+                </div>
+              </div>
+            ))}
           </dl>
         )}
-        <p className="mt-4 flex items-start gap-1.5 text-xs text-muted-foreground lg:col-span-2"><Lock className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />{t('public.note')}</p>
+        <p className="mt-5 flex items-center gap-2 rounded-xl border border-border/50 bg-background/30 px-3 py-2 text-xs text-muted-foreground lg:col-span-2">
+          {isPublic ? <Globe className="h-3.5 w-3.5 shrink-0" aria-hidden="true" /> : <Lock className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />}
+          <span>{isPublic ? t('public.notePublic') : t('public.note')}</span>
+        </p>
       </section>
       <div className="grid grid-flow-dense gap-6 lg:grid-cols-3">{order.map((k, i) => (sections[k] ? cloneElement(sections[k], { delay: 0.1 + i * 0.08 }) : null))}</div>
     </>

@@ -120,9 +120,14 @@ function PublicToggle({ pf, onChanged }) {
   };
   return (
     <>
-      <div className="flex items-center justify-between gap-3 px-1 text-xs text-muted-foreground" data-public-toggle-row>
-        <span className="flex min-w-0 items-center gap-1.5"><Globe className="h-3.5 w-3.5 shrink-0" aria-hidden="true" /><span className="truncate">{isPublic ? t('visibility.statusPublic') : t('visibility.statusPrivate')}</span></span>
-        <button type="button" onClick={() => { setErr(''); if (isPublic) send(false); else setOpen(true); }} disabled={busy} className="shrink-0 font-semibold text-foreground/90 underline decoration-dotted underline-offset-4 transition hover:text-[#e6cd8c] disabled:opacity-50" data-public-toggle>
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/60 bg-card/50 px-4 py-3" data-public-toggle-row>
+        <span className="flex min-w-0 items-center gap-2.5 text-sm text-foreground/90">
+          <span aria-hidden="true" className={`h-2.5 w-2.5 shrink-0 rounded-full ${isPublic ? 'bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.7)]' : 'bg-muted-foreground/60'}`} />
+          <Globe className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+          <span className="truncate font-medium">{isPublic ? t('visibility.statusPublic') : t('visibility.statusPrivate')}</span>
+        </span>
+        <button type="button" onClick={() => { setErr(''); if (isPublic) send(false); else setOpen(true); }} disabled={busy}
+          className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-xl border border-[#e6cd8c]/40 bg-[#e6cd8c]/10 px-4 text-sm font-semibold text-[#e6cd8c] transition hover:bg-[#e6cd8c]/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e6cd8c] disabled:opacity-50">
           {isPublic ? t('visibility.makePrivate') : t('visibility.makePublic')}
         </button>
       </div>
@@ -795,7 +800,7 @@ export default function ProfileClient() {
               {tab === 'messages' && <MessagesTab reload={reload} />}
               {tab === 'servers' && <ServersTab guilds={gl.guilds} unavailable={gl.unavailable} reload={reload} />}
               {tab === 'card' && <ProfileCardTab identity={pf.identity} />}
-              {tab === 'page' && <ProfilePageTab identity={pf.identity} socials={pf.socials || {}} away={pf.away?.active ? pf.away : null} onGoCard={() => go('card')} />}
+              {tab === 'page' && <ProfilePageTab isPublic={pf.share_public === true} views={pf.views || 0} identity={pf.identity} socials={pf.socials || {}} away={pf.away?.active ? pf.away : null} onGoCard={() => go('card')} />}
               {tab === 'settings' && <SettingsTab pf={pf} cats={cats} reloadProfile={reloadProfile} />}
             </div>
           </>
