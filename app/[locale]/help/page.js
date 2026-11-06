@@ -73,11 +73,19 @@ export default async function HelpPage({ params }) {
   }
 
   const premiumLimits = tLanding.raw('premium.limits');
-  const premiumLimitsText = premiumLimits.filter((l) => l.boosted === '∞').map((l) => `${l.title} (${l.standard} on the free plan)`).join(', ');
+  const premiumLimitsText = premiumLimits.filter((l) => l.boosted === '∞').map((l) => t('premiumFreeLimit', { title: l.title, standard: l.standard })).join(', ');
   const premiumOptions = tLanding.raw('premium.options');
+  // "Option A: Promote Wody" in any language: the part after the first colon is the option's own name
+  const optionName = (title) => String(title).replace(/^[^:]{1,24}[ ][A-E]\s*:\s*/, '');
   const premiumOptionsText = premiumOptions
-    .map((o, i) => `${i === 0 ? 'Option A' : 'Option B'} (${o.title.replace(/^Option [AB]: /, '')}): ${o.steps.join(' ')}`)
+    .map((o, i) => t('premiumOption', { letter: String.fromCharCode(65 + i), title: optionName(o.title), steps: o.steps.join(' ') }))
     .join(' ');
+  // The Premium modules, written as a list the way this language writes lists ("A, B and C")
+  let premiumModulesText = '';
+  try {
+    const names = (await getTranslations({ locale, namespace: 'premiumPage' })).raw('modules').map((m) => m.title);
+    premiumModulesText = new Intl.ListFormat(locale, { style: 'long', type: 'conjunction' }).format(names);
+  } catch { premiumModulesText = ''; }
 
   const rawSections = t.raw('sections');
   const modulesSection = {
@@ -91,8 +99,8 @@ export default async function HelpPage({ params }) {
     {
       ...rawSections[4],
       items: rawSections[4].items.map((item) => {
-        if (item[1] === '__PREMIUM_LIMITS__') return [item[0], `Premium unlocks Backups, Temporary Voice, YouTube Notifications, Economy, Games and Stream Notifications, and it removes the creation limits on seven systems, they become unlimited: ${premiumLimitsText}. Premium servers can also bump on Wody Discovery every 30 minutes instead of every 2 hours.`];
-        if (item[1] === '__PREMIUM_OPTIONS__') return [item[0], `Premium is free but invitation-only, granted through the community server. There are two ways to unlock it. ${premiumOptionsText}`];
+        if (item[1] === '__PREMIUM_LIMITS__') return [item[0], t('premiumUnlocks', { modules: premiumModulesText, limits: premiumLimitsText })];
+        if (item[1] === '__PREMIUM_OPTIONS__') return [item[0], t('premiumHow', { options: premiumOptionsText })];
         return item;
       }),
     },

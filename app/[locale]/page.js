@@ -20,7 +20,7 @@ import { BrandText } from '@/components/brand-text';
 
 const FEATURE_ICONS = [Zap, Shield, Lock, Package, Sparkles, Star];
 const STAT_ICONS = [Package, Zap, Clock, Gift];
-const PREMIUM_MODULE_KEYS = new Set(['economy', 'blackjack', 'backups', 'temporary_voice', 'youtube_notify', 'stream_notifications']);
+const PREMIUM_MODULE_KEYS = new Set(['economy', 'blackjack', 'backups', 'temporary_voice', 'youtube_notify', 'stream_notifications', 'battlepass', 'theme_studio']);
 
 export const revalidate = 300;
 

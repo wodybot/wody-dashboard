@@ -1,5 +1,5 @@
 import { localizedAlternates } from '@/lib/community/seo';
-import { Crown, Archive, Mic2, Youtube, CheckCircle2, ExternalLink, MessageCircle, Server, Megaphone, Vote } from 'lucide-react';
+import { Crown, Archive, Mic2, Youtube, Coins, Gamepad2, Radio, Medal, Wand2, CheckCircle2, ExternalLink, MessageCircle, Server, Megaphone, Vote } from 'lucide-react';
 import { getTranslations, getLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { COMMUNITY_INVITE, INVITE_URL } from '@/lib/content';
@@ -41,7 +41,7 @@ const OPTION_ICONS = {
   vote: Vote,
 };
 
-const MODULE_ICONS = [Archive, Mic2, Youtube];
+const MODULE_ICONS = [Archive, Mic2, Youtube, Coins, Gamepad2, Radio, Medal, Wand2];
 
 export default async function PremiumPage() {
   const session = await getSession();

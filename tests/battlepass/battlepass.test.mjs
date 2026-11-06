@@ -26,8 +26,8 @@ test('level vectors', () => {
 test('curve validation refuses impossible passes', () => {
   assert.deepEqual(curve.validateCosts([100, 100]), []);
   assert.deepEqual(curve.validateCosts([100, 0]), [['levels.2.xp', 'invalid_xp']]);
-  assert.deepEqual(curve.validateCosts([C.LIMITS.MAX_LEVEL_XP + 1]), [['levels.1.xp', 'xp_too_high']]);
-  assert.deepEqual(curve.validateCosts([1000, 1000], { seasonXpCap: 1500 }), [['levels', 'unreachable']]);
+  assert.deepEqual(curve.validateCosts([C.LIMITS.MAX_LEVEL_XP + 1]), [['levels.1.xp', 'xp_too_high', { max: C.LIMITS.MAX_LEVEL_XP }]]);
+  assert.deepEqual(curve.validateCosts([1000, 1000], { seasonXpCap: 1500 }), [['levels', 'unreachable', { total: 2000, cap: 1500 }]]);
   assert.deepEqual(curve.validateCosts([1000, 1000], { seasonXpCap: 2000 }), []);
   assert.deepEqual(curve.validateCosts([]), [['levels', 'required']]);
   assert.deepEqual(curve.validateCosts([1.5]), [['levels.1.xp', 'invalid_xp']]);

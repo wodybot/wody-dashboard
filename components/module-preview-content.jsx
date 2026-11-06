@@ -4,7 +4,7 @@ import DiscordAppTag from '@/components/discord-app-tag';
 import {
   Bot, Check, ChevronDown, CornerDownRight, Clock3, FileText, Gift, Hash, Lock, BarChart3,
   MessageCircle, Package, Shield, Sparkles, Star, Terminal, TrendingUp, UserPlus,
-  ShieldCheck, Cake, Link2, Search, Rss, Coins, Gamepad2, Camera, Radio, Compass, Archive, Mic2, Youtube, Rocket, ExternalLink, ArrowLeftRight,
+  ShieldCheck, Cake, Link2, Search, Rss, Coins, Gamepad2, Camera, Radio, Compass, Archive, Mic2, Youtube, Rocket, ExternalLink, ArrowLeftRight, ListOrdered, Medal, Wand2,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -17,6 +17,7 @@ export const ICONS = {
   embeds: Sparkles, scheduled_messages: Clock3, forums: Hash, logging: FileText,
   captcha: ShieldCheck, birthdays: Cake, invite_tracking: Link2, link: ArrowLeftRight, lookups: Search, feeds: Rss, economy: Coins, blackjack: Gamepad2, stream_notifications: Radio,
   community: Compass, backups: Archive, temporary_voice: Mic2, youtube_notify: Youtube, bump: Rocket,
+  counting: ListOrdered, statistics: BarChart3, battlepass: Medal, theme_studio: Wand2,
 };
 
 export const WODY_LOGO_URL = '/api/status/bot-avatar';
@@ -100,6 +101,27 @@ export const PREVIEWS = {
     image: 'video',
     small: '{wy:notification} Wody · YouTube Notifications', smallSeparator: true,
     buttons: [{ label: 'Watch on YouTube', emoji: '{wy:next}', style: 'link' }, { label: 'Open channel', emoji: '{wy:video}', style: 'link' }],
+  },
+  counting: {
+    channel: 'counting', color: '#E5484D', mention: '@Alex',
+    title: '{wy:counter} Mistake',
+    text: '@Alex made a mistake: wrong number. Next was **58**.\nThe count went from 57 back to 0. Next number: **1**.',
+  },
+  statistics: {
+    channel: 'staff', color: '#2FB67C',
+    title: '{wy:stats} Weekly activity',
+    text: '**Messages** 12,480 (+14%)\n**Active members** 312\n**Busiest channel** #general\n-# Aggregate counters only, no message content.',
+  },
+  battlepass: {
+    channel: 'general', color: '#e6cd8c', mention: '@Alex',
+    title: '{wy:medal} Level 12 reached',
+    text: '@Alex reached level 12 in the Autumn Season and unlocked **Golden Frame**.',
+    buttons: [{ label: 'Open the pass', style: 'link' }],
+  },
+  theme_studio: {
+    channel: 'announcements', color: '#c084fc',
+    title: '{wy:colors} New look published',
+    text: 'Your server pages now use **Aurora** with soft lights and your own colors.\nBattle Pass, leaderboard and server page are updated.',
   },
   stream_notifications: {
     channel: 'live', color: '#9146ff', mention: '@Live',

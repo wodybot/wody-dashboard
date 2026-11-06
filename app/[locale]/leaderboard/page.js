@@ -1,5 +1,6 @@
 import { getLocale, getTranslations } from 'next-intl/server';
-import { Trophy, Crown, Users, Server, Bot } from 'lucide-react';
+import { Trophy, Users, Server, Bot } from 'lucide-react';
+import { Icon } from '@/components/icon-text';
 import { Button } from '@/components/ui/button';
 import { Footer, TopNav } from '@/components/nav';
 import { localizedAlternates } from '@/lib/community/seo';
@@ -100,10 +101,11 @@ export default async function GlobalLeaderboardPage() {
                   <li key={r.userId} className={`${MOBILE_ORDER[r.rank] || 'order-3'} sm:order-none rounded-2xl border ${p.ring} p-4 flex sm:flex-col items-center gap-3 sm:gap-2 text-left sm:text-center ${first ? 'sm:pb-7 sm:pt-6' : ''}`}>
                     <div className="relative shrink-0">
                       <Avatar row={r} size={first ? 64 : 52} />
-                      {first && <Crown className="w-5 h-5 text-[#e6c36a] absolute -top-3 left-1/2 -translate-x-1/2" aria-hidden="true" />}
+                      {first && <Icon file="crown" size={22} className="absolute -top-3.5 left-1/2 -translate-x-1/2" />}
+                      <Icon file={`place_${r.rank}`} size={first ? 30 : 26} title={`#${r.rank}`} className="absolute -bottom-1 -right-1" />
                     </div>
                     <div className="min-w-0 flex-1 sm:flex-none sm:w-full">
-                      <div className={`text-xs font-semibold tracking-wider ${p.tone}`}>#{r.rank}</div>
+                      <div className={`text-xs font-semibold tracking-wider ${p.tone}`} aria-hidden="true">#{r.rank}</div>
                       <div className="font-medium truncate">{r.name || t('unknownUser')}</div>
                       <div className="text-sm font-semibold tabular-nums mt-0.5">{t('coins', { n: fmt(r.total, locale) })}</div>
                       <div className="text-[11px] text-muted-foreground">{t('servers', { count: r.servers })}</div>

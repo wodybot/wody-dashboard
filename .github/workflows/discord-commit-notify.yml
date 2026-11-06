@@ -58,7 +58,7 @@ jobs:
                     },
                     {
                       type: 10,
-                      content: ("-# `" + $sha + "` by " + $author + " — Wody Development")
+                      content: ("-# `" + $sha + "` by " + $author + " | Wody Development")
                     },
                     {
                       type: 14,

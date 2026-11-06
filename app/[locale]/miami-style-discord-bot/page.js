@@ -7,7 +7,6 @@ import { SITE_URL, localePath, localizedAlternates, ogLocale } from '@/lib/commu
 import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 import { SvgScene } from '@/components/scenes';
 
-const INDEXED = new Set(['en', 'ro']);
 const PATH = '/miami-style-discord-bot';
 const WHERE_ICONS = [Trophy, Users, UserRound];
 const FEATURE_ICONS = [IdCard, Briefcase, Layers, Globe];
@@ -15,14 +14,12 @@ const FEATURE_ICONS = [IdCard, Briefcase, Layers, Globe];
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'miamiPage' });
-  const indexed = INDEXED.has(locale);
+  // The page is written in every language, so every language is its own indexed page
   return {
     title: { absolute: t('metaTitle') },
     description: t('metaDescription'),
-    alternates: indexed
-      ? { canonical: localePath(locale, PATH), languages: { en: `${SITE_URL}${PATH}`, ro: `${SITE_URL}/ro${PATH}`, 'x-default': `${SITE_URL}${PATH}` } }
-      : localizedAlternates('en', PATH),
-    robots: indexed ? { index: true, follow: true } : { index: false, follow: true },
+    alternates: localizedAlternates(locale, PATH),
+    robots: { index: true, follow: true },
     twitter: TWITTER_CARD,
     openGraph: { images: OG_IMAGES, title: t('metaTitle'), description: t('metaDescription'), url: `${SITE_URL}${localePath(locale, PATH)}`, type: 'website', ...ogLocale(locale) },
   };

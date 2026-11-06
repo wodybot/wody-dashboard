@@ -18,7 +18,8 @@
         "test:emoji": "node --test tests/emoji/emoji.test.mjs",
         "test:themes": "node --import ./tests/battlepass/register.mjs --test tests/themes/themes.test.mjs && node --import ./tests/gifstudio/register.mjs --test tests/themes/engine.test.mjs",
         "test:gifstudio": "node --import ./tests/gifstudio/register.mjs --test tests/gifstudio/gifstudio.test.mjs",
-        "test:statistics": "node --import ./tests/battlepass/register.mjs --test tests/statistics/api.test.mjs tests/statistics/chart-math.test.mjs tests/statistics/messages.test.mjs"
+        "test:statistics": "node --import ./tests/battlepass/register.mjs --test tests/statistics/api.test.mjs tests/statistics/chart-math.test.mjs tests/statistics/messages.test.mjs",
+        "test:seo": "node --import ./tests/gifstudio/register.mjs --test tests/seo/modules.test.mjs"
     },
     "dependencies": {
         "@hookform/resolvers": "5.1.1",

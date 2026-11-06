@@ -1,6 +1,6 @@
 'use client';
 // Small building blocks shared by every Battle Pass editor tab. Text comes from the "battlepass" message namespace.
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { XCircle } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -42,7 +42,7 @@ export function useBpText() {
     if (code === 'activation_refused' && reason && t.has(`reasons.${reason}`)) return t(`reasons.${reason}`);
     return t.has(`apiErrors.${code}`) ? t(`apiErrors.${code}`) : t('apiErrors.generic');
   }, [t]);
-  return { field, api };
+  return useMemo(() => ({ field, api }), [field, api]);   // the same object between renders: callers list it in their effect dependencies
 }
 
 export const pathErrors = (errors, path) => (errors || []).filter((e) => e.field === path || e.field.startsWith(`${path}.`));

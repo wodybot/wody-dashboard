@@ -230,3 +230,19 @@ test('premium logo: checked, resized, cleaned, only for Premium servers, shown a
   store.forgetGuild(G2);
   assert.equal((await call('GET', `resolve/${G2}`)).body.theme, null, 'a lapsed Premium keeps the file but shows the standard look');
 });
+
+test('the official themes are created with one read and the retired ones are cleaned up once per process', async () => {
+  const db = fresh();
+  let finds = 0; let finOne = 0;
+  const real = db.collection.bind(db);
+  db.collection = (name) => {
+    const c = real(name);
+    if (name !== C.THEME_COLL) return c;
+    return new Proxy(c, { get(t, k) { if (k === 'find') return (...a) => { finds += 1; return t.find(...a); }; if (k === 'findOne') return (...a) => { finOne += 1; return t.findOne(...a); }; const v = t[k]; return typeof v === 'function' ? v.bind(t) : v; } });
+  };
+  await store.seedOfficial(db);
+  assert.equal(finOne, 0);
+  assert.equal(finds, 1);
+  const all = await real(C.THEME_COLL).find({}).toArray();
+  assert.ok(all.length >= 15 && all.every((t) => t.status === 'published'));
+});

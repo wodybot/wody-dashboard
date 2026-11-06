@@ -7,10 +7,13 @@ import { INVITE_URL } from '@/lib/content';
 import { Button } from '@/components/ui/button';
 import { Footer, TopNav } from '@/components/nav';
 import { ICONS, HomepageModulePreview } from '@/components/module-preview-content';
-import { MODULE_SEO_SLUGS, getModuleSeoContent, getCommandsAnchor } from '@/lib/module-seo';
+import { MODULE_SEO_SLUGS, getModuleSeoContent, getCommandsAnchor, moduleSeoLocales } from '@/lib/module-seo';
 import { BrandText } from '@/components/brand-text';
 import { buildHowTo } from '@/lib/module-howto';
-import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
+import { OG_IMAGES, TWITTER_CARD, moduleOgImages, moduleTwitter } from '@/lib/seo-social';
+
+// Modules that have an animated link preview in the look of the homepage ad (GIF Preview Studio name)
+const MODULE_GIF = { counting: 'counting', statistics: 'statistics', battlepass: 'battlepass', theme_studio: 'themes', link: 'link' };
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
 
@@ -28,9 +31,10 @@ export async function generateMetadata({ params }) {
     if (!content) return {};
 
     const path = `/modules/${slug}`;
-    const hasOwnCopy = ['en', 'ro'].includes(locale);
+    const ownLocales = moduleSeoLocales(slug);
+    const hasOwnCopy = ownLocales.includes(locale);
     const localizedPath = locale === routing.defaultLocale || !hasOwnCopy ? path : `/${locale}${path}`;
-    const languages = Object.fromEntries(['en', 'ro'].map((itemLocale) => [
+    const languages = Object.fromEntries(ownLocales.map((itemLocale) => [
       itemLocale,
       `${SITE_URL}${itemLocale === routing.defaultLocale ? '' : `/${itemLocale}`}${path}`,
     ]));
@@ -41,8 +45,8 @@ export async function generateMetadata({ params }) {
       description: content.metaDescription,
       alternates: { canonical: `${SITE_URL}${localizedPath}`, languages },
       robots: { index: hasOwnCopy, follow: true },
-      twitter: TWITTER_CARD,
-      openGraph: { images: OG_IMAGES,
+      twitter: MODULE_GIF[slug] ? moduleTwitter(MODULE_GIF[slug], hasOwnCopy ? locale : 'en') : TWITTER_CARD,
+      openGraph: { images: MODULE_GIF[slug] ? moduleOgImages(MODULE_GIF[slug], hasOwnCopy ? locale : 'en') : OG_IMAGES,
         title: content.ogTitle,
         description: content.ogDescription,
         url: `${SITE_URL}${localizedPath}`,

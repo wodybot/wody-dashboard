@@ -1,12 +1,10 @@
 import { getDb } from '@/lib/mongo';
 import { routing } from '@/i18n/routing';
-import { MODULE_SEO_SLUGS } from '@/lib/module-seo';
+import { MODULE_SEO_SLUGS, moduleSeoLocales } from '@/lib/module-seo';
 import { BLOG_COLLECTION } from '@/lib/blog';
 import { C } from '@/lib/community/db';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
-
-const SEO_COPY_LOCALES = ['en', 'ro'];
 
 function localizedEntry(path, rest, onlyLocales) {
   const locs = onlyLocales || routing.locales;
@@ -113,7 +111,7 @@ export default async function sitemap() {
     ...localizedEntry('/statistics/help', { lastModified, changeFrequency: 'monthly', priority: 0.6 }),
     ...localizedEntry('/modules', { lastModified, changeFrequency: 'weekly', priority: 0.85 }),
     ...MODULE_SEO_SLUGS.flatMap((slug) =>
-      localizedEntry(`/modules/${slug}`, { lastModified, changeFrequency: 'monthly', priority: 0.75 }, SEO_COPY_LOCALES)
+      localizedEntry(`/modules/${slug}`, { lastModified, changeFrequency: 'monthly', priority: 0.75 }, moduleSeoLocales(slug))
     ),
     ...localizedEntry('/updates', {
       lastModified: updatesLastModified,
@@ -126,7 +124,7 @@ export default async function sitemap() {
     ),
     ...localizedEntry('/servers', { lastModified, changeFrequency: 'daily', priority: 0.8 }),
     ...localizedEntry('/servers/guidelines', { lastModified, changeFrequency: 'yearly', priority: 0.4 }),
-    ...localizedEntry('/miami-style-discord-bot', { lastModified, changeFrequency: 'weekly', priority: 0.85 }, SEO_COPY_LOCALES),
+    ...localizedEntry('/miami-style-discord-bot', { lastModified, changeFrequency: 'weekly', priority: 0.85 }),
     ...localizedEntry('/tiktok', { lastModified, changeFrequency: 'yearly', priority: 0.4 }),
     ...localizedEntry('/collab', { lastModified, changeFrequency: 'daily', priority: 0.7 }),
     ...requests.flatMap(({ path, lastModified: m }) => localizedEntry(path, { lastModified: m, changeFrequency: 'weekly', priority: 0.5 })),

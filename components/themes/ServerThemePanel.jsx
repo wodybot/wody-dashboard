@@ -3,6 +3,7 @@
 // Only fixed choices and bounded numbers are offered; the API enforces the same rules again (no code, no free-form CSS, no HTML).
 import { proxiedImageUrl } from '@/lib/utils';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import WodyIcon from '@/components/wody-icon';
 import Preview from './Preview';
@@ -29,21 +30,26 @@ const whole = (d) => {
 export default function ServerThemePanel({ guildId, mode = 'basic', premium: premiumProp = false, onGetPremium }) {
   const t = useTranslations('themes');
   const locale = useLocale();
+  const router = useRouter();
   const isPremiumMode = true;                      // the theme editor is a Premium module: one panel with every setting
   const [state, setState] = useState({ loading: true });
   const [catalog, setCatalog] = useState([]);
+  const [catalogReady, setCatalogReady] = useState(false);
   const [draft, setDraft] = useState(null);
   const [busy, setBusy] = useState('');
   const [msg, setMsg] = useState(null);
   const [dirty, setDirty] = useState(false);
 
   const load = useCallback(async () => {
-    const [g, c] = await Promise.all([themeApi(`guild/${guildId}`), themeApi('catalog')]);
+    const cat = themeApi('catalog');                    // both calls start together, but the panel opens as soon as the server's own settings arrive
+    const g = await themeApi(`guild/${guildId}`);
     if (!g.ok) { setState({ loading: false, error: errorText(t, g) }); return; }
-    setCatalog(c.ok ? c.data.themes || [] : []);
     setState({ loading: false, ...g.data });
     setDraft(whole(g.data.server.draft));
     setDirty(false);
+    const c = await cat;
+    setCatalog(c.ok ? c.data.themes || [] : []);
+    setCatalogReady(true);
   }, [guildId, t]);
   useEffect(() => { load(); }, [load]);
 
@@ -66,6 +72,7 @@ export default function ServerThemePanel({ guildId, mode = 'basic', premium: pre
     setBusy('');
     if (!r.ok) { setMsg({ bad: true, text: errorText(t, r) }); return false; }
     setState((s) => ({ ...s, ...r.data, loading: false })); setDraft(whole(r.data.server.draft)); setDirty(false);
+    if (kind === 'publish' || kind === 'reset') router.refresh();   // the dashboard around this panel takes the new look (or loses it) right away
     return true;
   }
   // unfinished custom sections (no text, or no button label or link yet) are left out instead of failing the whole save
@@ -129,7 +136,7 @@ export default function ServerThemePanel({ guildId, mode = 'basic', premium: pre
       <WhereItShows guildId={guildId} published={Boolean(state.server.published_at)} dashboardOn={draft.dashboard === true} onToggleDashboard={(v) => edit((d) => { d.dashboard = v; })} />
 
       <Card title={t('server.chooseTheme')} hint={t('server.chooseHint')}>
-        {catalog.length === 0 ? <p className="text-sm text-muted-foreground">{t('server.noThemes')}</p> : (
+        {!catalogReady ? <p className="text-sm text-muted-foreground" role="status">{t('common.loading')}</p> : catalog.length === 0 ? <p className="text-sm text-muted-foreground">{t('server.noThemes')}</p> : (
           <ul className="grid gap-2 sm:grid-cols-2" aria-label={t('server.chooseTheme')}>
             <li><button type="button" aria-pressed={!draft.theme_id} onClick={() => pick(null)} className={`h-full w-full rounded-xl border p-3 text-left ${!draft.theme_id ? 'border-primary bg-primary/10' : 'border-border'}`}><strong className="block text-sm">{t('server.standard')}</strong><span className="text-xs text-muted-foreground">{t('server.standardHint')}</span></button></li>
             {catalog.map((c) => (

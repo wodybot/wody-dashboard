@@ -34,6 +34,12 @@ const TABS = [
   ['achievements', Trophy], ['collections', Boxes], ['artwork', Palette], ['localization', Languages],
 ];
 
+// Which tab holds a field the server refused, so a refusal is never hidden on a tab the person is not looking at.
+const TAB_OF = { name: 'general', description: 'general', starts_at: 'general', ends_at: 'general', notifications: 'general', protection: 'general',
+  level_count: 'levels', curve: 'levels', overrides: 'levels', levels: 'levels', xp: 'xp', rewards: 'rewards', quests: 'quests',
+  achievements: 'achievements', collections: 'collections', page: 'artwork', i18n: 'localization' };
+const tabOfError = (e) => TAB_OF[String(e?.field || '').split('.')[0]] || 'general';
+
 /** One season: every setting, validated by the server; the bot and the dashboard read the same document. */
 export default function SeasonEditor({ base, scope, seasonId, onClose, onChanged }) {
   const t = useTranslations('battlepass');
@@ -58,13 +64,14 @@ export default function SeasonEditor({ base, scope, seasonId, onClose, onChanged
 
   const set = useCallback((path, value) => setDraft((d) => setPath(d, path, value)), []);
   const dirty = useMemo(() => JSON.stringify(saved) !== JSON.stringify(draft), [saved, draft]);
+  const errorBadges = useMemo(() => { const b = {}; for (const e of errors) { const k = tabOfError(e); b[k] = (b[k] || 0) + 1; } return b; }, [errors]);
 
   const save = async () => {
     setSaving(true); setErrors([]);
     const r = await bp(`${base}/${seasonId}`, { method: 'PATCH', body: draft });
     setSaving(false);
     if (r.ok) { toast.success(t('editor.saved')); await load(); onChanged?.(); return; }
-    if (r.data?.error === 'validation_failed') { setErrors(r.data.errors || []); toast.error(t('editor.fixErrors')); } else toast.error(text.api(r.data?.error));
+    if (r.data?.error === 'validation_failed') { const list = r.data.errors || []; setErrors(list); if (list.length) setTab(tabOfError(list[0])); toast.error(t('editor.fixErrors')); } else toast.error(text.api(r.data?.error));
   };
 
   const act = async (action) => {
@@ -122,7 +129,7 @@ export default function SeasonEditor({ base, scope, seasonId, onClose, onChanged
               </Card>
             ) : null}
             {dirty && canActivate ? <p className="text-xs text-muted-foreground">{t('editor.saveBeforeActivate')}</p> : null}
-            <ModuleTabs tabs={TABS.map(([key, icon]) => ({ key, icon, label: t(`tabs.${key}`) }))} active={tab} onChange={setTab} />
+            <ModuleTabs tabs={TABS.map(([key, icon]) => ({ key, icon, label: t(`tabs.${key}`) }))} active={tab} onChange={setTab} badges={errorBadges} />
             {tab === 'general' && <GeneralTab draft={draft} set={set} errors={errors} scope={scope} />}
             {tab === 'levels' && <LevelsTab draft={draft} set={set} errors={errors} />}
             {tab === 'xp' && <XpTab draft={draft} set={set} errors={errors} scope={scope} limits={state.limits} />}

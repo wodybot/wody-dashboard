@@ -34,8 +34,10 @@ export default function ThemeStudio({ writer = true }) {
   const readOnly = !writer;
 
   const loadList = useCallback(async () => {
-    const [a, b] = await Promise.all([themeApi('owner/themes'), themeApi('owner/assets')]);
+    const pending = themeApi('owner/assets');           // the assets load alongside, the list is shown as soon as it arrives
+    const a = await themeApi('owner/themes');
     if (a.ok) setList(a.data.themes); else setMsg({ bad: true, text: errorText(t, a) });
+    const b = await pending;
     if (b.ok) setAssets(b.data.assets);
   }, [t]);
   useEffect(() => { loadList(); }, [loadList]);

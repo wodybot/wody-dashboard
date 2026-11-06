@@ -383,6 +383,16 @@
         "desc": "Põe o teu servidor no topo de Recently bumped na Wody Discovery com /bump. Servidores gratuitos a cada 2 horas; servidores Premium a cada 30 minutos."
       },
       {
+        "key": "counting",
+        "title": "Contagem",
+        "desc": "Um jogo de contagem para o seu servidor com sequências, salvamentos e classificação."
+      },
+      {
+        "key": "statistics",
+        "title": "Estatísticas",
+        "desc": "Atividade dos canais, saúde da comunidade e tendências do seu servidor, apenas com contadores agregados."
+      },
+      {
         "key": "economy",
         "title": "Economia",
         "desc": "Carteira, banco, loja, empregos, negócios, mercado em direto, animais, pesca, quinta e trocas seguras."
@@ -411,6 +421,16 @@
         "key": "stream_notifications",
         "title": "Notificações de stream",
         "desc": "Alertas quando um streamer da Twitch ou Kick entra em direto e quando um criador do TikTok ligado publica um vídeo."
+      },
+      {
+        "key": "battlepass",
+        "title": "Battle Pass",
+        "desc": "Execute um progresso por temporadas com níveis, recompensas, missões e uma página totalmente personalizável para os seus membros."
+      },
+      {
+        "key": "theme_studio",
+        "title": "Theme Studio",
+        "desc": "Escolhe um tema e personaliza as páginas do teu servidor: cores, cenas, efeitos, iluminação e secções próprias. Premium."
       }
     ],
     "community": {
@@ -423,7 +443,7 @@
       "badge": "Apenas por convite",
       "title": "Premium",
       "subtitle": "Nunca à venda. Sempre conquistado.",
-      "body": "O Premium é a forma de a Wody recompensar quem realmente faz a comunidade crescer: líderes de comunidade, criadores de conteúdo e donos de servidores que promovem a Wody, além de quem chega aos 100 votos. Desbloqueia <hl>Cópias de segurança</hl>, <hl>Voz temporária</hl>, <hl>Notificações do YouTube</hl>, <hl>Economia</hl>, <hl>Jogos</hl> e <hl>Notificações de stream</hl> e remove os limites de criação de sete sistemas principais: com Premium são <hl>ilimitados</hl>.",
+      "body": "O Premium é a forma de a Wody recompensar quem realmente faz a comunidade crescer: líderes de comunidade, criadores de conteúdo e donos de servidores que promovem a Wody, além de quem chega aos 100 votos. Desbloqueia <hl>Cópias de segurança</hl>, <hl>Voz temporária</hl>, <hl>Notificações do YouTube</hl>, <hl>Economia</hl>, <hl>Jogos</hl>, <hl>Notificações de stream</hl>, <hl>Battle Pass</hl> e <hl>Theme Studio</hl> e remove os limites de criação de sete sistemas principais: com Premium são <hl>ilimitados</hl>.",
       "limitsTitle": "Ilimitado nos servidores Premium",
       "limits": [
         {
@@ -522,7 +542,7 @@
       },
       {
         "q": "Que limites o Premium aumenta?",
-        "a": "Com Premium não há limites de criação em sete sistemas: painéis de tickets, painéis de cargos por reação, respostas automáticas, comandos personalizados, mensagens agendadas, sorteios ativos e automações de fórum são todos ilimitados (os servidores gratuitos mantêm 1, 1, 5, 5, 1, 1 e 1). Desbloqueia também cópias de segurança, voz temporária, notificações do YouTube, economia, Jogos e notificações de stream, que não fazem parte do plano gratuito."
+        "a": "Com Premium não há limites de criação em sete sistemas: painéis de tickets, painéis de cargos por reação, respostas automáticas, comandos personalizados, mensagens agendadas, sorteios ativos e automações de fórum são todos ilimitados (os servidores gratuitos mantêm 1, 1, 5, 5, 1, 1 e 1). Desbloqueia também cópias de segurança, voz temporária, notificações do YouTube, economia, Jogos, notificações de stream, Battle Pass e Theme Studio, que não fazem parte do plano gratuito."
       },
       {
         "q": "Como convido o Wody para o meu servidor?",
@@ -692,7 +712,7 @@
     "sections": [
       {
         "heading": "1. Cookies used by Wody",
-        "html": "<p>Wody is operated by Păcurar Ancuța-Narcisa, an individual based in Romania, European Union (the &ldquo;Operator&rdquo;). The Operator can be contacted at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>. Wody uses the first-party cookies described in the table below: two strictly necessary cookies for dashboard authentication and OAuth2 login security, one strictly necessary cookie that records your cookie consent choice, and one optional preference cookie that is only created if you enable Preferences. Wody does not use advertising cookies, analytics cookies, profiling cookies or third-party tracking cookies on the dashboard. Wody does not intentionally target children below the minimum age required to use Discord. Users must meet Discord's applicable minimum age for their country or region and any higher minimum age required by local law. Where applicable law requires parental or guardian consent, that requirement remains applicable.</p>"
+        "html": "<p>Wody is operated by Păcurar Ancuța-Narcisa, an individual based in Romania, European Union (the &ldquo;Operator&rdquo;). The Operator can be contacted at <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a>. Wody uses the first-party cookies described in the table below: two strictly necessary cookies for dashboard authentication and OAuth2 login security, one strictly necessary cookie that records your cookie consent choice, and one optional preference cookie that is only created if you enable Preferences. Wody does not use advertising cookies, analytics cookies, profiling cookies or third-party tracking cookies on the dashboard. Wody does not intentionally target children below the minimum age required to use Discord. Users must meet Discord’s applicable minimum age for their country or region and any higher minimum age required by local law. Where applicable law requires parental or guardian consent, that requirement remains applicable.</p>"
       },
       {
         "heading": "2. What these cookies contain",
@@ -712,7 +732,7 @@
       },
       {
         "heading": "6. Cookies used by Discord",
-        "html": "<p>During login, you are temporarily redirected to Discord. Discord may set and read its own cookies on discord.com under its own policies. Wody does not control those cookies and does not receive the contents of Discord's browser cookie storage. Information about Discord's own cookies is available in <a href=\"https://discord.com/terms/cookie-policy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[#e08a4e] hover:underline\">Discord's Cookie Policy</a> and its <a href=\"https://discord.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[#e08a4e] hover:underline\">Privacy Policy</a>.</p>"
+        "html": "<p>During login, you are temporarily redirected to Discord. Discord may set and read its own cookies on discord.com under its own policies. Wody does not control those cookies and does not receive the contents of Discord’s browser cookie storage. Information about Discord’s own cookies is available in <a href=\"https://discord.com/terms/cookie-policy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[#e08a4e] hover:underline\">Discord’s Cookie Policy</a> and its <a href=\"https://discord.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[#e08a4e] hover:underline\">Privacy Policy</a>.</p>"
       },
       {
         "heading": "7. Managing cookies",
@@ -1024,7 +1044,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "premiumUnlocks": "O Premium desbloqueia {modules} e remove os limites de criação de sete sistemas, que passam a ser ilimitados: {limits}. Servidores Premium também podem fazer bump no Wody Discovery a cada 30 minutos em vez de a cada 2 horas.",
+    "premiumFreeLimit": "{title} ({standard} no plano gratuito)",
+    "premiumHow": "O Premium é gratuito, mas apenas por convite, concedido através do servidor da comunidade. Estas são as formas de o desbloquear. {options}",
+    "premiumOption": "Opção {letter} ({title}): {steps}"
   },
   "privacy": {
     "pageTitle": "Política de privacidade",
@@ -1040,11 +1064,11 @@
       },
       {
         "heading": "3. Data stored by the bot",
-        "html": "<p>To provide Wody's modules and features, Wody stores information associated with Discord servers, channels, roles and members. The homepage currently presents 20 modules, including moderation, automod, welcome and goodbye messages, auto role, tickets, reaction roles, captcha verification, giveaways, levels, suggestions, auto responses, custom commands, embed building, scheduled messages, forums and logging. including Pools. Depending on the features used, the stored data includes:</p><ul><li>Server configuration and settings created through Discord or the dashboard.</li><li>Welcome and goodbye messages, custom commands and automatic responses.</li><li>Moderation records such as warnings, bans, kicks and timeouts, including the Discord IDs needed to identify the affected member and moderator.</li><li>Level and XP information.</li><li>Suggestions and their moderation status.</li><li>Ticket information, ticket reviews and closed ticket transcripts where the ticket feature is used.</li><li>Giveaway entries and results.</li><li>Captcha verification records, such as which member verified and when, where the Captcha feature is used. To verify, a member must log in with Discord on the verification page. This login shares basic Discord account information with Wody, including the Discord user ID, username and the list of servers linked to that account, so Wody can confirm the member actually belongs to the server before granting the configured role. Wody does not receive the member's email address or password through this process.</li><li>Scheduled message content and scheduling settings.</li><li>Forum channel automation settings, such as default tags and post cooldowns, where the forums feature is used.</li><li>Premium server configuration backups where the backup feature is enabled.</li><li>YouTube channel subscriptions and notification channel settings where the YouTube Notifications feature is enabled.</li><li>Your lifetime Wody vote total associated with your Discord user ID, where the voting feature is used.</li><li>Audit records for relevant settings changes and Premium administration, including the Discord user ID of the person who made the change where recorded.</li><li>Premium key and activation records needed to issue, validate, limit or revoke Premium access.</li><li>Pool configuration, answer options, scheduled closing times, votes and results where the Pools feature is used.</li><li>Image scam detection, where a server administrator turns it on: pictures attached to messages in that server are analysed automatically, in memory, by comparing image fingerprints with reference images chosen by the Wody team and, where text recognition is available, by reading the text in the picture to look for scam indicators. The picture itself is not kept by Wody. A log entry posted in the server's own log channel may show the picture, a short excerpt of the text read from it, the links found and the details of the message. The reference images registered by the Wody team, with their fingerprints, are stored.</li><li>Message logs, where the Logging module is turned on: when a message is deleted, its log entry in the server's log channel can include the message's pictures, which Wody downloads from Discord and posts again in that channel. Wody does not keep its own copy.</li></ul><p>Wody does not store general Discord chat history as a separate archive. Message content is stored only where a feature requires it, such as configured messages, scheduled messages or ticket transcripts. Wody does not use analytics, advertising or behavioral profiling, and the dashboard does not use third-party tracking cookies.</p>"
+        "html": "<p>To provide Wody’s modules and features, Wody stores information associated with Discord servers, channels, roles and members. The homepage currently presents 20 modules, including moderation, automod, welcome and goodbye messages, auto role, tickets, reaction roles, captcha verification, giveaways, levels, suggestions, auto responses, custom commands, embed building, scheduled messages, forums and logging. including Pools. Depending on the features used, the stored data includes:</p><ul><li>Server configuration and settings created through Discord or the dashboard.</li><li>Welcome and goodbye messages, custom commands and automatic responses.</li><li>Moderation records such as warnings, bans, kicks and timeouts, including the Discord IDs needed to identify the affected member and moderator.</li><li>Level and XP information.</li><li>Suggestions and their moderation status.</li><li>Ticket information, ticket reviews and closed ticket transcripts where the ticket feature is used.</li><li>Giveaway entries and results.</li><li>Captcha verification records, such as which member verified and when, where the Captcha feature is used. To verify, a member must log in with Discord on the verification page. This login shares basic Discord account information with Wody, including the Discord user ID, username and the list of servers linked to that account, so Wody can confirm the member actually belongs to the server before granting the configured role. Wody does not receive the member’s email address or password through this process.</li><li>Scheduled message content and scheduling settings.</li><li>Forum channel automation settings, such as default tags and post cooldowns, where the forums feature is used.</li><li>Premium server configuration backups where the backup feature is enabled.</li><li>YouTube channel subscriptions and notification channel settings where the YouTube Notifications feature is enabled.</li><li>Your lifetime Wody vote total associated with your Discord user ID, where the voting feature is used.</li><li>Audit records for relevant settings changes and Premium administration, including the Discord user ID of the person who made the change where recorded.</li><li>Premium key and activation records needed to issue, validate, limit or revoke Premium access.</li><li>Pool configuration, answer options, scheduled closing times, votes and results where the Pools feature is used.</li><li>Image scam detection, where a server administrator turns it on: pictures attached to messages in that server are analysed automatically, in memory, by comparing image fingerprints with reference images chosen by the Wody team and, where text recognition is available, by reading the text in the picture to look for scam indicators. The picture itself is not kept by Wody. A log entry posted in the server’s own log channel may show the picture, a short excerpt of the text read from it, the links found and the details of the message. The reference images registered by the Wody team, with their fingerprints, are stored.</li><li>Message logs, where the Logging module is turned on: when a message is deleted, its log entry in the server’s log channel can include the message’s pictures, which Wody downloads from Discord and posts again in that channel. Wody does not keep its own copy.</li></ul><p>Wody does not store general Discord chat history as a separate archive. Message content is stored only where a feature requires it, such as configured messages, scheduled messages or ticket transcripts. Wody does not use analytics, advertising or behavioral profiling, and the dashboard does not use third-party tracking cookies.</p>"
       },
       {
         "heading": "4. Where your data is stored",
-        "html": "<p>Wody stores its application and bot data in MongoDB Atlas. This includes the server configuration, feature data and server-side dashboard sessions. The dashboard application is hosted on Vercel. Authentication cookies are stored in your browser. Discord separately processes data on Discord's own systems when you use Discord or complete the OAuth2 login process. Wody does not use analytics, advertising, behavioral profiling or third-party tracking cookies on the dashboard.</p>"
+        "html": "<p>Wody stores its application and bot data in MongoDB Atlas. This includes the server configuration, feature data and server-side dashboard sessions. The dashboard application is hosted on Vercel. Authentication cookies are stored in your browser. Discord separately processes data on Discord’s own systems when you use Discord or complete the OAuth2 login process. Wody does not use analytics, advertising, behavioral profiling or third-party tracking cookies on the dashboard.</p>"
       },
       {
         "heading": "5. How the dashboard session works",
@@ -1056,11 +1080,11 @@
       },
       {
         "heading": "7. Why we process this data",
-        "html": "<p>We process this information to authenticate dashboard users, determine which Discord servers they can manage, operate the bot features requested by server owners and members, keep dashboard changes synchronized with the bot, maintain configuration and moderation records, provide Premium functionality, prevent unauthorized access and keep the service secure and operational. Depending on the processing activity, the legal basis may be the performance of a contract or steps requested before entering into a contract (Article 6(1)(b) GDPR), compliance with a legal obligation (Article 6(1)(c) GDPR), or the Operator's legitimate interests in operating, securing and protecting the service (Article 6(1)(f) GDPR). Where consent is required by law for a particular processing activity, Wody will rely on consent instead.</p>"
+        "html": "<p>We process this information to authenticate dashboard users, determine which Discord servers they can manage, operate the bot features requested by server owners and members, keep dashboard changes synchronized with the bot, maintain configuration and moderation records, provide Premium functionality, prevent unauthorized access and keep the service secure and operational. Depending on the processing activity, the legal basis may be the performance of a contract or steps requested before entering into a contract (Article 6(1)(b) GDPR), compliance with a legal obligation (Article 6(1)(c) GDPR), or the Operator’s legitimate interests in operating, securing and protecting the service (Article 6(1)(f) GDPR). Where consent is required by law for a particular processing activity, Wody will rely on consent instead.</p>"
       },
       {
         "heading": "8. Who processes the data",
-        "html": "<p>Wody does not sell your personal data, use it for advertising or behavioral profiling, or use analytics on the dashboard. The service relies on the following providers:</p><ul><li>Discord, for authentication and access to Discord resources through its API.</li><li>MongoDB Atlas, for the database used by the dashboard and bot.</li><li>Vercel, for hosting and delivering the dashboard.</li></ul><p>These providers may process information under their own terms and privacy documentation. Depending on the service and the processing involved, a provider may act as a processor or as an independent controller. Discord remains an independent controller for the data it processes on its own platform.</p><p>Independent third-party Discord bots and applications that share a server with Wody process information under their own privacy policies and arrangements. Wody does not control that processing and is not responsible for the independent processing carried out by unrelated providers. This does not reduce Wody's own responsibility for processing that Wody controls, or any obligation that applicable data protection law places on Wody. See Section 22 of the <a href=\"/terms\" class=\"text-[#e08a4e] hover:underline\">Terms</a>.</p>"
+        "html": "<p>Wody does not sell your personal data, use it for advertising or behavioral profiling, or use analytics on the dashboard. The service relies on the following providers:</p><ul><li>Discord, for authentication and access to Discord resources through its API.</li><li>MongoDB Atlas, for the database used by the dashboard and bot.</li><li>Vercel, for hosting and delivering the dashboard.</li></ul><p>These providers may process information under their own terms and privacy documentation. Depending on the service and the processing involved, a provider may act as a processor or as an independent controller. Discord remains an independent controller for the data it processes on its own platform.</p><p>Independent third-party Discord bots and applications that share a server with Wody process information under their own privacy policies and arrangements. Wody does not control that processing and is not responsible for the independent processing carried out by unrelated providers. This does not reduce Wody’s own responsibility for processing that Wody controls, or any obligation that applicable data protection law places on Wody. See Section 22 of the <a href=\"/terms\" class=\"text-[#e08a4e] hover:underline\">Terms</a>.</p>"
       },
       {
         "heading": "9. How long data is kept",
@@ -1072,7 +1096,7 @@
       },
       {
         "heading": "11. Data relating to other server members",
-        "html": "<p>If you use Wody as a server owner or authorised staff member, the dashboard and bot may display or store information about other members when required by the features you use, such as moderation records, levels, tickets, suggestions or giveaways. This information may come from Discord, from the member directly, or from the server owner or staff using Wody. Server owners and staff are responsible for using that information lawfully and only for appropriate server management purposes. Depending on the feature, the server owner may be the controller for member data entered or managed through Wody, while Wody may process that data on the owner's behalf.</p>"
+        "html": "<p>If you use Wody as a server owner or authorised staff member, the dashboard and bot may display or store information about other members when required by the features you use, such as moderation records, levels, tickets, suggestions or giveaways. This information may come from Discord, from the member directly, or from the server owner or staff using Wody. Server owners and staff are responsible for using that information lawfully and only for appropriate server management purposes. Depending on the feature, the server owner may be the controller for member data entered or managed through Wody, while Wody may process that data on the owner’s behalf.</p>"
       },
       {
         "heading": "12. International processing",
@@ -1088,11 +1112,11 @@
       },
       {
         "heading": "15. Public showcase of servers using Wody",
-        "html": "<p>The homepage displays a rotating selection of Discord servers that use Wody, under the &ldquo;Servers already using Wody&rdquo; heading. A server is included there automatically once the bot is a member of it and its member count exceeds a threshold we configure (currently more than 5 members), with no separate opt-in step required from the server owner. Only information Discord already makes publicly available through its own API is shown: the server's name, its icon, and an approximate member count. No member list, message content, channel names or any other server data is displayed. When more servers qualify than fit on screen, a random subset is shown and rotates periodically rather than displaying every qualifying server at once. If you are a server owner and would prefer your server not appear in this showcase, contact <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a> and we will exclude it.</p>"
+        "html": "<p>The homepage displays a rotating selection of Discord servers that use Wody, under the &ldquo;Servers already using Wody&rdquo; heading. A server is included there automatically once the bot is a member of it and its member count exceeds a threshold we configure (currently more than 5 members), with no separate opt-in step required from the server owner. Only information Discord already makes publicly available through its own API is shown: the server’s name, its icon, and an approximate member count. No member list, message content, channel names or any other server data is displayed. When more servers qualify than fit on screen, a random subset is shown and rotates periodically rather than displaying every qualifying server at once. If you are a server owner and would prefer your server not appear in this showcase, contact <a href=\"mailto:privacy@wody.online\" class=\"text-[#e08a4e] hover:underline\">privacy@wody.online</a> and we will exclude it.</p>"
       },
       {
         "heading": "16. Economy and Wody Games (virtual currency)",
-        "html": "<p>When Premium Economy or Wody Games (Slots, Coinflip, Dice and Blackjack) is used in a server, Wody stores, per server, the Discord user ID and server ID together with the data needed for the game: virtual balances (wallet, bank, savings, gems, Blackjack chips), inventory, pets, businesses, farm plots, job, quests, achievements, statistics, daily reward timestamps and streaks, market listings and trades, and Blackjack sessions and hand history.</p><p>Economy and Blackjack use virtual currency only. It has no real-world value, cannot be bought, sold or withdrawn through Wody, and is not connected to real money. Balances are separate for every server and are not shared between servers.</p><p>Transactions and administrative actions (action, amount, member, administrator) are kept in server logs so that disputes and abuse can be reviewed. Administrators with access to the dashboard or the admin tools can see these logs and can reset economy data. Retention: admin and economy logs 365 days, closed trades 30 days, Blackjack hand history 90 days, settled Blackjack sessions 7 days. Other game data is kept until a server administrator resets it or you ask us to delete it.</p><p>Global economy leaderboard. Wody publishes a ranking of the 100 richest members across all servers where Wody Economy is used, on Discord (command /globalleaderboard) and on the website (page /leaderboard). For each ranked member it shows the Discord display name, the avatar, the total net worth (the sum of the member's balances on every server) and the number of servers. The ranking is calculated from economy data the bot already stores, refreshed about every 5 minutes and kept as one snapshot in the database. Bots are not ranked. Any member can leave the ranking at any time with the Hide me button under /globalleaderboard and come back with Show me; the choice is stored as the member's Discord user ID in a list of hidden members and removes the member from the snapshot immediately. Avatars on the website are loaded through Wody's own servers, so visitors' browsers do not contact Discord or other third parties and no cookies are set.</p>"
+        "html": "<p>When Premium Economy or Wody Games (Slots, Coinflip, Dice and Blackjack) is used in a server, Wody stores, per server, the Discord user ID and server ID together with the data needed for the game: virtual balances (wallet, bank, savings, gems, Blackjack chips), inventory, pets, businesses, farm plots, job, quests, achievements, statistics, daily reward timestamps and streaks, market listings and trades, and Blackjack sessions and hand history.</p><p>Economy and Blackjack use virtual currency only. It has no real-world value, cannot be bought, sold or withdrawn through Wody, and is not connected to real money. Balances are separate for every server and are not shared between servers.</p><p>Transactions and administrative actions (action, amount, member, administrator) are kept in server logs so that disputes and abuse can be reviewed. Administrators with access to the dashboard or the admin tools can see these logs and can reset economy data. Retention: admin and economy logs 365 days, closed trades 30 days, Blackjack hand history 90 days, settled Blackjack sessions 7 days. Other game data is kept until a server administrator resets it or you ask us to delete it.</p><p>Global economy leaderboard. Wody publishes a ranking of the 100 richest members across all servers where Wody Economy is used, on Discord (command /globalleaderboard) and on the website (page /leaderboard). For each ranked member it shows the Discord display name, the avatar, the total net worth (the sum of the member’s balances on every server) and the number of servers. The ranking is calculated from economy data the bot already stores, refreshed about every 5 minutes and kept as one snapshot in the database. Bots are not ranked. Any member can leave the ranking at any time with the Hide me button under /globalleaderboard and come back with Show me; the choice is stored as the member’s Discord user ID in a list of hidden members and removes the member from the snapshot immediately. Avatars on the website are loaded through Wody’s own servers, so visitors’ browsers do not contact Discord or other third parties and no cookies are set.</p>"
       },
       {
         "heading": "17. Birthdays",
@@ -1100,19 +1124,19 @@
       },
       {
         "heading": "18. Stream Notifications (Twitch, Kick e TikTok)",
-        "html": "<p>Stream Notifications is a Premium feature. For Twitch, Wody stores the public Twitch login, ID, display name and avatar of each streamer an administrator adds, the Discord channel and message settings, and technical subscription data for Twitch EventSub. Incoming Twitch events are processed to post the alert; event records are kept for 7 days and delivery records for 30 days to prevent duplicate messages.</p><p>For TikTok, an administrator can connect their own TikTok account through the official TikTok Login Kit. After consent, Wody stores the TikTok open ID, username, display name and avatar and the access and refresh tokens. The tokens are encrypted on the server (AES-256-GCM), are never shown in the dashboard and are never sent to your browser. Wody uses the scopes you approve to read only the connected creator's own video list (video ID, title, description, creation time, cover image, link and duration) to announce new videos. Wody does not post to TikTok, does not read private messages and does not use TikTok data for advertising or sell it. A server owner who already linked their own TikTok account on the TikTok page can add that same account to a server with one click; Wody then stores an encrypted copy of the same connection for that server, and removing the account from the server deletes that copy only.</p><p>You can disconnect a TikTok account at any time in the dashboard. Wody then revokes the token and deletes the stored connection. You can also remove access in your TikTok settings. Wody does not offer alerts for TikTok creators who have not connected their own account. Twitch and TikTok are independent services with their own privacy policies.</p><p>Requests made from the dashboard to the bot (for example test messages) are stored temporarily and deleted after 24 hours.</p><p>Wody Creator Link (the TikTok page on wody.online): a signed-in Wody user can link their own TikTok account with TikTok Login Kit to see their TikTok profile and latest videos inside Wody. Wody stores the TikTok open ID, username, display name, avatar and the encrypted tokens, only for that user, only read access, and deletes them when the user unlinks the account on the page. Wody does not post to TikTok and does not use this data for advertising.</p><p>Wody Human Check (the \"I'm not a robot\" box used on verification and Collab forms): it uses no cookies, no local storage and no outside service. A short browser challenge and how the box was ticked (such as pointer movement and timing) are sent once to Wody, scored in memory and not stored. Only a one-time token marker is kept for a few minutes to stop reuse.</p>"
+        "html": "<p>Stream Notifications is a Premium feature. For Twitch, Wody stores the public Twitch login, ID, display name and avatar of each streamer an administrator adds, the Discord channel and message settings, and technical subscription data for Twitch EventSub. Incoming Twitch events are processed to post the alert; event records are kept for 7 days and delivery records for 30 days to prevent duplicate messages.</p><p>For TikTok, an administrator can connect their own TikTok account through the official TikTok Login Kit. After consent, Wody stores the TikTok open ID, username, display name and avatar and the access and refresh tokens. The tokens are encrypted on the server (AES-256-GCM), are never shown in the dashboard and are never sent to your browser. Wody uses the scopes you approve to read only the connected creator’s own video list (video ID, title, description, creation time, cover image, link and duration) to announce new videos. Wody does not post to TikTok, does not read private messages and does not use TikTok data for advertising or sell it. A server owner who already linked their own TikTok account on the TikTok page can add that same account to a server with one click; Wody then stores an encrypted copy of the same connection for that server, and removing the account from the server deletes that copy only.</p><p>You can disconnect a TikTok account at any time in the dashboard. Wody then revokes the token and deletes the stored connection. You can also remove access in your TikTok settings. Wody does not offer alerts for TikTok creators who have not connected their own account. Twitch and TikTok are independent services with their own privacy policies.</p><p>Requests made from the dashboard to the bot (for example test messages) are stored temporarily and deleted after 24 hours.</p><p>Wody Creator Link (the TikTok page on wody.online): a signed-in Wody user can link their own TikTok account with TikTok Login Kit to see their TikTok profile and latest videos inside Wody. Wody stores the TikTok open ID, username, display name, avatar and the encrypted tokens, only for that user, only read access, and deletes them when the user unlinks the account on the page. Wody does not post to TikTok and does not use this data for advertising.</p><p>Wody Human Check (the \"I’m not a robot\" box used on verification and Collab forms): it uses no cookies, no local storage and no outside service. A short browser challenge and how the box was ticked (such as pointer movement and timing) are sent once to Wody, scored in memory and not stored. Only a one-time token marker is kept for a few minutes to stop reuse.</p>"
       },
       {
         "heading": "19. Community Discovery",
-        "html": "<p>Community Discovery lets the owner of a Discord server publish a public profile for it at wody.online/{prefix}/{name}. A profile is shown only after a person on the Wody team has reviewed and approved it. The address prefix is chosen by Wody and may change; older addresses keep redirecting.</p><p><strong>What we store.</strong> The profile content you enter (name, descriptions, category, tags, languages, invite code, social links, chosen colors and images, the Discord roles you choose to show publicly), the Discord server ID and public statistics read through the Discord bot (member count, online count, voice count, boosts, icon, creation date), your Discord user ID as the listing owner, the people you add as managers, the submission history, review decisions and messages, and the date you accepted the Terms and the Privacy Policy when submitting.</p><p><strong>Visitors.</strong> Favorites, reviews and reports are linked to the Discord account that made them. A review shows the reviewer's Discord name and avatar after moderation, and only members of the server can review it. Wody staff can see who wrote a review or report. Internal moderation notes are never shown to listing owners.</p><p><strong>Analytics.</strong> Profile views, invite clicks and unique visitors are counted without cookies. A unique visitor is estimated from a one way daily hash of the IP address and browser string with a secret salt that changes every day. The raw IP address and browser string are not stored with the count, and the short lived technical records used for de-duplication are deleted after 2 days. Invite clicks only show that the Join button was pressed, not that someone joined.</p><p><strong>Retention.</strong> Notifications are deleted after 90 days. When a listing is deleted by its owner or by Wody, the listing, its versions, reviews, favorites, reports, managers, images and notifications are removed and the public address becomes available again. A short audit entry (listing name, address, who deleted it and when) is kept for moderation and legal reasons. Suspended and unpublished listings are kept until deleted.</p><p><strong>Legal basis and sharing.</strong> Profile content is published at your request (contract) and moderation is carried out under our legitimate interest in keeping the directory safe. We do not sell this data. Public profile content, including the invite you provide, can be seen by anyone and may be indexed by search engines while the listing is published. Unpublished, suspended and unapproved listings are not indexed.</p><p><strong>Rules.</strong> What may be listed and what is stored about listed servers is also summarised in the <a href=\"/servers/guidelines\" class=\"text-[#e08a4e] hover:underline\">Community Guidelines</a>.</p>"
+        "html": "<p>Community Discovery lets the owner of a Discord server publish a public profile for it at wody.online/{prefix}/{name}. A profile is shown only after a person on the Wody team has reviewed and approved it. The address prefix is chosen by Wody and may change; older addresses keep redirecting.</p><p><strong>What we store.</strong> The profile content you enter (name, descriptions, category, tags, languages, invite code, social links, chosen colors and images, the Discord roles you choose to show publicly), the Discord server ID and public statistics read through the Discord bot (member count, online count, voice count, boosts, icon, creation date), your Discord user ID as the listing owner, the people you add as managers, the submission history, review decisions and messages, and the date you accepted the Terms and the Privacy Policy when submitting.</p><p><strong>Visitors.</strong> Favorites, reviews and reports are linked to the Discord account that made them. A review shows the reviewer’s Discord name and avatar after moderation, and only members of the server can review it. Wody staff can see who wrote a review or report. Internal moderation notes are never shown to listing owners.</p><p><strong>Analytics.</strong> Profile views, invite clicks and unique visitors are counted without cookies. A unique visitor is estimated from a one way daily hash of the IP address and browser string with a secret salt that changes every day. The raw IP address and browser string are not stored with the count, and the short lived technical records used for de-duplication are deleted after 2 days. Invite clicks only show that the Join button was pressed, not that someone joined.</p><p><strong>Retention.</strong> Notifications are deleted after 90 days. When a listing is deleted by its owner or by Wody, the listing, its versions, reviews, favorites, reports, managers, images and notifications are removed and the public address becomes available again. A short audit entry (listing name, address, who deleted it and when) is kept for moderation and legal reasons. Suspended and unpublished listings are kept until deleted.</p><p><strong>Legal basis and sharing.</strong> Profile content is published at your request (contract) and moderation is carried out under our legitimate interest in keeping the directory safe. We do not sell this data. Public profile content, including the invite you provide, can be seen by anyone and may be indexed by search engines while the listing is published. Unpublished, suspended and unapproved listings are not indexed.</p><p><strong>Rules.</strong> What may be listed and what is stored about listed servers is also summarised in the <a href=\"/servers/guidelines\" class=\"text-[#e08a4e] hover:underline\">Community Guidelines</a>.</p>"
       },
       {
         "heading": "20. Invite Tracking",
-        "html": "<p>Invite Tracking is free and is off until a server administrator turns it on. When it is on, Wody reads the list of invites of the server (this needs the Manage Server permission) and compares the use counters before and after each join to work out which invite a member used.</p><p><strong>What we store, per server.</strong> For every join: the Discord user ID of the member, the Discord user ID of the inviter, the invite code, the time of the join, whether the match was certain, and whether the member later left. For every invite: its code, the creator's Discord user ID, the use counter and its limits. The server's settings for the module (log and notice channels, messages, who can see statistics, the fake account threshold) are stored too. When Wody cannot be sure, the join is stored as unknown with the reason and nobody is credited.</p><p><strong>Why and who can see it.</strong> The data is used only to show invite statistics, leaderboards, join logs and the inviter variables of the welcome message in that server. Members can see statistics with the commands, unless the server limits them to staff. Server administrators with dashboard access can see the recent joins and the leaderboard of their own server. Data of one server is never shown in another.</p><p><strong>Deletion.</strong> Administrators can delete all invite statistics, or those of one member, from the dashboard or with <code>/invite-reset</code>. If Wody is removed from a server, the data of that server is deleted after 30 days. Invite Tracking never deletes the data of other modules.</p>"
+        "html": "<p>Invite Tracking is free and is off until a server administrator turns it on. When it is on, Wody reads the list of invites of the server (this needs the Manage Server permission) and compares the use counters before and after each join to work out which invite a member used.</p><p><strong>What we store, per server.</strong> For every join: the Discord user ID of the member, the Discord user ID of the inviter, the invite code, the time of the join, whether the match was certain, and whether the member later left. For every invite: its code, the creator’s Discord user ID, the use counter and its limits. The server’s settings for the module (log and notice channels, messages, who can see statistics, the fake account threshold) are stored too. When Wody cannot be sure, the join is stored as unknown with the reason and nobody is credited.</p><p><strong>Why and who can see it.</strong> The data is used only to show invite statistics, leaderboards, join logs and the inviter variables of the welcome message in that server. Members can see statistics with the commands, unless the server limits them to staff. Server administrators with dashboard access can see the recent joins and the leaderboard of their own server. Data of one server is never shown in another.</p><p><strong>Deletion.</strong> Administrators can delete all invite statistics, or those of one member, from the dashboard or with <code>/invite-reset</code>. If Wody is removed from a server, the data of that server is deleted after 30 days. Invite Tracking never deletes the data of other modules.</p>"
       },
       {
         "heading": "21. Servers where Wody is added",
-        "html": "<p>When Wody is added to a server, it records the server ID, the server name and the time it joined, and when it is removed it records the same with the time it left. These records are kept so the Operator can see which servers use Wody and handle returns and bans, until deletion is requested (see Section 9). At the same time Wody posts a report to a private Discord channel controlled by the Operator. The report contains information Discord makes available to the bot: the server name, ID, icon and banner, the server owner's Discord name and ID, the account that added the bot when the bot is allowed to read the audit log, the member count, creation date, language, boost level, verification level, the number of channels, roles, emojis and stickers, the vanity link, description, the name of the rules channel and the server features, plus whether the server is banned or has Premium. A second private message shows only aggregate totals and counts about the bot and the website. The purpose is to operate, secure and support the service, detect abuse and enforce bans (legitimate interest). The report does not include messages or member lists.</p>"
+        "html": "<p>When Wody is added to a server, it records the server ID, the server name and the time it joined, and when it is removed it records the same with the time it left. These records are kept so the Operator can see which servers use Wody and handle returns and bans, until deletion is requested (see Section 9). At the same time Wody posts a report to a private Discord channel controlled by the Operator. The report contains information Discord makes available to the bot: the server name, ID, icon and banner, the server owner’s Discord name and ID, the account that added the bot when the bot is allowed to read the audit log, the member count, creation date, language, boost level, verification level, the number of channels, roles, emojis and stickers, the vanity link, description, the name of the rules channel and the server features, plus whether the server is banned or has Premium. A second private message shows only aggregate totals and counts about the bot and the website. The purpose is to operate, secure and support the service, detect abuse and enforce bans (legitimate interest). The report does not include messages or member lists.</p>"
       },
       {
         "heading": "22. WODY Passport",
@@ -1124,11 +1148,11 @@
       },
       {
         "heading": "24. Reports and moderation records",
-        "html": "<p>Reports and moderation decisions in the official Wody Discord community, and reports sent to the Operator by email, are handled by the Operator and the community staff. They may include the reporter's and the reported person's Discord identifiers, the content reported, and the decision taken. This information is used to protect users and the service and to defend legal claims, is shared only with those who need it to handle the report, and may be disclosed where required by law. Absolute confidentiality cannot be promised because a report may need to be reviewed in order to be investigated. See the <a href=\"/servers/guidelines#discord-community\" class=\"text-[#e08a4e] hover:underline\">Community Guidelines</a> for how to report.</p>"
+        "html": "<p>Reports and moderation decisions in the official Wody Discord community, and reports sent to the Operator by email, are handled by the Operator and the community staff. They may include the reporter’s and the reported person’s Discord identifiers, the content reported, and the decision taken. This information is used to protect users and the service and to defend legal claims, is shared only with those who need it to handle the report, and may be disclosed where required by law. Absolute confidentiality cannot be promised because a report may need to be reviewed in order to be investigated. See the <a href=\"/servers/guidelines#discord-community\" class=\"text-[#e08a4e] hover:underline\">Community Guidelines</a> for how to report.</p>"
       },
       {
         "heading": "25. WODY Collab and your profile",
-        "html": "<p>WODY Collab stores what you put into it, tied to your Discord user ID: your collabs (text, category, tags, optional links and up to three images, with every version you submitted), the result of the automatic check and any moderation decision, reports made about a collab, your applications, and the messages exchanged between authors and applicants. Your Discord display name and avatar hash are copied into each collab and application so the other person can see who wrote it; a collab shows the author's Discord name and picture and, when the author has a public profile, a link to it (the profile is visible to signed in members only). When a visitor uses the optional contact form of a collab, the name, reply contact and message the visitor types are stored in the author's inbox, and no network address is stored with the message. Abuse is limited with the Wody Human Check and with per-collab limits instead.</p><p>Your Collab profile stores your preferences (categories, tags and language used for the For you section and for notifications), the social links you add (only addresses of the offered platforms, saved as canonical https links), the setting that decides whether the authors of collabs you apply to can see those links (off by default), and your notification settings. The social links are shown on your profile. Your Discord username, display name and avatar hash are copied into your Collab profile so that it can be opened by your username; they are refreshed from Discord each time you open your profile and cannot be edited here. Your profile is public: every signed in member can open it at wody.online/profile/{username} and see your name, picture, username, join date, vacation status and the number of your live collabs. If you connect your TikTok account on the TikTok page, your TikTok username is added to your profile automatically as a link to your TikTok profile (read from the account you linked, never typed in). You can hide the TikTok link with its own switch, and you can turn off the sharing of all your social links at any time; hidden links are not shown to anyone. Only signed in members can see a profile; visitors who are not signed in are sent to the login. Notifications are stored for 90 days and, if you leave them enabled, are also sent as a Discord direct message in your language. Notices about moderation of your own collab are always recorded in the profile; only their Discord message can be turned off.</p><p>To enforce the rule against prices and payment details, the text of a collab, an application or a message may be analysed by automatic rules and, when the operator has configured one, by an AI service. If the analysis fails, the collab is held for a person to review. Wody staff see reports, detected payment terms and the moderation history. Collab does not make decisions that produce legal effects about you by solely automated means: an automatic hold or suspension is placed in a queue for a person at Wody to review.</p><p>The purpose is to provide the feature you requested and to keep the board safe (legitimate interest and the performance of the service). Drafts and live collabs are kept while the feature is available. When you delete a collab it is hidden at once, its images are erased and its open applications are closed; its versions, checks, decisions and reports are kept as a moderation record, as described in Section 26. Applications and messages are kept while the collab exists and as long as needed for moderation. You can ask for deletion of your Collab data by contacting us, subject to the exceptions in Section 9. See also the <a href=\"/terms\" class=\"text-[#e08a4e] hover:underline\">Terms</a>.</p><p>When you add an image to a collab by link, our server downloads that address once, checks that the file really is a PNG, JPEG or WebP image and stores a copy with your other collab images. Only a short file name taken from the address is kept, nothing that identifies you is sent to the other site (no cookies and no referrer), and visitors only ever load our copy. Your optional vacation status (an on/off switch, a short note of up to 120 characters and an optional end date) is stored in your Collab profile. While it is on, it is shown on your profile and to people who open your collabs or read your applications; it switches off by itself after the end date.</p><p>Server owners can create their own Collab categories for their server in the Dashboard. For each category Wody stores the server ID, the name the owner chose, who may post in it (everyone in the server, members with chosen Discord roles, or only the server staff), the IDs of the chosen roles, who created it and when. A category belongs to one server only: other servers cannot see it or use it, and two servers can use the same name. To decide whether you may post in a restricted category, Wody reads your roles in that server from Discord at the moment you post; those roles are not stored. The Collab settings a server owner chooses in the Dashboard (approval and announcement channel) are stored with the server ID.</p><p>To prevent abuse of posting, Collab keeps short lived records of when you posted and deleted collabs (your Discord user ID, the server ID and a time). They are used for the posting cooldown, the daily limit per server and temporary pauses, and the database removes them automatically after 24 hours.</p>"
+        "html": "<p>WODY Collab stores what you put into it, tied to your Discord user ID: your collabs (text, category, tags, optional links and up to three images, with every version you submitted), the result of the automatic check and any moderation decision, reports made about a collab, your applications, and the messages exchanged between authors and applicants. Your Discord display name and avatar hash are copied into each collab and application so the other person can see who wrote it; a collab shows the author’s Discord name and picture and, when the author has a public profile, a link to it (the profile is visible to signed in members only). When a visitor uses the optional contact form of a collab, the name, reply contact and message the visitor types are stored in the author’s inbox, and no network address is stored with the message. Abuse is limited with the Wody Human Check and with per-collab limits instead.</p><p>Your Collab profile stores your preferences (categories, tags and language used for the For you section and for notifications), the social links you add (only addresses of the offered platforms, saved as canonical https links), the setting that decides whether the authors of collabs you apply to can see those links (off by default), and your notification settings. The social links are shown on your profile. Your Discord username, display name and avatar hash are copied into your Collab profile so that it can be opened by your username; they are refreshed from Discord each time you open your profile and cannot be edited here. Your profile is public: every signed in member can open it at wody.online/profile/{username} and see your name, picture, username, join date, vacation status and the number of your live collabs. If you connect your TikTok account on the TikTok page, your TikTok username is added to your profile automatically as a link to your TikTok profile (read from the account you linked, never typed in). You can hide the TikTok link with its own switch, and you can turn off the sharing of all your social links at any time; hidden links are not shown to anyone. Only signed in members can see a profile; visitors who are not signed in are sent to the login. Notifications are stored for 90 days and, if you leave them enabled, are also sent as a Discord direct message in your language. Notices about moderation of your own collab are always recorded in the profile; only their Discord message can be turned off.</p><p>To enforce the rule against prices and payment details, the text of a collab, an application or a message may be analysed by automatic rules and, when the operator has configured one, by an AI service. If the analysis fails, the collab is held for a person to review. Wody staff see reports, detected payment terms and the moderation history. Collab does not make decisions that produce legal effects about you by solely automated means: an automatic hold or suspension is placed in a queue for a person at Wody to review.</p><p>The purpose is to provide the feature you requested and to keep the board safe (legitimate interest and the performance of the service). Drafts and live collabs are kept while the feature is available. When you delete a collab it is hidden at once, its images are erased and its open applications are closed; its versions, checks, decisions and reports are kept as a moderation record, as described in Section 26. Applications and messages are kept while the collab exists and as long as needed for moderation. You can ask for deletion of your Collab data by contacting us, subject to the exceptions in Section 9. See also the <a href=\"/terms\" class=\"text-[#e08a4e] hover:underline\">Terms</a>.</p><p>When you add an image to a collab by link, our server downloads that address once, checks that the file really is a PNG, JPEG or WebP image and stores a copy with your other collab images. Only a short file name taken from the address is kept, nothing that identifies you is sent to the other site (no cookies and no referrer), and visitors only ever load our copy. Your optional vacation status (an on/off switch, a short note of up to 120 characters and an optional end date) is stored in your Collab profile. While it is on, it is shown on your profile and to people who open your collabs or read your applications; it switches off by itself after the end date.</p><p>Server owners can create their own Collab categories for their server in the Dashboard. For each category Wody stores the server ID, the name the owner chose, who may post in it (everyone in the server, members with chosen Discord roles, or only the server staff), the IDs of the chosen roles, who created it and when. A category belongs to one server only: other servers cannot see it or use it, and two servers can use the same name. To decide whether you may post in a restricted category, Wody reads your roles in that server from Discord at the moment you post; those roles are not stored. The Collab settings a server owner chooses in the Dashboard (approval and announcement channel) are stored with the server ID.</p><p>To prevent abuse of posting, Collab keeps short lived records of when you posted and deleted collabs (your Discord user ID, the server ID and a time). They are used for the posting cooldown, the daily limit per server and temporary pauses, and the database removes them automatically after 24 hours.</p>"
       },
       {
         "heading": "26. Changes to this Policy",
@@ -1160,12 +1184,12 @@
     "pageTitle": "Termos e condições",
     "sections": [
       {
-        "heading": "1. Who you're dealing with",
+        "heading": "1. Who you’re dealing with",
         "html": "<p>Wody, the Discord bot and this dashboard, is operated by Păcurar Ancuța-Narcisa, an individual based in Romania, European Union (the \"Operator\"). Reach us at <a href=\"mailto:contact@wody.online\" class=\"text-[#e08a4e] hover:underline\">contact@wody.online</a>. The service has no affiliation with, endorsement from, or sponsorship by Discord Inc.</p>"
       },
       {
         "heading": "2. Agreeing to these Terms",
-        "html": "<p>By inviting Wody to a Discord server, logging into the dashboard or otherwise using the service, you agree to be bound by these Terms, our <a href=\"/privacy\" class=\"text-[#e08a4e] hover:underline\">Privacy Policy</a>, our <a href=\"/cookies\" class=\"text-[#e08a4e] hover:underline\">Cookie Policy</a>, our <a href=\"/servers/guidelines#discord-community\" class=\"text-[#e08a4e] hover:underline\">Community Guidelines</a>, and Discord's own Terms of Service and Community Guidelines. If any of that doesn't work for you, please don't use the service.</p>"
+        "html": "<p>By inviting Wody to a Discord server, logging into the dashboard or otherwise using the service, you agree to be bound by these Terms, our <a href=\"/privacy\" class=\"text-[#e08a4e] hover:underline\">Privacy Policy</a>, our <a href=\"/cookies\" class=\"text-[#e08a4e] hover:underline\">Cookie Policy</a>, our <a href=\"/servers/guidelines#discord-community\" class=\"text-[#e08a4e] hover:underline\">Community Guidelines</a>, and Discord’s own Terms of Service and Community Guidelines. If any of that doesn’t work for you, please don’t use the service.</p>"
       },
       {
         "heading": "3. Definitions",
@@ -1177,23 +1201,23 @@
       },
       {
         "heading": "5. Who can use it",
-        "html": "<p>You must meet the minimum age required by Discord for your country or region, including any higher minimum age required by applicable local law, to use Discord and, through it, Wody. Wody does not set a separate lower age limit and does not override Discord's age requirements. If applicable law requires consent from a parent or legal guardian for your use of an online service or for a particular processing activity, that requirement continues to apply. To change any setting for a server through this dashboard, you must be that server's owner, or hold a role the bot recognizes as authorized to manage it. You are responsible for making sure your use of the service follows the laws and mandatory rules that apply to you. Wody is made available internationally, but the service is not represented as lawful or appropriate for every person, purpose or jurisdiction. Where the use of a feature is restricted or unlawful under applicable law, you must not use that feature. Nothing in these Terms excludes or limits rights or protections that cannot lawfully be excluded or limited in your jurisdiction.</p>"
+        "html": "<p>You must meet the minimum age required by Discord for your country or region, including any higher minimum age required by applicable local law, to use Discord and, through it, Wody. Wody does not set a separate lower age limit and does not override Discord’s age requirements. If applicable law requires consent from a parent or legal guardian for your use of an online service or for a particular processing activity, that requirement continues to apply. To change any setting for a server through this dashboard, you must be that server’s owner, or hold a role the bot recognizes as authorized to manage it. You are responsible for making sure your use of the service follows the laws and mandatory rules that apply to you. Wody is made available internationally, but the service is not represented as lawful or appropriate for every person, purpose or jurisdiction. Where the use of a feature is restricted or unlawful under applicable law, you must not use that feature. Nothing in these Terms excludes or limits rights or protections that cannot lawfully be excluded or limited in your jurisdiction.</p>"
       },
       {
         "heading": "6. Rules of use",
-        "html": "<p>You won't use the service to:</p><ul><li>Break Discord's Terms of Service, Community Guidelines, or any law that applies to you;</li><li>Spam, phish, spread malware, run raids, mass-DM, or harass anyone;</li><li>Try to exploit, reverse-engineer, overload, or gain unauthorized access to the bot, the dashboard, its API, or its database, except where expressly permitted by applicable law;</li><li>Impersonate someone else or misrepresent your relationship to a server;</li><li>Pull personal data on other Discord users beyond what Discord's own APIs already expose through normal use;</li><li>Do anything illegal or that infringes someone else's rights.</li></ul><p>You are responsible for granting the bot only the permissions you intend it to have and for reviewing those permissions before inviting it to a server. Breaking any of this can get your access cut off, the bot removed from the server involved, the server blacklisted, and where warranted, reported to Discord Trust &amp; Safety or the relevant authorities.</p><p>The <a href=\"/servers/guidelines#discord-community\" class=\"text-[#e08a4e] hover:underline\">Community Guidelines</a> explain what is expected from members of the official Wody Discord community. They apply alongside these Terms. If something is covered by both, the stricter protection for users and the service applies, without limiting any right you have under applicable law.</p>"
+        "html": "<p>You won’t use the service to:</p><ul><li>Break Discord’s Terms of Service, Community Guidelines, or any law that applies to you;</li><li>Spam, phish, spread malware, run raids, mass-DM, or harass anyone;</li><li>Try to exploit, reverse-engineer, overload, or gain unauthorized access to the bot, the dashboard, its API, or its database, except where expressly permitted by applicable law;</li><li>Impersonate someone else or misrepresent your relationship to a server;</li><li>Pull personal data on other Discord users beyond what Discord’s own APIs already expose through normal use;</li><li>Do anything illegal or that infringes someone else’s rights.</li></ul><p>You are responsible for granting the bot only the permissions you intend it to have and for reviewing those permissions before inviting it to a server. Breaking any of this can get your access cut off, the bot removed from the server involved, the server blacklisted, and where warranted, reported to Discord Trust &amp; Safety or the relevant authorities.</p><p>The <a href=\"/servers/guidelines#discord-community\" class=\"text-[#e08a4e] hover:underline\">Community Guidelines</a> explain what is expected from members of the official Wody Discord community. They apply alongside these Terms. If something is covered by both, the stricter protection for users and the service applies, without limiting any right you have under applicable law.</p>"
       },
       {
         "heading": "7. Content you configure",
-        "html": "<p>Anything you write into the bot, welcome messages, custom commands, auto responses, ticket text and similar, is stored so the bot can use it, as described in our <a href=\"/privacy\" class=\"text-[#e08a4e] hover:underline\">Privacy Policy</a>. You retain ownership of the content you submit. You're responsible for that content: that you have the right to use it, and that it doesn't break the law, infringe anyone's rights, or violate Discord's own rules.</p>"
+        "html": "<p>Anything you write into the bot, welcome messages, custom commands, auto responses, ticket text and similar, is stored so the bot can use it, as described in our <a href=\"/privacy\" class=\"text-[#e08a4e] hover:underline\">Privacy Policy</a>. You retain ownership of the content you submit. You’re responsible for that content: that you have the right to use it, and that it doesn’t break the law, infringe anyone’s rights, or violate Discord’s own rules.</p>"
       },
       {
         "heading": "8. YouTube Notifications and YouTube",
-        "html": "<p>The <strong>YouTube Notifications</strong> feature may use WebSub as its primary method for receiving notifications from configured YouTube channels. WebSub callbacks are received over HTTPS and, where available, relevant callback signatures are verified before processing. The official YouTube Data API may be used as a fallback when necessary.</p><p>Wody does not use scraping, browser automation, or parsing of YouTube pages to provide this feature, and does not download or re-host videos. Wody may process and temporarily store channel and video identifiers, metadata returned by YouTube services, notification timestamps, delivery and processing status, deduplication identifiers, and limited technical information required to process, validate, retry, or prevent duplicate notifications.</p><p>YouTube Notifications do not collect YouTube passwords or other account credentials and do not authorize Wody to like, subscribe, comment, create views, or modify videos on a user's behalf.</p><p>Your use of YouTube Notifications is also subject to the applicable <a href=\"https://www.youtube.com/t/terms\" target=\"_blank\" rel=\"noopener noreferrer\">YouTube Terms of Service</a>. By using this feature, you agree to comply with applicable YouTube terms and policies.</p>"
+        "html": "<p>The <strong>YouTube Notifications</strong> feature may use WebSub as its primary method for receiving notifications from configured YouTube channels. WebSub callbacks are received over HTTPS and, where available, relevant callback signatures are verified before processing. The official YouTube Data API may be used as a fallback when necessary.</p><p>Wody does not use scraping, browser automation, or parsing of YouTube pages to provide this feature, and does not download or re-host videos. Wody may process and temporarily store channel and video identifiers, metadata returned by YouTube services, notification timestamps, delivery and processing status, deduplication identifiers, and limited technical information required to process, validate, retry, or prevent duplicate notifications.</p><p>YouTube Notifications do not collect YouTube passwords or other account credentials and do not authorize Wody to like, subscribe, comment, create views, or modify videos on a user’s behalf.</p><p>Your use of YouTube Notifications is also subject to the applicable <a href=\"https://www.youtube.com/t/terms\" target=\"_blank\" rel=\"noopener noreferrer\">YouTube Terms of Service</a>. By using this feature, you agree to comply with applicable YouTube terms and policies.</p>"
       },
       {
         "heading": "9. Premium",
-        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications and unlimited creation limits across modules. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Novo: dias de voto.</strong> Cada voto no Wody no top.gg adiciona um dia à tua conta. Os dias são contados por conta, não podem ser transferidos nem vendidos e podem ser ativados quando tiveres pelo menos 7 guardados. A ativação adiciona todos os dias guardados como tempo Premium a um servidor à tua escolha, no dashboard ou com <code>/redeemvotes</code>. Podemos remover dias ou tempo Premium obtidos com votos automatizados, comprados ou manipulados.</p>"
+        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications, Economy, Wody Games, Stream Notifications, server seasons in the Battle Pass and Theme Studio, and removes the creation limits on seven core systems. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Novo: dias de voto.</strong> Cada voto no Wody no top.gg adiciona um dia à tua conta. Os dias são contados por conta, não podem ser transferidos nem vendidos e podem ser ativados quando tiveres pelo menos 7 guardados. A ativação adiciona todos os dias guardados como tempo Premium a um servidor à tua escolha, no dashboard ou com <code>/redeemvotes</code>. Podemos remover dias ou tempo Premium obtidos com votos automatizados, comprados ou manipulados.</p>"
       },
       {
         "heading": "10. Uptime and Availability",
@@ -1205,15 +1229,15 @@
       },
       {
         "heading": "12. Indemnification",
-        "html": "<p>To the extent permitted by applicable law, you agree to indemnify and hold the Operator harmless from claims, losses and reasonable legal expenses arising directly from your use of the service, your breach of these Terms, or your violation of someone else's rights, to the extent such claims arise from your unlawful use of the service.</p>"
+        "html": "<p>To the extent permitted by applicable law, you agree to indemnify and hold the Operator harmless from claims, losses and reasonable legal expenses arising directly from your use of the service, your breach of these Terms, or your violation of someone else’s rights, to the extent such claims arise from your unlawful use of the service.</p>"
       },
       {
         "heading": "13. Ending things",
-        "html": "<p>Remove the bot from your server and log out of the dashboard whenever you want to stop. We can suspend or end your access, or the bot's presence anywhere, at any time, with or without prior notice, where reasonably practicable, including where necessary to protect the service, other users or comply with legal obligations, or for shutting the whole service down.</p>"
+        "html": "<p>Remove the bot from your server and log out of the dashboard whenever you want to stop. We can suspend or end your access, or the bot’s presence anywhere, at any time, with or without prior notice, where reasonably practicable, including where necessary to protect the service, other users or comply with legal obligations, or for shutting the whole service down.</p>"
       },
       {
         "heading": "14. Ownership",
-        "html": "<p>The Wody name, logo, and the dashboard's design belong to the Operator. You get a limited, revocable license to use the service as intended. Copying, redistributing, or creating derivative works from the code, design, or branding needs our written permission first.</p>"
+        "html": "<p>The Wody name, logo, and the dashboard’s design belong to the Operator. You get a limited, revocable license to use the service as intended. Copying, redistributing, or creating derivative works from the code, design, or branding needs our written permission first.</p>"
       },
       {
         "heading": "15. Force majeure",
@@ -1225,7 +1249,7 @@
       },
       {
         "heading": "17. Birthdays",
-        "html": "<p>Birthdays is free. Members choose whether to share a birthday and with which privacy level. You must only enter information that is accurate and that you are entitled to share, and you must not enter another person's birthday without their permission.</p><p>Server administrators may use the module only to celebrate members and must respect the privacy level chosen by each member. Administrators are responsible for how they use the data they can see in their own server. Birthday roles and messages depend on the permissions you grant to Wody.</p>"
+        "html": "<p>Birthdays is free. Members choose whether to share a birthday and with which privacy level. You must only enter information that is accurate and that you are entitled to share, and you must not enter another person’s birthday without their permission.</p><p>Server administrators may use the module only to celebrate members and must respect the privacy level chosen by each member. Administrators are responsible for how they use the data they can see in their own server. Birthday roles and messages depend on the permissions you grant to Wody.</p>"
       },
       {
         "heading": "18. Stream Notifications",
@@ -1237,7 +1261,7 @@
       },
       {
         "heading": "20. Third-Party Discord Bots and External Services",
-        "html": "<p>Wody may be used alongside independent Discord bots, applications, integrations, and other external services. Unless expressly stated otherwise, these services are operated by their respective providers and are not controlled by Wody.</p><p>Wody does not guarantee the availability, functionality, reliability, security, data handling, moderation decisions, or performance of independent third-party services. Users and server administrators are responsible for evaluating the permissions, configuration, terms of service, and privacy policies of the external services they choose to use.</p><p>The presence of a third-party bot on a Discord server where Wody is also installed does not mean that the third-party bot is developed, operated, approved, or controlled by Wody.</p><p>References to, recommendations of, integrations with, or partnerships involving third-party services do not, by themselves, constitute a guarantee of their safety, reliability, compliance, or performance. Any additional commitments must be assessed according to the actual terms of the relevant partnership or written agreement.</p><p>To the extent permitted by applicable law, Wody is not responsible for the independent actions or omissions of third-party providers that are outside Wody's control. Nothing in this section excludes or limits liability, consumer rights, data protection obligations, or other legal responsibilities that cannot lawfully be excluded or limited. This section does not limit Wody's responsibility for its own conduct, systems, or legal obligations.</p><p>To keep these categories clear, the following are different things and are not covered by identical practices or commitments:</p><ul><li><strong>Wody</strong>: the Discord bot and this Dashboard, operated by the Operator.</li><li><strong>Partners</strong>: services presented on our Partners page because of an actual relationship with them. Partner status does not guarantee the quality, availability, security, legality, or performance of a partner service, and each partner remains responsible for the services it operates, subject to applicable law and any agreement that actually exists.</li><li><strong>Independent third-party bots and applications</strong>: services that merely share a Discord server with Wody.</li><li><strong>External platforms</strong>: Discord, YouTube, Twitch, TikTok and the infrastructure providers named in our <a href=\"/privacy\" class=\"text-[#e08a4e] hover:underline\">Privacy Policy</a>, which have their own terms and privacy policies.</li></ul>"
+        "html": "<p>Wody may be used alongside independent Discord bots, applications, integrations, and other external services. Unless expressly stated otherwise, these services are operated by their respective providers and are not controlled by Wody.</p><p>Wody does not guarantee the availability, functionality, reliability, security, data handling, moderation decisions, or performance of independent third-party services. Users and server administrators are responsible for evaluating the permissions, configuration, terms of service, and privacy policies of the external services they choose to use.</p><p>The presence of a third-party bot on a Discord server where Wody is also installed does not mean that the third-party bot is developed, operated, approved, or controlled by Wody.</p><p>References to, recommendations of, integrations with, or partnerships involving third-party services do not, by themselves, constitute a guarantee of their safety, reliability, compliance, or performance. Any additional commitments must be assessed according to the actual terms of the relevant partnership or written agreement.</p><p>To the extent permitted by applicable law, Wody is not responsible for the independent actions or omissions of third-party providers that are outside Wody’s control. Nothing in this section excludes or limits liability, consumer rights, data protection obligations, or other legal responsibilities that cannot lawfully be excluded or limited. This section does not limit Wody’s responsibility for its own conduct, systems, or legal obligations.</p><p>To keep these categories clear, the following are different things and are not covered by identical practices or commitments:</p><ul><li><strong>Wody</strong>: the Discord bot and this Dashboard, operated by the Operator.</li><li><strong>Partners</strong>: services presented on our Partners page because of an actual relationship with them. Partner status does not guarantee the quality, availability, security, legality, or performance of a partner service, and each partner remains responsible for the services it operates, subject to applicable law and any agreement that actually exists.</li><li><strong>Independent third-party bots and applications</strong>: services that merely share a Discord server with Wody.</li><li><strong>External platforms</strong>: Discord, YouTube, Twitch, TikTok and the infrastructure providers named in our <a href=\"/privacy\" class=\"text-[#e08a4e] hover:underline\">Privacy Policy</a>, which have their own terms and privacy policies.</li></ul>"
       },
       {
         "heading": "21. WODY Passport",
@@ -1261,7 +1285,7 @@
       },
       {
         "heading": "26. Governing law and disputes",
-        "html": "<p>These Terms are governed by Romanian law and, where applicable, European Union law, without taking away any mandatory consumer protection you have under the law of your own country of residence if you're elsewhere in the EU.</p>"
+        "html": "<p>These Terms are governed by Romanian law and, where applicable, European Union law, without taking away any mandatory consumer protection you have under the law of your own country of residence if you’re elsewhere in the EU.</p>"
       },
       {
         "heading": "27. Personalização do perfil e imagens dos usuários",
@@ -1275,7 +1299,7 @@
   },
   "premiumPage": {
     "metaTitle": "Wody Premium | Mais limites e módulos extra",
-    "metaDescription": "Saiba o que o Wody Premium desbloqueia: limites de servidor mais altos, Backups, Voz temporária, Economia, Jogos e Notificações de stream.",
+    "metaDescription": "Saiba o que o Wody Premium desbloqueia: limites de servidor mais altos, Backups, Voz temporária, Economia, Jogos, Notificações de stream, Battle Pass e Theme Studio.",
     "ogTitle": "Wody Premium",
     "ogDescription": "Limites de criação ilimitados e funcionalidades avançadas da Wody para servidores de Discord em crescimento.",
     "badge": "Wody Premium",
@@ -1305,6 +1329,14 @@
       {
         "title": "Notificações de stream",
         "text": "Alertas de direto da Twitch através do EventSub, alertas de direto da Kick através da sua API oficial e alertas de vídeos do TikTok através da API oficial."
+      },
+      {
+        "title": "Battle Pass",
+        "text": "Execute um progresso por temporadas com níveis, recompensas, missões e uma página totalmente personalizável para os seus membros."
+      },
+      {
+        "title": "Theme Studio",
+        "text": "Escolhe um tema e personaliza as páginas do teu servidor: cores, cenas, efeitos, iluminação e secções próprias. Premium."
       }
     ],
     "higherLimitsTitle": "Ilimitado com Premium",
@@ -1662,6 +1694,99 @@
           {
             "name": "/birthdays",
             "description": "Aniversários de hoje e próximos neste servidor"
+          }
+        ]
+      },
+      {
+        "key": "counting",
+        "title": "Contagem",
+        "premium": null,
+        "commands": [
+          {
+            "name": "/counting setup",
+            "description": "Transforma um canal num jogo de contagem"
+          },
+          {
+            "name": "/counting status",
+            "description": "Em que ponto está a contagem neste canal"
+          },
+          {
+            "name": "/counting stats",
+            "description": "Estatísticas de contagem de um membro"
+          },
+          {
+            "name": "/counting leaderboard",
+            "description": "Os melhores contadores do servidor"
+          },
+          {
+            "name": "/counting modes",
+            "description": "Os modos de contagem disponíveis"
+          },
+          {
+            "name": "/counting history",
+            "description": "As últimas rondas deste jogo"
+          },
+          {
+            "name": "/counting save",
+            "description": "Usa um salvamento para recuperar a contagem após o último erro"
+          },
+          {
+            "name": "/counting powerup",
+            "description": "Usa um dos teus bónus"
+          },
+          {
+            "name": "/counting reset",
+            "description": "Recomeça a contagem do início, as estatísticas mantêm-se"
+          },
+          {
+            "name": "/counting pause",
+            "description": "Pausa este jogo de contagem"
+          },
+          {
+            "name": "/counting resume",
+            "description": "Retoma este jogo de contagem"
+          }
+        ]
+      },
+      {
+        "key": "battlepass",
+        "title": "Battle Pass",
+        "premium": null,
+        "commands": [
+          {
+            "name": "/battlepass progress",
+            "description": "O teu nível e XP no Battle Pass atual"
+          },
+          {
+            "name": "/battlepass rewards",
+            "description": "As recompensas do Battle Pass atual"
+          },
+          {
+            "name": "/battlepass collection",
+            "description": "As tuas coleções no Battle Pass atual"
+          },
+          {
+            "name": "/battlepass achievements",
+            "description": "As tuas missões e conquistas no Battle Pass atual"
+          },
+          {
+            "name": "/battlepass badges",
+            "description": "As insígnias que juntaste"
+          },
+          {
+            "name": "/battlepass profile",
+            "description": "O que mostras no teu perfil de Battle Pass"
+          }
+        ]
+      },
+      {
+        "key": "statistics",
+        "title": "Estatísticas",
+        "premium": null,
+        "commands": [
+          {
+            "name": "/statistics",
+            "description": "Estatísticas do servidor, atividade dos canais e saúde da comunidade"
           }
         ]
       },
@@ -2223,7 +2348,6 @@
       "members": "Membros",
       "modLogChannel": "Canal de log da moderação",
       "modLogChannelHint": "Acesso rápido ao mesmo canal de log da moderação usado pelo módulo Moderation. As alterações são sincronizadas imediatamente.",
-      "modLogQuickHint": "",
       "sectionLanguage": "Idioma",
       "sectionLanguageDesc": "O idioma que o Wody usa neste servidor.",
       "sectionRoles": "Cargos e permissões",
@@ -3399,15 +3523,15 @@
     },
     "premium": {
       "title": "Premium",
-      "description": "Insira uma chave aqui para desbloquear Backups, Voz temporária, Notificações do YouTube, Economia, Jogos e Notificações de stream para este servidor.",
+      "description": "Insira uma chave aqui para desbloquear Backups, Voz temporária, Notificações do YouTube, Economia, Jogos, Notificações de stream, Battle Pass e Theme Studio para este servidor.",
       "enterKeyToast": "Insira uma chave premium",
       "activatedToastTitle": "O Premium está agora ativo",
-      "activatedToastDesc": "Cópias de segurança, voz temporária, notificações do YouTube, economia, Jogos e notificações de stream estão ativos neste servidor, e tickets, cargos por reação, respostas automáticas, comandos personalizados, mensagens agendadas, sorteios e automações de fórum são agora ilimitados.",
+      "activatedToastDesc": "Cópias de segurança, voz temporária, notificações do YouTube, economia, Jogos, notificações de stream, Battle Pass e Theme Studio estão ativos neste servidor, e tickets, cargos por reação, respostas automáticas, comandos personalizados, mensagens agendadas, sorteios e automações de fórum são agora ilimitados.",
       "activationFailedTitle": "Falha na ativação",
       "unknownError": "Erro desconhecido",
       "statusTitle": "Status do Premium",
       "statusFreePlan": "Plano gratuito",
-      "unlockedModulesLine": "Módulos desbloqueados: <b>Backups, Voz temporária, Notificações do YouTube, Economia, Jogos, Notificações de stream</b>",
+      "unlockedModulesLine": "Módulos desbloqueados: <b>Backups, Voz temporária, Notificações do YouTube, Economia, Jogos, Notificações de stream, Battle Pass, Theme Studio</b>",
       "expiresLine": "Expira: <b>{date}</b>",
       "activatedByLine": "Ativado por: <span>{name}</span>",
       "unknownUser": "Utilizador desconhecido",
@@ -5891,7 +6015,7 @@
         ],
         [
           "7. Privacy and personal information",
-          "Do not publish another person's private information without authorisation, do not dox, do not threaten with personal information and do not misuse private conversations. Report privacy incidents to the staff or to contact@wody.online. Reports may need to be reviewed to be investigated, so absolute confidentiality cannot be promised."
+          "Do not publish another person’s private information without authorisation, do not dox, do not threaten with personal information and do not misuse private conversations. Report privacy incidents to the staff or to contact@wody.online. Reports may need to be reviewed to be investigated, so absolute confidentiality cannot be promised."
         ],
         [
           "8. Discord bots and automated tools",
@@ -7108,6 +7232,41 @@
           "Que dois canais ligar",
           "Tradução opcional e idioma de cada lado",
           "Limites antispam de cada ponte"
+        ]
+      },
+      "counting": {
+        "what": "Um jogo de contagem em qualquer canal, com 13 modos, sequências, salvamentos, bónus, desafios e classificação. Cada erro recebe um aviso claro com o número seguinte.",
+        "customize": [
+          "O canal, o modo e o número inicial",
+          "O que acontece num erro: recomeço, salvamento ou aviso",
+          "Os avisos, os marcos e o canal onde aparecem",
+          "Salvamentos, bónus, desafios e competições"
+        ]
+      },
+      "statistics": {
+        "what": "Atividade, membros ativos, canais e crescimento do seu servidor, só com contadores agregados. O conteúdo das mensagens nunca é guardado.",
+        "customize": [
+          "Quem pode ver as estatísticas",
+          "Durante quanto tempo os contadores ficam guardados",
+          "Canais excluídos",
+          "Apagar todas as estatísticas a qualquer momento"
+        ]
+      },
+      "battlepass": {
+        "what": "Temporadas com níveis, XP de mensagens e voz, recompensas, missões, conquistas e uma página pública. Os servidores Premium podem criar temporadas próprias.",
+        "customize": [
+          "Níveis, curva de XP e datas da temporada",
+          "Regras e limites de XP para mensagens e voz",
+          "Recompensas, insígnias, missões e coleções",
+          "Design da página e idiomas"
+        ]
+      },
+      "theme_studio": {
+        "what": "Escolha um tema oficial para as páginas do servidor no site: cores, cenas, luz e efeitos, e onde o tema aparece.",
+        "customize": [
+          "O tema das páginas do servidor",
+          "Onde aparece: Battle Pass, classificação, contagem, página do servidor, painel",
+          "Guarde um rascunho e depois publique"
         ]
       }
     }
@@ -8831,7 +8990,11 @@
       "too_long": "Este valor é demasiado longo (máximo de {max} caracteres).",
       "too_many": "Demasiados elementos (máximo de {max}).",
       "invalid_choice": "Escolha uma das opções disponíveis.",
-      "out_of_range": "Introduza um número inteiro entre {min} e {max}."
+      "out_of_range": "Introduza um número inteiro entre {min} e {max}.",
+      "invalid_xp": "Cada nível precisa de pelo menos 1 XP.",
+      "xp_too_high": "Um nível pode pedir no máximo {max} XP.",
+      "total_too_high": "Todos os níveis juntos podem pedir no máximo {max} XP.",
+      "unreachable": "Ninguém consegue completar este passe: os níveis pedem {total} XP, mas um membro pode ganhar no máximo {cap} XP nesta temporada (limites de mensagens e voz mais as missões). Reduza os níveis ou o XP por nível, ou aumente os limites da temporada na aba XP."
     },
     "apiErrors": {
       "generic": "Algo deu errado. Tente novamente.",

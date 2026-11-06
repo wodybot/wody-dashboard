@@ -344,3 +344,35 @@ test('form: not offered while a Global season runs, when switched off or without
   assert.equal((await call('POST', 'form', { user: MEMBER, body: { guild: G1, answers: { nickname: 'A' } } })).body.error, 'season_not_running');
   assert.equal((await call('POST', 'form', { user: MEMBER, body: { guild: 'abc', answers: {} } })).status, 400);
 });
+
+test('a season whose stored page look holds values from an older version can still be opened and saved', async () => {
+  const db = fresh(); await premium(db, G1);
+  const c = await call('POST', `guilds/${G1}/seasons`, { user: MANAGER, body: season({ name: 'Old look' }) });
+  assert.equal(c.status, 201, JSON.stringify(c.body));
+  const id = c.body.season.id;
+  const { ObjectId } = await import('mongodb');
+  await db.collection('bp_seasons').updateOne({ _id: new ObjectId(id) }, { $set: { 'page.preset': 'dragon_fire', 'page.dragon_glow': 7, 'page.accent': 'not a colour' } });
+  const g = await call('GET', `guilds/${G1}/seasons/${id}`, { user: MANAGER });
+  assert.equal(g.status, 200);
+  assert.ok(!('dragon_glow' in g.body.season.page));
+  const sent = { ...g.body.season, description: 'still works', page: { ...g.body.season.page, preset: 'dragon_fire', dragon_glow: 7, accent: 'not a colour' } };
+  const p = await call('PATCH', `guilds/${G1}/seasons/${id}`, { user: MANAGER, body: sent });
+  assert.equal(p.status, 200, JSON.stringify(p.body));
+  assert.equal(p.body.season.description, 'still works');
+  const bad = await call('PATCH', `guilds/${G1}/seasons/${id}`, { user: MANAGER, body: { ...p.body.season, page: { ...p.body.season.page, accent: 'still not a colour' } } });
+  assert.equal(bad.status, 422, 'a value the person just typed is still checked');
+  assert.ok(bad.body.errors.some((e) => e.field === 'page.accent'));
+});
+
+test('owner reports and overview read the nested counters the bot writes', async () => {
+  const db = fresh();
+  const id = await makeGlobal('Counted');
+  assert.equal((await call('POST', `owner/seasons/${id}/activate`, { user: OWNER })).status, 200);
+  const day = new Date().toISOString().slice(0, 10).replaceAll('-', '');
+  await db.collection('bp_stats').insertOne({ season_id: id, day, xp: { message: 40, voice: 10 }, refused: { cooldown: 3 }, rewards: { claimed: 2 } });
+  const rep = await call('GET', 'owner/reports', { user: OWNER });
+  assert.deepEqual(rep.body.days.find((d) => d.day === day), { day, xp: 50, rewards: 2, refused: 3 });
+  const ov = await call('GET', 'owner/overview', { user: OWNER });
+  assert.equal(ov.body.week.xp_message, 40);
+  assert.equal(ov.body.week.rewards_claimed, 2);
+});
