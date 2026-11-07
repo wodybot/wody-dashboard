@@ -5,7 +5,8 @@ import PolicyConsent from '@/components/profile/PolicyConsent';
 import { SvgScene } from '@/components/scenes';
 import { Component, createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useState, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { toast } from 'sonner';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useAdvancedEmbed, AdvancedModeToggle, AdvancedFields, buildAdvancedPayload, previewFields, previewButtons } from '@/components/advanced-embed';
@@ -35,7 +36,6 @@ import {
   Youtube, ChevronDown, ChevronRight, Eye, Palette, Route, FileText, MessageSquareText, Image as ImageIcon, Power,
   LayoutGrid, ShieldCheck, ExternalLink, Sparkles, HelpCircle, Coins, Cake, Radio, Compass, Briefcase, Info, SlidersHorizontal, Gamepad2, Link2, Hash, BarChart3, Languages, UserCog, Search, Rss, ArrowLeftRight,
 Trophy, Wand2, Flame } from 'lucide-react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Footer } from '@/components/nav';
 import { DiscordMessagePreview } from '@/components/module-kit';
 import GeneralQuickSettings from '@/components/general-quick-settings';
@@ -60,8 +60,12 @@ import { CARD_FONTS, CARD_FONT_IDS, cardFontStyle } from '@/lib/card-fonts';
 
 import dynamic from 'next/dynamic';
 import IconText, { Icon } from '@/components/icon-text';
+import GuildSkeleton from '@/components/dashboard/guild-skeleton';
+import ErrorLog from '@/components/dashboard/error-log';
 
 const PanelLoading = () => <div className="h-64 animate-pulse rounded-2xl bg-card/40" />;
+// The chart library is only downloaded when the overview chart is shown, not with every server page.
+const MemberGrowthArea = dynamic(() => import('@/components/dashboard/member-growth-area'), { ssr: false, loading: () => <div className="h-full w-full animate-pulse rounded-xl bg-secondary/30" /> });
 const BirthdaysPanel = dynamic(() => import('@/components/modules/BirthdaysPanel'), { loading: PanelLoading });
 const InvitesPanel = dynamic(() => import('@/components/modules/InvitesPanel'), { loading: PanelLoading });
 const LookupsPanel = dynamic(() => import('@/components/modules/LookupsPanel'), { loading: PanelLoading });
@@ -79,6 +83,11 @@ const ServerCollabSettings = dynamic(() => import('@/components/collab/ServerCol
 const ServerCategoriesPanel = dynamic(() => import('@/components/collab/ServerCategoriesPanel'), { loading: PanelLoading });
 
 const statsCache = new Map();
+// What a server dashboard already showed in this tab (channels and roles, premium, module states). Opening the same server again draws
+// it at once from here while fresh data is fetched in the background; nothing here is trusted for saving, every save goes to the API.
+const guildViewCache = new Map();
+const cachedView = (guildId) => guildViewCache.get(String(guildId)) || null;
+const rememberView = (guildId, part) => guildViewCache.set(String(guildId), { ...(guildViewCache.get(String(guildId)) || {}), ...part });
 
 const HISTORY_RANGE_OPTIONS = [7, 14, 30, 60, 90];
 
@@ -105,29 +114,7 @@ function MemberGrowthChart({ history, days, onDaysChange }) {
         </Select>
       </div>
       <div className="h-56 w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} margin={{ top: 4, right: 8, left: -20, bottom: 0 }}>
-            <defs>
-              <linearGradient id="joinsFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#34d399" stopOpacity={0.35} />
-                <stop offset="95%" stopColor="#34d399" stopOpacity={0} />
-              </linearGradient>
-              <linearGradient id="leavesFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#fb7185" stopOpacity={0.35} />
-                <stop offset="95%" stopColor="#fb7185" stopOpacity={0} />
-              </linearGradient>
-            </defs>
-            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} vertical={false} />
-            <XAxis dataKey="label" tick={{ fontSize: 11, fill: 'currentColor', opacity: 0.5 }} axisLine={false} tickLine={false} />
-            <YAxis allowDecimals={false} tick={{ fontSize: 11, fill: 'currentColor', opacity: 0.5 }} axisLine={false} tickLine={false} width={28} />
-            <Tooltip
-              contentStyle={{ background: '#18181b', border: '1px solid #2b2d31', borderRadius: 8, fontSize: 12 }}
-              labelStyle={{ color: '#e5e7eb' }}
-            />
-            <Area type="monotone" dataKey="joins" name={t('joinedToday') || 'Joins'} stroke="#34d399" fill="url(#joinsFill)" strokeWidth={2} />
-            <Area type="monotone" dataKey="leaves" name={t('leftToday') || 'Leaves'} stroke="#fb7185" fill="url(#leavesFill)" strokeWidth={2} />
-          </AreaChart>
-        </ResponsiveContainer>
+        <MemberGrowthArea data={data} joinsLabel={t('joinedToday') || 'Joins'} leavesLabel={t('leftToday') || 'Leaves'} />
       </div>
     </Card>
   );
@@ -460,7 +447,8 @@ export default function GuildDashboardClient() {
   const tm = useTranslations('modules');
   const { guildId } = useParams();
   const router = useRouter();
-  const [meta, setMeta] = useState(null);
+  const [seen] = useState(() => cachedView(guildId));
+  const [meta, setMeta] = useState(() => seen?.meta || null);
   const [metaError, setMetaError] = useState(false);
   const [active, setActive] = useState('overview');
   const activeRef = useRef('overview');
@@ -482,16 +470,16 @@ export default function GuildDashboardClient() {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = prevOverflow; };
   }, [sidebarOpen]);
-  const [loading, setLoading] = useState(true);
-  const [premiumActive, setPremiumActive] = useState(false);
-  const [moduleStates, setModuleStates] = useState({});
-  const [statesReady, setStatesReady] = useState(false);
+  const [loading, setLoading] = useState(() => !(seen?.meta && seen?.states));
+  const [premiumActive, setPremiumActive] = useState(() => Boolean(seen?.premium));
+  const [moduleStates, setModuleStates] = useState(() => seen?.states || {});
+  const [statesReady, setStatesReady] = useState(() => Boolean(seen?.states));
   const [toggling, setToggling] = useState(null);
-  const [stats, setStats] = useState(null);
-  const [statsOn, setStatsOn] = useState(null);   // is message counting on? (null until known)
+  const [stats, setStats] = useState(() => statsCache.get(guildId) || null);
+  const [statsOn, setStatsOn] = useState(() => (typeof seen?.statsOn === 'boolean' ? seen.statsOn : null));   // is message counting on? (null until known)
   useEffect(() => {
     let live = true;
-    fetch(`/api/statistics/guilds/${guildId}/settings`, { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)).then((d) => { if (live && d?.settings) setStatsOn(Boolean(d.settings.enabled)); }).catch(() => {});
+    fetch(`/api/statistics/guilds/${guildId}/settings`, { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)).then((d) => { if (live && d?.settings) { setStatsOn(Boolean(d.settings.enabled)); rememberView(guildId, { statsOn: Boolean(d.settings.enabled) }); } }).catch(() => {});
     const on = (e) => { if (String(e.detail?.guildId) === String(guildId)) setStatsOn(Boolean(e.detail.enabled)); };
     window.addEventListener('wody:statistics-state', on);
     return () => { live = false; window.removeEventListener('wody:statistics-state', on); };
@@ -547,6 +535,7 @@ export default function GuildDashboardClient() {
       if (!rr.ok) throw new Error(String(rr.status));
       const sd = await rr.json();
       setModuleStates(sd?.module_states || {});
+      rememberView(guildId, { states: sd?.module_states || {} });
       setStatesReady(true);
     } catch {
       toast.error(t('common.couldNotLoad'));
@@ -625,11 +614,36 @@ export default function GuildDashboardClient() {
     }
   };
 
+  // Keeps the remembered view in step with every toggle, so reopening the server shows the latest switches.
+  useEffect(() => { if (statesReady) rememberView(guildId, { states: moduleStates }); }, [guildId, moduleStates, statesReady]);
+
   useEffect(() => {
     let cancelled = false;
 
+    const readPremium = async (res) => {
+      if (!res?.ok) return null;
+      try {
+        const ps = (await res.json())?.premium;
+        return Boolean(ps?.active && !ps?.suspended && (!ps?.expires_at || new Date(ps.expires_at) > new Date()));
+      } catch { return null; }
+    };
+
     const loadMeta = async () => {
       setMetaError(false);
+      // Everything the page needs starts at the same moment: channels and roles, premium, module states and the overview numbers.
+      // Before, premium and the module states only started after the channels and roles had arrived.
+      const statsReq = fetch(`/api/guilds/${guildId}/stats`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+      const premiumReq = (async () => {
+        let value = await readPremium(await fetch(`/api/guilds/${guildId}/premium`).catch(() => null));
+        for (let attempt = 1; value === null && attempt <= 3 && !cancelled; attempt += 1) {
+          await new Promise((resolve) => setTimeout(resolve, 400 * attempt));
+          value = await readPremium(await fetch(`/api/guilds/${guildId}/premium`).catch(() => null));
+        }
+        return value;
+      })();
+      const statesReq = fetch(`/api/guilds/${guildId}/settings`)
+        .then(async (r) => (r.ok ? (await r.json())?.module_states || {} : null))
+        .catch(() => null);
       try {
         let r = null;
         for (let attempt = 0; attempt < 4 && !cancelled; attempt += 1) {
@@ -640,11 +654,12 @@ export default function GuildDashboardClient() {
         if (cancelled) return;
         if (!r) throw new Error('meta fetch failed: network');
         if (r.status === 401) { router.push('/'); return; }
-        if (r.status === 403) { router.push('/dashboard'); return; }
+        if (r.status === 403) { guildViewCache.delete(String(guildId)); router.push('/dashboard'); return; }
         if (!r.ok) throw new Error(`meta fetch failed: ${r.status}`);
         const d = await r.json();
         if (cancelled) return;
         setMeta(d);
+        rememberView(guildId, { meta: d });
         if (d?.incomplete) {
           (async () => {
             for (let i = 1; i <= 5 && !cancelled; i += 1) {
@@ -656,49 +671,27 @@ export default function GuildDashboardClient() {
                 const dd = await rr.json();
                 if (cancelled) return;
                 setMeta(dd);
+                rememberView(guildId, { meta: dd });
                 if (!dd?.incomplete) return;
               } catch { }
             }
           })();
         }
 
-        const statsReq = fetch(`/api/guilds/${guildId}/stats`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
-        const [pr, sr] = await Promise.allSettled([
-          fetch(`/api/guilds/${guildId}/premium`),
-          fetch(`/api/guilds/${guildId}/settings`),
-        ]);
-        if (cancelled) return;
-
-        const readPremium = async (res) => {
-          if (!res?.ok) return null;
-          try {
-            const ps = (await res.json())?.premium;
-            return Boolean(ps?.active && !ps?.suspended && (!ps?.expires_at || new Date(ps.expires_at) > new Date()));
-          } catch { return null; }
-        };
-        let premiumNow = await readPremium(pr.status === 'fulfilled' ? pr.value : null);
-        for (let attempt = 1; premiumNow === null && attempt <= 3 && !cancelled; attempt += 1) {
-          await new Promise((resolve) => setTimeout(resolve, 400 * attempt));
-          premiumNow = await readPremium(await fetch(`/api/guilds/${guildId}/premium`).catch(() => null));
-        }
+        const [premiumNow, states] = await Promise.all([premiumReq, statesReq]);
         if (cancelled) return;
         if (premiumNow !== null) {
           setPremiumActive(premiumNow);
+          rememberView(guildId, { premium: premiumNow });
           try { window.sessionStorage.setItem(`wody:premium:${guildId}`, premiumNow ? '1' : '0'); } catch { }
         } else {
           try { const last = window.sessionStorage.getItem(`wody:premium:${guildId}`); if (last !== null) setPremiumActive(last === '1'); } catch { }
         }
-        let statesOk = false;
-        if (sr.status === 'fulfilled' && sr.value.ok) {
-          try {
-            const sd = await sr.value.json();
-            setModuleStates(sd?.module_states || {});
-            statesOk = true;
-          } catch {
-          }
-        }
-        if (statesOk) setStatesReady(true);
-        else {
+        if (states) {
+          setModuleStates(states);
+          rememberView(guildId, { states });
+          setStatesReady(true);
+        } else {
           (async () => {
             for (let i = 1; i <= 6 && !cancelled; i += 1) {
               await new Promise((resolve) => setTimeout(resolve, 1200 * i));
@@ -709,20 +702,23 @@ export default function GuildDashboardClient() {
                 const sd = await rr.json();
                 if (cancelled) return;
                 setModuleStates(sd?.module_states || {});
+                rememberView(guildId, { states: sd?.module_states || {} });
                 setStatesReady(true);
                 return;
               } catch { }
             }
           })();
         }
-        statsReq.then((d) => {
-          if (!d) return;
-          statsCache.set(guildId, d);
-          if (!cancelled) setStats(d);
+        statsReq.then((sd) => {
+          if (!sd) return;
+          statsCache.set(guildId, sd);
+          if (!cancelled) setStats(sd);
         });
         setLoading(false);
       } catch (e) {
         if (cancelled) return;
+        // A server already shown in this tab stays usable when a background refresh fails.
+        if (cachedView(guildId)?.meta) { setLoading(false); return; }
         toast.error(t('common.couldNotLoad'));
         setMetaError(true);
         setLoading(false);
@@ -797,9 +793,7 @@ export default function GuildDashboardClient() {
     return (
       <>
         {mobileFixStyles}
-        <div className="min-h-screen flex items-center justify-center">
-          <Loader2 className="w-6 h-6 animate-spin text-primary" />
-        </div>
+        <GuildSkeleton label={t('common.loadingServer')} />
       </>
     );
   }
@@ -999,75 +993,6 @@ export default function GuildDashboardClient() {
       </div>
     </>
     </DashboardNavContext.Provider>
-  );
-}
-
-const MODULE_ERROR_LABELS = {
-  missing_bot_permissions: 'Missing permission',
-  channel_missing: 'Channel not found',
-  delivery_failed: 'Delivery failed',
-  discord_create_failed: 'Could not create in Discord',
-  ticket_record_create_failed: 'Could not save ticket record',
-  initial_ticket_message_failed: 'Could not send ticket welcome message',
-  support_role_warning_failed: 'Could not notify support role',
-  ticket_details_message_failed: 'Could not send ticket details',
-  claim_update_failed: 'Could not update ticket claim',
-  transcript_build_failed: 'Could not build transcript',
-  transcript_destination_unavailable: 'Transcript destination unavailable',
-  transcript_send_forbidden: 'Missing permission to send transcript',
-  transcript_send_failed: 'Could not send transcript',
-  transcript_dm_fallback_failed: 'Could not DM transcript',
-  transcript_fallback_failed: 'Transcript fallback failed',
-  close_update_failed: 'Could not update ticket on close',
-  channel_delete_forbidden: 'Missing permission to delete channel',
-  channel_delete_failed: 'Could not delete channel',
-};
-const MODULE_NAME_LABELS = {
-  welcome: 'Welcome', goodbye: 'Goodbye', levels: 'Levels', autorole: 'Auto Role',
-  logging: 'Logging', tickets: 'Tickets', scheduled_messages: 'Scheduled Messages',
-  temporary_voice: 'Temporary Voice', youtube_notify: 'YouTube Notifications',
-  custom_commands: 'Custom Commands', auto_responses: 'Auto Responses', giveaways: 'Giveaways',
-};
-
-function GeneralErrorLog({ guildId }) {
-  const t = useTranslations('guildSettings.common.errorLog');
-  const tm = useTranslations('modules');
-  const [errors, setErrors] = useState(null);
-  const moduleName = (key) => (key && tm.has(`${key}.title`) ? tm(`${key}.title`) : (MODULE_NAME_LABELS[key] || key || 'Wody'));
-  const errorName = (code) => (code && t.has(`codes.${code}`) ? t(`codes.${code}`) : (MODULE_ERROR_LABELS[code] || code || t('fallback')));
-  useEffect(() => { safeJson(`/api/guilds/${guildId}/errors`, null).then((d) => setErrors(d?.errors || [])); }, [guildId]);
-  if (errors === null) return null;
-  return (
-    <Card className="p-6 bg-card/60 mb-10">
-      <div className="flex items-start justify-between gap-4 mb-4">
-        <div>
-          <div className="font-semibold flex items-center gap-2"><AlertTriangle className="w-4 h-4 text-amber-500" />{t('title')}</div>
-          <p className="text-xs text-muted-foreground mt-1">{t('intro')}</p>
-        </div>
-        <Badge variant="secondary">{errors.length}</Badge>
-      </div>
-      {!errors.length ? (
-        <div className="rounded-xl border border-dashed border-border/70 bg-secondary/10 p-5">
-          <div className="font-medium text-sm">{t('emptyTitle')}</div>
-          <p className="text-xs text-muted-foreground mt-1">{t('emptyText')}</p>
-        </div>
-      ) : (
-        <div className="space-y-2">
-          {errors.map((e) => (
-            <div key={e._id} className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
-              <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
-                <div className="flex items-center gap-2 min-w-0">
-                  <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0" />
-                  <span className="font-medium text-sm break-words">{moduleName(e.module)}: {errorName(e.code)}</span>
-                </div>
-                <span className="text-[11px] text-muted-foreground shrink-0">{e.created_at ? new Date(e.created_at).toLocaleString() : ''}</span>
-              </div>
-              <p className="text-xs text-muted-foreground mt-2 whitespace-pre-wrap">{e.detail || t('noDetails')}</p>
-            </div>
-          ))}
-        </div>
-      )}
-    </Card>
   );
 }
 
@@ -1416,16 +1341,24 @@ function stableJson(value) {
   return JSON.stringify(value ?? null);
 }
 
+// Module settings already loaded in this tab, by server and module. Opening a module again shows them at once and refreshes them quietly;
+// a refresh never overwrites changes the user is still editing.
+const moduleDataCache = new Map();
+
 function useModule(guildId, key) {
   const t = useTranslations('guildSettings.common');
-  const [data, setDataState] = useState(null);
+  const cacheKey = `${guildId}:${key}`;
+  const [data, setDataState] = useState(() => moduleDataCache.get(cacheKey) ?? null);
   const [saving, setSaving] = useState(false);
   const [loadError, setLoadError] = useState(false);
-  const [baseline, setBaseline] = useState(null);
+  const [baseline, setBaseline] = useState(() => moduleDataCache.get(cacheKey) ?? null);
   const [rights, setRights] = useState(false);
   const setData = setDataState;
+  const editedRef = useRef(false);
+  useEffect(() => { editedRef.current = data != null && baseline != null && data !== baseline && stableJson(data) !== stableJson(baseline); }, [data, baseline]);
   useEffect(() => {
     let cancelled = false;
+    const hadCache = moduleDataCache.has(cacheKey);
     (async () => {
       setLoadError(false);
       try {
@@ -1433,10 +1366,12 @@ function useModule(guildId, key) {
         if (!r.ok) throw new Error(`load failed: ${r.status}`);
         const d = await r.json();
         if (cancelled) return;
+        moduleDataCache.set(cacheKey, d);
+        if (editedRef.current) { setBaseline(d); return; }
         setDataState(d);
         setBaseline(d);
       } catch (e) {
-        if (cancelled) return;
+        if (cancelled || hadCache) return;
         setLoadError(true);
         toast.error(t('loadModuleFailed'), { description: t('tryRefreshing') });
       }
@@ -1465,6 +1400,7 @@ function useModule(guildId, key) {
       setDataState((prev) => {
         const next = { ...prev, ...d };
         setBaseline(next);
+        moduleDataCache.set(`${guildId}:${key}`, next);
         return next;
       });
       toast.success(t('saved'), { description: t('savedDesc') });
@@ -1559,7 +1495,7 @@ function GeneralPanel({ guildId, meta, premiumActive = false, onOpenModule, modu
       ) : null}
       <GeneralQuickSettings guildId={guildId} meta={meta} premiumActive={premiumActive} moduleSwitch={moduleSwitch} />
       <ServerCollabSettings guildId={guildId} />
-      <GeneralErrorLog guildId={guildId} />
+      <ErrorLog guildId={guildId} meta={meta} />
     </div>
   );
 }

@@ -193,19 +193,18 @@ function json(data, init = {}) {
 }
 
 async function guardGuildAccess(guildId) {
-  const db = await getDb();
-  const blocked = await db.collection('guild_bans').findOne({ guild_id: String(guildId), active: true });
+  // The ban check, the session and the user's server list are independent, so they are read together instead of one after another.
+  const session = await getSession();
+  if (!session?.accessToken) return { error: json({ error: 'unauthenticated' }, { status: 401 }) };
+  const [blocked, guildsResult] = await Promise.all([
+    getDb().then((db) => db.collection('guild_bans').findOne({ guild_id: String(guildId), active: true })),
+    getUserGuilds(session.accessToken).then((v) => ({ ok: true, v }), () => ({ ok: false })),
+  ]);
   if (blocked) {
     return { error: json({ error: 'guild_banned', message: 'This server is blocked from using Wody.' }, { status: 403 }) };
   }
-  const session = await getSession();
-  if (!session?.accessToken) return { error: json({ error: 'unauthenticated' }, { status: 401 }) };
-  let guilds;
-  try {
-    guilds = await getUserGuilds(session.accessToken);
-  } catch {
-    return { error: json({ error: 'temporarily_unavailable' }, { status: 503 }) };
-  }
+  if (!guildsResult.ok) return { error: json({ error: 'temporarily_unavailable' }, { status: 503 }) };
+  const guilds = guildsResult.v;
   const g = guilds.find((x) => x.id === guildId);
   if (!g || !canManage(g.permissions, g.owner)) {
     return { error: json({ error: 'forbidden' }, { status: 403 }) };

@@ -6,7 +6,7 @@ import { useRouter } from '@/i18n/navigation';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Server, ExternalLink, CheckCircle2, XCircle } from 'lucide-react';
+import { Server, ExternalLink, CheckCircle2, XCircle, Loader2 } from 'lucide-react';
 import { Footer } from '@/components/nav';
 import { INVITE_URL } from '@/lib/content';
 import { discordCdnUrl } from '@/lib/utils';
@@ -30,6 +30,8 @@ function guildIcon(g) {
 export default function DashboardHomeClient() {
   const t = useTranslations('dashboardHome');
   const tNav = useTranslations('nav');
+  const tGuild = useTranslations('guildSettings.common');
+  const [openingId, setOpeningId] = useState(null);
   const [me, setMe] = useState(null);
   const [guilds, setGuilds] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -127,23 +129,35 @@ export default function DashboardHomeClient() {
                   <span className="rounded-full border border-emerald-400/40 bg-emerald-400/10 px-2 py-0.5 text-xs font-semibold tabular-nums text-emerald-300">{guilds.filter((g) => g.bot_present).length}</span>
                 </h2>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                  {guilds.filter((g) => g.bot_present).map((g) => (
-                    <Card key={g.id} className="group relative overflow-hidden bg-card/55 p-5 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30">
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 transition group-hover:opacity-100" />
-                      <div className="relative">
-                        <div className="mb-4 flex items-center gap-3">
-                          {guildIcon(g) ? <img src={guildIcon(g)} alt="" className="h-12 w-12 rounded-xl" /> : <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary font-bold">{(g.name || '??').slice(0, 2).toUpperCase()}</div>}
-                          <div className="min-w-0">
-                            <div className="truncate font-semibold">{g.name}</div>
-                            <div className="flex items-center gap-1 text-xs text-muted-foreground"><CheckCircle2 className="h-3 w-3 text-green-500" /> {t('botOnline')}</div>
+                  {guilds.filter((g) => g.bot_present).map((g) => {
+                    const opening = openingId === g.id;
+                    // The whole card is the link (no button inside a link), so a click anywhere on it opens the server, and the
+                    // card shows at once that it is opening.
+                    return (
+                      <Link
+                        key={g.id}
+                        href={`/dashboard/${g.id}`}
+                        onClick={(e) => { if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return; setOpeningId(g.id); }}
+                        aria-busy={opening || undefined}
+                        className="group relative block overflow-hidden rounded-2xl border border-border bg-card/55 p-5 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 transition group-hover:opacity-100" aria-hidden="true" />
+                        <div className="relative">
+                          <div className="mb-4 flex items-center gap-3">
+                            {guildIcon(g) ? <img src={guildIcon(g)} alt="" className="h-12 w-12 rounded-xl" /> : <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary font-bold">{(g.name || '??').slice(0, 2).toUpperCase()}</div>}
+                            <div className="min-w-0">
+                              <div className="truncate font-semibold">{g.name}</div>
+                              <div className="flex items-center gap-1 text-xs text-muted-foreground"><CheckCircle2 className="h-3 w-3 text-green-500" /> {t('botOnline')}</div>
+                            </div>
                           </div>
+                          <span className="gradient-primary inline-flex h-10 w-full items-center justify-center gap-2 rounded-md px-4 text-sm font-medium transition group-hover:opacity-90">
+                            {opening ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : null}
+                            {opening ? tGuild('loadingServer') : t('manage')}
+                          </span>
                         </div>
-                        <Link href={`/dashboard/${g.id}`}>
-                          <Button className="w-full gradient-primary hover:opacity-90">{t('manage')}</Button>
-                        </Link>
-                      </div>
-                    </Card>
-                  ))}
+                      </Link>
+                    );
+                  })}
                 </div>
               </section>
             ) : null}
