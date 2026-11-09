@@ -99,11 +99,17 @@ async function renewSubscriptions() {
 
     // One broken subscription (for example a missing WEBSUB_CALLBACK_BASE_URL, which throws) must not stop the others, and the
     // reason is saved on the subscription so the bot can report it.
+    // A hub answer like 503 "Transient error" is temporary: try up to 3 times now instead of waiting for tomorrow's run.
     let result;
-    try {
-      result = await subscribeToHub(sub.youtube_channel_id, secret, callbackToken);
-    } catch (e) {
-      result = { ok: false, detail: String(e?.message || e) };
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      try {
+        result = await subscribeToHub(sub.youtube_channel_id, secret, callbackToken);
+      } catch (e) {
+        result = { ok: false, detail: String(e?.message || e) };
+      }
+      const temporary = !result.ok && /returned (429|5\d\d)|fetch failed|timeout|ECONN|ENOTFOUND/i.test(result.detail || '');
+      if (result.ok || !temporary || attempt === 3) break;
+      await new Promise((r) => setTimeout(r, 2000 * attempt));
     }
     const { ok, detail } = result;
 
