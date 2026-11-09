@@ -97,11 +97,15 @@ async function renewSubscriptions() {
       { $set: patch }
     );
 
-    const { ok, detail } = await subscribeToHub(
-      sub.youtube_channel_id,
-      secret,
-      callbackToken
-    );
+    // One broken subscription (for example a missing WEBSUB_CALLBACK_BASE_URL, which throws) must not stop the others, and the
+    // reason is saved on the subscription so the bot can report it.
+    let result;
+    try {
+      result = await subscribeToHub(sub.youtube_channel_id, secret, callbackToken);
+    } catch (e) {
+      result = { ok: false, detail: String(e?.message || e) };
+    }
+    const { ok, detail } = result;
 
     if (ok) {
       accepted += 1;
@@ -136,6 +140,7 @@ async function renewSubscriptions() {
 
 async function handler(request) {
   if (!authorized(request)) {
+    console.error('[YouTube WebSub] Renewal call refused: the Authorization header does not match CRON_SECRET');
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
