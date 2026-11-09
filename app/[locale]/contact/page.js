@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Footer, TopNav } from '@/components/nav';
 import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
+const SITE_URL = (process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').replace(/\/+$/, '');
 
 export const revalidate = 3600;
 

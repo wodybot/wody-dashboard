@@ -7,7 +7,7 @@ import { Footer, TopNav, NavTag } from '@/components/nav';
 import { ROBOTS_INDEX, localePath, localizedAlternates, ogLocale } from '@/lib/community/seo';
 import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
+const SITE_URL = (process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').replace(/\/+$/, '');
 
 const NEW_GROUPS = new Set(['passport', 'collab']);
 const NEW_COMMANDS = new Set(['/globalleaderboard', '/claimpassport', '/mypassport', '/passport', '/collab browse', '/collab mine', '/collab create', '/collab categories', '/collab channel']);

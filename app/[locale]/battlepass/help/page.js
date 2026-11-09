@@ -4,7 +4,7 @@ import { routing } from '@/i18n/routing';
 import { Footer, TopNav } from '@/components/nav';
 import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
-const SITE = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
+const SITE = (process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').replace(/\/+$/, '');
 const PATH = '/battlepass/help';
 const urlFor = (locale) => `${SITE}${locale === routing.defaultLocale ? '' : `/${locale}`}${PATH}`;
 

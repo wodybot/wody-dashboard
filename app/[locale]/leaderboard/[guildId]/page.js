@@ -12,7 +12,7 @@ import ThemeStage from '@/components/themes/ThemeStage';
 import { stageLabels } from '@/lib/themes/stage-labels';
 import { resolveGuildTheme } from '@/lib/themes/store';
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
+const SITE_URL = (process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').replace(/\/+$/, '');
 const PAGE_SIZE = 25;
 
 export const dynamic = 'force-dynamic';

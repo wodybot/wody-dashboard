@@ -56,7 +56,7 @@ export default function EcosystemCarousel({ inviteUrl }) {
                 <li className={chip}><EyeOff className="h-3.5 w-3.5" aria-hidden="true" />{t('carMkC3')}</li>
               </ul>
             </div>
-            <Link href="/marketplace" tabIndex={index === 0 ? 0 : -1} className={`${cta} self-start md:self-center`}>{t('browseAll')} <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+            <Link href="/collab" tabIndex={index === 0 ? 0 : -1} className={`${cta} self-start md:self-center`}>{t('browseAll')} <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
           </div>
         </article>
         <article aria-roledescription="slide" aria-label={`2 / ${count}`} aria-hidden={index !== 1 || undefined} className={slideBox}>

@@ -32,7 +32,7 @@ function Section({ id, title, hint, state, categories, onRefresh, onMore, emptyT
         {!state.loading && !state.error && !state.items.length && (
           <div className="w-full rounded-2xl border border-dashed border-border/60 p-6 text-center text-sm text-muted-foreground">
             {emptyText || t('empty')}{' '}
-            <Link href="/dashboard/marketplace" className="font-medium text-foreground underline underline-offset-4">{signedIn ? t('postFirst') : t('postFirstLogin')}</Link>
+            <Link href="/profile" className="font-medium text-foreground underline underline-offset-4">{signedIn ? t('postFirst') : t('postFirstLogin')}</Link>
           </div>
         )}
         {state.items.map((it) => <RequestCard key={it.id} item={it} categories={categories} />)}

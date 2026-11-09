@@ -8,7 +8,7 @@ import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
+const SITE_URL = (process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').replace(/\/+$/, '');
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;

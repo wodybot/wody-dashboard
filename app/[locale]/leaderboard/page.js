@@ -9,7 +9,7 @@ import { discordCdnUrl } from '@/lib/utils';
 import { INVITE_URL } from '@/lib/content';
 import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
+const SITE_URL = (process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').replace(/\/+$/, '');
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;

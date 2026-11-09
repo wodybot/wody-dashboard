@@ -92,7 +92,7 @@ const PREMIUM_ONLY_TOGGLE_KEYS = new Set(['backups', 'temporary_voice', 'youtube
 
 const UPDATES_ANNOUNCE_CHANNEL_ID = process.env.UPDATES_ANNOUNCE_CHANNEL_ID || '1529784783847166032';
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
+const SITE_URL = (process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').replace(/\/+$/, '');
 
 const UPDATE_THUMBNAIL_URL = `${SITE_URL}/api/status/bot-avatar`;
 

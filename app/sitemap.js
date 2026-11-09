@@ -4,7 +4,7 @@ import { MODULE_SEO_SLUGS, moduleSeoLocales } from '@/lib/module-seo';
 import { BLOG_COLLECTION } from '@/lib/blog';
 import { C } from '@/lib/community/db';
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
+const SITE_URL = (process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').replace(/\/+$/, '');
 
 function localizedEntry(path, rest, onlyLocales) {
   const locs = onlyLocales || routing.locales;

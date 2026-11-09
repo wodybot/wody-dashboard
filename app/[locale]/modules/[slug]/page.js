@@ -15,7 +15,7 @@ import { OG_IMAGES, TWITTER_CARD, moduleOgImages, moduleTwitter } from '@/lib/se
 // Modules that have an animated link preview in the look of the homepage ad (GIF Preview Studio name)
 const MODULE_GIF = { counting: 'counting', statistics: 'statistics', battlepass: 'battlepass', theme_studio: 'themes', link: 'link' };
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
+const SITE_URL = (process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').replace(/\/+$/, '');
 
 export const revalidate = 3600;
 

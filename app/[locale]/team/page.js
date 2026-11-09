@@ -11,7 +11,7 @@ import { getDiscordUserById, avatarUrl } from '@/lib/discord';
 import { discordCdnUrl } from '@/lib/utils';
 import { OG_IMAGES, TWITTER_CARD } from '@/lib/seo-social';
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
+const SITE_URL = (process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').replace(/\/+$/, '');
 
 const SOCIAL_ICONS = {
   discord: (p) => (

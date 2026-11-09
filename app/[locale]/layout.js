@@ -12,7 +12,7 @@ import { routing } from '@/i18n/routing';
 import { SeasonConfigProvider } from '@/components/seasonal/seasonal-context';
 import SeasonalEffectsMount from '@/components/seasonal/seasonal-effects-mount';
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
+const SITE_URL = (process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').replace(/\/+$/, '');
 const SITE_NAME = 'Wody';
 
 export function generateStaticParams() {

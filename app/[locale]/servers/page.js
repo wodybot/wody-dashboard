@@ -15,7 +15,7 @@ import { ROBOTS_INDEX, absolute, jsonLd, localePath, localizedAlternates, ogLoca
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online';
+const SITE_URL = (process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').replace(/\/+$/, '');
 
 const hasFilters = (p) => Boolean(p.q || p.category || p.subcategory || p.tags.length || p.languages.length || p.features.length || p.members || p.activity || p.server_type || p.page);
 

@@ -160,7 +160,7 @@ function MyRequests({ data, reload, cats, guilds }) {
             {(r.status === 'pending_server' || r.pending_state === 'pending_server') && <p className="mt-2 text-xs text-muted-foreground">{t('requests.heldServer')}</p>}
             <div className="mt-3 flex flex-wrap gap-2">
               {r.status !== 'suspended' && r.status !== 'pending_verification' && <button className={btn} onClick={() => setView({ kind: 'edit', id: r.id })}>{t('requests.edit')}</button>}
-              {r.status === 'published' && <Link className={btn} href={`/marketplace/${r.id}`}>{t('view')}</Link>}
+              {r.status === 'published' && <Link className={btn} href={`/collab/${r.id}`}>{t('view')}</Link>}
               {r.status === 'published' && <button className={btn} onClick={() => setView({ kind: 'apps', req: r })}>{t('requests.applications', { n: r.applications })}</button>}
               {r.status === 'published' && !r.closed_at && <button className={btn} onClick={() => act(r.id, '/close')}>{t('requests.close')}</button>}
               {r.status === 'published' && r.closed_at && !r.accepted_application_id && <button className={btn} onClick={() => act(r.id, '/reopen')}>{t('requests.reopen')}</button>}
@@ -182,7 +182,7 @@ function MyApplications({ data, reload }) {
   return (
     <ul className="space-y-3">{data.applications.map((a) => (
       <li key={a.id} className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-border/60 bg-card/50 p-4">
-        <div className="min-w-0"><Link href={`/marketplace/${a.request_id}`} className="block truncate font-semibold hover:underline">{a.title}</Link><p className="text-xs text-muted-foreground">{fmtDate(a.created_at, locale)}</p></div>
+        <div className="min-w-0"><Link href={`/collab/${a.request_id}`} className="block truncate font-semibold hover:underline">{a.title}</Link><p className="text-xs text-muted-foreground">{fmtDate(a.created_at, locale)}</p></div>
         <div className="flex items-center gap-2"><span className="rounded-full border border-border/60 px-2 py-0.5 text-[11px]">{t(`appStatus.${a.status}`)}</span>{['sent', 'shortlisted'].includes(a.status) && <button className={btn} onClick={() => withdraw(a.id)}>{t('apps.withdraw')}</button>}</div>
       </li>))}</ul>
   );
@@ -297,7 +297,7 @@ export default function MarketplaceHubClient() {
       <TopNav />
       <main id="main-content" className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6">
         <h1 className="mb-1 flex items-center gap-3 text-3xl font-black"><ListChecks className="h-7 w-7 text-[#e6cd8c]" aria-hidden="true" />{t('hub.title')}</h1>
-        <p className="mb-6 text-sm text-muted-foreground">{t('hub.text')} <Link href="/marketplace" className="underline underline-offset-4">{t('browseAll')}</Link></p>
+        <p className="mb-6 text-sm text-muted-foreground">{t('hub.text')} <Link href="/collab" className="underline underline-offset-4">{t('browseAll')}</Link></p>
         {auth === 'out' ? (
           <div className="rounded-2xl border border-border/60 p-8 text-center"><a href="/api/auth/login?next=%2Fdashboard%2Fmarketplace" className={btnMain}>{t('apply.login')}</a></div>
         ) : auth === 'loading' ? <p className="text-sm text-muted-foreground">{t('loading')}</p> : (

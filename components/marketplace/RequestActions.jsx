@@ -123,7 +123,7 @@ function ReportForm({ request }) {
 
 export default function RequestActions({ request, signedIn }) {
   const t = useTranslations('marketplace');
-  const loginHref = `/api/auth/login?next=${encodeURIComponent(`/marketplace/${request.id}`)}`;
+  const loginHref = `/api/auth/login?next=${encodeURIComponent(`/collab/${request.id}`)}`;
   return (
     <>
       <Panel icon={Send} title={t('apply.title')}>

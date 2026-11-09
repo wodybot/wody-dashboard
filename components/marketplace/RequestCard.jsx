@@ -21,7 +21,7 @@ export default function RequestCard({ item, categories, band = false }) {
           {item.tags.slice(0, 4).map((tag) => <li key={tag} className="rounded-md bg-muted/60 px-1.5 py-0.5 text-[11px]">#{tag}</li>)}
         </ul>
       )}
-      <Link href={`/marketplace/${item.id}`} className="mt-4 inline-flex items-center gap-1.5 self-start rounded-lg border border-border/70 px-3 py-1.5 text-sm font-medium transition hover:border-[#e6cd8c]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e6cd8c]">
+      <Link href={`/collab/${item.id}`} className="mt-4 inline-flex items-center gap-1.5 self-start rounded-lg border border-border/70 px-3 py-1.5 text-sm font-medium transition hover:border-[#e6cd8c]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e6cd8c]">
         {t('view')} <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" aria-hidden="true" />
       </Link>
     </article>
