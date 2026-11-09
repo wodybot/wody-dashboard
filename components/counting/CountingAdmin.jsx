@@ -7,7 +7,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Plus, Save, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ModuleTabs, LoadingOrError, SwitchRow, formatDate } from '@/components/module-kit';
+import { ModuleTabs, LoadingOrError, SwitchRow, formatDate, ConfirmDialog } from '@/components/module-kit';
 import { MODES, POWERUPS, RARITIES, ACHIEVEMENT_METRICS, CHALLENGE_TYPES, COMPETITION_MODES } from '@/lib/counting/constants';
 import { ct, useCt, useCtText, Problems, NumberInput, TextInput, SelectInput, DateInput } from './ct-kit';
 
@@ -247,9 +247,17 @@ function GamesTab({ writable }) {
   const [skip, setSkip] = useState(0);
   const { loading, data, error, reload } = useCt(`owner/games?skip=${skip}${status ? `&status=${status}` : ''}`, [status, skip]);
   const w = useWrite(reload);
+  const confirmT = useTranslations('counting.games.confirm.delete');
+  const [removing, setRemoving] = useState(null);
   return (
     <div className="space-y-4">
       <Note note={w.note} />
+      <ConfirmDialog
+        open={Boolean(removing)} onOpenChange={(o) => { if (!o) setRemoving(null); }} busy={w.busy}
+        title={confirmT('title')} description={confirmT('text')} confirmLabel={t('delete')}
+        typed={removing ? String(removing.name || removing.channel_id).trim() : undefined}
+        onConfirm={async () => { const r = await w.run(`owner/games/${removing.channel_id}`, 'DELETE'); if (r.ok) setRemoving(null); }}
+      />
       <SelectInput label={t('filter')} value={status} onChange={(v) => { setStatus(v); setSkip(0); }} options={[{ value: '', label: t('all') }, ...['active', 'paused', 'archived'].map((s) => ({ value: s, label: stateT(s) }))]} />
       <LoadingOrError loading={loading} error={error} onRetry={reload} data={data}>
         {(data?.games || []).map((g) => (
@@ -259,6 +267,7 @@ function GamesTab({ writable }) {
               {g.status === 'active' ? <Button type="button" variant="outline" size="sm" onClick={() => w.run(`owner/games/${g.channel_id}/pause`, 'POST', {})}>{t('pause')}</Button> : null}
               {g.status === 'paused' ? <Button type="button" variant="outline" size="sm" onClick={() => w.run(`owner/games/${g.channel_id}/resume`, 'POST', {})}>{t('resume')}</Button> : null}
               {g.status !== 'archived' ? <Button type="button" variant="outline" size="sm" onClick={() => w.run(`owner/games/${g.channel_id}/archive`, 'POST', {})}>{t('archive')}</Button> : null}
+              <Button type="button" variant="outline" size="sm" className="border-red-500/40 text-red-400 hover:bg-red-500/10 hover:text-red-300" onClick={() => setRemoving(g)}><Trash2 className="mr-1.5 h-4 w-4" />{t('delete')}</Button>
             </div>) : null}
           </Card>))}
         <div className="flex justify-between"><Button type="button" variant="ghost" disabled={skip === 0} onClick={() => setSkip(Math.max(0, skip - 24))}>{t('prev')}</Button><Button type="button" variant="ghost" disabled={(data?.games || []).length < 24} onClick={() => setSkip(skip + 24)}>{t('next')}</Button></div>

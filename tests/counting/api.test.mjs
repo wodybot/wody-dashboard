@@ -226,3 +226,43 @@ test('bot requests are limited per server so a click storm cannot flood the queu
   bot.stop();
   assert.ok(limited >= 1 && limited < 16);
 });
+
+test('delete: a manager removes a game of their own server through the bot; the owner can too; nobody else', async () => {
+  const db = fresh(); await seed(db);
+  const bot = startBot(db);
+  // the server manager
+  const ok = await call('DELETE', `guilds/${G1}/games/${C1}`, { user: MANAGER });
+  assert.equal(ok.status, 200, JSON.stringify(ok.body));
+  const asked = bot.asked.at(-1);
+  assert.deepEqual([asked.payload.action, asked.payload.channel_id, String(asked.guild_id), String(asked.requested_by)], ['delete', C1, G1, MANAGER]);
+  // an archived game can be removed as well (that is what frees its channel)
+  state.guilds = [{ id: G2, owner: false, permissions: '32' }];
+  assert.equal((await call('DELETE', `guilds/${G2}/games/${C4}`, { user: MANAGER })).status, 200);
+  assert.equal(bot.asked.at(-1).payload.channel_id, C4);
+  state.guilds = [{ id: G1, owner: false, permissions: '32' }];
+  // not their server, a game that is not there, a cross-site request, a member without Manage Server
+  assert.equal((await call('DELETE', `guilds/${G1}/games/${C3}`, { user: MANAGER })).status, 404);               // C3 belongs to G2
+  assert.equal((await call('DELETE', `guilds/${G2}/games/${C3}`, { user: MANAGER })).status, 403);               // no rights in G2
+  assert.equal((await call('DELETE', `guilds/${G1}/games/5000000000000000099`, { user: MANAGER })).status, 404);
+  assert.equal((await call('DELETE', `guilds/${G1}/games/${C1}`, { user: MANAGER, origin: 'https://evil.test' })).status, 403);
+  assert.equal((await call('DELETE', `guilds/${G1}/games/${C1}`)).status, 401);
+  state.guilds = [];
+  assert.equal((await call('DELETE', `guilds/${G1}/games/${C1}`, { user: MEMBER })).status, 403);
+  const count = bot.asked.length;
+  // the owner works on any server; a delegate only reads
+  assert.equal((await call('DELETE', `owner/games/${C3}`, { user: OWNER })).status, 200);
+  assert.deepEqual([bot.asked.at(-1).payload.action, bot.asked.at(-1).payload.channel_id, String(bot.asked.at(-1).guild_id)], ['delete', C3, G2]);
+  assert.equal((await call('DELETE', `owner/games/${C3}`, { user: DELEGATE })).status, 403);
+  assert.equal((await call('DELETE', `owner/games/${C3}`, { user: MEMBER })).status, 403);
+  assert.equal((await call('DELETE', 'owner/games/5000000000000000099', { user: OWNER })).status, 404);
+  assert.equal(bot.asked.length, count + 1, 'refused requests never reach the bot');
+  bot.stop();
+});
+
+test('delete: what the bot says comes back to the page', async () => {
+  const db = fresh(); await seed(db);
+  const bot = startBot(db, () => ({ ok: false, code: 'not_found' }));
+  const r = await call('DELETE', `guilds/${G1}/games/${C1}`, { user: MANAGER });
+  assert.equal(r.status, 409); assert.equal(r.body.error, 'not_found');
+  bot.stop();
+});

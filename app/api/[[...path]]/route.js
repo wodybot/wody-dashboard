@@ -1321,7 +1321,7 @@ async function handleGet(request, context) {
         admin_role_id: null, moderator_role_id: null, ticket_role_id: null,
         mod_log_channel_id: null, mod_log_enabled: false,
         suggestion_channel_id: null, level_channel_id: null,
-        level_message: '{wy:giveaway} {user.mention} reached **level {level}**!', level_up_embed: true,
+        level_message: '{user.mention} reached **level {level}**!', level_up_embed: true,
         level_enabled: true, level_ignored_channel_ids: [],
         level_message_format: 'legacy', level_card_background_url: null,
         level_card_overlay_color: '#111827', level_card_overlay_opacity: 55,

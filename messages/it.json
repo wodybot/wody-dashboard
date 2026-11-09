@@ -10013,6 +10013,7 @@
       "games": {
         "all": "Tutti",
         "archive": "Archivia",
+        "delete": "Elimina",
         "filter": "Stato",
         "next": "Successivo",
         "pause": "Pausa",
@@ -10274,7 +10275,7 @@
       "archived": "Questo gioco è archiviato.",
       "before_start": "La fine deve essere dopo l’inizio.",
       "busy": "Il gioco è occupato, riprova tra un attimo.",
-      "channel_in_use": "Questo canale ha già un gioco di conteggio.",
+      "channel_in_use": "Questo canale ha già un gioco di conteggio. Elimina prima quello vecchio per avviarne uno nuovo.",
       "competition_closed": "Questa competizione è chiusa.",
       "constant_sequence": "La sequenza non cambia mai.",
       "counting_disabled": "Il conteggio è disattivato per ora.",
@@ -10313,11 +10314,16 @@
     },
     "games": {
       "archive": "Archivia",
+      "archivedHint": "Questo gioco è archiviato: il conteggio è fermo e non può più essere modificato. Eliminalo per liberare il canale e avviare un nuovo gioco.",
       "channel": "Canale",
       "confirm": {
         "archive": {
           "text": "Il canale smette di contare ed esce dall’elenco pubblico. Statistiche e badge restano.",
           "title": "Archiviare questo gioco?"
+        },
+        "delete": {
+          "text": "Il gioco viene rimosso, insieme alla classifica dei migliori contatori, ai round conclusi e ai totali giornalieri. Il canale può avviare un nuovo gioco. Ogni membro conserva i propri totali personali, i record e i badge. L’azione non può essere annullata.",
+          "title": "Eliminare definitivamente questo gioco?"
         },
         "reset": {
           "text": "Il conteggio riparte dall’inizio. Statistiche, record e badge restano.",
@@ -10326,8 +10332,10 @@
       },
       "create": "Crea il gioco",
       "created": "Il gioco è stato creato. Il primo membro può iniziare a contare.",
+      "delete": "Elimina",
       "done": {
         "archive": "Il gioco è stato archiviato.",
+        "delete": "Il gioco è stato eliminato.",
         "grant_save": "È stato aggiunto un salvataggio.",
         "pause": "Il gioco è in pausa.",
         "reset": "Il conteggio è stato azzerato. Le statistiche restano.",

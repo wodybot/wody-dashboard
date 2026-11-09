@@ -41,7 +41,9 @@ function GamesTab({ guildId, meta, games, reload, onEdit }) {
   };
   const act = async (game, action) => {
     setBusy(true); setNote(null);
-    const r = await ct(`guilds/${guildId}/games/${game.channel_id}/${action}`, { method: 'POST', body: {} });
+    const r = action === 'delete'
+      ? await ct(`guilds/${guildId}/games/${game.channel_id}`, { method: 'DELETE' })
+      : await ct(`guilds/${guildId}/games/${game.channel_id}/${action}`, { method: 'POST', body: {} });
     setBusy(false); setConfirm(null);
     setNote(r.ok ? { tone: 'ok', text: t(`games.done.${action}`) } : { tone: 'error', text: api(r.data?.error) });
     reload();
@@ -67,13 +69,15 @@ function GamesTab({ guildId, meta, games, reload, onEdit }) {
             <div>
               <h3 className="text-lg font-semibold">{g.name || g.channel_id}</h3>
               <p className="text-sm text-muted-foreground">{modeT(g.mode.startsWith('custom:') ? 'custom_sequence' : g.mode)} · {stateT(g.status)} · {t('games.record')}: {g.highest_index} · {t('games.total')}: {g.stats.total_valid}</p>
+              {g.status === 'archived' ? <p className="mt-1 text-sm text-amber-300/90">{t('games.archivedHint')}</p> : null}
             </div>
             <div className="flex flex-wrap gap-2">
-              <Button type="button" variant="outline" size="sm" onClick={() => onEdit(g.channel_id)}><Settings className="mr-1.5 h-4 w-4" />{t('games.settings')}</Button>
+              <Button type="button" variant="outline" size="sm" disabled={g.status === 'archived'} onClick={() => onEdit(g.channel_id)}><Settings className="mr-1.5 h-4 w-4" />{t('games.settings')}</Button>
               {g.status === 'active' ? <Button type="button" variant="outline" size="sm" disabled={busy} onClick={() => act(g, 'pause')}><Pause className="mr-1.5 h-4 w-4" />{t('games.pause')}</Button> : null}
               {g.status === 'paused' ? <Button type="button" variant="outline" size="sm" disabled={busy} onClick={() => act(g, 'resume')}><Play className="mr-1.5 h-4 w-4" />{t('games.resume')}</Button> : null}
               <Button type="button" variant="outline" size="sm" disabled={busy || g.status === 'archived'} onClick={() => setConfirm({ g, action: 'reset' })}><RotateCcw className="mr-1.5 h-4 w-4" />{t('games.reset')}</Button>
               <Button type="button" variant="outline" size="sm" disabled={busy || g.status === 'archived'} onClick={() => setConfirm({ g, action: 'archive' })}><Archive className="mr-1.5 h-4 w-4" />{t('games.archive')}</Button>
+              <Button type="button" variant="outline" size="sm" disabled={busy} className="border-red-500/40 text-red-400 hover:bg-red-500/10 hover:text-red-300" onClick={() => setConfirm({ g, action: 'delete' })}><Trash2 className="mr-1.5 h-4 w-4" />{t('games.delete')}</Button>
             </div>
           </div>
         </Card>
@@ -82,6 +86,7 @@ function GamesTab({ guildId, meta, games, reload, onEdit }) {
         open={Boolean(confirm)} onOpenChange={(o) => { if (!o) setConfirm(null); }} busy={busy}
         title={confirm ? t(`games.confirm.${confirm.action}.title`) : ''} description={confirm ? t(`games.confirm.${confirm.action}.text`) : ''}
         confirmLabel={confirm ? t(`games.${confirm.action}`) : ''} onConfirm={() => confirm && act(confirm.g, confirm.action)}
+        typed={confirm?.action === 'delete' ? String(confirm.g.name || confirm.g.channel_id).trim() : undefined}
       />
     </div>
   );
@@ -154,7 +159,8 @@ function SettingsTab({ guildId, meta, games, selected, onSelect, reload }) {
           {games.map((g) => <option key={g.channel_id} value={g.channel_id}>{g.name || g.channel_id}</option>)}
         </select>
       </F>
-      {game && cfg ? (
+      {game && game.status === 'archived' ? <p role="status" className="rounded-md border border-amber-400/40 bg-amber-500/10 px-3 py-2 text-sm text-amber-300">{t('games.archivedHint')}</p> : null}
+      {game && cfg && game.status !== 'archived' ? (
         <>
           <Toast message={note?.text} tone={note?.tone} />
           <div className="grid gap-3 sm:grid-cols-2">
@@ -307,7 +313,10 @@ export default function CountingPanel({ guildId, meta }) {
   const [selected, setSelected] = useState(null);
   const games = data?.games || [];
   const edit = useCallback((id) => { setSelected(id); setTab('settings'); }, []);
-  useEffect(() => { if (!selected && games.length) setSelected(games[0].channel_id); }, [games, selected]);
+  useEffect(() => {
+    if (!games.length) { if (selected) setSelected(null); return; }
+    if (!selected || !games.some((g) => g.channel_id === selected)) setSelected((games.find((g) => g.status !== 'archived') || games[0]).channel_id);
+  }, [games, selected]);
   return (
     <div>
       <div className="mb-6"><h2 className="text-2xl font-bold">{t('title')}</h2><p className="mt-1.5 text-[15px] text-muted-foreground">{t('panelIntro')}</p></div>

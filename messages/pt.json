@@ -10013,6 +10013,7 @@
       "games": {
         "all": "Todos",
         "archive": "Arquivar",
+        "delete": "Eliminar",
         "filter": "Estado",
         "next": "Seguinte",
         "pause": "Pausar",
@@ -10274,7 +10275,7 @@
       "archived": "Este jogo está arquivado.",
       "before_start": "O fim tem de ser depois do início.",
       "busy": "O jogo está ocupado, tente novamente daqui a pouco.",
-      "channel_in_use": "Este canal já tem um jogo de contagem.",
+      "channel_in_use": "Este canal já tem um jogo de contagem. Elimina primeiro o anterior para começar um novo.",
       "competition_closed": "Esta competição está encerrada.",
       "constant_sequence": "A sequência nunca muda.",
       "counting_disabled": "A contagem está desativada por agora.",
@@ -10313,11 +10314,16 @@
     },
     "games": {
       "archive": "Arquivar",
+      "archivedHint": "Este jogo está arquivado: a contagem está parada e já não pode ser editado. Elimina-o para libertar o canal e começar um jogo novo.",
       "channel": "Canal",
       "confirm": {
         "archive": {
           "text": "O canal deixa de contar e sai da lista pública. As estatísticas e os emblemas mantêm-se.",
           "title": "Arquivar este jogo?"
+        },
+        "delete": {
+          "text": "O jogo é removido, juntamente com a classificação dos melhores contadores, as rondas terminadas e os totais diários. O canal pode começar um jogo novo. Cada membro mantém os seus totais pessoais, recordes e emblemas. Esta ação não pode ser anulada.",
+          "title": "Eliminar este jogo definitivamente?"
         },
         "reset": {
           "text": "A contagem recomeça do início. As estatísticas, os recordes e os emblemas mantêm-se.",
@@ -10326,8 +10332,10 @@
       },
       "create": "Criar jogo",
       "created": "O jogo foi criado. O primeiro membro já pode começar a contar.",
+      "delete": "Eliminar",
       "done": {
         "archive": "O jogo foi arquivado.",
+        "delete": "O jogo foi eliminado.",
         "grant_save": "Foi adicionado um salva-vidas.",
         "pause": "O jogo está em pausa.",
         "reset": "A contagem foi reposta. As estatísticas mantêm-se.",

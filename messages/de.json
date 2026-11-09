@@ -10013,6 +10013,7 @@
       "games": {
         "all": "Alle",
         "archive": "Archivieren",
+        "delete": "Löschen",
         "filter": "Status",
         "next": "Weiter",
         "pause": "Pausieren",
@@ -10274,7 +10275,7 @@
       "archived": "Dieses Spiel ist archiviert.",
       "before_start": "Das Ende muss nach dem Beginn liegen.",
       "busy": "Das Spiel ist beschäftigt, versuche es gleich noch einmal.",
-      "channel_in_use": "Dieser Kanal hat bereits ein Zählspiel.",
+      "channel_in_use": "Dieser Kanal hat bereits ein Zählspiel. Lösche zuerst das alte, um ein neues zu starten.",
       "competition_closed": "Dieser Wettbewerb ist beendet.",
       "constant_sequence": "Die Folge ändert sich nie.",
       "counting_disabled": "Zählen ist vorerst ausgeschaltet.",
@@ -10313,11 +10314,16 @@
     },
     "games": {
       "archive": "Archivieren",
+      "archivedHint": "Dieses Spiel ist archiviert: Das Zählen ist gestoppt und das Spiel lässt sich nicht mehr bearbeiten. Lösche es, um den Kanal für ein neues Spiel freizugeben.",
       "channel": "Kanal",
       "confirm": {
         "archive": {
           "text": "Der Kanal hört auf zu zählen und verschwindet aus der öffentlichen Liste. Statistiken und Abzeichen bleiben erhalten.",
           "title": "Dieses Spiel archivieren?"
+        },
+        "delete": {
+          "text": "Das Spiel wird entfernt, zusammen mit seiner Bestenliste, den abgeschlossenen Runden und den Tagessummen. Der Kanal kann ein neues Spiel starten. Jedes Mitglied behält seine persönlichen Summen, Rekorde und Abzeichen. Das lässt sich nicht rückgängig machen.",
+          "title": "Dieses Spiel endgültig löschen?"
         },
         "reset": {
           "text": "Das Zählen beginnt wieder am Anfang. Statistiken, Rekorde und Abzeichen bleiben erhalten.",
@@ -10326,8 +10332,10 @@
       },
       "create": "Spiel erstellen",
       "created": "Das Spiel wurde erstellt. Das erste Mitglied kann mit dem Zählen beginnen.",
+      "delete": "Löschen",
       "done": {
         "archive": "Das Spiel wurde archiviert.",
+        "delete": "Das Spiel wurde gelöscht.",
         "grant_save": "Eine Rettung wurde hinzugefügt.",
         "pause": "Das Spiel ist pausiert.",
         "reset": "Der Zählstand wurde zurückgesetzt. Statistiken bleiben erhalten.",

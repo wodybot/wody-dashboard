@@ -4467,7 +4467,7 @@ function LevelsPanel({ guildId, meta }) {
     .replaceAll('{user.name}', 'Member')
     .replaceAll('{level}', '12')
     .replaceAll('{guild.name}', meta.guild.name || 'Your Server');
-  const levelPreviewText = replacePreview(settings.level_message || '{wy:giveaway} {user.mention} reached **level {level}**!');
+  const levelPreviewText = replacePreview(settings.level_message || '{user.mention} reached **level {level}**!');
   const setFormat = (format) => setSettings({ ...settings, level_message_format: format });
   const savePayload = {
     level_channel_id: settings.level_channel_id,
@@ -4587,7 +4587,7 @@ function LevelsPanel({ guildId, meta }) {
               ) : messageFormat === 'embed' ? (
                 <EmbedPreview
                   accentColor="#57F287"
-                  title="{wy:giveaway} Level up!"
+                  title="Level up!"
                   description={levelPreviewText}
                   timestamp
                   imageUrl={levelEmbedPreviewImage || null}
@@ -4597,7 +4597,7 @@ function LevelsPanel({ guildId, meta }) {
               ) : (
                 <EmbedPreview
                   accentColor={messageFormat === 'card' ? accentColor : '#57F287'}
-                  title="{wy:giveaway} Level up!"
+                  title="Level up!"
                   description={levelPreviewText}
                   timestamp
                   buttons={[{ label: 'Leaderboard', style: 'link' }]}

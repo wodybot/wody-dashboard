@@ -10013,6 +10013,7 @@
       "games": {
         "all": "Alle",
         "archive": "Archiveren",
+        "delete": "Verwijderen",
         "filter": "Status",
         "next": "Volgende",
         "pause": "Pauzeren",
@@ -10274,7 +10275,7 @@
       "archived": "Dit spel is gearchiveerd.",
       "before_start": "Het einde moet na het begin liggen.",
       "busy": "Het spel is bezig, probeer het zo opnieuw.",
-      "channel_in_use": "Dit kanaal heeft al een telspel.",
+      "channel_in_use": "Dit kanaal heeft al een telspel. Verwijder eerst het oude om een nieuw spel te starten.",
       "competition_closed": "Deze wedstrijd is gesloten.",
       "constant_sequence": "De reeks verandert nooit.",
       "counting_disabled": "Tellen staat voorlopig uit.",
@@ -10313,11 +10314,16 @@
     },
     "games": {
       "archive": "Archiveren",
+      "archivedHint": "Dit spel is gearchiveerd: het tellen is gestopt en het spel kan niet meer worden bewerkt. Verwijder het om het kanaal vrij te maken voor een nieuw spel.",
       "channel": "Kanaal",
       "confirm": {
         "archive": {
           "text": "Het kanaal stopt met tellen en verdwijnt uit de openbare lijst. Statistieken en badges blijven bewaard.",
           "title": "Dit spel archiveren?"
+        },
+        "delete": {
+          "text": "Het spel wordt verwijderd, samen met de ranglijst van de beste tellers, de afgeronde rondes en de dagtotalen. Het kanaal kan een nieuw spel starten. Elk lid houdt zijn persoonlijke totalen, records en badges. Dit kan niet ongedaan worden gemaakt.",
+          "title": "Dit spel definitief verwijderen?"
         },
         "reset": {
           "text": "De telling begint weer vanaf het begin. Statistieken, records en badges blijven bewaard.",
@@ -10326,8 +10332,10 @@
       },
       "create": "Spel maken",
       "created": "Het spel is gemaakt. Het eerste lid kan beginnen met tellen.",
+      "delete": "Verwijderen",
       "done": {
         "archive": "Het spel is gearchiveerd.",
+        "delete": "Het spel is verwijderd.",
         "grant_save": "Er is een redding toegevoegd.",
         "pause": "Het spel is gepauzeerd.",
         "reset": "De telling is gereset. Statistieken blijven bewaard.",

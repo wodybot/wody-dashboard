@@ -10013,6 +10013,7 @@
       "games": {
         "all": "All",
         "archive": "Archive",
+        "delete": "Delete",
         "filter": "Status",
         "next": "Next",
         "pause": "Pause",
@@ -10274,7 +10275,7 @@
       "archived": "This game is archived.",
       "before_start": "The end must be after the start.",
       "busy": "The game is busy, try again in a moment.",
-      "channel_in_use": "This channel already has a counting game.",
+      "channel_in_use": "This channel already has a counting game. Delete the old one first to start a new one.",
       "competition_closed": "This competition is closed.",
       "constant_sequence": "The sequence never changes.",
       "counting_disabled": "Counting is switched off for now.",
@@ -10313,11 +10314,16 @@
     },
     "games": {
       "archive": "Archive",
+      "archivedHint": "This game is archived: counting is stopped and it can no longer be edited. Delete it to free the channel for a new game.",
       "channel": "Channel",
       "confirm": {
         "archive": {
           "text": "The channel stops counting and leaves the public list. Statistics and badges are kept.",
           "title": "Archive this game?"
+        },
+        "delete": {
+          "text": "The game is removed, together with its top counters, its finished rounds and its daily totals. The channel can start a new game. Each member keeps their personal totals, records and badges. This cannot be undone.",
+          "title": "Delete this game for good?"
         },
         "reset": {
           "text": "The count starts again from the beginning. Statistics, records and badges are kept.",
@@ -10326,8 +10332,10 @@
       },
       "create": "Create game",
       "created": "The game was created. The first member can start counting.",
+      "delete": "Delete",
       "done": {
         "archive": "The game was archived.",
+        "delete": "The game was deleted.",
         "grant_save": "A save was added.",
         "pause": "The game is paused.",
         "reset": "The count was reset. Statistics are kept.",

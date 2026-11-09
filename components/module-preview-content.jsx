@@ -189,8 +189,8 @@ export const PREVIEWS = {
   },
   levels: {
     channel: 'levels', color: '#57F287',
-    title: '{wy:giveaway} Level up!',
-    text: '{wy:giveaway} @Member reached **level 12**!',
+    title: 'Level up!',
+    text: '@Member reached **level 12**!',
     image: 'aurora', stamp: true,
     buttons: [{ label: 'Leaderboard', style: 'link' }],
   },

@@ -10013,6 +10013,7 @@
       "games": {
         "all": "Tümü",
         "archive": "Arşivle",
+        "delete": "Sil",
         "filter": "Durum",
         "next": "Sonraki",
         "pause": "Duraklat",
@@ -10274,7 +10275,7 @@
       "archived": "Bu oyun arşivlendi.",
       "before_start": "Bitiş, başlangıçtan sonra olmalı.",
       "busy": "Oyun meşgul, birazdan tekrar dene.",
-      "channel_in_use": "Bu kanalda zaten bir sayma oyunu var.",
+      "channel_in_use": "Bu kanalda zaten bir sayma oyunu var. Yeni bir oyun başlatmak için önce eskisini sil.",
       "competition_closed": "Bu yarışma kapandı.",
       "constant_sequence": "Dizi hiç değişmiyor.",
       "counting_disabled": "Sayma şimdilik kapalı.",
@@ -10313,11 +10314,16 @@
     },
     "games": {
       "archive": "Arşivle",
+      "archivedHint": "Bu oyun arşivlenmiş: sayım durdurulmuş ve artık düzenlenemez. Kanalı yeni bir oyun için boşaltmak üzere oyunu sil.",
       "channel": "Kanal",
       "confirm": {
         "archive": {
           "text": "Kanal saymayı bırakır ve herkese açık listeden çıkar. İstatistikler ve rozetler korunur.",
           "title": "Bu oyun arşivlensin mi?"
+        },
+        "delete": {
+          "text": "Oyun; en iyi sayanlar listesi, tamamlanan turlar ve günlük toplamlarla birlikte kaldırılır. Kanal yeni bir oyun başlatabilir. Her üye kişisel toplamlarını, rekorlarını ve rozetlerini korur. Bu işlem geri alınamaz.",
+          "title": "Bu oyun kalıcı olarak silinsin mi?"
         },
         "reset": {
           "text": "Sayım baştan başlar. İstatistikler, rekorlar ve rozetler korunur.",
@@ -10326,8 +10332,10 @@
       },
       "create": "Oyunu oluştur",
       "created": "Oyun oluşturuldu. İlk üye saymaya başlayabilir.",
+      "delete": "Sil",
       "done": {
         "archive": "Oyun arşivlendi.",
+        "delete": "Oyun silindi.",
         "grant_save": "Bir kurtarma eklendi.",
         "pause": "Oyun duraklatıldı.",
         "reset": "Sayım sıfırlandı. İstatistikler korunur.",

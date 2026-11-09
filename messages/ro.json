@@ -10014,6 +10014,7 @@
       "games": {
         "all": "Toate",
         "archive": "Arhivează",
+        "delete": "Șterge",
         "filter": "Stare",
         "next": "Înainte",
         "pause": "Pauză",
@@ -10275,7 +10276,7 @@
       "archived": "Acest joc este arhivat.",
       "before_start": "Sfârșitul trebuie să fie după început.",
       "busy": "Jocul este ocupat, încearcă din nou într-un moment.",
-      "channel_in_use": "Acest canal are deja un joc de numărare.",
+      "channel_in_use": "Acest canal are deja un joc de numărare. Șterge-l mai întâi pe cel vechi ca să începi unul nou.",
       "competition_closed": "Această competiție este închisă.",
       "constant_sequence": "Șirul nu se schimbă niciodată.",
       "counting_disabled": "Numărarea este oprită momentan.",
@@ -10314,11 +10315,16 @@
     },
     "games": {
       "archive": "Arhivează",
+      "archivedHint": "Acest joc este arhivat: numărătoarea este oprită și jocul nu mai poate fi modificat. Șterge-l ca să eliberezi canalul pentru un joc nou.",
       "channel": "Canal",
       "confirm": {
         "archive": {
           "text": "Canalul nu mai numără și iese din lista publică. Statisticile și insignele se păstrează.",
           "title": "Arhivezi acest joc?"
+        },
+        "delete": {
+          "text": "Jocul este eliminat, împreună cu topul numărătorilor, rundele terminate și totalurile zilnice. Canalul poate începe un joc nou. Fiecare membru își păstrează totalurile personale, recordurile și insignele. Acțiunea nu poate fi anulată.",
+          "title": "Ștergi definitiv acest joc?"
         },
         "reset": {
           "text": "Numărătoarea reîncepe de la început. Statisticile, recordurile și insignele se păstrează.",
@@ -10327,8 +10333,10 @@
       },
       "create": "Creează jocul",
       "created": "Jocul a fost creat. Primul membru poate începe să numere.",
+      "delete": "Șterge",
       "done": {
         "archive": "Jocul a fost arhivat.",
+        "delete": "Jocul a fost șters.",
         "grant_save": "A fost adăugată o salvare.",
         "pause": "Jocul este în pauză.",
         "reset": "Numărătoarea a fost resetată. Statisticile se păstrează.",

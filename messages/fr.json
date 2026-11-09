@@ -10013,6 +10013,7 @@
       "games": {
         "all": "Tous",
         "archive": "Archiver",
+        "delete": "Supprimer",
         "filter": "Statut",
         "next": "Suivant",
         "pause": "Pause",
@@ -10274,7 +10275,7 @@
       "archived": "Ce jeu est archivé.",
       "before_start": "La fin doit être après le début.",
       "busy": "Le jeu est occupé, réessayez dans un instant.",
-      "channel_in_use": "Ce salon a déjà un jeu de comptage.",
+      "channel_in_use": "Ce salon a déjà un jeu de comptage. Supprimez d’abord l’ancien pour en démarrer un nouveau.",
       "competition_closed": "Cette compétition est clôturée.",
       "constant_sequence": "La suite ne change jamais.",
       "counting_disabled": "Le comptage est désactivé pour l’instant.",
@@ -10313,11 +10314,16 @@
     },
     "games": {
       "archive": "Archiver",
+      "archivedHint": "Ce jeu est archivé : le comptage est arrêté et il ne peut plus être modifié. Supprimez-le pour libérer le salon et démarrer un nouveau jeu.",
       "channel": "Salon",
       "confirm": {
         "archive": {
           "text": "Le salon arrête de compter et quitte la liste publique. Les statistiques et badges sont conservés.",
           "title": "Archiver ce jeu ?"
+        },
+        "delete": {
+          "text": "Le jeu est retiré, avec son classement des meilleurs compteurs, ses manches terminées et ses totaux quotidiens. Le salon peut démarrer un nouveau jeu. Chaque membre garde ses totaux personnels, ses records et ses badges. Cette action est irréversible.",
+          "title": "Supprimer définitivement ce jeu ?"
         },
         "reset": {
           "text": "Le compte repart du début. Les statistiques, records et badges sont conservés.",
@@ -10326,8 +10332,10 @@
       },
       "create": "Créer le jeu",
       "created": "Le jeu a été créé. Le premier membre peut commencer à compter.",
+      "delete": "Supprimer",
       "done": {
         "archive": "Le jeu a été archivé.",
+        "delete": "Le jeu a été supprimé.",
         "grant_save": "Une sauvegarde a été ajoutée.",
         "pause": "Le jeu est en pause.",
         "reset": "Le compte a été réinitialisé. Les statistiques sont conservées.",

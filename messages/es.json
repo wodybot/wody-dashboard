@@ -10013,6 +10013,7 @@
       "games": {
         "all": "Todos",
         "archive": "Archivar",
+        "delete": "Eliminar",
         "filter": "Estado",
         "next": "Siguiente",
         "pause": "Pausar",
@@ -10274,7 +10275,7 @@
       "archived": "Este juego está archivado.",
       "before_start": "El final debe ser posterior al inicio.",
       "busy": "El juego está ocupado, inténtalo de nuevo en un momento.",
-      "channel_in_use": "Este canal ya tiene un juego de conteo.",
+      "channel_in_use": "Este canal ya tiene un juego de conteo. Elimina primero el anterior para empezar uno nuevo.",
       "competition_closed": "Esta competición está cerrada.",
       "constant_sequence": "La secuencia nunca cambia.",
       "counting_disabled": "El conteo está desactivado por ahora.",
@@ -10313,11 +10314,16 @@
     },
     "games": {
       "archive": "Archivar",
+      "archivedHint": "Este juego está archivado: el conteo está detenido y ya no se puede editar. Elimínalo para liberar el canal y empezar un juego nuevo.",
       "channel": "Canal",
       "confirm": {
         "archive": {
           "text": "El canal deja de contar y sale de la lista pública. Las estadísticas y las insignias se conservan.",
           "title": "¿Archivar este juego?"
+        },
+        "delete": {
+          "text": "El juego se elimina junto con su clasificación de mejores contadores, sus rondas terminadas y sus totales diarios. El canal puede empezar un juego nuevo. Cada miembro conserva sus totales personales, sus récords y sus insignias. Esta acción no se puede deshacer.",
+          "title": "¿Eliminar este juego definitivamente?"
         },
         "reset": {
           "text": "La cuenta empieza otra vez desde el principio. Las estadísticas, los récords y las insignias se conservan.",
@@ -10326,8 +10332,10 @@
       },
       "create": "Crear juego",
       "created": "El juego se ha creado. El primer miembro puede empezar a contar.",
+      "delete": "Eliminar",
       "done": {
         "archive": "El juego se archivó.",
+        "delete": "El juego se eliminó.",
         "grant_save": "Se añadió un salvavidas.",
         "pause": "El juego está en pausa.",
         "reset": "Se reinició la cuenta. Las estadísticas se conservan.",
