@@ -13,7 +13,7 @@
         "build": "next build",
         "start": "next start",
         "test:link": "node --import ./tests/link/register.mjs --test tests/link/link.test.mjs",
-        "test:battlepass": "node --import ./tests/battlepass/register.mjs --test tests/battlepass/battlepass.test.mjs tests/battlepass/api.test.mjs tests/battlepass/forms.test.mjs tests/battlepass/studio.test.mjs",
+        "test:battlepass": "node --import ./tests/battlepass/register.mjs --test tests/battlepass/battlepass.test.mjs tests/battlepass/api.test.mjs tests/battlepass/forms.test.mjs tests/battlepass/studio.test.mjs tests/battlepass/schedule.test.mjs",
         "test:counting": "node --import ./tests/battlepass/register.mjs --test tests/counting/api.test.mjs tests/counting/messages.test.mjs",
         "test:emoji": "node --test tests/emoji/emoji.test.mjs",
         "test:themes": "node --import ./tests/battlepass/register.mjs --test tests/themes/themes.test.mjs && node --import ./tests/gifstudio/register.mjs --test tests/themes/engine.test.mjs",

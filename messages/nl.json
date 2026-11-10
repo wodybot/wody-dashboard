@@ -3697,7 +3697,17 @@
       "errorGeneric": "Dat kanaal kon niet worden toegevoegd.",
       "channelAdded": "Kanaal toegevoegd. Je krijgt een melding bij elke nieuwe video.",
       "channelRemoved": "Kanaal verwijderd.",
-      "couldNotRemoveThatChannel": "Dat kanaal kon niet worden verwijderd."
+      "couldNotRemoveThatChannel": "Dat kanaal kon niet worden verwijderd.",
+      "notifyShortsLabel": "Nieuwe Shorts",
+      "notifyShortsHint": "Kondigt aan wanneer een kanaal een YouTube Short plaatst.",
+      "shortMessagePlaceholder": "Nieuwe Short van {channel_title}: {video_title} {video_url}",
+      "formatLinkLabel": "Alleen link",
+      "formatLinkDesc": "Stuurt alleen de link en Discord laadt zelf afbeelding en banner, zonder embed.",
+      "linkOnlyNote": "Alleen je ping, bericht en link worden verstuurd. Discord maakt de preview.",
+      "separateChannelsLabel": "Aparte kanaal per type",
+      "separateChannelsHint": "Uit: video s, Shorts en livestreams gaan allemaal naar het kanaal hierboven. Aan: kies per type een kanaal.",
+      "kindChannelLabel": "Kanaal voor dit type",
+      "kindChannelHint": "Waar dit soort melding heen gaat. Mag hetzelfde kanaal zijn als de andere."
     },
     "captcha": {
       "description": "Nieuwe leden moeten zich verifiëren op een webpagina voordat ze een rol krijgen, zo blijven geautomatiseerde accounts weg van je server.",
@@ -8983,7 +8993,8 @@
       "avatar_decoration": "Avatarversiering",
       "seasonal_item": "Seizoensitem",
       "collectible": "Verzamelobject",
-      "showcase_item": "Vitrine-item"
+      "showcase_item": "Vitrine-item",
+      "custom": "Eigen item"
     },
     "claimMode": {
       "manual": "Het lid haalt hem op de website op",
@@ -9029,7 +9040,8 @@
       "seasons": "Globale seizoenen",
       "protection": "Bescherming",
       "reports": "Rapporten",
-      "audit": "Auditlogboek"
+      "audit": "Auditlogboek",
+      "calendar": "Kalender"
     },
     "actions": {
       "activate": "Activeren",
@@ -9105,7 +9117,8 @@
       "invalid_xp": "Elk niveau heeft minstens 1 XP nodig.",
       "xp_too_high": "Een niveau mag hoogstens {max} XP vragen.",
       "total_too_high": "Alle niveaus samen mogen hoogstens {max} XP vragen.",
-      "unreachable": "Niemand kan deze pass afmaken: de niveaus vragen {total} XP, maar een lid kan in dit seizoen hoogstens {cap} XP verdienen (limieten voor berichten en spraak plus opdrachten). Verlaag de niveaus of de XP per niveau, of verhoog de seizoenslimieten op het tabblad XP."
+      "unreachable": "Niemand kan deze pass afmaken: de niveaus vragen {total} XP, maar een lid kan in dit seizoen hoogstens {cap} XP verdienen (limieten voor berichten en spraak plus opdrachten). Verlaag de niveaus of de XP per niveau, of verhoog de seizoenslimieten op het tabblad XP.",
+      "server_only": "Alleen een serverseizoen kan een rol geven."
     },
     "apiErrors": {
       "generic": "Er is iets misgegaan. Probeer het opnieuw.",
@@ -9143,7 +9156,12 @@
       "channel_not_found": "De bot kan dat kanaal niet vinden. Controleer het kanaal-ID.",
       "no_permission": "De bot kan niet schrijven in dat kanaal.",
       "send_failed": "Het bericht kon niet worden verzonden.",
-      "not_server_season": "Alleen serverseizoenen kunnen worden aangekondigd."
+      "not_server_season": "Alleen serverseizoenen kunnen worden aangekondigd.",
+      "invalid_dates": "Kies een start- en einddatum.",
+      "end_before_start": "Het einde moet na de start liggen.",
+      "in_the_past": "Deze data liggen al in het verleden.",
+      "too_long": "Een geblokkeerde periode duurt maximaal 400 dagen.",
+      "too_many_blocks": "Er zijn te veel geblokkeerde periodes. Verwijder er eerst een."
     },
     "claimErrors": {
       "generic": "De beloning kon niet worden opgehaald.",
@@ -9165,7 +9183,8 @@
       "another_guild_active": "Er is al een ander seizoen actief op deze server. Beëindig of pauzeer het eerst.",
       "bad_status": "Alleen concepten, geplande en gepauzeerde seizoenen kunnen worden geactiveerd.",
       "not_owner": "Alleen de platformeigenaar kan Globale seizoenen activeren.",
-      "invalid_config": "Corrigeer de seizoensinstellingen voordat je activeert."
+      "invalid_config": "Corrigeer de seizoensinstellingen voordat je activeert.",
+      "wody_busy": "Deze data zijn bezet door een Wody Battle Pass of geblokkeerd door Wody. Kies andere data in de kalender."
     },
     "general": {
       "title": "Seizoensgegevens",
@@ -9480,6 +9499,15 @@
         "startsOn": "Begint {date}",
         "noDate": "De startdatum wordt binnenkort bekendgemaakt.",
         "next": "Hierna: {name}"
+      },
+      "lineup": {
+        "title": "Alle Wody Battle Passes",
+        "text": "De lopende en de pas starende.",
+        "active": "Actief",
+        "scheduled": "Gepland",
+        "from": "Vanaf",
+        "until": "tot",
+        "serversNote": "Zolang een Wody Battle Pass loopt, kunnen servers geen eigen starten. Serverseizoenen behouden hun instellingen en komen daarna terug."
       }
     },
     "sections": {
@@ -9887,6 +9915,90 @@
       "saveError": "Opslaan mislukt. Probeer het opnieuw.",
       "level": "Level {level}",
       "loadError": "Je Battle Pass-items konden niet worden geladen."
+    },
+    "calendar": {
+      "ownerTitle": "Data die servers niet kunnen gebruiken",
+      "ownerIntro": "Blokkeer hier data. Servereigenaren zien ze als bezet door de Battle Pass van Wody en kunnen er geen seizoen overheen publiceren. Actieve of geplande Wody-seizoenen zijn ook gemarkeerd.",
+      "from": "Van",
+      "to": "Tot",
+      "reason": "Reden (zichtbaar voor servereigenaren)",
+      "reasonPlaceholder": "bijv. Winterevent",
+      "reasonHint": "Optioneel. Laat leeg om alleen te tonen dat de data bezet zijn door de Battle Pass van Wody.",
+      "add": "Deze data blokkeren",
+      "added": "Data geblokkeerd.",
+      "removed": "Blokkade verwijderd.",
+      "listTitle": "Geblokkeerde data",
+      "listIntro": "{count} van {max} gebruikt.",
+      "empty": "Geen geblokkeerde data.",
+      "kind": {
+        "global": "Bezet door de Battle Pass van Wody",
+        "blocked": "Geblokkeerd door Wody"
+      },
+      "yours": "Jouw seizoen",
+      "clash": "Overlap",
+      "prev": "Vorige maand",
+      "next": "Volgende maand",
+      "pickStart": "Klik op de eerste dag",
+      "pickEnd": "Klik nu op de laatste dag",
+      "conflictText": "Deze data botsen met: {names}. Kies andere data, je kunt er niet overheen publiceren.",
+      "freeText": "Deze data zijn vrij. Zonder einddatum loopt je seizoen tot je het beëindigt en kan het niet worden gepubliceerd als later een Wody Battle Pass gepland staat."
+    },
+    "readiness": {
+      "ready": "Klaar om te publiceren.",
+      "missing": "{count, plural, one {Nog # ding voor je kunt publiceren} other {Nog # dingen voor je kunt publiceren}}",
+      "introLater": "Dit seizoen start later. Het wordt nu gepubliceerd en begint op de startdatum.",
+      "introNow": "Dit seizoen start zodra je het publiceert.",
+      "items": {
+        "name": "Een naam",
+        "levels": "Minstens één level",
+        "xp_source": "Een manier om XP te verdienen (berichten of voice)",
+        "rewards": "Minstens één beloning",
+        "start_future": "De startdatum ligt in de toekomst",
+        "start_now": "Start direct bij publicatie",
+        "end_after_start": "Het einde ligt na de start",
+        "end_not_past": "De einddatum is nog niet voorbij",
+        "premium": "De server heeft Premium",
+        "no_wody_overlap": "De data zijn vrij van de Battle Pass van Wody",
+        "channel": "Een kanaal voor de aankondigingen (aanbevolen)",
+        "description": "Een korte beschrijving (aanbevolen)"
+      },
+      "fix": {
+        "name": "Vul het in op het tabblad Algemeen.",
+        "levels": "Stel het aantal levels in op het tabblad Levels.",
+        "xp_source": "Zet berichten of voice aan op het tabblad XP.",
+        "rewards": "Voeg er een toe op het tabblad Beloningen.",
+        "end_after_start": "Pas de data aan op het tabblad Algemeen.",
+        "end_not_past": "Kies een einddatum in de toekomst op het tabblad Algemeen.",
+        "no_wody_overlap": "Kies andere dagen in de kalender, de bezette zijn gemarkeerd.",
+        "premium": "Een serverseizoen heeft Premium nodig op deze server.",
+        "channel": "Kies het op het tabblad Algemeen, bij Meldingen.",
+        "description": "Voeg het toe op het tabblad Algemeen."
+      }
+    },
+    "custom": {
+      "preview": "Voorbeeld",
+      "lookTitle": "Uiterlijk van de badge",
+      "lookHint": "Kies een vorm en kleur. Je afbeelding komt erin. Laat het zo voor de standaard ronde look.",
+      "shape": "Vorm",
+      "shapes": {
+        "circle": "Cirkel",
+        "shield": "Schild",
+        "star": "Ster",
+        "hex": "Zeshoek",
+        "ribbon": "Lint"
+      },
+      "color": "Kleur",
+      "resetLook": "Terug naar de standaardlook",
+      "claimTitle": "Wanneer iemand het claimt",
+      "claimHint": "Alles optioneel. Wijzig de knoptekst, toon een eigen bericht, stuur het privé of geef een rol.",
+      "claimLabel": "Knoptekst",
+      "claimLabelHint": "Vervangt het woord Claim bij deze beloning.",
+      "claimRole": "Te geven rol (ID)",
+      "claimRoleHint": "De bot geeft deze rol bij het claimen. De rol moet onder de rol van de bot staan.",
+      "claimMessage": "Bericht",
+      "claimMessageHint": "Wordt na het claimen aan het lid getoond. Maximaal 300 tekens.",
+      "claimDm": "Ook als privébericht sturen",
+      "claimDmHint": "De bot stuurt het bericht naar de DM's van het lid. Hiervoor is een bericht nodig."
     }
   },
   "battlepassHelp": {

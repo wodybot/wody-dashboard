@@ -3697,7 +3697,17 @@
       "errorGeneric": "Could not add that channel.",
       "channelAdded": "Channel added. You will be notified on new uploads.",
       "channelRemoved": "Channel removed.",
-      "couldNotRemoveThatChannel": "Could not remove that channel."
+      "couldNotRemoveThatChannel": "Could not remove that channel.",
+      "notifyShortsLabel": "New Shorts",
+      "notifyShortsHint": "Announce when a channel posts a YouTube Short.",
+      "shortMessagePlaceholder": "New Short from {channel_title}: {video_title} {video_url}",
+      "formatLinkLabel": "Link only",
+      "formatLinkDesc": "Sends just the link and Discord loads the image and banner by itself, with no embed.",
+      "linkOnlyNote": "Only your ping, your message and the link are sent. Discord builds the preview.",
+      "separateChannelsLabel": "Different channel for each type",
+      "separateChannelsHint": "Off: videos, Shorts and live streams all go to the channel above. On: pick a channel for each.",
+      "kindChannelLabel": "Channel for this type",
+      "kindChannelHint": "Where this kind of notification is sent. It can be the same channel as the others."
     },
     "captcha": {
       "description": "New members must verify on a web page before receiving a role, keeping automated accounts away from your server.",
@@ -8983,7 +8993,8 @@
       "avatar_decoration": "Avatar decoration",
       "seasonal_item": "Seasonal item",
       "collectible": "Collectible",
-      "showcase_item": "Showcase item"
+      "showcase_item": "Showcase item",
+      "custom": "Custom item"
     },
     "claimMode": {
       "manual": "The member claims it on the website",
@@ -9029,7 +9040,8 @@
       "seasons": "Global seasons",
       "protection": "Protection",
       "reports": "Reports",
-      "audit": "Audit log"
+      "audit": "Audit log",
+      "calendar": "Calendar"
     },
     "actions": {
       "activate": "Activate",
@@ -9105,7 +9117,8 @@
       "invalid_xp": "Every level needs at least 1 XP.",
       "xp_too_high": "A level can need at most {max} XP.",
       "total_too_high": "All levels together can need at most {max} XP.",
-      "unreachable": "Nobody can finish this pass: the levels need {total} XP, but a member can earn at most {cap} XP in this season (message and voice limits plus quests). Lower the levels or the XP per level, or raise the season limits in the XP tab."
+      "unreachable": "Nobody can finish this pass: the levels need {total} XP, but a member can earn at most {cap} XP in this season (message and voice limits plus quests). Lower the levels or the XP per level, or raise the season limits in the XP tab.",
+      "server_only": "Only a server season can give a role."
     },
     "apiErrors": {
       "generic": "Something went wrong. Please try again.",
@@ -9143,7 +9156,12 @@
       "channel_not_found": "The bot cannot find that channel. Check the channel ID.",
       "no_permission": "The bot cannot write in that channel.",
       "send_failed": "The message could not be sent.",
-      "not_server_season": "Only server seasons can be announced."
+      "not_server_season": "Only server seasons can be announced.",
+      "invalid_dates": "Pick a start and an end date.",
+      "end_before_start": "The end must be after the start.",
+      "in_the_past": "These dates are already in the past.",
+      "too_long": "A blocked range can last at most 400 days.",
+      "too_many_blocks": "There are too many blocked ranges. Remove one first."
     },
     "claimErrors": {
       "generic": "The reward could not be claimed.",
@@ -9165,7 +9183,8 @@
       "another_guild_active": "Another season is already active on this server. End or pause it first.",
       "bad_status": "Only drafts, scheduled and paused seasons can be activated.",
       "not_owner": "Only the platform owner can activate Global seasons.",
-      "invalid_config": "Fix the season settings before activating."
+      "invalid_config": "Fix the season settings before activating.",
+      "wody_busy": "These dates are taken by a Wody Battle Pass or blocked by Wody. Pick other dates on the calendar."
     },
     "general": {
       "title": "Season details",
@@ -9480,6 +9499,15 @@
         "startsOn": "Starts {date}",
         "noDate": "The start date will be announced soon.",
         "next": "Next: {name}"
+      },
+      "lineup": {
+        "title": "All Wody Battle Passes",
+        "text": "The ones running now and the ones that start later.",
+        "active": "Active",
+        "scheduled": "Scheduled",
+        "from": "From",
+        "until": "until",
+        "serversNote": "While a Wody Battle Pass is running, servers cannot run their own. Server seasons keep their settings and come back afterwards."
       }
     },
     "sections": {
@@ -9887,6 +9915,90 @@
       "saveError": "Could not save. Try again.",
       "level": "Level {level}",
       "loadError": "Could not load your Battle Pass items."
+    },
+    "calendar": {
+      "ownerTitle": "Dates servers cannot use",
+      "ownerIntro": "Block dates here. Server owners see them as busy, taken by Wody's Battle Pass, and cannot publish a season over them. Wody seasons that are active or scheduled are marked too.",
+      "from": "From",
+      "to": "To",
+      "reason": "Reason (shown to server owners)",
+      "reasonPlaceholder": "e.g. Winter event",
+      "reasonHint": "Optional. Leave it empty to show only that the dates are taken by Wody's Battle Pass.",
+      "add": "Block these dates",
+      "added": "Dates blocked.",
+      "removed": "Block removed.",
+      "listTitle": "Blocked dates",
+      "listIntro": "{count} of {max} used.",
+      "empty": "No blocked dates.",
+      "kind": {
+        "global": "Taken by Wody's Battle Pass",
+        "blocked": "Blocked by Wody"
+      },
+      "yours": "Your season",
+      "clash": "Overlap",
+      "prev": "Previous month",
+      "next": "Next month",
+      "pickStart": "Click the first day",
+      "pickEnd": "Now click the last day",
+      "conflictText": "These dates collide with: {names}. Pick other dates, you cannot publish over them.",
+      "freeText": "These dates are free. Without an end date your season runs until you end it, and cannot be published if a Wody Battle Pass is scheduled later."
+    },
+    "readiness": {
+      "ready": "Ready to publish.",
+      "missing": "{count, plural, one {# thing left before you can publish} other {# things left before you can publish}}",
+      "introLater": "This season starts later. It is published now and begins on its start date.",
+      "introNow": "This season starts as soon as you publish it.",
+      "items": {
+        "name": "A name",
+        "levels": "At least one level",
+        "xp_source": "A way to earn XP (messages or voice)",
+        "rewards": "At least one reward",
+        "start_future": "Start date is in the future",
+        "start_now": "Starts as soon as you publish",
+        "end_after_start": "The end is after the start",
+        "end_not_past": "The end date has not passed",
+        "premium": "The server has Premium",
+        "no_wody_overlap": "The dates are free of Wody's Battle Pass",
+        "channel": "A channel for the announcements (recommended)",
+        "description": "A short description (recommended)"
+      },
+      "fix": {
+        "name": "Write it on the General tab.",
+        "levels": "Set the number of levels on the Levels tab.",
+        "xp_source": "Turn on messages or voice on the XP tab.",
+        "rewards": "Add one on the Rewards tab.",
+        "end_after_start": "Change the dates on the General tab.",
+        "end_not_past": "Pick an end date in the future on the General tab.",
+        "no_wody_overlap": "Pick other days on the calendar, the busy ones are marked.",
+        "premium": "A server season needs Premium on this server.",
+        "channel": "Choose it on the General tab, under Notifications.",
+        "description": "Add it on the General tab."
+      }
+    },
+    "custom": {
+      "preview": "Preview",
+      "lookTitle": "Badge look",
+      "lookHint": "Pick a shape and a colour. Your image goes inside it. Leave it as it is for the default round look.",
+      "shape": "Shape",
+      "shapes": {
+        "circle": "Circle",
+        "shield": "Shield",
+        "star": "Star",
+        "hex": "Hexagon",
+        "ribbon": "Ribbon"
+      },
+      "color": "Colour",
+      "resetLook": "Back to the default look",
+      "claimTitle": "When someone claims it",
+      "claimHint": "All optional. Change the button text, show your own message, send it privately, or give a role.",
+      "claimLabel": "Button text",
+      "claimLabelHint": "Replaces the word Claim on this reward.",
+      "claimRole": "Role to give (ID)",
+      "claimRoleHint": "The bot gives this role when the reward is claimed. The role must be below the bot's role.",
+      "claimMessage": "Message",
+      "claimMessageHint": "Shown to the member after they claim. Up to 300 characters.",
+      "claimDm": "Also send it as a private message",
+      "claimDmHint": "The bot sends the message to the member's DMs. It needs a message above."
     }
   },
   "battlepassHelp": {

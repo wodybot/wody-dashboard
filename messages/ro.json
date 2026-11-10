@@ -3698,7 +3698,17 @@
       "errorGeneric": "Canalul nu a putut fi adăugat.",
       "channelAdded": "Canal adăugat. Vei fi notificat la fiecare video nou.",
       "channelRemoved": "Canal eliminat.",
-      "couldNotRemoveThatChannel": "Acel canal nu a putut fi eliminat."
+      "couldNotRemoveThatChannel": "Acel canal nu a putut fi eliminat.",
+      "notifyShortsLabel": "Short-uri noi",
+      "notifyShortsHint": "Anunță când un canal postează un Short pe YouTube.",
+      "shortMessagePlaceholder": "Short nou de la {channel_title}: {video_title} {video_url}",
+      "formatLinkLabel": "Doar link",
+      "formatLinkDesc": "Trimite doar linkul, iar Discord încarcă singur imaginea și bannerul, fără embed.",
+      "linkOnlyNote": "Se trimit doar ping-ul, mesajul tău și linkul. Previzualizarea o face Discord.",
+      "separateChannelsLabel": "Canal diferit pentru fiecare tip",
+      "separateChannelsHint": "Oprit: videoclipurile, Short-urile și live-urile merg toate în canalul de mai sus. Pornit: alegi câte un canal pentru fiecare.",
+      "kindChannelLabel": "Canal pentru acest tip",
+      "kindChannelHint": "Unde se trimite acest tip de notificare. Poate fi același canal ca la celelalte."
     },
     "captcha": {
       "description": "Membrii noi trebuie să se verifice pe o pagină web înainte să primească un rol, ținând conturile automate departe de server.",
@@ -8984,7 +8994,8 @@
       "avatar_decoration": "Decorațiune de avatar",
       "seasonal_item": "Obiect de sezon",
       "collectible": "Obiect de colecționat",
-      "showcase_item": "Obiect de vitrină"
+      "showcase_item": "Obiect de vitrină",
+      "custom": "Obiect personalizat"
     },
     "claimMode": {
       "manual": "Membrul o revendică pe site",
@@ -9030,7 +9041,8 @@
       "seasons": "Sezoane globale",
       "protection": "Protecție",
       "reports": "Rapoarte",
-      "audit": "Jurnal de audit"
+      "audit": "Jurnal de audit",
+      "calendar": "Calendar"
     },
     "actions": {
       "activate": "Activează",
@@ -9106,7 +9118,8 @@
       "invalid_xp": "Fiecare nivel are nevoie de cel puțin 1 XP.",
       "xp_too_high": "Un nivel poate cere cel mult {max} XP.",
       "total_too_high": "Toate nivelurile împreună pot cere cel mult {max} XP.",
-      "unreachable": "Nimeni nu poate termina acest pass: nivelurile cer {total} XP, dar un membru poate câștiga cel mult {cap} XP în acest sezon (limitele pentru mesaje și voce plus misiunile). Scade numărul de niveluri sau XP-ul pe nivel, ori mărește limitele sezonului în tab-ul XP."
+      "unreachable": "Nimeni nu poate termina acest pass: nivelurile cer {total} XP, dar un membru poate câștiga cel mult {cap} XP în acest sezon (limitele pentru mesaje și voce plus misiunile). Scade numărul de niveluri sau XP-ul pe nivel, ori mărește limitele sezonului în tab-ul XP.",
+      "server_only": "Doar un sezon de server poate da un rol."
     },
     "apiErrors": {
       "generic": "Ceva nu a funcționat. Încearcă din nou.",
@@ -9144,7 +9157,12 @@
       "channel_not_found": "Botul nu găsește acel canal. Verifică ID-ul canalului.",
       "no_permission": "Botul nu poate scrie pe acel canal.",
       "send_failed": "Mesajul nu a putut fi trimis.",
-      "not_server_season": "Doar sezoanele de server pot fi anunțate."
+      "not_server_season": "Doar sezoanele de server pot fi anunțate.",
+      "invalid_dates": "Alege o dată de început și una de sfârșit.",
+      "end_before_start": "Sfârșitul trebuie să fie după început.",
+      "in_the_past": "Aceste date sunt deja în trecut.",
+      "too_long": "Un interval blocat poate dura cel mult 400 de zile.",
+      "too_many_blocks": "Sunt prea multe intervale blocate. Șterge unul mai întâi."
     },
     "claimErrors": {
       "generic": "Recompensa nu a putut fi revendicată.",
@@ -9166,7 +9184,8 @@
       "another_guild_active": "Un alt sezon este deja activ pe acest server. Încheie-l sau pune-l în pauză mai întâi.",
       "bad_status": "Pot fi activate doar ciornele, sezoanele programate și cele în pauză.",
       "not_owner": "Doar proprietarul platformei poate activa sezoane Globale.",
-      "invalid_config": "Corectează setările sezonului înainte de activare."
+      "invalid_config": "Corectează setările sezonului înainte de activare.",
+      "wody_busy": "Aceste date sunt ocupate de un Battle Pass Wody sau blocate de Wody. Alege alte date în calendar."
     },
     "general": {
       "title": "Detaliile sezonului",
@@ -9481,6 +9500,15 @@
         "startsOn": "Începe {date}",
         "noDate": "Data de start va fi anunțată în curând.",
         "next": "Urmează: {name}"
+      },
+      "lineup": {
+        "title": "Toate Battle Pass-urile Wody",
+        "text": "Cele active acum și cele care încep mai târziu.",
+        "active": "Activ",
+        "scheduled": "Programat",
+        "from": "De la",
+        "until": "până la",
+        "serversNote": "Cât timp un Battle Pass Wody este activ, serverele nu pot rula unul propriu. Sezoanele serverelor își păstrează setările și revin după aceea."
       }
     },
     "sections": {
@@ -9888,6 +9916,90 @@
       "saveError": "Nu s-a putut salva. Încearcă din nou.",
       "level": "Nivel {level}",
       "loadError": "Nu s-au putut încărca obiectele tale din Battle Pass."
+    },
+    "calendar": {
+      "ownerTitle": "Date pe care serverele nu le pot folosi",
+      "ownerIntro": "Blochează date aici. Proprietarii de servere le văd ca ocupate de Battle Pass-ul Wody și nu pot publica un sezon peste ele. Sezoanele Wody active sau programate sunt marcate și ele.",
+      "from": "De la",
+      "to": "Până la",
+      "reason": "Motiv (văzut de proprietarii de servere)",
+      "reasonPlaceholder": "ex. Eveniment de iarnă",
+      "reasonHint": "Opțional. Lasă gol ca să se vadă doar că datele sunt ocupate de Battle Pass-ul Wody.",
+      "add": "Blochează aceste date",
+      "added": "Datele au fost blocate.",
+      "removed": "Blocarea a fost ștearsă.",
+      "listTitle": "Date blocate",
+      "listIntro": "{count} din {max} folosite.",
+      "empty": "Nu există date blocate.",
+      "kind": {
+        "global": "Ocupat de Battle Pass-ul Wody",
+        "blocked": "Blocat de Wody"
+      },
+      "yours": "Sezonul tău",
+      "clash": "Suprapunere",
+      "prev": "Luna precedentă",
+      "next": "Luna următoare",
+      "pickStart": "Apasă pe prima zi",
+      "pickEnd": "Acum apasă pe ultima zi",
+      "conflictText": "Aceste date se suprapun cu: {names}. Alege alte date, nu poți publica peste ele.",
+      "freeText": "Aceste date sunt libere. Fără dată de sfârșit sezonul rulează până îl închei și nu poate fi publicat dacă un Battle Pass Wody este programat mai târziu."
+    },
+    "readiness": {
+      "ready": "Gata de publicat.",
+      "missing": "{count, plural, one {Mai ai # lucru de făcut înainte să publici} few {Mai ai # lucruri de făcut înainte să publici} other {Mai ai # de lucruri de făcut înainte să publici}}",
+      "introLater": "Acest sezon începe mai târziu. Se publică acum și pornește la data de început.",
+      "introNow": "Acest sezon pornește imediat ce îl publici.",
+      "items": {
+        "name": "Un nume",
+        "levels": "Cel puțin un nivel",
+        "xp_source": "O modalitate de a câștiga XP (mesaje sau voce)",
+        "rewards": "Cel puțin o recompensă",
+        "start_future": "Data de început este în viitor",
+        "start_now": "Pornește imediat la publicare",
+        "end_after_start": "Sfârșitul este după început",
+        "end_not_past": "Data de sfârșit nu a trecut",
+        "premium": "Serverul are Premium",
+        "no_wody_overlap": "Datele sunt libere de Battle Pass-ul Wody",
+        "channel": "Un canal pentru anunțuri (recomandat)",
+        "description": "O descriere scurtă (recomandat)"
+      },
+      "fix": {
+        "name": "Scrie-l în fila General.",
+        "levels": "Setează numărul de niveluri în fila Niveluri.",
+        "xp_source": "Pornește mesajele sau vocea în fila XP.",
+        "rewards": "Adaugă una în fila Recompense.",
+        "end_after_start": "Schimbă datele în fila General.",
+        "end_not_past": "Alege o dată de sfârșit în viitor în fila General.",
+        "no_wody_overlap": "Alege alte zile în calendar, cele ocupate sunt marcate.",
+        "premium": "Un sezon de server are nevoie de Premium pe acest server.",
+        "channel": "Alege-l în fila General, la Notificări.",
+        "description": "Adaug-o în fila General."
+      }
+    },
+    "custom": {
+      "preview": "Previzualizare",
+      "lookTitle": "Aspectul insignei",
+      "lookHint": "Alege o formă și o culoare. Imaginea ta intră în ea. Lasă ca atare pentru aspectul rotund implicit.",
+      "shape": "Formă",
+      "shapes": {
+        "circle": "Cerc",
+        "shield": "Scut",
+        "star": "Stea",
+        "hex": "Hexagon",
+        "ribbon": "Panglică"
+      },
+      "color": "Culoare",
+      "resetLook": "Înapoi la aspectul implicit",
+      "claimTitle": "Când cineva o revendică",
+      "claimHint": "Totul este opțional. Schimbă textul butonului, arată propriul mesaj, trimite-l în privat sau dă un rol.",
+      "claimLabel": "Text buton",
+      "claimLabelHint": "Înlocuiește cuvântul Revendică la această recompensă.",
+      "claimRole": "Rol de oferit (ID)",
+      "claimRoleHint": "Botul dă acest rol când recompensa este revendicată. Rolul trebuie să fie sub rolul botului.",
+      "claimMessage": "Mesaj",
+      "claimMessageHint": "Se arată membrului după revendicare. Maximum 300 de caractere.",
+      "claimDm": "Trimite-l și ca mesaj privat",
+      "claimDmHint": "Botul trimite mesajul în mesajele private ale membrului. Are nevoie de un mesaj mai sus."
     }
   },
   "battlepassHelp": {

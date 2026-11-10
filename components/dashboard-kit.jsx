@@ -355,7 +355,7 @@ export function DiscordMessage({ children, time, className = '', compact = false
   useEffect(() => { if (!time) setClock(previewClock()); }, [time]);
   return (
     <PreviewZoom>
-    <div className={`rounded-xl border border-[#1e1f22] bg-[#313338] p-3 sm:p-4 text-[#dbdee1] shadow-lg min-w-0 ${compact ? 'text-[13px]' : 'text-[14px]'} leading-[1.375] ${className}`}>
+    <div data-keep-color className={`rounded-xl border border-[#1e1f22] bg-[#313338] p-3 sm:p-4 text-[#dbdee1] shadow-lg min-w-0 ${compact ? 'text-[13px]' : 'text-[14px]'} leading-[1.375] ${className}`}>
       <div className="flex gap-3 min-w-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/api/status/bot-avatar" alt="" decoding="async" className="mt-0.5 h-10 w-10 shrink-0 rounded-full bg-[#1e1f22] object-cover" />

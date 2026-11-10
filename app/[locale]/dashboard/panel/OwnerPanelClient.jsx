@@ -20,6 +20,7 @@ import { SOCIALS } from '@/lib/collab/constants';
 import { RichTextEditor } from '@/components/rich-text-editor';
 import { OwnerImageField } from '@/components/owner-image-field';
 import { UpdateEntry } from '@/components/update-entry';
+import { UPDATE_LIMITS, updateOverflow } from '@/lib/updates';
 import { SimpleMarkdown } from '@/components/simple-markdown';
 import { OWNER_ID, COMMUNITY_INVITE, INVITE_URL } from '@/lib/content';
 import dynamic from 'next/dynamic';
@@ -48,6 +49,16 @@ const AutumnEffectsLayer = dynamic(() => import('@/components/autumn/autumn-effe
 const SeasonalEffectsLayer = dynamic(() => import('@/components/seasonal/seasonal-effects-layer'), { ssr: false });
 
 const UPDATE_TAGS = ['Feature', 'Fix', 'Announcement', 'Update'];
+
+function LimitCounter({ value, max, className = '' }) {
+  const n = String(value || '').trim().length;
+  const over = n - max;
+  return (
+    <span className={`text-[11px] tabular-nums ${over > 0 ? 'font-semibold text-destructive' : n > max * 0.9 ? 'text-amber-500' : 'text-muted-foreground'} ${className}`}>
+      {over > 0 ? `${n} / ${max} (over by ${over})` : `${n} / ${max}`}
+    </span>
+  );
+}
 
 const SECTIONS = [
   { id: 'overview', label: 'Overview', icon: LayoutGrid, group: 'General', desc: 'Key numbers and shortcuts' },
@@ -1054,9 +1065,24 @@ function DiscordComponentPreview({ config, imageSrc }) {
     setUpdatesLoading(false);
   }
 
+  const updOverflow = updateOverflow({ title: updTitle, body: updBody, tag: updTag, gallery: updGallery, credits: updCredits });
+  const updOverLabels = { title: 'Title', body: 'Body', tag: 'Tag', credits: 'Credits', gallery: 'Images' };
+  const updOverList = Object.entries(updOverflow).map(([k, v]) => {
+    const m = /^credits\.(\d+)\.(name|role)$/.exec(k);
+    const label = m ? `Credit ${Number(m[1]) + 1} ${m[2]}` : updOverLabels[k] || k;
+    return `${label} by ${v.over}`;
+  });
+  const updCreditsLen = updCredits.filter((c) => c.name.trim()).map((c) => (c.role ? `${c.name} (${c.role})` : c.name)).join('  ·  ').length + 14;
+  const updDiscordRoom = 3400 - updCreditsLen;
+  const updDiscordCut = String(updBody || '').replace(/!\[[^\]]*\]\([^)]*\)/g, '').trim().length - updDiscordRoom;
+
   async function postUpdate() {
     if (!updTitle.trim() || !updBody.trim()) {
       toast.error('Title and body are required');
+      return;
+    }
+    if (updOverList.length) {
+      toast.error('Too long', { description: `Shorten: ${updOverList.join(', ')}.` });
       return;
     }
     setUpdBusy(true);
@@ -1079,7 +1105,12 @@ function DiscordComponentPreview({ config, imageSrc }) {
       setUpdCredits([]);
       loadUpdates();
     } else {
-      toast.error('Failed to post update');
+      const err = await r.json().catch(() => null);
+      if (err?.error === 'too_long' && err.overflow) {
+        toast.error('Too long', { description: `Shorten: ${Object.entries(err.overflow).map(([k, v]) => `${k} by ${v.over}`).join(', ')}.` });
+      } else {
+        toast.error('Failed to post update');
+      }
     }
   }
 
@@ -1897,8 +1928,8 @@ function DiscordComponentPreview({ config, imageSrc }) {
                     </p>
                     <div className="grid sm:grid-cols-[1fr_180px] gap-3 mb-3">
                       <div>
-                        <Label>Title</Label>
-                        <Input value={updTitle} onChange={(e) => setUpdTitle(e.target.value)} placeholder="e.g. Reaction Roles v2 is live" maxLength={150} />
+                        <div className="flex items-center justify-between"><Label>Title</Label><LimitCounter value={updTitle} max={UPDATE_LIMITS.title} /></div>
+                        <Input value={updTitle} onChange={(e) => setUpdTitle(e.target.value)} placeholder="e.g. Reaction Roles v2 is live" aria-invalid={updTitle.trim().length > UPDATE_LIMITS.title} />
                       </div>
                       <div>
                         <Label>Tag</Label>
@@ -1911,15 +1942,15 @@ function DiscordComponentPreview({ config, imageSrc }) {
                       </div>
                     </div>
                     <div className="mb-3">
-                      <Label>Body</Label>
+                      <div className="flex items-center justify-between"><Label>Body</Label><LimitCounter value={updBody} max={UPDATE_LIMITS.body} /></div>
                       <RichTextEditor
                         value={updBody}
                         onChange={setUpdBody}
                         placeholder="What changed, what it fixes, or what's new..."
-                        maxLength={5000}
                         images
                         rows={5}
                       />
+                      {updDiscordCut > 0 ? <p className="mt-1.5 text-[11px] text-amber-500">Discord shows up to {updDiscordRoom} characters of the body. The last {updDiscordCut} are cut there, the website shows all of it.</p> : null}
                     </div>
                     <div className="mb-4 rounded-xl border border-border/60 bg-background/30 p-4">
                       <Label className="mb-2 block">Look</Label>
@@ -1959,8 +1990,8 @@ function DiscordComponentPreview({ config, imageSrc }) {
                       <div className="space-y-2">
                         {updCredits.map((c, i) => (
                           <div key={i} className="grid grid-cols-[1fr_1fr_auto] gap-2">
-                            <Input value={c.name} maxLength={40} placeholder="Name" onChange={(e) => setUpdCredits((prev) => prev.map((x, k) => (k === i ? { ...x, name: e.target.value } : x)))} />
-                            <Input value={c.role} maxLength={40} placeholder="Role, e.g. Design" onChange={(e) => setUpdCredits((prev) => prev.map((x, k) => (k === i ? { ...x, role: e.target.value } : x)))} />
+                            <Input value={c.name} aria-invalid={c.name.trim().length > UPDATE_LIMITS.creditName} placeholder="Name" onChange={(e) => setUpdCredits((prev) => prev.map((x, k) => (k === i ? { ...x, name: e.target.value } : x)))} />
+                            <Input value={c.role} aria-invalid={c.role.trim().length > UPDATE_LIMITS.creditRole} placeholder="Role, e.g. Design" onChange={(e) => setUpdCredits((prev) => prev.map((x, k) => (k === i ? { ...x, role: e.target.value } : x)))} />
                             <Button type="button" size="icon" variant="ghost" onClick={() => setUpdCredits((prev) => prev.filter((_, k) => k !== i))}><Trash2 className="h-4 w-4 text-destructive" /></Button>
                           </div>
                         ))}
@@ -1978,7 +2009,8 @@ function DiscordComponentPreview({ config, imageSrc }) {
                       </div>
                     ) : null}
 
-                    <Button onClick={postUpdate} disabled={updBusy} className="gradient-primary w-full sm:w-auto">
+                    {updOverList.length ? <p className="mb-3 text-xs font-medium text-destructive">Too long: {updOverList.join(', ')}. Shorten it to post.</p> : null}
+                    <Button onClick={postUpdate} disabled={updBusy || updOverList.length > 0} className="gradient-primary w-full sm:w-auto">
                       {updBusy ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
                       Post update
                     </Button>
@@ -2892,7 +2924,7 @@ function DiscordComponentPreview({ config, imageSrc }) {
                   <div role="tablist" aria-label="Discord Link Preview" className="mb-4 flex gap-1 rounded-xl border border-border/50 bg-card/40 p-1">
                     {[{ id: 'image', label: tg('source.opt.image'), icon: 'image' }, { id: 'gif', label: tg('title'), icon: 'gif' }].map((tb) => (
                       <button key={tb.id} type="button" role="tab" aria-selected={linkPreviewTab === tb.id} onClick={() => setLinkPreviewTab(tb.id)}
-                        className={`inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition-colors ${linkPreviewTab === tb.id ? 'bg-[#e6cd8c]/20 text-[#e6cd8c]' : 'text-muted-foreground hover:text-foreground'}`}>
+                        className={`inline-flex h-9 items-center gap-2 rounded-lg px-3.5 text-sm font-medium transition-colors ${linkPreviewTab === tb.id ? 'bg-[#e6cd8c]/20 text-[#e6cd8c]' : 'text-muted-foreground hover:text-foreground'}`}>
                         <WodyIcon name={tb.icon} size={16} />{tb.label}
                       </button>
                     ))}

@@ -184,9 +184,9 @@ export function ModuleTabs({ tabs, active, onChange, badges = {} }) {
       {tabs.map(({ key, label, icon: Icon }) => (
         <button
           key={key} type="button" role="tab" aria-selected={active === key} onClick={() => onChange(key)}
-          className={`inline-flex shrink-0 items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition-colors ${active === key ? 'bg-[#e6cd8c]/20 text-[#f2c091] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]' : 'text-muted-foreground hover:bg-white/[0.04] hover:text-foreground'}`}
+          className={`inline-flex h-9 shrink-0 items-center gap-2 rounded-lg px-3.5 text-sm font-medium transition-colors ${active === key ? 'bg-[#e6cd8c]/20 text-[#f2c091] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]' : 'text-muted-foreground hover:bg-white/[0.04] hover:text-foreground'}`}
         >
-          {Icon ? <Icon className="h-4 w-4" /> : null}
+          {Icon ? <Icon className="h-4 w-4 shrink-0" /> : null}
           {label}
           {badges[key] ? <span className="ml-0.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500/80 px-1 text-[10px] font-bold text-white">{badges[key]}</span> : null}
         </button>

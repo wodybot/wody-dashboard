@@ -67,7 +67,7 @@ import { PARTNERS_COLLECTION, parsePartnerInput, serializePartner, getPublicPart
 import { parseStaffInput, STAFF_COLLECTION } from '@/lib/staff';
 import { getDelegate, listAccess, mutateAccess } from '@/lib/owner-access';
 import { audit } from '@/lib/owner-audit';
-import { parseUpdateExtras, updateDiscordPayload } from '@/lib/updates';
+import { parseUpdateExtras, updateDiscordPayload, updateOverflow } from '@/lib/updates';
 import { parseAdvancedEmbed, linkButtonRows } from '@/lib/advanced-embed';
 
 const YOUTUBE_NOTIFY_MAX_CHANNELS = Number(process.env.YOUTUBE_NOTIFY_MAX_CHANNELS || 3);
@@ -2259,6 +2259,8 @@ async function handleMutation(request, context) {
     const session = await getSession();
     if (!session?.user || session.user.id !== OWNER_ID)
       return json({ error: 'forbidden' }, { status: 403 });
+    const overflow = updateOverflow({ ...body, title: stripEmoji(body.title), body: stripEmoji(body.body) });
+    if (Object.keys(overflow).length) return json({ error: 'too_long', overflow }, { status: 400 });
     const title = stripEmoji(body.title).slice(0, 150);
     const content = stripEmoji(body.body).slice(0, 5000);
     const tag = String(body.tag || 'Update').trim().slice(0, 40) || 'Update';
@@ -2692,22 +2694,28 @@ async function handleMutation(request, context) {
       return json({ error: 'invalid_channel' }, { status: 400 });
     }
 
-    const roleId = body.mention_role_id ? String(body.mention_role_id).trim() : null;
-    if (roleId && !(await assertRoleInGuild(guildId, roleId))) {
-      return json({ error: 'invalid_role' }, { status: 400 });
+    const KINDS = ['video', 'short', 'live'];
+    const fmt = (v) => (v === 'plain' || v === 'link' ? v : 'embed');
+    const roles = {};
+    for (const k of KINDS) {
+      const raw = body[k === 'video' ? 'mention_role_id' : `${k}_mention_role_id`];
+      const id = raw ? String(raw).trim() : null;
+      if (id && !(await assertRoleInGuild(guildId, id))) return json({ error: 'invalid_role' }, { status: 400 });
+      roles[k] = id;
     }
-    const liveRoleId = body.live_mention_role_id ? String(body.live_mention_role_id).trim() : null;
-    if (liveRoleId && !(await assertRoleInGuild(guildId, liveRoleId))) {
-      return json({ error: 'invalid_role' }, { status: 400 });
+    // One channel for everything is the default. A kind only has its own channel when the server picked one.
+    const own = {};
+    for (const k of KINDS) {
+      const id = body[`${k}_channel_id`] ? String(body[`${k}_channel_id`]).trim() : null;
+      if (id && id !== channelId && !(await assertChannelInGuild(guildId, id))) return json({ error: 'invalid_channel' }, { status: 400 });
+      own[k] = id && id !== channelId ? id : null;
     }
-
-    const message = body.message != null ? String(body.message).slice(0, 1800) : '';
-    const liveMessage = body.live_message != null ? String(body.live_message).slice(0, 1800) : '';
-    const fmt = (v) => (v === 'plain' ? 'plain' : 'embed');
+    const text = (v) => (v != null ? String(v).slice(0, 1800) : '');
 
     const notifyVideos = body.notify_videos !== false;
+    const notifyShorts = body.notify_shorts !== false;
     const notifyLive = body.notify_live !== false;
-    if (!notifyVideos && !notifyLive) return json({ error: 'nothing_selected' }, { status: 400 });
+    if (!notifyVideos && !notifyShorts && !notifyLive) return json({ error: 'nothing_selected' }, { status: 400 });
 
     const now = new Date();
     await db.collection('youtube_notify_settings').updateOne(
@@ -2716,13 +2724,20 @@ async function handleMutation(request, context) {
         $set: {
           guild_id: gidLong,
           channel_id: toLong(channelId),
-          mention_role_id: roleId ? toLong(roleId) : null,
-          message,
+          mention_role_id: roles.video ? toLong(roles.video) : null,
+          message: text(body.message),
           message_format: fmt(body.message_format),
-          live_mention_role_id: liveRoleId ? toLong(liveRoleId) : null,
-          live_message: liveMessage,
+          short_mention_role_id: roles.short ? toLong(roles.short) : null,
+          short_message: text(body.short_message),
+          short_message_format: fmt(body.short_message_format),
+          live_mention_role_id: roles.live ? toLong(roles.live) : null,
+          live_message: text(body.live_message),
           live_message_format: fmt(body.live_message_format),
+          video_channel_id: own.video ? toLong(own.video) : null,
+          short_channel_id: own.short ? toLong(own.short) : null,
+          live_channel_id: own.live ? toLong(own.live) : null,
           notify_videos: notifyVideos,
+          notify_shorts: notifyShorts,
           notify_live: notifyLive,
           updated_at: now,
         },

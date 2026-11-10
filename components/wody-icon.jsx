@@ -14,7 +14,7 @@ export default function WodyIcon({ name, size = 20, className = '', title, inlin
   }
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={proxiedImageUrl(url)} alt={title || ''} aria-hidden={title ? undefined : 'true'} title={title} width={size} height={size} draggable={false}
+    <img data-wody-icon src={proxiedImageUrl(url)} alt={title || ''} aria-hidden={title ? undefined : 'true'} title={title} width={size} height={size} draggable={false}
       loading="lazy" decoding="async" onError={() => setBroken(true)}
       className={`inline-block object-contain select-none ${className}`} style={box} />
   );

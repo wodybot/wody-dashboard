@@ -3697,7 +3697,17 @@
       "errorGeneric": "O kanal eklenemedi.",
       "channelAdded": "Kanal eklendi. Yeni videolarda bildirim alacaksın.",
       "channelRemoved": "Kanal kaldırıldı.",
-      "couldNotRemoveThatChannel": "O kanal kaldırılamadı."
+      "couldNotRemoveThatChannel": "O kanal kaldırılamadı.",
+      "notifyShortsLabel": "Yeni Shorts",
+      "notifyShortsHint": "Bir kanal YouTube Short paylaştığında duyurur.",
+      "shortMessagePlaceholder": "{channel_title} kanalından yeni Short: {video_title} {video_url}",
+      "formatLinkLabel": "Sadece bağlantı",
+      "formatLinkDesc": "Sadece bağlantıyi gonderir, Discord görseli ve afişi kendisi yükler, embed olmadan.",
+      "linkOnlyNote": "Yalnızca etiket, mesajın ve bağlantı gönderilir. Önizlemeyi Discord oluşturur.",
+      "separateChannelsLabel": "Her tür için ayrı kanal",
+      "separateChannelsHint": "Kapalı: videolar, Shorts ve canlı yayınlar yukarıdaki kanala gider. Açık: her biri icin kanal seç.",
+      "kindChannelLabel": "Bu tür için kanal",
+      "kindChannelHint": "Bu tür bildirimin gönderileceği yer. Diğerleriyle aynı kanal olabilir."
     },
     "captcha": {
       "description": "Yeni üyeler bir rol almadan önce bir web sayfasında doğrulanmalıdır, böylece otomatik hesaplar sunucunuzdan uzak tutulur.",
@@ -8983,7 +8993,8 @@
       "avatar_decoration": "Avatar süsü",
       "seasonal_item": "Sezonluk öge",
       "collectible": "Koleksiyonluk",
-      "showcase_item": "Vitrin ögesi"
+      "showcase_item": "Vitrin ögesi",
+      "custom": "Özel öğe"
     },
     "claimMode": {
       "manual": "Üye bunu web sitesinde alır",
@@ -9029,7 +9040,8 @@
       "seasons": "Genel sezonlar",
       "protection": "Koruma",
       "reports": "Raporlar",
-      "audit": "Denetim kaydı"
+      "audit": "Denetim kaydı",
+      "calendar": "Takvim"
     },
     "actions": {
       "activate": "Etkinleştir",
@@ -9105,7 +9117,8 @@
       "invalid_xp": "Her seviye en az 1 XP gerektirir.",
       "xp_too_high": "Bir seviye en fazla {max} XP isteyebilir.",
       "total_too_high": "Tüm seviyeler birlikte en fazla {max} XP isteyebilir.",
-      "unreachable": "Bu pass’i kimse bitiremez: seviyeler {total} XP istiyor, ama bir üye bu sezonda en fazla {cap} XP kazanabilir (mesaj ve ses sınırları artı görevler). Seviyeleri veya seviye başına XP’yi düşür ya da XP sekmesinde sezon sınırlarını artır."
+      "unreachable": "Bu pass’i kimse bitiremez: seviyeler {total} XP istiyor, ama bir üye bu sezonda en fazla {cap} XP kazanabilir (mesaj ve ses sınırları artı görevler). Seviyeleri veya seviye başına XP’yi düşür ya da XP sekmesinde sezon sınırlarını artır.",
+      "server_only": "Yalnızca sunucu sezonu rol verebilir."
     },
     "apiErrors": {
       "generic": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
@@ -9143,7 +9156,12 @@
       "channel_not_found": "Bot bu kanalı bulamıyor. Kanal kimliğini kontrol et.",
       "no_permission": "Bot bu kanala yazamıyor.",
       "send_failed": "Mesaj gönderilemedi.",
-      "not_server_season": "Yalnızca sunucu sezonları duyurulabilir."
+      "not_server_season": "Yalnızca sunucu sezonları duyurulabilir.",
+      "invalid_dates": "Başlangıç ve bitiş tarihi seç.",
+      "end_before_start": "Bitiş, başlangıçtan sonra olmalı.",
+      "in_the_past": "Bu tarihler geçmişte kaldı.",
+      "too_long": "Engellenen bir aralık en fazla 400 gün sürebilir.",
+      "too_many_blocks": "Çok fazla engellenmiş aralık var. Önce birini kaldır."
     },
     "claimErrors": {
       "generic": "Ödül alınamadı.",
@@ -9165,7 +9183,8 @@
       "another_guild_active": "Bu sunucuda başka bir sezon zaten etkin. Önce onu bitirin veya duraklatın.",
       "bad_status": "Yalnızca taslaklar, planlanmış ve duraklatılmış sezonlar etkinleştirilebilir.",
       "not_owner": "Genel sezonları yalnızca platform sahibi etkinleştirebilir.",
-      "invalid_config": "Etkinleştirmeden önce sezon ayarlarını düzeltin."
+      "invalid_config": "Etkinleştirmeden önce sezon ayarlarını düzeltin.",
+      "wody_busy": "Bu tarihler bir Wody Battle Pass tarafından dolu ya da Wody tarafından engellendi. Takvimden başka tarihler seç."
     },
     "general": {
       "title": "Sezon ayrıntıları",
@@ -9480,6 +9499,15 @@
         "startsOn": "{date} başlıyor",
         "noDate": "Başlangıç tarihi yakında duyurulacak.",
         "next": "Sıradaki: {name}"
+      },
+      "lineup": {
+        "title": "Tüm Wody Battle Pass'leri",
+        "text": "Şu an aktif olanlar ve daha sonra başlayacak olanlar.",
+        "active": "Aktif",
+        "scheduled": "Planlandı",
+        "from": "Başlangıç:",
+        "until": "bitiş:",
+        "serversNote": "Bir Wody Battle Pass aktifken sunucular kendi Battle Pass'lerini çalıştıramaz. Sunucu sezonları ayarlarını korur ve sonra geri döner."
       }
     },
     "sections": {
@@ -9887,6 +9915,90 @@
       "saveError": "Kaydedilemedi. Tekrar dene.",
       "level": "Seviye {level}",
       "loadError": "Battle Pass öğelerin yüklenemedi."
+    },
+    "calendar": {
+      "ownerTitle": "Sunucuların kullanamayacağı tarihler",
+      "ownerIntro": "Tarihleri buradan engelle. Sunucu sahipleri bunları Wody Battle Pass tarafından dolu olarak görür ve üzerine sezon yayınlayamaz. Aktif veya planlanmış Wody sezonları da işaretlenir.",
+      "from": "Başlangıç",
+      "to": "Bitiş",
+      "reason": "Sebep (sunucu sahiplerine görünür)",
+      "reasonPlaceholder": "örn. Kış etkinliği",
+      "reasonHint": "İsteğe bağlı. Boş bırakırsan yalnızca tarihlerin Wody Battle Pass tarafından dolu olduğu görünür.",
+      "add": "Bu tarihleri engelle",
+      "added": "Tarihler engellendi.",
+      "removed": "Engel kaldırıldı.",
+      "listTitle": "Engellenen tarihler",
+      "listIntro": "{max} içinden {count} kullanıldı.",
+      "empty": "Engellenen tarih yok.",
+      "kind": {
+        "global": "Wody Battle Pass tarafından dolu",
+        "blocked": "Wody tarafından engellendi"
+      },
+      "yours": "Senin sezonun",
+      "clash": "Çakışma",
+      "prev": "Önceki ay",
+      "next": "Sonraki ay",
+      "pickStart": "İlk güne tıkla",
+      "pickEnd": "Şimdi son güne tıkla",
+      "conflictText": "Bu tarihler şunlarla çakışıyor: {names}. Başka tarihler seç, üzerine yayınlayamazsın.",
+      "freeText": "Bu tarihler boş. Bitiş tarihi yoksa sezonun sen bitirene kadar sürer ve daha sonra bir Wody Battle Pass planlandıysa yayınlanamaz."
+    },
+    "readiness": {
+      "ready": "Yayınlamaya hazır.",
+      "missing": "{count, plural, one {Yayınlamadan önce # şey kaldı} other {Yayınlamadan önce # şey kaldı}}",
+      "introLater": "Bu sezon daha sonra başlıyor. Şimdi yayınlanır ve başlangıç tarihinde başlar.",
+      "introNow": "Bu sezon yayınladığın anda başlar.",
+      "items": {
+        "name": "Bir ad",
+        "levels": "En az bir seviye",
+        "xp_source": "XP kazanmanın bir yolu (mesaj veya ses)",
+        "rewards": "En az bir ödül",
+        "start_future": "Başlangıç tarihi gelecekte",
+        "start_now": "Yayınlanınca başlar",
+        "end_after_start": "Bitiş başlangıçtan sonra",
+        "end_not_past": "Bitiş tarihi geçmedi",
+        "premium": "Sunucuda Premium var",
+        "no_wody_overlap": "Tarihler Wody Battle Pass'inden bağımsız",
+        "channel": "Duyurular için bir kanal (önerilir)",
+        "description": "Kısa bir açıklama (önerilir)"
+      },
+      "fix": {
+        "name": "Genel sekmesine yaz.",
+        "levels": "Seviye sayısını Seviyeler sekmesinde ayarla.",
+        "xp_source": "XP sekmesinde mesajı veya sesi aç.",
+        "rewards": "Ödüller sekmesinden bir tane ekle.",
+        "end_after_start": "Tarihleri Genel sekmesinde değiştir.",
+        "end_not_past": "Genel sekmesinde gelecekte bir bitiş tarihi seç.",
+        "no_wody_overlap": "Takvimden başka günler seç, dolu olanlar işaretli.",
+        "premium": "Sunucu sezonu için bu sunucuda Premium gerekir.",
+        "channel": "Genel sekmesinde Bildirimler altından seç.",
+        "description": "Genel sekmesine ekle."
+      }
+    },
+    "custom": {
+      "preview": "Önizleme",
+      "lookTitle": "Rozet görünümü",
+      "lookHint": "Bir şekil ve renk seç. Görselin içine yerleşir. Varsayılan yuvarlak görünüm için olduğu gibi bırak.",
+      "shape": "Şekil",
+      "shapes": {
+        "circle": "Daire",
+        "shield": "Kalkan",
+        "star": "Yıldız",
+        "hex": "Altıgen",
+        "ribbon": "Kurdele"
+      },
+      "color": "Renk",
+      "resetLook": "Varsayılan görünüme dön",
+      "claimTitle": "Biri aldığında",
+      "claimHint": "Hepsi isteğe bağlı. Düğme metnini değiştir, kendi mesajını göster, özel mesajla gönder veya rol ver.",
+      "claimLabel": "Düğme metni",
+      "claimLabelHint": "Bu ödülde Al kelimesinin yerine geçer.",
+      "claimRole": "Verilecek rol (ID)",
+      "claimRoleHint": "Ödül alındığında bot bu rolü verir. Rol, botun rolünün altında olmalı.",
+      "claimMessage": "Mesaj",
+      "claimMessageHint": "Üye aldıktan sonra gösterilir. En fazla 300 karakter.",
+      "claimDm": "Ayrıca özel mesaj olarak gönder",
+      "claimDmHint": "Bot mesajı üyenin özel mesajlarına gönderir. Yukarıda bir mesaj gerekir."
     }
   },
   "battlepassHelp": {

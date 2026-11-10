@@ -36,6 +36,39 @@ function ComingSoon({ item, t, locale, backHref }) {
   );
 }
 
+/** Every Wody Battle Pass that is running or published for later, with its dates. Only on the Wody page. */
+function Lineup({ items, t, locale }) {
+  if (!items || items.length === 0) return null;
+  return (
+    <section aria-labelledby="bp-lineup" className="relative z-10 mx-auto my-8 w-full max-w-3xl px-4">
+      <h2 id="bp-lineup" className="mb-1 text-xl font-bold tracking-tight">{t('page.lineup.title')}</h2>
+      <p className="mb-4 text-sm text-muted-foreground">{t('page.lineup.text')}</p>
+      <ul className="space-y-3">
+        {items.map((it) => {
+          const { name, description } = soonText(it, locale);
+          const active = it.status === 'active';
+          return (
+            <li key={it.id} className="rounded-2xl border border-border/60 bg-card/50 p-4">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <span className="break-words font-semibold">{name}</span>
+                <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-semibold ${active ? 'border-emerald-400/40 bg-emerald-400/10 text-emerald-200' : 'border-amber-300/40 bg-amber-300/10 text-amber-100'}`}>
+                  <WodyIcon name={active ? 'enabled' : 'scheduled'} size={14} />{t(active ? 'page.lineup.active' : 'page.lineup.scheduled')}
+                </span>
+              </div>
+              {description ? <p className="mt-1 whitespace-pre-line break-words text-sm text-muted-foreground">{description}</p> : null}
+              <p className="mt-2 inline-flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5"><CalendarClock className="h-3.5 w-3.5" aria-hidden="true" />{it.starts_at ? <>{t('page.lineup.from')} <LocalDate value={it.starts_at} /></> : t('page.comingSoon.noDate')}</span>
+                {it.ends_at ? <span>{t('page.lineup.until')} <LocalDate value={it.ends_at} /></span> : null}
+              </p>
+            </li>
+          );
+        })}
+      </ul>
+      <p className="mt-4 text-xs text-muted-foreground">{t('page.lineup.serversNote')}</p>
+    </section>
+  );
+}
+
 // The root layout sends only a short list of message namespaces to the browser, so the Battle Pass page brings its own.
 async function withMessages(children) {
   const all = await getMessages();
@@ -70,6 +103,7 @@ export default async function PassShell({ data, t, backHref, guildName, loginHre
           </main>
         </>
       )}
+      <Lineup items={data.lineup} t={t} locale={locale} />
     </div>,
   );
 }

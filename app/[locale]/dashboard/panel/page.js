@@ -44,5 +44,5 @@ export default async function DashboardOwnerPanelPage() {
       });
     }
   } catch (e) { console.error('panel open audit failed', e?.message || e); }
-  return <OwnerPanelClient restricted={!isOwner} />;
+  return <div className="owner-mono"><OwnerPanelClient restricted={!isOwner} /></div>;
 }

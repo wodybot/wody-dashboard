@@ -18,6 +18,8 @@ import AchievementsTab from './editor/AchievementsTab';
 import CollectionsTab from './editor/CollectionsTab';
 import ThemeTab from './editor/ThemeTab';
 import LocalizationTab from './editor/LocalizationTab';
+import PublishChecklist from './PublishChecklist';
+import { readiness, conflictsAgainst } from '@/lib/battlepass/schedule.js';
 
 export const STATUS_TONE = {
   draft: 'border-border/60 bg-secondary/40 text-muted-foreground', scheduled: 'border-sky-400/40 bg-sky-500/10 text-sky-300',
@@ -57,7 +59,7 @@ const tabOfError = (e) => TAB_OF[String(e?.field || '').split('.')[0]] || 'gener
 export default function SeasonEditor({ base, scope, seasonId, onClose, onChanged }) {
   const t = useTranslations('battlepass');
   const text = useBpText();
-  const [state, setState] = useState({ loading: true, error: null, season: null, effective: null, activation: null, limits: null });
+  const [state, setState] = useState({ loading: true, error: null, season: null, effective: null, activation: null, limits: null, busy: [] });
   const [saved, setSaved] = useState(null);
   const [draft, setDraft] = useState(null);
   const [tab, setTab] = useState('general');
@@ -70,7 +72,7 @@ export default function SeasonEditor({ base, scope, seasonId, onClose, onChanged
     setState((s) => ({ ...s, loading: true, error: null }));
     const r = await bp(`${base}/${seasonId}`);
     if (!r.ok) { setState((s) => ({ ...s, loading: false, error: text.api(r.data?.error) })); return; }
-    setState({ loading: false, error: null, season: r.data.season, effective: r.data.effective_status, activation: r.data.activation, limits: r.data.limits });
+    setState({ loading: false, error: null, season: r.data.season, effective: r.data.effective_status, activation: r.data.activation, limits: r.data.limits, busy: r.data.busy || [] });
     setSaved(r.data.season); setDraft(r.data.season); setErrors([]);
   }, [base, seasonId, text]);
   useEffect(() => { load(); }, [load]);
@@ -114,6 +116,12 @@ export default function SeasonEditor({ base, scope, seasonId, onClose, onChanged
   const eff = state.effective;
   const act1 = state.activation;
   const canActivate = s && ['draft', 'scheduled', 'paused'].includes(s.status);
+  const report = useMemo(() => {
+    if (!draft || !canActivate) return null;
+    const now = new Date();
+    const conflicts = scope === 'guild' ? conflictsAgainst(draft, state.busy, now) : [];
+    return readiness({ ...draft, status: s?.status }, { scope, premium: true, conflicts, now });
+  }, [draft, canActivate, scope, state.busy, s?.status]);
 
   return (
     <div className="space-y-5">
@@ -141,13 +149,14 @@ export default function SeasonEditor({ base, scope, seasonId, onClose, onChanged
                 <span>{text.api('activation_refused', act1.reason)}</span>
               </Card>
             ) : null}
+            <PublishChecklist report={report} onGo={setTab} />
             {dirty && canActivate ? <p className="text-xs text-muted-foreground">{t('editor.saveBeforeActivate')}</p> : null}
             <ModuleTabs tabs={TABS.map(([key, icon]) => ({ key, icon, label: t(`tabs.${key}`) }))} active={tab} onChange={setTab} badges={errorBadges} />
-            {tab === 'general' && <GeneralTab draft={draft} set={set} errors={errors} scope={scope} base={base} seasonId={seasonId} status={s?.status} dirty={dirty} />}
+            {tab === 'general' && <GeneralTab draft={draft} set={set} errors={errors} scope={scope} base={base} seasonId={seasonId} status={s?.status} dirty={dirty} busy={state.busy} />}
             {tab === 'levels' && <LevelsTab draft={draft} set={set} errors={errors} />}
             {tab === 'xp' && <XpTab draft={draft} set={set} errors={errors} scope={scope} limits={state.limits} />}
-            {tab === 'rewards' && <RewardsTab draft={draft} set={set} errors={errors} />}
-            {tab === 'badges' && <RewardsTab draft={draft} set={set} errors={errors} onlyBadges />}
+            {tab === 'rewards' && <RewardsTab draft={draft} set={set} errors={errors} scope={scope} />}
+            {tab === 'badges' && <RewardsTab draft={draft} set={set} errors={errors} scope={scope} onlyBadges />}
             {tab === 'quests' && <QuestsTab draft={draft} set={set} errors={errors} scope={scope} />}
             {tab === 'achievements' && <AchievementsTab draft={draft} set={set} errors={errors} />}
             {tab === 'collections' && <CollectionsTab draft={draft} set={set} errors={errors} />}

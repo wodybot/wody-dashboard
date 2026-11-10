@@ -14,13 +14,14 @@ import Backdrop from './Backdrop';
 import MemberForm from './MemberForm';
 import { bp } from './bp-kit';
 import { proxiedImageUrl } from '@/lib/utils';
+import BadgeMark from './BadgeMark';
 import WodyIcon from '@/components/wody-icon';
 
 const cssUrl = (raw) => String(proxiedImageUrl(raw) || '').replace(/["')\\\s]/g, (c) => encodeURIComponent(c));
 
 const RARITY_COLOR = { common: '#a1a1aa', uncommon: '#4ade80', rare: '#38bdf8', epic: '#a78bfa', legendary: '#fbbf24', mythic: '#fb7185', limited: '#f0abfc' };
 // Reward type -> Wody custom emoji (lib/wody-icons.js). Unknown types use the reward emoji, never a Unicode symbol.
-const TYPE_ICON = { badge: 'medal', achievement: 'trophy', decoration: 'sparkles', frame: 'photo', background: 'image', accent: 'colors', title: 'rank', collection_item: 'inventory', avatar_decoration: 'star', seasonal_item: 'calendar', collectible: 'gem', showcase_item: 'preview' };
+const TYPE_ICON = { badge: 'medal', achievement: 'trophy', decoration: 'sparkles', frame: 'photo', background: 'image', accent: 'colors', title: 'rank', collection_item: 'inventory', avatar_decoration: 'star', seasonal_item: 'calendar', collectible: 'gem', showcase_item: 'preview', custom: 'gift' };
 const store = {
   get(k) { try { return window.localStorage.getItem(k); } catch { return null; } },
   set(k, v) { try { window.localStorage.setItem(k, v); } catch { /* storage can be blocked */ } },
@@ -124,7 +125,7 @@ export default function PassPage({ season, initialState, viewer, guildName, back
     setBusy('');
     if (r.ok && r.data.ok) {
       if (r.data.state) setState(r.data.state);
-      effect(th.claim_fx); ping('claim'); say(t('toast.claimed', { name: loc(reward) }));
+      effect(th.claim_fx); ping('claim'); say(reward.claim?.message || t('toast.claimed', { name: loc(reward) }));
       loadInventory();
     } else {
       ping('error');
@@ -146,7 +147,7 @@ export default function PassPage({ season, initialState, viewer, guildName, back
     const hideName = th.hide_locked_names && st === 'locked';
     return (
       <div key={r.id} className={`bp-reward bp-enter bp-state-${st}`} style={{ '--rc': RARITY_COLOR[r.rarity] || RARITY_COLOR.common, '--i': index }} onMouseEnter={() => ping('hover')}>
-        <div className="bp-art">{r.art || r.icon ? <img src={proxiedImageUrl(r.art || r.icon)} alt="" loading="lazy" referrerPolicy="no-referrer" /> : <WodyIcon name={st === 'locked' && hideName ? 'question' : TYPE_ICON[r.type] || 'rewards'} size={40} />}</div>
+        <div className="bp-art">{st === 'locked' && hideName ? <WodyIcon name="question" size={40} /> : <BadgeMark badge={r.badge} image={r.art || r.icon} fallbackIcon={TYPE_ICON[r.type] || 'rewards'} size={56} />}</div>
         <div className="bp-tag">{t(`rarity.${r.rarity}`)} · {t('levels.levelN', { level: r.level })}</div>
         <div className="bp-name">{hideName ? t('reward.hidden') : loc(r)}</div>
         {!hideName && r.description ? <div className="bp-desc">{loc(r, 'description')}</div> : null}
@@ -156,7 +157,7 @@ export default function PassPage({ season, initialState, viewer, guildName, back
             {t(`state.${st}`)}
           </span>
           {st === 'available' && !completion.has(r.id) ? (
-            <button type="button" className="bp-btn" disabled={!viewer || busy === r.id} onClick={() => claim(r)}>{busy === r.id ? t('reward.claiming') : t('reward.claim')}</button>
+            <button type="button" className="bp-btn" disabled={!viewer || busy === r.id} onClick={() => claim(r)}>{busy === r.id ? t('reward.claiming') : (r.claim?.label || t('reward.claim'))}</button>
           ) : null}
         </div>
       </div>

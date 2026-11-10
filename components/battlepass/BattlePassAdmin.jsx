@@ -3,14 +3,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { toast } from 'sonner';
-import { Activity, Gauge, History, LayoutDashboard, Layers, ShieldCheck } from 'lucide-react';
+import { Activity, CalendarX2, Gauge, History, LayoutDashboard, Layers, PanelsTopLeft, ShieldCheck } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { ModuleTabs, Section, LoadingOrError, SaveFooter } from '@/components/module-kit';
 import { NumberField, bp, useBpText } from './bp-kit';
 import SeasonManager from './SeasonManager';
 import { StatusBadge } from './SeasonEditor';
 import PageStudio from './studio/PageStudio';
-import { ic } from '@/components/gifstudio/gs-kit';
+import BlockedDates from './BlockedDates';
 
 function Stat({ label, value }) {
   return <Card className="p-4"><p className="text-xs text-muted-foreground">{label}</p><p className="mt-1 text-2xl font-semibold tabular-nums">{value}</p></Card>;
@@ -147,7 +147,7 @@ function Audit() {
   );
 }
 
-const PAGES_ICON = ic('studio');
+const PAGES_ICON = PanelsTopLeft;
 
 export default function BattlePassAdmin({ readOnly = false }) {
   const t = useTranslations('battlepass');
@@ -156,11 +156,12 @@ export default function BattlePassAdmin({ readOnly = false }) {
   return (
     <div>
       <ModuleTabs
-        tabs={[...[['overview', LayoutDashboard], ['seasons', Layers], ['protection', Gauge], ['reports', Activity], ['audit', History]].map(([key, icon]) => ({ key, icon, label: t(`ownerTabs.${key}`) })), ...(readOnly ? [] : [{ key: 'pages', icon: PAGES_ICON, label: ts('ui.tabs.pages') }])]}
+        tabs={[...[['overview', LayoutDashboard], ['seasons', Layers], ['calendar', CalendarX2], ['protection', Gauge], ['reports', Activity], ['audit', History]].map(([key, icon]) => ({ key, icon, label: t(`ownerTabs.${key}`) })), ...(readOnly ? [] : [{ key: 'pages', icon: PAGES_ICON, label: ts('ui.tabs.pages') }])]}
         active={tab} onChange={setTab}
       />
       {tab === 'overview' && <Overview />}
       {tab === 'seasons' && <SeasonManager scope="global" canCreate={!readOnly} />}
+      {tab === 'calendar' && <BlockedDates readOnly={readOnly} />}
       {tab === 'protection' && <Limits />}
       {tab === 'reports' && <Reports />}
       {tab === 'audit' && <Audit />}

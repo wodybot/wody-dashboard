@@ -69,9 +69,9 @@ export async function GET(_request, context) {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#e9ddcc', fontSize: 22 }}>
               <span style={{ display: 'flex' }}>{date}</span>
               {credits.length ? (
-                <span style={{ display: 'flex', color: '#cdbba2' }}>
-                  <span style={{ display: 'flex', marginRight: 10, letterSpacing: 2, fontSize: 17, fontWeight: 700, color: accent }}>CREDITS:</span>
-                  {credits.map((c) => c.name).join('  ·  ')}
+                <span style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', color: '#cdbba2' }}>
+                  <span style={{ display: 'flex', marginRight: 12, letterSpacing: 2, fontSize: 17, fontWeight: 700, color: accent, whiteSpace: 'nowrap' }}>CREDITS:</span>
+                  <span style={{ display: 'flex', whiteSpace: 'nowrap' }}>{credits.map((c) => c.name).join('  ·  ')}</span>
                 </span>
               ) : null}
             </div>

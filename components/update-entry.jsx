@@ -12,9 +12,9 @@ const TAG_ACCENT = { Feature: '#e08a4e', Fix: '#38bdf8', Announcement: '#a78bfa'
 export function Credits({ credits, label }) {
   if (!credits?.length) return null;
   return (
-    <div className="mt-6 border-t border-border/50 pt-4 text-center">
-      <div className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">{label}:</div>
-      <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1.5">
+    <div className="mt-6 flex flex-wrap items-baseline justify-center gap-x-4 gap-y-1.5 border-t border-border/50 pt-4">
+      <span className="whitespace-nowrap text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">{label}:</span>
+      <ul className="flex flex-wrap items-baseline justify-center gap-x-6 gap-y-1.5">
         {credits.map((c, i) => (
           <li key={`${c.name}-${i}`} className="text-sm">
             <span className="font-semibold text-foreground">{c.name}</span>

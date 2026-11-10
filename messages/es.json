@@ -3697,7 +3697,17 @@
       "errorGeneric": "No se pudo añadir ese canal.",
       "channelAdded": "Canal añadido. Se te notificará cuando haya vídeos nuevos.",
       "channelRemoved": "Canal eliminado.",
-      "couldNotRemoveThatChannel": "No se pudo eliminar ese canal."
+      "couldNotRemoveThatChannel": "No se pudo eliminar ese canal.",
+      "notifyShortsLabel": "Shorts nuevos",
+      "notifyShortsHint": "Avisa cuando un canal publica un Short de YouTube.",
+      "shortMessagePlaceholder": "Nuevo Short de {channel_title}: {video_title} {video_url}",
+      "formatLinkLabel": "Solo enlace",
+      "formatLinkDesc": "Envia solo el enlace y Discord carga la imagen y el banner solo, sin embed.",
+      "linkOnlyNote": "Solo se envían tu mención, tu mensaje y el enlace. Discord crea la vista prévia.",
+      "separateChannelsLabel": "Un canal distinto por tipo",
+      "separateChannelsHint": "Apagado: vídeos, Shorts y directos van al canal de arriba. Encendido: elige un canal para cada uno.",
+      "kindChannelLabel": "Canal para este tipo",
+      "kindChannelHint": "Dónde se envía este tipo de aviso. Puede ser el mismo canal que los demas."
     },
     "captcha": {
       "description": "Los nuevos miembros deben verificarse en una página web antes de recibir un rol, manteniendo las cuentas automatizadas fuera de tu servidor.",
@@ -8983,7 +8993,8 @@
       "avatar_decoration": "Decoración de avatar",
       "seasonal_item": "Objeto de temporada",
       "collectible": "Coleccionable",
-      "showcase_item": "Objeto de vitrina"
+      "showcase_item": "Objeto de vitrina",
+      "custom": "Objeto personalizado"
     },
     "claimMode": {
       "manual": "El miembro la reclama en el sitio web",
@@ -9029,7 +9040,8 @@
       "seasons": "Temporadas globales",
       "protection": "Protección",
       "reports": "Informes",
-      "audit": "Registro de auditoría"
+      "audit": "Registro de auditoría",
+      "calendar": "Calendario"
     },
     "actions": {
       "activate": "Activar",
@@ -9105,7 +9117,8 @@
       "invalid_xp": "Cada nivel necesita al menos 1 XP.",
       "xp_too_high": "Un nivel puede pedir como máximo {max} XP.",
       "total_too_high": "Todos los niveles juntos pueden pedir como máximo {max} XP.",
-      "unreachable": "Nadie puede completar este pase: los niveles piden {total} XP, pero un miembro puede ganar como máximo {cap} XP en esta temporada (límites de mensajes y voz más las misiones). Reduce los niveles o el XP por nivel, o aumenta los límites de la temporada en la pestaña XP."
+      "unreachable": "Nadie puede completar este pase: los niveles piden {total} XP, pero un miembro puede ganar como máximo {cap} XP en esta temporada (límites de mensajes y voz más las misiones). Reduce los niveles o el XP por nivel, o aumenta los límites de la temporada en la pestaña XP.",
+      "server_only": "Solo una temporada de servidor puede dar un rol."
     },
     "apiErrors": {
       "generic": "Algo salió mal. Inténtalo de nuevo.",
@@ -9143,7 +9156,12 @@
       "channel_not_found": "El bot no encuentra ese canal. Revisa el ID del canal.",
       "no_permission": "El bot no puede escribir en ese canal.",
       "send_failed": "No se pudo enviar el mensaje.",
-      "not_server_season": "Solo se pueden anunciar las temporadas de servidor."
+      "not_server_season": "Solo se pueden anunciar las temporadas de servidor.",
+      "invalid_dates": "Elige una fecha de inicio y una de fin.",
+      "end_before_start": "El final debe ser posterior al inicio.",
+      "in_the_past": "Estas fechas ya pasaron.",
+      "too_long": "Un rango bloqueado puede durar como máximo 400 días.",
+      "too_many_blocks": "Hay demasiados rangos bloqueados. Quita uno primero."
     },
     "claimErrors": {
       "generic": "No se pudo reclamar la recompensa.",
@@ -9165,7 +9183,8 @@
       "another_guild_active": "Ya hay otra temporada activa en este servidor. Finalízala o páusala primero.",
       "bad_status": "Solo se pueden activar borradores, temporadas programadas y temporadas en pausa.",
       "not_owner": "Solo el propietario de la plataforma puede activar temporadas Globales.",
-      "invalid_config": "Corrige los ajustes de la temporada antes de activarla."
+      "invalid_config": "Corrige los ajustes de la temporada antes de activarla.",
+      "wody_busy": "Estas fechas están ocupadas por un Battle Pass de Wody o bloqueadas por Wody. Elige otras fechas en el calendario."
     },
     "general": {
       "title": "Detalles de la temporada",
@@ -9480,6 +9499,15 @@
         "startsOn": "Empieza {date}",
         "noDate": "La fecha de inicio se anunciará pronto.",
         "next": "Próxima: {name}"
+      },
+      "lineup": {
+        "title": "Todos los Battle Pass de Wody",
+        "text": "Los que están activos ahora y los que empiezan más tarde.",
+        "active": "Activo",
+        "scheduled": "Programado",
+        "from": "Desde",
+        "until": "hasta",
+        "serversNote": "Mientras un Battle Pass de Wody está activo, los servidores no pueden iniciar el suyo. Las temporadas de los servidores conservan sus ajustes y vuelven después."
       }
     },
     "sections": {
@@ -9887,6 +9915,90 @@
       "saveError": "No se pudo guardar. Inténtalo de nuevo.",
       "level": "Nivel {level}",
       "loadError": "No se pudieron cargar tus objetos de Battle Pass."
+    },
+    "calendar": {
+      "ownerTitle": "Fechas que los servidores no pueden usar",
+      "ownerIntro": "Bloquea fechas aquí. Los dueños de servidores las ven como ocupadas por el Battle Pass de Wody y no pueden publicar una temporada encima. Las temporadas de Wody activas o programadas también aparecen marcadas.",
+      "from": "Desde",
+      "to": "Hasta",
+      "reason": "Motivo (visible para los dueños de servidores)",
+      "reasonPlaceholder": "p. ej. Evento de invierno",
+      "reasonHint": "Opcional. Déjalo vacío para mostrar solo que las fechas están ocupadas por el Battle Pass de Wody.",
+      "add": "Bloquear estas fechas",
+      "added": "Fechas bloqueadas.",
+      "removed": "Bloqueo eliminado.",
+      "listTitle": "Fechas bloqueadas",
+      "listIntro": "{count} de {max} usados.",
+      "empty": "No hay fechas bloqueadas.",
+      "kind": {
+        "global": "Ocupado por el Battle Pass de Wody",
+        "blocked": "Bloqueado por Wody"
+      },
+      "yours": "Tu temporada",
+      "clash": "Solapamiento",
+      "prev": "Mes anterior",
+      "next": "Mes siguiente",
+      "pickStart": "Haz clic en el primer día",
+      "pickEnd": "Ahora haz clic en el último día",
+      "conflictText": "Estas fechas chocan con: {names}. Elige otras fechas, no puedes publicar encima.",
+      "freeText": "Estas fechas están libres. Sin fecha de fin tu temporada dura hasta que la termines y no se puede publicar si hay un Battle Pass de Wody programado más tarde."
+    },
+    "readiness": {
+      "ready": "Listo para publicar.",
+      "missing": "{count, plural, one {Falta # cosa antes de publicar} other {Faltan # cosas antes de publicar}}",
+      "introLater": "Esta temporada empieza más tarde. Se publica ahora y arranca en su fecha de inicio.",
+      "introNow": "Esta temporada empieza en cuanto la publiques.",
+      "items": {
+        "name": "Un nombre",
+        "levels": "Al menos un nivel",
+        "xp_source": "Una forma de ganar XP (mensajes o voz)",
+        "rewards": "Al menos una recompensa",
+        "start_future": "La fecha de inicio es futura",
+        "start_now": "Empieza al publicar",
+        "end_after_start": "El final es posterior al inicio",
+        "end_not_past": "La fecha de fin no ha pasado",
+        "premium": "El servidor tiene Premium",
+        "no_wody_overlap": "Las fechas están libres del Battle Pass de Wody",
+        "channel": "Un canal para los anuncios (recomendado)",
+        "description": "Una descripción corta (recomendado)"
+      },
+      "fix": {
+        "name": "Escríbelo en la pestaña General.",
+        "levels": "Define el número de niveles en la pestaña Niveles.",
+        "xp_source": "Activa mensajes o voz en la pestaña XP.",
+        "rewards": "Añade una en la pestaña Recompensas.",
+        "end_after_start": "Cambia las fechas en la pestaña General.",
+        "end_not_past": "Elige una fecha de fin futura en la pestaña General.",
+        "no_wody_overlap": "Elige otros días en el calendario, los ocupados están marcados.",
+        "premium": "Una temporada de servidor necesita Premium en este servidor.",
+        "channel": "Elígelo en la pestaña General, en Notificaciones.",
+        "description": "Añádela en la pestaña General."
+      }
+    },
+    "custom": {
+      "preview": "Vista previa",
+      "lookTitle": "Aspecto de la insignia",
+      "lookHint": "Elige una forma y un color. Tu imagen va dentro. Déjalo así para el aspecto redondo por defecto.",
+      "shape": "Forma",
+      "shapes": {
+        "circle": "Círculo",
+        "shield": "Escudo",
+        "star": "Estrella",
+        "hex": "Hexágono",
+        "ribbon": "Cinta"
+      },
+      "color": "Color",
+      "resetLook": "Volver al aspecto por defecto",
+      "claimTitle": "Cuando alguien la reclama",
+      "claimHint": "Todo opcional. Cambia el texto del botón, muestra tu propio mensaje, envíalo en privado o da un rol.",
+      "claimLabel": "Texto del botón",
+      "claimLabelHint": "Sustituye la palabra Reclamar en esta recompensa.",
+      "claimRole": "Rol a dar (ID)",
+      "claimRoleHint": "El bot da este rol al reclamar la recompensa. El rol debe estar por debajo del rol del bot.",
+      "claimMessage": "Mensaje",
+      "claimMessageHint": "Se muestra al miembro tras reclamar. Máximo 300 caracteres.",
+      "claimDm": "Enviarlo también como mensaje privado",
+      "claimDmHint": "El bot envía el mensaje al privado del miembro. Necesita un mensaje arriba."
     }
   },
   "battlepassHelp": {

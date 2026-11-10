@@ -4739,7 +4739,9 @@ function BackupsPanel({ guildId }) {
   );
 }
 
-const ytFormat = (v) => (v === 'plain' ? 'plain' : 'embed');
+const ytFormat = (v) => (v === 'plain' || v === 'link' ? v : 'embed');
+const YT_KINDS = ['video', 'short', 'live'];
+const YT_ENABLED = { video: 'notify_videos', short: 'notify_shorts', live: 'notify_live' };
 
 function youtubeDraftFrom(settings) {
   const s = settings || {};
@@ -4748,18 +4750,26 @@ function youtubeDraftFrom(settings) {
     format: ytFormat(s.message_format),
     role: s.mention_role_id ? String(s.mention_role_id) : null,
     message: s.message ?? '',
+    channel: s.video_channel_id ? String(s.video_channel_id) : null,
   };
-  return {
+  // Shorts and live streams fall back to the video settings until they are saved on their own.
+  const kind = (prefix) => ({
+    format: has(`${prefix}_message_format`) ? ytFormat(s[`${prefix}_message_format`]) : video.format,
+    role: has(`${prefix}_mention_role_id`) ? (s[`${prefix}_mention_role_id`] ? String(s[`${prefix}_mention_role_id`]) : null) : video.role,
+    message: has(`${prefix}_message`) ? (s[`${prefix}_message`] ?? '') : video.message,
+    channel: s[`${prefix}_channel_id`] ? String(s[`${prefix}_channel_id`]) : null,
+  });
+  const draft = {
     channel_id: s.channel_id ? String(s.channel_id) : null,
     notify_videos: s.notify_videos !== false,
+    notify_shorts: has('notify_shorts') ? s.notify_shorts !== false : s.notify_videos !== false,
     notify_live: s.notify_live !== false,
     video,
-    live: {
-      format: has('live_message_format') ? ytFormat(s.live_message_format) : video.format,
-      role: has('live_mention_role_id') ? (s.live_mention_role_id ? String(s.live_mention_role_id) : null) : video.role,
-      message: has('live_message') ? (s.live_message ?? '') : video.message,
-    },
+    short: kind('short'),
+    live: kind('live'),
   };
+  draft.separate = YT_KINDS.some((k) => draft[k].channel && draft[k].channel !== draft.channel_id);
+  return draft;
 }
 
 function ytCleanTitle(raw) {
@@ -4774,8 +4784,9 @@ function ytCleanTitle(raw) {
 
 function YoutubeNotificationPreview({ kind, cfg, roleName, channelTitle }) {
   const isLive = kind === 'live';
-  const videoTitle = isLive ? 'Live Q&A with the community' : 'My best setup tour yet';
-  const videoUrl = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+  const isShort = kind === 'short';
+  const videoTitle = isLive ? 'Live Q&A with the community' : isShort ? 'One minute setup tip' : 'My best setup tour yet';
+  const videoUrl = isShort ? 'https://www.youtube.com/shorts/dQw4w9WgXcQ' : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
   const lines = [];
   if (cfg.role) lines.push(`@${roleName || 'Role'}`);
   const custom = String(cfg.message || '')
@@ -4784,11 +4795,21 @@ function YoutubeNotificationPreview({ kind, cfg, roleName, channelTitle }) {
     .replaceAll('{channel_title}', channelTitle)
     .trim();
   if (custom) lines.push(custom);
+  if (cfg.format === 'link') {
+    return (
+      <DiscordMessage>
+        <DiscordText>{[...lines, videoUrl].join('\n')}</DiscordText>
+        <div className="pt-1"><YoutubeLinkUnfurl channelTitle={channelTitle} videoTitle={videoTitle} /></div>
+      </DiscordMessage>
+    );
+  }
   if (cfg.format === 'plain') {
     if (!custom) {
       lines.push(isLive
         ? `{wy:offline} **${channelTitle}** is live now: **${ytCleanTitle(videoTitle)}**`
-        : `{wy:video} **${channelTitle}** uploaded a new video: **${ytCleanTitle(videoTitle)}**`);
+        : isShort
+          ? `{wy:video} **${channelTitle}** posted a new Short: **${ytCleanTitle(videoTitle)}**`
+          : `{wy:video} **${channelTitle}** uploaded a new video: **${ytCleanTitle(videoTitle)}**`);
     }
     lines.push(videoUrl);
     return (
@@ -4799,7 +4820,7 @@ function YoutubeNotificationPreview({ kind, cfg, roleName, channelTitle }) {
     );
   }
   const header = [
-    isLive ? '-# {wy:video} YouTube  ·  {wy:offline} LIVE now' : '-# {wy:video} YouTube  ·  {wy:offline} New upload',
+    isLive ? '-# {wy:video} YouTube  ·  {wy:offline} LIVE now' : isShort ? '-# {wy:video} YouTube  ·  {wy:offline} New Short' : '-# {wy:video} YouTube  ·  {wy:offline} New upload',
     `## ${isLive ? '{wy:offline}' : '{wy:video}'} ${ytCleanTitle(videoTitle)}`,
     `{wy:member} **${channelTitle}**  ·  {wy:time} <t:${Math.floor(Date.now() / 1000) - 120}:R>`,
   ].join('\n');
@@ -4817,11 +4838,22 @@ function YoutubeNotificationPreview({ kind, cfg, roleName, channelTitle }) {
         <V2Separator />
         <DiscordText>{'-# {wy:notification} Wody · YouTube Notifications'}</DiscordText>
         <DiscordButtons buttons={[
-          { label: isLive ? 'Watch live' : 'Watch on YouTube', emoji: '{wy:next}', style: 'link' },
+          { label: isLive ? 'Watch live' : isShort ? 'Watch Short' : 'Watch on YouTube', emoji: '{wy:next}', style: 'link' },
           { label: 'Open channel', emoji: '{wy:video}', style: 'link' },
         ]} />
       </V2Container>
     </DiscordMessage>
+  );
+}
+
+function YoutubeLinkUnfurl({ channelTitle, videoTitle }) {
+  return (
+    <div className="max-w-md overflow-hidden rounded-md border-l-4 border-[#cc0000] bg-[#2b2d31] p-3 text-sm">
+      <div className="text-xs text-[#b5bac1]">YouTube</div>
+      <div className="mt-0.5 text-xs text-white">{channelTitle}</div>
+      <div className="mt-1 font-semibold text-[#00a8fc]">{videoTitle}</div>
+      <div className="mt-2 aspect-video rounded bg-gradient-to-br from-[#3a3d44] to-[#1e1f22]" />
+    </div>
   );
 }
 
@@ -4860,7 +4892,7 @@ function YoutubeNotifyPanel({ guildId, meta }) {
 
   async function saveSettings() {
     if (!draft.channel_id) { toast.error(t('pickChannelFirst')); return; }
-    if (!draft.notify_videos && !draft.notify_live) { toast.error(t('errorNothingSelected')); return; }
+    if (!draft.notify_videos && !draft.notify_shorts && !draft.notify_live) { toast.error(t('errorNothingSelected')); return; }
     setSavingChannel(true);
     try {
       const res = await fetch(`/api/guilds/${guildId}/youtube-notify/discord-channel`, {
@@ -4869,7 +4901,14 @@ function YoutubeNotifyPanel({ guildId, meta }) {
         body: JSON.stringify({
           channel_id: draft.channel_id,
           notify_videos: draft.notify_videos,
+          notify_shorts: draft.notify_shorts,
           notify_live: draft.notify_live,
+          video_channel_id: draft.separate ? draft.video.channel : null,
+          short_channel_id: draft.separate ? draft.short.channel : null,
+          live_channel_id: draft.separate ? draft.live.channel : null,
+          short_message_format: draft.short.format,
+          short_mention_role_id: draft.short.role,
+          short_message: draft.short.message,
           message_format: draft.video.format,
           mention_role_id: draft.video.role,
           message: draft.video.message,
@@ -4951,7 +4990,8 @@ function YoutubeNotifyPanel({ guildId, meta }) {
 
   const typeCard = (kind) => {
     const isLive = kind === 'live';
-    const enabledKey = isLive ? 'notify_live' : 'notify_videos';
+    const isShort = kind === 'short';
+    const enabledKey = YT_ENABLED[kind];
     const cfg = draft[kind];
     const savedCfg = saved?.[kind];
     const enabled = draft[enabledKey];
@@ -4959,10 +4999,10 @@ function YoutubeNotifyPanel({ guildId, meta }) {
       <Card key={kind} className={`p-4 sm:p-6 space-y-5 bg-card/60 ${enabled ? '' : 'opacity-90'}`}>
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <div className="font-semibold flex items-center gap-2">{isLive ? <Radio className="w-4 h-4 text-red-500" /> : <Youtube className="w-4 h-4 text-red-500" />}{isLive ? t('notifyLiveLabel') : t('notifyVideosLabel')}</div>
-            <div className="text-xs text-muted-foreground mt-1">{isLive ? t('notifyLiveHint') : t('notifyVideosHint')}</div>
+            <div className="font-semibold flex items-center gap-2">{isLive ? <Radio className="w-4 h-4 text-red-500" /> : <Youtube className="w-4 h-4 text-red-500" />}{isLive ? t('notifyLiveLabel') : isShort ? t('notifyShortsLabel') : t('notifyVideosLabel')}</div>
+            <div className="text-xs text-muted-foreground mt-1">{isLive ? t('notifyLiveHint') : isShort ? t('notifyShortsHint') : t('notifyVideosHint')}</div>
           </div>
-          <Switch checked={enabled} onCheckedChange={(v) => setDraft((d) => ({ ...d, [enabledKey]: v }))} aria-label={isLive ? t('notifyLiveLabel') : t('notifyVideosLabel')} />
+          <Switch checked={enabled} onCheckedChange={(v) => setDraft((d) => ({ ...d, [enabledKey]: v }))} aria-label={isLive ? t('notifyLiveLabel') : isShort ? t('notifyShortsLabel') : t('notifyVideosLabel')} />
         </div>
         {enabled ? (
           <>
@@ -4975,9 +5015,15 @@ function YoutubeNotifyPanel({ guildId, meta }) {
                 options={[
                   { value: 'plain', label: t('formatPlainLabel'), desc: t('formatPlainDesc') },
                   { value: 'embed', label: t('formatEmbedLabel'), desc: t('formatEmbedDesc') },
+                  { value: 'link', label: t('formatLinkLabel'), desc: t('formatLinkDesc') },
                 ]}
               />
             </div>
+            {draft.separate ? (
+              <FieldRow label={t('kindChannelLabel')} hint={t('kindChannelHint')}>
+                <ChannelSelect value={cfg.channel || draft.channel_id} onChange={(v) => setType(kind, { channel: v })} channels={meta.channels} />
+              </FieldRow>
+            ) : null}
             <FieldRow label={t('mentionRoleLabel')} hint={t('mentionRoleHint')}>
               <RoleSelect value={cfg.role} onChange={(v) => setType(kind, { role: v })} roles={meta.roles} />
             </FieldRow>
@@ -4987,7 +5033,7 @@ function YoutubeNotifyPanel({ guildId, meta }) {
                 rows={3}
                 value={cfg.message}
                 onChange={(e) => setType(kind, { message: e.target.value })}
-                placeholder={isLive ? t('liveMessagePlaceholder') : t('customMessagePlaceholder')}
+                placeholder={isLive ? t('liveMessagePlaceholder') : isShort ? t('shortMessagePlaceholder') : t('customMessagePlaceholder')}
                 maxLength={1800}
               />
               <div className="flex flex-wrap gap-2 mt-2">
@@ -4995,6 +5041,7 @@ function YoutubeNotifyPanel({ guildId, meta }) {
                   <button key={v} type="button" onClick={() => setType(kind, { message: `${cfg.message || ''}${cfg.message ? ' ' : ''}${v}` })} className="rounded-full border border-border bg-secondary/50 px-2.5 py-1 text-xs font-mono hover:bg-secondary transition">{v}</button>
                 ))}
               </div>
+              {cfg.format === 'link' ? <p className="mt-2 text-xs text-muted-foreground">{t('linkOnlyNote')}</p> : null}
               {cfg.format === 'plain' && !String(cfg.message || '').trim() ? <p className="mt-2 text-xs text-muted-foreground">{t('defaultLineNote')}</p> : null}
             </div>
           </>
@@ -5028,6 +5075,17 @@ function YoutubeNotifyPanel({ guildId, meta }) {
               <FieldRow label={t('discordChannelLabel')}>
                 <ChannelSelect value={draft.channel_id} onChange={(v) => setDraft((d) => ({ ...d, channel_id: v }))} channels={meta.channels} />
               </FieldRow>
+              <div className="flex items-start justify-between gap-4 rounded-lg border border-border/50 p-3">
+                <div className="min-w-0">
+                  <div className="text-sm font-medium">{t('separateChannelsLabel')}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">{t('separateChannelsHint')}</div>
+                </div>
+                <Switch
+                  checked={draft.separate}
+                  onCheckedChange={(v) => setDraft((d) => ({ ...d, separate: v }))}
+                  aria-label={t('separateChannelsLabel')}
+                />
+              </div>
               {data.settings ? (
                 <div className="flex justify-end">
                   <Button size="sm" variant="outline" onClick={removeDiscordChannel} disabled={savingChannel}>
@@ -5038,15 +5096,16 @@ function YoutubeNotifyPanel({ guildId, meta }) {
             </Card>
 
             {typeCard('video')}
+            {typeCard('short')}
             {typeCard('live')}
-            {!draft.notify_videos && !draft.notify_live ? <p className="text-xs text-amber-400">{t('errorNothingSelected')}</p> : null}
+            {!draft.notify_videos && !draft.notify_shorts && !draft.notify_live ? <p className="text-xs text-amber-400">{t('errorNothingSelected')}</p> : null}
 
             <SaveBar
               saving={savingChannel}
               dirty={dirty}
               onDiscard={() => setDraft(saved)}
               onSave={saveSettings}
-              disabled={!draft.notify_videos && !draft.notify_live}
+              disabled={!draft.notify_videos && !draft.notify_shorts && !draft.notify_live}
             />
 
             <Card className="p-4 sm:p-6 bg-card/60">
@@ -5103,7 +5162,7 @@ function YoutubeNotifyPanel({ guildId, meta }) {
                   <div className="text-xs text-muted-foreground">{tc('updatesInstantly')}</div>
                 </div>
                 <div role="tablist" className="inline-flex rounded-lg border border-border bg-secondary/30 p-0.5 text-xs">
-                  {['video', 'live'].map((k) => (
+                  {YT_KINDS.map((k) => (
                     <button
                       key={k}
                       type="button"
@@ -5112,12 +5171,12 @@ function YoutubeNotifyPanel({ guildId, meta }) {
                       onClick={() => setPreviewKind(k)}
                       className={`rounded-md px-3 py-1.5 font-medium transition ${previewKind === k ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}`}
                     >
-                      {k === 'live' ? t('notifyLiveLabel') : t('notifyVideosLabel')}
+                      {k === 'live' ? t('notifyLiveLabel') : k === 'short' ? t('notifyShortsLabel') : t('notifyVideosLabel')}
                     </button>
                   ))}
                 </div>
               </div>
-              {draft[previewKind === 'live' ? 'notify_live' : 'notify_videos'] ? (
+              {draft[YT_ENABLED[previewKind]] ? (
                 <YoutubeNotificationPreview kind={previewKind} cfg={draft[previewKind]} roleName={roleNameOf(draft[previewKind].role)} channelTitle={sampleChannel} />
               ) : (
                 <div className="rounded-2xl border border-dashed border-border/70 p-6 text-center text-xs text-muted-foreground">{t('typeOffNote')}</div>

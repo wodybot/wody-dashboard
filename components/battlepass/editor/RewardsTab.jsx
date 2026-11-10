@@ -3,15 +3,17 @@ import { useTranslations } from 'next-intl';
 import { Gift, Plus, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Section } from '@/components/module-kit';
-import { NumberField, TextField, SelectField, DateField, RarityBadge, Problems } from '../bp-kit';
-import { RARITIES, REWARD_TYPES, CLAIM_MODES } from '@/lib/battlepass/constants.js';
+import { Section, Field, SwitchRow } from '@/components/module-kit';
+import { Input } from '@/components/ui/input';
+import BadgeMark from '../BadgeMark';
+import { NumberField, TextField, SelectField, DateField, RarityBadge, Problems, ColorInput } from '../bp-kit';
+import { RARITIES, REWARD_TYPES, CLAIM_MODES, BADGE_SHAPES } from '@/lib/battlepass/constants.js';
 
 let counter = 0;
 const newId = (prefix) => `${prefix}${Date.now().toString(36)}${(counter++).toString(36)}`.slice(0, 40);
 
 /** Rewards and badges share one list: the Badges tab shows only the rewards of type "badge". */
-export default function RewardsTab({ draft, set, errors, onlyBadges = false }) {
+export default function RewardsTab({ draft, set, errors, scope = 'global', onlyBadges = false }) {
   const t = useTranslations('battlepass');
   const all = draft.rewards || [];
   const shown = all.map((r, index) => ({ r, index })).filter(({ r }) => (onlyBadges ? r.type === 'badge' : true));
@@ -56,6 +58,39 @@ export default function RewardsTab({ draft, set, errors, onlyBadges = false }) {
                 <TextField label={t('fields.iconUrl')} hint={t('fields.imageHint')} value={r.icon} onChange={(v) => update(index, { icon: v })} errors={errors} path={`${base}.icon`} placeholder="https://" />
                 <TextField label={t('fields.artUrl')} hint={t('fields.imageHint')} value={r.art} onChange={(v) => update(index, { art: v })} errors={errors} path={`${base}.art`} placeholder="https://" />
                 <DateField label={t('fields.availableUntil')} hint={t('fields.availableUntilHint')} value={r.availability?.until} onChange={(v) => update(index, { availability: v ? { until: v } : undefined })} errors={errors} path={`${base}.availability.until`} />
+              </div>
+              <div className="grid gap-4 rounded-xl border border-border/50 bg-background/30 p-4 sm:grid-cols-[auto_1fr]">
+                <div className="flex flex-col items-center gap-1.5">
+                  <BadgeMark badge={r.badge} image={r.art || r.icon} size={72} />
+                  <span className="text-[11px] text-muted-foreground">{t('custom.preview')}</span>
+                </div>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-sm font-semibold">{t('custom.lookTitle')}</p>
+                    <p className="text-xs text-muted-foreground">{t('custom.lookHint')}</p>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <SelectField label={t('custom.shape')} value={r.badge?.shape || 'circle'} onChange={(v) => update(index, { badge: { ...(r.badge || {}), shape: v } })} options={BADGE_SHAPES} translate={(x) => t(`custom.shapes.${x}`)} errors={errors} path={`${base}.badge.shape`} />
+                    <ColorInput label={t('custom.color')} value={r.badge?.color || ''} onChange={(v) => update(index, { badge: { ...(r.badge || {}), color: v } })} errors={errors} path={`${base}.badge.color`} />
+                  </div>
+                  {r.badge ? <Button type="button" variant="ghost" size="sm" onClick={() => update(index, { badge: undefined })}>{t('custom.resetLook')}</Button> : null}
+                </div>
+              </div>
+              <div className="space-y-3 rounded-xl border border-border/50 bg-background/30 p-4">
+                <div>
+                  <p className="text-sm font-semibold">{t('custom.claimTitle')}</p>
+                  <p className="text-xs text-muted-foreground">{t('custom.claimHint')}</p>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <TextField label={t('custom.claimLabel')} hint={t('custom.claimLabelHint')} value={r.claim?.label} onChange={(v) => update(index, { claim: { ...(r.claim || {}), label: v } })} max={24} errors={errors} path={`${base}.claim.label`} placeholder={t('reward.claim')} />
+                  {scope === 'guild' ? (
+                    <Field label={t('custom.claimRole')} hint={t('custom.claimRoleHint')} errors={errors} field={`${base}.claim.role_id`}>
+                      <Input value={r.claim?.role_id || ''} inputMode="numeric" placeholder="123456789012345678" onChange={(e) => update(index, { claim: { ...(r.claim || {}), role_id: e.target.value.trim() || undefined } })} />
+                    </Field>
+                  ) : null}
+                </div>
+                <TextField label={t('custom.claimMessage')} hint={t('custom.claimMessageHint')} value={r.claim?.message} onChange={(v) => update(index, { claim: { ...(r.claim || {}), message: v } })} max={300} errors={errors} path={`${base}.claim.message`} multiline rows={2} />
+                <SwitchRow label={t('custom.claimDm')} hint={t('custom.claimDmHint')} checked={Boolean(r.claim?.dm)} onChange={(v) => update(index, { claim: { ...(r.claim || {}), dm: v } })} />
               </div>
               <Problems errors={errors} path={base} />
             </Card>

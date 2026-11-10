@@ -8,6 +8,8 @@ import { TextField, DateField, getPath, bp, useBpText } from '../bp-kit';
 import { Field } from '@/components/module-kit';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import BusyCalendar from '../BusyCalendar';
+import { conflictsAgainst } from '@/lib/battlepass/schedule.js';
 
 /** Posts the season message in the saved channel again. Only for a published server season whose settings are saved. */
 function AnnounceNow({ base, seasonId, status, dirty, channel }) {
@@ -34,7 +36,7 @@ function AnnounceNow({ base, seasonId, status, dirty, channel }) {
   );
 }
 
-export default function GeneralTab({ draft, set, errors, scope, base, seasonId, status, dirty }) {
+export default function GeneralTab({ draft, set, errors, scope, base, seasonId, status, dirty, busy = [] }) {
   const t = useTranslations('battlepass');
   const sw = (path, label, hint) => <SwitchRow label={label} hint={hint} checked={Boolean(getPath(draft, path))} onChange={(v) => set(path, v)} />;
   return (
@@ -47,6 +49,16 @@ export default function GeneralTab({ draft, set, errors, scope, base, seasonId, 
           <DateField label={t('fields.endsAt')} hint={t('fields.endsAtHint')} value={draft.ends_at} onChange={(v) => set('ends_at', v)} errors={errors} path="ends_at" />
         </div>
         <p className="text-xs text-muted-foreground">{t('general.datesNote')}</p>
+        {scope === 'guild' ? (
+          <>
+            <BusyCalendar busy={busy} start={draft.starts_at} end={draft.ends_at} onPick={({ starts_at, ends_at }) => { set('starts_at', starts_at); set('ends_at', ends_at); }} />
+            {conflictsAgainst(draft, busy, new Date()).length ? (
+              <p role="alert" className="rounded-lg border border-red-400/40 bg-red-500/10 p-3 text-sm text-red-200">
+                {t('calendar.conflictText', { names: conflictsAgainst(draft, busy, new Date()).map((c) => c.name || t(`calendar.kind.${c.kind}`)).join(', ') })}
+              </p>
+            ) : <p className="text-xs text-muted-foreground">{t('calendar.freeText')}</p>}
+          </>
+        ) : null}
       </Section>
 
       <Section title={t('general.claims')} description={t('general.claimsIntro')} icon={ShieldCheck}>
