@@ -6,6 +6,7 @@ import { ArrowDown, ArrowUp, Copy, Eye, EyeOff, ExternalLink, IdCard, Loader2, P
 import { input, lab, btn, btnMain } from '@/components/collab/ProfileParts';
 import PageBackdrop from '@/components/profile/PageBackdrop';
 import HintLink from '@/components/hint-link';
+import BattlePassVisibility from '@/components/profile/BattlePassVisibility';
 import SaveBar from '@/components/profile/SaveBar';
 import ProfilePageView from '@/components/profile/ProfilePageView';
 import ProfileCardPreview from '@/components/profile/ProfileCardPreview';
@@ -55,7 +56,7 @@ function Panel({ title, children }) {
   );
 }
 
-function LivePreview({ page, identity, socials, away, cardCfg, passport }) {
+function LivePreview({ page, identity, socials, away, cardCfg, passport, pass, views, isPublic }) {
   const outer = useRef(null);
   const [zoom, setZoom] = useState(1);
   useEffect(() => {
@@ -73,7 +74,7 @@ function LivePreview({ page, identity, socials, away, cardCfg, passport }) {
     <div ref={outer} className="relative isolate overflow-hidden rounded-2xl border border-border/60 bg-[#120b08]">
       <PageBackdrop page={page} fixed={false} />
       <div style={{ width: zoom < 1 || (typeof window !== 'undefined' && window.innerWidth >= 1024) ? 1200 : 'auto', zoom }} className="flex flex-col gap-6 px-6 py-6">
-        <ProfilePageView page={publicPageView(page)} name={name} username={identity?.username || ''} avatarSrc={discordCdnUrl(rawSrc)} memberSince={null} away={away} socials={socials} live={0} views={views} isPublic={isPublic} locale="en" card={card} passport={passport} />
+        <ProfilePageView page={publicPageView(page)} name={name} username={identity?.username || ''} avatarSrc={discordCdnUrl(rawSrc)} memberSince={null} away={away} socials={socials} live={0} views={views} isPublic={isPublic} locale="en" card={card} passport={passport} pass={pass} />
       </div>
     </div>
   );
@@ -82,8 +83,11 @@ function LivePreview({ page, identity, socials, away, cardCfg, passport }) {
 export default function ProfilePageTab({ isPublic = false, views = 0, identity, socials = {}, away = null, onGoCard }) {
   const t = useTranslations('profilePage');
   const [passport, setPassport] = useState(null);
+  const [pass, setPass] = useState(null);
   const [cardCfg, setCardCfg] = useState(null);
   useEffect(() => { api('GET', null, 'profile-card').then((r) => { if (r.ok && r.data?.config) setCardCfg(normalizeConfig(r.data.config)); }); }, []);
+  const tb = useTranslations('battlepass.profile');
+  const refreshPass = useCallback(() => { api('GET').then((r) => { if (r.ok) setPass(r.data.pass || null); }); }, []);
   const tnav = useTranslations('nav');
   const [saved, setSaved] = useState(null);
   const [draft, setDraft] = useState(null);
@@ -102,7 +106,7 @@ export default function ProfilePageTab({ isPublic = false, views = 0, identity, 
     const r = await api('GET');
     if (!r.ok || !r.data?.page) { setState('error'); return; }
     const page = normalizePage(r.data.page);
-    setSaved(page); setDraft(page); setMod(r.data.moderation || null); setPassport(r.data.passport || null); setState('ready');
+    setSaved(page); setDraft(page); setMod(r.data.moderation || null); setPassport(r.data.passport || null); setPass(r.data.pass || null); setState('ready');
   }, []);
   useEffect(() => { load(); }, [load]);
   const dirty = useMemo(() => Boolean(saved && draft && JSON.stringify(saved) !== JSON.stringify(draft)), [saved, draft]);
@@ -201,7 +205,7 @@ export default function ProfilePageTab({ isPublic = false, views = 0, identity, 
         <h2 className="text-lg font-black">{t('title')}</h2>
         <p className="mb-3 mt-1 text-sm text-muted-foreground">{t('intro')}</p>
         <div className="mb-2 text-xs text-muted-foreground">{t('preview')}</div>
-        <LivePreview page={page} identity={identity} socials={socials} away={away} cardCfg={cardCfg} passport={passport} />
+        <LivePreview page={page} identity={identity} socials={socials} away={away} cardCfg={cardCfg} passport={passport} pass={pass} views={views} isPublic={isPublic} />
         <p className="mt-2 text-xs text-muted-foreground">{t('previewNote')}</p>
         {shortOk ? (
           <div className="mt-3 rounded-xl border border-[#e6cd8c]/30 bg-[#e6cd8c]/5 p-3">
@@ -377,6 +381,11 @@ export default function ProfilePageTab({ isPublic = false, views = 0, identity, 
               </li>
             ))}
           </ul>
+        </section>
+        <section className="rounded-2xl border border-border/60 bg-card/40 p-4">
+          <h3 className="text-sm font-bold">{tb('editorTitle')}</h3>
+          <p className="mb-3 mt-1 text-xs text-muted-foreground">{tb('editorIntro')}</p>
+          <BattlePassVisibility onSaved={refreshPass} />
         </section>
         <Panel title={t('sectionStyle')}>
           {(page.mode === 'gradient' || page.mode === 'image') && <Color id="pp-accent" label={t('field.accent')} value={page.accent} onChange={(v) => /^#[0-9a-f]{6}$/.test(v) && set({ accent: v })} />}

@@ -135,7 +135,6 @@ function Settings({ initial, reload }) {
       {toggle('public_contact_enabled', 'Allow the optional public contact form', 'Master switch. Authors still opt in per request.')}
       {toggle('ai_moderation', 'Use the AI check when a provider is configured', 'Set COLLAB_AI_URL and COLLAB_AI_KEY on the server. The AI can only add flags.')}
       <div className="grid gap-3 sm:grid-cols-2">
-        <div><label className="text-xs text-muted-foreground" htmlFor="mk-life">Days a request stays live</label><input id="mk-life" type="number" min={1} max={365} className={input} value={s.lifetime_days} onChange={(e) => setS((x) => ({ ...x, lifetime_days: Number(e.target.value) }))} /></div>
         <div><label className="text-xs text-muted-foreground" htmlFor="mk-inact">Days an inactive request waits before it is deleted</label><input id="mk-inact" type="number" min={1} max={90} className={input} value={s.inactive_days ?? 7} onChange={(e) => setS((x) => ({ ...x, inactive_days: Number(e.target.value) }))} /></div>
         <div><label className="text-xs text-muted-foreground" htmlFor="mk-thr">Reports that suspend a request</label><input id="mk-thr" type="number" min={1} max={20} className={input} value={s.report_threshold} onChange={(e) => setS((x) => ({ ...x, report_threshold: Number(e.target.value) }))} /></div>
       </div>

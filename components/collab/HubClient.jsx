@@ -217,7 +217,7 @@ function MyRequests({ data, reload, cats, guilds }) {
               {r.status === 'published' && <button className={btn} onClick={() => setView({ kind: 'apps', req: r })}>{t('requests.applications', { n: r.applications })}</button>}
               {r.status === 'published' && !r.closed_at && <button className={btn} onClick={() => act(r.id, '/close')}>{t('requests.close')}</button>}
               {r.status === 'published' && r.closed_at && !r.accepted_application_id && <button className={btn} onClick={() => act(r.id, '/reopen')}>{t('requests.reopen')}</button>}
-              {r.status === 'expired' && <button className={btn} onClick={() => act(r.id, '/renew')}>{t('requests.renew')}</button>}
+              {(r.status === 'expired' || (r.status === 'published' && r.expires_at && new Date(r.expires_at).getTime() - Date.now() <= 7 * 86400000)) && <button className={btn} onClick={() => act(r.id, '/renew')}>{t('requests.renew')}</button>}
               {r.pending_state && r.pending_state !== 'pending_verification' && <button className={btn} onClick={() => act(r.id, '/discard')}>{t('requests.discard')}</button>}
               {r.status === 'draft' && <button className={btn} onClick={() => act(r.id, '', 'DELETE')}>{t('requests.delete')}</button>}
             </div>

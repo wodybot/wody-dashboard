@@ -169,3 +169,28 @@ test('theme: presets bring their own colors', () => {
   assert.equal(theme.themeColors({ mode: 'preset', preset: 'gold' }).accent, '#facc15');
   assert.equal(theme.themeColors({ mode: 'solid', from: '#111111', to: '#222222', accent: '#abcdef', accent2: '#fedcba' }).to, '#111111');
 });
+
+// ---- upcoming seasons and announcement settings
+test('upcoming: only published seasons that start later, soonest first, own server only', async () => {
+  const { upcomingForGuild } = await import('../../lib/battlepass/priority.js');
+  const now = new Date('2026-01-01T00:00:00Z');
+  const mk = (id, scope, guild_id, starts, status = 'scheduled') => ({ id, scope, guild_id, status, starts_at: starts, ends_at: null, name: id });
+  const list = [
+    mk('late', 'global', null, '2026-03-01T00:00:00Z'),
+    mk('soon', 'global', null, '2026-02-01T00:00:00Z'),
+    mk('mine', 'guild', '1', '2026-02-15T00:00:00Z'),
+    mk('theirs', 'guild', '2', '2026-02-10T00:00:00Z'),
+    mk('draft', 'global', null, '2026-02-02T00:00:00Z', 'draft'),
+    mk('running', 'global', null, '2025-12-01T00:00:00Z', 'active'),
+  ];
+  assert.deepEqual(upcomingForGuild(list, '1', now).map((s) => s.id), ['soon', 'mine', 'late']);
+});
+test('notifications: announcement flags and mention target are validated', () => {
+  const ok = cleanSeason({ ...baseSeason(), notifications: { season_created: false, mention_everyone: true, mention_role_id: '123456789012345678' } }, { scope: 'guild' });
+  assert.deepEqual(ok.errors, []);
+  assert.equal(ok.doc.notifications.season_created, false);
+  assert.equal(ok.doc.notifications.mention_everyone, true);
+  assert.equal(ok.doc.notifications.mention_role_id, '123456789012345678');
+  const bad = cleanSeason({ ...baseSeason(), notifications: { mention_role_id: 'abc' } }, { scope: 'guild' });
+  assert.ok(codes(bad).includes('notifications.mention_role_id:invalid_id'), codes(bad).join());
+});

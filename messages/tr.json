@@ -1128,7 +1128,7 @@
       },
       {
         "heading": "19. Community Discovery",
-        "html": "<p>Community Discovery lets the owner of a Discord server publish a public profile for it at wody.online/{prefix}/{name}. A profile is shown only after a person on the Wody team has reviewed and approved it. The address prefix is chosen by Wody and may change; older addresses keep redirecting.</p><p><strong>What we store.</strong> The profile content you enter (name, descriptions, category, tags, languages, invite code, social links, chosen colors and images, the Discord roles you choose to show publicly), the Discord server ID and public statistics read through the Discord bot (member count, online count, voice count, boosts, icon, creation date), your Discord user ID as the listing owner, the people you add as managers, the submission history, review decisions and messages, and the date you accepted the Terms and the Privacy Policy when submitting.</p><p><strong>Visitors.</strong> Favorites, reviews and reports are linked to the Discord account that made them. A review shows the reviewer’s Discord name and avatar after moderation, and only members of the server can review it. Wody staff can see who wrote a review or report. Internal moderation notes are never shown to listing owners.</p><p><strong>Analytics.</strong> Profile views, invite clicks and unique visitors are counted without cookies. A unique visitor is estimated from a one way daily hash of the IP address and browser string with a secret salt that changes every day. The raw IP address and browser string are not stored with the count, and the short lived technical records used for de-duplication are deleted after 2 days. Invite clicks only show that the Join button was pressed, not that someone joined.</p><p><strong>Retention.</strong> Notifications are deleted after 90 days. When a listing is deleted by its owner or by Wody, the listing, its versions, reviews, favorites, reports, managers, images and notifications are removed and the public address becomes available again. A short audit entry (listing name, address, who deleted it and when) is kept for moderation and legal reasons. Suspended and unpublished listings are kept until deleted.</p><p><strong>Legal basis and sharing.</strong> Profile content is published at your request (contract) and moderation is carried out under our legitimate interest in keeping the directory safe. We do not sell this data. Public profile content, including the invite you provide, can be seen by anyone and may be indexed by search engines while the listing is published. Unpublished, suspended and unapproved listings are not indexed.</p><p><strong>Rules.</strong> What may be listed and what is stored about listed servers is also summarised in the <a href=\"/servers/guidelines\" class=\"text-[#e08a4e] hover:underline\">Community Guidelines</a>.</p>"
+        "html": "<p>Community Discovery lets the owner of a Discord server publish a public profile for it at wody.online/{prefix}/{name}. A profile is shown only after a person on the Wody team has reviewed and approved it. The address prefix is chosen by Wody and may change; older addresses keep redirecting.</p><p><strong>What we store.</strong> The profile content you enter (name, descriptions, category, tags, languages, invite code, social links, chosen colors and images, the Discord roles you choose to show publicly), the Discord server ID and public statistics read through the Discord bot (member count, online count, voice count, boosts, icon, creation date), your Discord user ID as the listing owner, the people you add as managers, the submission history, review decisions and messages, and the date you accepted the Terms and the Privacy Policy when submitting.</p><p><strong>Visitors.</strong> Favorites, reviews and reports are linked to the Discord account that made them. A review shows the reviewer’s Discord name and avatar after moderation, and only members of the server can review it. Wody staff can see who wrote a review or report. Internal moderation notes are never shown to listing owners.</p><p><strong>Analytics.</strong> Profile views, invite clicks and unique visitors are counted without cookies. A unique visitor is estimated from a one way daily hash of the IP address and browser string with a secret salt that changes every day. The raw IP address and browser string are not stored with the count, and the short lived technical records used for de-duplication are deleted after 2 days. Invite clicks only show that the Join button was pressed, not that someone joined.</p><p><strong>Retention.</strong> Notifications are deleted after 90 days. When a listing is deleted by its owner or by Wody, the listing, its versions, reviews, favorites, reports, managers, images and notifications are removed and the public address becomes available again. A short audit entry (listing name, address, who deleted it and when) is kept for moderation and legal reasons. Suspended and unpublished listings are kept until deleted.</p><p><strong>Legal basis and sharing.</strong> Profile content is published at your request (contract) and moderation is carried out under our legitimate interest in keeping the directory safe. We do not sell this data. Public profile content, including the invite you provide, can be seen by anyone and may be indexed by search engines while the listing is published. Unpublished, suspended and unapproved listings are not indexed.</p><p><strong>Rules.</strong> What may be listed and what is stored about listed servers is also summarised in the <a href=\"/servers/guidelines\" class=\"text-[#e08a4e] hover:underline\">Community Guidelines</a>.</p><p><strong>Expiry notices.</strong> For each published listing we store the date until which it is public and the dates of renewals. We use them to send you a website notification and a Discord direct message 7 days before the listing ends and when it ends. A listing is public for 6 months unless it is renewed; after that it is taken off the directory and its data is kept until the owner deletes the listing. When a listing is submitted for review, the Wody team is told by a website notification and a Discord direct message that contains the server name, its ID and its member count.</p>"
       },
       {
         "heading": "20. Invite Tracking",
@@ -1152,7 +1152,7 @@
       },
       {
         "heading": "25. WODY Collab and your profile",
-        "html": "<p>WODY Collab stores what you put into it, tied to your Discord user ID: your collabs (text, category, tags, optional links and up to three images, with every version you submitted), the result of the automatic check and any moderation decision, reports made about a collab, your applications, and the messages exchanged between authors and applicants. Your Discord display name and avatar hash are copied into each collab and application so the other person can see who wrote it; a collab shows the author’s Discord name and picture and, when the author has a public profile, a link to it (the profile is visible to signed in members only). When a visitor uses the optional contact form of a collab, the name, reply contact and message the visitor types are stored in the author’s inbox, and no network address is stored with the message. Abuse is limited with the Wody Human Check and with per-collab limits instead.</p><p>Your Collab profile stores your preferences (categories, tags and language used for the For you section and for notifications), the social links you add (only addresses of the offered platforms, saved as canonical https links), the setting that decides whether the authors of collabs you apply to can see those links (off by default), and your notification settings. The social links are shown on your profile. Your Discord username, display name and avatar hash are copied into your Collab profile so that it can be opened by your username; they are refreshed from Discord each time you open your profile and cannot be edited here. Your profile is public: every signed in member can open it at wody.online/profile/{username} and see your name, picture, username, join date, vacation status and the number of your live collabs. If you connect your TikTok account on the TikTok page, your TikTok username is added to your profile automatically as a link to your TikTok profile (read from the account you linked, never typed in). You can hide the TikTok link with its own switch, and you can turn off the sharing of all your social links at any time; hidden links are not shown to anyone. Only signed in members can see a profile; visitors who are not signed in are sent to the login. Notifications are stored for 90 days and, if you leave them enabled, are also sent as a Discord direct message in your language. Notices about moderation of your own collab are always recorded in the profile; only their Discord message can be turned off.</p><p>To enforce the rule against prices and payment details, the text of a collab, an application or a message may be analysed by automatic rules and, when the operator has configured one, by an AI service. If the analysis fails, the collab is held for a person to review. Wody staff see reports, detected payment terms and the moderation history. Collab does not make decisions that produce legal effects about you by solely automated means: an automatic hold or suspension is placed in a queue for a person at Wody to review.</p><p>The purpose is to provide the feature you requested and to keep the board safe (legitimate interest and the performance of the service). Drafts and live collabs are kept while the feature is available. When you delete a collab it is hidden at once, its images are erased and its open applications are closed; its versions, checks, decisions and reports are kept as a moderation record, as described in Section 26. Applications and messages are kept while the collab exists and as long as needed for moderation. You can ask for deletion of your Collab data by contacting us, subject to the exceptions in Section 9. See also the <a href=\"/terms\" class=\"text-[#e08a4e] hover:underline\">Terms</a>.</p><p>When you add an image to a collab by link, our server downloads that address once, checks that the file really is a PNG, JPEG or WebP image and stores a copy with your other collab images. Only a short file name taken from the address is kept, nothing that identifies you is sent to the other site (no cookies and no referrer), and visitors only ever load our copy. Your optional vacation status (an on/off switch, a short note of up to 120 characters and an optional end date) is stored in your Collab profile. While it is on, it is shown on your profile and to people who open your collabs or read your applications; it switches off by itself after the end date.</p><p>Server owners can create their own Collab categories for their server in the Dashboard. For each category Wody stores the server ID, the name the owner chose, who may post in it (everyone in the server, members with chosen Discord roles, or only the server staff), the IDs of the chosen roles, who created it and when. A category belongs to one server only: other servers cannot see it or use it, and two servers can use the same name. To decide whether you may post in a restricted category, Wody reads your roles in that server from Discord at the moment you post; those roles are not stored. The Collab settings a server owner chooses in the Dashboard (approval and announcement channel) are stored with the server ID.</p><p>To prevent abuse of posting, Collab keeps short lived records of when you posted and deleted collabs (your Discord user ID, the server ID and a time). They are used for the posting cooldown, the daily limit per server and temporary pauses, and the database removes them automatically after 24 hours.</p>"
+        "html": "<p>WODY Collab stores what you put into it, tied to your Discord user ID: your collabs (text, category, tags, optional links and up to three images, with every version you submitted), the result of the automatic check and any moderation decision, reports made about a collab, your applications, and the messages exchanged between authors and applicants. Your Discord display name and avatar hash are copied into each collab and application so the other person can see who wrote it; a collab shows the author’s Discord name and picture and, when the author has a public profile, a link to it (the profile is visible to signed in members only). When a visitor uses the optional contact form of a collab, the name, reply contact and message the visitor types are stored in the author’s inbox, and no network address is stored with the message. Abuse is limited with the Wody Human Check and with per-collab limits instead.</p><p>Your Collab profile stores your preferences (categories, tags and language used for the For you section and for notifications), the social links you add (only addresses of the offered platforms, saved as canonical https links), the setting that decides whether the authors of collabs you apply to can see those links (off by default), and your notification settings. The social links are shown on your profile. Your Discord username, display name and avatar hash are copied into your Collab profile so that it can be opened by your username; they are refreshed from Discord each time you open your profile and cannot be edited here. Your profile is public: every signed in member can open it at wody.online/profile/{username} and see your name, picture, username, join date, vacation status and the number of your live collabs. If you connect your TikTok account on the TikTok page, your TikTok username is added to your profile automatically as a link to your TikTok profile (read from the account you linked, never typed in). You can hide the TikTok link with its own switch, and you can turn off the sharing of all your social links at any time; hidden links are not shown to anyone. Only signed in members can see a profile; visitors who are not signed in are sent to the login. Notifications are stored for 90 days and, if you leave them enabled, are also sent as a Discord direct message in your language. Notices about moderation of your own collab are always recorded in the profile; only their Discord message can be turned off.</p><p>To enforce the rule against prices and payment details, the text of a collab, an application or a message may be analysed by automatic rules and, when the operator has configured one, by an AI service. If the analysis fails, the collab is held for a person to review. Wody staff see reports, detected payment terms and the moderation history. Collab does not make decisions that produce legal effects about you by solely automated means: an automatic hold or suspension is placed in a queue for a person at Wody to review.</p><p>The purpose is to provide the feature you requested and to keep the board safe (legitimate interest and the performance of the service). Drafts and live collabs are kept while the feature is available. When you delete a collab it is hidden at once, its images are erased and its open applications are closed; its versions, checks, decisions and reports are kept as a moderation record, as described in Section 26. Applications and messages are kept while the collab exists and as long as needed for moderation. You can ask for deletion of your Collab data by contacting us, subject to the exceptions in Section 9. See also the <a href=\"/terms\" class=\"text-[#e08a4e] hover:underline\">Terms</a>.</p><p>When you add an image to a collab by link, our server downloads that address once, checks that the file really is a PNG, JPEG or WebP image and stores a copy with your other collab images. Only a short file name taken from the address is kept, nothing that identifies you is sent to the other site (no cookies and no referrer), and visitors only ever load our copy. Your optional vacation status (an on/off switch, a short note of up to 120 characters and an optional end date) is stored in your Collab profile. While it is on, it is shown on your profile and to people who open your collabs or read your applications; it switches off by itself after the end date.</p><p>Server owners can create their own Collab categories for their server in the Dashboard. For each category Wody stores the server ID, the name the owner chose, who may post in it (everyone in the server, members with chosen Discord roles, or only the server staff), the IDs of the chosen roles, who created it and when. A category belongs to one server only: other servers cannot see it or use it, and two servers can use the same name. To decide whether you may post in a restricted category, Wody reads your roles in that server from Discord at the moment you post; those roles are not stored. The Collab settings a server owner chooses in the Dashboard (approval and announcement channel) are stored with the server ID.</p><p>To prevent abuse of posting, Collab keeps short lived records of when you posted and deleted collabs (your Discord user ID, the server ID and a time). They are used for the posting cooldown, the daily limit per server and temporary pauses, and the database removes them automatically after 24 hours.</p><p><strong>Expiry notices.</strong> Each collab is stored with the date it ends, 30 days after it goes live or is renewed. We use that date to send the author a website notification and a Discord direct message 7 days before it ends and when it ends. An ended collab that is not renewed within 7 days is deleted automatically, together with its images and files.</p>"
       },
       {
         "heading": "26. Changes to this Policy",
@@ -1257,7 +1257,7 @@
       },
       {
         "heading": "19. Community Discovery",
-        "html": "<p>Community Discovery is a public directory of Discord communities. By submitting a listing you confirm that you have read and accept these Terms and the Privacy Policy.</p><p><strong>Eligibility.</strong> Only the owner of a Discord server, or a person with the permissions required by Wody, can create a listing for it. You must have the Wody bot in the server. One server can have one listing.</p><p><strong>Your content.</strong> You are responsible for everything in your listing, including the invite, images and links. It must be accurate, must not impersonate a person, brand or other server, and must follow the Community Guidelines at <a href=\"/servers/guidelines\" class=\"text-[#e08a4e] hover:underline\">/servers/guidelines</a>. You give Wody a free, non exclusive licence to display the content in the directory, in search results and in link previews while the listing is published. You keep ownership of your content.</p><p><strong>Review and publication.</strong> Every listing and every later change is reviewed by Wody before it becomes public. Wody can approve, ask for changes, reject, suspend, unpublish or delete a listing at its discretion, for example for breaking these Terms, for a broken invite, for reports or for abuse. Approval is not an endorsement and Wody is not responsible for what happens inside a listed server or for the conduct of its members.</p><p><strong>Names and addresses.</strong> Each public address and community name can be used by one listing at a time. We may refuse or change a name or address that is misleading, reserved, or already in use. Addresses are not property: a deleted listing frees its address, and Wody may reassign reserved or abandoned ones.</p><p><strong>Reviews and reports.</strong> Reviews can be written only by members of the server and are moderated. Fake, paid, abusive or off topic reviews and links in reviews are removed. Listing owners cannot review their own server. Reports are handled by the Wody team and the outcome is at its discretion.</p><p><strong>No guarantees.</strong> Listing position, featuring and badges are decided by Wody and can change. We do not guarantee any number of views, clicks or members. Features can be changed or removed. Custom domains are not offered.</p>"
+        "html": "<p>Community Discovery is a public directory of Discord communities. By submitting a listing you confirm that you have read and accept these Terms and the Privacy Policy.</p><p><strong>Eligibility.</strong> Only the owner of a Discord server, or a person with the permissions required by Wody, can create a listing for it. You must have the Wody bot in the server. One server can have one listing.</p><p><strong>Your content.</strong> You are responsible for everything in your listing, including the invite, images and links. It must be accurate, must not impersonate a person, brand or other server, and must follow the Community Guidelines at <a href=\"/servers/guidelines\" class=\"text-[#e08a4e] hover:underline\">/servers/guidelines</a>. You give Wody a free, non exclusive licence to display the content in the directory, in search results and in link previews while the listing is published. You keep ownership of your content.</p><p><strong>Review and publication.</strong> Every listing and every later change is reviewed by Wody before it becomes public. Wody can approve, ask for changes, reject, suspend, unpublish or delete a listing at its discretion, for example for breaking these Terms, for a broken invite, for reports or for abuse. Approval is not an endorsement and Wody is not responsible for what happens inside a listed server or for the conduct of its members.</p><p><strong>Names and addresses.</strong> Each public address and community name can be used by one listing at a time. We may refuse or change a name or address that is misleading, reserved, or already in use. Addresses are not property: a deleted listing frees its address, and Wody may reassign reserved or abandoned ones.</p><p><strong>Reviews and reports.</strong> Reviews can be written only by members of the server and are moderated. Fake, paid, abusive or off topic reviews and links in reviews are removed. Listing owners cannot review their own server. Reports are handled by the Wody team and the outcome is at its discretion.</p><p><strong>No guarantees.</strong> Listing position, featuring and badges are decided by Wody and can change. We do not guarantee any number of views, clicks or members. Features can be changed or removed. Custom domains are not offered.</p><p><strong>Duration and renewal.</strong> A published listing stays public for 6 months. During the last 7 days before it ends, and after it has ended, the owner can renew it from the server dashboard to keep it online for another 6 months. Wody sends a Discord direct message and a website notification 7 days before the end date and again when the listing ends. A listing that is not renewed is taken off the directory automatically. Its content is kept and the owner can put it back online by renewing it.</p>"
       },
       {
         "heading": "20. Third-Party Discord Bots and External Services",
@@ -1269,7 +1269,7 @@
       },
       {
         "heading": "22. WODY Collab and your profile",
-        "html": "<p>WODY Collab is a board on the website where members post what they need (a &quot;collab&quot;) and other members apply to help. Wody only provides the board and the messaging. Wody is not a party to any agreement between members, does not take part in, guarantee, supervise or verify any work, and does not handle payments, escrow or fees. Prices, budgets, payment terms and payment details are not allowed in a collab, in an application or in a message, and the automatic check and the WODY team may hold or remove content that contains them.</p><p>You are responsible for what you post, for the people you choose to work with, and for any arrangement you make outside Wody. Do not post unlawful, deceptive, unsafe, harassing or misleading content, do not impersonate anyone, and do not put personal contact details in public text. Members can report a collab. Several reports suspend it automatically until the WODY team has reviewed it. The WODY team and, for a collab posted for a server that turned on approval, the owner of that server, can approve, reject, ask for changes to, or suspend a collab. A suspended collab is hidden and cannot be edited until a decision is made. You can delete your own collabs from your profile, except while one is suspended or being checked.</p><p>Your profile is the one place where you manage your collabs, applications, messages, social links and notification settings. Your name, picture and Discord name always come from Discord and cannot be changed in the profile. The social links you add must point to the platforms offered there and must be your own. They are shown on your profile and, only if you switch it on, to the authors of the collabs you apply to. Your profile is public to every signed in member at wody.online/profile/{username}, and a TikTok account you connect is added to it automatically. By using the website and Collab you agree that your profile is public in this way; you can hide any social link, including TikTok, or turn sharing off in your profile settings. You can remove them at any time. You can turn Collab notifications on or off in your profile; notices about the moderation of your own collab are always recorded in the profile. Do not use the messaging or the notifications for spam or abuse. Wody may limit, suspend or remove access to Collab for abuse. Details of the data involved are in the <a href=\"/privacy\" class=\"text-[#e08a4e] hover:underline\">Privacy Policy</a>.</p><p>When you add an image to a collab by link, you confirm that you have the right to use and share it, and WODY stores a copy of it. Do not link to content that is unlawful or that you are not allowed to share. Your vacation status is visible to the people described in the Privacy Policy and must not contain contact details or personal data of anyone else.</p><p>Server owners can create categories for their own server in the Dashboard and decide who may post in them: everyone in the server, members with chosen roles, or only the server staff. A collab made for a server must use one of that server&#39;s own categories, so nobody can post for a server that has none. You can only post for a server you are a member of and only in a category you are allowed to use. The server owner and administrators can use every category of their server. The server owner is responsible for the category names and may change or delete them at any time; collabs in a deleted category move to Other Services.</p><p>To protect the board, Collab limits how often you can post: one new collab per minute, a limited number of new collabs per server per day, and no repeated posts with the same title. If you post and delete collabs again and again, posting is paused for 30 minutes. Wody may change these limits to stop abuse.</p>"
+        "html": "<p>WODY Collab is a board on the website where members post what they need (a &quot;collab&quot;) and other members apply to help. Wody only provides the board and the messaging. Wody is not a party to any agreement between members, does not take part in, guarantee, supervise or verify any work, and does not handle payments, escrow or fees. Prices, budgets, payment terms and payment details are not allowed in a collab, in an application or in a message, and the automatic check and the WODY team may hold or remove content that contains them.</p><p>You are responsible for what you post, for the people you choose to work with, and for any arrangement you make outside Wody. Do not post unlawful, deceptive, unsafe, harassing or misleading content, do not impersonate anyone, and do not put personal contact details in public text. Members can report a collab. Several reports suspend it automatically until the WODY team has reviewed it. The WODY team and, for a collab posted for a server that turned on approval, the owner of that server, can approve, reject, ask for changes to, or suspend a collab. A suspended collab is hidden and cannot be edited until a decision is made. You can delete your own collabs from your profile, except while one is suspended or being checked.</p><p>Your profile is the one place where you manage your collabs, applications, messages, social links and notification settings. Your name, picture and Discord name always come from Discord and cannot be changed in the profile. The social links you add must point to the platforms offered there and must be your own. They are shown on your profile and, only if you switch it on, to the authors of the collabs you apply to. Your profile is public to every signed in member at wody.online/profile/{username}, and a TikTok account you connect is added to it automatically. By using the website and Collab you agree that your profile is public in this way; you can hide any social link, including TikTok, or turn sharing off in your profile settings. You can remove them at any time. You can turn Collab notifications on or off in your profile; notices about the moderation of your own collab are always recorded in the profile. Do not use the messaging or the notifications for spam or abuse. Wody may limit, suspend or remove access to Collab for abuse. Details of the data involved are in the <a href=\"/privacy\" class=\"text-[#e08a4e] hover:underline\">Privacy Policy</a>.</p><p>When you add an image to a collab by link, you confirm that you have the right to use and share it, and WODY stores a copy of it. Do not link to content that is unlawful or that you are not allowed to share. Your vacation status is visible to the people described in the Privacy Policy and must not contain contact details or personal data of anyone else.</p><p>Server owners can create categories for their own server in the Dashboard and decide who may post in them: everyone in the server, members with chosen roles, or only the server staff. A collab made for a server must use one of that server&#39;s own categories, so nobody can post for a server that has none. You can only post for a server you are a member of and only in a category you are allowed to use. The server owner and administrators can use every category of their server. The server owner is responsible for the category names and may change or delete them at any time; collabs in a deleted category move to Other Services.</p><p>To protect the board, Collab limits how often you can post: one new collab per minute, a limited number of new collabs per server per day, and no repeated posts with the same title. If you post and delete collabs again and again, posting is paused for 30 minutes. Wody may change these limits to stop abuse.</p><p><strong>Duration and renewal.</strong> A collab stays live for 30 days. During the last 7 days, and after it has ended, the author can renew it from the profile to keep it live for another 30 days. Wody sends a Discord direct message and a website notification 7 days before the end date and again when the collab ends. An ended collab is hidden, and if the author does not renew it within 7 days it is deleted automatically.</p>"
       },
       {
         "heading": "23. Changes to these Terms",
@@ -1754,20 +1754,24 @@
         "premium": null,
         "commands": [
           {
+            "name": "/battlepass info",
+            "description": "Global ve sunucu Battle Pass durumu, ve sıradaki ne"
+          },
+          {
             "name": "/battlepass progress",
-            "description": "Mevcut Battle Pass’teki seviyen ve XP’n"
+            "description": "Mevcut Battle Pass’teki seviyen ve XP’n. Global veya Yerel seç."
           },
           {
             "name": "/battlepass rewards",
-            "description": "Mevcut Battle Pass’in ödülleri"
+            "description": "Mevcut Battle Pass’in ödülleri. Global veya Yerel seç."
           },
           {
             "name": "/battlepass collection",
-            "description": "Mevcut Battle Pass’teki koleksiyonların"
+            "description": "Mevcut Battle Pass’teki koleksiyonların. Global veya Yerel seç."
           },
           {
             "name": "/battlepass achievements",
-            "description": "Mevcut Battle Pass’teki görevlerin ve başarımların"
+            "description": "Mevcut Battle Pass’teki görevlerin ve başarımların. Global veya Yerel seç."
           },
           {
             "name": "/battlepass badges",
@@ -5788,7 +5792,8 @@
       "hl3Title": "Neler olduğunu gör",
       "hl3Text": "Aktif sunucu etkinlikleri ve başarılar her profilde görünür.",
       "hl4Title": "Favorilerini kaydet",
-      "hl4Text": "Beğendiğin sunuculara kalp ver ve hepsini tek yerde bul."
+      "hl4Text": "Beğendiğin sunuculara kalp ver ve hepsini tek yerde bul.",
+      "renewNote": "Bir kayıt 6 ay boyunca herkese açık kalır. Sahipleri son 7 gün içinde yenileyebilir ve bitişten önce Discord özel mesajı ile site bildirimi alır."
     },
     "card": {
       "view": "Topluluğu gör",
@@ -6061,6 +6066,13 @@
           "heading": "Statistics and automatic checks",
           "body": [
             "Member counts and similar figures are read automatically through the Wody bot and can be slightly out of date. Wody checks that the invite still points to the same server. A listing can be marked unavailable or suspended when the bot is no longer in the server or the invite stops working."
+          ]
+        },
+        {
+          "heading": "Süre ve yenileme",
+          "body": [
+            "Yayınlanan bir kayıt 6 ay boyunca herkese açık kalır. Bitişinden önceki son 7 gün içinde ya da süresi dolduktan sonra sunucu panelinden yenilenebilir. Her yenileme kaydı 6 ay daha açık tutar.",
+            "Sahibine bitiş tarihinden 7 gün önce ve kayıt sona erdiğinde yine bir Discord özel mesajı ve bir site bildirimi gönderiyoruz. Yenilenmeyen kayıt dizinden otomatik olarak kaldırılır. İçeriği saklanır ve yenilenerek yeniden yayına alınabilir."
           ]
         }
       ],
@@ -6349,7 +6361,15 @@
       "submittedAt": "Gönderildi",
       "updatedAt": "Son güncelleme",
       "publishedAt": "Yayımlandı",
-      "version": "Sürüm"
+      "version": "Sürüm",
+      "expiresAt": "Yayında kalacağı tarih",
+      "expiredOn": "Süresi dolduğu tarih",
+      "renewTitle": "Kaydını yenile",
+      "renewText": "Kaydın 6 ay boyunca herkese açıktır ve yakında sona eriyor. Altı ay daha açık kalması için yenile.",
+      "renewButton": "Yenile",
+      "expiredTitle": "Kaydının süresi doldu",
+      "expiredText": "6 ay içinde yenilenmedi ve artık herkese açık değil. Verilerin saklanıyor. Tekrar yayına almak için yenile.",
+      "renewed": "Kayıt 6 ay için yenilendi."
     },
     "statusText": {
       "draft": "Bu kaydı yalnızca sen görürsün. Profili tamamla ve incelemeye gönder.",
@@ -6368,7 +6388,8 @@
       "changes_requested": "Değişiklik istendi",
       "rejected": "Reddedildi",
       "suspended": "Askıya alındı",
-      "unpublished": "Yayından kaldırıldı"
+      "unpublished": "Yayından kaldırıldı",
+      "expired": "Süresi doldu"
     },
     "reject": {
       "incomplete": "Eksik kayıt",
@@ -6406,7 +6427,9 @@
         "owner": "Sahip",
         "admin": "Wody ekibi",
         "system": "Sistem"
-      }
+      },
+      "expired": "Süresi doldu",
+      "renewed": "Yenilendi"
     },
     "history": {
       "timeline": "Gönderim zaman çizelgesi",
@@ -6435,7 +6458,10 @@
         "resubmission": "Yeniden gönderim: {name}",
         "new_report": "{name} hakkında yeni bildirim",
         "server_unavailable": "Sunucu kullanılamıyor: {name}",
-        "invalid_invite": "Geçersiz davet: {name}"
+        "invalid_invite": "Geçersiz davet: {name}",
+        "expiring": "Your listing {name} expires in 7 days. Renew it to keep it public.",
+        "expired": "Your listing {name} expired and is no longer public. Renew it to put it back online.",
+        "renewed": "Your listing {name} was renewed for 6 months."
       }
     },
     "preview": {
@@ -6949,7 +6975,8 @@
       "name_taken": "Başka bir topluluk bu adı zaten kullanıyor.",
       "invalid_prefix": "2 ile 24 arasında küçük harf, rakam veya tire kullan.",
       "prefix_reserved": "Bu önek site tarafından kullanılıyor.",
-      "admin_required": "Bunu yalnızca sunucu sahibi veya bir Yönetici yapabilir."
+      "admin_required": "Bunu yalnızca sunucu sahibi veya bir Yönetici yapabilir.",
+      "renew_too_early": "Süre dolmadan önceki son 7 gün içinde yenileyebilirsin."
     }
   },
   "partners": {
@@ -7857,7 +7884,8 @@
       "message": "Mesaj"
     },
     "postedBy": "Paylaşan",
-    "viewProfile": "Profili gör"
+    "viewProfile": "Profili gör",
+    "durationNote": "Bir collab 30 gün boyunca yayında kalır. Görünür kalması için son 7 gün içinde yenile. Sana Discord özel mesajı ve site bildirimiyle haber veririz."
   },
   "bell": {
     "title": "Bildirimler",
@@ -7916,7 +7944,11 @@
       "marketplace_auto_removed": "\"{title}\" talebin yenilenmediği için otomatik olarak silindi.",
       "marketplace_announce_channel": "\"{title}\" sunucusunun WODY Collab duyuru kanalı {reason} tarafından değiştirildi.",
       "marketplace_announce_channel_off": "\"{title}\" sunucusunun WODY Collab duyuruları {reason} tarafından kapatıldı.",
-      "marketplace_expiring_soon": "\"{title}\" talebinin süresi {reason} gün içinde doluyor. Görünür kalması için Dashboard’dan yenile."
+      "marketplace_expiring_soon": "\"{title}\" talebinin süresi {reason} gün içinde doluyor. Görünür kalması için Dashboard’dan yenile.",
+      "community_expiring": "Your listing {name} expires in 7 days. Renew it to keep it public.",
+      "community_expired": "Your listing {name} expired and is no longer public. Renew it to put it back online.",
+      "community_renewed": "Your listing {name} was renewed for 6 months.",
+      "server_submitted": "New server waiting for review: {name}"
     }
   },
   "profile": {
@@ -8606,7 +8638,8 @@
       "card": "Seviye kartı",
       "socials": "Sosyal ağlar",
       "stats": "İstatistikler",
-      "passport": "Pasaport"
+      "passport": "Pasaport",
+      "battlepass": "Battle Pass"
     },
     "passportNo": "Pasaport no.",
     "daysWith": "Wody ile geçen gün",
@@ -9105,7 +9138,12 @@
       "reward_not_claimed": "Bilgilerinizi göndermeden önce bu ödülü alın.",
       "form_off": "Teslimat formu şu anda kullanılamıyor.",
       "season_not_running": "Şu anda devam eden bir sunucu sezonu yok.",
-      "already_delivered": "Bu kayıt zaten teslim edildi ve değiştirilemez."
+      "already_delivered": "Bu kayıt zaten teslim edildi ve değiştirilemez.",
+      "no_channel": "Önce bir bildirim kanalı kaydet.",
+      "channel_not_found": "Bot bu kanalı bulamıyor. Kanal kimliğini kontrol et.",
+      "no_permission": "Bot bu kanala yazamıyor.",
+      "send_failed": "Mesaj gönderilemedi.",
+      "not_server_season": "Yalnızca sunucu sezonları duyurulabilir."
     },
     "claimErrors": {
       "generic": "Ödül alınamadı.",
@@ -9136,7 +9174,12 @@
       "claims": "Ödüller",
       "claimsIntro": "Üyelerin ödülleri ne zaman alabileceği.",
       "notifications": "Bildirimler",
-      "notificationsIntro": "Botun bu sezon için gönderdiği mesajlar."
+      "notificationsIntro": "Botun bu sezon için gönderdiği mesajlar.",
+      "announceNow": "Şimdi duyur",
+      "announceHint": "Sezon mesajını seçtiğin etiketle kanala yeniden gönderir.",
+      "announceDone": "Duyuru gönderildi.",
+      "announceSave": "Önce değişikliklerini kaydet.",
+      "announceStatus": "Sezon etkin veya planlı olduğunda kullanılabilir."
     },
     "fields": {
       "name": "Ad",
@@ -9236,7 +9279,13 @@
       "requiredXp": "XP ödülü",
       "requiredXpHint": "Görev tamamlandığında bonus XP.",
       "rewardOnComplete": "Tamamlanınca verilen ödül",
-      "allowAloneHint": "Üye kanaldaki tek kişi olduğunda ses süresini sayar."
+      "allowAloneHint": "Üye kanaldaki tek kişi olduğunda ses süresini sayar.",
+      "notifyCreated": "Yayınlandığında duyur",
+      "notifyCreatedHint": "Sezonu etkinleştirdiğinde kanala bir mesaj gönderir, daha sonra başlayacak bir sezon için de. Bir kanal gerekir.",
+      "notifyRole": "Bir rolden bahset",
+      "notifyRoleHint": "Sezon mesajlarında (yayınlandı, başladı, bitti) bahsedilen rolün kimliği. Kimseden bahsetmemek için boş bırak.",
+      "notifyEveryone": "@everyone etiketle",
+      "notifyEveryoneHint": "Sezon mesajlarıyla tüm sunucuyu bilgilendirir. Dikkatli kullan."
     },
     "levels": {
       "title": "Seviye eğrisi",
@@ -9392,7 +9441,21 @@
       "globalRunning": "Genel Battle Pass \"{name}\" çalışıyor. Sunucunuzun sezonları ayarlarını ve ilerlemesini korur, bitince devam eder.",
       "serverRunning": "\"{name}\" sezonunuz bu sunucuda çalışıyor.",
       "nothingRunning": "Bu sunucuda çalışan sezon yok.",
-      "openPage": "Battle Pass sayfasını aç"
+      "openPage": "Battle Pass sayfasını aç",
+      "statusTitle": "Battle Pass durumu",
+      "permanentLink": "Kalıcı bağlantı",
+      "permanentHint": "Bu adres her zaman sunucunun Battle Pass'ini açar. Sunucuna sabitle.",
+      "copyLink": "Bağlantıyı kopyala",
+      "copied": "Bağlantı kopyalandı",
+      "comingSoon": "Yakında",
+      "startsOn": "{date} başlıyor",
+      "endsOn": "{date} sona eriyor",
+      "noStartDate": "Başlangıç tarihi henüz belirlenmedi",
+      "nextSeason": "Sıradaki sezon",
+      "scopeGlobal": "Global",
+      "scopeServer": "Sunucu",
+      "scheduledNote": "Planlanmış bir sezon var. Üyeler bunu sayfada ve Discord'da „Yakında” olarak görür.",
+      "noneBadge": "Çalışmıyor"
     },
     "page": {
       "back": "Wody’ye dön",
@@ -9410,7 +9473,14 @@
         "title": "Battle Pass kullanılamıyor",
         "text": "Bu sunucunun kendi Battle Pass’ini çalıştırması için etkin bir Premium aboneliği gerekir."
       },
-      "ambientNote": "Ortam müziği, yalnızca sesi açtıktan sonra harici bir bağlantıdan yüklenir."
+      "ambientNote": "Ortam müziği, yalnızca sesi açtıktan sonra harici bir bağlantıdan yüklenir.",
+      "comingSoon": {
+        "title": "Yakında",
+        "text": "{name} yolda. Başladığında tekrar gel.",
+        "startsOn": "{date} başlıyor",
+        "noDate": "Başlangıç tarihi yakında duyurulacak.",
+        "next": "Sıradaki: {name}"
+      }
     },
     "sections": {
       "season": "Sezon",
@@ -9788,6 +9858,35 @@
         "choose": "Bir seçenek belirleyin",
         "locked": "Teslim edilen kayıtlar artık değiştirilemez."
       }
+    },
+    "statusPublic": {
+      "active": "Şimdi aktif",
+      "scheduled": "Yakında",
+      "paused": "Duraklatıldı",
+      "completed": "Sona erdi",
+      "draft": "Taslak",
+      "archived": "Arşivlendi"
+    },
+    "profile": {
+      "title": "Battle Pass",
+      "editorTitle": "Profilinde Battle Pass",
+      "editorIntro": "Başkalarının profil sayfanda ve botta hangi Battle Pass, rozet, madalya ve ödülleri görebileceğini seç. Değişiklikler anında kaydedilir.",
+      "empty": "Bir Battle Pass'te rozet ve ödül kazan, burada görünsünler.",
+      "shown": "Görünür",
+      "hidden": "Gizli",
+      "scopeGlobal": "Global",
+      "scopeServer": "Sunucu",
+      "groupBadge": "Rozetler",
+      "groupMedal": "Madalyalar",
+      "groupReward": "Ödüller",
+      "itemsCount": "{total} öğeden {shown} görünür",
+      "showAll": "Tümünü göster",
+      "hideAll": "Tümünü gizle",
+      "feature": "Öne çıkar",
+      "featured": "Öne çıkan",
+      "saveError": "Kaydedilemedi. Tekrar dene.",
+      "level": "Seviye {level}",
+      "loadError": "Battle Pass öğelerin yüklenemedi."
     }
   },
   "battlepassHelp": {

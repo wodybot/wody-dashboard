@@ -376,3 +376,24 @@ test('owner reports and overview read the nested counters the bot writes', async
   assert.equal(ov.body.week.xp_message, 40);
   assert.equal(ov.body.week.rewards_claimed, 2);
 });
+
+test('profile: members hide whole seasons or single items, and the public loader respects it', async () => {
+  const db = fresh();
+  const { loadProfilePass, visibleItems } = await import('../../lib/battlepass/profile.js');
+  const sid = await makeGlobal('Winter');
+  await db.collection('bp_inventory').insertOne({ user_id: BigInt(MEMBER), item_id: 'b1', season_id: sid, type: 'badge', name: 'First' });
+  await db.collection('bp_inventory').insertOne({ user_id: BigInt(MEMBER), item_id: 'a1', season_id: sid, type: 'achievement', name: 'Medal' });
+  let pass = await loadProfilePass(db, MEMBER);
+  assert.equal(pass.seasons[0].items.length, 2);
+  assert.deepEqual(pass.seasons[0].items.map((i) => i.group).sort(), ['badge', 'medal']);
+  const inv = await call('GET', 'inventory', { user: MEMBER });
+  assert.equal(inv.body.seasons[0].name, 'Winter');
+  assert.equal((await call('PATCH', 'profile', { user: MEMBER, body: { hidden_items: ['a1', 'not-owned'] } })).status, 200);
+  assert.deepEqual((await call('GET', 'inventory', { user: MEMBER })).body.profile.hidden_items, ['a1']);
+  pass = await loadProfilePass(db, MEMBER);
+  assert.deepEqual(pass.seasons[0].items.map((i) => i.item_id), ['b1']);
+  assert.equal((await call('PATCH', 'profile', { user: MEMBER, body: { hidden_seasons: [sid] } })).status, 200);
+  assert.equal(await loadProfilePass(db, MEMBER), null);
+  assert.equal((await call('PATCH', 'profile', { user: MEMBER, body: { hidden_seasons: 'x' } })).status, 422);
+  assert.deepEqual(visibleItems([{ season_id: 's', item_id: 'i' }], { hidden_items: ['i'] }), []);
+});

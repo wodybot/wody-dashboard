@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Briefcase, Plus, ShieldCheck } from 'lucide-react';
+import { Briefcase, Clock, Plus, ShieldCheck } from 'lucide-react';
 import { Footer, TopNav } from '@/components/nav';
 import { Link } from '@/i18n/navigation';
 import CollabHome from '@/components/collab/CollabHome';
@@ -52,6 +52,7 @@ export default async function CollabPage({ params, searchParams }) {
             <Link href="/profile" className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/50 px-4 py-2 text-sm font-medium text-muted-foreground transition hover:text-foreground">{t('myArea')}</Link>
           </nav>
           <p className="mx-auto mt-4 inline-flex max-w-2xl items-start gap-2 text-left text-xs text-muted-foreground"><ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />{t('noPayments')}</p>
+          <p className="mx-auto mt-2 inline-flex max-w-2xl items-start gap-2 text-left text-xs text-muted-foreground"><Clock className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />{t('durationNote')}</p>
         </header>
         <CollabHome initial={initial} initialCategory={category} signedIn={Boolean(session?.user)} />
       </main>

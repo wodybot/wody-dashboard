@@ -121,6 +121,7 @@ export default async function ServersPage({ params, searchParams }) {
             <Link href="/dashboard" className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border px-4 py-2 text-center text-sm font-semibold leading-tight transition border-[#e6cd8c]/45 bg-[#e6cd8c]/10 text-[#f0c08e] hover:bg-[#e6cd8c]/20"><Plus className="h-4 w-4" aria-hidden="true" />{t('home.listYours')}</Link>
             <Link href="/servers/guidelines" className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border px-4 py-2 text-center text-sm font-semibold leading-tight transition border-border/70 bg-card/50 text-muted-foreground hover:text-foreground"><BookOpen className="h-4 w-4" aria-hidden="true" />{t('guidelines.link')}</Link>
           </nav>
+          <p className="mx-auto mt-4 max-w-2xl text-xs text-muted-foreground">{t('home.renewNote')}</p>
         </header>
 
         {results ? (

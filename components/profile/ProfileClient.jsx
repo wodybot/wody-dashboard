@@ -323,7 +323,7 @@ function RequestCard({ r, onEdit, onApps, onAct, onRemove }) {
         {r.status === 'published' && <button className={btn} onClick={() => onApps(r)}>{tc('requests.applications', { n: r.applications })}</button>}
         {r.status === 'published' && !r.closed_at && <button className={btn} onClick={() => onAct(r.id, '/close')}>{tc('requests.close')}</button>}
         {r.status === 'published' && r.closed_at && !r.accepted_application_id && <button className={btn} onClick={() => onAct(r.id, '/reopen')}>{tc('requests.reopen')}</button>}
-        {r.status === 'expired' && <button className={btn} onClick={() => onAct(r.id, '/renew')}>{tc('requests.renew')}</button>}
+        {(r.status === 'expired' || (r.status === 'published' && r.expires_at && new Date(r.expires_at).getTime() - Date.now() <= 7 * 86400000)) && <button className={btn} onClick={() => onAct(r.id, '/renew')}>{tc('requests.renew')}</button>}
         {r.pending_state && r.pending_state !== 'pending_verification' && <button className={btn} onClick={() => onAct(r.id, '/discard')}>{tc('requests.discard')}</button>}
         {r.status !== 'draft' && <button className={btn} aria-expanded={showHistory} onClick={() => setShowHistory((v) => !v)}><History className="h-3.5 w-3.5" aria-hidden="true" />{t('requests.history')}</button>}
         {canDelete && <button className={`${btn} border-red-400/40 text-red-300 hover:border-red-400`} onClick={() => setConfirm(true)}><Trash2 className="h-3.5 w-3.5" aria-hidden="true" />{t('requests.delete')}</button>}

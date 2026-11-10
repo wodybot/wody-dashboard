@@ -19,6 +19,7 @@
         "test:themes": "node --import ./tests/battlepass/register.mjs --test tests/themes/themes.test.mjs && node --import ./tests/gifstudio/register.mjs --test tests/themes/engine.test.mjs",
         "test:gifstudio": "node --import ./tests/gifstudio/register.mjs --test tests/gifstudio/gifstudio.test.mjs",
         "test:statistics": "node --import ./tests/battlepass/register.mjs --test tests/statistics/api.test.mjs tests/statistics/chart-math.test.mjs tests/statistics/messages.test.mjs",
+        "test:lifecycle": "node --import ./tests/battlepass/register.mjs --test tests/lifecycle/lifecycle.test.mjs",
         "test:seo": "node --import ./tests/gifstudio/register.mjs --test tests/seo/modules.test.mjs",
         "test:dashboard": "node --test tests/dashboard/client-messages.test.mjs tests/dashboard/error-log.test.mjs"
     },
@@ -85,6 +86,7 @@
         "autoprefixer": "10.4.19",
         "globals": "16.2.0",
         "postcss": "8.5.23",
+        "sucrase": "3.35.0",
         "tailwindcss": "3.4.1"
     },
     "resolutions": {
@@ -94,6 +96,7 @@
         "**/anymatch/picomatch": "2.3.2",
         "**/readdirp/picomatch": "2.3.2",
         "postcss": "8.5.23",
+        "sucrase": "3.35.0",
         "yaml": "2.8.3",
         "lodash": "4.18.1"
     },

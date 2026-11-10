@@ -3,6 +3,7 @@ import { CARD_FONT_IDS } from '@/lib/card-fonts';
 import { configGroups, botComparison, liveChecks } from '@/lib/owner-config';
 import { normalizePage, validatePagePatch } from '@/lib/profile-page';
 import { loadPassport } from '@/lib/collab/public-profile';
+import { loadProfilePass } from '@/lib/battlepass/profile';
 import { applyPatch as applyProfilePatch, normalizeConfig as normalizeProfileConfig, PROFILE_CARD } from '@/lib/profile-card';
 import { sniffImage as sniffProfileImage } from '@/lib/community/images';
 import { ObjectId as ProfileObjectId } from 'mongodb';
@@ -1038,7 +1039,7 @@ async function handleGet(request, context) {
     const session = await getSession();
     if (!session?.user?.id) return json({ error: 'unauthenticated' }, { status: 401 });
     const doc = await (await getDb()).collection('profile_cards').findOne({ _id: String(session.user.id) }, { projection: { page: 1, moderation: 1 } });
-    return json({ page: normalizePage(doc?.page), customized: Boolean(doc?.page && Object.keys(doc.page).length), moderation: publicModeration(doc?.moderation), passport: await loadPassport(await getDb(), session.user.id) }, { headers: { 'Cache-Control': 'no-store' } });
+    return json({ page: normalizePage(doc?.page), customized: Boolean(doc?.page && Object.keys(doc.page).length), moderation: publicModeration(doc?.moderation), passport: await loadPassport(await getDb(), session.user.id), pass: await loadProfilePass(await getDb(), session.user.id).catch(() => null) }, { headers: { 'Cache-Control': 'no-store' } });
   }
   if (path === 'owner/content-reports') {
     const session = await getSession();

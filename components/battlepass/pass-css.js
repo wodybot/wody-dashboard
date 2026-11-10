@@ -35,6 +35,17 @@ export const PASS_CSS = `
 .bp-meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .bp-chip{border-radius:999px;border:1px solid color-mix(in srgb,var(--bp-border) 20%,transparent);background:rgba(0,0,0,.25);padding:4px 12px;font-size:.78rem;color:var(--bp-muted)}
 .bp-chip b{color:var(--bp-text)}
+.bp-status{display:inline-flex;align-items:center;gap:7px;font-weight:600;letter-spacing:.02em}
+.bp-dot{position:relative;display:inline-block;width:8px;height:8px;border-radius:50%;background:#8b8f98}
+.bp-status-active{border-color:rgba(59,165,93,.55);background:rgba(59,165,93,.14)}
+.bp-status-active .bp-dot{background:#3ba55d;box-shadow:0 0 0 0 rgba(59,165,93,.6);animation:bp-live 1.8s ease-out infinite}
+.bp-status-scheduled{border-color:rgba(240,178,50,.55);background:rgba(240,178,50,.14)}
+.bp-status-scheduled .bp-dot{background:#f0b232}
+.bp-status-paused .bp-dot{background:#80848e}
+.bp-status-completed{border-color:rgba(124,92,255,.5);background:rgba(124,92,255,.14)}
+.bp-status-completed .bp-dot{background:#7c5cff}
+@keyframes bp-live{0%{box-shadow:0 0 0 0 rgba(59,165,93,.55)}70%{box-shadow:0 0 0 8px rgba(59,165,93,0)}100%{box-shadow:0 0 0 0 rgba(59,165,93,0)}}
+@media (prefers-reduced-motion:reduce){.bp-status-active .bp-dot{animation:none}}
 .bp-title-gradient{background:linear-gradient(90deg,var(--bp-accent),var(--bp-accent2),var(--bp-accent));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:bp-slide calc(6s * var(--bp-motion)) linear infinite}
 .bp-title-glow{text-shadow:0 0 calc(24px * var(--bp-glow)) var(--bp-accent),0 0 calc(54px * var(--bp-glow)) var(--bp-accent2)}
 .bp-title-neon{color:#fff;text-shadow:0 0 4px #fff,0 0 calc(14px * var(--bp-glow)) var(--bp-accent),0 0 calc(34px * var(--bp-glow)) var(--bp-accent),0 0 calc(60px * var(--bp-glow)) var(--bp-accent2)}

@@ -19,9 +19,10 @@ function Block({ title, accent, span = '', delay = 0, children }) {
 }
 
 /** Single renderer used by the public profile page and by the editor's live preview. */
-export default function ProfilePageView({ page, name, username, avatarSrc, memberSince, away, socials = {}, live = 0, views = 0, isPublic = false, locale = 'en', card = null, passport = null, compact = false }) {
+export default function ProfilePageView({ page, name, username, avatarSrc, memberSince, away, socials = {}, live = 0, views = 0, isPublic = false, locale = 'en', card = null, passport = null, pass = null, compact = false }) {
   const t = useTranslations('profile');
   const tp = useTranslations('profilePage');
+  const tb = useTranslations('battlepass.profile');
   const accent = pageAccent(page) || '#e6cd8c';
   const hide = new Set(page.hide || []);
   const has = Object.keys(socials).length > 0;
@@ -96,6 +97,33 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
             </div>
           ))}
         </dl>
+      </Block>
+    ) : null,
+    battlepass: pass?.seasons?.length ? (
+      <Block key="battlepass" title={tp('section.battlepass')} accent={accent} span="lg:col-span-3">
+        <div className="space-y-5">
+          {pass.seasons.map((se) => (
+            <div key={se.id}>
+              <h3 className="mb-2 flex flex-wrap items-center gap-2 text-sm font-black">
+                <span>{se.i18n?.[locale]?.name || se.name}</span>
+                <span className="rounded-full border px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-muted-foreground" style={{ borderColor: `${accent}40` }}>{se.scope === 'global' ? tb('scopeGlobal') : tb('scopeServer')}</span>
+              </h3>
+              <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {se.items.map((it) => (
+                  <li key={it.item_id} className="flex items-center gap-3 rounded-xl border border-border/50 bg-background/40 px-3 py-2" style={it.item_id === pass.featured ? { borderColor: accent, boxShadow: `0 0 14px ${accent}40` } : undefined}>
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg text-lg" style={{ background: `${accent}1f` }}>
+                      {it.art && /^https:\/\//.test(it.art) ? /* eslint-disable-next-line @next/next/no-img-element */ <img src={it.art} alt="" className="h-full w-full object-cover" /> : <span aria-hidden="true">{it.icon || ''}</span>}
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block truncate text-sm font-semibold">{it.i18n?.[locale]?.name || it.name}</span>
+                      <span className="block truncate text-[0.7rem] text-muted-foreground">{it.group === 'badge' ? tb('groupBadge') : it.group === 'medal' ? tb('groupMedal') : tb('groupReward')}{it.item_id === pass.featured ? ` · ${tb('featured')}` : ''}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </Block>
     ) : null,
   };

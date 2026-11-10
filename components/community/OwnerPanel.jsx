@@ -168,7 +168,7 @@ function Editor({ guildId, data, api, standalone }) {
         <OwnerPreview draft={draft} state={state} options={options} guildId={guildId} active={tab === 'preview'} />
       </div>
       {tab === 'analytics' ? <Analytics guildId={guildId} /> : null}
-      {tab === 'status' ? <StatusTab state={state} done={done} guildId={guildId} /> : null}
+      {tab === 'status' ? <StatusTab state={state} done={done} guildId={guildId} onRenewed={adopt} /> : null}
       {tab === 'history' ? <HistoryTab state={state} /> : null}
       {tab === 'managers' ? <Managers guildId={guildId} /> : null}
 
@@ -305,8 +305,15 @@ export function ReviewMessage({ review }) {
   );
 }
 
-function StatusTab({ state, done, guildId }) {
+function StatusTab({ state, done, guildId, onRenewed }) {
   const t = useTranslations('community');
+  const [renewing, setRenewing] = useState(false);
+  const renew = async () => {
+    setRenewing(true);
+    const r = await cfetch(`owner/${guildId}/renew`, { method: 'POST', body: {} });
+    setRenewing(false);
+    if (r.ok) { onRenewed(r.data.listing); toast.success(t('status.renewed')); } else toast.error(t.has(`errors.${r.data?.error}`) ? t(`errors.${r.data.error}`) : t('errors.generic'));
+  };
   const [delOpen, setDelOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const remove = async () => {
@@ -329,7 +336,15 @@ function StatusTab({ state, done, guildId }) {
           <div className="flex justify-between gap-3"><dt className="text-muted-foreground">{t('status.updatedAt')}</dt><dd>{fmt(state.updated_at)}</dd></div>
           <div className="flex justify-between gap-3"><dt className="text-muted-foreground">{t('status.version')}</dt><dd><VersionPill n={state.version || 0} /></dd></div>
           {state.published_at ? <div className="flex justify-between gap-3"><dt className="text-muted-foreground">{t('status.publishedAt')}</dt><dd>{fmt(state.published_at)}</dd></div> : null}
+          {state.expires_at && (state.status === 'published' || state.expired) ? <div className="flex justify-between gap-3"><dt className="text-muted-foreground">{state.expired ? t('status.expiredOn') : t('status.expiresAt')}</dt><dd>{fmt(state.expires_at)}</dd></div> : null}
         </dl>
+        {state.can_renew ? (
+          <div className="mt-4 rounded-lg border border-amber-400/30 bg-amber-400/[0.06] p-3 text-sm">
+            <p className="font-semibold">{state.expired ? t('status.expiredTitle') : t('status.renewTitle')}</p>
+            <p className="mt-1 text-muted-foreground">{state.expired ? t('status.expiredText') : t('status.renewText')}</p>
+            <Button type="button" onClick={renew} disabled={renewing} className="mt-3 gap-2">{renewing ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : null}{t('status.renewButton')}</Button>
+          </div>
+        ) : null}
       </Card>
       <div className="space-y-5">
         {state.last_review ? <ReviewMessage review={state.last_review} /> : <Card className="p-5 text-sm text-muted-foreground">{t('status.noMessage')}</Card>}

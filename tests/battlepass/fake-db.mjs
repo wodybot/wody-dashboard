@@ -60,6 +60,7 @@ function setPath(doc, path, value) {
 
 function applyUpdate(doc, update, inserting) {
   for (const [path, v] of Object.entries(update.$set || {})) setPath(doc, path, copy(v));
+  for (const path of Object.keys(update.$unset || {})) { const parts = path.split('.'); const last = parts.pop(); const holder = parts.reduce((o, k) => (o == null ? undefined : o[k]), doc); if (holder) delete holder[last]; }
   for (const [path, v] of Object.entries(update.$inc || {})) setPath(doc, path, Number(get(doc, path) || 0) + Number(v));
   if (inserting) for (const [path, v] of Object.entries(update.$setOnInsert || {})) setPath(doc, path, copy(v));
   for (const [path, v] of Object.entries(update.$push || {})) {
@@ -83,6 +84,11 @@ class Collection {
     if (this.docs.some((x) => norm(x._id) === norm(d._id))) { const e = new Error('E11000 duplicate key'); e.code = 11000; throw e; }
     this.docs.push(d);
     return { insertedId: d._id };
+  }
+  async insertMany(docs) {
+    const ids = [];
+    for (const doc of docs) ids.push((await this.insertOne(doc)).insertedId);
+    return { insertedCount: ids.length, insertedIds: ids };
   }
   async findOne(filter) { return this.clone(this.docs.find((d) => matches(d, filter))) ?? null; }
   find(filter) {

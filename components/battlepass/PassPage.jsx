@@ -193,7 +193,7 @@ export default function PassPage({ season, initialState, viewer, guildName, back
         {(studio?.config.hero.subtitle || th.subtitle || season.description) ? <p className="bp-sub">{studio?.config.hero.subtitle || th.subtitle || loc(season, 'description')}</p> : null}
         <div className="bp-meta">
           <span className="bp-chip"><b>{t(`scope.${season.scope}`)}</b>{season.scope === 'guild' && guildName ? ` · ${guildName}` : ''}</span>
-          <span className="bp-chip"><b>{t(`status.${state.status}`)}</b></span>
+          <span className={`bp-chip bp-status bp-status-${state.status}`}><i className="bp-dot" aria-hidden="true" /><b>{t.has(`statusPublic.${state.status}`) ? t(`statusPublic.${state.status}`) : t(`status.${state.status}`)}</b></span>
           {th.show_timer && left && !left.done && (state.status === 'active' || state.status === 'scheduled') ? <span className="bp-chip" aria-live="off">{ts(state.status === 'scheduled' ? 'countdown.startsIn' : 'countdown.endsIn')} <b>{t('time.left', { d: left.d, h: left.h, m: left.m, s: left.s })}</b></span> : null}
           {season.earn?.multiplier && season.earn.multiplier !== 1 ? <span className="bp-chip">XP <b>x{season.earn.multiplier}</b></span> : null}
         </div>

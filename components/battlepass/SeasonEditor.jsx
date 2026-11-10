@@ -24,9 +24,22 @@ export const STATUS_TONE = {
   active: 'border-emerald-400/40 bg-emerald-500/10 text-emerald-300', paused: 'border-amber-400/40 bg-amber-500/10 text-amber-300',
   completed: 'border-violet-400/40 bg-violet-500/10 text-violet-300', archived: 'border-border/60 bg-secondary/30 text-muted-foreground',
 };
+const STATUS_DOT = {
+  draft: 'bg-muted-foreground/60', scheduled: 'bg-sky-300', active: 'bg-emerald-300', paused: 'bg-amber-300', completed: 'bg-violet-300', archived: 'bg-muted-foreground/50',
+};
+/** The status of a season as a small pill: a coloured dot (pulsing while it is live) and the word. */
 export function StatusBadge({ status }) {
   const t = useTranslations('battlepass');
-  return <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-semibold ${STATUS_TONE[status] || STATUS_TONE.draft}`}>{t(`status.${status}`)}</span>;
+  const key = STATUS_TONE[status] ? status : 'draft';
+  return (
+    <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-semibold ${STATUS_TONE[key]}`}>
+      <span className="relative inline-flex h-1.5 w-1.5" aria-hidden="true">
+        {key === 'active' ? <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300/70 motion-reduce:animate-none" /> : null}
+        <span className={`relative inline-flex h-1.5 w-1.5 rounded-full ${STATUS_DOT[key]}`} />
+      </span>
+      {t(`status.${key}`)}
+    </span>
+  );
 }
 
 const TABS = [
@@ -130,7 +143,7 @@ export default function SeasonEditor({ base, scope, seasonId, onClose, onChanged
             ) : null}
             {dirty && canActivate ? <p className="text-xs text-muted-foreground">{t('editor.saveBeforeActivate')}</p> : null}
             <ModuleTabs tabs={TABS.map(([key, icon]) => ({ key, icon, label: t(`tabs.${key}`) }))} active={tab} onChange={setTab} badges={errorBadges} />
-            {tab === 'general' && <GeneralTab draft={draft} set={set} errors={errors} scope={scope} />}
+            {tab === 'general' && <GeneralTab draft={draft} set={set} errors={errors} scope={scope} base={base} seasonId={seasonId} status={s?.status} dirty={dirty} />}
             {tab === 'levels' && <LevelsTab draft={draft} set={set} errors={errors} />}
             {tab === 'xp' && <XpTab draft={draft} set={set} errors={errors} scope={scope} limits={state.limits} />}
             {tab === 'rewards' && <RewardsTab draft={draft} set={set} errors={errors} />}
