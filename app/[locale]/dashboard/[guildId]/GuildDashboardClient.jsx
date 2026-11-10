@@ -4846,17 +4846,6 @@ function YoutubeNotificationPreview({ kind, cfg, roleName, channelTitle }) {
   );
 }
 
-function YoutubeLinkUnfurl({ channelTitle, videoTitle }) {
-  return (
-    <div className="max-w-md overflow-hidden rounded-md border-l-4 border-[#cc0000] bg-[#2b2d31] p-3 text-sm">
-      <div className="text-xs text-[#b5bac1]">YouTube</div>
-      <div className="mt-0.5 text-xs text-white">{channelTitle}</div>
-      <div className="mt-1 font-semibold text-[#00a8fc]">{videoTitle}</div>
-      <div className="mt-2 aspect-video rounded bg-gradient-to-br from-[#3a3d44] to-[#1e1f22]" />
-    </div>
-  );
-}
-
 function YoutubeNotifyPanel({ guildId, meta }) {
   const t = useTranslations('guildSettings.youtubeNotify');
   const tc = useTranslations('guildSettings.common');
