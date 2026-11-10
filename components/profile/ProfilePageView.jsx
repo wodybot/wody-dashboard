@@ -112,7 +112,7 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
                 {se.items.map((it) => (
                   <li key={it.item_id} className="flex items-center gap-3 rounded-xl border border-border/50 bg-background/40 px-3 py-2" style={it.item_id === pass.featured ? { borderColor: accent, boxShadow: `0 0 14px ${accent}40` } : undefined}>
                     <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg text-lg" style={{ background: `${accent}1f` }}>
-                      {it.art && /^https:\/\//.test(it.art) ? /* eslint-disable-next-line @next/next/no-img-element */ <img src={it.art} alt="" className="h-full w-full object-cover" /> : <span aria-hidden="true">{it.icon || ''}</span>}
+                      {it.art && /^https:\/\//.test(it.art) ? /* eslint-disable-next-line @next/next/no-img-element */ <img src={proxiedImageUrl(it.art)} alt="" className="h-full w-full object-cover" /> : <span aria-hidden="true">{it.icon || ''}</span>}
                     </span>
                     <span className="min-w-0">
                       <span className="block truncate text-sm font-semibold">{it.i18n?.[locale]?.name || it.name}</span>
