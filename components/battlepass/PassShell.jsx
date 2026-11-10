@@ -5,6 +5,7 @@ import WodyIcon from '@/components/wody-icon';
 import PageBackdrop from '@/components/profile/PageBackdrop';
 import PassPage from './PassPage';
 import LocalDate from './LocalDate';
+import ThemedFrame from './ThemedFrame';
 import { CalendarClock, Sparkles } from 'lucide-react';
 
 /** The text of a coming season in the visitor's language, falling back to the one written first. */
@@ -17,22 +18,21 @@ function soonText(item, locale) {
 function ComingSoon({ item, t, locale, backHref }) {
   const { name, description } = soonText(item, locale);
   return (
-    <>
-      <PageBackdrop page={{}} />
+    <ThemedFrame page={item.page}>
       <main id="main-content" className="mx-auto flex w-full max-w-xl flex-1 flex-col items-center justify-center gap-5 px-4 py-16 text-center sm:px-8">
-        <span className="relative grid h-24 w-24 place-items-center rounded-3xl border border-amber-300/40 bg-amber-300/10 shadow-[0_0_60px_-12px_rgba(240,178,50,0.55)]">
+        <span className="relative grid h-24 w-24 place-items-center rounded-3xl border bg-black/30" style={{ borderColor: 'var(--bp-accent)', boxShadow: '0 0 60px -12px var(--bp-accent)' }}>
           <WodyIcon name="scheduled" size={48} inline={false} />
         </span>
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-300/40 bg-amber-300/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-200"><Sparkles className="h-3.5 w-3.5" aria-hidden="true" />{t('page.comingSoon.title')}</span>
-        <h1 className="break-words text-3xl font-black tracking-tight sm:text-4xl">{name}</h1>
-        {description ? <p className="max-w-md whitespace-pre-line break-words text-muted-foreground">{description}</p> : null}
-        <p className="inline-flex items-center gap-2 rounded-2xl border border-border/60 bg-card/50 px-4 py-2.5 text-sm font-semibold">
-          <CalendarClock className="h-4 w-4 text-amber-200" aria-hidden="true" />
+        <span className="inline-flex items-center gap-1.5 rounded-full border bg-black/30 px-3 py-1 text-xs font-bold uppercase tracking-wider" style={{ borderColor: 'var(--bp-accent)', color: 'var(--bp-accent)' }}><Sparkles className="h-3.5 w-3.5" aria-hidden="true" />{t('page.comingSoon.title')}</span>
+        <h1 className="break-words text-3xl font-black tracking-tight sm:text-4xl" style={{ fontFamily: 'var(--bp-heading)' }}>{name}</h1>
+        {description ? <p className="bp-muted max-w-md whitespace-pre-line break-words">{description}</p> : null}
+        <p className="inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-black/30 px-4 py-2.5 text-sm font-semibold">
+          <CalendarClock className="h-4 w-4" style={{ color: 'var(--bp-accent)' }} aria-hidden="true" />
           {item.starts_at ? <span>{t.rich('page.comingSoon.startsOn', { date: <LocalDate value={item.starts_at} /> })}</span> : <span>{t('page.comingSoon.noDate')}</span>}
         </p>
-        <Link href={backHref} className="mt-2 inline-flex min-h-11 items-center rounded-full bg-[#e6cd8c] px-6 text-sm font-semibold text-black transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e6cd8c]">{t('page.back')}</Link>
+        <Link href={backHref} className="bp-btn mt-2 inline-flex min-h-11 items-center px-6 text-sm">{t('page.back')}</Link>
       </main>
-    </>
+    </ThemedFrame>
   );
 }
 

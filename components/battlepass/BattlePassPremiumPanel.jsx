@@ -65,9 +65,9 @@ function StatusBanner({ guildId, premium }) {
   const pillLabel = kind === 'live' ? t('statusPublic.active') : kind === 'soon' ? t('statusPublic.scheduled') : t('premiumPanel.noneBadge');
   const PillIcon = kind === 'live' ? Radio : kind === 'soon' ? CalendarClock : Info;
   return (
-    <Card role="status" aria-label={t('premiumPanel.statusTitle')} className="space-y-4 overflow-hidden border-border/60 p-4 sm:p-5">
+    <Card role="status" aria-label={t('premiumPanel.statusTitle')} className="space-y-5 overflow-hidden border-border/60 p-4 sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="min-w-0 space-y-1.5">
+        <div className="min-w-0 space-y-3">
           <div className="flex flex-wrap items-center gap-2">
             <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide ${PILL[kind]}`}><PillIcon className="h-3 w-3" aria-hidden="true" />{pillLabel}</span>
             {s.running ? <span className="rounded-full border border-border/60 bg-secondary/30 px-2 py-0.5 text-[11px] font-semibold text-muted-foreground">{s.running.scope === 'global' ? t('premiumPanel.scopeGlobal') : t('premiumPanel.scopeServer')}</span> : null}
@@ -75,7 +75,7 @@ function StatusBanner({ guildId, premium }) {
           <h3 className="break-words text-lg font-bold leading-tight">{title}</h3>
           {s.running?.ends_at ? <p className="text-xs text-muted-foreground">{t.rich('premiumPanel.endsOn', { date: <LocalDate value={s.running.ends_at} /> })}</p> : null}
           {kind === 'soon' ? <p className="text-xs text-muted-foreground">{next.starts_at ? t.rich('premiumPanel.startsOn', { date: <LocalDate value={next.starts_at} /> }) : t('premiumPanel.noStartDate')}</p> : null}
-          {kind === 'soon' && nextText ? <p className="max-w-xl whitespace-pre-line break-words text-sm text-muted-foreground">{nextText}</p> : null}
+          {kind === 'soon' && nextText ? <p className="max-w-xl whitespace-pre-line break-words pt-1 text-sm leading-relaxed text-muted-foreground">{nextText}</p> : null}
         </div>
       </div>
       {note ? <p className="flex items-start gap-2 rounded-lg border border-sky-400/30 bg-sky-500/10 p-3 text-sm"><Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />{note}</p> : null}

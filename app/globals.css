@@ -784,3 +784,8 @@
 
 /* Owner panel: interface icons are single colour like the rest, previews of Discord messages keep their real emojis. */
 .owner-mono [data-wody-icon]:not([data-keep-color] *) { filter: brightness(0) invert(1); opacity: 0.75; }
+
+/* Owner panel: every text button has the same height, whatever size it was written with. Icon-only buttons keep their square. */
+.owner-mono :is(button, a)[class*="rounded-tl-xl"]:not([class*="w-8"]):not([class*="w-9"]):not([class*="w-10"]):not([class*="size-"]) {
+  height: 2.25rem; min-height: 2.25rem; padding-inline: 1rem; font-size: 0.875rem; line-height: 1.25rem;
+}

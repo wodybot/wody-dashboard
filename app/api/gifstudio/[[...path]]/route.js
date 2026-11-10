@@ -1,10 +1,15 @@
+import { after } from 'next/server';
 import { getDb } from '@/lib/mongo';
 import { handle, err } from '@/lib/gifstudio/api';
+import { setBackgroundScheduler } from '@/lib/gifstudio/generate';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 export const runtime = 'nodejs';
-export const maxDuration = 60;
+export const maxDuration = 300;
+
+// Keeps the function alive until the generation finishes, after the answer has already been sent.
+setBackgroundScheduler((job) => { try { after(job); } catch { job.catch(() => {}); } });
 
 async function run(request, context, method) {
   try {
