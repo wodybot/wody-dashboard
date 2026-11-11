@@ -9922,9 +9922,9 @@
     },
     "profile": {
       "title": "Battle Pass",
-      "editorTitle": "Battle Pass op je profiel",
-      "editorIntro": "Kies welke Battle Passes, badges, medailles en beloningen anderen op je profielpagina en in de bot kunnen zien. Wijzigingen worden direct opgeslagen.",
-      "empty": "Verdien badges en beloningen in een Battle Pass en ze verschijnen hier.",
+      "editorTitle": "Prestaties op je profiel",
+      "editorIntro": "Kies welke prestaties, badges en beloningen anderen op je profielpagina zien. Wijzigingen worden direct opgeslagen.",
+      "empty": "Verdien badges en prestaties en ze verschijnen hier.",
       "shown": "Zichtbaar",
       "hidden": "Verborgen",
       "scopeGlobal": "Globaal",
@@ -9939,14 +9939,15 @@
       "featured": "Uitgelicht",
       "saveError": "Opslaan mislukt. Probeer het opnieuw.",
       "level": "Level {level}",
-      "loadError": "Je Battle Pass-items konden niet worden geladen.",
+      "loadError": "Je prestaties konden niet worden geladen.",
       "rarity": {
         "common": "Gewoon",
         "uncommon": "Ongewoon",
         "rare": "Zeldzaam",
         "epic": "Episch",
         "legendary": "Legendarisch"
-      }
+      },
+      "achievementsName": "Prestaties"
     },
     "calendar": {
       "ownerTitle": "Data die servers niet kunnen gebruiken",

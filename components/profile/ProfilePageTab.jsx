@@ -152,10 +152,12 @@ export default function ProfilePageTab({ isPublic = false, views = 0, identity, 
     const patch = {};
     for (const [k, v] of Object.entries(draft)) if (JSON.stringify(v) !== JSON.stringify(saved[k])) patch[k] = v;
     patch.policy_accepted = true;
+    if (patch.music && !musicStored) patch.rights_accepted = true;
     setBusy(true);
     const r = await api('PATCH', patch);
     setBusy(false);
     if (r.ok) { const page = normalizePage(r.data.page); setSaved(page); setDraft(page); setConsent(false); setMsg({ kind: 'ok', text: t('saved') }); }
+    else if (r.data?.error === 'rights_acceptance_required') setMsg({ kind: 'err', text: t('musicRights') });
     else if (['policy_acceptance_required', 'account_blocked', 'uploads_restricted', 'customization_suspended'].includes(r.data?.error)) setMsg({ kind: 'err', text: t(`mod.err.${r.data.error}`) });
     else if (r.data?.error === 'invalid_value') setMsg({ kind: 'err', text: t('invalid', { field: t(`field.${r.data.field}`) }) });
     else setMsg({ kind: 'err', text: t('saveError') });
@@ -200,7 +202,8 @@ export default function ProfilePageTab({ isPublic = false, views = 0, identity, 
   const L = PAGE_LIMITS;
   const urlBad = (v) => { if (!v) return false; try { cleanPageImage(v); return false; } catch { return true; } };
   const listBad = page.links.some((l) => !l.url || urlBad(l.url)) || page.portfolio.some((p) => !p.title.trim() || urlBad(p.url) || urlBad(p.image));
-  const saveBlocked = imageBad || musicBad || listBad;
+  const musicLink = Boolean(draft?.music) && !musicStored;
+  const saveBlocked = imageBad || musicBad || listBad || (musicLink && !musicRights);
 
   return (
     <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
@@ -301,6 +304,12 @@ export default function ProfilePageTab({ isPublic = false, views = 0, identity, 
             <label className={lab} htmlFor="pp-music">{t('field.music')}</label>
             <input id="pp-music" className={input} inputMode="url" value={page.music || ''} maxLength={500} placeholder="https://example.com/song.mp3" aria-invalid={musicBad} onChange={(e) => set({ music: e.target.value.trim() || null })} />
             <p className={`mt-1 text-xs ${musicBad ? 'text-red-300' : 'text-muted-foreground'}`}>{musicBad ? t('invalid', { field: t('field.music') }) : t('musicHint')}</p>
+            {musicLink && !musicBad ? (
+              <label className="mt-2 flex cursor-pointer items-start gap-2 text-xs leading-5 text-muted-foreground">
+                <input type="checkbox" className="mt-1 h-4 w-4 shrink-0 accent-[#e6cd8c]" checked={musicRights} onChange={(e) => setMusicRights(e.target.checked)} />
+                <span>{t('musicRights')}</span>
+              </label>
+            ) : null}
           </div>
           <div className="sm:col-span-2 rounded-xl border border-border/60 bg-background/30 p-3">
             <div className="mb-1 text-sm font-semibold">{t('musicUploadTitle')}</div>

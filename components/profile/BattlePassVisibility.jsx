@@ -73,7 +73,11 @@ export default function BattlePassVisibility({ onSaved }) {
   if (!items.length) return <p className="text-sm text-muted-foreground">{t('empty')}</p>;
 
   const name = (o) => o.i18n?.[locale]?.name || o.name;
-  const bySeason = seasons.length ? seasons : [...new Set(items.map((i) => i.season_id))].map((id) => ({ id, name: id, scope: 'global' }));
+  // Counting badges are Wody achievements; only seasons Wody itself runs (Global) are shown on a profile, so only those are listed here.
+  const bySeason = [
+    ...(items.some((i) => i.season_id === 'counting') ? [{ id: 'counting', name: t('achievementsName'), scope: 'counting' }] : []),
+    ...seasons.filter((s) => s.scope === 'global'),
+  ];
 
   return (
     <div className="space-y-4">
@@ -87,7 +91,7 @@ export default function BattlePassVisibility({ onSaved }) {
             <div className="flex flex-wrap items-center gap-2">
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-bold">{name(se)}</p>
-                <p className="text-[11px] text-muted-foreground">{se.scope === 'global' ? t('scopeGlobal') : t('scopeServer')} · {t('itemsCount', { shown, total: own.length })}</p>
+                <p className="text-[11px] text-muted-foreground">{se.scope === 'counting' ? '' : `${se.scope === 'global' ? t('scopeGlobal') : t('scopeServer')} · `}{t('itemsCount', { shown, total: own.length })}</p>
               </div>
               <button type="button" className={btn} aria-pressed={!seasonOff} onClick={() => toggleSeason(se.id)}>
                 {seasonOff ? <EyeOff className="h-3.5 w-3.5" aria-hidden="true" /> : <Eye className="h-3.5 w-3.5" aria-hidden="true" />}{seasonOff ? t('hidden') : t('shown')}

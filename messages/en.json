@@ -9922,9 +9922,9 @@
     },
     "profile": {
       "title": "Battle Pass",
-      "editorTitle": "Battle Pass on your profile",
-      "editorIntro": "Choose which Battle Passes, badges, medals and rewards other people can see on your profile page and in the bot. Changes save as you go.",
-      "empty": "Earn badges and rewards in a Battle Pass and they will show up here.",
+      "editorTitle": "Achievements on your profile",
+      "editorIntro": "Choose which achievements, badges and rewards other people can see on your profile page. Changes save as you go.",
+      "empty": "Earn badges and achievements and they will show up here.",
       "shown": "Shown",
       "hidden": "Hidden",
       "scopeGlobal": "Global",
@@ -9939,14 +9939,15 @@
       "featured": "Featured",
       "saveError": "Could not save. Try again.",
       "level": "Level {level}",
-      "loadError": "Could not load your Battle Pass items.",
+      "loadError": "Could not load your achievements.",
       "rarity": {
         "common": "Common",
         "uncommon": "Uncommon",
         "rare": "Rare",
         "epic": "Epic",
         "legendary": "Legendary"
-      }
+      },
+      "achievementsName": "Achievements"
     },
     "calendar": {
       "ownerTitle": "Dates servers cannot use",

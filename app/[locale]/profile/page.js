@@ -22,6 +22,6 @@ export default async function ProfilePage({ searchParams }) {
     redirect(`/api/auth/login?next=${encodeURIComponent(`${locale === 'en' ? '' : `/${locale}`}/profile${q}`)}`);
   }
   const all = await getMessages();
-  const extra = { profileCard: all.profileCard, cardFonts: all.cardFonts, profilePage: all.profilePage };
+  const extra = { profileCard: all.profileCard, cardFonts: all.cardFonts, profilePage: all.profilePage, battlepass: { profile: all.battlepass?.profile } };
   return <MoreMessages extra={extra}><ProfileClient /></MoreMessages>;
 }

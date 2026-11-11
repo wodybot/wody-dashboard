@@ -9922,9 +9922,9 @@
     },
     "profile": {
       "title": "Battle Pass",
-      "editorTitle": "Battle Pass sul tuo profilo",
-      "editorIntro": "Scegli quali Battle Pass, badge, medaglie e ricompense gli altri possono vedere sulla tua pagina profilo e nel bot. Le modifiche si salvano subito.",
-      "empty": "Ottieni badge e ricompense in un Battle Pass e appariranno qui.",
+      "editorTitle": "Traguardi sul tuo profilo",
+      "editorIntro": "Scegli quali traguardi, badge e ricompense gli altri possono vedere sulla tua pagina del profilo. Le modifiche si salvano subito.",
+      "empty": "Guadagna badge e traguardi e appariranno qui.",
       "shown": "Visibile",
       "hidden": "Nascosto",
       "scopeGlobal": "Globale",
@@ -9939,14 +9939,15 @@
       "featured": "In evidenza",
       "saveError": "Impossibile salvare. Riprova.",
       "level": "Livello {level}",
-      "loadError": "Impossibile caricare i tuoi oggetti Battle Pass.",
+      "loadError": "Impossibile caricare i tuoi traguardi.",
       "rarity": {
         "common": "Comune",
         "uncommon": "Non comune",
         "rare": "Raro",
         "epic": "Epico",
         "legendary": "Leggendario"
-      }
+      },
+      "achievementsName": "Traguardi"
     },
     "calendar": {
       "ownerTitle": "Date che i server non possono usare",

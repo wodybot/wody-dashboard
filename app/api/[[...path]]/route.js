@@ -2005,7 +2005,7 @@ async function handleMutation(request, context) {
       await db.collection('profile_cards').updateOne({ _id: userId }, { $set: { page: {}, updated_at: new Date() } }, { upsert: true });
       return json({ page: normalizePage({}), customized: false }, { headers: { 'Cache-Control': 'no-store' } });
     }
-    const { image_rights: _legacyRights, policy_accepted: policyAccepted, ...patchBody } = body;
+    const { image_rights: _legacyRights, policy_accepted: policyAccepted, rights_accepted: rightsAccepted, ...patchBody } = body;
     let clean;
     try { clean = validatePagePatch(patchBody); } catch (e) {
       return json({ error: 'invalid_value', field: String(e?.message || 'body') }, { status: 400 });
@@ -2016,6 +2016,7 @@ async function handleMutation(request, context) {
     const touchesMedia = ('image' in clean && clean.image) || ('music' in clean && clean.music) || ('portfolio' in clean && clean.portfolio.some((x) => x.image));
     if (touchesMedia && mod.uploads_restricted) return json({ error: 'uploads_restricted' }, { status: 403 });
     if (Object.keys(clean).length && policyAccepted !== true) return json({ error: 'policy_acceptance_required' }, { status: 400 });
+    if (clean.music && !String(clean.music).startsWith('/api/profile-page/music/') && rightsAccepted !== true) return json({ error: 'rights_acceptance_required' }, { status: 400 });
     if (Object.keys(clean).length) {
       const set = { updated_at: new Date(), 'page.policy_accepted_at': new Date().toISOString(), 'page.policy_version': POLICY_VERSION };
       for (const [k, v] of Object.entries(clean)) set[`page.${k}`] = v;

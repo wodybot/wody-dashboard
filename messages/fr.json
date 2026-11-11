@@ -9922,9 +9922,9 @@
     },
     "profile": {
       "title": "Battle Pass",
-      "editorTitle": "Battle Pass sur ton profil",
-      "editorIntro": "Choisis quels Battle Pass, badges, médailles et récompenses les autres peuvent voir sur ta page de profil et dans le bot. Les changements sont enregistrés tout de suite.",
-      "empty": "Gagne des badges et des récompenses dans un Battle Pass et ils apparaîtront ici.",
+      "editorTitle": "Succès sur votre profil",
+      "editorIntro": "Choisissez les succès, badges et récompenses que les autres voient sur votre page de profil. Les modifications sont enregistrées au fur et à mesure.",
+      "empty": "Gagnez des badges et des succès et ils apparaîtront ici.",
       "shown": "Affiché",
       "hidden": "Masqué",
       "scopeGlobal": "Global",
@@ -9939,14 +9939,15 @@
       "featured": "En avant",
       "saveError": "Impossible d'enregistrer. Réessaie.",
       "level": "Niveau {level}",
-      "loadError": "Impossible de charger tes objets Battle Pass.",
+      "loadError": "Impossible de charger vos succès.",
       "rarity": {
         "common": "Commun",
         "uncommon": "Peu commun",
         "rare": "Rare",
         "epic": "Épique",
         "legendary": "Légendaire"
-      }
+      },
+      "achievementsName": "Succès"
     },
     "calendar": {
       "ownerTitle": "Dates que les serveurs ne peuvent pas utiliser",

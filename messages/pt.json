@@ -9922,9 +9922,9 @@
     },
     "profile": {
       "title": "Battle Pass",
-      "editorTitle": "Battle Pass no seu perfil",
-      "editorIntro": "Escolha quais Battle Pass, insígnias, medalhas e recompensas os outros podem ver na sua página de perfil e no bot. As alterações são salvas na hora.",
-      "empty": "Ganhe insígnias e recompensas em um Battle Pass e elas aparecerão aqui.",
+      "editorTitle": "Conquistas no teu perfil",
+      "editorIntro": "Escolhe que conquistas, emblemas e recompensas os outros podem ver na tua página de perfil. As alterações são guardadas automaticamente.",
+      "empty": "Ganha emblemas e conquistas e vão aparecer aqui.",
       "shown": "Visível",
       "hidden": "Oculto",
       "scopeGlobal": "Global",
@@ -9939,14 +9939,15 @@
       "featured": "Em destaque",
       "saveError": "Não foi possível salvar. Tente novamente.",
       "level": "Nível {level}",
-      "loadError": "Não foi possível carregar seus itens do Battle Pass.",
+      "loadError": "Não foi possível carregar as tuas conquistas.",
       "rarity": {
         "common": "Comum",
         "uncommon": "Incomum",
         "rare": "Raro",
         "epic": "Épico",
         "legendary": "Lendário"
-      }
+      },
+      "achievementsName": "Conquistas"
     },
     "calendar": {
       "ownerTitle": "Datas que os servidores não podem usar",

@@ -114,11 +114,11 @@ export default async function PartnersPage({ params }) {
                 {t('title')} <span className="bg-gradient-to-r from-[#f2c091] via-[#e08a4e] to-[#c46a2d] bg-clip-text text-transparent">{t('titleHighlight')}</span>
               </h1>
               <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground lg:mx-0">{t('subtitle')}</p>
-              <div className="mx-auto mt-8 grid w-full max-w-md grid-cols-1 gap-3 sm:grid-cols-2 lg:mx-0">
-                <a href="#partners" className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl px-6 text-base font-semibold gradient-primary">
+              <div className="mx-auto mt-8 grid w-full max-w-lg grid-cols-2 gap-3 lg:mx-0">
+                <a href="#partners" className="inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl px-3 text-sm font-semibold sm:px-5 sm:text-base gradient-primary">
                   <Orbit className="h-4 w-4" /> {t('ctaExplore')} <ArrowDown className="h-4 w-4" />
                 </a>
-                <a href="#become" className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl px-6 text-base font-semibold border border-border/70 bg-card/40 hover:bg-card/80">
+                <a href="#become" className="inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl px-3 text-sm font-semibold sm:px-5 sm:text-base border border-border/70 bg-card/40 hover:bg-card/80">
                   <Rocket className="h-4 w-4 text-[#e08a4e]" /> {t('ctaBecome')}
                 </a>
               </div>
@@ -176,8 +176,8 @@ export default async function PartnersPage({ params }) {
                 <h2 className="text-3xl font-black tracking-tight sm:text-4xl">{t('become.title')}</h2>
                 <p className="mt-3 text-muted-foreground">{t('become.text')}</p>
                 <div className="mt-7 grid w-full max-w-md grid-cols-1 gap-3 sm:grid-cols-2">
-                  <a href={COMMUNITY_INVITE} target="_blank" rel="noopener noreferrer" className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl px-6 text-base font-semibold gradient-primary"><MessageCircle className="h-4 w-4" /> {t('become.apply')}</a>
-                  <Link href="/contact" className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl px-6 text-base font-semibold border border-border/70 bg-card/40 hover:bg-card/80"><Mail className="h-4 w-4 text-[#e08a4e]" /> {t('become.contact')}</Link>
+                  <a href={COMMUNITY_INVITE} target="_blank" rel="noopener noreferrer" className="inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl px-3 text-sm font-semibold sm:px-5 sm:text-base gradient-primary"><MessageCircle className="h-4 w-4" /> {t('become.apply')}</a>
+                  <Link href="/contact" className="inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl px-3 text-sm font-semibold sm:px-5 sm:text-base border border-border/70 bg-card/40 hover:bg-card/80"><Mail className="h-4 w-4 text-[#e08a4e]" /> {t('become.contact')}</Link>
                 </div>
               </div>
               <ol className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">

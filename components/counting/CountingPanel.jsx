@@ -94,7 +94,7 @@ function GamesTab({ guildId, meta, games, reload, onEdit }) {
         open={Boolean(confirm)} onOpenChange={(o) => { if (!o) setConfirm(null); }} busy={busy}
         title={confirm ? t(`games.confirm.${confirm.action}.title`) : ''} description={confirm ? t(`games.confirm.${confirm.action}.text`) : ''}
         confirmLabel={confirm ? t(`games.${confirm.action}`) : ''} onConfirm={() => confirm && act(confirm.g, confirm.action)}
-        typed={confirm?.action === 'delete' ? String(confirm.g.name || confirm.g.channel_id).trim() : undefined}
+        typed={confirm?.action === 'delete' ? 'DELETE' : undefined}
       />
     </div>
   );

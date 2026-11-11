@@ -9922,9 +9922,9 @@
     },
     "profile": {
       "title": "Battle Pass",
-      "editorTitle": "Battle Pass en tu perfil",
-      "editorIntro": "Elige qué Battle Pass, insignias, medallas y recompensas pueden ver los demás en tu página de perfil y en el bot. Los cambios se guardan al instante.",
-      "empty": "Gana insignias y recompensas en un Battle Pass y aparecerán aquí.",
+      "editorTitle": "Logros en tu perfil",
+      "editorIntro": "Elige qué logros, insignias y recompensas pueden ver los demás en tu página de perfil. Los cambios se guardan al instante.",
+      "empty": "Gana insignias y logros y aparecerán aquí.",
       "shown": "Visible",
       "hidden": "Oculto",
       "scopeGlobal": "Global",
@@ -9939,14 +9939,15 @@
       "featured": "Destacada",
       "saveError": "No se pudo guardar. Inténtalo de nuevo.",
       "level": "Nivel {level}",
-      "loadError": "No se pudieron cargar tus objetos de Battle Pass.",
+      "loadError": "No se pudieron cargar tus logros.",
       "rarity": {
         "common": "Común",
         "uncommon": "Poco común",
         "rare": "Raro",
         "epic": "Épico",
         "legendary": "Legendario"
-      }
+      },
+      "achievementsName": "Logros"
     },
     "calendar": {
       "ownerTitle": "Fechas que los servidores no pueden usar",

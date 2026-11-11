@@ -9922,9 +9922,9 @@
     },
     "profile": {
       "title": "Battle Pass",
-      "editorTitle": "Battle Pass in deinem Profil",
-      "editorIntro": "Wähle, welche Battle Passes, Abzeichen, Medaillen und Belohnungen andere auf deiner Profilseite und im Bot sehen. Änderungen werden sofort gespeichert.",
-      "empty": "Verdiene Abzeichen und Belohnungen in einem Battle Pass, dann erscheinen sie hier.",
+      "editorTitle": "Erfolge auf deinem Profil",
+      "editorIntro": "Wähle, welche Erfolge, Abzeichen und Belohnungen andere auf deiner Profilseite sehen. Änderungen werden sofort gespeichert.",
+      "empty": "Sammle Abzeichen und Erfolge, dann erscheinen sie hier.",
       "shown": "Sichtbar",
       "hidden": "Ausgeblendet",
       "scopeGlobal": "Global",
@@ -9939,14 +9939,15 @@
       "featured": "Hervorgehoben",
       "saveError": "Speichern fehlgeschlagen. Versuche es erneut.",
       "level": "Level {level}",
-      "loadError": "Deine Battle-Pass-Gegenstände konnten nicht geladen werden.",
+      "loadError": "Deine Erfolge konnten nicht geladen werden.",
       "rarity": {
         "common": "Gewöhnlich",
         "uncommon": "Ungewöhnlich",
         "rare": "Selten",
         "epic": "Episch",
         "legendary": "Legendär"
-      }
+      },
+      "achievementsName": "Erfolge"
     },
     "calendar": {
       "ownerTitle": "Termine, die Server nicht nutzen können",

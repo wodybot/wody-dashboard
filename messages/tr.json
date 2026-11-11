@@ -9922,9 +9922,9 @@
     },
     "profile": {
       "title": "Battle Pass",
-      "editorTitle": "Profilinde Battle Pass",
-      "editorIntro": "Başkalarının profil sayfanda ve botta hangi Battle Pass, rozet, madalya ve ödülleri görebileceğini seç. Değişiklikler anında kaydedilir.",
-      "empty": "Bir Battle Pass'te rozet ve ödül kazan, burada görünsünler.",
+      "editorTitle": "Profilindeki başarımlar",
+      "editorIntro": "Başkalarının profil sayfanda hangi başarımları, rozetleri ve ödülleri görebileceğini seç. Değişiklikler anında kaydedilir.",
+      "empty": "Rozet ve başarım kazandıkça burada görünür.",
       "shown": "Görünür",
       "hidden": "Gizli",
       "scopeGlobal": "Global",
@@ -9939,14 +9939,15 @@
       "featured": "Öne çıkan",
       "saveError": "Kaydedilemedi. Tekrar dene.",
       "level": "Seviye {level}",
-      "loadError": "Battle Pass öğelerin yüklenemedi.",
+      "loadError": "Başarımların yüklenemedi.",
       "rarity": {
         "common": "Yaygın",
         "uncommon": "Nadir",
         "rare": "Ender",
         "epic": "Efsanevi",
         "legendary": "Efsane"
-      }
+      },
+      "achievementsName": "Başarımlar"
     },
     "calendar": {
       "ownerTitle": "Sunucuların kullanamayacağı tarihler",

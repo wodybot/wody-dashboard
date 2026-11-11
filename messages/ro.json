@@ -9923,9 +9923,9 @@
     },
     "profile": {
       "title": "Battle Pass",
-      "editorTitle": "Battle Pass pe profilul tău",
-      "editorIntro": "Alege ce Battle Pass-uri, insigne, medalii și recompense pot vedea ceilalți pe pagina ta de profil și în bot. Modificările se salvează pe loc.",
-      "empty": "Câștigă insigne și recompense într-un Battle Pass și vor apărea aici.",
+      "editorTitle": "Realizările de pe profilul tău",
+      "editorIntro": "Alege ce realizări, insigne și recompense pot vedea alții pe pagina ta de profil. Modificările se salvează pe loc.",
+      "empty": "Câștigă insigne și realizări și vor apărea aici.",
       "shown": "Afișat",
       "hidden": "Ascuns",
       "scopeGlobal": "Global",
@@ -9940,14 +9940,15 @@
       "featured": "Evidențiat",
       "saveError": "Nu s-a putut salva. Încearcă din nou.",
       "level": "Nivel {level}",
-      "loadError": "Nu s-au putut încărca obiectele tale din Battle Pass.",
+      "loadError": "Realizările nu au putut fi încărcate.",
       "rarity": {
         "common": "Comun",
         "uncommon": "Neobișnuit",
         "rare": "Rar",
         "epic": "Epic",
         "legendary": "Legendar"
-      }
+      },
+      "achievementsName": "Realizări"
     },
     "calendar": {
       "ownerTitle": "Date pe care serverele nu le pot folosi",

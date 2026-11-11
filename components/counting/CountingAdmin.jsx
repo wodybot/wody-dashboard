@@ -256,7 +256,7 @@ function GamesTab({ writable }) {
       <ConfirmDialog
         open={Boolean(removing)} onOpenChange={(o) => { if (!o) setRemoving(null); }} busy={w.busy}
         title={confirmT('title')} description={confirmT('text')} confirmLabel={t('delete')}
-        typed={removing ? String(removing.name || removing.channel_id).trim() : undefined}
+        typed={removing ? 'DELETE' : undefined}
         onConfirm={async () => { const r = await w.run(`owner/games/${removing.channel_id}`, 'DELETE'); if (r.ok) setRemoving(null); }}
       />
       <SelectInput label={t('filter')} value={status} onChange={(v) => { setStatus(v); setSkip(0); }} options={[{ value: '', label: t('all') }, ...['active', 'paused', 'archived'].map((s) => ({ value: s, label: stateT(s) }))]} />

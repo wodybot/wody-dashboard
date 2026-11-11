@@ -76,8 +76,8 @@ export default function OwnerConfigCard({ status, onReload }) {
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2 font-semibold"><ShieldCheck className="h-4 w-4 text-[#e08a4e]" /> Configuration</div>
         <div className="flex gap-2">
-          <Button size="sm" variant="outline" onClick={onReload}><RefreshCw className="mr-1.5 h-3.5 w-3.5" />Recheck</Button>
-          <Button size="sm" onClick={runLive} disabled={running}>{running ? <Loader2 className="mr-1.5 h-3.5 w-3.5 animate-spin" /> : <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />}Test connections</Button>
+          <Button size="sm" variant="outline" className="h-9 min-w-[10.5rem] justify-center" onClick={onReload}><RefreshCw className="mr-1.5 h-3.5 w-3.5" />Recheck</Button>
+          <Button size="sm" className="h-9 min-w-[10.5rem] justify-center" onClick={runLive} disabled={running}>{running ? <Loader2 className="mr-1.5 h-3.5 w-3.5 animate-spin" /> : <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />}Test connections</Button>
         </div>
       </div>
       <p className="mb-3 mt-1 text-xs text-muted-foreground">
