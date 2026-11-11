@@ -322,7 +322,7 @@ function Audit() {
 }
 
 const SETTING_KEYS = [
-  ['require_checklist', 'bool'], ['auto_publish_on_approve', 'bool'], ['require_invite', 'bool'], ['require_banner', 'bool'], ['min_members', 'num'], ['max_listings_per_user', 'num'],
+  ['auto_approve_submissions', 'bool'], ['require_checklist', 'bool'], ['auto_publish_on_approve', 'bool'], ['require_invite', 'bool'], ['require_banner', 'bool'], ['min_members', 'num'], ['max_listings_per_user', 'num'],
   ['featured_slots', 'num'], ['reviews_enabled', 'bool'], ['reviews_require_moderation', 'bool'], ['reviews_min_account_days', 'num'], ['reports_enabled', 'bool'], ['reports_rate_limit_per_day', 'num'],
   ['analytics_enabled', 'bool'], ['discovery_page_size', 'num'], ['url_prefix', 'text'], ['bump_cooldown_hours', 'num'],
 ];

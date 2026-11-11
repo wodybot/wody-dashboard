@@ -1708,6 +1708,14 @@
             "description": "Transformă un canal într-un joc de numărat"
           },
           {
+            "name": "/counting mode",
+            "description": "Schimbă modul de numărare al acestui canal (începe o rundă nouă)"
+          },
+          {
+            "name": "/counting settings",
+            "description": "Schimbă orice setare Counting din Discord, la fel ca în dashboard"
+          },
+          {
             "name": "/counting status",
             "description": "Unde a ajuns numărătoarea în acest canal"
           },
@@ -6869,6 +6877,8 @@
         "badgesText": "Insignele oficiale afișate pe profiluri."
       },
       "settings": {
+        "auto_approve_submissions": "Aprobă automat trimiterile",
+        "auto_approve_submissionsHint": "Când este pornit, listările noi și actualizările apar imediat, fără revizuire manuală. Oprește-l ca să le verifici din nou tu.",
         "require_checklist": "Cere lista de verificare completă",
         "require_checklistHint": "Aprobarea este blocată până când toate punctele sunt bifate.",
         "auto_publish_on_approve": "Publică la aprobare",
@@ -10380,7 +10390,10 @@
         "react": "Adaugă o reacție la fiecare numărare",
         "solo": "O singură persoană numără",
         "turn_cooldown_s": "Așteptare între numărările unui membru (secunde)",
-        "turn_gap": "Alți membri necesari între două numărări ale unui membru"
+        "turn_gap": "Alți membri necesari între două numărări ale unui membru",
+        "trailing_text": "Permite text după număr",
+        "trailing_text_hint": "Membrii pot scrie 1 text, 3 test sau 2-1. Contează doar numărul, textul este ignorat, deci numărătoarea nu se resetează. Fără spațiu (3test) mesajul nu este un număr.",
+        "react_hint": "Fiecare număr corect primește o bifă colorată aleasă la întâmplare din 15 modele."
       },
       "saves": {
         "cooldown_hours": "Așteptare între salvări (ore)",
@@ -10562,7 +10575,8 @@
       "reset": "Resetează",
       "resume": "Reia",
       "settings": "Setări",
-      "total": "Numărări valide"
+      "total": "Numărări valide",
+      "modeInfoTitle": "Ce înseamnă fiecare mod"
     },
     "goalType": {
       "channel": "Canal",
@@ -10801,6 +10815,21 @@
     "visibility": {
       "private": "Privat",
       "public": "Public"
+    },
+    "modeInfo": {
+      "classic": "Numără în sus, unul câte unul: 1, 2, 3, 4... Cel mai des folosit joc.",
+      "reverse": "Numără în jos: 100, 99, 98... până la valoarea finală.",
+      "increment": "Numără din pas în pas, la alegere: 2, 4, 6, 8... sau 5, 10, 15, 20...",
+      "decimal": "Numără cu zecimale și un număr fix de cifre: 0.1, 0.2, 0.3...",
+      "negative": "Numără prin numere negative: -1, -2, -3... sau de sub zero până la zero.",
+      "binary": "Numără în binar, doar cu 0 și 1: 1, 10, 11, 100, 101...",
+      "hexadecimal": "Numără în hexazecimal, cifrele 0-9 apoi A-F: 9, A, B... F, 10, 11...",
+      "roman": "Numără cu cifre romane: I, II, III, IV, V... până la 3999.",
+      "alphabet": "Numără cu litere: A, B, C... Z, apoi AA, AB, AC...",
+      "word": "Numără scriind numerele cu litere: unu, doi, trei... în limba aleasă.",
+      "fibonacci": "Fiecare număr este suma celor două dinainte: 1, 1, 2, 3, 5, 8, 13...",
+      "multiplication": "Numără multiplii unui număr: 7, 14, 21, 28... (tabla înmulțirii).",
+      "custom_sequence": "Regula ta: o listă de numere sau o formulă, de exemplu pătratele 1, 4, 9, 16..."
     }
   },
   "statistics": {

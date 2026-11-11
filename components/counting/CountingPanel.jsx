@@ -23,6 +23,8 @@ function Toast({ message, tone }) {
 function GamesTab({ guildId, meta, games, reload, onEdit }) {
   const t = useTranslations('counting');
   const modeT = useTranslations('counting.mode');
+  const infoT = useTranslations('counting.modeInfo');
+  const modeInfo = (m) => infoT(String(m || '').startsWith('custom:') ? 'custom_sequence' : (m || 'classic'));
   const stateT = useTranslations('counting.state');
   const { api } = useCtText();
   const [channel, setChannel] = useState('');
@@ -57,8 +59,14 @@ function GamesTab({ guildId, meta, games, reload, onEdit }) {
         <p className="text-sm text-muted-foreground">{t('games.newHint')}</p>
         <div className="grid gap-3 sm:grid-cols-2">
           <F label={t('games.channel')} errors={errors} path="channel"><ChannelSelect value={channel} onChange={setChannel} channels={meta.channels} includeNone={false} /></F>
-          <SelectInput label={t('games.mode')} value={mode} onChange={setMode} options={MODES.map((m) => ({ value: m, label: modeT(m) }))} errors={errors} path="mode" />
+          <SelectInput label={t('games.mode')} hint={modeInfo(mode)} value={mode} onChange={setMode} options={MODES.map((m) => ({ value: m, label: modeT(m) }))} errors={errors} path="mode" />
         </div>
+        <details className="rounded-lg border border-border/60 bg-card/40 px-3 py-2">
+          <summary className="cursor-pointer text-sm font-medium">{t('games.modeInfoTitle')}</summary>
+          <dl className="mt-2 space-y-2 text-sm">
+            {MODES.map((m) => (<div key={m}><dt className="font-semibold">{modeT(m)}</dt><dd className="text-muted-foreground">{modeInfo(m)}</dd></div>))}
+          </dl>
+        </details>
         <Problems errors={errors} path="game" />
         <Button type="button" disabled={busy || !/^\d{15,21}$/.test(channel)} onClick={create}><Plus className="mr-2 h-4 w-4" />{t('games.create')}</Button>
       </Card>
@@ -128,6 +136,8 @@ function SettingsTab({ guildId, meta, games, selected, onSelect, reload }) {
   const secT = useTranslations('counting.sections');
   const tabT = useTranslations('counting.settingsTabs');
   const modeT = useTranslations('counting.mode');
+  const infoT = useTranslations('counting.modeInfo');
+  const modeInfo = (m) => infoT(String(m || '').startsWith('custom:') ? 'custom_sequence' : (m || 'classic'));
   const { api } = useCtText();
   const game = games.find((g) => g.channel_id === selected) || null;
   const [cfg, setCfg] = useState(null);
@@ -165,7 +175,7 @@ function SettingsTab({ guildId, meta, games, selected, onSelect, reload }) {
           <Toast message={note?.text} tone={note?.tone} />
           <div className="grid gap-3 sm:grid-cols-2">
             <TextInput label={t('settings.name')} value={name} max={60} onChange={setName} errors={errors} path="name" />
-            <SelectInput label={t('games.mode')} hint={t('settings.modeHint')} value={mode} onChange={setMode} options={MODES.map((m) => ({ value: m, label: modeT(m) }))} errors={errors} path="mode" />
+            <SelectInput label={t('games.mode')} hint={`${t('settings.modeHint')} ${modeInfo(mode)}`} value={mode} onChange={setMode} options={MODES.map((m) => ({ value: m, label: modeT(m) }))} errors={errors} path="mode" />
           </div>
           <ModuleTabs active={tab} onChange={setTab} tabs={[
             { key: 'rules', label: tabT('rules') }, { key: 'rewards', label: tabT('rewards') }, { key: 'milestones', label: tabT('milestones') },

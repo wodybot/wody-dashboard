@@ -146,3 +146,21 @@ test('collab: expired requests are hidden, then deleted with their data once the
   assert.ok(sent.some((m) => JSON.stringify(m.payload).includes('deleted automatically')));
   assert.ok(sent.some((m) => JSON.stringify(m.payload).includes('has expired')));
 });
+
+test('server submissions: manual review by default, instant approval when it is switched off', async () => {
+  const content = { name: 'Demo Server', short_description: 'A friendly place to chat and play together.', description: 'x'.repeat(200), category: 'gaming', languages: ['en'], tags: ['chat'], invite_code: 'abc', slug: 'demo-server' };
+  const make = async (db, over) => {
+    const doc = { _id: new OID(), guild_id: BigInt(Math.floor(Math.random() * 1e9) + 1), slug: 'demo-server', status: 'draft', owner_id: 5n, content, version: 0, ...over };
+    await db.collection(C.listings).insertOne(doc);
+    return doc;
+  };
+  const base = { require_invite: false, require_banner: false, auto_publish_on_approve: true };
+  const db = makeDb();
+  const manual = await community.submitListing(db, await make(db), 5n, { settings: base, termsAccepted: true });
+  assert.equal(manual.status, 'pending_review');
+  const db2 = makeDb();
+  const auto = await community.submitListing(db2, await make(db2), 5n, { settings: { ...base, auto_approve_submissions: true }, termsAccepted: true });
+  assert.equal(auto.status, 'published');
+  assert.ok(auto.published_at && auto.live?.name === 'Demo Server');
+  assert.equal(auto.last_review.type, 'approved');
+});

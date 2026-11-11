@@ -1707,6 +1707,14 @@
             "description": "Bir kanalı sayma oyununa çevir"
           },
           {
+            "name": "/counting mode",
+            "description": "Bu kanalın sayma modunu değiştirir (yeni bir tur başlar)"
+          },
+          {
+            "name": "/counting settings",
+            "description": "Tüm sayma ayarlarını Discord’dan panelle aynı şekilde değiştirir"
+          },
+          {
             "name": "/counting status",
             "description": "Bu kanalda sayımın nerede olduğu"
           },
@@ -6868,6 +6876,8 @@
         "badgesText": "Profillerde gösterilen resmî rozetler."
       },
       "settings": {
+        "auto_approve_submissions": "Gönderimleri otomatik onayla",
+        "auto_approve_submissionsHint": "Açıkken yeni listeler ve güncellemeler elle inceleme olmadan hemen yayına girer. Tekrar kendiniz incelemek için kapatın.",
         "require_checklist": "Kontrol listesinin tamamını zorunlu kıl",
         "require_checklistHint": "Tüm maddeler işaretlenene kadar onay engellenir.",
         "auto_publish_on_approve": "Onaylayınca yayınla",
@@ -10379,7 +10389,10 @@
         "react": "Her sayıya tepki ekle",
         "solo": "Tek kişi sayar",
         "turn_cooldown_s": "Bir üyenin sayıları arasındaki bekleme (saniye)",
-        "turn_gap": "Bir üyenin iki sayısı arasında gereken diğer üye sayısı"
+        "turn_gap": "Bir üyenin iki sayısı arasında gereken diğer üye sayısı",
+        "trailing_text": "Sayıdan sonra metne izin ver",
+        "trailing_text_hint": "Üyeler 1 metin, 3 test veya 2-1 yazabilir. Yalnızca sayı geçerlidir, metin yok sayılır ve sayım sıfırlanmaz. Boşluksuz (3test) mesaj sayı sayılmaz.",
+        "react_hint": "Her doğru sayı, 15 tasarım arasından rastgele seçilen renkli bir onay işareti alır."
       },
       "saves": {
         "cooldown_hours": "Kurtarmalar arası bekleme (saat)",
@@ -10561,7 +10574,8 @@
       "reset": "Sıfırla",
       "resume": "Devam ettir",
       "settings": "Ayarlar",
-      "total": "Geçerli sayılar"
+      "total": "Geçerli sayılar",
+      "modeInfoTitle": "Her modun anlamı"
     },
     "goalType": {
       "channel": "Kanal",
@@ -10800,6 +10814,21 @@
     "visibility": {
       "private": "Özel",
       "public": "Herkese açık"
+    },
+    "modeInfo": {
+      "classic": "Birer birer yukarı sayın: 1, 2, 3, 4... En yaygın oyun.",
+      "reverse": "Geriye sayın: 100, 99, 98... bitiş değerine kadar.",
+      "increment": "Seçtiğiniz adımlarla sayın: 2, 4, 6, 8... veya 5, 10, 15, 20...",
+      "decimal": "Ondalıklı ve sabit basamaklı sayın: 0.1, 0.2, 0.3...",
+      "negative": "Negatif sayılarla sayın: -1, -2, -3... veya sıfırın altından sıfıra kadar.",
+      "binary": "İkili sistemde sayın, yalnızca 0 ve 1: 1, 10, 11, 100, 101...",
+      "hexadecimal": "Onaltılık sistemde sayın, 0-9 sonra A-F: 9, A, B... F, 10, 11...",
+      "roman": "Roma rakamlarıyla sayın: I, II, III, IV, V... 3999’a kadar.",
+      "alphabet": "Harflerle sayın: A, B, C... Z, sonra AA, AB, AC...",
+      "word": "Sayıları yazıyla yazarak sayın: bir, iki, üç... seçilen dilde.",
+      "fibonacci": "Her sayı kendinden önceki ikisinin toplamıdır: 1, 1, 2, 3, 5, 8, 13...",
+      "multiplication": "Bir sayının katlarını sayın: 7, 14, 21, 28... (çarpım tablosu).",
+      "custom_sequence": "Kendi kuralınız: bir sayı listesi veya formül, örneğin kareler 1, 4, 9, 16..."
     }
   },
   "statistics": {

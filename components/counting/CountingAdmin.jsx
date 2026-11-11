@@ -54,6 +54,7 @@ function Overview() {
 function ConfigTab({ writable }) {
   const t = useTranslations('counting.admin.config');
   const modeT = useTranslations('counting.mode');
+  const infoT = useTranslations('counting.modeInfo');
   const puT = useTranslations('counting.powerup');
   const { loading, data, error, reload } = useCt('owner/config');
   const w = useWrite(reload);
@@ -77,7 +78,7 @@ function ConfigTab({ writable }) {
             <h3 className="text-lg font-semibold">{t('modes')}</h3>
             <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
               {MODES.map((m) => (
-                <SwitchRow key={m} label={modeT(m)} checked={(cfg.modes_enabled || []).includes(m)} disabled={!writable}
+                <SwitchRow key={m} label={modeT(m)} hint={infoT(m)} checked={(cfg.modes_enabled || []).includes(m)} disabled={!writable}
                   onChange={(v) => patch('modes_enabled', v ? [...(cfg.modes_enabled || []), m] : (cfg.modes_enabled || []).filter((x) => x !== m))} />
               ))}
             </div>

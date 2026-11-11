@@ -1707,6 +1707,14 @@
             "description": "Einen Kanal in ein Zählspiel verwandeln"
           },
           {
+            "name": "/counting mode",
+            "description": "Zählmodus dieses Kanals ändern (eine neue Runde beginnt)"
+          },
+          {
+            "name": "/counting settings",
+            "description": "Jede Zähl-Einstellung in Discord ändern, wie im Dashboard"
+          },
+          {
             "name": "/counting status",
             "description": "Wo der Zählstand in diesem Kanal steht"
           },
@@ -6868,6 +6876,8 @@
         "badgesText": "Offizielle Abzeichen, die auf Profilen angezeigt werden."
       },
       "settings": {
+        "auto_approve_submissions": "Einreichungen automatisch freigeben",
+        "auto_approve_submissionsHint": "Wenn an, gehen neue Einträge und Änderungen sofort online, ohne manuelle Prüfung. Ausschalten, um sie wieder selbst zu prüfen.",
         "require_checklist": "Vollständige Prüfliste verlangen",
         "require_checklistHint": "Die Freigabe ist gesperrt, bis jeder Punkt abgehakt ist.",
         "auto_publish_on_approve": "Bei Freigabe veröffentlichen",
@@ -10379,7 +10389,10 @@
         "react": "Jede Zahl mit einer Reaktion versehen",
         "solo": "Eine Person zählt allein",
         "turn_cooldown_s": "Wartezeit zwischen Zahlen eines Mitglieds (Sekunden)",
-        "turn_gap": "Andere Mitglieder zwischen zwei Zahlen eines Mitglieds"
+        "turn_gap": "Andere Mitglieder zwischen zwei Zahlen eines Mitglieds",
+        "trailing_text": "Text nach der Zahl erlauben",
+        "trailing_text_hint": "Mitglieder können 1 Text, 3 Test oder 2-1 schreiben. Nur die Zahl zählt, der Text wird ignoriert, daher wird die Zählung nicht zurückgesetzt. Ohne Leerzeichen (3test) ist die Nachricht keine Zahl.",
+        "react_hint": "Jede richtige Zahl erhält ein zufällig gewähltes farbiges Häkchen aus 15 Designs."
       },
       "saves": {
         "cooldown_hours": "Wartezeit zwischen Rettungen (Stunden)",
@@ -10561,7 +10574,8 @@
       "reset": "Zurücksetzen",
       "resume": "Fortsetzen",
       "settings": "Einstellungen",
-      "total": "Gültige Zahlen"
+      "total": "Gültige Zahlen",
+      "modeInfoTitle": "Was jeder Modus bedeutet"
     },
     "goalType": {
       "channel": "Kanal",
@@ -10800,6 +10814,21 @@
     "visibility": {
       "private": "Privat",
       "public": "Öffentlich"
+    },
+    "modeInfo": {
+      "classic": "Zähle Eins nach der anderen hoch: 1, 2, 3, 4... Das gängigste Spiel.",
+      "reverse": "Zähle rückwärts: 100, 99, 98... bis zum Endwert.",
+      "increment": "Zähle in Schritten deiner Wahl: 2, 4, 6, 8... oder 5, 10, 15, 20...",
+      "decimal": "Zähle mit Dezimalstellen und fester Stellenzahl: 0.1, 0.2, 0.3...",
+      "negative": "Zähle durch negative Zahlen: -1, -2, -3... oder von unter null bis null.",
+      "binary": "Zähle binär, nur mit 0 und 1: 1, 10, 11, 100, 101...",
+      "hexadecimal": "Zähle hexadezimal, Ziffern 0-9 dann A-F: 9, A, B... F, 10, 11...",
+      "roman": "Zähle mit römischen Zahlen: I, II, III, IV, V... bis 3999.",
+      "alphabet": "Zähle mit Buchstaben: A, B, C... Z, dann AA, AB, AC...",
+      "word": "Zähle, indem du die Zahlen ausschreibst: eins, zwei, drei... in der gewählten Sprache.",
+      "fibonacci": "Jede Zahl ist die Summe der beiden davor: 1, 1, 2, 3, 5, 8, 13...",
+      "multiplication": "Zähle die Vielfachen einer Zahl: 7, 14, 21, 28... (das Einmaleins).",
+      "custom_sequence": "Deine eigene Regel: eine Zahlenliste oder eine Formel, zum Beispiel die Quadrate 1, 4, 9, 16..."
     }
   },
   "statistics": {

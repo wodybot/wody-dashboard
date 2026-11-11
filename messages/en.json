@@ -1707,6 +1707,14 @@
             "description": "Turn a channel into a counting game"
           },
           {
+            "name": "/counting mode",
+            "description": "Change the counting mode of this channel (a new round starts)"
+          },
+          {
+            "name": "/counting settings",
+            "description": "Change every counting setting from Discord, the same as in the dashboard"
+          },
+          {
             "name": "/counting status",
             "description": "Where the count stands in this channel"
           },
@@ -6868,6 +6876,8 @@
         "badgesText": "Official badges shown on profiles."
       },
       "settings": {
+        "auto_approve_submissions": "Approve submissions automatically",
+        "auto_approve_submissionsHint": "When on, new listings and updates go live instantly without a manual review. Turn it off to review them yourself again.",
         "require_checklist": "Require the full checklist",
         "require_checklistHint": "Approval is blocked until every item is ticked.",
         "auto_publish_on_approve": "Publish on approval",
@@ -10379,7 +10389,10 @@
         "react": "Add a reaction to each count",
         "solo": "One person counts alone",
         "turn_cooldown_s": "Wait between counts of one member (seconds)",
-        "turn_gap": "Other members needed between two counts of one member"
+        "turn_gap": "Other members needed between two counts of one member",
+        "trailing_text": "Allow text after the number",
+        "trailing_text_hint": "Members can write 1 text, 3 test or 2-1. Only the number counts and the text is ignored, so the count does not reset. Without a space (3test) the message is not a number.",
+        "react_hint": "Each correct number gets a random coloured check mark, picked from 15 designs."
       },
       "saves": {
         "cooldown_hours": "Wait between saves (hours)",
@@ -10561,7 +10574,8 @@
       "reset": "Reset",
       "resume": "Resume",
       "settings": "Settings",
-      "total": "Valid counts"
+      "total": "Valid counts",
+      "modeInfoTitle": "What each mode means"
     },
     "goalType": {
       "channel": "Channel",
@@ -10800,6 +10814,21 @@
     "visibility": {
       "private": "Private",
       "public": "Public"
+    },
+    "modeInfo": {
+      "classic": "Count up one by one: 1, 2, 3, 4... The most common game.",
+      "reverse": "Count down: 100, 99, 98... until the end value is reached.",
+      "increment": "Count in steps of your choice: 2, 4, 6, 8... or 5, 10, 15, 20...",
+      "decimal": "Count with decimals and a fixed number of digits: 0.1, 0.2, 0.3...",
+      "negative": "Count through negative numbers: -1, -2, -3... or from below zero up to zero.",
+      "binary": "Count in binary, only 0 and 1: 1, 10, 11, 100, 101...",
+      "hexadecimal": "Count in hexadecimal, digits 0-9 then A-F: 9, A, B... F, 10, 11...",
+      "roman": "Count in Roman numerals: I, II, III, IV, V... up to 3999.",
+      "alphabet": "Count with letters: A, B, C... Z, then AA, AB, AC...",
+      "word": "Count by writing the numbers in words: one, two, three... in the language you pick.",
+      "fibonacci": "Each number is the sum of the two before it: 1, 1, 2, 3, 5, 8, 13...",
+      "multiplication": "Count the multiples of a number: 7, 14, 21, 28... (the multiplication table).",
+      "custom_sequence": "Your own rule: a list of numbers or a formula, for example the squares 1, 4, 9, 16..."
     }
   },
   "statistics": {

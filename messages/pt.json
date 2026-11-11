@@ -1707,6 +1707,14 @@
             "description": "Transforma um canal num jogo de contagem"
           },
           {
+            "name": "/counting mode",
+            "description": "Muda o modo de contagem deste canal (começa uma nova ronda)"
+          },
+          {
+            "name": "/counting settings",
+            "description": "Muda cada definição da contagem no Discord, como no painel"
+          },
+          {
             "name": "/counting status",
             "description": "Em que ponto está a contagem neste canal"
           },
@@ -6868,6 +6876,8 @@
         "badgesText": "Emblemas oficiais mostrados nos perfis."
       },
       "settings": {
+        "auto_approve_submissions": "Aprovar envios automaticamente",
+        "auto_approve_submissionsHint": "Quando ligado, as listagens novas e as atualizações ficam online de imediato, sem revisão manual. Desligue para voltar a revê-las você mesmo.",
         "require_checklist": "Exigir a lista de verificação completa",
         "require_checklistHint": "A aprovação fica bloqueada até todos os itens estarem marcados.",
         "auto_publish_on_approve": "Publicar ao aprovar",
@@ -10379,7 +10389,10 @@
         "react": "Adicionar uma reação a cada contagem",
         "solo": "Uma só pessoa conta",
         "turn_cooldown_s": "Espera entre contagens de um membro (segundos)",
-        "turn_gap": "Outros membros necessários entre duas contagens de um membro"
+        "turn_gap": "Outros membros necessários entre duas contagens de um membro",
+        "trailing_text": "Permitir texto depois do número",
+        "trailing_text_hint": "Os membros podem escrever 1 texto, 3 teste ou 2-1. Só conta o número e o texto é ignorado, por isso a contagem não reinicia. Sem espaço (3teste) a mensagem não é um número.",
+        "react_hint": "Cada número correto recebe uma marca de verificação colorida escolhida ao acaso entre 15 modelos."
       },
       "saves": {
         "cooldown_hours": "Espera entre salva-vidas (horas)",
@@ -10561,7 +10574,8 @@
       "reset": "Repor",
       "resume": "Retomar",
       "settings": "Definições",
-      "total": "Contagens válidas"
+      "total": "Contagens válidas",
+      "modeInfoTitle": "O que significa cada modo"
     },
     "goalType": {
       "channel": "Canal",
@@ -10800,6 +10814,21 @@
     "visibility": {
       "private": "Privado",
       "public": "Público"
+    },
+    "modeInfo": {
+      "classic": "Conte para cima, de um em um: 1, 2, 3, 4... O jogo mais comum.",
+      "reverse": "Conte para trás: 100, 99, 98... até ao valor final.",
+      "increment": "Conte com o salto que escolher: 2, 4, 6, 8... ou 5, 10, 15, 20...",
+      "decimal": "Conte com decimais e um número fixo de casas: 0.1, 0.2, 0.3...",
+      "negative": "Conte com números negativos: -1, -2, -3... ou de abaixo de zero até zero.",
+      "binary": "Conte em binário, só com 0 e 1: 1, 10, 11, 100, 101...",
+      "hexadecimal": "Conte em hexadecimal, algarismos 0-9 e depois A-F: 9, A, B... F, 10, 11...",
+      "roman": "Conte com numeração romana: I, II, III, IV, V... até 3999.",
+      "alphabet": "Conte com letras: A, B, C... Z, depois AA, AB, AC...",
+      "word": "Conte escrevendo os números por extenso: um, dois, três... no idioma escolhido.",
+      "fibonacci": "Cada número é a soma dos dois anteriores: 1, 1, 2, 3, 5, 8, 13...",
+      "multiplication": "Conte os múltiplos de um número: 7, 14, 21, 28... (a tabuada).",
+      "custom_sequence": "A sua própria regra: uma lista de números ou uma fórmula, por exemplo os quadrados 1, 4, 9, 16..."
     }
   },
   "statistics": {

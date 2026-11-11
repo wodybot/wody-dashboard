@@ -103,6 +103,7 @@ class Collection {
       limit: (n) => { rows = rows.slice(0, n); return cursor; },
       project: () => cursor,
       toArray: async () => rows.map((d) => copy(d)),
+      next: async () => (rows[0] ? copy(rows[0]) : null),
     };
     return cursor;
   }

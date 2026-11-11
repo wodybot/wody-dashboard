@@ -1707,6 +1707,14 @@
             "description": "Trasforma un canale in un gioco di conteggio"
           },
           {
+            "name": "/counting mode",
+            "description": "Cambia la modalità di conteggio di questo canale (inizia un nuovo round)"
+          },
+          {
+            "name": "/counting settings",
+            "description": "Cambia ogni impostazione del conteggio da Discord, come nella dashboard"
+          },
+          {
             "name": "/counting status",
             "description": "A che punto è il conteggio in questo canale"
           },
@@ -6868,6 +6876,8 @@
         "badgesText": "Badge ufficiali mostrati sui profili."
       },
       "settings": {
+        "auto_approve_submissions": "Approva automaticamente gli invii",
+        "auto_approve_submissionsHint": "Se attivo, le nuove schede e gli aggiornamenti vanno online subito, senza revisione manuale. Disattiva per tornare a controllarli tu.",
         "require_checklist": "Richiedi la lista completa",
         "require_checklistHint": "L’approvazione è bloccata finché ogni voce non è spuntata.",
         "auto_publish_on_approve": "Pubblica all’approvazione",
@@ -10379,7 +10389,10 @@
         "react": "Aggiungi una reazione a ogni conteggio",
         "solo": "Conta una persona sola",
         "turn_cooldown_s": "Attesa tra i conteggi di un membro (secondi)",
-        "turn_gap": "Altri membri necessari tra due conteggi dello stesso membro"
+        "turn_gap": "Altri membri necessari tra due conteggi dello stesso membro",
+        "trailing_text": "Consenti testo dopo il numero",
+        "trailing_text_hint": "I membri possono scrivere 1 testo, 3 test o 2-1. Conta solo il numero e il testo viene ignorato, quindi il conteggio non si azzera. Senza spazio (3test) il messaggio non è un numero.",
+        "react_hint": "Ogni numero corretto riceve un segno di spunta colorato scelto a caso tra 15 modelli."
       },
       "saves": {
         "cooldown_hours": "Attesa tra due salvataggi (ore)",
@@ -10561,7 +10574,8 @@
       "reset": "Azzera",
       "resume": "Riprendi",
       "settings": "Impostazioni",
-      "total": "Conteggi validi"
+      "total": "Conteggi validi",
+      "modeInfoTitle": "Cosa significa ogni modalità"
     },
     "goalType": {
       "channel": "Canale",
@@ -10800,6 +10814,21 @@
     "visibility": {
       "private": "Privato",
       "public": "Pubblico"
+    },
+    "modeInfo": {
+      "classic": "Conta in avanti uno alla volta: 1, 2, 3, 4... Il gioco più comune.",
+      "reverse": "Conta alla rovescia: 100, 99, 98... fino al valore finale.",
+      "increment": "Conta a passi a tua scelta: 2, 4, 6, 8... oppure 5, 10, 15, 20...",
+      "decimal": "Conta con i decimali e un numero fisso di cifre: 0.1, 0.2, 0.3...",
+      "negative": "Conta con i numeri negativi: -1, -2, -3... oppure da sotto zero fino a zero.",
+      "binary": "Conta in binario, solo con 0 e 1: 1, 10, 11, 100, 101...",
+      "hexadecimal": "Conta in esadecimale, cifre 0-9 poi A-F: 9, A, B... F, 10, 11...",
+      "roman": "Conta con i numeri romani: I, II, III, IV, V... fino a 3999.",
+      "alphabet": "Conta con le lettere: A, B, C... Z, poi AA, AB, AC...",
+      "word": "Conta scrivendo i numeri a parole: uno, due, tre... nella lingua scelta.",
+      "fibonacci": "Ogni numero è la somma dei due precedenti: 1, 1, 2, 3, 5, 8, 13...",
+      "multiplication": "Conta i multipli di un numero: 7, 14, 21, 28... (la tabellina).",
+      "custom_sequence": "La tua regola: un elenco di numeri o una formula, ad esempio i quadrati 1, 4, 9, 16..."
     }
   },
   "statistics": {

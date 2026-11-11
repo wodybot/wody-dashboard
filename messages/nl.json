@@ -1707,6 +1707,14 @@
             "description": "Maak van een kanaal een telspel"
           },
           {
+            "name": "/counting mode",
+            "description": "Verander de telmodus van dit kanaal (er begint een nieuwe ronde)"
+          },
+          {
+            "name": "/counting settings",
+            "description": "Wijzig elke teloptie vanuit Discord, zoals in het dashboard"
+          },
+          {
             "name": "/counting status",
             "description": "Waar de telling in dit kanaal staat"
           },
@@ -6868,6 +6876,8 @@
         "badgesText": "Officiële badges die op profielen worden getoond."
       },
       "settings": {
+        "auto_approve_submissions": "Inzendingen automatisch goedkeuren",
+        "auto_approve_submissionsHint": "Als dit aan staat, gaan nieuwe vermeldingen en updates direct live zonder handmatige controle. Zet uit om ze weer zelf te controleren.",
         "require_checklist": "Volledige controlelijst verplicht",
         "require_checklistHint": "Goedkeuren is geblokkeerd tot elk onderdeel is aangevinkt.",
         "auto_publish_on_approve": "Publiceren bij goedkeuring",
@@ -10379,7 +10389,10 @@
         "react": "Een reactie toevoegen aan elke telling",
         "solo": "Eén persoon telt alleen",
         "turn_cooldown_s": "Wachttijd tussen tellingen van één lid (seconden)",
-        "turn_gap": "Andere leden nodig tussen twee tellingen van één lid"
+        "turn_gap": "Andere leden nodig tussen twee tellingen van één lid",
+        "trailing_text": "Tekst na het getal toestaan",
+        "trailing_text_hint": "Leden kunnen 1 tekst, 3 test of 2-1 schrijven. Alleen het getal telt en de tekst wordt genegeerd, dus de telling wordt niet gereset. Zonder spatie (3test) is het bericht geen getal.",
+        "react_hint": "Elk juiste getal krijgt een willekeurig gekozen gekleurd vinkje uit 15 ontwerpen."
       },
       "saves": {
         "cooldown_hours": "Wachttijd tussen reddingen (uren)",
@@ -10561,7 +10574,8 @@
       "reset": "Resetten",
       "resume": "Hervatten",
       "settings": "Instellingen",
-      "total": "Geldige tellingen"
+      "total": "Geldige tellingen",
+      "modeInfoTitle": "Wat elke modus betekent"
     },
     "goalType": {
       "channel": "Kanaal",
@@ -10800,6 +10814,21 @@
     "visibility": {
       "private": "Privé",
       "public": "Openbaar"
+    },
+    "modeInfo": {
+      "classic": "Tel omhoog, één voor één: 1, 2, 3, 4... Het meest gespeelde spel.",
+      "reverse": "Tel terug: 100, 99, 98... tot de eindwaarde.",
+      "increment": "Tel in stappen naar keuze: 2, 4, 6, 8... of 5, 10, 15, 20...",
+      "decimal": "Tel met decimalen en een vast aantal cijfers: 0.1, 0.2, 0.3...",
+      "negative": "Tel met negatieve getallen: -1, -2, -3... of van onder nul tot nul.",
+      "binary": "Tel binair, alleen met 0 en 1: 1, 10, 11, 100, 101...",
+      "hexadecimal": "Tel hexadecimaal, cijfers 0-9 en dan A-F: 9, A, B... F, 10, 11...",
+      "roman": "Tel met Romeinse cijfers: I, II, III, IV, V... tot 3999.",
+      "alphabet": "Tel met letters: A, B, C... Z, daarna AA, AB, AC...",
+      "word": "Tel door de getallen voluit te schrijven: een, twee, drie... in de gekozen taal.",
+      "fibonacci": "Elk getal is de som van de twee ervoor: 1, 1, 2, 3, 5, 8, 13...",
+      "multiplication": "Tel de veelvouden van een getal: 7, 14, 21, 28... (de tafel).",
+      "custom_sequence": "Je eigen regel: een lijst met getallen of een formule, bijvoorbeeld de kwadraten 1, 4, 9, 16..."
     }
   },
   "statistics": {

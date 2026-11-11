@@ -1707,6 +1707,14 @@
             "description": "Transformer un salon en jeu de comptage"
           },
           {
+            "name": "/counting mode",
+            "description": "Changer le mode de comptage de ce salon (une nouvelle manche commence)"
+          },
+          {
+            "name": "/counting settings",
+            "description": "Modifier chaque réglage du comptage depuis Discord, comme dans le tableau de bord"
+          },
+          {
             "name": "/counting status",
             "description": "Où en est le compte dans ce salon"
           },
@@ -6868,6 +6876,8 @@
         "badgesText": "Badges officiels affichés sur les profils."
       },
       "settings": {
+        "auto_approve_submissions": "Approuver automatiquement les soumissions",
+        "auto_approve_submissionsHint": "Quand c’est activé, les nouvelles fiches et mises à jour sont publiées immédiatement, sans revue manuelle. Désactivez pour les vérifier à nouveau vous-même.",
         "require_checklist": "Exiger la liste de vérification complète",
         "require_checklistHint": "L’approbation est bloquée tant que tous les éléments ne sont pas cochés.",
         "auto_publish_on_approve": "Publier à l’approbation",
@@ -10379,7 +10389,10 @@
         "react": "Ajouter une réaction à chaque compte",
         "solo": "Une seule personne compte",
         "turn_cooldown_s": "Attente entre deux comptes d’un membre (secondes)",
-        "turn_gap": "Autres membres nécessaires entre deux comptes d’un même membre"
+        "turn_gap": "Autres membres nécessaires entre deux comptes d’un même membre",
+        "trailing_text": "Autoriser du texte après le nombre",
+        "trailing_text_hint": "Les membres peuvent écrire 1 texte, 3 test ou 2-1. Seul le nombre compte et le texte est ignoré, donc le compte ne se réinitialise pas. Sans espace (3test), le message n’est pas un nombre.",
+        "react_hint": "Chaque nombre correct reçoit une coche colorée choisie au hasard parmi 15 modèles."
       },
       "saves": {
         "cooldown_hours": "Attente entre deux sauvegardes (heures)",
@@ -10561,7 +10574,8 @@
       "reset": "Réinitialiser",
       "resume": "Reprendre",
       "settings": "Réglages",
-      "total": "Comptes valides"
+      "total": "Comptes valides",
+      "modeInfoTitle": "Ce que signifie chaque mode"
     },
     "goalType": {
       "channel": "Salon",
@@ -10800,6 +10814,21 @@
     "visibility": {
       "private": "Privé",
       "public": "Public"
+    },
+    "modeInfo": {
+      "classic": "Comptez en avançant de un en un : 1, 2, 3, 4... Le jeu le plus courant.",
+      "reverse": "Comptez à rebours : 100, 99, 98... jusqu’à la valeur finale.",
+      "increment": "Comptez par pas de votre choix : 2, 4, 6, 8... ou 5, 10, 15, 20...",
+      "decimal": "Comptez avec des décimales et un nombre fixe de chiffres : 0.1, 0.2, 0.3...",
+      "negative": "Comptez avec des nombres négatifs : -1, -2, -3... ou de sous zéro jusqu’à zéro.",
+      "binary": "Comptez en binaire, uniquement avec 0 et 1 : 1, 10, 11, 100, 101...",
+      "hexadecimal": "Comptez en hexadécimal, chiffres 0-9 puis A-F : 9, A, B... F, 10, 11...",
+      "roman": "Comptez en chiffres romains : I, II, III, IV, V... jusqu’à 3999.",
+      "alphabet": "Comptez avec des lettres : A, B, C... Z, puis AA, AB, AC...",
+      "word": "Comptez en écrivant les nombres en toutes lettres : un, deux, trois... dans la langue choisie.",
+      "fibonacci": "Chaque nombre est la somme des deux précédents : 1, 1, 2, 3, 5, 8, 13...",
+      "multiplication": "Comptez les multiples d’un nombre : 7, 14, 21, 28... (la table de multiplication).",
+      "custom_sequence": "Votre propre règle : une liste de nombres ou une formule, par exemple les carrés 1, 4, 9, 16..."
     }
   },
   "statistics": {
