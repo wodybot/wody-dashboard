@@ -8671,7 +8671,8 @@
       "socials": "Redes sociais",
       "stats": "Estatísticas",
       "passport": "Passaporte",
-      "battlepass": "Battle Pass"
+      "battlepass": "Battle Pass",
+      "achievements": "Conquistas"
     },
     "passportNo": "N.º do passaporte",
     "daysWith": "Dias com o Wody",
@@ -9936,7 +9937,14 @@
       "featured": "Em destaque",
       "saveError": "Não foi possível salvar. Tente novamente.",
       "level": "Nível {level}",
-      "loadError": "Não foi possível carregar seus itens do Battle Pass."
+      "loadError": "Não foi possível carregar seus itens do Battle Pass.",
+      "rarity": {
+        "common": "Comum",
+        "uncommon": "Incomum",
+        "rare": "Raro",
+        "epic": "Épico",
+        "legendary": "Lendário"
+      }
     },
     "calendar": {
       "ownerTitle": "Datas que os servidores não podem usar",

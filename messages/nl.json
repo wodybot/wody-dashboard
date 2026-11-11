@@ -8671,7 +8671,8 @@
       "socials": "Sociale netwerken",
       "stats": "Statistieken",
       "passport": "Paspoort",
-      "battlepass": "Battle Pass"
+      "battlepass": "Battle Pass",
+      "achievements": "Prestaties"
     },
     "passportNo": "Paspoortnr.",
     "daysWith": "Dagen met Wody",
@@ -9936,7 +9937,14 @@
       "featured": "Uitgelicht",
       "saveError": "Opslaan mislukt. Probeer het opnieuw.",
       "level": "Level {level}",
-      "loadError": "Je Battle Pass-items konden niet worden geladen."
+      "loadError": "Je Battle Pass-items konden niet worden geladen.",
+      "rarity": {
+        "common": "Gewoon",
+        "uncommon": "Ongewoon",
+        "rare": "Zeldzaam",
+        "epic": "Episch",
+        "legendary": "Legendarisch"
+      }
     },
     "calendar": {
       "ownerTitle": "Data die servers niet kunnen gebruiken",

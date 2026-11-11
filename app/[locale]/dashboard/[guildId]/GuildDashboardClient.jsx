@@ -1653,6 +1653,8 @@ function WelcomePanel({ guildId, meta }) {
   const t = useTranslations('guildSettings.welcome');
   const tc = useTranslations('guildSettings.common');
   const { data, setData, save, saving, dirty, discard, rights, setRights } = useModule(guildId, 'welcome');
+  // A theme picked after the last custom image link replaces that link on save (otherwise the old image keeps hiding the theme).
+  const themePicked = useRef(false);
   const [savedFormat, setSavedFormat] = useState(null);
   const [savedCardSize, setSavedCardSize] = useState(null);
   useEffect(() => {
@@ -1741,7 +1743,7 @@ function WelcomePanel({ guildId, meta }) {
       dm_image_url: data.dm_image_url || null,
       card_enabled: storedMessageFormat === 'card',
       message_format: storedMessageFormat,
-      card_background_url: backgroundUrl || null,
+      card_background_url: (themePicked.current && data.card_size === 'aurora') ? null : (backgroundUrl || null),
       card_overlay_color: overlayColor,
       card_overlay_opacity: overlayOpacity,
       card_text_color: textColor,
@@ -1751,7 +1753,11 @@ function WelcomePanel({ guildId, meta }) {
       card_gradient: AURORA_GRADIENTS[data.card_gradient] ? data.card_gradient : 'ember',
       card_font: CARD_FONT_IDS.includes(data.card_font) ? data.card_font : 'default',
     });
-    if (ok) { setSavedFormat(storedMessageFormat); setSavedCardSize(memberCardSize(data.card_size)); }
+    if (ok) {
+      setSavedFormat(storedMessageFormat); setSavedCardSize(memberCardSize(data.card_size));
+      if (themePicked.current && data.card_size === 'aurora') setData((d) => ({ ...d, card_background_url: null }));
+      themePicked.current = false;
+    }
   };
 
   const messageFormat = storedMessageFormat;
@@ -1827,7 +1833,7 @@ function WelcomePanel({ guildId, meta }) {
               </>}
 
               {messageFormat === 'card' && <>
-                <div><div className="flex items-center gap-1.5 mb-1"><Label className="mb-0">{t('backgroundImageLabel')}</Label><InfoHint>{t('backgroundImageHint')}</InfoHint></div><div className="flex flex-col sm:flex-row gap-2"><Input className="sm:flex-1" value={backgroundUrl} onChange={(e) => setData({ ...data, card_background_url: e.target.value || null })} placeholder="https://example.com/welcome-background.jpg" /><PresetPicker category="welcome-background" onSelect={(url) => setData({ ...data, card_background_url: url })} /></div><ImageHostingTip /></div>
+                <div><div className="flex items-center gap-1.5 mb-1"><Label className="mb-0">{t('backgroundImageLabel')}</Label><InfoHint>{t('backgroundImageHint')}</InfoHint></div><div className="flex flex-col sm:flex-row gap-2"><Input className="sm:flex-1" value={backgroundUrl} onChange={(e) => { themePicked.current = false; setData({ ...data, card_background_url: e.target.value || null }); }} placeholder="https://example.com/welcome-background.jpg" /><PresetPicker category="welcome-background" onSelect={(url) => { themePicked.current = false; setData({ ...data, card_background_url: url }); }} /></div><ImageHostingTip /></div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div><Label>{t('avatarLabel')}</Label><Select value={data.card_avatar_mode || 'member'} onValueChange={(v) => setData({ ...data, card_avatar_mode: v })}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="member">{t('avatarMemberOption')}</SelectItem><SelectItem value="server">{t('avatarServerOption')}</SelectItem><SelectItem value="none">{t('avatarNoneOption')}</SelectItem></SelectContent></Select></div>
                   <div className="flex items-end"><FieldRow label={t('avatarRingLabel')}><Switch checked={data.card_avatar_ring !== false} onCheckedChange={(v) => setData({ ...data, card_avatar_ring: v })} /></FieldRow></div>
@@ -1837,9 +1843,9 @@ function WelcomePanel({ guildId, meta }) {
                   <div><Label>{t('overlayColorLabel')}</Label><div className="flex gap-2"><Input type="color" className="w-14 p-1 h-10" value={overlayColor} onChange={(e) => setData({ ...data, card_overlay_color: e.target.value })} /><Input value={overlayColor} onChange={(e) => setData({ ...data, card_overlay_color: e.target.value })} /></div></div>
                 </div>
                 <div><div className="flex justify-between mb-2"><Label>{t('overlayOpacityLabel')}</Label><span className="text-xs text-muted-foreground">{overlayOpacity}%</span></div><input className="w-full accent-primary" type="range" min="0" max="100" value={overlayOpacity} onChange={(e) => setData({ ...data, card_overlay_opacity: Number(e.target.value) })} /></div>
-                <MemberCardSizePicker value={data.card_size} onChange={(v) => setData({ ...data, card_size: v })} t={t} savedValue={savedCardSize} tc={tc} />
+                <MemberCardSizePicker value={data.card_size} onChange={(v) => { if (v === 'aurora' && data.card_size !== 'aurora') themePicked.current = true; setData({ ...data, card_size: v }); }} t={t} savedValue={savedCardSize} tc={tc} />
                 <CardFontPicker value={data.card_font} onChange={(v) => setData({ ...data, card_font: v })} />
-                {data.card_size === 'aurora' && <AuroraGradientPicker value={data.card_gradient} onChange={(v) => setData({ ...data, card_gradient: v })} hasImage={Boolean(backgroundUrl)} onClearImage={() => setData({ ...data, card_background_url: null })} />}
+                {data.card_size === 'aurora' && <AuroraGradientPicker value={data.card_gradient} onChange={(v) => { themePicked.current = true; setData({ ...data, card_gradient: v }); }} hasImage={Boolean(backgroundUrl)} onClearImage={() => setData({ ...data, card_background_url: null })} />}
               </>}
             </Card>
           )}
@@ -1945,6 +1951,8 @@ function GoodbyePanel({ guildId, meta }) {
   const t = useTranslations('guildSettings.goodbye');
   const tc = useTranslations('guildSettings.common');
   const { data, setData, save, saving, dirty, discard, rights, setRights } = useModule(guildId, 'goodbye');
+  // A theme picked after the last custom image link replaces that link on save (otherwise the old image keeps hiding the theme).
+  const themePicked = useRef(false);
   const [savedFormat, setSavedFormat] = useState(null);
   const [savedCardSize, setSavedCardSize] = useState(null);
   useEffect(() => {
@@ -2030,7 +2038,7 @@ function GoodbyePanel({ guildId, meta }) {
       timestamp: data.timestamp !== false,
       card_enabled: storedMessageFormat === 'card',
       message_format: storedMessageFormat,
-      card_background_url: backgroundUrl || null,
+      card_background_url: (themePicked.current && data.card_size === 'aurora') ? null : (backgroundUrl || null),
       card_overlay_color: overlayColor,
       card_overlay_opacity: overlayOpacity,
       card_text_color: textColor,
@@ -2040,7 +2048,11 @@ function GoodbyePanel({ guildId, meta }) {
       card_gradient: AURORA_GRADIENTS[data.card_gradient] ? data.card_gradient : 'ember',
       card_font: CARD_FONT_IDS.includes(data.card_font) ? data.card_font : 'default',
     });
-    if (ok) { setSavedFormat(storedMessageFormat); setSavedCardSize(memberCardSize(data.card_size)); }
+    if (ok) {
+      setSavedFormat(storedMessageFormat); setSavedCardSize(memberCardSize(data.card_size));
+      if (themePicked.current && data.card_size === 'aurora') setData((d) => ({ ...d, card_background_url: null }));
+      themePicked.current = false;
+    }
   };
 
   return (
@@ -2094,7 +2106,7 @@ function GoodbyePanel({ guildId, meta }) {
               </>}
 
               {messageFormat === 'card' && <>
-                <div><div className="flex items-center gap-1.5 mb-1"><Label className="mb-0">{t('backgroundImageLabel')}</Label><InfoHint>{t('backgroundImageHint')}</InfoHint></div><div className="flex flex-col sm:flex-row gap-2"><Input className="sm:flex-1" value={backgroundUrl} onChange={(e) => setData({ ...data, card_background_url: e.target.value || null })} placeholder="https://example.com/goodbye-background.jpg" /><PresetPicker category="welcome-background" onSelect={(url) => setData({ ...data, card_background_url: url })} /></div><ImageHostingTip /></div>
+                <div><div className="flex items-center gap-1.5 mb-1"><Label className="mb-0">{t('backgroundImageLabel')}</Label><InfoHint>{t('backgroundImageHint')}</InfoHint></div><div className="flex flex-col sm:flex-row gap-2"><Input className="sm:flex-1" value={backgroundUrl} onChange={(e) => { themePicked.current = false; setData({ ...data, card_background_url: e.target.value || null }); }} placeholder="https://example.com/goodbye-background.jpg" /><PresetPicker category="welcome-background" onSelect={(url) => { themePicked.current = false; setData({ ...data, card_background_url: url }); }} /></div><ImageHostingTip /></div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div><Label>{t('avatarLabel')}</Label><Select value={data.card_avatar_mode || 'member'} onValueChange={(v) => setData({ ...data, card_avatar_mode: v })}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="member">{t('avatarMemberOption')}</SelectItem><SelectItem value="server">{t('avatarServerOption')}</SelectItem><SelectItem value="none">{t('avatarNoneOption')}</SelectItem></SelectContent></Select></div>
                   <div className="flex items-end"><FieldRow label={t('avatarRingLabel')}><Switch checked={data.card_avatar_ring !== false} onCheckedChange={(v) => setData({ ...data, card_avatar_ring: v })} /></FieldRow></div>
@@ -2104,9 +2116,9 @@ function GoodbyePanel({ guildId, meta }) {
                   <div><Label>{t('overlayColorLabel')}</Label><div className="flex gap-2"><Input type="color" className="w-14 p-1 h-10" value={overlayColor} onChange={(e) => setData({ ...data, card_overlay_color: e.target.value })} /><Input value={overlayColor} onChange={(e) => setData({ ...data, card_overlay_color: e.target.value })} /></div></div>
                 </div>
                 <div><div className="flex justify-between mb-2"><Label>{t('overlayOpacityLabel')}</Label><span className="text-xs text-muted-foreground">{overlayOpacity}%</span></div><input className="w-full accent-primary" type="range" min="0" max="100" value={overlayOpacity} onChange={(e) => setData({ ...data, card_overlay_opacity: Number(e.target.value) })} /></div>
-                <MemberCardSizePicker value={data.card_size} onChange={(v) => setData({ ...data, card_size: v })} t={t} savedValue={savedCardSize} tc={tc} />
+                <MemberCardSizePicker value={data.card_size} onChange={(v) => { if (v === 'aurora' && data.card_size !== 'aurora') themePicked.current = true; setData({ ...data, card_size: v }); }} t={t} savedValue={savedCardSize} tc={tc} />
                 <CardFontPicker value={data.card_font} onChange={(v) => setData({ ...data, card_font: v })} />
-                {data.card_size === 'aurora' && <AuroraGradientPicker value={data.card_gradient} onChange={(v) => setData({ ...data, card_gradient: v })} hasImage={Boolean(backgroundUrl)} onClearImage={() => setData({ ...data, card_background_url: null })} />}
+                {data.card_size === 'aurora' && <AuroraGradientPicker value={data.card_gradient} onChange={(v) => { themePicked.current = true; setData({ ...data, card_gradient: v }); }} hasImage={Boolean(backgroundUrl)} onClearImage={() => setData({ ...data, card_background_url: null })} />}
               </>}
             </Card>
           )}
@@ -4432,6 +4444,7 @@ function LevelsPanel({ guildId, meta }) {
   const locale = useLocale();
   const [data, setData] = useState(null);
   const { data: settings, setData: setSettings, save, saving, dirty, discard, rights, setRights } = useModule(guildId, 'settings');
+  const themePicked = useRef(false);   // a theme picked after the last custom image link replaces that link on save
   useEffect(() => { safeJson(`/api/guilds/${guildId}/levels`, {}).then(setData); }, [guildId]);
   const [savedFormat, setSavedFormat] = useState(null);
   const [savedCardSize, setSavedCardSize] = useState(null);
@@ -4486,6 +4499,8 @@ function LevelsPanel({ guildId, meta }) {
   };
   const levelCardKeys = ['level_message_format', 'level_card_background_url', 'level_card_overlay_color', 'level_card_overlay_opacity', 'level_card_text_color', 'level_card_color', 'level_card_avatar_ring', 'level_card_font', 'level_card_size', 'level_card_gradient', 'level_image_mode', 'level_image_url', 'level_use_member_profile'];
   for (const key of levelCardKeys) if (Object.prototype.hasOwnProperty.call(settings, key)) savePayload[key] = settings[key];
+  const clearImage = themePicked.current && cardSize === 'aurora' && Boolean(backgroundUrl);
+  if (clearImage) savePayload.level_card_background_url = null;
   if (!savePayload.level_message_format && levelCardKeys.some((key) => Object.prototype.hasOwnProperty.call(settings, key))) {
     savePayload.level_message_format = messageFormat;
   }
@@ -4535,7 +4550,7 @@ function LevelsPanel({ guildId, meta }) {
           {messageFormat === 'card' && (
             <Card className="p-6 bg-card/60 space-y-5">
               <div><div className="font-semibold">{t('customizeCard')}</div><div className="text-xs text-muted-foreground mt-1">{t('customizeCardHint')}</div></div>
-              <div><div className="flex items-center gap-1.5 mb-1"><Label className="mb-0">{t('backgroundImage')}</Label><InfoHint>{t('backgroundImageHint')}</InfoHint></div><div className="flex flex-col sm:flex-row gap-2"><Input className="sm:flex-1" value={backgroundUrl} onChange={(e) => setSettings({ ...settings, level_card_background_url: e.target.value || null })} placeholder="https://example.com/background.jpg" /><PresetPicker category="level-card-background" label={t('minimalistPresets')} onSelect={(url) => setSettings({ ...settings, level_card_background_url: url, level_card_text_color: '#ffffff' })} /><PresetPicker category="welcome-background" onSelect={(url) => setSettings({ ...settings, level_card_background_url: url })} /></div><ImageHostingTip /></div>
+              <div><div className="flex items-center gap-1.5 mb-1"><Label className="mb-0">{t('backgroundImage')}</Label><InfoHint>{t('backgroundImageHint')}</InfoHint></div><div className="flex flex-col sm:flex-row gap-2"><Input className="sm:flex-1" value={backgroundUrl} onChange={(e) => { themePicked.current = false; setSettings({ ...settings, level_card_background_url: e.target.value || null }); }} placeholder="https://example.com/background.jpg" /><PresetPicker category="level-card-background" label={t('minimalistPresets')} onSelect={(url) => { themePicked.current = false; setSettings({ ...settings, level_card_background_url: url, level_card_text_color: '#ffffff' }); }} /><PresetPicker category="welcome-background" onSelect={(url) => { themePicked.current = false; setSettings({ ...settings, level_card_background_url: url }); }} /></div><ImageHostingTip /></div>
               <div>
                 <div className="flex items-center gap-1.5 mb-1"><Label className="mb-0">{t('cardSize')}</Label><InfoHint>{t('cardSizeHint')}</InfoHint></div>
                 <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-3">
@@ -4545,7 +4560,7 @@ function LevelsPanel({ guildId, meta }) {
                     ['banner', t('cardSizeBanner'), t('cardSizeBannerHint')],
                     ['aurora', t('cardSizeAurora'), t('cardSizeAuroraHint')],
                   ].map(([key, title, hint]) => (
-                    <button key={key} type="button" role="radio" aria-checked={cardSize === key} onClick={() => setSettings({ ...settings, level_card_size: key })} className={`text-left rounded-xl border p-3 transition flex flex-col h-full ${cardSize === key ? 'border-primary bg-primary/10 ring-1 ring-primary' : 'border-border hover:bg-secondary/40'}`}>
+                    <button key={key} type="button" role="radio" aria-checked={cardSize === key} onClick={() => { if (key === 'aurora' && cardSize !== 'aurora') themePicked.current = true; setSettings({ ...settings, level_card_size: key }); }} className={`text-left rounded-xl border p-3 transition flex flex-col h-full ${cardSize === key ? 'border-primary bg-primary/10 ring-1 ring-primary' : 'border-border hover:bg-secondary/40'}`}>
                       <div className="flex items-center gap-1.5 flex-wrap">
                         <div className="font-semibold text-sm">{title}</div>
                         {savedCardSize != null && savedCardSize === key && <span className="rounded-full bg-primary/15 border border-primary/30 px-2 py-0.5 text-[10px] font-semibold text-primary whitespace-nowrap">{tc('active')}</span>}
@@ -4557,7 +4572,7 @@ function LevelsPanel({ guildId, meta }) {
                   ))}
                 </div>
               </div>
-              {cardSize === 'aurora' && <AuroraGradientPicker value={cardGradient} onChange={(v) => setSettings({ ...settings, level_card_gradient: v })} hasImage={Boolean(backgroundUrl)} onClearImage={() => setSettings({ ...settings, level_card_background_url: null })} />}
+              {cardSize === 'aurora' && <AuroraGradientPicker value={cardGradient} onChange={(v) => { themePicked.current = true; setSettings({ ...settings, level_card_gradient: v }); }} hasImage={Boolean(backgroundUrl)} onClearImage={() => setSettings({ ...settings, level_card_background_url: null })} />}
               <div className="grid sm:grid-cols-2 gap-4">
                 <CardFontPicker allowBold value={settings.level_card_font} onChange={(v) => setSettings({ ...settings, level_card_font: v })} />
                 <div className="flex items-end"><FieldRow label={t('avatarRing')}><Switch checked={settings.level_card_avatar_ring !== false} onCheckedChange={(v) => setSettings({ ...settings, level_card_avatar_ring: v })} /></FieldRow></div>
@@ -4576,7 +4591,7 @@ function LevelsPanel({ guildId, meta }) {
               </div>
             </Card>
           )}
-          <SaveBar saving={saving} dirty={dirty} onDiscard={discard} onSave={async () => { const issue = levelRulesIssue(settings, meta.roles); if (issue) { toast.error(t(issue)); return; } const ok = await save(savePayload); if (ok) { setSavedFormat(messageFormat); setSavedCardSize(cardSize); } }} />
+          <SaveBar saving={saving} dirty={dirty} onDiscard={discard} onSave={async () => { const issue = levelRulesIssue(settings, meta.roles); if (issue) { toast.error(t(issue)); return; } const ok = await save(savePayload); if (ok) { setSavedFormat(messageFormat); setSavedCardSize(cardSize); if (clearImage) setSettings((s) => ({ ...s, level_card_background_url: null })); themePicked.current = false; } }} />
           <Card className="p-6 bg-card/60">
             <div className="font-semibold mb-3">{t('leaderboardTitle')}</div>
             {!data ? <div className="h-40 animate-pulse rounded-xl bg-secondary/30" /> : leaderboard.length === 0 ? <Empty text={t('noXpData')} /> : <div className="space-y-1">{leaderboard.map((u, i) => <div key={u._id} className="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-secondary/30"><div className="text-sm"><span className="text-muted-foreground w-8 inline-block">#{i + 1}</span> {u.user_name || t('unknownUser')}</div><div className="text-sm"><span className="text-primary font-semibold">{t('levelAbbrev')} {u.level}</span> · {u.xp} XP</div></div>)}</div>}

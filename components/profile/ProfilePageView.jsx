@@ -1,6 +1,6 @@
 import { cloneElement } from 'react';
 import { useTranslations } from 'next-intl';
-import { TreePalm, Lock, Eye, ExternalLink, Link2, IdCard, Globe, Users } from 'lucide-react';
+import { TreePalm, Lock, Eye, ExternalLink, Link2, IdCard, Globe, Users, Award, Medal, Gift, Flag, Hash, Target, Gem, Milestone, Flame, Trophy, Shell, RotateCcw, ShieldCheck, Crown } from 'lucide-react';
 import ProfileCardPreview from '@/components/profile/ProfileCardPreview';
 import MusicButton from '@/components/profile/MusicButton';
 import SocialLinks from '@/components/profile/SocialLinks';
@@ -18,8 +18,31 @@ function Block({ title, accent, span = '', delay = 0, children }) {
   );
 }
 
+const RARITY = { common: '#a8a29e', uncommon: '#4ade80', rare: '#60a5fa', epic: '#c084fc', legendary: '#fbbf24' };
+// One recognisable symbol for each Wody counting badge, so every achievement has its own look.
+const BADGE_ICON = {
+  first_count: Flag, c100: Hash, c1000: Target, c10000: Gem, first_milestone: Milestone, streak_master: Flame, champion: Trophy,
+  fibonacci_master: Shell, reverse_master: RotateCcw, community_goal: Users, competition_winner: Medal, perfect_session: ShieldCheck, collection_complete: Crown,
+};
+
+function AchievementTile({ it, locale, tb, featured }) {
+  const color = RARITY[it.rarity] || RARITY.common;
+  const Icn = BADGE_ICON[String(it.item_id).replace(/^counting:/, '')] || Award;
+  return (
+    <li className="flex items-center gap-3 rounded-2xl border bg-background/40 px-3 py-2.5" style={{ borderColor: featured ? color : `${color}40`, boxShadow: featured ? `0 0 16px ${color}40` : undefined }}>
+      <span className="relative inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border" style={{ borderColor: `${color}99`, background: `radial-gradient(circle at 30% 25%, ${color}55, ${color}14 70%)`, boxShadow: `0 0 14px ${color}33, inset 0 1px 0 ${color}55`, color }}>
+        <Icn className="h-6 w-6" strokeWidth={2.1} aria-hidden="true" />
+      </span>
+      <span className="min-w-0">
+        <span className="block truncate text-sm font-bold">{it.i18n?.[locale]?.name || it.name}</span>
+        <span className="block truncate text-[0.7rem] font-semibold uppercase tracking-wide" style={{ color }}>{tb(`rarity.${RARITY[it.rarity] ? it.rarity : 'common'}`)}{featured ? ` · ${tb('featured')}` : ''}</span>
+      </span>
+    </li>
+  );
+}
+
 /** Single renderer used by the public profile page and by the editor's live preview. */
-export default function ProfilePageView({ page, name, username, avatarSrc, memberSince, away, socials = {}, live = 0, views = 0, isPublic = false, locale = 'en', card = null, passport = null, pass = null, compact = false }) {
+export default function ProfilePageView({ page, name, username, avatarSrc, memberSince, away, socials = {}, live = 0, views = 0, isPublic = false, locale = 'en', card = null, passport = null, pass = null, compact = false, showNote = true }) {
   const t = useTranslations('profile');
   const tp = useTranslations('profilePage');
   const tb = useTranslations('battlepass.profile');
@@ -27,6 +50,10 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
   const hide = new Set(page.hide || []);
   const has = Object.keys(socials).length > 0;
   const order = (page.order && page.order.length ? page.order : ['bio', 'portfolio', 'skills', 'links', 'card']).filter((k) => !hide.has(k));
+
+  const achShown = Boolean(pass?.achievements?.length) && order.includes('achievements');
+  const passportShown = Boolean(passport) && order.includes('passport');
+  const GroupIcon = { badge: Award, medal: Medal, reward: Gift };
 
   const sections = {
     bio: page.bio ? <Block key="bio" title={tp('section.bio')} accent={accent} span="lg:col-span-2"><p className="whitespace-pre-line break-words text-sm leading-relaxed">{page.bio}</p></Block> : null,
@@ -88,8 +115,8 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
       </section>
     ) : null,
     passport: passport ? (
-      <Block key="passport" title={tp('section.passport')} accent={accent} span="lg:col-span-1">
-        <dl className="space-y-2">
+      <Block key="passport" title={tp('section.passport')} accent={accent} span={achShown ? 'lg:col-span-1' : 'lg:col-span-3'}>
+        <dl className={achShown ? 'space-y-2' : 'grid gap-2 sm:grid-cols-2 lg:grid-cols-4'}>
           {[[tp('passportNo'), passport.number], [tp('daysWith'), new Intl.NumberFormat(locale).format(passport.days)], [tp('passportSince'), fmt(passport.since, locale)], [tp('bansLabel'), new Intl.NumberFormat(locale).format(passport.bans)]].map(([k, v]) => (
             <div key={k} className="flex items-baseline justify-between gap-3 rounded-xl border border-border/50 bg-background/40 px-3 py-2">
               <dt className="truncate text-xs text-muted-foreground">{k}</dt>
@@ -97,6 +124,13 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
             </div>
           ))}
         </dl>
+      </Block>
+    ) : null,
+    achievements: pass?.achievements?.length ? (
+      <Block key="achievements" title={tp('section.achievements')} accent={accent} span={passportShown ? 'lg:col-span-2' : 'lg:col-span-3'}>
+        <ul className={`grid gap-3 sm:grid-cols-2 ${passportShown ? '' : 'lg:grid-cols-3'}`}>
+          {pass.achievements.map((it) => <AchievementTile key={it.item_id} it={it} locale={locale} tb={tb} featured={it.item_id === pass.featured} />)}
+        </ul>
       </Block>
     ) : null,
     battlepass: pass?.seasons?.length ? (
@@ -112,7 +146,7 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
                 {se.items.map((it) => (
                   <li key={it.item_id} className="flex items-center gap-3 rounded-xl border border-border/50 bg-background/40 px-3 py-2" style={it.item_id === pass.featured ? { borderColor: accent, boxShadow: `0 0 14px ${accent}40` } : undefined}>
                     <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg text-lg" style={{ background: `${accent}1f` }}>
-                      {it.art && /^https:\/\//.test(it.art) ? /* eslint-disable-next-line @next/next/no-img-element */ <img src={proxiedImageUrl(it.art)} alt="" className="h-full w-full object-cover" /> : <span aria-hidden="true">{it.icon || ''}</span>}
+                      {it.art && /^https:\/\//.test(it.art) ? /* eslint-disable-next-line @next/next/no-img-element */ <img src={proxiedImageUrl(it.art)} alt="" className="h-full w-full object-cover" /> : it.icon ? <span aria-hidden="true">{it.icon}</span> : (() => { const Ico = GroupIcon[it.group] || Award; return <Ico className="h-4 w-4" style={{ color: accent }} aria-hidden="true" />; })()}
                     </span>
                     <span className="min-w-0">
                       <span className="block truncate text-sm font-semibold">{it.i18n?.[locale]?.name || it.name}</span>
@@ -164,10 +198,12 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
             ))}
           </dl>
         )}
-        <p className="mt-5 flex items-center gap-2 rounded-xl border border-border/50 bg-background/30 px-3 py-2 text-xs text-muted-foreground lg:col-span-2">
-          {isPublic ? <Globe className="h-3.5 w-3.5 shrink-0" aria-hidden="true" /> : <Lock className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />}
-          <span>{isPublic ? t('public.notePublic') : t('public.note')}</span>
-        </p>
+        {showNote ? (
+          <p className="mt-5 flex items-center gap-2 rounded-xl border border-border/50 bg-background/30 px-3 py-2 text-xs text-muted-foreground lg:col-span-2">
+            {isPublic ? <Globe className="h-3.5 w-3.5 shrink-0" aria-hidden="true" /> : <Lock className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />}
+            <span>{isPublic ? t('public.notePublic') : t('public.note')}</span>
+          </p>
+        ) : null}
       </section>
       <div className="grid grid-flow-dense gap-6 lg:grid-cols-3">{order.map((k, i) => (sections[k] ? cloneElement(sections[k], { delay: 0.1 + i * 0.08 }) : null))}</div>
     </>

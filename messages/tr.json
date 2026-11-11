@@ -8671,7 +8671,8 @@
       "socials": "Sosyal ağlar",
       "stats": "İstatistikler",
       "passport": "Pasaport",
-      "battlepass": "Battle Pass"
+      "battlepass": "Battle Pass",
+      "achievements": "Başarımlar"
     },
     "passportNo": "Pasaport no.",
     "daysWith": "Wody ile geçen gün",
@@ -9936,7 +9937,14 @@
       "featured": "Öne çıkan",
       "saveError": "Kaydedilemedi. Tekrar dene.",
       "level": "Seviye {level}",
-      "loadError": "Battle Pass öğelerin yüklenemedi."
+      "loadError": "Battle Pass öğelerin yüklenemedi.",
+      "rarity": {
+        "common": "Yaygın",
+        "uncommon": "Nadir",
+        "rare": "Ender",
+        "epic": "Efsanevi",
+        "legendary": "Efsane"
+      }
     },
     "calendar": {
       "ownerTitle": "Sunucuların kullanamayacağı tarihler",

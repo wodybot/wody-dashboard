@@ -8672,7 +8672,8 @@
       "socials": "Rețele sociale",
       "stats": "Statistici",
       "passport": "Pașaport",
-      "battlepass": "Battle Pass"
+      "battlepass": "Battle Pass",
+      "achievements": "Realizări"
     },
     "passportNo": "Nr. pașaport",
     "daysWith": "Zile cu Wody",
@@ -9937,7 +9938,14 @@
       "featured": "Evidențiat",
       "saveError": "Nu s-a putut salva. Încearcă din nou.",
       "level": "Nivel {level}",
-      "loadError": "Nu s-au putut încărca obiectele tale din Battle Pass."
+      "loadError": "Nu s-au putut încărca obiectele tale din Battle Pass.",
+      "rarity": {
+        "common": "Comun",
+        "uncommon": "Neobișnuit",
+        "rare": "Rar",
+        "epic": "Epic",
+        "legendary": "Legendar"
+      }
     },
     "calendar": {
       "ownerTitle": "Date pe care serverele nu le pot folosi",
