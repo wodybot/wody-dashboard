@@ -2222,7 +2222,7 @@ function DiscordComponentPreview({ config, imageSrc }) {
                         <Input
                           value={staffForm.discord_user_id}
                           onChange={(e) => { setStaffForm((prev) => ({ ...prev, discord_user_id: e.target.value.trim() })); setStaffLookupResult(null); }}
-                          placeholder="932582842351898644"
+                          placeholder="123456789012345678"
                           disabled={!!staffEditingId}
                         />
                         {!staffEditingId && (

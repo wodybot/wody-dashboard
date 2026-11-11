@@ -75,7 +75,7 @@ const YOUTUBE_NOTIFY_MAX_CHANNELS = Number(process.env.YOUTUBE_NOTIFY_MAX_CHANNE
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-const OWNER_ID = process.env.DISCORD_OWNER_ID || '932582842351898644';
+const OWNER_ID = process.env.DISCORD_OWNER_ID || '';
 
 const MODULE_TOGGLE_KEYS = [
   'welcome', 'goodbye', 'autorole',
@@ -91,7 +91,7 @@ const MODULE_TOGGLE_KEYS = [
 
 const PREMIUM_ONLY_TOGGLE_KEYS = new Set(['backups', 'temporary_voice', 'youtube_notify', 'economy', 'blackjack', 'stream_notifications', 'battlepass', 'theme_studio']);
 
-const UPDATES_ANNOUNCE_CHANNEL_ID = process.env.UPDATES_ANNOUNCE_CHANNEL_ID || '1529784783847166032';
+const UPDATES_ANNOUNCE_CHANNEL_ID = process.env.UPDATES_ANNOUNCE_CHANNEL_ID || '';
 
 const SITE_URL = (process.env.NEXT_PUBLIC_BASE_URL || 'https://wody.online').replace(/\/+$/, '');
 
@@ -2278,6 +2278,7 @@ async function handleMutation(request, context) {
 
     let discordPosted = false;
     try {
+      if (!UPDATES_ANNOUNCE_CHANNEL_ID) throw new Error('UPDATES_ANNOUNCE_CHANNEL_ID is not set');
       await sendGuildMessage(UPDATES_ANNOUNCE_CHANNEL_ID, updateDiscordPayload(saved, { siteUrl: SITE_URL, avatarUrl: UPDATE_THUMBNAIL_URL }));
       discordPosted = true;
     } catch (e) {

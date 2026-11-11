@@ -7,7 +7,7 @@ import { getDelegate } from '@/lib/owner-access';
 import { audit } from '@/lib/owner-audit';
 import OwnerPanelClient from './OwnerPanelClient';
 
-const OWNER_ID = process.env.DISCORD_OWNER_ID || process.env.NEXT_PUBLIC_DISCORD_OWNER_ID || '932582842351898644';
+const OWNER_ID = process.env.DISCORD_OWNER_ID || process.env.NEXT_PUBLIC_DISCORD_OWNER_ID || '';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
