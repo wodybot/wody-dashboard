@@ -515,7 +515,7 @@
           "steps": [
             "Votează pentru Wody cu comanda /vote. Fiecare vot adaugă 1 zi în contul tău.",
             "Zilele se numără pe cont și rămân salvate până le folosești.",
-            "De la 7 zile salvate le activezi pe orice server Wody din fila Premium a dashboard-ului sau cu /redeemvotes.",
+            "Folosește oricâte zile salvate vrei pe orice server al tău, din fila Premium a dashboardului sau cu /redeemvotes.",
             "Fără tichet, fără cheie și fără să aștepți aprobare."
           ],
           "isNew": true
@@ -1218,7 +1218,7 @@
       },
       {
         "heading": "9. Premium",
-        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications, Economy, Wody Games, Stream Notifications, server seasons in the Battle Pass and Theme Studio, and removes the creation limits on seven core systems. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Nou: zile de vot.</strong> Fiecare vot pentru Wody pe top.gg adaugă o zi în contul tău. Zilele se numără pe cont, nu pot fi transferate sau vândute și pot fi activate după ce ai salvat cel puțin 7. Activarea adaugă toate zilele salvate ca timp Premium pe un singur server ales de tine, din dashboard sau cu <code>/redeemvotes</code>. Putem elimina zilele sau timpul Premium obținut din voturi automate, cumpărate sau manipulate.</p>"
+        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications, Economy, Wody Games, Stream Notifications, server seasons in the Battle Pass and Theme Studio, and removes the creation limits on seven core systems. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Nou: zile de vot.</strong> Fiecare vot pentru Wody pe top.gg adaugă o zi în contul tău. Zilele se numără pe cont, nu pot fi transferate sau vândute și pot fi activate în orice cantitate, de la o zi în sus. Activarea adaugă zilele alese ca timp Premium pe un singur server al tău, din dashboard sau cu <code>/redeemvotes</code>. Putem elimina zilele sau timpul Premium obținut din voturi automate, cumpărate sau manipulate.</p>"
       },
       {
         "heading": "10. Uptime and Availability",
@@ -1410,7 +1410,7 @@
           },
           {
             "name": "/redeemvotes",
-            "description": "Activează zilele de vot salvate ca Premium pe acest server"
+            "description": "Activează zilele de vot salvate ca Premium pe un server al tău"
           }
         ]
       },
@@ -3645,17 +3645,21 @@
       },
       "newBadge": "Nou",
       "voteTitle": "Premium din voturi",
-      "voteDesc": "Fiecare vot pe top.gg adaugă 1 zi de Wody Premium în contul tău. Voturile se numără separat pentru fiecare cont. De la {min} zile salvate poți activa tot ce ai strâns pe acest server.",
+      "voteDesc": "Fiecare vot pe top.gg adaugă 1 zi de Wody Premium în contul tău. Voturile se numără pe cont. Folosește oricâte zile salvate vrei, de la o zi în sus, pe orice server al tău.",
       "voteDaysLabel": "zile salvate",
-      "voteProgress": "{days} din {min} zile salvate. Continuă să votezi pentru a debloca activarea.",
-      "voteReady": "{days} zile sunt gata de activare.",
-      "voteHow": "Preferi Discord? Rulează /redeemvotes pe server. Folosește /vote pentru mai multe zile.",
+      "voteHow": "Preferi Discord? Rulează /redeemvotes, alege serverul și numărul de zile. Folosește /vote ca să câștigi mai multe zile.",
       "voteRedeem": "Activează {days} zile",
       "voteDoneTitle": "Zilele de vot au fost activate",
       "voteDoneDesc": "{days} zile de Premium au fost adăugate pe acest server.",
       "voteNoEnd": "Acest server are deja Premium fără dată de final. Zilele tale au fost păstrate.",
-      "voteNotEnough": "Ai nevoie de cel puțin {min} zile salvate pentru activare.",
-      "voteFailed": "Nu am putut activa zilele. Încearcă din nou."
+      "voteNotEnough": "Ai doar {days} zile salvate.",
+      "voteFailed": "Nu am putut activa zilele. Încearcă din nou.",
+      "voteAmountLabel": "Zile de activat",
+      "voteAll": "Toate",
+      "voteOwnerOnly": "Doar proprietarul acestui server poate activa zile de vot pe el.",
+      "voteNone": "Nu ai încă zile salvate. Votează cu /vote ca să le câștigi.",
+      "voteUsedLabel": "folosite pentru Premium până acum",
+      "voteServerLabel": "pe acest server"
     },
     "youtubeNotify": {
       "title": "Notificări YouTube",
@@ -5935,7 +5939,11 @@
       "eventEnds": "Se termină {date}",
       "achievementsText": "{unlocked} realizări deblocate de {players} membri în economia serverului.",
       "disclaimer": "Wody listează comunitățile după o verificare manuală. Wody nu răspunde pentru ce se întâmplă într-un server Discord.",
-      "trustReviewed": "Verificat de echipa Wody"
+      "trustReviewed": "Verificat de echipa Wody",
+      "linkBattlepass": "Battle Pass",
+      "linkLeaderboard": "Clasament",
+      "battlepassOff": "Acest server nu a configurat încă un Battle Pass.",
+      "leaderboardOff": "Acest server nu are încă un clasament. Apare după ce membrii primesc XP."
     },
     "social": {
       "website": "Site web",

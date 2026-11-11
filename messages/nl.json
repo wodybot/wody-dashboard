@@ -514,7 +514,7 @@
           "steps": [
             "Stem op Wody met het commando /vote. Elke stem voegt 1 dag toe aan je account.",
             "Dagen worden per account geteld en blijven bewaard tot je ze gebruikt.",
-            "Vanaf 7 opgeslagen dagen activeer je ze op elke Wody-server via het Premium-tabblad van het dashboard of met /redeemvotes.",
+            "Gebruik zoveel opgeslagen dagen als je wilt op elke server die van jou is, via het Premium-tabblad van het dashboard of met /redeemvotes.",
             "Geen ticket, geen sleutel en niet wachten op goedkeuring."
           ],
           "isNew": true
@@ -1217,7 +1217,7 @@
       },
       {
         "heading": "9. Premium",
-        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications, Economy, Wody Games, Stream Notifications, server seasons in the Battle Pass and Theme Studio, and removes the creation limits on seven core systems. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Nieuw: stemdagen.</strong> Elke stem op Wody via top.gg voegt een dag toe aan je account. Dagen worden per account geteld, kunnen niet worden overgedragen of verkocht en kunnen worden geactiveerd zodra je er minstens 7 hebt. Bij activeren worden alle opgeslagen dagen als Premium-tijd toegevoegd aan één server naar keuze, via het dashboard of met <code>/redeemvotes</code>. We mogen dagen of Premium-tijd uit geautomatiseerde, gekochte of gemanipuleerde stemmen verwijderen.</p>"
+        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications, Economy, Wody Games, Stream Notifications, server seasons in the Battle Pass and Theme Studio, and removes the creation limits on seven core systems. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Nieuw: stemdagen.</strong> Elke stem op Wody via top.gg voegt een dag toe aan je account. Dagen worden per account geteld, kunnen niet worden overgedragen of verkocht en kunnen in elke hoeveelheid worden geactiveerd, vanaf één dag. Bij activeren worden de gekozen dagen als Premium-tijd toegevoegd aan één server die van jou is, via het dashboard of met <code>/redeemvotes</code>. We mogen dagen of Premium-tijd uit geautomatiseerde, gekochte of gemanipuleerde stemmen verwijderen.</p>"
       },
       {
         "heading": "10. Uptime and Availability",
@@ -1409,7 +1409,7 @@
           },
           {
             "name": "/redeemvotes",
-            "description": "Activeer je opgeslagen stemdagen als Premium op deze server"
+            "description": "Activeer je opgeslagen stemdagen als Premium op een server die van jou is"
           }
         ]
       },
@@ -3644,17 +3644,21 @@
       },
       "newBadge": "Nieuw",
       "voteTitle": "Premium met stemmen",
-      "voteDesc": "Elke stem op top.gg voegt 1 dag Wody Premium toe aan je account. Stemmen worden per account geteld. Vanaf {min} opgeslagen dagen kun je alles op deze server activeren.",
+      "voteDesc": "Elke stem op top.gg voegt 1 dag Wody Premium toe aan je account. Stemmen worden per account geteld. Gebruik zoveel opgeslagen dagen als je wilt, vanaf één dag, op elke server die van jou is.",
       "voteDaysLabel": "opgeslagen dagen",
-      "voteProgress": "{days} van {min} dagen opgeslagen. Blijf stemmen om activeren te ontgrendelen.",
-      "voteReady": "{days} dagen staan klaar om te activeren.",
-      "voteHow": "Liever via Discord? Gebruik /redeemvotes op de server. Met /vote verdien je meer dagen.",
+      "voteHow": "Liever via Discord? Gebruik /redeemvotes, kies de server en het aantal dagen. Met /vote verdien je meer dagen.",
       "voteRedeem": "{days} dagen activeren",
       "voteDoneTitle": "Stemdagen geactiveerd",
       "voteDoneDesc": "{days} dagen Premium zijn aan deze server toegevoegd.",
       "voteNoEnd": "Deze server heeft al Premium zonder einddatum. Je dagen zijn bewaard.",
-      "voteNotEnough": "Je hebt minstens {min} opgeslagen dagen nodig om te activeren.",
-      "voteFailed": "Je dagen konden niet worden geactiveerd. Probeer het opnieuw."
+      "voteNotEnough": "Je hebt maar {days} opgeslagen dagen.",
+      "voteFailed": "Je dagen konden niet worden geactiveerd. Probeer het opnieuw.",
+      "voteAmountLabel": "Te activeren dagen",
+      "voteAll": "Alle",
+      "voteOwnerOnly": "Alleen de eigenaar van deze server kan er stemdagen activeren.",
+      "voteNone": "Je hebt nog geen opgeslagen dagen. Stem met /vote om ze te verdienen.",
+      "voteUsedLabel": "tot nu toe voor Premium gebruikt",
+      "voteServerLabel": "op deze server"
     },
     "youtubeNotify": {
       "title": "YouTube-meldingen",
@@ -5934,7 +5938,11 @@
       "eventEnds": "Eindigt op {date}",
       "achievementsText": "{unlocked} prestaties ontgrendeld door {players} leden in de servereconomie.",
       "disclaimer": "Wody vermeldt communities na een handmatige controle. Wody is niet verantwoordelijk voor wat er in een Discord-server gebeurt.",
-      "trustReviewed": "Gecontroleerd door het Wody-team"
+      "trustReviewed": "Gecontroleerd door het Wody-team",
+      "linkBattlepass": "Battle Pass",
+      "linkLeaderboard": "Ranglijst",
+      "battlepassOff": "Deze server heeft nog geen Battle Pass ingesteld.",
+      "leaderboardOff": "Deze server heeft nog geen ranglijst. Die verschijnt zodra leden XP verdienen."
     },
     "social": {
       "website": "Website",

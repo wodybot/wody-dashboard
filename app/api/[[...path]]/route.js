@@ -431,8 +431,6 @@ async function sweepExpiredPremium(db) {
   }
 }
 
-const VOTE_REDEEM_MIN = Math.max(1, Number(process.env.VOTE_REDEEM_MIN) || 7);
-
 async function isGuildPremium(db, gidLong) {
   const doc = await db.collection('premium_servers').findOne({ guild_id: gidLong, active: true });
   if (!doc) return false;
@@ -1538,7 +1536,7 @@ async function handleGet(request, context) {
     if (sub === 'premium') {
       const doc = await db.collection('premium_servers').findOne({ guild_id: gidLong }, { sort: { _id: -1 } });
       const voter = await db.collection('votes').findOne({ user_id: toLong(guard.session.user.id) }).catch(() => null);
-      const votes = { days: Math.max(0, Number(voter?.credit_days) || 0), total: Number(voter?.total_votes) || 0, min: VOTE_REDEEM_MIN };
+      const votes = { days: Math.max(0, Number(voter?.credit_days) || 0), total: Number(voter?.total_votes) || 0, redeemed: Math.max(0, Number(voter?.redeemed_days) || 0), owner: Boolean(guard.guild?.owner) };
       if (!doc) return json({ premium: null, votes });
       const activatedByName = await getGuildMember(guildId, String(doc.activated_by)).catch(() => null);
       return json({ premium: { ...serializeDoc(doc), activated_by_name: activatedByName }, votes });
@@ -2588,16 +2586,19 @@ async function handleMutation(request, context) {
   if (sub === 'premium/redeem-votes' && method === 'POST') {
     const session = await getSession();
     const userLong = toLong(session.user.id);
+    // Only the owner of a server can put vote days on it. Any amount from 1 day up can be used, all of it by default.
+    if (!guard.guild?.owner) return json({ error: 'owner_only' }, { status: 403 });
+    const balanceDoc = await db.collection('votes').findOne({ user_id: userLong });
+    const balance = Math.max(0, Math.floor(Number(balanceDoc?.credit_days) || 0));
+    const asked = body?.days === undefined || body?.days === null || body?.days === '' ? balance : Math.floor(Number(body.days));
+    if (!Number.isFinite(asked) || asked < 1 || asked > 3650) return json({ error: balance < 1 ? 'no_vote_days' : 'invalid_days', days: balance }, { status: 400 });
     const before = await db.collection('votes').findOneAndUpdate(
-      { user_id: userLong, credit_days: { $gte: VOTE_REDEEM_MIN } },
-      { $set: { credit_days: 0 } },
+      { user_id: userLong, credit_days: { $gte: asked } },
+      { $inc: { credit_days: -asked } },
       { returnDocument: 'before' },
     );
-    if (!before) {
-      const doc = await db.collection('votes').findOne({ user_id: userLong });
-      return json({ error: 'not_enough_votes', days: Math.max(0, Number(doc?.credit_days) || 0), min: VOTE_REDEEM_MIN }, { status: 400 });
-    }
-    const days = Number(before.credit_days) || 0;
+    if (!before) return json({ error: balance < 1 ? 'no_vote_days' : 'not_enough_votes', days: balance }, { status: 400 });
+    const days = asked;
     const refund = () => db.collection('votes').updateOne({ user_id: userLong }, { $inc: { credit_days: days } });
     try {
       const now = new Date();

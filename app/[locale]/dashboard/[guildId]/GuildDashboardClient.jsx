@@ -5230,18 +5230,22 @@ function PremiumPanel({ guildId }) {
   const [keyInput, setKeyInput] = useState('');
   const [busy, setBusy] = useState(false);
   const [redeeming, setRedeeming] = useState(false);
+  const [voteAmount, setVoteAmount] = useState('');
 
   async function redeemVotes() {
     setRedeeming(true);
-    const r = await fetch(`/api/guilds/${guildId}/premium/redeem-votes`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    const r = await fetch(`/api/guilds/${guildId}/premium/redeem-votes`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(voteAmount.trim() ? { days: Number.parseInt(voteAmount, 10) } : {}) });
     setRedeeming(false);
     const j = await r.json().catch(() => ({}));
     if (r.ok) {
       toast.success(t('voteDoneTitle'), { description: t('voteDoneDesc', { days: j.days }) });
+      setVoteAmount('');
       loadStatus();
       fireConfetti();
     } else if (j.error === 'premium_no_end') toast.error(t('voteNoEnd'));
-    else if (j.error === 'not_enough_votes') toast.error(t('voteNotEnough', { min: j.min }));
+    else if (j.error === 'owner_only') toast.error(t('voteOwnerOnly'));
+    else if (j.error === 'no_vote_days') toast.error(t('voteNone'));
+    else if (j.error === 'not_enough_votes' || j.error === 'invalid_days') toast.error(t('voteNotEnough', { days: j.days ?? 0 }));
     else toast.error(t('voteFailed'));
   }
 
@@ -5330,25 +5334,29 @@ function PremiumPanel({ guildId }) {
                 <h3 className="text-lg font-bold">{t('voteTitle')}</h3>
                 <Badge className="border-emerald-400/40 bg-emerald-400/15 text-[10px] font-black uppercase tracking-wider text-emerald-300">{t('newBadge')}</Badge>
               </div>
-              <p className="max-w-xl text-sm text-muted-foreground">{t('voteDesc', { min: data.votes.min })}</p>
+              <p className="max-w-xl text-sm text-muted-foreground">{t('voteDesc')}</p>
             </div>
             <div className="text-right">
               <div className="text-3xl font-black tabular-nums text-[#f2c091]">{data.votes.days}</div>
               <div className="text-xs text-muted-foreground">{t('voteDaysLabel')}</div>
+              <div className="mt-1.5 text-xs text-muted-foreground tabular-nums" data-vote-used>{data.votes.redeemed || 0} {t('voteUsedLabel')}</div>
+              {Number(data.premium?.vote_days) > 0 && <div className="text-xs text-muted-foreground tabular-nums">{Number(data.premium.vote_days)} {t('voteServerLabel')}</div>}
             </div>
           </div>
-          <div className="mt-4">
-            <div className="h-2 overflow-hidden rounded-full bg-secondary/40" role="progressbar" aria-valuemin={0} aria-valuemax={data.votes.min} aria-valuenow={Math.min(data.votes.days, data.votes.min)}>
-              <div className="h-full rounded-full bg-gradient-to-r from-[#c46a2d] to-[#f2c091] transition-all" style={{ width: `${Math.min(100, (data.votes.days / data.votes.min) * 100)}%` }} />
+          <div className="mt-5 grid gap-3 rounded-xl border border-border/50 bg-background/30 p-4 sm:grid-cols-[1fr_auto] sm:items-end">
+            <div>
+              <label htmlFor="vote-days-amount" className="mb-1.5 block text-xs font-medium text-muted-foreground">{t('voteAmountLabel')}</label>
+              <div className="flex items-center gap-2">
+                <Input id="vote-days-amount" type="number" inputMode="numeric" min={1} max={Math.max(1, data.votes.days)} value={voteAmount}
+                  onChange={(e) => setVoteAmount(e.target.value)} placeholder={String(data.votes.days)} disabled={!data.votes.owner || data.votes.days < 1} className="h-10 w-32 tabular-nums" />
+                <Button type="button" variant="outline" size="sm" disabled={!data.votes.owner || data.votes.days < 1} onClick={() => setVoteAmount(String(data.votes.days))}>{t('voteAll')}</Button>
+              </div>
             </div>
-            <p className="mt-1.5 text-xs text-muted-foreground">{data.votes.days >= data.votes.min ? t('voteReady', { days: data.votes.days }) : t('voteProgress', { days: data.votes.days, min: data.votes.min })}</p>
-          </div>
-          <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-xs text-muted-foreground">{t('voteHow')}</p>
-            <Button onClick={redeemVotes} disabled={redeeming || data.votes.days < data.votes.min} className="gradient-primary shrink-0 gap-2">
-              {redeeming ? <Loader2 className="h-4 w-4 animate-spin" /> : <Crown className="h-4 w-4" />}{t('voteRedeem', { days: data.votes.days })}
+            <Button onClick={redeemVotes} disabled={redeeming || !data.votes.owner || data.votes.days < 1} className="gradient-primary shrink-0 gap-2">
+              {redeeming ? <Loader2 className="h-4 w-4 animate-spin" /> : <Crown className="h-4 w-4" />}{t('voteRedeem', { days: Math.min(data.votes.days, Math.max(1, Number.parseInt(voteAmount, 10) || data.votes.days)) })}
             </Button>
           </div>
+          <p className="mt-3 text-xs text-muted-foreground">{!data.votes.owner ? t('voteOwnerOnly') : data.votes.days < 1 ? t('voteNone') : t('voteHow')}</p>
         </Card>
       ) : null}
 

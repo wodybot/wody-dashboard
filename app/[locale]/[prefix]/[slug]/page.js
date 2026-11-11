@@ -2,6 +2,9 @@ import { notFound, permanentRedirect } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Footer, TopNav } from '@/components/nav';
 import ListingView from '@/components/community/ListingView';
+import ServerLinks from '@/components/community/ServerLinks';
+import { getDb, toLong } from '@/lib/mongo';
+import { loadPublicPass } from '@/lib/battlepass/public';
 import ProfileInteractive, { ViewPing } from '@/components/community/ProfileActions';
 import { cdb, getCatalog, currentPrefix } from '@/lib/community/db';
 import { getProfile, similarListings } from '@/lib/community/query';
@@ -88,6 +91,21 @@ export default async function ServerProfilePage({ params }) {
   const seo = seoFor(listing, catalog, t, locale);
   const siteTheme = raw?.guild_id ? await resolveGuildTheme(db, String(raw.guild_id), { locale }).catch(() => null) : null;
   const tt = siteTheme ? await getTranslations('themes') : null;
+  // Battle Pass and leaderboard links: live when the server has them set up, greyed with an explanation when not.
+  let links = null;
+  if (raw?.guild_id) {
+    const gid = String(raw.guild_id);
+    const [pass, ranked] = await Promise.all([
+      loadPublicPass(gid).then((d) => Boolean(d?.season)).catch(() => false),
+      getDb().then((d) => d.collection('levels').countDocuments({ guild_id: toLong(gid), $or: [{ xp: { $gt: 0 } }, { level: { $gt: 0 } }] }, { limit: 1 })).then((n) => n > 0).catch(() => false),
+    ]);
+    links = (
+      <ServerLinks items={[
+        { key: 'battlepass', label: t('profile.linkBattlepass'), href: pass ? `/servers/${gid}/battlepass` : null, note: t('profile.battlepassOff') },
+        { key: 'leaderboard', label: t('profile.linkLeaderboard'), href: ranked ? `/leaderboard/${gid}` : null, note: t('profile.leaderboardOff') },
+      ]} />
+    );
+  }
   const pagePath = `/${currentPrefix()}/${listing.slug}`;
   const url = absolute(localePath(locale, pagePath));
   const categoryRow = catalog.categories.find((c) => c.slug === listing.category);
@@ -139,6 +157,7 @@ export default async function ServerProfilePage({ params }) {
               slots={{
                 footerNote: <p className="pt-2 text-center text-xs text-white/55">{t('profile.disclaimer')}</p>,
                 heroActions: <ProfileInteractive slug={listing.slug} part="buttons" />,
+                heroLinks: links,
                 reviews: <ProfileInteractive slug={listing.slug} part="reviews" summary={listing.review_summary} />,
               }}
             />

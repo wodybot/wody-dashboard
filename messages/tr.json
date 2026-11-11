@@ -514,7 +514,7 @@
           "steps": [
             "Wody için /vote komutuyla oy ver. Her oy hesabına 1 gün ekler.",
             "Günler hesap başına sayılır ve sen kullanana kadar saklanır.",
-            "7 kayıtlı günden sonra bunları panelin Premium sekmesinden veya /redeemvotes ile herhangi bir Wody sunucusunda etkinleştir.",
+            "Kayıtlı günlerin istediğin kadarını sahibi olduğun herhangi bir sunucuda panelin Premium sekmesinden ya da /redeemvotes ile kullan.",
             "Bilet yok, anahtar yok ve onay beklemek yok."
           ],
           "isNew": true
@@ -1217,7 +1217,7 @@
       },
       {
         "heading": "9. Premium",
-        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications, Economy, Wody Games, Stream Notifications, server seasons in the Battle Pass and Theme Studio, and removes the creation limits on seven core systems. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Yeni: oy günleri.</strong> top.gg üzerinde Wody için verilen her oy hesabına bir gün ekler. Günler hesap başına sayılır, devredilemez veya satılamaz ve en az 7 gün biriktirdiğinde etkinleştirilebilir. Etkinleştirme, biriken tüm günleri seçtiğin tek bir sunucuya Premium süresi olarak ekler; panelden veya <code>/redeemvotes</code> ile yapılır. Otomatik, satın alınmış veya manipüle edilmiş oylardan gelen günleri ya da Premium süresini kaldırabiliriz.</p>"
+        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications, Economy, Wody Games, Stream Notifications, server seasons in the Battle Pass and Theme Studio, and removes the creation limits on seven core systems. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Yeni: oy günleri.</strong> top.gg üzerinde Wody için verilen her oy hesabına bir gün ekler. Günler hesap başına sayılır, devredilemez veya satılamaz ve istediğin miktarda, bir günden başlayarak etkinleştirilebilir. Etkinleştirme, seçtiğin günleri sahibi olduğun tek bir sunucuya Premium süresi olarak ekler; panelden veya <code>/redeemvotes</code> ile yapılır. Otomatik, satın alınmış veya manipüle edilmiş oylardan gelen günleri ya da Premium süresini kaldırabiliriz.</p>"
       },
       {
         "heading": "10. Uptime and Availability",
@@ -1409,7 +1409,7 @@
           },
           {
             "name": "/redeemvotes",
-            "description": "Kayıtlı oy günlerini bu sunucuda Premium olarak etkinleştir"
+            "description": "Biriken oy günlerini sahibi olduğun bir sunucuda Premium olarak etkinleştirir"
           }
         ]
       },
@@ -3644,17 +3644,21 @@
       },
       "newBadge": "Yeni",
       "voteTitle": "Oylarla Premium",
-      "voteDesc": "top.gg üzerindeki her oy hesabına 1 gün Wody Premium ekler. Oylar hesap başına sayılır. {min} kayıtlı günden sonra biriktirdiğin her şeyi bu sunucuda etkinleştirebilirsin.",
+      "voteDesc": "top.gg üzerindeki her oy hesabına 1 gün Wody Premium ekler. Oylar hesap başına sayılır. Kayıtlı günlerin istediğin kadarını, bir günden başlayarak, sahibi olduğun herhangi bir sunucuda kullan.",
       "voteDaysLabel": "kayıtlı gün",
-      "voteProgress": "{days} / {min} gün kayıtlı. Etkinleştirmeyi açmak için oy vermeye devam et.",
-      "voteReady": "{days} gün etkinleştirmeye hazır.",
-      "voteHow": "Discord’u mu tercih edersin? Sunucuda /redeemvotes kullan. Daha fazla gün için /vote kullan.",
+      "voteHow": "Discord’u mu tercih ediyorsun? /redeemvotes yaz, sunucuyu ve gün sayısını seç. Daha fazla gün için /vote kullan.",
       "voteRedeem": "{days} günü etkinleştir",
       "voteDoneTitle": "Oy günleri etkinleştirildi",
       "voteDoneDesc": "Bu sunucuya {days} gün Premium eklendi.",
       "voteNoEnd": "Bu sunucuda zaten bitiş tarihi olmayan Premium var. Günlerin saklandı.",
-      "voteNotEnough": "Etkinleştirmek için en az {min} kayıtlı gün gerekir.",
-      "voteFailed": "Günlerin etkinleştirilemedi. Tekrar dene."
+      "voteNotEnough": "Yalnızca {days} kayıtlı günün var.",
+      "voteFailed": "Günlerin etkinleştirilemedi. Tekrar dene.",
+      "voteAmountLabel": "Etkinleştirilecek gün",
+      "voteAll": "Hepsi",
+      "voteOwnerOnly": "Bu sunucuda oy günlerini yalnızca sunucu sahibi etkinleştirebilir.",
+      "voteNone": "Henüz kayıtlı günün yok. Kazanmak için /vote ile oy ver.",
+      "voteUsedLabel": "şimdiye kadar Premium için kullanıldı",
+      "voteServerLabel": "bu sunucuda"
     },
     "youtubeNotify": {
       "title": "YouTube Bildirimleri",
@@ -5934,7 +5938,11 @@
       "eventEnds": "{date} tarihinde bitiyor",
       "achievementsText": "Sunucu ekonomisinde {players} üye {unlocked} başarı açtı.",
       "disclaimer": "Wody toplulukları manuel inceleme sonrası listeler. Wody, bir Discord sunucusunda olanlardan sorumlu değildir.",
-      "trustReviewed": "Wody ekibi tarafından incelendi"
+      "trustReviewed": "Wody ekibi tarafından incelendi",
+      "linkBattlepass": "Battle Pass",
+      "linkLeaderboard": "Sıralama",
+      "battlepassOff": "Bu sunucu henüz bir Battle Pass ayarlamadı.",
+      "leaderboardOff": "Bu sunucunun henüz sıralaması yok. Üyeler XP kazandığında görünür."
     },
     "social": {
       "website": "Web sitesi",

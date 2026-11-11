@@ -90,6 +90,7 @@ export default function ListingView({ listing, catalog, slots = {}, similar = []
                 <div><dt className="sr-only">{t('card.languages')}</dt><dd className="uppercase tracking-wide">{(listing.languages || []).join(' · ')}</dd></div>
               </dl>
               <div className="mt-5 grid w-full max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">{makeJoin('min-h-12 w-full !py-2 px-4 leading-tight')}{slots.heroActions}</div>
+              {slots.heroLinks || null}
             </div>
           </header>
         );

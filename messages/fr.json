@@ -514,7 +514,7 @@
           "steps": [
             "Vote pour Wody avec la commande /vote. Chaque vote ajoute 1 jour à ton compte.",
             "Les jours sont comptés par compte et restent en réserve jusqu’à ce que tu les utilises.",
-            "Dès 7 jours en réserve, active-les sur n’importe quel serveur Wody depuis l’onglet Premium du dashboard ou avec /redeemvotes.",
+            "Utilise autant de jours que tu veux sur n’importe quel serveur dont tu es propriétaire, depuis l’onglet Premium du dashboard ou avec /redeemvotes.",
             "Pas de ticket, pas de clé et pas d’attente d’approbation."
           ],
           "isNew": true
@@ -1217,7 +1217,7 @@
       },
       {
         "heading": "9. Premium",
-        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications, Economy, Wody Games, Stream Notifications, server seasons in the Battle Pass and Theme Studio, and removes the creation limits on seven core systems. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Nouveau : jours de vote.</strong> Chaque vote pour Wody sur top.gg ajoute un jour à ton compte. Les jours sont comptés par compte, ne peuvent être ni transférés ni vendus et peuvent être activés dès que tu en as au moins 7. L’activation ajoute tous les jours en réserve comme temps Premium sur un seul serveur de ton choix, depuis le dashboard ou avec <code>/redeemvotes</code>. Nous pouvons retirer les jours ou le temps Premium issus de votes automatisés, achetés ou manipulés.</p>"
+        "html": "<p>Premium is free and no payment changes hands, so there is nothing to refund and Premium has no monetary purchase price. The homepage describes Premium as invitation-only. It unlocks Backups, Temporary Voice channels, YouTube Notifications, Economy, Wody Games, Stream Notifications, server seasons in the Battle Pass and Theme Studio, and removes the creation limits on seven core systems. There are two ways to get it:</p><ul><li>Discretionary grant: usually to server owners who actively promote Wody, approved manually after you reach out in our community server;</li><li>Vote unlock: use the <code>/vote</code> command to vote for Wody on the bot directories it links you to; once your lifetime vote total on your Discord account reaches 100, open a ticket in our community server to claim your Premium key, which can then be activated on any server you own.</li></ul><p>A Premium key is rate-limited, tied to the account or promotion it was issued for, and can be activated on one server at a time. We can grant, withhold, revoke or pull premium access at any time, for any reason, including if the promotion behind it turns out to be fake, if votes are found to be manipulated or automated, or if the underlying directory removes the vote.</p><p><strong>Nouveau : jours de vote.</strong> Chaque vote pour Wody sur top.gg ajoute un jour à ton compte. Les jours sont comptés par compte, ne peuvent être ni transférés ni vendus et peuvent être activés en toute quantité, à partir d’un jour. L’activation ajoute les jours choisis comme temps Premium sur un seul serveur dont tu es propriétaire, depuis le dashboard ou avec <code>/redeemvotes</code>. Nous pouvons retirer les jours ou le temps Premium issus de votes automatisés, achetés ou manipulés.</p>"
       },
       {
         "heading": "10. Uptime and Availability",
@@ -1409,7 +1409,7 @@
           },
           {
             "name": "/redeemvotes",
-            "description": "Active tes jours de vote en réserve comme Premium sur ce serveur"
+            "description": "Activez vos jours de vote en Premium sur un serveur dont vous êtes propriétaire"
           }
         ]
       },
@@ -3644,17 +3644,21 @@
       },
       "newBadge": "Nouveau",
       "voteTitle": "Premium grâce aux votes",
-      "voteDesc": "Chaque vote sur top.gg ajoute 1 jour de Wody Premium à ton compte. Les votes sont comptés par compte. Dès {min} jours en réserve, tu peux tout activer sur ce serveur.",
+      "voteDesc": "Chaque vote sur top.gg ajoute 1 jour de Wody Premium à votre compte. Les votes sont comptés par compte. Utilisez autant de jours que vous voulez, à partir d’un jour, sur n’importe quel serveur dont vous êtes propriétaire.",
       "voteDaysLabel": "jours en réserve",
-      "voteProgress": "{days} jours sur {min} en réserve. Continue à voter pour débloquer l’activation.",
-      "voteReady": "{days} jours sont prêts à être activés.",
-      "voteHow": "Tu préfères Discord ? Lance /redeemvotes sur le serveur. Utilise /vote pour gagner plus de jours.",
+      "voteHow": "Vous préférez Discord ? Lancez /redeemvotes, choisissez le serveur et le nombre de jours. Utilisez /vote pour gagner plus de jours.",
       "voteRedeem": "Activer {days} jours",
       "voteDoneTitle": "Jours de vote activés",
       "voteDoneDesc": "{days} jours de Premium ont été ajoutés à ce serveur.",
       "voteNoEnd": "Ce serveur a déjà Premium sans date de fin. Tes jours ont été conservés.",
-      "voteNotEnough": "Il te faut au moins {min} jours en réserve pour activer.",
-      "voteFailed": "Impossible d’activer tes jours. Réessaie."
+      "voteNotEnough": "Vous n’avez que {days} jours en réserve.",
+      "voteFailed": "Impossible d’activer tes jours. Réessaie.",
+      "voteAmountLabel": "Jours à activer",
+      "voteAll": "Tous",
+      "voteOwnerOnly": "Seul le propriétaire de ce serveur peut y activer des jours de vote.",
+      "voteNone": "Vous n’avez pas encore de jours. Votez avec /vote pour en gagner.",
+      "voteUsedLabel": "utilisés pour Premium jusqu’ici",
+      "voteServerLabel": "sur ce serveur"
     },
     "youtubeNotify": {
       "title": "Notifications YouTube",
@@ -5934,7 +5938,11 @@
       "eventEnds": "Se termine le {date}",
       "achievementsText": "{unlocked} succès débloqués par {players} membres dans l’économie du serveur.",
       "disclaimer": "Wody référence les communautés après une vérification manuelle. Wody n’est pas responsable de ce qui se passe dans un serveur Discord.",
-      "trustReviewed": "Vérifié par l’équipe Wody"
+      "trustReviewed": "Vérifié par l’équipe Wody",
+      "linkBattlepass": "Battle Pass",
+      "linkLeaderboard": "Classement",
+      "battlepassOff": "Ce serveur n’a pas encore configuré de Battle Pass.",
+      "leaderboardOff": "Ce serveur n’a pas encore de classement. Il apparaît dès que les membres gagnent de l’XP."
     },
     "social": {
       "website": "Site web",
