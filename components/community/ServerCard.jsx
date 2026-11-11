@@ -2,6 +2,7 @@ import { SealCheck } from '@/components/community/SealCheck';
 import { useLocale, useTranslations } from 'next-intl';
 import { Users, Star, Circle, Mic } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import { proxiedImageUrl } from '@/lib/utils';
 import { catalogName, formatCount } from '@/lib/community/names';
 import { themeVars } from '@/components/community/theme';
 import { BadgeChips } from '@/components/community/Badges';
@@ -15,7 +16,7 @@ export function CardImage({ src, alt = '', sizes, className = '', priority = fal
   const ours = src.startsWith('/api/community/img/');
   const srcSet = ours ? IMG_WIDTHS.map((w) => `${src}?w=${w} ${w}w`).join(', ') : undefined;
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src={ours ? `${src}?w=640` : src} srcSet={srcSet} sizes={sizes || '(min-width:1024px) 360px, (min-width:640px) 50vw, 100vw'} alt={alt} className={`absolute inset-0 h-full w-full ${className}`} loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : 'auto'} decoding="async" />;
+  return <img src={proxiedImageUrl(ours ? `${src}?w=640` : src)} srcSet={srcSet} sizes={sizes || '(min-width:1024px) 360px, (min-width:640px) 50vw, 100vw'} alt={alt} className={`absolute inset-0 h-full w-full ${className}`} loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : 'auto'} decoding="async" />;
 }
 
 export default function ServerCard({ server, catalog, priority = false, optimize = true, linkProps = {} }) {
