@@ -8505,7 +8505,8 @@
       "blocked": "Ton compte est suspendu ou bloqué et ne peut pas modifier ce profil."
     },
     "sectionMiami": "Miami Style",
-    "miamiHint": "Scènes rétro de coucher de soleil avec leur propre illustration, derrière votre carte. Choisissez-en une pour l’aperçu."
+    "miamiHint": "Scènes rétro de coucher de soleil avec leur propre illustration, derrière votre carte. Choisissez-en une pour l’aperçu.",
+    "toNext": "{percent}% jusqu’au niveau {next}"
   },
   "profilePage": {
     "levelCardTitle": "Carte de niveau",
@@ -8695,7 +8696,8 @@
       "account_blocked": "Ce compte ne peut pas envoyer de fichiers.",
       "rights_acceptance_required": "Confirme d’abord que tu as les droits sur ce morceau.",
       "generic": "L’envoi a échoué. Réessaie."
-    }
+    },
+    "levelCaption": "Niveau le plus élevé atteint sur un serveur Wody"
   },
   "policies": {
     "index": "Politiques",

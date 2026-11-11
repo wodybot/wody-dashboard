@@ -8505,7 +8505,8 @@
       "blocked": "A tua conta está suspensa ou bloqueada e não pode editar este perfil."
     },
     "sectionMiami": "Miami Style",
-    "miamiHint": "Cenas retrô de pôr do sol com arte própria, desenhadas atrás do seu cartão. Escolha uma para pré-visualizar."
+    "miamiHint": "Cenas retrô de pôr do sol com arte própria, desenhadas atrás do seu cartão. Escolha uma para pré-visualizar.",
+    "toNext": "{percent}% para o nível {next}"
   },
   "profilePage": {
     "levelCardTitle": "Cartão de nível",
@@ -8695,7 +8696,8 @@
       "account_blocked": "Esta conta não pode enviar ficheiros.",
       "rights_acceptance_required": "Confirma primeiro que tens os direitos desta música.",
       "generic": "O envio falhou. Tenta de novo."
-    }
+    },
+    "levelCaption": "Nível mais alto alcançado num servidor com Wody"
   },
   "policies": {
     "index": "Políticas",

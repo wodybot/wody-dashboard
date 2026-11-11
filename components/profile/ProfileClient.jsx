@@ -2,6 +2,7 @@
 import PolicyConsent from '@/components/profile/PolicyConsent';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
+import { buildLevelCard } from '@/lib/profile-level';
 import {
   Ban, Briefcase, Check, IdCard, Link2, CircleCheck, Clock, History, Hourglass, Info, Lock, MessageSquare, Pause, Pencil, Plus,
   Send, Server as ServerIcon, Settings, ShieldAlert, Trash2, UserRound, Eye, EyeOff, LayoutDashboard, Globe, TreePalm, Heart, X, Palette,
@@ -732,7 +733,9 @@ function CardShowcase({ pf, onEdit }) {
         </div>
       </div>
       <div className="mx-auto max-w-3xl" style={{ filter: `drop-shadow(0 0 26px ${card.accent}55)` }}>
-        <ProfileCardPreview cfg={card} name={id.name || id.username} avatarSrc={discordCdnUrl(src)} tagline={pf.member_since ? t('tagline', { date: fmtDate(pf.member_since, locale) }) : ''} />
+        {pf.level ? (() => { const lv = buildLevelCard(pf.level, t, locale); return <ProfileCardPreview cfg={card} name={id.name || id.username} avatarSrc={discordCdnUrl(src)} level={lv.level} xp={lv.xp} needed={lv.needed} levelText={lv.levelText} rankText={lv.rankText} levelUp={{ toNext: lv.toNext }} xpText={lv.xpText} />; })() : (
+          <ProfileCardPreview cfg={card} name={id.name || id.username} avatarSrc={discordCdnUrl(src)} tagline={pf.member_since ? t('tagline', { date: fmtDate(pf.member_since, locale) }) : ''} />
+        )}
       </div>
     </section>
   );

@@ -8505,7 +8505,8 @@
       "blocked": "Il tuo account è sospeso o bloccato e non può modificare questo profilo."
     },
     "sectionMiami": "Miami Style",
-    "miamiHint": "Scene retrò al tramonto con grafica dedicata, disegnate dietro la tua card. Sceglierne una per l’anteprima."
+    "miamiHint": "Scene retrò al tramonto con grafica dedicata, disegnate dietro la tua card. Sceglierne una per l’anteprima.",
+    "toNext": "{percent}% al livello {next}"
   },
   "profilePage": {
     "levelCardTitle": "Card del livello",
@@ -8695,7 +8696,8 @@
       "account_blocked": "Questo account non può caricare file.",
       "rights_acceptance_required": "Conferma prima di avere i diritti su questo brano.",
       "generic": "Caricamento non riuscito. Riprova."
-    }
+    },
+    "levelCaption": "Livello più alto raggiunto su un server Wody"
   },
   "policies": {
     "index": "Policy",

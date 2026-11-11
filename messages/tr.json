@@ -8505,7 +8505,8 @@
       "blocked": "Hesabın askıya alındı veya engellendi; bu profili düzenleyemez."
     },
     "sectionMiami": "Miami Style",
-    "miamiHint": "Kartının arkasına çizilen, kendi tasarımına sahip retro gün batımı sahneleri. Önizlemek için birini seç."
+    "miamiHint": "Kartının arkasına çizilen, kendi tasarımına sahip retro gün batımı sahneleri. Önizlemek için birini seç.",
+    "toNext": "Seviye {next} için %{percent}"
   },
   "profilePage": {
     "levelCardTitle": "Seviye kartı",
@@ -8695,7 +8696,8 @@
       "account_blocked": "Bu hesap dosya yükleyemez.",
       "rights_acceptance_required": "Önce bu şarkının haklarına sahip olduğunu onayla.",
       "generic": "Yükleme başarısız. Tekrar dene."
-    }
+    },
+    "levelCaption": "Bir Wody sunucusunda ulaşılan en yüksek seviye"
   },
   "policies": {
     "index": "Politikalar",

@@ -8506,7 +8506,8 @@
       "blocked": "Contul tău este suspendat sau blocat și nu poate edita acest profil."
     },
     "sectionMiami": "Miami Style",
-    "miamiHint": "Scene retro de apus cu grafică proprie, desenate în spatele cardului. Alege una ca să o previzualizezi."
+    "miamiHint": "Scene retro de apus cu grafică proprie, desenate în spatele cardului. Alege una ca să o previzualizezi.",
+    "toNext": "{percent}% până la nivelul {next}"
   },
   "profilePage": {
     "levelCardTitle": "Card de nivel",
@@ -8696,7 +8697,8 @@
       "account_blocked": "Acest cont nu poate încărca fișiere.",
       "rights_acceptance_required": "Confirmă mai întâi că ai drepturile asupra melodiei.",
       "generic": "Încărcarea a eșuat. Încearcă din nou."
-    }
+    },
+    "levelCaption": "Cel mai mare nivel atins pe un server Wody"
   },
   "policies": {
     "index": "Politici",

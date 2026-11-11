@@ -104,14 +104,20 @@ export default function ProfilePageView({ page, name, username, avatarSrc, membe
       </Block>
     ) : null,
     card: card ? (
-      <section key="card" aria-label={tp('levelCardTitle')} className="pv-in pv-lift relative mx-auto w-full max-w-2xl overflow-hidden rounded-3xl border bg-card/60 p-3 sm:p-4 lg:col-span-3" style={{ borderColor: `${accent}66`, '--ac': accent }}>
+      <section key="card" aria-label={tp('levelCardTitle')} className="pv-in pv-lift relative w-full overflow-hidden rounded-3xl border bg-card/60 p-4 sm:p-6 lg:col-span-3" style={{ borderColor: `${accent}66`, '--ac': accent }}>
         <div className="mb-3 flex items-center justify-center gap-2.5">
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl" style={{ background: `${accent}26`, color: accent }}><IdCard className="h-4 w-4" aria-hidden="true" /></span>
           <h2 className="text-base font-black leading-tight">{tp('levelCardTitle')}</h2>
         </div>
-        <div className="mx-auto max-w-xl" style={{ filter: `drop-shadow(0 0 22px ${card.cfg.accent}55)` }}>
-          <ProfileCardPreview cfg={card.cfg} name={name} avatarSrc={avatarSrc} tagline={card.tagline || ''} />
+        <div className="w-full" style={{ filter: `drop-shadow(0 0 22px ${card.cfg.accent}55)` }}>
+          {card.level ? (
+            <ProfileCardPreview cfg={card.cfg} name={name} avatarSrc={avatarSrc} level={card.level.level} xp={card.level.xp} needed={card.level.needed}
+              levelText={card.level.levelText} rankText={card.level.rankText || ''} levelUp={{ toNext: card.level.toNext }} xpText={card.level.xpText} />
+          ) : (
+            <ProfileCardPreview cfg={card.cfg} name={name} avatarSrc={avatarSrc} tagline={card.tagline || ''} />
+          )}
         </div>
+        {card.level ? <p className="mt-3 text-center text-xs text-muted-foreground">{tp('levelCaption')}</p> : null}
       </section>
     ) : null,
     passport: passport ? (

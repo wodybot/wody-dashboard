@@ -1,3 +1,4 @@
+import { buildLevelCard } from '@/lib/profile-level';
 import { redirect, notFound } from 'next/navigation';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { ArrowLeft } from 'lucide-react';
@@ -54,7 +55,7 @@ export default async function PublicProfilePage({ params }) {
   }
   const src = pf.avatar ? `https://cdn.discordapp.com/avatars/${pf.id}/${pf.avatar}.png?size=128` : 'https://cdn.discordapp.com/embed/avatars/0.png';
   const accent = pageAccent(pf.page) || '#e6cd8c';
-  const card = pf.card ? { cfg: pf.card.config, tagline: pf.member_since ? tcard('tagline', { date: fmt(pf.member_since, locale) }) : '' } : null;
+  const card = pf.card ? { cfg: pf.card.config, tagline: pf.member_since ? tcard('tagline', { date: fmt(pf.member_since, locale) }) : '', level: buildLevelCard(pf.level, tcard, locale) } : null;
   const view = publicPageView(pf.page);
   return (
     <div className="min-h-screen flex flex-col">

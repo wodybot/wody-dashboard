@@ -8505,7 +8505,8 @@
       "blocked": "Your account is suspended or blocked and cannot edit this profile."
     },
     "sectionMiami": "Miami Style",
-    "miamiHint": "Retro sunset scenes with their own artwork, drawn behind your card. Pick one to preview it."
+    "miamiHint": "Retro sunset scenes with their own artwork, drawn behind your card. Pick one to preview it.",
+    "toNext": "{percent}% to level {next}"
   },
   "profilePage": {
     "levelCardTitle": "Level card",
@@ -8695,7 +8696,8 @@
       "account_blocked": "This account cannot upload files.",
       "rights_acceptance_required": "Confirm that you have the rights to this song first.",
       "generic": "The upload failed. Try again."
-    }
+    },
+    "levelCaption": "Highest level reached on a Wody server"
   },
   "policies": {
     "index": "Policies",

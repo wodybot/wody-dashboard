@@ -8505,7 +8505,8 @@
       "blocked": "Je account is geschorst of geblokkeerd en kan dit profiel niet bewerken."
     },
     "sectionMiami": "Miami Style",
-    "miamiHint": "Retro zonsondergangscènes met eigen artwork achter je kaart. Kies er een voor een voorbeeld."
+    "miamiHint": "Retro zonsondergangscènes met eigen artwork achter je kaart. Kies er een voor een voorbeeld.",
+    "toNext": "{percent}% tot level {next}"
   },
   "profilePage": {
     "levelCardTitle": "Levelkaart",
@@ -8695,7 +8696,8 @@
       "account_blocked": "Dit account kan geen bestanden uploaden.",
       "rights_acceptance_required": "Bevestig eerst dat je de rechten op dit nummer hebt.",
       "generic": "Upload mislukt. Probeer het opnieuw."
-    }
+    },
+    "levelCaption": "Hoogste level bereikt op een Wody-server"
   },
   "policies": {
     "index": "Beleid",

@@ -72,7 +72,7 @@ function Deco({ kind, accent }) {
   );
 }
 
-export default function ProfileCardPreview({ cfg, name, avatarSrc, level = 12, xp = 429, needed = 1337, rank = 3, levelText, rankText, xpText, tagline = null }) {
+export default function ProfileCardPreview({ cfg, name, avatarSrc, level = 12, xp = 429, needed = 1337, rank = 3, levelText, rankText, xpText, tagline = null, levelUp = null }) {
   const bare = tagline !== null;
   const compact = cfg.layout === 'compact';
   const pad = compact ? 24 : 30;
@@ -92,6 +92,8 @@ export default function ProfileCardPreview({ cfg, name, avatarSrc, level = 12, x
   const barH = compact ? 16 : 26;
   const statFont = compact ? 24 : 30;
   const small = compact ? 18 : 22;
+  // The level-up layout: name, a LEVEL pill with the progress to the next level, a RANK badge, the bar and the XP.
+  const lu = Boolean(levelUp) && !bare && !centered;
   const asideStats = !bare && (cfg.stats_pos === 'right' || cfg.layout === 'split');
   const accent = cfg.accent;
   const shadow = `0 ${css(1.5)} ${css(2)} rgba(0,0,0,.45)`;
@@ -147,7 +149,19 @@ export default function ProfileCardPreview({ cfg, name, avatarSrc, level = 12, x
       <img src={avatarSrc} alt="" draggable="false" className="absolute object-cover"
         style={{ left: css(ax), top: css(ay), width: css(av), height: css(av), borderRadius: shape, boxShadow: `0 0 0 ${css(4)} ${accent}${glow ? `, 0 0 ${css(26)} ${css(6)} ${accent}aa` : ''}` }} />
 
-      {centered ? (
+      {lu ? (
+        <>
+          <div style={nameBox(tx0, tx1 - 200, pad + 2)}>{name}</div>
+          {rankText ? (
+            <span className="absolute whitespace-nowrap font-bold uppercase" style={{ right: css(W - tx1), top: css(pad + 6), fontSize: css(small), letterSpacing: '0.06em', padding: `${css(6)} ${css(16)}`, borderRadius: css(30), color: accent, background: `${accent}24`, border: `${css(2)} solid ${accent}`, textShadow: shadow }}>{rankText}</span>
+          ) : null}
+          <div className="absolute flex items-center whitespace-nowrap" style={{ left: css(tx0), right: css(W - tx1), top: css(pad + nameStart + 22), gap: css(14), textShadow: shadow }}>
+            <span className="font-bold uppercase" style={{ fontSize: css(small), letterSpacing: '0.05em', padding: `${css(5)} ${css(14)}`, borderRadius: css(10), color: cfg.text_color, background: 'rgba(0,0,0,.38)', border: `${css(2)} solid ${accent}88` }}>{levelText}</span>
+            {levelUp.toNext ? <span style={{ fontSize: css(small), color: muted }}>{levelUp.toNext}</span> : null}
+          </div>
+          <div className="absolute text-right whitespace-nowrap" style={{ left: css(tx0), right: css(W - tx1), bottom: css(pad + barH + 12), fontSize: css(statFont), fontWeight: 700, color: cfg.text_color, textShadow: shadow, lineHeight: 1 }}>{xpText}</div>
+        </>
+      ) : centered ? (
         <>
           <div style={nameBox(tx0, tx1, ay + av + 8)}><span style={{ fontSize: '0.86em' }}>{name}</span></div>
           <div className="absolute whitespace-nowrap text-center" style={{ left: css(tx0), right: css(W - tx1), top: css(ay + av + 8 + 44), fontSize: css(22), color: muted, textShadow: shadow }}>{line}</div>

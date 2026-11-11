@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { buildLevelCard } from '@/lib/profile-level';
 import { ArrowDown, ArrowUp, Copy, Eye, EyeOff, ExternalLink, IdCard, Loader2, Plus, Trash2 } from 'lucide-react';
 import { input, lab, btn, btnMain } from '@/components/collab/ProfileParts';
 import PageBackdrop from '@/components/profile/PageBackdrop';
@@ -56,7 +57,8 @@ function Panel({ title, children }) {
   );
 }
 
-function LivePreview({ page, identity, socials, away, cardCfg, passport, pass, views, isPublic }) {
+function LivePreview({ page, identity, socials, away, cardCfg, passport, pass, level, views, isPublic }) {
+  const tcard = useTranslations('profileCard');
   const outer = useRef(null);
   const [zoom, setZoom] = useState(1);
   useEffect(() => {
@@ -69,7 +71,7 @@ function LivePreview({ page, identity, socials, away, cardCfg, passport, pass, v
   const rawSrc = identity?.avatar ? `https://cdn.discordapp.com/avatars/${identity.id}/${identity.avatar}.png?size=128` : 'https://cdn.discordapp.com/embed/avatars/0.png';
   const accent = pageAccent(page) || '#e6cd8c';
   const name = identity?.name || identity?.username || '';
-  const card = cardCfg ? { cfg: cardCfg, tagline: '' } : null;
+  const card = cardCfg ? { cfg: cardCfg, tagline: '', level: buildLevelCard(level || { level: 12, xp: 429, needed: 1337, rank: 3 }, tcard, 'en') } : null;
   return (
     <div ref={outer} className="relative isolate overflow-hidden rounded-2xl border border-border/60 bg-[#120b08]">
       <PageBackdrop page={page} fixed={false} />
@@ -84,6 +86,7 @@ export default function ProfilePageTab({ isPublic = false, views = 0, identity, 
   const t = useTranslations('profilePage');
   const [passport, setPassport] = useState(null);
   const [pass, setPass] = useState(null);
+  const [level, setLevel] = useState(null);
   const [cardCfg, setCardCfg] = useState(null);
   useEffect(() => { api('GET', null, 'profile-card').then((r) => { if (r.ok && r.data?.config) setCardCfg(normalizeConfig(r.data.config)); }); }, []);
   const tb = useTranslations('battlepass.profile');
@@ -106,7 +109,7 @@ export default function ProfilePageTab({ isPublic = false, views = 0, identity, 
     const r = await api('GET');
     if (!r.ok || !r.data?.page) { setState('error'); return; }
     const page = normalizePage(r.data.page);
-    setSaved(page); setDraft(page); setMod(r.data.moderation || null); setPassport(r.data.passport || null); setPass(r.data.pass || null); setState('ready');
+    setSaved(page); setDraft(page); setMod(r.data.moderation || null); setPassport(r.data.passport || null); setPass(r.data.pass || null); setLevel(r.data.level || null); setState('ready');
   }, []);
   useEffect(() => { load(); }, [load]);
   const dirty = useMemo(() => Boolean(saved && draft && JSON.stringify(saved) !== JSON.stringify(draft)), [saved, draft]);
@@ -205,7 +208,7 @@ export default function ProfilePageTab({ isPublic = false, views = 0, identity, 
         <h2 className="text-lg font-black">{t('title')}</h2>
         <p className="mb-3 mt-1 text-sm text-muted-foreground">{t('intro')}</p>
         <div className="mb-2 text-xs text-muted-foreground">{t('preview')}</div>
-        <LivePreview page={page} identity={identity} socials={socials} away={away} cardCfg={cardCfg} passport={passport} pass={pass} views={views} isPublic={isPublic} />
+        <LivePreview page={page} identity={identity} socials={socials} away={away} cardCfg={cardCfg} passport={passport} pass={pass} level={level} views={views} isPublic={isPublic} />
         <p className="mt-2 text-xs text-muted-foreground">{t('previewNote')}</p>
         {shortOk ? (
           <div className="mt-3 rounded-xl border border-[#e6cd8c]/30 bg-[#e6cd8c]/5 p-3">

@@ -8505,7 +8505,8 @@
       "blocked": "Tu cuenta está suspendida o bloqueada y no puede editar este perfil."
     },
     "sectionMiami": "Miami Style",
-    "miamiHint": "Escenas retro de atardecer con ilustración propia, dibujadas tras tu tarjeta. Elige una para ver la vista previa."
+    "miamiHint": "Escenas retro de atardecer con ilustración propia, dibujadas tras tu tarjeta. Elige una para ver la vista previa.",
+    "toNext": "{percent}% para el nivel {next}"
   },
   "profilePage": {
     "levelCardTitle": "Tarjeta de nivel",
@@ -8695,7 +8696,8 @@
       "account_blocked": "Esta cuenta no puede subir archivos.",
       "rights_acceptance_required": "Confirma primero que tienes los derechos de esta canción.",
       "generic": "La subida falló. Inténtalo de nuevo."
-    }
+    },
+    "levelCaption": "Nivel más alto alcanzado en un servidor con Wody"
   },
   "policies": {
     "index": "Políticas",

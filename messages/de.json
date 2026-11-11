@@ -8505,7 +8505,8 @@
       "blocked": "Dein Konto ist gesperrt oder blockiert und kann dieses Profil nicht bearbeiten."
     },
     "sectionMiami": "Miami Style",
-    "miamiHint": "Retro-Sonnenuntergangsszenen mit eigener Grafik hinter deiner Karte. Wähle eine für die Vorschau."
+    "miamiHint": "Retro-Sonnenuntergangsszenen mit eigener Grafik hinter deiner Karte. Wähle eine für die Vorschau.",
+    "toNext": "{percent}% bis Level {next}"
   },
   "profilePage": {
     "levelCardTitle": "Level-Karte",
@@ -8695,7 +8696,8 @@
       "account_blocked": "Dieses Konto kann keine Dateien hochladen.",
       "rights_acceptance_required": "Bestätige zuerst, dass du die Rechte an diesem Song hast.",
       "generic": "Der Upload ist fehlgeschlagen. Versuche es erneut."
-    }
+    },
+    "levelCaption": "Höchstes Level auf einem Wody-Server"
   },
   "policies": {
     "index": "Richtlinien",
