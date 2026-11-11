@@ -2354,7 +2354,11 @@
       "remove": "Rimuovi",
       "limitReached": "Limite raggiunto ({max})",
       "moduleSwitchOnlyDesc": "Attiva questo modulo con il suo interruttore nella panoramica dei moduli. Finché è spento il bot non fa nulla qui e le impostazioni salvate restano intatte.",
-      "loadingServer": "Apertura del server"
+      "loadingServer": "Apertura del server",
+      "moduleLockedTitle": "{module} è bloccato.",
+      "moduleLockedDesc": "Premium non è attivo su questo server. Attiva Premium per sbloccare questo modulo, poi abilitalo.",
+      "moduleLockedShort": "Bloccato",
+      "getPremiumButton": "Attiva Premium"
     },
     "groups": {
       "server": "Server",

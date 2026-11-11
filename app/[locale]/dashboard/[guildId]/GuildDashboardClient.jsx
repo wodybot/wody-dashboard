@@ -33,7 +33,7 @@ import {
   MessageCircleReply, Gift, TrendingUp, TrendingDown, Lightbulb, Mic2, Archive,
   Crown, Loader2, Trash2, Plus, RefreshCw, Menu, X, Copy, Key,
   Clock, LayoutTemplate, Star, AlertTriangle, MessagesSquare, Users, LogOut,
-  Youtube, ChevronDown, ChevronRight, Eye, Palette, Route, FileText, MessageSquareText, Image as ImageIcon, Power,
+  Youtube, ChevronDown, ChevronRight, Eye, Palette, Route, FileText, MessageSquareText, Image as ImageIcon, Power, Lock,
   LayoutGrid, ShieldCheck, ExternalLink, Sparkles, HelpCircle, Coins, Cake, Radio, Compass, Briefcase, Info, SlidersHorizontal, Gamepad2, Link2, Hash, BarChart3, Languages, UserCog, Search, Rss, ArrowLeftRight,
 Trophy, Wand2, Flame } from 'lucide-react';
 import { Footer } from '@/components/nav';
@@ -356,12 +356,13 @@ function buildGroups(premiumActive, labelOf) {
 
 const NON_TOGGLEABLE_KEYS = new Set(['general', 'premium', 'embeds', 'community', 'collab']);
 // Newer modules: turned on and off only with the switch on the Modules overview, never from a button inside the module.
-const SWITCH_ONLY_KEYS = new Set(['counting', 'statistics', 'battlepass', 'theme_studio']);
+const SWITCH_ONLY_KEYS = new Set();
 
 const OPT_IN_KEYS = new Set(MODULES.filter((m) => m.optIn).map((m) => m.key));
 
 const PREMIUM_ONLY_KEYS = new Set(MODULES.filter((m) => m.premium).map((m) => m.key));
-const PREMIUM_LOCK_PANELS = new Set(['economy', 'blackjack', 'stream_notifications']);
+// A Premium module on a server without Premium is locked: it looks like a disabled module, and cannot be enabled.
+const isLockedModule = (key, premiumActive) => PREMIUM_ONLY_KEYS.has(key) && !premiumActive;
 
 const PREMIUM_ACCENT = '#e6cd8c';
 const THEME = {
@@ -486,7 +487,7 @@ export default function GuildDashboardClient() {
   }, [guildId]);
   const botStatus = useBotStatusPoll();
 
-  const isModuleOn = (key) => key === 'statistics' ? statsOn !== false : NON_TOGGLEABLE_KEYS.has(key) || (OPT_IN_KEYS.has(key) ? moduleStates[key] === true : moduleStates[key] !== false);
+  const isModuleOn = (key) => key === 'statistics' ? statsOn === true : NON_TOGGLEABLE_KEYS.has(key) || (OPT_IN_KEYS.has(key) ? moduleStates[key] === true : moduleStates[key] !== false);
 
   useEffect(() => {
     let startView = 'overview';
@@ -887,7 +888,8 @@ export default function GuildDashboardClient() {
                     const mLabel = tm(`${m.key}.title`);
                     const toggleable = !NON_TOGGLEABLE_KEYS.has(m.key);
                     const showHealthDot = toggleable || !m.status;
-                    const on = isModuleOn(m.key);
+                    const locked = !m.status && isLockedModule(m.key, premiumActive);
+                    const on = isModuleOn(m.key) && !locked;
                     const disabled = toggleable && !on;
                     const premiumTone = m.status ? (premiumActive ? 'green' : 'red') : null;
                     return <button key={m.key} onClick={() => { openModule(m.key); setSidebarOpen(false); }} title={disabled ? t('common.moduleDisabled', { module: mLabel }) : (m.status ? (premiumActive ? t('common.premiumActiveTitle') : t('common.activatePremiumTitle')) : (m.premium ? t('common.availableWithPremium', { module: mLabel }) : mLabel))} className={`group relative w-full h-10 flex items-center gap-3 pl-3 pr-2.5 rounded-lg border text-[15px] transition-all duration-150 ${premiumTone === 'red' ? 'border-red-500/40 bg-gradient-to-r from-red-500/[0.18] via-red-500/[0.07] to-transparent text-red-100 font-medium hover:border-red-400/70 hover:from-red-500/30' : premiumTone === 'green' ? 'border-emerald-500/40 bg-gradient-to-r from-emerald-500/[0.18] via-emerald-500/[0.07] to-transparent text-emerald-100 font-medium hover:border-emerald-400/70 hover:from-emerald-500/30' : disabled ? 'border-transparent text-sidebar-foreground/55 hover:bg-white/[0.04] hover:text-foreground' : isActive ? 'border-[#e6cd8c]/25 bg-gradient-to-r from-[#e6cd8c]/[0.16] to-[#e6cd8c]/[0.03] text-[#e6cd8c] font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]' : 'border-transparent text-sidebar-foreground/80 hover:bg-white/[0.04] hover:text-foreground'}`}>
@@ -902,8 +904,8 @@ export default function GuildDashboardClient() {
                       <span className={`truncate flex-1 text-left ${disabled ? 'font-medium' : ''}`}>{mLabel}</span>
                       {disabled && (
                         <span className="inline-flex shrink-0 items-center gap-1 rounded-md border border-[#e6cd8c]/45 bg-[#e6cd8c]/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.08em] text-[#e6cd8c] whitespace-nowrap">
-                          <Power className="h-2.5 w-2.5" />
-                          {t('common.moduleDisabledShort')}
+                          {locked ? <Lock className="h-2.5 w-2.5" /> : <Power className="h-2.5 w-2.5" />}
+                          {locked ? t('common.moduleLockedShort') : t('common.moduleDisabledShort')}
                         </span>
                       )}
                       {m.status && (
@@ -983,7 +985,7 @@ export default function GuildDashboardClient() {
               />
             </>
           ) : (
-            <ModulePanel moduleKey={active} guildId={guildId} meta={meta} isOn={isModuleOn(active)} onEnable={() => toggleModule(active, true)} premiumActive={premiumActive} onOpenModule={(key) => openModule(key)} moduleSwitch={{ isOn: isModuleOn, ready: statesReady, reload: reloadStates, toggle: toggleModule, toggling, markOn: (key) => setModuleStates((s) => ({ ...s, [key]: true })) }} />
+            <ModulePanel moduleKey={active} guildId={guildId} meta={meta} isOn={active === 'statistics' && statsOn === null ? true : isModuleOn(active)} onEnable={() => toggleModule(active, true)} premiumActive={premiumActive} onOpenModule={(key) => openModule(key)} moduleSwitch={{ isOn: isModuleOn, ready: statesReady, reload: reloadStates, toggle: toggleModule, toggling, markOn: (key) => setModuleStates((s) => ({ ...s, [key]: true })) }} />
           )}
           </BotStatusProvider>
         </main>
@@ -1138,7 +1140,7 @@ function ModuleOverviewGrid({ moduleStates, premiumActive, toggling, toggleModul
                 <ModuleOverviewCard
                   key={m.key}
                   m={m}
-                  on={isModuleOn(m.key)}
+                  on={isModuleOn(m.key) && !(!m.status && isLockedModule(m.key, premiumActive))}
                   toggling={statesReady ? toggling : m.key}
                   toggleModule={toggleModule}
                   premiumActive={premiumActive}
@@ -1181,7 +1183,7 @@ function ModuleOverviewCard({ m, on, toggling, toggleModule, premiumActive, onOp
         </div>
       </button>
       <div className="mx-5 flex h-12 items-center justify-between gap-3 border-t border-border/60">
-        <span className={`inline-flex items-center gap-2 text-[11px] font-semibold leading-none ${statusOn ? 'text-emerald-400' : 'text-muted-foreground'}`}><span className={`w-1.5 h-1.5 shrink-0 rounded-full ${statusOn ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]' : 'bg-muted-foreground/50'}`} /><span className="whitespace-nowrap">{m.status ? (premiumActive ? tc('active') : tc('activate')) : (toggleable ? (on ? tc('active') : tc('off')) : tc('active'))}</span></span>
+        <span className={`inline-flex items-center gap-2 text-[11px] font-semibold leading-none ${statusOn ? 'text-emerald-400' : 'text-muted-foreground'}`}><span className={`w-1.5 h-1.5 shrink-0 rounded-full ${statusOn ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]' : 'bg-muted-foreground/50'}`} /><span className="whitespace-nowrap">{m.status ? (premiumActive ? tc('active') : tc('activate')) : (toggleable ? (on ? tc('active') : (m.premium && !premiumActive ? tc('moduleLockedShort') : tc('off'))) : tc('active'))}</span></span>
         <span className="flex items-center gap-4">
           {hasModulePage(m.key) && (
             <a href={learnHref} target="_blank" rel="noopener" className="text-[11px] font-medium text-muted-foreground underline-offset-4 hover:text-[#e6cd8c] hover:underline">
@@ -1217,8 +1219,8 @@ function ModulePanel({ moduleKey, guildId, meta, isOn = true, onEnable, premiumA
     roles: Array.isArray(meta?.roles) ? meta.roles : [],
   };
   const content = (() => {
-  const ownsLock = PREMIUM_LOCK_PANELS.has(moduleKey) && !premiumActive;
-  if (!isOn && !NON_TOGGLEABLE_KEYS.has(moduleKey) && !ownsLock) return <ModuleDisabledNotice moduleKey={moduleKey} onEnable={onEnable} switchOnly={SWITCH_ONLY_KEYS.has(moduleKey)} />;
+  const locked = isLockedModule(moduleKey, premiumActive);
+  if ((!isOn || locked) && !NON_TOGGLEABLE_KEYS.has(moduleKey)) return <ModuleDisabledNotice moduleKey={moduleKey} onEnable={onEnable} locked={locked} onGetPremium={() => onOpenModule?.('premium')} switchOnly={SWITCH_ONLY_KEYS.has(moduleKey)} />;
   switch (moduleKey) {
     case 'general': return <GeneralPanel key={guildId} guildId={guildId} meta={safeMeta} premiumActive={premiumActive} onOpenModule={onOpenModule} moduleSwitch={moduleSwitch} />;
     case 'welcome': return <WelcomePanel guildId={guildId} meta={safeMeta} />;
@@ -1323,14 +1325,19 @@ function ModuleGuide({ moduleKey }) {
   );
 }
 
-function ModuleDisabledNotice({ moduleKey, onEnable, switchOnly = false }) {
+function ModuleDisabledNotice({ moduleKey, onEnable, switchOnly = false, locked = false, onGetPremium }) {
   const t = useTranslations('guildSettings.common');
   const tm = useTranslations('modules');
   return (
     <Card className="p-8 text-center space-y-4 bg-card/60">
       <div className="mx-auto h-12 w-12 rounded-full bg-[#e6cd8c]/15 text-[#e6cd8c] flex items-center justify-center"><Power className="w-6 h-6" /></div>
-      <div><h2 className="text-xl font-bold">{t('moduleDisabledTitle', { module: tm(`${moduleKey}.title`) })}</h2><p className="text-sm text-muted-foreground mt-2">{t(switchOnly ? 'moduleSwitchOnlyDesc' : 'moduleDisabledDesc')}</p></div>
-      {switchOnly ? null : <div><Button onClick={onEnable} className="bg-[#e6cd8c] text-[#1a1208] hover:bg-[#f3e1b0]">{t('enableModuleButton')}</Button></div>}
+      <div><h2 className="text-xl font-bold">{t(locked ? 'moduleLockedTitle' : 'moduleDisabledTitle', { module: tm(`${moduleKey}.title`) })}</h2><p className="text-sm text-muted-foreground mt-2">{t(locked ? 'moduleLockedDesc' : switchOnly ? 'moduleSwitchOnlyDesc' : 'moduleDisabledDesc')}</p></div>
+      {switchOnly ? null : (
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <Button onClick={onEnable} className="bg-[#e6cd8c] text-[#1a1208] hover:bg-[#f3e1b0]">{t('enableModuleButton')}</Button>
+          {locked && onGetPremium ? <Button variant="outline" onClick={onGetPremium}>{t('getPremiumButton')}</Button> : null}
+        </div>
+      )}
     </Card>
   );
 }

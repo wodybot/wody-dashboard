@@ -2354,7 +2354,11 @@
       "remove": "Kaldır",
       "limitReached": "Sınıra ulaşıldı ({max})",
       "moduleSwitchOnlyDesc": "Bu modülü, modüllere genel bakıştaki anahtarıyla açın. Kapalıyken bot burada hiçbir şey yapmaz ve kayıtlı ayarlarınız olduğu gibi kalır.",
-      "loadingServer": "Sunucu açılıyor"
+      "loadingServer": "Sunucu açılıyor",
+      "moduleLockedTitle": "{module} kilitli.",
+      "moduleLockedDesc": "Premium bu sunucuda etkin değil. Bu modülün kilidini açmak için Premium’u etkinleştir, ardından modülü aç.",
+      "moduleLockedShort": "Kilitli",
+      "getPremiumButton": "Premium’u etkinleştir"
     },
     "groups": {
       "server": "Sunucu",

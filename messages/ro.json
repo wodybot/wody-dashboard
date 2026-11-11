@@ -2355,7 +2355,11 @@
       "remove": "Elimină",
       "limitReached": "Limită atinsă ({max})",
       "moduleSwitchOnlyDesc": "Pornește acest modul din comutatorul lui din vederea generală a modulelor. Cât timp e oprit, botul nu face nimic aici, iar setările salvate rămân neschimbate.",
-      "loadingServer": "Se deschide serverul"
+      "loadingServer": "Se deschide serverul",
+      "moduleLockedTitle": "{module} este blocat.",
+      "moduleLockedDesc": "Premium nu este activ pe acest server. Activează Premium pentru a debloca acest modul, apoi pornește-l.",
+      "moduleLockedShort": "Blocat",
+      "getPremiumButton": "Activează Premium"
     },
     "groups": {
       "server": "Server",

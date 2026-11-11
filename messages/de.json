@@ -2354,7 +2354,11 @@
       "remove": "Entfernen",
       "limitReached": "Limit erreicht ({max})",
       "moduleSwitchOnlyDesc": "Schalte dieses Modul mit seinem Schalter in der Modulübersicht ein. Solange es aus ist, tut der Bot hier nichts, und deine gespeicherten Einstellungen bleiben unverändert.",
-      "loadingServer": "Server wird geöffnet"
+      "loadingServer": "Server wird geöffnet",
+      "moduleLockedTitle": "{module} ist gesperrt.",
+      "moduleLockedDesc": "Premium ist auf diesem Server nicht aktiv. Aktiviere Premium, um dieses Modul freizuschalten, und schalte es dann ein.",
+      "moduleLockedShort": "Gesperrt",
+      "getPremiumButton": "Premium aktivieren"
     },
     "groups": {
       "server": "Server",

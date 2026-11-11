@@ -2354,7 +2354,11 @@
       "remove": "Remove",
       "limitReached": "Limit reached ({max})",
       "moduleSwitchOnlyDesc": "Turn this module on with its switch in the Modules overview. The bot does nothing here while it is off, and your saved settings stay untouched.",
-      "loadingServer": "Opening the server"
+      "loadingServer": "Opening the server",
+      "moduleLockedTitle": "{module} is locked.",
+      "moduleLockedDesc": "Premium is not active on this server. Activate Premium to unlock this module, then turn it on.",
+      "moduleLockedShort": "Locked",
+      "getPremiumButton": "Get Premium"
     },
     "groups": {
       "server": "Server",

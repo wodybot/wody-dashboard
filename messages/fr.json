@@ -2354,7 +2354,11 @@
       "remove": "Retirer",
       "limitReached": "Limite atteinte ({max})",
       "moduleSwitchOnlyDesc": "Activez ce module avec son interrupteur dans l’aperçu des modules. Tant qu’il est désactivé, le bot ne fait rien ici et vos réglages enregistrés restent intacts.",
-      "loadingServer": "Ouverture du serveur"
+      "loadingServer": "Ouverture du serveur",
+      "moduleLockedTitle": "{module} est verrouillé.",
+      "moduleLockedDesc": "Premium n’est pas actif sur ce serveur. Activez Premium pour déverrouiller ce module, puis activez-le.",
+      "moduleLockedShort": "Verrouillé",
+      "getPremiumButton": "Activer Premium"
     },
     "groups": {
       "server": "Serveur",

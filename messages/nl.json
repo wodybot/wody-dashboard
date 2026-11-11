@@ -2354,7 +2354,11 @@
       "remove": "Verwijderen",
       "limitReached": "Limiet bereikt ({max})",
       "moduleSwitchOnlyDesc": "Zet deze module aan met de schakelaar in het modulesoverzicht. Zolang hij uit staat doet de bot hier niets en blijven je opgeslagen instellingen ongewijzigd.",
-      "loadingServer": "Server wordt geopend"
+      "loadingServer": "Server wordt geopend",
+      "moduleLockedTitle": "{module} is vergrendeld.",
+      "moduleLockedDesc": "Premium is niet actief op deze server. Activeer Premium om deze module te ontgrendelen en schakel hem daarna in.",
+      "moduleLockedShort": "Vergrendeld",
+      "getPremiumButton": "Premium activeren"
     },
     "groups": {
       "server": "Server",
