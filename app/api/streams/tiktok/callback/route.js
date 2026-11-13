@@ -67,7 +67,7 @@ export async function GET(request) {
           access_token_enc: encryptToken(tokens.access_token), refresh_token_enc: encryptToken(tokens.refresh_token),
           access_expires_at: new Date(now.getTime() + Number(tokens.expires_in || 86400) * 1000),
           refresh_expires_at: new Date(now.getTime() + Number(tokens.refresh_expires_in || 31536000) * 1000),
-          connected_by: toLong(doc.user_id), updated_at: now, last_poll_at: null, last_video_ts: null,
+          connected_by: toLong(doc.user_id), updated_at: now, last_poll_at: null, next_poll_at: null, poll_step: 0, last_video_ts: null,
         },
         $setOnInsert: { guild_id: toLong(guildId), open_id: profile.open_id, created_at: now },
       },

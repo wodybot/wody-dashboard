@@ -428,7 +428,7 @@ function AddDialog({ guildId, meta, platform, connections, onClose, onAdded }) {
               {connected.length ? (
                 connected.length === 1 ? (
                   <div className="flex items-center gap-2 rounded-md border border-border/60 p-2">
-                    {connected[0].avatar_url ? <img src={avatarSrc(connected[0].avatar_url)} alt="" className="h-8 w-8 rounded-full" referrerPolicy="no-referrer" /> : <div className="h-8 w-8 rounded-full bg-secondary" />}
+                    {connected[0].avatar_url ? <img src={avatarSrc(connected[0].avatar_url)} alt="" className="h-8 w-8 rounded-full" referrerPolicy="no-referrer"  onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }} /> : <div className="h-8 w-8 rounded-full bg-secondary" />}
                     <span className="flex-1 truncate text-sm">{connected[0].display_name || connected[0].username} (@{connected[0].username})</span>
                   </div>
                 ) : (
@@ -495,7 +495,7 @@ function TikTokConnections({ guildId, data, provider, reload, onUsed }) {
       </Card>
       {data.my_tiktok ? (
         <Card data-my-tiktok className="mb-3 flex flex-wrap items-center gap-3 border-[#fe2c55]/30 bg-[#fe2c55]/[0.04] p-4">
-          {data.my_tiktok.avatar_url ? <img src={avatarSrc(data.my_tiktok.avatar_url)} alt="" className="h-10 w-10 rounded-full" referrerPolicy="no-referrer" /> : <div className="h-10 w-10 rounded-full bg-secondary" />}
+          {data.my_tiktok.avatar_url ? <img src={avatarSrc(data.my_tiktok.avatar_url)} alt="" className="h-10 w-10 rounded-full" referrerPolicy="no-referrer"  onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }} /> : <div className="h-10 w-10 rounded-full bg-secondary" />}
           <div className="min-w-0 flex-1">
             <div className="text-sm font-semibold">{t('tiktok.useTitle')}</div>
             <p className="truncate text-xs text-muted-foreground">{data.my_tiktok.display_name || data.my_tiktok.username}{data.my_tiktok.username ? ` (@${data.my_tiktok.username})` : ''}</p>
@@ -519,7 +519,7 @@ function TikTokConnections({ guildId, data, provider, reload, onUsed }) {
         <ul className="divide-y divide-border/50 rounded-2xl border border-border/60">
           {data.connections.map((c) => (
             <li key={c.id} className="flex flex-wrap items-center gap-3 p-3">
-              {c.avatar_url ? <img src={avatarSrc(c.avatar_url)} alt="" className="h-9 w-9 rounded-full" referrerPolicy="no-referrer" /> : <div className="h-9 w-9 rounded-full bg-secondary" />}
+              {c.avatar_url ? <img src={avatarSrc(c.avatar_url)} alt="" className="h-9 w-9 rounded-full" referrerPolicy="no-referrer"  onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }} /> : <div className="h-9 w-9 rounded-full bg-secondary" />}
               <div className="min-w-0 flex-1">
                 <div className="truncate text-sm font-medium">{c.display_name || c.username}</div>
                 <div className="flex flex-wrap items-center gap-x-3 text-xs text-muted-foreground">
